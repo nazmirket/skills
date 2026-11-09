@@ -1,0 +1,6 @@
+# Stress the interface with realistic data
+
+1. Start from the affected rendered component. Trace displayed fields to the API, schema or local model: required/optional, real length and count limits, valid values, locale and loading or error states. Distinguish realistic extremes from malformed input the boundary rejects.
+2. Select adverse cases that could break this layout or interaction. For example, combine a long localized name with a missing avatar at a narrow viewport; inspect an empty collection, dense list, keyboard focus or enlarged text when relevant. Establish a normal case for comparison.
+3. Use the normal rendering path with an isolated fixture, preview or safe local data override. Keep fixtures, overrides and selectors out of production. If the fixture cannot reach the real path, identify the limitation instead of guessing at behavior from styles.
+4. Inspect the actual result. Record input, viewport and state, steps to reproduce, what was obscured or unusable, evidence and the smallest actionable finding. Give measurable behavior to [Test](../../test/SKILL.md) when needed. If authorized to correct it, recheck the normal and adverse cases; otherwise stop at the findings.

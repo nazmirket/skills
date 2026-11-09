@@ -1,0 +1,3 @@
+interface:
+  display_name: "Clean"
+  short_description: "Remove verified leftovers safely"

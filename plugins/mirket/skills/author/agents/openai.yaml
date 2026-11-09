@@ -1,0 +1,3 @@
+interface:
+  display_name: "Author"
+  short_description: "Write documents or triage issue reports"

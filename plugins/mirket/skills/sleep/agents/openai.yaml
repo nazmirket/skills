@@ -1,0 +1,3 @@
+interface:
+  display_name: "Sleep"
+  short_description: "Pause work with a resume handoff"

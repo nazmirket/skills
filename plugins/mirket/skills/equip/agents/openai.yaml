@@ -1,0 +1,3 @@
+interface:
+  display_name: "Equip"
+  short_description: "Diagnose poor tool fit and recommend a better method"

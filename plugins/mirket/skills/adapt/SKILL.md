@@ -20,7 +20,7 @@ Understand the target and the person working on it as a thoughtful coworker. Thi
 
 ## Share the understanding
 
-6. Summarize the purpose, current state, relevant structure and conventions, and any useful working preferences. Cite concrete evidence or paths where they help the human assess the understanding. Distinguish observed facts, the human's statements, inferences and unanswered questions. Scale the summary to the task and explain any important gaps in access or evidence.
+6. Produce a compact orientation map: purpose, relevant entry points and flow, conventions and decisions that shape it, evidence and open gaps. Distinguish observed facts, the human's statements, inferences and unanswered questions. Give [Debug](../debug/SKILL.md) the expected/observed finding and relevant evidence for an authorized diagnosis, or give [Architect](../architect/SKILL.md) the affected boundaries and observed friction for a structural proposal.
 7. If you notice a discrepancy, questionable assumption or potential problem, describe it neutrally when it matters to understanding; do not automatically correct it or turn orientation into a review or repair. Seek the human's intent when needed. Do not edit files, change configuration, install tools, or execute a fix as part of orientation. A separate, explicitly requested or otherwise authorized task can follow this skill.
 
 **Done:** You can explain what the target is for, how the relevant parts work together, what conventions and human preferences are supported by evidence, and what remains uncertain. No fix is performed as part of getting oriented.

@@ -1,0 +1,3 @@
+interface:
+  display_name: "Discover"
+  short_description: "Check project environment readiness"

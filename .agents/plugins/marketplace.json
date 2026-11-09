@@ -1,0 +1,20 @@
+{
+  "name": "mir-marketplace",
+  "interface": {
+    "displayName": "Mir"
+  },
+  "plugins": [
+    {
+      "name": "mir",
+      "source": {
+        "source": "local",
+        "path": "./plugins/mir"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

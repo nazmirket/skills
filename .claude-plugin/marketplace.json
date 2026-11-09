@@ -1,0 +1,13 @@
+{
+  "name": "mir-marketplace",
+  "owner": {
+    "name": "mir"
+  },
+  "plugins": [
+    {
+      "name": "mir",
+      "source": "./plugins/mir",
+      "description": "Skills for planning, understanding, debugging, orchestration and quality review."
+    }
+  ]
+}

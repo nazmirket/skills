@@ -1,16 +1,16 @@
 ---
 name: critique
-description: "Use when judging a delivered design or artifact against its brief, including rendered quality, integration fit, simplicity, or what existing performance evidence establishes."
+description: "Use when quality judgment is useful during implementation or before delivery, including visual quality, integration fit, simplicity, and performance evidence."
 ---
 
 # Critique
 
-Judge the delivered result against the brief and the project context. Own the quality assessment; [Test](../test/SKILL.md) owns measurable checks, and [Audit](../audit/SKILL.md) owns defect findings on a diff or draft plan.
+Judge work in progress or a result against its brief and project context. Apply this skill during implementation when useful and before delivery when quality needs judgment. Own the quality assessment; [Test](../test/SKILL.md) owns measurable checks, and [Audit](../audit/SKILL.md) owns defect findings on changes, plans and scoped systems.
 
 ## Establish the scope
 
 1. Identify the change, intended behavior or appearance, relevant project conventions and agreed acceptance criteria. Inspect the connected context and distinguish evidence from assumptions. Surface material uncertainty instead of inventing requirements or a new design direction.
-2. Select relevant lenses and inspect the actual result. Reuse current Test evidence; request only missing checks that could change the verdict. Put saved screenshots and other temporary evidence in `.work/temp/<task>/` under the [workspace rules](../../references/workspace.md). A finding records the condition or location, evidence, impact and next step. Identify inferred, observed and unavailable evidence explicitly.
+2. Select lenses relevant to the task and its risks; not every lens applies. Inspect the actual result and reuse current Test evidence; request only missing checks that could change the verdict. Put saved screenshots and other temporary evidence in `.work/temp/<task>/` under the [workspace rules](../../references/workspace.md). A finding records the condition or location, evidence, impact and next step. Distinguish observations, inferences and subjective judgments; identify unavailable evidence. Explain material matters of taste or possible product-direction changes and their options, and ask the human when the choice would materially change the outcome.
 
 ## Choose relevant checks
 
@@ -24,7 +24,7 @@ Judge whether the result fits its connected workflow, conventions and user expec
 
 ### Performance
 
-Judge whether supplied measurements support the agreed target, expected workload and acceptable tradeoffs. Test owns a missing measurement or baseline using the [measured improvement method](../../references/measured-improvement.md). Report what the measurements support and what remains unknown.
+Judge whether supplied measurements support the agreed target, expected workload and acceptable tradeoffs. If performance matters but a useful target or comparable measurement is missing, state the gap and seek an appropriate target or measurement; do not claim the result is fast enough without evidence. Test owns measurement using the [measured improvement method](../../references/measured-improvement.md). Report what the measurements support and what remains unknown.
 
 ### Simplicity and quality
 
@@ -32,6 +32,6 @@ Review for unnecessary complexity, repeated knowledge, confusing flow, avoidable
 
 ## Correct and recheck
 
-3. A review-only request ends with findings. If corrections are authorized, use the [shared review loop](../../references/review-loop.md) to repair and recheck affected criteria. For visual repairs, inspect the changed render; after a stress-related fix recheck normal and adverse views.
+3. A review-only request ends with findings. During authorized implementation, correct issues within the authorized scope and use the [shared review loop](../../references/review-loop.md) to recheck affected criteria. Report material tradeoffs and seek the human's decision when product direction or the outcome would materially change. For visual repairs, inspect the changed render; after a stress-related fix recheck normal and adverse views.
 
 **Done:** Applicable quality criteria have findings or supporting evidence, any authorized correction has been checked, and material gaps are explicit.

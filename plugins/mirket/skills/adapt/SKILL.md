@@ -1,26 +1,26 @@
 ---
 name: adapt
-description: "Use when getting acquainted with a project, workspace, feature, workflow, or the human's way of working before making decisions or changes."
+description: "Use when relevant understanding of a project, workspace, feature, workflow, or the human's working preferences is missing or stale."
 ---
 
 # Adapt
 
-Understand the target and the person working on it as a thoughtful coworker. This skill is for understanding: observe and explain the current state without fixing, refactoring, or changing it.
+Understand the target and the human's working context as a thoughtful coworker. Orient when the task needs understanding that is missing or stale; reuse current evidence that covers the same scope. Adapt is read-only.
 
 ## Understand the target
 
 1. Establish the target and the purpose of this orientation from the human's request and available context. Identify the relevant scope and current task; ask a focused question if the target cannot be determined.
-2. Inspect relevant project instructions, documentation, structure, current work and, where available, version-control status. For a specific feature or flow, follow its entry point through the connected behavior and outputs. For a broader workspace, examine enough representative areas to understand how they fit together. Respect existing user changes.
-3. Identify the target's purpose, architecture, principles, conventions, patterns, assumptions, and current behavior. Look for the reasons behind an established approach in available evidence; distinguish a documented decision from an inference. Include relevant constraints and dependencies without expanding into a general audit.
+2. Inspect the relevant instructions, current work, documentation and version-control state where available. Follow the affected entry points through connected behavior, outputs and dependencies. For a broader request, examine representative areas and how they fit together. Respect existing user changes.
+3. Establish the purpose, behavior, conventions, assumptions and constraints needed for the requested scope and its risks. Include architecture, principles and prior decisions when they matter. Distinguish documented reasons from inferences. Stop once the next task has enough grounded context; report material gaps rather than expanding into an unrelated audit.
 
 ## Get to know the human
 
-4. Pay attention to the human's stated goals, working principles, preferences, prior decisions and feedback in the current conversation and relevant project context. Notice how they approach problems and make tradeoffs, and adapt collaboration accordingly. Treat the human as a continuing collaborator: carry relevant context forward instead of repeatedly starting from zero.
-5. Separate explicit preferences from tentative patterns; do not present a guess about the human's intent or thinking as fact. Ask when a meaningful uncertainty affects the work, and update your understanding when corrected. Do not infer a diagnosis or fixed personality from working preferences. Use only context available and authorized for the task; do not search private history or create a persistent profile without authorization.
+4. Use the human's stated goals, working principles, preferences, prior decisions and feedback from the conversation and relevant authorized project memory. Carry useful context forward instead of repeatedly starting from zero.
+5. Separate explicit preferences from tentative patterns. Check remembered context against current instructions and project evidence when it could affect a decision; ask only if a material uncertainty remains. Current instructions and corrections take precedence over stale memory. Do not infer a diagnosis or fixed personality, search unauthorized private history, or create a persistent profile without authorization.
 
 ## Share the understanding
 
-6. Produce a compact orientation map: purpose, relevant entry points and flow, conventions and decisions that shape it, evidence and open gaps. Distinguish observed facts, the human's statements, inferences and unanswered questions. Give [Debug](../debug/SKILL.md) the expected/observed finding and relevant evidence for an authorized diagnosis, or give [Architect](../architect/SKILL.md) the affected boundaries and observed friction for a structural proposal.
-7. If you notice a discrepancy, questionable assumption or potential problem, describe it neutrally when it matters to understanding; do not automatically correct it or turn orientation into a review or repair. Seek the human's intent when needed. Do not edit files, change configuration, install tools, or execute a fix as part of orientation. A separate, explicitly requested or otherwise authorized task can follow this skill.
+6. Carry a compact map of the relevant purpose, entry points, flow, conventions, evidence and gaps into the next task. Show the human the findings when requested or when they affect a decision; otherwise keep the handoff focused. Distinguish observed facts, the human's statements, inferences and unanswered questions. Give [Debug](../debug/SKILL.md) the expected and observed finding and supporting evidence, or give [Architect](../architect/SKILL.md) the affected boundaries and observed friction.
+7. Surface a discrepancy, questionable assumption or potential problem when it matters; do not repair it during orientation. After orientation, continue to a fix or other work already authorized by the human without asking again. Resolve any new product decision or scope change with the human.
 
-**Done:** You can explain what the target is for, how the relevant parts work together, what conventions and human preferences are supported by evidence, and what remains uncertain. No fix is performed as part of getting oriented.
+**Done:** The next task has enough evidence about its target, relevant conventions, human context and remaining gaps. No fix is performed during orientation.

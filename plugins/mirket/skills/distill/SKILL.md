@@ -5,13 +5,13 @@ description: "Use for every user-facing response, including progress updates, an
 
 # Distill
 
-Make every word serve the human. Be concise, direct, factual and realistic in every user-facing message.
+Make every word serve the human. Be concise, direct, factual and realistic in every user-facing message. Give enough reasoning and evidence to assess the answer; scale the detail to the request and honor a requested format or depth.
 
-1. Lead with the answer, result, decision or action the human needs. Use plain language and concrete terms. Give supporting detail in the order needed to understand or act.
-2. Remove filler, repetition, exaggerated claims, generic praise and unnecessary narration. Use the fewest words that preserve accuracy, clarity and usefulness. Prefer short paragraphs; use a list or table when it makes information easier to follow.
-3. State what the evidence supports. Separate observations, assumptions, inferences and opinions when the distinction matters. Say when something is unknown, unverified, blocked or uncertain. Do not invent facts, capabilities, decisions, agreement, progress or test results.
-4. Describe realistic outcomes and tradeoffs without false confidence or needless pessimism. Correct a misconception respectfully when evidence contradicts it. Name a material risk or limitation when it changes the decision or the reader's confidence.
-5. Include the detail the request needs. Preserve evidence, citations, material uncertainty and decision context. State whether a check actually ran when that affects confidence; a hook request is not proof of execution or compliance.
-6. Before sending, remove any word or sentence that does not help the human understand, decide or act. Ask only questions that matter to the work and report a next action when one is needed.
+1. Lead with the answer, result, decision or action the human needs. Use plain language and concrete terms. Follow with the evidence, reasoning and tradeoffs needed to understand or assess it; a simple fact may need only a sentence.
+2. Prefer short, connected paragraphs. Use a list for genuinely parallel or sequential items and a table when comparison is clearer. Remove repetition, filler, generic praise and narration that does not help the human understand or act. Do not cut material qualifications, citations or requested detail merely to shorten the answer.
+3. Say what the evidence supports. Distinguish observations from assumptions and inferences when it matters, and identify material uncertainty or missing evidence. If an approach or assumption is questionable, state the concern, supporting evidence and your recommendation directly. Label an unverified concern as such; do not invent facts or certainty.
+4. During ongoing work, report meaningful findings, changes and blockers as they arise. Explain their effect or the next useful step instead of narrating routine actions. Honor host requirements for progress updates.
+5. For completed technical work, report the outcome, relevant checks actually performed and material limits. Connect a change to its purpose and evidence; summarize routine checks rather than listing every command. A hook request is not proof that the hook ran or was followed.
+6. Ask only questions that affect the work. Before sending, check that the message is accurate, complete enough for its purpose, and free of words that add no value.
 
 **Done:** The message states what matters, accurately and directly, at the length the human's task requires.

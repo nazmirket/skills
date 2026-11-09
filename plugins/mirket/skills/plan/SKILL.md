@@ -1,17 +1,17 @@
 ---
 name: plan
-description: "Use when asked to plan work, develop an implementation plan, or report or record progress against an approved plan."
+description: "Use for substantial work, an explicit request for a plan, or reporting or recording progress against authorized work."
 ---
 
 # Plan
 
-Produce an evidence-based plan for the outcome the human wants. Product decisions and business rules belong to the human; the plan is a proposal until the human explicitly agrees to it.
+Produce an evidence-based plan for the outcome the human wants. Product decisions and business rules belong to the human. Use this skill when requested or when work involves consequential risk, unresolved decisions, or multiple dependent stages. File count alone does not make work substantial. Keep routine work direct.
 
-For a status request on approved work, go directly to [Track approved work](#track-approved-work).
+For a status request on authorized work, go directly to [Track authorized work](#track-authorized-work).
 
 ## 1. Establish the outcome and evidence
 
-- Identify the desired outcome, scope, constraints, stakeholders and observable measures of success. Separate what the human has decided from questions and proposals. Do not fill gaps in requirements or business logic with assumptions. When an existing business rule might carry over, identify it as observed behavior and propose its preservation; do not present it as an agreed requirement until the human confirms it. For example, if a request changes the free-shipping threshold but says nothing about the fee for other orders, record the existing fee as evidence, ask whether to retain it, and mark the proposed fee and related acceptance checks pending in all three files.
+- Identify the desired outcome, scope, constraints, stakeholders and observable measures of success. Separate decisions from proposals and open questions; do not invent requirements or business logic. Preserve established behavior outside the requested change using current evidence. Ask the human when a business rule is affected, genuinely uncertain, or requires a product decision. For example, an unchanged, evidenced delivery fee needs no separate confirmation when only the free-shipping threshold changes; if the fee itself is affected or unclear, surface the decision.
 - Inspect the relevant current implementation, connected behavior, tests, documentation and project conventions before proposing changes. Reuse established behavior and mechanisms where they fit. Cite the relevant paths or other evidence in the planning files; identify missing or inaccessible evidence.
 - Compare the human's factual statements with the evidence. When they conflict, explain the discrepancy respectfully and ask how to proceed where it changes the decision. A deliberate hypothetical, simulation or explicit product decision may be planned as such, but must not be recorded as a verified fact about the current implementation.
 - Ask focused questions for unresolved product choices, business rules, acceptance criteria or material scope. Offer evidence-based alternatives and a recommendation where useful. Continue independent investigation while an answer is pending; do not decide a business rule for the human or treat silence as agreement. Routine technical choices may be proposed with their reasoning, subject to project conventions and human direction.
@@ -31,18 +31,18 @@ Create the files while investigating, update them as evidence and decisions emer
 
 Before presenting the plan, check `Outcome.md`, `Agreement.md` and `Plan.md` for any proposed business rule or acceptance check presented as settled without human confirmation; mark each pending and ask the human to decide.
 
-For a substantial plan, commission a fresh read-only [Audit](../audit/SKILL.md) of the identified draft before asking for approval. Dispatch only when delegation is authorized and the host allows it; use [Orchestrate](../orchestrate/SKILL.md) when coordination is needed. Give the reviewer the goal, files, constraints and evidence. Use the [shared review loop](../../references/review-loop.md) to handle material findings and record the reviewer, findings, repairs and focused recheck in `Agreement.md`. If independent review is unavailable, share an explicitly unreviewed draft for discussion, record the unmet gate and stop before readiness or execution. An inline check or ordinary approval cannot substitute for the missing review.
+For a substantial plan, request a fresh read-only [Audit](../audit/SKILL.md) of the identified draft when the host permits delegation and it is authorized. Give the reviewer the goal, files, constraints and evidence; use [Orchestrate](../orchestrate/SKILL.md) when coordination is needed. Handle material findings with the [review loop](../../references/review-loop.md), and record the reviewer, findings, repairs and focused recheck in `Agreement.md`. If independent review is unavailable, record and disclose the gap; label any self-check accurately. Follow any stronger review gate required by the human or host.
 
-Present a concise brief of the intended execution actions, the outcome and checks, relevant evidence or constraints, and any unresolved product decisions. Link the three files. Ask the human to resolve material choices; request approval once required review and material repairs are complete. Iterate the files and brief as needed; record each decision and its alternatives in `Agreement.md`.
+Present a concise brief of the intended actions, outcome and checks, relevant evidence or constraints, and unresolved product decisions. Link the three files. Ask the human to resolve material choices; continue independent authorized work while an answer is pending. If the request is for a plan or approval is otherwise required, obtain approval before dependent execution.
 
-Mark `Plan.md` approved and begin execution only after the human explicitly approves the current plan, material decisions are resolved and required review is satisfied. Record approval in `Agreement.md`; silence, elapsed time and the agent's recommendation are not approval. If a material decision or scope changes, update the files and seek renewed agreement before acting on that change. Plan approval does not grant authority beyond the human's instructions and host permissions.
+Honor clear existing authorization to execute without asking for it again. Record what was authorized and by whom in `Agreement.md`; distinguish that authorization from explicit approval of a particular written plan. Mark `Plan.md` approved only when the human actually approves it; silence, elapsed time and the agent's recommendation are not approval. Before dependent work, resolve decisions that require the human and satisfy any stronger host or user gate. During execution, record routine technical adjustments within scope; return to the human for changes to the outcome, product decisions or authorized scope. Neither a plan nor its approval grants authority beyond the human's instructions and host permissions.
 
-**Done:** The human has a concise, reviewable proposal backed by current evidence, with the three required files and a truthful approval status. If information or approval is pending, identify it and leave the plan in draft.
+**Done:** The three files describe the outcome, decisions, evidence and steps, with truthful authorization and review status. Report unresolved decisions or verification gaps; leave a written plan in draft until explicitly approved.
 
-## Track approved work
+## Track authorized work
 
-1. Identify the matching approved plan. Read `Plan.md`, `Outcome.md` and `Agreement.md` to recover commitments and acceptance criteria. Check actual artifacts, checks or owner reports; distinguish direct, reported, stale and unavailable evidence. If no approved record matches, report what you can verify and leave plan files untouched.
+1. Identify the matching authorized work and plan record. Read `Plan.md`, `Outcome.md` and `Agreement.md` to recover commitments and acceptance criteria. Check actual artifacts, checks or owner reports; distinguish direct, reported, stale and unavailable evidence. If no matching record establishes authorized work, report what you can verify and leave plan files untouched.
 2. Give an as-of snapshot of completed and remaining work, milestone variance, blockers or dependencies, known owners and dates, and decisions needed. Link material evidence and mark unknowns. Surface proposed changes without treating them as approved commitments.
-3. Return status questions read-only. When asked to save status, update only the `## Current status` section in the approved `Plan.md`, adding it if absent. Keep a single plan record and preserve the approval state. Assignments, external updates, and ongoing monitoring require their own authorization.
+3. Return status questions read-only. When asked to save status, update only the `## Current status` section in the matching `Plan.md`, adding it if absent. Keep a single plan record and preserve its approval state. Assignments, external updates, and ongoing monitoring require their own authorization.
 
 **Done:** Return the evidence-backed snapshot and link its location if saved.

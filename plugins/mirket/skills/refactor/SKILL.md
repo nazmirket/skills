@@ -15,7 +15,7 @@ Improve the target code with the smallest complete, evidence-backed change. Pres
 
 ## Establish evidence and improve
 
-4. Choose the most efficient reliable way to establish the relevant behavior before changing it. Use an existing focused check or reproduction when sufficient; add a targeted characterization check when important behavior is untested and at risk. Include relevant edge cases and project-required checks. Record any baseline failure or unavailable verification rather than treating it as a pass.
+4. Choose the most efficient reliable way to establish the relevant behavior before changing it. Use an existing focused check or reproduction when sufficient; add a meaningful targeted characterization check when important behavior is untested and at risk. Do not add tests solely because a refactor occurred. Include relevant edge cases and project-required checks. Record any baseline failure or unavailable verification rather than treating it as a pass.
 5. Choose a simple approach that addresses the actual problem. Reuse existing facilities, remove unnecessary complexity and duplication where doing so improves clarity, and make coherent, reviewable changes. Avoid unrelated cleanup, speculative abstractions or new dependencies. Preserve necessary validation, error handling, security, accessibility and externally observable behavior.
 6. If orientation or verification reveals a defect or unexpected failure, use [debug](../debug/SKILL.md) to investigate the evidence and cause. Repair it only when the human's request or existing authorization covers the fix; report unrelated defects and keep the refactor within scope. Do not stack guesses onto a failing change.
 

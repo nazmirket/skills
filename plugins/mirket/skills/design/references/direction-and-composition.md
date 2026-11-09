@@ -12,7 +12,7 @@ For an unsettled direction, inspect a small number of relevant examples from com
 
 Before changing an existing interface, open the affected flow in a browser or its native runtime. Capture representative before views at relevant sizes and states. Record the entry point, environment, viewport and inputs so the same case can be reproduced. Record what must survive: approved content and data, brand assets, key actions and destinations, navigation, state changes and feedback, and accessibility or platform requirements. Separate a pre-existing problem from a regression risk and identify any behavior change the human requested.
 
-If the existing surface cannot run, use the available evidence and mark what could not be observed. Pass the before evidence and invariants to [Critique](../../critique/SKILL.md) for the rendered comparison; use [Test](../../test/SKILL.md) to substantiate preserved behavior when it matters.
+If the existing interface cannot be viewed, stop the redesign and report the blocker; resume after the baseline is visible and captured. Available source or documentation can support orientation but cannot replace viewing the baseline. Pass the before evidence and invariants to [Critique](../../critique/SKILL.md) for the rendered comparison; use [Test](../../test/SKILL.md) to substantiate preserved behavior when it matters.
 
 ## Set the emphasis
 

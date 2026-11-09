@@ -10,7 +10,7 @@ ROOT = Path(__file__).resolve().parents[1] / "plugins/mirket"
 
 
 class DistillHookTest(unittest.TestCase):
-    def test_prompt_hook_requests_distill_with_an_installed_path(self):
+    def test_prompt_hook_requests_author_and_distill_with_installed_paths(self):
         config = json.loads((ROOT / "hooks/hooks.json").read_text())
         command = config["hooks"]["UserPromptSubmit"][0]["hooks"][0]["command"]
         self.assertIn("${CLAUDE_PLUGIN_ROOT}/hooks/distill.py", command)
@@ -22,6 +22,8 @@ class DistillHookTest(unittest.TestCase):
         output = json.loads(result.stdout)["hookSpecificOutput"]
         self.assertEqual(output["hookEventName"], "UserPromptSubmit")
         self.assertIn(str(ROOT / "skills/distill/SKILL.md"), output["additionalContext"])
+        self.assertIn(str(ROOT / "skills/author/SKILL.md"), output["additionalContext"])
+        self.assertIn(str(ROOT / "skills/clean/SKILL.md"), output["additionalContext"])
         self.assertNotIn("hello", output["additionalContext"])
 
 

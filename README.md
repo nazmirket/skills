@@ -14,19 +14,19 @@ The catalog keeps the human involved in consequential product decisions. Skills 
 | --- | --- |
 | [mirket:adapt](plugins/mirket/skills/adapt/SKILL.md) | Understand the target, its conventions and the human's working preferences without making fixes. |
 | [mirket:architect](plugins/mirket/skills/architect/SKILL.md) | Compare consequential technical designs and prepare a decision or ADR draft. |
-| [mirket:audit](plugins/mirket/skills/audit/SKILL.md) | Report evidence-backed defects in a code change or explicitly requested draft plan. |
-| [mirket:author](plugins/mirket/skills/author/SKILL.md) | Produce and verify documents, or triage bug reports and draft issue tickets. |
+| [mirket:audit](plugins/mirket/skills/audit/SKILL.md) | Review changes, plans or scoped systems and report evidence-backed findings. |
+| [mirket:author](plugins/mirket/skills/author/SKILL.md) | Write for the intended reader, verify documents, and triage issue reports. |
 | [mirket:brief](plugins/mirket/skills/brief/SKILL.md) | Prepare a recipient-specific handoff with the next action, authority and evidence. |
 | [mirket:clean](plugins/mirket/skills/clean/SKILL.md) | Remove verified leftovers and keep project guidance current. |
-| [mirket:critique](plugins/mirket/skills/critique/SKILL.md) | Judge the delivered result against its brief using rendered and qualitative evidence. |
-| [mirket:curate](plugins/mirket/skills/curate/SKILL.md) | Research a question or compare options with sourced evidence of fit, adoption and stability. |
+| [mirket:critique](plugins/mirket/skills/critique/SKILL.md) | Judge work against its brief using evidence suited to the quality risks. |
+| [mirket:curate](plugins/mirket/skills/curate/SKILL.md) | Discover and compare options with sourced evidence of fit, adoption and stability. |
 | [mirket:debug](plugins/mirket/skills/debug/SKILL.md) | Trace an observed failure to its cause and verify any authorized fix. |
 | [mirket:design](plugins/mirket/skills/design/SKILL.md) | Set or implement visual direction, including redesigns and supplied references. |
 | [mirket:distill](plugins/mirket/skills/distill/SKILL.md) | Communicate concisely, directly and factually in every user-facing response. |
 | [mirket:equip](plugins/mirket/skills/equip/SKILL.md) | Identify why a tool or workflow cannot deliver the result or wastes effort, and recommend a better fit. |
 | [mirket:focus](plugins/mirket/skills/focus/SKILL.md) | Frame a product opportunity, success measures and the decisions for the human. |
 | [mirket:imagine](plugins/mirket/skills/imagine/SKILL.md) | Agree on an image-generation brief and translate the generated design into code. |
-| [mirket:orchestrate](plugins/mirket/skills/orchestrate/SKILL.md) | Coordinate bounded investigations, independent draft reviews, or approved execution. |
+| [mirket:orchestrate](plugins/mirket/skills/orchestrate/SKILL.md) | Decide when delegation helps and manage agents across bounded scopes. |
 | [mirket:plan](plugins/mirket/skills/plan/SKILL.md) | Prepare an evidence-based plan, record decisions, and track approved work. |
 | [mirket:preflight](plugins/mirket/skills/preflight/SKILL.md) | Check environment readiness against project requirements and propose fixes for blockers. |
 | [mirket:refactor](plugins/mirket/skills/refactor/SKILL.md) | Simplify existing code within scope while preserving observable behavior. |
@@ -37,7 +37,7 @@ Use the [routing guide](plugins/mirket/references/routing.md) to choose a workfl
 
 Earlier IDs have no aliases: use `clean` for `cleanup`, `brief` for `handoff`, `preflight` for `discover`, `audit` for `review`, and `focus` for `scope`. Issue triage now lives in Author and progress tracking in Plan. General implementation no longer has a separate skill.
 
-`distill` is intended for every user-facing response. A prompt hook asks the agent to read and apply it each turn. Hook activation and the agent's compliance are not guaranteed; host behavior remains unverified.
+`author` and `distill` are intended for every user-facing response. A prompt hook asks for a lightweight combined pass each turn. Hook activation and the agent's compliance are not guaranteed; host behavior remains unverified.
 
 Skill names in `SKILL.md` remain unprefixed, such as `plan`; the plugin supplies the `mirket:` namespace. Claude Code documents plugin commands such as `/mirket:plan`. Codex-facing labels are configured separately in each skill's `agents/openai.yaml`. Exact host display and invocation remain unverified.
 
@@ -51,7 +51,7 @@ plugins/mirket/.claude-plugin/plugin.json Claude Code plugin metadata
 plugins/mirket/skills/                 Shared skill instructions and display metadata
 plugins/mirket/references/            Native methods, routing and workspace guidance
 plugins/mirket/sources.json           Attribution and license locations
-plugins/mirket/hooks/                  Distill and cleanup lifecycle hooks
+plugins/mirket/hooks/                  Communication and cleanup lifecycle hooks
 plugins/mirket/assets/                 Plugin icon
 instructions/                          Global instructions for Codex and Claude Code
 memory/                                Hindsight installation guidance and installer
@@ -93,19 +93,19 @@ If Codex uses a custom `CODEX_HOME`, use that directory; an existing `AGENTS.ove
 
 ### Project work files
 
-Use the project-root [`.work/` directory](plugins/mirket/references/workspace.md) for plans, temporary stashes, important recovery copies, standalone briefs, and scratch artifacts. Verify the ignore rule in the project where you are working. Keep `.work/` out of commits unless the human explicitly names an exception.
+Use the project-root [`.work/` directory](plugins/mirket/references/workspace.md) for plans, architectural decision records, temporary stashes, important recovery copies, standalone briefs, and scratch artifacts. Architectural decisions are recorded locally in `.work/decisions/` after they are made. Verify the ignore rule in the project where you are working. Keep `.work/` out of commits unless the human explicitly names an exception.
 
 ## Lifecycle hooks
 
 Mirket includes three plugin hooks, requiring Python 3 in the host environment:
 
-- **On a user prompt:** request that the agent read and apply [distill](plugins/mirket/skills/distill/SKILL.md) to its user-facing messages for the turn.
+- **On a user prompt:** request that the agent read and apply [Author](plugins/mirket/skills/author/SKILL.md) and [Distill](plugins/mirket/skills/distill/SKILL.md) to its user-facing messages for the turn, and apply Clean before delivery when relevant. This provides an earlier reminder if another Stop hook affects the final review.
 - **Before delivery:** on a supported `Stop` event, request one task-scoped cleanup review before the response finishes. It uses the host's continuation flag to avoid repeated loops.
-- **Before an agent-issued commit:** for supported direct `git commit` calls through the agent's Bash tool, block an unacknowledged attempt and request a repository-wide cleanup review. After reviewing, retry with a command-local marker, for example `MIRKET_CLEANUP_DONE=1 git commit -m "message"`. Each commit in a compound command needs its own marker. The marker acknowledges the review; it does not prove cleanup occurred or override host permissions.
+- **Before an agent-issued commit:** for supported direct `git commit` calls through the agent's Bash tool, block an unacknowledged attempt and request a repository-wide cleanup review. After reviewing, retry with a command-local marker, for example `MIRKET_CLEANUP_DONE=1 git commit -m "message"`. The hook checks the target index for staged `.work/` additions or changes, including with `git -C`, and blocks when it cannot inspect that index. Commit separately from other shell commands so the index and target cannot change after inspection. If the human explicitly authorizes an exact `.work/` path, use `MIRKET_WORK_EXCEPTION=.work/path` on that command; other staged `.work/` paths remain blocked. Both markers are assertions: neither proves that review occurred or the human authorized an exception, and neither overrides host permissions.
 
 The cleanup hooks instruct the agent to use [Clean](plugins/mirket/skills/clean/SKILL.md); they do not themselves delete or stage files. Hooks cannot guarantee agent compliance. Codex requires review and trust of plugin hooks before they run; changing a hook requires renewed review. Hook activation and behavior in each host have not been verified.
 
-Coverage is limited: disabled or untrusted hooks, interruptions, API failures, shared Stop-loop state, unsupported tool paths, PowerShell, Git aliases, scripts, nested shells, heredocs or here-strings, wrapper options, interactive shell input and commits outside the agent can bypass these checks. The shell recognizer handles direct commands and basic `env`/`command` wrappers, not a complete shell grammar. For a heredoc or here-string, it inspects only the prefix before the operator and warns when it cannot fully inspect the command. Hooks are guardrails, not a security boundary. OpenAI's public plugin directory does not accept lifecycle hooks; local marketplace distribution has different rules. See the [Codex hook documentation](https://learn.chatgpt.com/docs/hooks) and [Claude Code hook reference](https://code.claude.com/docs/en/hooks).
+Coverage is limited: disabled or untrusted hooks, interruptions, API failures, shared Stop-loop state, unsupported tool paths, PowerShell, Git aliases, scripts, nested shells, heredocs or here-strings, wrapper options, interactive shell input and commits outside the agent can bypass these checks. The shell recognizer handles direct commands and basic `env`/`command` wrappers, not a complete shell grammar; it warns about some recognizable unsupported forms but cannot detect every indirect commit. An index check examines staged changes at invocation time; it does not cover unrecognized commands or all alternative commit modes. Hooks are guardrails, not a security boundary. OpenAI's public plugin directory does not accept lifecycle hooks; local marketplace distribution has different rules. See the [Codex hook documentation](https://learn.chatgpt.com/docs/hooks) and [Claude Code hook reference](https://code.claude.com/docs/en/hooks).
 
 ## Authoring and verification
 

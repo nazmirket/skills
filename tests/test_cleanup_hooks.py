@@ -4,6 +4,7 @@ import json
 from pathlib import Path
 import subprocess
 import sys
+import tempfile
 import unittest
 
 HOOK = Path(__file__).resolve().parents[1] / "plugins/mirket/hooks/cleanup.py"
@@ -72,8 +73,7 @@ class CleanupHooksTest(unittest.TestCase):
     def test_acknowledged_commits_are_neutral_not_allowed(self):
         commands = (
             "MIRKET_CLEANUP_DONE=1 git commit -m first",
-            "env MIRKET_CLEANUP_DONE=1 git -C /tmp commit -m first",
-            "MIRKET_CLEANUP_DONE=1 git commit -m first && MIRKET_CLEANUP_DONE=1 git commit -m second",
+            "env MIRKET_CLEANUP_DONE=1 git -C . commit -m first",
         )
         for command in commands:
             with self.subTest(command=command):
@@ -121,6 +121,50 @@ class CleanupHooksTest(unittest.TestCase):
         result = before_shell("git commit -m 'unclosed")
         self.assertIn("systemMessage", result)
         self.assertFalse(denied(result))
+
+    def test_wrapped_commits_report_uncertain_coverage(self):
+        for command in ("if git commit -m x; then true; fi", "env -i git commit -m x", "time git commit -m x"):
+            with self.subTest(command=command):
+                self.assertIn("systemMessage", before_shell(command))
+
+    def test_staged_work_is_blocked_even_after_cleanup_acknowledgment(self):
+        with tempfile.TemporaryDirectory() as root:
+            subprocess.run(["git", "init", "-q", root], check=True)
+            work = Path(root) / ".work"
+            work.mkdir()
+            (work / "private.txt").write_text("private")
+            subprocess.run(["git", "-C", root, "add", ".work/private.txt"], check=True)
+            def request(command):
+                return invoke({"hook_event_name": "PreToolUse", "tool_name": "Bash", "cwd": root, "tool_input": {"command": command}})
+            result = request("MIRKET_CLEANUP_DONE=1 git commit -m x")
+            self.assertTrue(denied(result))
+            self.assertIn(".work/private.txt", result["hookSpecificOutput"]["permissionDecisionReason"])
+            self.assertEqual(request("MIRKET_CLEANUP_DONE=1 MIRKET_WORK_EXCEPTION=.work/private.txt git commit -m x"), {})
+            self.assertTrue(denied(request("MIRKET_CLEANUP_DONE=1 MIRKET_WORK_EXCEPTION=.work/other.txt git commit -m x")))
+            (work / "other.txt").write_text("other")
+            subprocess.run(["git", "-C", root, "add", ".work/other.txt"], check=True)
+            self.assertTrue(denied(request("MIRKET_CLEANUP_DONE=1 MIRKET_WORK_EXCEPTION=.work/private.txt git commit -m x")))
+
+    def test_staged_work_targets_git_c_directory(self):
+        with tempfile.TemporaryDirectory() as root:
+            target = Path(root) / "target"
+            subprocess.run(["git", "init", "-q", str(target)], check=True)
+            work = target / ".work"
+            work.mkdir()
+            (work / "secret").write_text("x")
+            subprocess.run(["git", "-C", str(target), "add", ".work/secret"], check=True)
+            payload = {"hook_event_name": "PreToolUse", "tool_name": "Bash", "cwd": root, "tool_input": {"command": "MIRKET_CLEANUP_DONE=1 git -C target commit -m x"}}
+            self.assertTrue(denied(invoke(payload)))
+
+    def test_index_inspection_failure_blocks_an_acknowledged_commit(self):
+        with tempfile.TemporaryDirectory() as root:
+            payload = {"hook_event_name": "PreToolUse", "tool_name": "Bash", "cwd": root, "tool_input": {"command": "MIRKET_CLEANUP_DONE=1 git commit -m x"}}
+            self.assertTrue(denied(invoke(payload)))
+
+    def test_compound_commands_cannot_change_index_before_inspection(self):
+        for command in ("git add -f .work/a && MIRKET_CLEANUP_DONE=1 git commit -m x", "cd other && MIRKET_CLEANUP_DONE=1 git commit -m x", "MIRKET_CLEANUP_DONE=1 git commit -m x && MIRKET_CLEANUP_DONE=1 git commit -m y"):
+            with self.subTest(command=command):
+                self.assertTrue(denied(before_shell(command)))
 
 
 if __name__ == "__main__":

@@ -1,7 +1,7 @@
 {
-  "name": "mirket-native-marketplace",
+  "name": "mirket",
   "interface": {
-    "displayName": "Mirket Native"
+    "displayName": "Mirket"
   },
   "plugins": [
     {

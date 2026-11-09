@@ -1,8 +1,12 @@
 # Mirket
 
-Mirket is a collection of agent skills for engineering, QA, design, document authoring, product decisions, and project coordination. The `mirket` plugin shares one catalog across Codex and Claude Code; `mirket-native-marketplace` provides a local marketplace for each host.
+Mirket is a collection of agent skills for engineering, QA, design, document authoring, product decisions, and project coordination. The `mirket` marketplace provides the same plugin catalog for Codex and Claude Code.
 
 The skills are under active development. Package checks and synthetic hook tests are separate from installation and behavioral testing in Codex and Claude Code.
+
+Mirket gives an agent a set of focused workflows it can combine for a task. It can first understand a project with Adapt, define a product decision with Focus, plan work with Plan, and coordinate independent scopes with Orchestrate. Debug, Refactor, Test, Audit and Critique support implementation and verification; Design and Imagine cover visual work; Author, Brief and Sleep preserve information for people and future sessions.
+
+The catalog keeps the human involved in consequential product decisions. Skills use the current project's conventions and evidence, report uncertainty, and choose checks appropriate to the work. Agent-owned working files have a consistent ignored workspace; the optional Hindsight integration provides separate persistent memory.
 
 ## Skills
 
@@ -48,6 +52,7 @@ plugins/mirket/skills/                 Shared skill instructions and display met
 plugins/mirket/references/            Native methods, routing and workspace guidance
 plugins/mirket/sources.json           Attribution and license locations
 plugins/mirket/hooks/                  Distill and cleanup lifecycle hooks
+plugins/mirket/assets/                 Plugin icon
 instructions/                          Global instructions for Codex and Claude Code
 memory/                                Hindsight installation guidance and installer
 tests/                                 Synthetic plugin hook tests
@@ -57,25 +62,23 @@ The marketplace source paths are relative to this project root. Both descriptors
 
 For optional persistent memory in Codex, see [Hindsight setup](memory/README.md). Hindsight's runtime and data remain in its own user-level locations.
 
-## Local installation
+## Install from GitHub
 
-The following instructions describe local setup after the skills are ready for host testing. They change your local plugin configuration; no registration or installation has been performed for this project.
-
-From the project root, for Codex:
+For Codex:
 
 ```sh
-codex plugin marketplace add .
-codex plugin add mirket@mirket-native-marketplace
+codex plugin marketplace add https://github.com/nazmirket/skills.git
+codex plugin add mirket@mirket
 ```
 
 For Claude Code:
 
 ```sh
-claude plugin marketplace add .
-claude plugin install mirket@mirket-native-marketplace
+claude plugin marketplace add nazmirket/skills
+claude plugin install mirket@mirket
 ```
 
-Start a new session after installation. Installed copies may be cached: refresh the marketplace and plugin after source changes, and restart the host as needed. Refer to [OpenAI's local marketplace guide](https://developers.openai.com/plugins/build/plugins) and [Claude Code's marketplace guide](https://code.claude.com/docs/en/plugin-marketplaces) for current host behavior and update commands. The two hosts have separate marketplace files and installations.
+Start a new session after installation. The marketplace is fetched from the remote repository; refresh it and reinstall or update the plugin when you want newer changes. Codex and Claude Code maintain separate marketplace registrations. See the [OpenAI plugin guide](https://developers.openai.com/plugins/build/plugins) and [Claude Code marketplace guide](https://code.claude.com/docs/en/plugin-marketplaces).
 
 ### Global instructions
 

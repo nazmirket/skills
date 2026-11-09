@@ -1,12 +1,12 @@
 {
-  "name": "mir-marketplace",
+  "name": "mirket-native-marketplace",
   "owner": {
-    "name": "mir"
+    "name": "mirket"
   },
   "plugins": [
     {
-      "name": "mir",
-      "source": "./plugins/mir",
+      "name": "mirket",
+      "source": "./plugins/mirket",
       "description": "Skills for planning, understanding, debugging, orchestration and quality review."
     }
   ]

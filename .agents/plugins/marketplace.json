@@ -1,14 +1,14 @@
 {
-  "name": "mir-marketplace",
+  "name": "mirket-native-marketplace",
   "interface": {
-    "displayName": "Mir"
+    "displayName": "Mirket Native"
   },
   "plugins": [
     {
-      "name": "mir",
+      "name": "mirket",
       "source": {
         "source": "local",
-        "path": "./plugins/mir"
+        "path": "./plugins/mirket"
       },
       "policy": {
         "installation": "AVAILABLE",

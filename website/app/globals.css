@@ -58,11 +58,12 @@ p, figure { margin: 0; }
 .mascot-overlay { position: absolute; inset: 0; display: block; width: 100%; height: 100%; pointer-events: none; }
 .mascot-wink, .mascot-spark { opacity: 0; }
 @media (prefers-reduced-motion: no-preference) {
-  .mascot-wink, .mascot-spark { animation: mirket-wink 5s steps(1, end) 550ms infinite; }
+  .mascot-wink, .mascot-spark { animation: mirket-wink 3s steps(1, end) 550ms infinite; }
 }
 @keyframes mirket-wink {
-  0%, 6.9%, 100% { opacity: 0; }
-  1.25% { opacity: 1; }
+  /* Keep the existing wink from 62.5 ms to 345 ms into each loop. */
+  0%, 11.5%, 100% { opacity: 0; }
+  2.0833% { opacity: 1; }
 }
 .skill-glyph svg, .stage-marker svg { display: block; width: 100%; }
 

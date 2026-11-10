@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Request cleanup before delivery or a supported agent-shell commit."""
+"""Review delivery and guard supported agent-shell commits."""
 
 import json
 import os
@@ -210,16 +210,16 @@ def check_staged_work(commit, cwd):
 def handle(payload):
     event = payload.get("hook_event_name")
     if event == "Stop" and "stop_hook_active" not in payload:
-        return {"systemMessage": "Mirket cleanup was not requested: the Stop continuation flag is missing."}
+        return {"systemMessage": "Mirket's final review was not requested: the Stop continuation flag is missing."}
     if event == "Stop" and not isinstance(payload.get("stop_hook_active"), bool):
-        return {"systemMessage": "Mirket cleanup was not requested: the Stop continuation flag is invalid."}
+        return {"systemMessage": "Mirket's final review was not requested: the Stop continuation flag is invalid."}
     if event == "Stop" and payload.get("stop_hook_active") is False:
         return {
             "decision": "block",
             "reason": (
-                f"Before delivering, read {SKILL} and perform its task-scoped cleanup review "
-                "where relevant. Respect the user's scope, read-only restrictions and existing work; "
-                "make no changes when cleanup is not applicable. Report any material gap."
+                f"Apply {SKILL} for task-scoped cleanup when relevant; respect scope, read-only restrictions, "
+                "and existing work. Distill the final reply: outcome first, then verified checks, material "
+                "limits, and any needed next step. Skip narration of this review."
             ),
         }
     if event != "PreToolUse" or payload.get("tool_name") != "Bash":

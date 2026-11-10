@@ -7,7 +7,7 @@ Use the [project workspace](workspace.md) for any agent-owned files the workflow
 | Request | Owner and stopping point |
 | --- | --- |
 | Understand the code and its conventions | [Adapt](../skills/adapt/SKILL.md): evidence-backed orientation. Use [Preflight](../skills/preflight/SKILL.md) for environment readiness and blockers. |
-| Find why the current tool or method cannot deliver the result or needs repeated workarounds | [Equip](../skills/equip/SKILL.md): evidence for the mismatch and the smallest better fit. Use Preflight when the chosen method fits but its required environment is missing or misconfigured. |
+| Choose or obtain a tool, or challenge a tool, format, representation, abstraction, or workflow that falls short or works at a material cost | [Equip](../skills/equip/SKILL.md): evidence for the mismatch, the benefit and cost of changing, and guidance for authorized setup. Use Preflight when a suitable tool is missing or misconfigured in the target environment, and Debug when a suitable tool unexpectedly fails. |
 | Decide what problem to prioritize, or compare outside options | [Focus](../skills/focus/SKILL.md): product brief with the decisions for the human. [Curate](../skills/curate/SKILL.md) owns sourced discovery and comparison of options. |
 | Decide how to change a system boundary | [Architect](../skills/architect/SKILL.md): alternatives, consequences, and a recommendation or draft decision record. |
 | Agree how to execute a substantial change | [Plan](../skills/plan/SKILL.md): evidence, human decisions, review when available, and a truthful record of authorization. |

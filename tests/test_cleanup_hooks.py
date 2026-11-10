@@ -35,10 +35,16 @@ def denied(output):
 
 
 class CleanupHooksTest(unittest.TestCase):
-    def test_stop_requests_one_continuation(self):
+    def test_stop_combines_distill_and_clean_in_one_continuation(self):
+        hooks = json.loads((HOOK.parent / "hooks.json").read_text())["hooks"]
+        commands = [hook["command"] for group in hooks["Stop"] for hook in group["hooks"]]
+        self.assertEqual(len(commands), 1)
+        self.assertIn("/hooks/cleanup.py", commands[0])
         first = invoke({"hook_event_name": "Stop", "stop_hook_active": False})
         self.assertEqual(first.get("decision"), "block")
         self.assertIn(str(CLEAN), first.get("reason", ""))
+        self.assertIn("Distill", first.get("reason", ""))
+        self.assertIn("verified checks", first.get("reason", ""))
         self.assertTrue(CLEAN.is_file())
         self.assertEqual(invoke({"hook_event_name": "Stop", "stop_hook_active": True}), {})
 

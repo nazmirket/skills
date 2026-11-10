@@ -41,8 +41,8 @@ A skill is a Markdown workflow with a trigger, guidance, and sometimes more deta
 
 | What you need | Skills |
 | --- | --- |
-| Understand the project and its environment | [Adapt](../plugins/mirket/skills/adapt/SKILL.md), [Preflight](../plugins/mirket/skills/preflight/SKILL.md), [Equip](../plugins/mirket/skills/equip/SKILL.md) |
-| Decide what to do and how to approach it | [Focus](../plugins/mirket/skills/focus/SKILL.md), [Curate](../plugins/mirket/skills/curate/SKILL.md), [Architect](../plugins/mirket/skills/architect/SKILL.md), [Plan](../plugins/mirket/skills/plan/SKILL.md) |
+| Understand the project and its environment | [Adapt](../plugins/mirket/skills/adapt/SKILL.md), [Preflight](../plugins/mirket/skills/preflight/SKILL.md) |
+| Decide what to do and how to approach it | [Focus](../plugins/mirket/skills/focus/SKILL.md), [Equip](../plugins/mirket/skills/equip/SKILL.md), [Curate](../plugins/mirket/skills/curate/SKILL.md), [Architect](../plugins/mirket/skills/architect/SKILL.md), [Plan](../plugins/mirket/skills/plan/SKILL.md) |
 | Make or improve something | [Design](../plugins/mirket/skills/design/SKILL.md), [Imagine](../plugins/mirket/skills/imagine/SKILL.md), [Author](../plugins/mirket/skills/author/SKILL.md), [Debug](../plugins/mirket/skills/debug/SKILL.md), [Refactor](../plugins/mirket/skills/refactor/SKILL.md) |
 | Check the result and tidy up | [Test](../plugins/mirket/skills/test/SKILL.md), [Audit](../plugins/mirket/skills/audit/SKILL.md), [Critique](../plugins/mirket/skills/critique/SKILL.md), [Clean](../plugins/mirket/skills/clean/SKILL.md) |
 | Coordinate and communicate | [Orchestrate](../plugins/mirket/skills/orchestrate/SKILL.md), [Distill](../plugins/mirket/skills/distill/SKILL.md), [Brief](../plugins/mirket/skills/brief/SKILL.md), [Sleep](../plugins/mirket/skills/sleep/SKILL.md) |

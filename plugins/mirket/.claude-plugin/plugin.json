@@ -1,6 +1,6 @@
 {
   "name": "mirket",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "Composable workflows for engineering, quality, design, authoring, product decisions, and project coordination.",
   "license": "MIT"
 }

@@ -17,10 +17,11 @@ These tests cover hook logic and memory tooling. Check skill discovery, explicit
 
 ## Lifecycle hooks
 
-Mirket includes three plugin hooks, requiring Python 3.8 or later in the host environment:
+Mirket handles four lifecycle events and requires Python 3.8 or later in the host environment:
 
-- **On a user prompt:** request that the agent read and apply [Distill](plugins/mirket/skills/distill/SKILL.md) to its user-facing messages for the turn, and apply Clean before delivery when relevant. This provides an earlier reminder if another Stop hook affects the final review.
-- **Before delivery:** on a supported `Stop` event, request one task-scoped cleanup review before the response finishes. It uses the host's continuation flag to avoid repeated loops.
+- **At session start:** supply a compact [Distill](plugins/mirket/skills/distill/SKILL.md) policy: do authorized work directly, report material progress, and lead with verified results.
+- **On a user prompt:** remind the agent to apply Distill before it sends a reply and Clean before delivery when relevant. The reminder stands alone if session context or the final hook is unavailable.
+- **At turn end:** on a supported `Stop` event, request Distill and relevant task-scoped cleanup together, using the host's continuation flag. Distill adds no separate continuation. Stop can request another model pass after initial output; it cannot rewrite text already shown or impose a token cap.
 - **Before an agent-issued commit:** for supported direct `git commit` calls through the agent's Bash tool, block an unacknowledged attempt and request a repository-wide cleanup review. After reviewing, retry with a command-local marker, for example `MIRKET_CLEANUP_DONE=1 git commit -m "message"`. The hook uses system Git from `/usr/bin` or `/bin` with `--no-lazy-fetch` support and checks the staged index with external helpers disabled. It supports literal `-C` paths, basic `env` and `command` wrappers, and known commit flags that leave the staged inputs unchanged. It blocks recognized commits when it cannot inspect the target, including custom Git executables, overrides such as `git -c` or `GIT_INDEX_FILE`, and modes such as `-a`, `--include`, `--only`, or a pathspec. Stage the intended paths explicitly and retry with a standalone direct commit. If the human authorizes an exact `.work/` path, add `MIRKET_WORK_EXCEPTION=.work/path` to that command; other staged `.work/` changes remain blocked. Both markers record assertions and neither overrides host permissions.
 
 The cleanup hooks instruct the agent to use [Clean](plugins/mirket/skills/clean/SKILL.md); they do not themselves delete or stage files. Hooks cannot guarantee agent compliance. Codex requires review and trust of plugin hooks before they run; changing a hook requires renewed review. Hook activation and behavior in each host have not been verified.

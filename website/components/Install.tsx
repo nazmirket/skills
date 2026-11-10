@@ -3,28 +3,14 @@
 import { useState } from "react";
 import Link from "next/link";
 
-const plugin = "mirket@mirket";
-const repository = "https://github.com/nazmirket/skills.git";
-
-const hosts = {
-  Codex: [
-    `codex plugin marketplace add ${repository}`,
-    `codex plugin add ${plugin}`,
-  ],
-  "Claude Code": [
-    "claude plugin marketplace add nazmirket/skills",
-    `claude plugin install ${plugin}`,
-  ],
-};
-
+const hosts = ["Codex", "Claude Code"] as const;
 const methods = ["Agent prompt", "Manual commands"] as const;
-type Host = keyof typeof hosts;
+type Host = typeof hosts[number];
 type Method = typeof methods[number];
 
-function InstallSnippet({host, method, prompt}: {host: Host; method: Method; prompt: string}) {
+function InstallSnippet({host, method, value}: {host: Host; method: Method; value: string}) {
   const [status, setStatus] = useState<"idle" | "copied" | "error">("idle");
   const isPrompt = method === "Agent prompt";
-  const value = isPrompt ? prompt : hosts[host].join("\n");
 
   async function copy() {
     try {
@@ -45,7 +31,7 @@ function InstallSnippet({host, method, prompt}: {host: Host; method: Method; pro
   </div>;
 }
 
-export default function Install({prompts}: {prompts: Record<Host, string>}) {
+export default function Install({prompts, commands}: {prompts: Record<Host, string>; commands: Record<Host, string>}) {
   const [host, setHost] = useState<Host>("Codex");
   const [method, setMethod] = useState<Method>("Agent prompt");
 
@@ -59,7 +45,7 @@ export default function Install({prompts}: {prompts: Record<Host, string>}) {
         <fieldset className="install-choice">
           <legend>Host</legend>
           <div className="install-options-group">
-            {(Object.keys(hosts) as Host[]).map(name => <label key={name}>
+            {hosts.map(name => <label key={name}>
               <input type="radio" name="mirket-install-host" checked={host === name} onChange={() => setHost(name)}/>
               <span>{name}</span>
             </label>)}
@@ -75,7 +61,7 @@ export default function Install({prompts}: {prompts: Record<Host, string>}) {
           </div>
         </fieldset>
       </div>
-      <InstallSnippet key={`${host}/${method}`} host={host} method={method} prompt={prompts[host]}/>
+      <InstallSnippet key={`${host}/${method}`} host={host} method={method} value={method === "Agent prompt" ? prompts[host] : commands[host]}/>
       <p className="install-note">Start a fresh session after installation. Review hooks if your host asks you to trust them.</p>
       <p className="install-note">Memory is optional. <Link href="/docs/#optional-local-hindsight">Local Hindsight setup →</Link></p>
     </div>

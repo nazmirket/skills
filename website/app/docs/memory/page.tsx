@@ -1,15 +1,15 @@
-import type {Metadata} from "next";
+import Link from "next/link";
 import DocsNavigation from "../../../components/DocsNavigation";
 import RepoMarkdown from "../../../components/RepoMarkdown";
+import StructuredData from "../../../components/StructuredData";
 import {memoryGuidePath, readSource} from "../../../lib/content";
+import {docsBreadcrumb, memoryPage, pageGraph, pageMetadata} from "../../../lib/discovery";
 
-export const metadata: Metadata = {
-  title: "Local Hindsight — Mirket documentation",
-  description: "Optional local Hindsight setup for Codex and Claude Code.",
-};
+export const metadata = pageMetadata(memoryPage);
 
 export default function MemoryGuide() {
   return <main className="docs-layout wrap">
+    <StructuredData data={pageGraph(memoryPage, [docsBreadcrumb, ["Local Hindsight", memoryPage.path]])}/>
     <DocsNavigation current="memory" source={memoryGuidePath} sections={[
       ["recommended-local-daemon", "Codex setup"],
       ["directory-based-memory-registry", "Project registry"],
@@ -18,6 +18,10 @@ export default function MemoryGuide() {
       ["other-self-hosting-options", "Other options"],
     ]}/>
     <div className="docs-content">
+      <nav className="docs-breadcrumb" aria-label="Breadcrumb">
+        <Link href={docsBreadcrumb[1]}>Docs</Link><span aria-hidden="true">/</span>
+        <span aria-current="page">Local Hindsight</span>
+      </nav>
       <RepoMarkdown markdown={readSource(memoryGuidePath)} source={memoryGuidePath}/>
     </div>
   </main>;

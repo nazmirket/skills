@@ -12,13 +12,16 @@ export function readSource(path: string) {
   return readFileSync(resolve(root, path), "utf8");
 }
 
-export function getSetupPrompts() {
+export function getInstallGuide() {
   const source = readSource(guidePath);
-  const prompts = new Map([...source.matchAll(/^```text (codex|claude-code)-setup\r?\n([\s\S]+?)\r?\n```[ \t]*$/gm)].map(([, host, prompt]) => [host, prompt]));
-  const codex = prompts.get("codex");
-  const claude = prompts.get("claude-code");
-  if (!codex || !claude) throw new Error(`Missing setup prompt in ${guidePath}`);
-  return {Codex: codex, "Claude Code": claude};
+  const snippets = new Map([...source.matchAll(/^```(?:text|sh) ((?:codex|claude-code)-(?:setup|install))\r?\n([\s\S]+?)\r?\n```[ \t]*$/gm)].map(([, key, value]) => [key, value]));
+  function getPair(kind: "setup" | "install") {
+    const codex = snippets.get(`codex-${kind}`);
+    const claude = snippets.get(`claude-code-${kind}`);
+    if (!codex || !claude) throw new Error(`Missing ${kind} snippet in ${guidePath}`);
+    return {Codex: codex, "Claude Code": claude};
+  }
+  return {prompts: getPair("setup"), commands: getPair("install")};
 }
 
 export function getSkills() {

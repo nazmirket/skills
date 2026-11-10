@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next dev",
-    "docs:diagrams": "node scripts/generate-diagrams.mjs"
+    "docs:diagrams": "node scripts/generate-diagrams.mjs",
+    "seo:check": "python3 -B scripts/check-discovery.py"
   },
   "dependencies": {
     "@fontsource/ibm-plex-mono": "5.2.7",
@@ -26,6 +27,7 @@
     "@types/node": "^24",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "sharp": "0.35.5",
     "typescript": "^5"
   }
 }

@@ -2,8 +2,12 @@ import Link from "next/link";
 import Install from "../components/Install";
 import Mascot from "../components/Mascot";
 import PixelIcon, {type PixelGlyph} from "../components/PixelIcon";
+import StructuredData from "../components/StructuredData";
 import WorkflowDiagram from "../components/WorkflowDiagram";
-import {getSetupPrompts, getSkills} from "../lib/content";
+import {getInstallGuide, getSkills} from "../lib/content";
+import {homePage, pageGraph, pageMetadata} from "../lib/discovery";
+
+export const metadata = pageMetadata(homePage);
 
 const glyphs: Record<string, PixelGlyph> = {
   adapt: "target", architect: "plan", audit: "inspect", author: "prompt",
@@ -16,16 +20,17 @@ const glyphs: Record<string, PixelGlyph> = {
 export default function Home() {
   const skills = getSkills();
   return <main id="main-content" tabIndex={-1}>
+    <StructuredData data={pageGraph(homePage)}/>
     <section className="hero wrap">
       <div className="hero-copy">
-        <p className="eyebrow"><span className="status-dot" aria-hidden="true"/> THE AGENT FIELD GUIDE</p>
+        <p className="eyebrow"><span className="status-dot" aria-hidden="true"/> MIRKET / AGENT SKILLS</p>
         <div className="hero-title">
           <Mascot/>
           <h1>Good work,<br/><span className="accent">on repeat.</span></h1>
         </div>
-        <p className="hero-description">Practical workflows for planning, making, and checking work with <strong>Codex</strong> and <strong>Claude Code</strong>.</p>
+        <p className="hero-description">Mirket is a free, open-source skills plugin for <strong>Codex</strong> and <strong>Claude Code</strong>. Use it to plan changes, debug failures, design interfaces, and verify results.</p>
       </div>
-      <Install prompts={getSetupPrompts()}/>
+      <Install {...getInstallGuide()}/>
     </section>
 
     <section id="diagrams" className="section wrap" aria-labelledby="diagram-title">

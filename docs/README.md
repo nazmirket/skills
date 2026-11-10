@@ -1,12 +1,32 @@
 # Mirket documentation
 
-Mirket is a collection of reusable skills for Codex and Claude Code. Each skill gives an agent a way to approach a particular kind of work, from understanding a project to checking a change and handing it off.
+Mirket is a free, open-source skills plugin for Codex and Claude Code. Each skill gives an agent a reusable workflow for a particular job, such as planning a change, debugging a failure, designing an interface, or reviewing a result.
+
+## Install Mirket
+
+Add the Mirket marketplace in your host, install `mirket@mirket`, and start a fresh session. Install it in each host you want to use.
+
+### Install in Codex
+
+```sh codex-install
+codex plugin marketplace add https://github.com/nazmirket/skills.git
+codex plugin add mirket@mirket
+```
+
+### Install in Claude Code
+
+```sh claude-code-install
+claude plugin marketplace add nazmirket/skills
+claude plugin install mirket@mirket
+```
+
+If your host asks you to trust hooks, [review what they do](../CONTRIBUTING.md#lifecycle-hooks). You can also use the [Codex setup prompt](#codex-setup-prompt) or the [Claude Code setup prompt](#claude-code-setup-prompt).
 
 ## Purpose
 
 Use Mirket when you want the agent to follow a repeatable workflow: diagnose a bug before fixing it, plan a substantial change, design an interface, or review a result. You can ask for an outcome in plain language or name a skill directly: “Use Mirket Debug to reproduce this failure and find its cause.”
 
-[Installation and first prompts](../README.md#install) are in the project README. The plugin can be used one request at a time. The [Codex](../instructions/AGENTS.md) and [Claude Code](../instructions/CLAUDE.md) instructions are optional if you want Mirket to guide work by default.
+Use the plugin one request at a time. The [Codex](../instructions/AGENTS.md) and [Claude Code](../instructions/CLAUDE.md) instructions are optional if you want Mirket to guide work by default.
 
 ## Philosophy
 
@@ -75,3 +95,25 @@ In either case, tell me how to start a fresh Claude Code session and verify what
 - **Codex:** Follow the [local daemon guide](../memory/README.md#recommended-local-daemon) and run `python3 memory/install.py --check` from a checkout before a fresh install. If you opt in and the check passes, run `python3 memory/install.py`; for an existing install, follow the guide's wiring instructions.
 - **Claude Code:** Follow the [upstream installer steps](../memory/README.md#claude-code-with-the-upstream-installer) to use a local daemon and check for a shared Hindsight runtime before installing.
 - **Verify in the host you use:** Restart it, review the hooks, check the resolved bank, and test recall with a harmless fact in a fresh session.
+
+## Common questions
+
+### What does Mirket add to Codex or Claude Code?
+
+Mirket adds reusable Markdown workflows to your existing coding agent. Each skill explains when to use it, what steps to follow, and what evidence to check. Mirket does not provide a model or run as a standalone coding agent.
+
+### How do I use a Mirket skill?
+
+Ask for the result you want, or name the skill directly. For example, “Use Mirket Debug to reproduce this failure and find its cause.” The agent can also choose a skill based on its description. Use the [skill catalog](#skills) to find the right starting point.
+
+### Is Mirket free to use at work?
+
+Yes. Mirket is free to use, modify, and redistribute, including commercially, under the [MIT License](../LICENSE). Your Codex or Claude Code access is separate.
+
+### Do I need Hindsight to use Mirket?
+
+No. Mirket works without persistent memory. Hindsight is a separate, optional integration that can retain and recall project context across sessions. The [local Hindsight guide](../memory/README.md) explains how to choose a provider, scope capture, and verify recall.
+
+### What is the difference between Test and Audit?
+
+[Test](../plugins/mirket/skills/test/SKILL.md) checks whether behavior meets expectations and records the evidence. [Audit](../plugins/mirket/skills/audit/SKILL.md) reviews a change, plan, or system for defects and risks. A test result can be evidence in an audit.

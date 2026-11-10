@@ -3,7 +3,9 @@ import Link from "next/link";
 import {notFound} from "next/navigation";
 import DocsNavigation from "../../../../components/DocsNavigation";
 import RepoMarkdown from "../../../../components/RepoMarkdown";
+import StructuredData from "../../../../components/StructuredData";
 import {getSkills} from "../../../../lib/content";
+import {docsBreadcrumb, pageGraph, pageMetadata, skillPageInfo} from "../../../../lib/discovery";
 
 type Props = {params: Promise<{slug: string}>};
 
@@ -16,7 +18,7 @@ export const dynamicParams = false;
 export async function generateMetadata({params}: Props): Promise<Metadata> {
   const {slug} = await params;
   const skill = getSkills().find(item => item.slug === slug);
-  return skill ? {title: `${skill.name} — Mirket skill`, description: skill.description} : {};
+  return skill ? pageMetadata(skillPageInfo(skill)) : {robots: {index: false}};
 }
 
 export default async function SkillPage({params}: Props) {
@@ -25,11 +27,13 @@ export default async function SkillPage({params}: Props) {
   const skill = skills.find(item => item.slug === slug);
   if (!skill) notFound();
 
+  const page = skillPageInfo(skill);
   const index = skills.indexOf(skill);
   const previous = skills[index - 1];
   const next = skills[index + 1];
 
   return <main className="docs-layout wrap">
+    <StructuredData data={pageGraph(page, [docsBreadcrumb, ["Skills", "/docs/#skills"], [skill.name, page.path]])}/>
     <DocsNavigation current="skill" source={skill.path} skills={skills} activeSkill={slug}/>
     <div className="docs-content">
       <nav className="docs-breadcrumb" aria-label="Breadcrumb">

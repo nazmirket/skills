@@ -170,6 +170,44 @@ class ProjectRegistryTest(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, "session"):
                 registry.hook_root({"cwd": str(nested), "session_id": "session-123", "hook_event_name": "Stop"})
 
+    def test_resume_recovers_and_persists_verified_transcript_binding(self):
+        project = self.git_init(self.base / "project")
+        other = self.git_init(self.base / "other")
+        home = self.base / "codex"
+        path = home / "archived_sessions/example.jsonl"
+        path.parent.mkdir(parents=True)
+        path.write_text(json.dumps({"type": "session_meta", "payload": {"id": "resume-test", "cwd": str(project)}}) + "\n")
+        event = {"cwd": str(project), "session_id": "resume-test", "transcript_path": str(path), "hook_event_name": "Stop"}
+        with patch.object(registry.tempfile, "gettempdir", return_value=str(self.base / "missing-temp")):
+            self.assertEqual(registry.hook_root(event, self.state, home), project)
+            path.unlink()
+            self.assertEqual(registry.hook_root(event, self.state, home), project)
+            with self.assertRaisesRegex(ValueError, "Project changed"):
+                registry.hook_root({**event, "cwd": str(other)}, self.state, home)
+
+    def test_resume_does_not_trust_another_sessions_metadata(self):
+        project = self.git_init(self.base / "project")
+        home = self.base / "codex"
+        path = home / "sessions/example.jsonl"
+        path.parent.mkdir(parents=True)
+        path.write_text(json.dumps({"type": "session_meta", "payload": {"id": "other-session", "cwd": str(project)}}) + "\n")
+        event = {"cwd": str(project), "session_id": "resume-test", "transcript_path": str(path), "hook_event_name": "Stop"}
+        with self.assertRaisesRegex(ValueError, "does not match"):
+            registry.hook_root(event, self.state, home)
+
+    def test_survey_patch_rejects_drift(self):
+        with self.assertRaisesRegex(ValueError, "survey recipe"):
+            registry.survey_source("unrecognized vendor source")
+
+    def test_unexpected_survey_bank_is_rejected_before_registry_write(self):
+        a = self.git_init(self.base / "a" / "same")
+        b = self.git_init(self.base / "b" / "same")
+        expected = registry.register(self.state, a, {})
+        before = (self.state / "projects.json").read_bytes()
+        with self.assertRaisesRegex(ValueError, "different bank"):
+            registry.register(self.state, b, {}, expected)
+        self.assertEqual((self.state / "projects.json").read_bytes(), before)
+
     def test_rejects_alias_routing_or_changed_runtime(self):
         with self.assertRaisesRegex(ValueError, "alias"):
             registry.check_config({"harnesses": {"codex": {"mapPathToBank": {}, "autoUpdate": False}}, "banks": {"a": {"bank": "b"}}}, "0.8.6")

@@ -13,6 +13,12 @@ import sys
 import tempfile
 
 VERSION = "0.8.6"
+SURVEY_ENTRY = "mirket-codex-sessionstart-hook.js"
+PROMPT_ENTRY = "mirket-codex-hook.js"
+DEEPEN_ENTRY = "mirket-deepen.js"
+SURVEY_COMMAND = '`mcp_servers.hindsight.command="node"`'
+SURVEY_ARGS = '`mcp_servers.hindsight.args=${tomlValue([opts.mcpServerPath])}`'
+SURVEY_RECEIPT = "SURVEY_DOC_IDS.some((id) => uploads.has(id))"
 SCRIPTS = {
     "start": "codex-sessionstart-hook.js",
     "prompt": "codex-hook.js",
@@ -56,7 +62,76 @@ def project_root(directory):
     return identify_project(directory)[0]
 
 
-def hook_root(event):
+def atomic_text(path, text):
+    fd, name = tempfile.mkstemp(prefix=".mirket-", dir=path.parent)
+    try:
+        with os.fdopen(fd, "w", encoding="utf-8") as f:
+            f.write(text)
+        os.replace(name, path)
+    finally:
+        if os.path.exists(name):
+            os.unlink(name)
+
+
+def survey_source(source):
+    """Adapt only the audited Codex survey recipe, failing on runtime drift."""
+    if source.count(SURVEY_COMMAND) != 1 or source.count(SURVEY_ARGS) != 1:
+        raise ValueError("Unsupported Hindsight Codex survey recipe")
+    return deepen_launcher(survey_receipts(source)).replace(
+        SURVEY_COMMAND, '`mcp_servers.hindsight.command=${tomlValue(process.env.MIRKET_HINDSIGHT_PYTHON)}`'
+    ).replace(
+        SURVEY_ARGS, '`mcp_servers.hindsight.args=${tomlValue([process.env.MIRKET_HINDSIGHT_REGISTRY, "mcp"])}`,\n'
+        '          "-c",\n'
+        '          `mcp_servers.hindsight.env.MIRKET_HINDSIGHT_EXPECTED_BANK=${tomlValue(process.env.HINDSIGHT_BANK_ID)}`,\n'
+        '          "-c",\n'
+        '          `mcp_servers.hindsight.env.PATH=${tomlValue(process.env.PATH)}`'
+    )
+
+
+def survey_receipts(source):
+    if source.count(SURVEY_RECEIPT) != 1:
+        raise ValueError("Unsupported Hindsight survey receipt check")
+    return source.replace(SURVEY_RECEIPT, SURVEY_RECEIPT.replace(".some(", ".every("))
+
+
+def deepen_launcher(source):
+    marker = 'join5(dirname4(fileURLToPath(import.meta.url)), "deepen.js")'
+    if source.count(marker) != 1:
+        raise ValueError("Unsupported Hindsight background worker launcher")
+    return source.replace(marker, marker.replace("deepen.js", DEEPEN_ENTRY))
+
+
+def adapters(dist):
+    return {
+        SURVEY_ENTRY: survey_source((dist / SCRIPTS["start"]).read_text()),
+        PROMPT_ENTRY: deepen_launcher((dist / SCRIPTS["prompt"]).read_text()),
+        DEEPEN_ENTRY: survey_receipts((dist / "deepen.js").read_text()),
+    }
+
+
+def transcript_root(event, session_id, codex_home):
+    supplied = event.get("transcript_path")
+    if not isinstance(supplied, str) or not supplied:
+        return None
+    path = Path(supplied).resolve()
+    if path.suffix != ".jsonl" or not any(
+        (codex_home / folder).resolve() in path.parents for folder in ("sessions", "archived_sessions")
+    ):
+        raise ValueError("Cannot verify the Codex transcript location")
+    if not path.is_file():
+        return None
+    with path.open(encoding="utf-8") as stream:
+        line = stream.readline(1024 * 1024)
+    if not line:
+        return None
+    meta = json.loads(line)
+    payload = meta.get("payload") if isinstance(meta, dict) and meta.get("type") == "session_meta" else None
+    if not isinstance(payload, dict) or payload.get("id") != session_id or not isinstance(payload.get("cwd"), str):
+        raise ValueError("Transcript does not match the Codex session")
+    return identify_project(payload["cwd"])
+
+
+def hook_root(event, state_dir=None, codex_home=None):
     cwd = event.get("cwd")
     if not isinstance(cwd, str) or not cwd:
         raise ValueError("Hook event has no workspace directory")
@@ -65,18 +140,42 @@ def hook_root(event):
     if not isinstance(session_id, str) or not re.fullmatch(r"[A-Za-z0-9_-]+", session_id):
         raise ValueError("Hook event has no valid session ID")
     root_file = Path(tempfile.gettempdir()) / "hindsight-codex" / (session_id + ".root")
-    if root_file.is_file():
-        session_dir = Path(root_file.read_text(encoding="utf-8").strip()).resolve(strict=True)
-        session_root, session_is_git = identify_project(session_dir)
-        if is_git or session_is_git:
-            if is_git and session_is_git and root == session_root:
-                return root
-        elif root == session_root or session_root in root.parents:
-            return session_root
-        raise ValueError("Project changed during the session; start a new session for memory")
-    if event.get("hook_event_name") == "SessionStart":
-        return root
-    raise ValueError("Cannot establish the session root; memory was skipped")
+    def resolve(binding):
+        if binding and binding.is_file():
+            recorded = json.loads(binding.read_text(encoding="utf-8"))
+            if not isinstance(recorded, dict) or not isinstance(recorded.get("root"), str) or not isinstance(recorded.get("git"), bool):
+                raise ValueError("Invalid persisted Codex session binding")
+            original = Path(recorded["root"]), recorded["git"]
+        elif codex_home and (original := transcript_root(event, session_id, codex_home)):
+            pass
+        elif root_file.is_file() and not root_file.is_symlink() and root_file.stat().st_uid == os.getuid():
+            original = identify_project(root_file.read_text(encoding="utf-8").strip())
+        elif event.get("hook_event_name") == "SessionStart":
+            original = root, is_git
+        else:
+            raise ValueError("Cannot establish the session root; memory was skipped")
+        session_root, session_is_git = original
+        if (is_git or session_is_git) and not (is_git and session_is_git and root == session_root):
+            raise ValueError("Project changed during the session; start a new session for memory")
+        if not (is_git or session_is_git) and not (root == session_root or session_root in root.parents):
+            raise ValueError("Project changed during the session; start a new session for memory")
+        if binding and not binding.exists():
+            atomic_text(binding, json.dumps({"root": str(session_root), "git": session_is_git}) + "\n")
+        return session_root
+
+    if state_dir is None:
+        return resolve(None)
+    sessions = state_dir / "sessions"
+    sessions.mkdir(mode=0o700, parents=True, exist_ok=True)
+    if state_dir.is_symlink() or sessions.is_symlink():
+        raise ValueError("Session binding directory cannot be a symlink")
+    binding = sessions / (session_id + ".json")
+    lock = os.open(sessions / "bindings.lock", os.O_CREAT | os.O_RDWR | os.O_NOFOLLOW, 0o600)
+    with os.fdopen(lock, "r+") as stream:
+        fcntl.flock(stream, fcntl.LOCK_EX)
+        if binding.is_symlink():
+            raise ValueError("Session binding cannot be a symlink")
+        return resolve(binding)
 
 
 def check_config(config, version):
@@ -93,7 +192,7 @@ def check_config(config, version):
                 raise ValueError("Hindsight bank alias may redirect project memory")
 
 
-def register(state_dir, root, mappings):
+def register(state_dir, root, mappings, expected_bank=None):
     state_dir = Path(state_dir)
     state_dir.mkdir(mode=0o700, parents=True, exist_ok=True)
     if state_dir.is_symlink():
@@ -129,16 +228,11 @@ def register(state_dir, root, mappings):
             projects[key] = "coding-agent::project-" + hashlib.sha256(os.fsencode(key)).hexdigest()
         if len(set(projects.values())) != len(projects):
             raise ValueError("One bank is assigned to multiple project directories")
-        fd, name = tempfile.mkstemp(prefix=".projects-", dir=state_dir)
-        try:
-            os.fchmod(fd, 0o600)
-            with os.fdopen(fd, "w", encoding="utf-8") as f:
-                json.dump({"version": 1, "projects": projects}, f, indent=2)
-                f.write("\n")
-            os.replace(name, path)
-        finally:
-            if os.path.exists(name):
-                os.unlink(name)
+        if expected_bank and projects[key] != expected_bank:
+            raise ValueError("Survey MCP resolved a different bank; no memory was written")
+        updated = {"version": 1, "projects": projects}
+        if not path.exists() or json.loads(path.read_text(encoding="utf-8")) != updated:
+            atomic_text(path, json.dumps(updated, indent=2) + "\n")
         return projects[key]
 
 
@@ -146,6 +240,8 @@ def main():
     if len(sys.argv) != 2 or sys.argv[1] not in SCRIPTS:
         raise ValueError("Expected one of: start, prompt, stop, mcp")
     mode = sys.argv[1]
+    if mode != "mcp" and os.environ.get("HINDSIGHT_DISABLE_HOOKS"):
+        return
     root = Path.home() / ".hindsight"
     runtime = root / "coding-agents"
     version = json.loads((runtime / "package.json").read_text(encoding="utf-8")).get("version")
@@ -161,19 +257,26 @@ def main():
     else:
         raw = sys.stdin.buffer.read()
         event = json.loads(raw)
-        project = hook_root(event)
+        project = hook_root(event, root / "mirket", Path.home() / ".codex")
         # An anonymous file forwards exactly the original bytes without pipe-buffer deadlocks.
         temp = tempfile.TemporaryFile()
         temp.write(raw)
         temp.seek(0)
         os.dup2(temp.fileno(), 0)
-    bank = register(root / "mirket", project, config.get("mapPathToBank", {}))
+    bank = register(root / "mirket", project, config.get("mapPathToBank", {}),
+                    os.environ.get("MIRKET_HINDSIGHT_EXPECTED_BANK"))
     env = {key: value for key, value in os.environ.items() if not key.startswith("GIT_")}
     env.update(HINDSIGHT_BANK_ID=bank, HINDSIGHT_DYNAMIC_BANK_ID="false")
     node = shutil.which("node")
     if not node:
         raise ValueError("Node is unavailable to the Hindsight registry")
-    os.execvpe(node, [node, str(runtime / "dist" / SCRIPTS[mode])], env)
+    entry = SCRIPTS[mode]
+    if mode == "start":
+        entry = SURVEY_ENTRY
+        env.update(MIRKET_HINDSIGHT_PYTHON=sys.executable, MIRKET_HINDSIGHT_REGISTRY=str(Path(__file__).resolve()))
+    elif mode == "prompt":
+        entry = PROMPT_ENTRY
+    os.execvpe(node, [node, str(runtime / "dist" / entry)], env)
 
 
 if __name__ == "__main__":

@@ -4,7 +4,7 @@ Use `.work/` at the project root for agent-owned files. In Git, use the current 
 
 | Path | What belongs there |
 | --- | --- |
-| `.work/plans/<task>/` | The task's plan, agreements, status and supporting evidence; link related architectural decisions. |
+| `.work/plans/<task>/` | The task's outcome, agreement, plan, status and supporting evidence. Small plans may keep the record in one file; see [Plan](../skills/plan/SKILL.md). Link related architectural decisions. |
 | `.work/decisions/` | Architectural decision records after decisions are made. |
 | `.work/stashes/<task>/` | Temporary file-based snapshots or patches needed to set aside work. Record what they contain and how to restore them. |
 | `.work/recover/<task>/` | A targeted recovery copy of important work at risk of being lost. Record its original path and how to restore it; check the copy before removing the original. This is not a trash folder or a routine backup. |

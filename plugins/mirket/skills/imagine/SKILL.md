@@ -5,7 +5,7 @@ description: "Use when generating a visual reference for an interface from an ag
 
 # Imagine
 
-Deliver a generated visual reference for the requested interface. If implementation is authorized, translate it into a working interface. For a supplied reference to reproduce as-is, use [Design](../design/SKILL.md).
+Deliver a generated visual reference for the requested interface. If implementation is authorized, translate it into a working interface. [Design](../design/SKILL.md) owns supplied references to reproduce and non-interface visual artifacts, including requests that need generated assets.
 
 ## Agree on the brief
 

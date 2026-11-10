@@ -17,7 +17,7 @@ The root agent is the sole orchestrator: it organizes and assigns work, manages 
 ## Direct and coordinate
 
 5. Use [Brief](../brief/SKILL.md) for each self-contained assignment: objective, relevant context and plan path when applicable, owned scope, prerequisites, deliverable, checks and reporting. Workers surface blockers and product decisions.
-6. Dispatch independent scopes when prerequisites are met. Manage dependencies and adapt assignments as evidence changes. When a worker reports a handoff discrepancy, review the evidence, correct your understanding and direct that worker before it continues. Update affected workers promptly about relevant changes elsewhere. Resolve ownership conflicts and routine technical decisions within the authorized scope; bring product choices or material changes to the human.
+6. Dispatch independent scopes when prerequisites are met. Manage dependencies and adapt assignments as evidence changes. Workers report routine handoff corrections and continue. For a discrepancy that changes the target, authority, ownership, interface, or acceptance criteria, pause the affected work, review the evidence and give direction before it resumes. Update affected workers promptly. Resolve ownership conflicts and routine technical decisions within the authorized scope; bring product choices or material changes to the human.
 7. Inform the human briefly as meaningful outcomes, blockers or decisions arrive. Avoid reporting unchanged status. The root is the messenger; external messages require the human's authorization.
 
 ## Integrate and deliver

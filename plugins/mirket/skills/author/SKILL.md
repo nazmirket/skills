@@ -1,11 +1,11 @@
 ---
 name: author
-description: "Use for every user-facing written communication, including replies, product copy and documents, and when triaging bug reports or drafting issue tickets."
+description: "Use when drafting or revising a document, report, or substantive product copy, or when triaging bug reports or drafting issue tickets."
 ---
 
 # Author
 
-Write for the reader's purpose and context. Apply a lightweight pass to every user-facing reply: identify what the reader needs, lead with the useful substance, and verify claims that matter. Combine this with [Distill](../distill/SKILL.md) in one pass for clear, direct communication; a simple reply needs no document workflow or file.
+Write for the reader's purpose and context. Identify what the reader needs, lead with useful substance, and verify claims that matter. [Distill](../distill/SKILL.md) is the default for routine replies and applies to communication throughout this work.
 
 Use [Brief](../brief/SKILL.md) for handoffs and [Design](../design/SKILL.md) for visual direction and interface design. For product copy, apply the audience, claims and risk-appropriate checks below within the design or implementation workflow. For bug reports or a QA backlog, use [issue triage](references/issue-triage.md): it owns intake, reproduction status, prioritization and issue drafts. Use the document workflow below when producing a durable artifact.
 

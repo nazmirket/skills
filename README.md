@@ -4,7 +4,7 @@
 
 Mirket is a free collection of reusable skills for **Codex** and **Claude Code**. Use it to plan changes, debug failures, review code, design interfaces, and hand work off with enough context to resume.
 
-Read the [documentation](docs/README.md) for the skills, philosophy, and plugin architecture.
+Visit [skills.mirket.dev](https://skills.mirket.dev) for installation and workflow examples. Read the [repository documentation](docs/README.md) for the skills, philosophy, and plugin architecture.
 
 ## Install
 

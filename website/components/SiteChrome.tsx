@@ -27,6 +27,8 @@ export function SiteFooter() {
     <Brand small/>
     <div className="footer-links">
       <a href={repo}>GitHub ↗</a><Link href="/docs/">Documentation</Link><a href={`${repo}/blob/main/LICENSE`}>MIT License ↗</a>
+      <a href="https://x.com/nazmirket" aria-label="X — Nazmi Yılmaz">X<span aria-hidden="true">&nbsp;↗</span></a>
+      <a href="https://www.linkedin.com/in/nazmirket/" aria-label="LinkedIn — Nazmi Yılmaz">LinkedIn<span aria-hidden="true">&nbsp;↗</span></a>
     </div>
   </footer>;
 }

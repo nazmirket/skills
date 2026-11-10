@@ -1,6 +1,10 @@
 # Mirket
 
+<img src="website/public/mirket-sprite.png" alt="Mirket, the pixel-art meerkat mascot" width="64" height="64">
+
 Mirket is a free collection of reusable skills for **Codex** and **Claude Code**. Use it to plan changes, debug failures, review code, design interfaces, and hand work off with enough context to resume.
+
+Read the [documentation](docs/README.md) for the skills, philosophy, and plugin architecture.
 
 ## Install
 
@@ -31,6 +35,12 @@ Ask for the result you want, or name a skill:
 The [routing guide](plugins/mirket/references/routing.md) helps you pick a workflow. You can also [browse all skills](plugins/mirket/skills/).
 
 If you want Mirket to guide work by default, merge the [Codex instructions](instructions/AGENTS.md) into `~/.codex/AGENTS.md` or the [Claude Code instructions](instructions/CLAUDE.md) into `~/.claude/CLAUDE.md`. [Persistent memory for Codex](memory/README.md) is optional.
+
+## Mirket in practice
+
+![The Mirket loop: name the outcome, pick a skill, make and verify, and report the change.](docs/diagrams/mirket-loop.svg)
+
+![Building a site with Mirket: Plan sets the direction, Design shapes the page, Test checks the result, and Distill shares what changed.](docs/diagrams/build-a-site.svg)
 
 ## License
 

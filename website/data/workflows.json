@@ -1,0 +1,24 @@
+{
+  "loop": {
+    "title": "The Mirket loop",
+    "figure": "01",
+    "asset": "mirket-loop.svg",
+    "stages": [
+      ["Request", "Name the outcome", "prompt"],
+      ["Route", "Pick a skill", "target"],
+      ["Work + check", "Make and verify", "check"],
+      ["Result", "Report the change", "signal"]
+    ]
+  },
+  "example": {
+    "title": "Example: Build a site",
+    "figure": "02",
+    "asset": "build-a-site.svg",
+    "stages": [
+      ["Plan", "Set the direction", "plan"],
+      ["Design", "Shape the page", "design"],
+      ["Test", "Check the result", "check"],
+      ["Distill", "Share what changed", "signal"]
+    ]
+  }
+}

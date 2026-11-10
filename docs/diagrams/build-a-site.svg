@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 788 163" width="788" height="163" role="img" aria-labelledby="title description">
+  <title id="title">Example: Build a site</title>
+  <desc id="description">Plan: Set the direction; Design: Shape the page; Test: Check the result; Distill: Share what changed</desc>
+  <rect x="0.5" y="0.5" width="787" height="162" fill="#191217" stroke="#67434c"/>
+  <path d="M1 1h786v42H1z" fill="#22171d"/>
+  <path d="M1 43h786" stroke="#67434c"/>
+  <rect x="18" y="17" width="9" height="9" fill="#b22222"/>
+  <g font-family="ui-monospace, monospace">
+    <text x="38" y="26" font-size="15" font-weight="bold" fill="#fff2e9">Example: Build a site</text>
+    <text x="770" y="26" font-size="12" text-anchor="end" fill="#ff717d">FIG. 02</text>
+  <g transform="translate(18,58)">
+    <rect width="173" height="87" fill="#120e13" stroke="#67434c"/>
+    <rect width="173" height="3" fill="#b22222"/>
+    <text x="12" y="27" font-size="12" fill="#ff717d">01</text>
+    <text x="12" y="50" font-size="16" font-weight="bold" fill="#fff2e9">Plan</text>
+    <text x="12" y="71" font-size="12" fill="#c2aeb2">Set the direction</text>
+  </g>
+  <path d="M196 102h9m-4-4 4 4-4 4" fill="none" stroke="#ff717d"/>
+  <g transform="translate(211,58)">
+    <rect width="173" height="87" fill="#120e13" stroke="#67434c"/>
+    <rect width="173" height="3" fill="#b22222"/>
+    <text x="12" y="27" font-size="12" fill="#ff717d">02</text>
+    <text x="12" y="50" font-size="16" font-weight="bold" fill="#fff2e9">Design</text>
+    <text x="12" y="71" font-size="12" fill="#c2aeb2">Shape the page</text>
+  </g>
+  <path d="M389 102h9m-4-4 4 4-4 4" fill="none" stroke="#ff717d"/>
+  <g transform="translate(404,58)">
+    <rect width="173" height="87" fill="#120e13" stroke="#67434c"/>
+    <rect width="173" height="3" fill="#b22222"/>
+    <text x="12" y="27" font-size="12" fill="#ff717d">03</text>
+    <text x="12" y="50" font-size="16" font-weight="bold" fill="#fff2e9">Test</text>
+    <text x="12" y="71" font-size="12" fill="#c2aeb2">Check the result</text>
+  </g>
+  <path d="M582 102h9m-4-4 4 4-4 4" fill="none" stroke="#ff717d"/>
+  <g transform="translate(597,58)">
+    <rect width="173" height="87" fill="#120e13" stroke="#67434c"/>
+    <rect width="173" height="3" fill="#b22222"/>
+    <text x="12" y="27" font-size="12" fill="#ff717d">04</text>
+    <text x="12" y="50" font-size="16" font-weight="bold" fill="#fff2e9">Distill</text>
+    <text x="12" y="71" font-size="12" fill="#c2aeb2">Share what changed</text>
+  </g>
+  </g>
+</svg>

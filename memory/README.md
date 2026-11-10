@@ -1,6 +1,6 @@
-# Hindsight for Codex
+# Local Hindsight for Mirket
 
-This directory contains setup guidance and a guarded installer. Hindsight installs its own runtime, configuration and memory data in its normal user-level locations; this repository is not the memory store. No installation happens until you run the installer.
+Mirket works without Hindsight. This directory contains a guarded installer for Codex and guidance for Claude Code's upstream integration. Hindsight installs its runtime, configuration, and memory data in its normal user-level locations; this repository is not the memory store.
 
 ## Recommended: local daemon
 
@@ -41,10 +41,30 @@ The wrapper requires coding-agents 0.8.6 and pins Codex auto-updates off. The in
 ## Coverage and recovery
 
 - Page search is the fast default. Verify recent status and decisions against a transcript or current project files. Use targeted chat recall when a page has not caught up; use deeper reflection when it adds value.
-- If the 1.2.0 daemon reports `ReflectToolCallError` with extra JSON data using the Codex provider, check [Hindsight issue #6347](https://github.com/vectorize-io/hindsight/issues/6347) and use a release containing the [upstream response parser fix](https://github.com/vectorize-io/hindsight/pull/6459). Increasing timeouts or changing models does not fix that parser defect. Recheck a live refresh after changing the daemon.
+- If the 1.2.0 daemon reports `ReflectToolCallError` with extra JSON data using the Codex provider, use [Hindsight 1.2.1](https://github.com/vectorize-io/hindsight/releases/tag/v1.2.1) or a later compatible release that includes the [response parser fix](https://github.com/vectorize-io/hindsight/pull/6459). Back up the database before upgrading and verify a live page refresh afterward.
 - Commit messages are the default Git source. Zero diff documents under that policy is expected. Opt in to deeper Git ingestion per bank when the extra coverage justifies its processing cost.
 - Archived chats are not automatically backfilled. Check the doctor's coverage count; an active session may still be waiting for its first successful Stop. Verify exact session IDs and project provenance before importing, and skip IDs already present. Copy only vetted documents from legacy banks. Keep originals until the destination has been verified.
 - The installer preserves the configured capture policy. In the absence of an opt-in policy, the upstream default enables capture for projects broadly. Use explicit opt-in paths if only some projects should be retained, and check both hooks and MCP after changing policy. Loopback storage does not make LLM processing local.
+
+## Claude Code with the upstream installer
+
+Claude Code uses [Hindsight's Coding Agents integration](https://github.com/vectorize-io/hindsight/blob/main/hindsight-integrations/coding-agents/README.md#claude-code). Mirket's `memory/install.py`, doctor, and project registry are for Codex.
+
+1. Check for existing Hindsight hooks, an MCP registration, and a daemon or server configuration before installing. Choose the [model provider](https://hindsight.vectorize.io/developer/models) and [which projects may be captured](https://github.com/vectorize-io/hindsight/blob/main/hindsight-integrations/coding-agents/README.md#opt-in-only). Local storage does not make a hosted provider local.
+2. For a fresh setup, follow the [upstream local daemon requirements](https://github.com/vectorize-io/hindsight/blob/main/hindsight-integrations/coding-agents/README.md#local-daemon-mode), then install only the Claude Code integration:
+
+   ```sh
+   npx @vectorize-io/hindsight-coding-agents install claude-code --server daemon
+   ```
+
+   If Mirket already manages Hindsight for Codex, don't run the `npx` command above. Even with the same version pinned, it can replace the shared runtime and remove Mirket's adapters. With the recognized 0.8.6 runtime, run its already installed installer instead:
+
+   ```sh
+   node ~/.hindsight/coding-agents/dist/installer.js install claude-code
+   ```
+
+   Before starting Claude Code, set `autoUpdate: false` in the `harnesses["claude-code"]` section of `~/.hindsight/coding-agent.json` to protect the shared runtime. Set the Claude capture scope explicitly, and make sure its hooks and MCP use the existing daemon provider on cold starts. Keep the existing banks and Codex settings.
+3. Start a fresh Claude Code session in an approved project. Review the installed hooks, check the Hindsight MCP connection and resolved bank, and verify that a harmless fact can be recalled in a new session. Verify Codex separately if you use both; Mirket's Codex bank routing does not apply to Claude Code.
 
 ## Other self-hosting options
 

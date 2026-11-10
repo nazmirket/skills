@@ -2,7 +2,8 @@ import Link from "next/link";
 import Install from "../components/Install";
 import Mascot from "../components/Mascot";
 import PixelIcon, {type PixelGlyph} from "../components/PixelIcon";
-import {getSkills} from "../lib/content";
+import WorkflowDiagram from "../components/WorkflowDiagram";
+import {getSetupPrompts, getSkills} from "../lib/content";
 
 const glyphs: Record<string, PixelGlyph> = {
   adapt: "target", architect: "plan", audit: "inspect", author: "prompt",
@@ -22,9 +23,14 @@ export default function Home() {
           <Mascot/>
           <h1>Good work,<br/><span className="accent">on repeat.</span></h1>
         </div>
-        <p className="hero-description">Practical workflows for planning, making, and checking work with Codex and Claude Code.</p>
+        <p className="hero-description">Practical workflows for planning, making, and checking work with <strong>Codex</strong> and <strong>Claude Code</strong>.</p>
       </div>
-      <Install/>
+      <Install prompts={getSetupPrompts()}/>
+    </section>
+
+    <section id="diagrams" className="section wrap" aria-labelledby="diagram-title">
+      <div className="section-heading"><h2 id="diagram-title">How it Works</h2></div>
+      <div className="diagram-grid"><WorkflowDiagram/><WorkflowDiagram variant="example"/></div>
     </section>
 
     <section id="skills" className="section wrap">

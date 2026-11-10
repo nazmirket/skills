@@ -4,11 +4,21 @@ import {parse} from "yaml";
 
 export const repo = "https://github.com/nazmirket/skills";
 export const guidePath = "docs/README.md";
+export const memoryGuidePath = "memory/README.md";
 export const skillsPath = "plugins/mirket/skills";
 const root = resolve(process.cwd(), "..");
 
 export function readSource(path: string) {
   return readFileSync(resolve(root, path), "utf8");
+}
+
+export function getSetupPrompts() {
+  const source = readSource(guidePath);
+  const prompts = new Map([...source.matchAll(/^```text (codex|claude-code)-setup\r?\n([\s\S]+?)\r?\n```[ \t]*$/gm)].map(([, host, prompt]) => [host, prompt]));
+  const codex = prompts.get("codex");
+  const claude = prompts.get("claude-code");
+  if (!codex || !claude) throw new Error(`Missing setup prompt in ${guidePath}`);
+  return {Codex: codex, "Claude Code": claude};
 }
 
 export function getSkills() {

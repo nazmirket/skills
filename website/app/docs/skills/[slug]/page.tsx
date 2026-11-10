@@ -1,8 +1,9 @@
 import type {Metadata} from "next";
 import Link from "next/link";
 import {notFound} from "next/navigation";
+import DocsNavigation from "../../../../components/DocsNavigation";
 import RepoMarkdown from "../../../../components/RepoMarkdown";
-import {getSkills, repo} from "../../../../lib/content";
+import {getSkills} from "../../../../lib/content";
 
 type Props = {params: Promise<{slug: string}>};
 
@@ -24,23 +25,23 @@ export default async function SkillPage({params}: Props) {
   const skill = skills.find(item => item.slug === slug);
   if (!skill) notFound();
 
-  const skillIndex = skills.map(item => <Link key={item.slug} href={`/docs/skills/${item.slug}/`} aria-current={item.slug === slug ? "page" : undefined}>{item.name}</Link>);
+  const index = skills.indexOf(skill);
+  const previous = skills[index - 1];
+  const next = skills[index + 1];
 
   return <main className="docs-layout wrap">
-    <aside className="docs-sidebar">
-      <Link className="text-link" href="/docs/">← Docs overview</Link>
-      <div className="skill-index-desktop">
-        <p className="eyebrow">SKILL INDEX</p>
-        <nav aria-label="Skill index">{skillIndex}</nav>
-      </div>
-      <details className="skill-index-mobile">
-        <summary>Browse all {skills.length} skills</summary>
-        <nav aria-label="Skill index">{skillIndex}</nav>
-      </details>
-    </aside>
+    <DocsNavigation current="skill" source={skill.path} skills={skills} activeSkill={slug}/>
     <div className="docs-content">
-      <div className="docs-source"><p className="eyebrow">MIRKET / SKILL</p><a className="text-link" href={`${repo}/blob/main/${skill.path}`}>Markdown source ↗</a></div>
+      <nav className="docs-breadcrumb" aria-label="Breadcrumb">
+        <Link href="/docs/">Docs</Link><span aria-hidden="true">/</span>
+        <Link href="/docs/#skills">Skills</Link><span aria-hidden="true">/</span>
+        <span aria-current="page">{skill.name}</span>
+      </nav>
       <RepoMarkdown markdown={skill.body} source={skill.path}/>
+      <nav className="skill-pagination" aria-label="Adjacent skills">
+        {previous && <Link href={`/docs/skills/${previous.slug}/`}><span>← Previous</span>{previous.name}</Link>}
+        {next && <Link className="skill-next" href={`/docs/skills/${next.slug}/`}><span>Next →</span>{next.name}</Link>}
+      </nav>
     </div>
   </main>;
 }

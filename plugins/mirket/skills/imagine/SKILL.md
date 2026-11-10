@@ -1,6 +1,6 @@
 ---
 name: imagine
-description: "Use when generating a visual reference for an interface from an agreed image brief, with implementation if requested. Use Design when the reference already exists."
+description: "Use when generating an interface concept image from an agreed brief, with implementation if requested. Use Design to reproduce a supplied visual target or to create non-interface visual artifacts."
 ---
 
 # Imagine
@@ -9,7 +9,7 @@ Deliver a generated visual reference for the requested interface. If implementat
 
 ## Agree on the brief
 
-1. Inspect the product, authorized references and earlier decisions. For a redesign, view and capture the [live baseline and invariants](../design/references/direction-and-composition.md#capture-the-redesign-baseline); if the existing interface cannot be viewed, stop the redesign until it is visible and report the blocker.
+1. Inspect the product, authorized references and earlier decisions. Separate an inspiration image for a new concept from a supplied target to reproduce. For a redesign, view and capture the [live baseline and invariants](../design/references/direction-and-composition.md#capture-the-redesign-baseline); if the existing interface cannot be viewed, stop the redesign until it is visible and report the blocker.
 2. Prepare the image brief: audience and primary task, screen hierarchy and actions, approved content and assets, visual direction (type, color, imagery and brand), target sizes and states, and accessibility or behavior constraints. Specify the reference views needed for the decision. Ask only about consequential gaps the available evidence cannot resolve.
 3. Present the brief for explicit agreement before generating. Reuse explicit approval of the same brief. If the direction, scope or a material constraint changes, get agreement on the revised brief before generating again.
 

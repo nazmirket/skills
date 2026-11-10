@@ -1,23 +1,21 @@
 # Generative work
 
-Use when the requested visual output is created by a process, algorithm, parameterized system or interactive variation. A static illustration or ordinary interface does not need a generative engine by default.
+Use when an algorithm or parameterized system is part of the artwork. An ordinary illustration, layout or generated still does not need a custom generator unless the work benefits from a repeatable process or meaningful variation.
 
-## Define the system
+## Give the system a visual idea
 
-Describe the intended visual idea and what the process controls: elements, relationships, variation, composition, time and output. Decide whether the result is a still, animation, interactive work or reusable generator. Agree on meaningful user choices and the output format before choosing a library or tool.
+Decide what the process should express and what the viewer will see: a still, a sequence, an interactive piece or a reusable generator. Translate the idea into rules for elements, relationships, space and time. For example, to depict competing currents, use paths that respond to two directions and leave space where their influence balances; do not add randomness to unrelated properties just to make more outputs.
 
-Translate the concept into a small set of understandable parameters. Examples include density, scale, direction, rhythm, persistence or color relationships. Parameters should change a recognizable property of the result; avoid adding controls simply because they are easy to expose. Establish sensible bounds and a way to return to a known state when interaction is part of the brief.
+Sketch a few representative outputs before adding controls. Separate the visual rules that give the series an identity from the variables that create useful variation. Decide what stays fixed, such as the subject, framing or tonal roles, and what can vary, such as density, rhythm, direction or persistence. Give public controls understandable names, bounded ranges and sensible defaults; provide reset or replay when it helps.
 
-## Make variation intentional
+## Make variation repeatable where promised
 
-Control randomness rather than applying it indiscriminately. When reproducibility matters, use and record a seed and the parameters necessary to recreate a result. Separate the generator's rules from the current sample so a later change can be understood. Choose whether results should be deterministic, time-dependent or responsive to interaction; do not promise identical output across environments unless that behavior is verified.
+Use a seed when a result needs to be rediscovered, compared or reproduced. Record the selected seed, parameters and implementation or environment version where it matters. Treat the selected image or recording as an artifact in its own right. Time, fonts, renderer, device and unseeded inputs can affect output; verify reproducibility in the target environment before promising it.
 
-Build an original process based on the requested concept. Do not copy a living artist's distinctive work, a third-party template, or a branded viewer as an assumed requirement. Use licensed inputs and clearly distinguish generated imagery from factual product evidence.
+Use original composition, rules and assets appropriate to the brief. Choose tools after the method and output are clear. Avoid shipping a viewer, framework or external dependency unless the delivery needs it. Separate generated imagery from any factual representation and avoid presenting a sample as evidence of a real person, product or event.
 
-## Bound the experience
+## Check the range and deliver the result
 
-Keep computation appropriate to the target device and the requested output. Limit work per frame, memory growth and expensive effects where needed; measure when performance is a requirement. Provide a still or reduced-motion treatment when motion could interfere with access or the platform requests less motion. For interactive output, make controls labeled, operable and understandable without relying on a single input method.
+Inspect the default, selected and adverse outputs. Try crowded, sparse, high movement or boundary settings as relevant; adjust the rules when they routinely produce clipped, unreadable or empty results. For live or interactive work, bound work and memory, provide usable controls and a still or less motion option where appropriate, and check representative devices. Use [motion and gestures](motion-and-gestures.md) for timing, input and comfort.
 
-## Verify and export
-
-Give [Critique](../../critique/SKILL.md) representative rendered settings or seeds, including extremes, where clipping, illegibility or empty output could occur. Reproduce a selected result when promised. Check the actual export dimensions, format, duration or transparency and whether saved configuration can recreate it. Report limits on reproducibility, performance, rendering or export.
+Verify the actual exported dimensions, background, file format and, for animation, duration and end behavior. Confirm that a saved configuration recreates a promised result. Give [Critique](../../critique/SKILL.md) representative outputs and the brief. Report limitations on portability, performance, export or reproduction.

@@ -16,7 +16,7 @@ Judge work in progress or a result against its brief and project context. Apply 
 
 ### Visual
 
-For a design, interface or visual change, compare the actual rendering with the brief, supplied reference and project conventions. Inspect relevant sizes, themes and interaction states, including hierarchy, layout, type, imagery and interaction clarity. View the rendering yourself; a screenshot capture or source alone is insufficient. Use [stress the interface](references/ui-stress.md) for realistic adverse data and states. Report a missing render or state as unverified; a screenshot cannot establish interaction behavior or accessibility by itself.
+For a design, interface or visual change, compare the actual rendering with the brief, supplied reference and project conventions. Inspect the hierarchy, layout, type, imagery or interaction states that matter. For motion, inspect normal playback and any meaningful interruption or reduced-motion case; for an export, inspect the delivered file at the intended scale. Use [Design's evidence guide](../design/references/review-and-delivery.md) to choose cases and [stress the interface](references/ui-stress.md) for realistic adverse data. Name the effect on use or communication before treating an aesthetic pattern as a defect. View the result yourself; a screenshot capture or source alone is insufficient. Report missing evidence as unverified; a static image cannot establish interaction behavior or accessibility by itself.
 
 ### Integration
 

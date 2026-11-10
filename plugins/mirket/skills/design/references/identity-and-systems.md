@@ -1,37 +1,25 @@
 # Identity and design systems
 
-Use for brand identity, brand application, themes, tokens, reusable components or documenting an existing visual language.
+Use for a new or evolving identity, a coherent family of surfaces, reusable components or themes. Keep brand and system changes proportional to the problem.
 
-## Establish the source of truth
+## Decide what stays recognizable
 
-Inspect the human's approved brand assets, usage rules, voice and existing implementation. Identify what is established, what varies by context and what is genuinely missing. A real organization's name, identity, claims and marks must come from verified material or the human, not from an invented brand profile. Do not silently replace approved assets.
+Start from approved marks, type, imagery, vocabulary, usage guidance and working examples. Distinguish an application of an existing identity, an extension that fills a gap, and a refresh that can change fundamentals. For a new identity, identify a meaningful trait of the product or organization and translate it into a repeatable visual principle. For a refresh, record which familiar cues, assets and roles must survive. Missing documentation is not permission to replace an established identity.
 
-Decide whether the request is a new identity, an extension or a refresh. Start a new identity from the audience, purpose, tone and practical uses; connect the visual idea to something distinctive about the product or organization. For an extension, keep approved assets and fill the gaps. For a refresh, identify what may change and keep the rest.
+When a board would clarify a decision, show one coherent direction with mark or wordmark, type and color in use, and a few representative applications at real sizes. For instance, test a small mark in a navigation bar and a full lockup on a cover before choosing one configuration for both. Consider clear space, small-size variants, backgrounds and monochrome reproduction when relevant. Provide separately usable source assets and avoid claiming clearance that has not been established.
 
-## Make a compact identity board when it helps
+## Define rules in use
 
-Show a focal mark or wordmark, color roles, a type specimen and one or two relevant applications at realistic sizes. Add image direction, a construction detail or a pattern only when it clarifies how the system works. For a new mark, explore a product action, meaningful symbol or negative space; show the reasoning through the mark and its use rather than inventing a construction story for an existing logo.
+Keep one authoritative home for repeatable decisions. Name shared roles by the job they do, and point them at the existing values or tokens. Add a component-level override only when the exception is intentional, used and costly to express otherwise. A small site may need a handful of shared variables and native controls. Use the project's existing design system where it solves the same problem.
 
-Use the requested medium and arrange the board to make the hierarchy legible. Supply separately usable assets in the required formats, such as editable vector marks and documented type and color roles. Give [Critique](../../critique/SKILL.md) representative small, monochrome and constrained uses when they matter. Distinguish inspiration from approved brand material, and describe a proposed mark as a concept unless there is evidence of approval or clearance.
+For a reusable component, describe its job, content, sizes or variants that actually occur, and how people operate it. Specify the relevant combinations of states: an invalid field still needs a visible focus indicator; a busy focused control needs feedback without losing its place; selection must remain recognizable on hover. Explain which rule takes priority where two treatments compete. Check the component in a realistic host, with different widths, themes and inputs, before updating all callers.
 
-## Build only the needed system
+Document when a rule is global, when a product surface may vary it and which existing uses a change affects. Prefer a local repair over changing a global token to correct one outlier. Favor gradual adoption through representative cases over rebuilding every surface for symmetry.
 
-Inventory repeated decisions before introducing tokens or components. Reuse the project's existing system when it fits. Distinguish raw design values, names expressing their purpose, and component-specific choices where those layers solve a real maintenance need. A small surface may need only a few shared variables; do not create a large token architecture for its own sake.
+## Apply themes and carry identity across media
 
-For each reusable component, describe its purpose, parts, content rules, allowed variants and relevant states. Define how it behaves at constrained widths and with keyboard, touch or assistive technology. Avoid a new component when an existing one already expresses the same contract.
+A theme maps roles to an intentional set of treatments. Define foreground, surface, action, focus, feedback and data roles together. Test their applied combinations with real content and imagery in each supported theme, including selected, busy, invalid and disabled states. A beautiful palette sample can fail when used for small text, over an image or on an alternate layer.
 
-Keep one authoritative definition of each decision. Give changes a clear location and record when a visual rule is local to one surface rather than global. Check existing users of a shared token or component before changing it.
+Use the same recognizable ideas across media without freezing their geometry: an editorial voice, particular use of color and recurring image treatment can survive a compact product view, a slide and a poster. Let the medium determine density, scale, crop and interaction. Keep wording consistent where it refers to the same thing, and adapt tone to the moment.
 
-## Themes and consistency
-
-A theme is a coordinated set of choices, not a substitute for a content or interaction design. Define how foreground, surface, action, feedback and data roles behave in each supported theme. Verify contrast and state distinctions in context. Keep user-selected themes and established branding; propose a new theme only within the requested scope.
-
-Check the identity across the actual formats requested: for example a product screen, slide, banner or print asset may use the same voice and core palette but require different layouts and scale. Preserve a consistent relationship, not identical geometry everywhere.
-
-## Voice and assets
-
-Keep core vocabulary consistent while adjusting tone to the moment: an error, onboarding instruction and announcement have different jobs. Inventory assets, variants, source, permitted use and any required attribution. Confirm font and image availability. Avoid claiming a brand is approved or legally cleared without evidence.
-
-## Deliver
-
-Document decisions only to the degree the human or project needs: intent, role names, sample use, relevant states and ownership. Show the system applied to representative real content and report gaps such as missing assets, unverified theme contrast or unresolved brand decisions.
+Deliver only the guidance someone needs to repeat the result: intent, roles and locations, relevant component examples, exceptions, and editable assets when requested. Show at least one real application and state which themes, sizes or asset uses remain unverified.

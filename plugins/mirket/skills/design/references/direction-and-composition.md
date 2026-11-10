@@ -1,40 +1,36 @@
 # Direction and composition
 
-Use for a new visual direction, substantial redesign, page structure or composition. Keep explicit references and approved design decisions authoritative.
+Use when the form is unsettled, the existing result needs a rethink, or the information hierarchy is weak. A direction is a small set of decisions that produces consistent work under new content and constraints.
 
-## Frame the work
+## Write a brief that makes choices easier
 
-Write down the person using the result, what they need to do or understand, where they encounter it, and what success looks like. Inventory the actual material: product capabilities, names, approved claims, images, data, brand assets and required content. Separate unknowns from facts. Ask the human only for gaps that change the direction; if authorized to decide, state the decision rather than presenting it as a fact supplied by them.
-
-For an unsettled direction, inspect a small number of relevant examples from comparable products or media. Record the pattern that serves the user's task and the context that makes it work; treat a mood reference as inspiration unless the human asks for fidelity.
+- Name a particular audience, their situation and the first decision, action or feeling the work should support. A first-time buyer comparing sizes has different needs from a returning operator clearing a queue.
+- Inventory what can carry the design: an actual product image, distinctive data, approved language, a physical material, a recurring shape, a brand asset or a useful interaction. Keep claims and constraints separate from mood references. Use a clear placeholder where material is missing.
+- Name the medium, viewing conditions, what must stay, and the decision the next artifact needs to answer. For open directions, look at a few relevant examples and extract a principle, such as how the page makes comparison easy. Leave the source's distinctive composition and assets there.
+- Make a short working direction: “Because this is for [person in situation], lead with [material/action], keep [convention] familiar, and use [visual choice] to express [intent].” Test the choices against the actual content, not the adjectives alone.
 
 ## Capture the redesign baseline
 
-Before changing an existing interface, open the affected flow in a browser or its native runtime. Capture representative before views at relevant sizes and states. Record the entry point, environment, viewport and inputs so the same case can be reproduced. Record what must survive: approved content and data, brand assets, key actions and destinations, navigation, state changes and feedback, and accessibility or platform requirements. Separate a pre-existing problem from a regression risk and identify any behavior change the human requested.
+Before changing an existing interface, open the affected flow in its browser or native runtime. View and capture the before state at the sizes and steps that matter. Note the entry point, viewport, representative inputs and states so the comparison is reproducible. Record content, actions, feedback, navigation, identity and access that must survive. Separate an existing problem from a regression and an authorized behavior change from an unintended one.
 
-If the existing interface cannot be viewed, stop the redesign and report the blocker; resume after the baseline is visible and captured. Available source or documentation can support orientation but cannot replace viewing the baseline. Pass the before evidence and invariants to [Critique](../../critique/SKILL.md) for the rendered comparison; use [Test](../../test/SKILL.md) to substantiate preserved behavior when it matters.
+If you cannot view the existing interface, stop the redesign and report what is missing. Source, screenshots of a different build and guesses about current behavior do not replace the live baseline. Give [Critique](../../critique/SKILL.md) the before evidence and give [Test](../../test/SKILL.md) any behavior invariants that need checking.
 
-## Set the emphasis
+## Design the structure before the surface
 
-Choose a composition based on the visitor's immediate job:
+1. **Rank the material.** Put the primary proposition, action, relationship or subject where it can be understood first. Group supporting information by the questions it answers. Give every visible region a job; remove or defer regions without one.
+2. **Choose a composition that fits.** A list suggests sequence, a table supports comparison, a continuous canvas supports reading, and a grid supports browsing equivalent items. Use alignment, grouping, scale and quiet space to create the eye path. A utilitarian screen may need dense rows; a single poster image may need room.
+3. **Give emphasis selectively.** When everything is large, saturated, outlined or moving, nothing leads. Use contrast between important and supporting material. Keep the same hierarchy when the layout reflows.
+4. **Place character where it pays off.** Choose a treatment grounded in the subject, such as an annotated close-up of a tool or a rhythm drawn from an illustrated story. Repeat its logic where it helps; keep familiar interactions and important content easy to recognize.
+5. **Try it with the difficult material.** Use actual copy, the longest label, sparse and dense data, the narrow view or intended print size. Inspect the first useful slice before multiplying it. If two structures solve the job in meaningfully different ways, hold content and constraints constant and compare only that difference.
 
-- **Decide or act:** reveal the offer, supporting evidence and the next action in a coherent sequence. Show the actual thing when that helps explain it.
-- **Operate:** prioritize scanning, task continuity and clear feedback. Familiar placement and information density can matter more than decoration.
-- **Read or learn:** organize content for orientation, sustained reading and retrieval; keep navigation available without competing with the text.
-- **Experience:** let the work, image or interaction carry the message; keep controls clear and subordinate to the content.
+## Replace defaults with decisions
 
-A single project may have different surfaces with different priorities. Do not turn these categories into a fixed template.
+| Symptom | Ask | Try |
+| --- | --- | --- |
+| A banner, badge, grid and closing call to action would fit any product | What can this audience actually see, understand or do here? | Lead with the product in use, the real offer or a useful example. Delete sections with no distinct purpose. |
+| All content appears in equal tiles | Do the items really have equal weight and independent actions? | Use a list, table, open section or one dominant item with subordinate details when the relationships call for it. |
+| A decorative surface dominates the action or subject | What meaning does this effect add? | Keep it where it reveals depth, focus or atmosphere; simplify elsewhere and check hierarchy again. |
+| A revision looks tidier but loses personality | Which cues made the original recognizable or familiar? | Keep the working voice, scale contrast, imagery or navigation; repair the specific weakness. |
+| The outcome looks busy despite sparse content | Are labels, outlines, repeated icons or spacing fighting the reading order? | Combine related regions, demote repeated cues and let typography and alignment do more work. |
 
-## Compose the surface
-
-1. List the essential content and actions in the order a person needs them. Remove unsupported claims and mark missing inputs. Choose one focal point that expresses the task's strongest real material.
-2. Sketch the structural relationships: navigation, entry point, content groups, primary action and closing or next step. Decide which elements share an edge, which occupy full width, and where the eye moves next. Use columns, a list, a grid, a split or an open canvas only when it suits the content.
-3. Set a hierarchy for each region. Use size, position, spacing, contrast and imagery together so a heading, data value or action is emphasized for a reason. Items that belong together should read as a group; separate different ideas enough to be distinguishable.
-4. Vary repeated structures only when their content or role changes. A repeated pattern can aid scanning; excessive uniformity can hide differences. Conversely, decorative variety can make a workflow harder to learn.
-5. Check the proposal with real copy, long labels, sparse content and dense content. Determine what should reflow, stack, crop or remain reachable as available space changes. Do not force fixed viewport-height sections if content can overflow or users need text enlargement.
-
-## Make the direction specific
-
-Describe a small set of intentional choices—tone, visual emphasis, type behavior, color roles, material and motion—and connect each to the audience or subject. Compare the proposal to the existing brief: would these choices still make sense if the product name changed? If so, look for a more specific expression of the actual content or use case. Distinctive does not have to mean loud, complex or novel at the expense of usability.
-
-Show a bounded direction or representative slice when it resolves a consequential choice before broad implementation. Record which parts the human chose or authorized. A text description or wireframe can communicate intent but cannot prove the final appearance.
+Treat these as diagnoses, not banned styles. A gradient, card grid, neutral palette or expressive font is useful when the brief calls for it. The proof is whether the choice helps this work.

@@ -1,6 +1,6 @@
 # Prototype method
 
-Use under [Design](../skills/design/SKILL.md) for a UI question, [Focus](../skills/focus/SKILL.md) for a product rule or workflow, or [Architect](../skills/architect/SKILL.md) for a technical model or boundary. Deliver a disposable experiment and the evidence needed for a decision.
+Use under [Design](../skills/design/SKILL.md) for a visual or interaction question, [Focus](../skills/focus/SKILL.md) for a product rule or workflow, or [Architect](../skills/architect/SKILL.md) for a technical model or boundary. Deliver a disposable experiment and the evidence needed for a decision.
 
 ## Bound the experiment
 
@@ -9,7 +9,7 @@ Use under [Design](../skills/design/SKILL.md) for a UI question, [Focus](../skil
 
 ## Choose one branch
 
-- **UI comparison:** Show a small number of structurally different layouts or interaction patterns against the same representative content, app shell and states. Change the variable under test; hold the rest steady. Make switching clear, keyboard operable and easy to revisit. Keep the selected variant and any assumptions visible so the user can point to a specific result.
+- **Visual or interaction comparison:** Show a small number of meaningfully different options with the same representative content, context and states. Change the variable under test; hold the rest steady. Make any interactive switching clear and keyboard operable. Let the user reset or replay a motion or interaction comparison from the same initial state. Identify each variant and any assumptions so the user can point to a specific result.
 - **Logic or state experiment:** Put the rule or model behind a small deterministic boundary, separate from the demo or harness. Expose inputs, actions and resulting state in the decision maker's language. Let them reset and explore freely, and provide repeatable walkthroughs for a normal case, a consequential adverse case and an illegal action. Record what happened and what was supposed to happen; observed behavior does not establish a business rule.
 
 ## Close with evidence

@@ -1,30 +1,36 @@
-# Interaction and content
+# Web, UI and content
 
-Use for screens, components, flows, navigation, forms, dashboards and data-rich interfaces. Design the task and its states, not just the initial view.
+Use to organize a website, product surface or workflow. Decide what the person is trying to accomplish before choosing a visual pattern or a component.
 
-## Map the journey
+## Shape the surface around the job
 
-Describe the user's starting point, goal, information required, decisions and exit. Trace the primary path and the meaningful alternatives: cancellation, back navigation, interruptions, permission denial, retries and recovery. Respect the platform's navigation patterns and preserve work where appropriate.
+| Surface | Lead with | Check early |
+| --- | --- | --- |
+| Marketing, campaign or product page | A specific proposition, a concrete example or useful proof, and the next action when the visitor is ready | Does the page show what is actually offered? Do details answer the objections that would block action? |
+| Editorial, documentation or learning | An orientation, readable sequence and useful routes back into the content | Can someone arrive at a deep link, know where they are and find what comes next? |
+| Store or catalog | Useful distinctions, comparable information and clear action costs | Can a person narrow choices, understand availability and see what they are committing to? |
+| App, admin or workspace | The active work, stable navigation, useful density and unambiguous feedback | Can a returning person repeat a task, pick up interrupted work and recover from failure? |
 
-For each action, determine what it changes, whether it can be reversed, what feedback is needed and where focus moves. Use a destructive confirmation only when the action and its consequences warrant interruption. Distinguish an action that changes data from a link that navigates.
+Adapt these choices to the project. A transactional screen inside a marketing site should behave like a transaction. A quiet, familiar table may be the right answer; a generic hero or ornamental dashboard may have nothing to do with the work.
 
-## Forms and input
+## Design actions as state changes
 
-- Give inputs persistent labels, useful instructions and suitable input types. Indicate required fields and constraints before submission rather than relying on placeholder text.
-- Validate at a useful point in the workflow. Put an actionable error next to the relevant input and provide an overview for longer forms when useful. Preserve valid entries and move focus predictably after failure.
-- Show submission progress and prevent unintended duplicate actions without trapping the user. Support cancellation, retry and success; explain what happened and what the person can do next.
-- Consider autofill, paste, password managers, international names, long values, multiple locales and input method differences where relevant. Do not create requirements or claims the product has not established.
+Walk one primary journey from entry to completion and one consequential failure or interruption. For each important step, record what the person knows, what they can do, when the action takes effect, how they can undo or recover, and where focus and scroll position belong. Preserve data and task context across back navigation or retries where appropriate. Do not invent behavior or change a product rule through interface copy.
 
-## Navigation and controls
+Design the states the action can actually reach: starting, loading or saving, empty or no matches, success, error, offline, denied, expired or unavailable as relevant. An empty collection and an unsuccessful search need different explanations. A delayed write needs a truthful pending or failure state; acknowledge the input promptly without claiming success early. Preserve useful controls while data updates, and avoid losing focus when replacing content.
 
-Give labels that describe the destination or action. Make the current location or selected state clear, preserve a coherent back path, and keep related operations together. Ensure visible controls produce their stated outcome; a decorative mock interaction is not finished functionality. Use familiar patterns when they reduce learning cost, and make unusual interaction discoverable.
+- Use links for destinations and buttons for operations. Give controls names that match the outcome. Keep current location and a useful back path clear. Surface important actions without requiring hover or an undocumented gesture.
+- Give fields persistent labels, constraints before commitment, and actionable errors by the affected inputs. Preserve valid entries and move focus predictably after failure. Where relevant, support native input types, paste, autofill, long values and international formats.
+- Show consequences before irreversible or high impact actions. Prefer a safe undo when it fits the operation. Prevent accidental duplicate submissions while allowing meaningful retry or cancel.
 
-## Data, lists and charts
+## Let real content make the decisions
 
-Determine the question the data must answer before choosing a display. Use lists for ordered content, tables when precise comparison matters, and charts when a visual relationship helps. Keep units, labels, time range and missing values clear. Avoid visual encodings that distort the underlying values. Provide a text or tabular alternative when meaningful, and do not rely solely on color, hover or a tooltip to convey essential information.
+Give a heading or link enough context to make sense on its own. Use the audience's terms and stable labels for the same object or action. Lead with what happened and what to do next. Distinguish approved claims and actual data from illustrative copy. Do not invent endorsements, prices, metrics, features or stock availability.
 
-For lists and tables, account for empty results, loading, error, long values, sorting or filtering where applicable, and the difference between no data and no matches. Keep actions identifiable on touch and keyboard.
+Choose a list for order, a table for exact comparison, or a chart for a relationship worth seeing. Use real units, clear time periods, honest axes and useful treatment of missing values. Provide access to essential values without hover or color alone. Test constrained layouts with long values, realistic row counts, optional fields and screen enlargement.
 
-## Interface writing
+## Build in the project's own language
 
-Use the audience's vocabulary. Name the actual action, object or outcome consistently across controls and feedback. Keep error messages specific about the problem and a useful next step; use an empty state to explain what is absent and how to proceed. Avoid invented metrics, customer endorsements, guarantees, prices or product capabilities. When real copy is missing, mark a placeholder rather than presenting it as verified fact.
+Start with native or established primitives and tokens. Use the least complex implementation that expresses the design and provides real semantics, focus and behavior. A new library is useful only if it materially closes a gap in the current stack; if a choice is needed, compare relevant components and behavior, styling fit, performance cost, maintenance and migration effort through [Curate](../../curate/SKILL.md). A visual refresh does not by itself justify replacing the stack.
+
+Build the real action and its critical states alongside its appearance. For a standalone demonstration, label synthetic data and mocked behavior; use the [prototype method](../../../references/prototype.md) if the point is to settle a question. A production change must be exercised through its actual path.

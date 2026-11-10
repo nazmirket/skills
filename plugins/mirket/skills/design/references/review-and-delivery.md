@@ -1,13 +1,21 @@
 # Review and delivery
 
-Use to prepare review evidence and deliver a visual result. [Critique](../../critique/SKILL.md) owns rendered review and the recheck after authorized corrections.
+Use to prepare the evidence for [Critique](../../critique/SKILL.md) and hand over a design someone can use. Critique owns the rendered assessment and the recheck after material visual corrections.
 
-## Prepare the review handoff
+## Give the reviewer a representative result
 
-- Link the brief, supplied reference or approved direction, any live baseline, and the actual preview or final export. For exports, include the intended viewing or production conditions.
-- List changed surfaces and the relevant sizes, themes and states to compare. Include real or representative content, preserved constraints, and known departures from the visual target.
-- Supply available [Test](../../test/SKILL.md) evidence for behavior. Identify unavailable inputs or views and mark placeholders or inferred details.
+Share the brief and direction, approved target or supplied reference, any live redesign baseline, and the actual preview, recording or export. State what must be preserved and which deliberate departures or uncertainties need attention. Pick cases because they can change the verdict; do not inspect every combination by default.
 
-## Handoff
+| Result | Useful evidence |
+| --- | --- |
+| Web or product UI | The primary task at a realistic size and content state, plus the width, input or adverse state most likely to expose a defect |
+| System or theme | The same representative content and component states under affected treatments, including conflicting states when relevant |
+| Illustration, slide or static asset | The final export at actual scale, one important crop or thumbnail, and relevant backgrounds or print conditions |
+| Motion or gesture | Normal use and one meaningful interruption or repeated use, with the alternate input or reduced-motion path where applicable |
+| Visual prototype | The comparison axis and matched cases, a way to switch or replay, and the observations that inform the decision |
 
-Deliver the requested files, including editable sources where required. Summarize the decisions, the result of Critique's rendered review, behavior or export evidence, and unresolved limits. A rendered image, a source file and a working interaction establish different things.
+Show both what changed and what might have been affected nearby. Use realistic content or mark synthetic material. Use [Test](../../test/SKILL.md) for reproducible behavior, accessibility checks or measured performance. A static image does not prove live behavior; a test pass does not prove a design looks right.
+
+## Hand over what someone can use
+
+Give the requested files or working entry point, editable sources when needed, and a short explanation of the decisions that matter. Report the checks actually performed, material issues and deliberate limits: an uninspected export, untested preference, unavailable device, missing asset or unresolved choice. Keep evidence accessible to its recipient without treating scratch previews as production deliverables.

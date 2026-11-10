@@ -1,34 +1,34 @@
 {
-  "description": "Attribution for adapted methods. Mirket ships the adapted guidance and applicable notices; these credits are not runtime dependencies.",
+  "description": "Provenance for adapted guidance. The applicable MIT notices are consolidated in LICENSE; these sources are not runtime dependencies.",
   "sources": {
     "matt": {
       "revision": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
-      "notice": "licenses/mattpocock-skills.txt",
+      "notice": "LICENSE",
       "repository": "mattpocock/skills"
     },
     "mattQa": {
       "revision": "f958fa17c1b62c3f7be38fc09512669acf6b64fc",
-      "notice": "licenses/mattpocock-skills.txt",
+      "notice": "LICENSE",
       "repository": "mattpocock/skills"
     },
     "superpowers": {
       "revision": "22f0b463e7a5e579904dd6211a520321035526f7",
-      "notice": "licenses/superpowers.txt",
+      "notice": "LICENSE",
       "repository": "obra/superpowers"
     },
     "breakUi": {
       "revision": "715c1807e08c497cfd1dc4feb450a2a3300ef2a9",
-      "notice": "licenses/emilkowalski-skills.txt",
+      "notice": "LICENSE",
       "repository": "emilkowalski/skills"
     },
     "imagegen": {
       "revision": "beb16b0d0f4dae9a6f5cb04ea41e97b93a54ab8e",
-      "notice": "licenses/imagegen-skills.txt",
+      "notice": "LICENSE",
       "repository": "Leonxlnx/imagegen-skills"
     },
     "taste": {
       "revision": "b9ca2fd8047f4c72d7da90ebc1c1203e57c72cd2",
-      "notice": "licenses/taste-skill.txt",
+      "notice": "LICENSE",
       "repository": "Leonxlnx/taste-skill"
     },
     "reviewLoop": {

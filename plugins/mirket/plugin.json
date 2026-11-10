@@ -13,5 +13,6 @@
         "composerIcon": "./assets/mirket.png"
       }
     }
-  }
+  },
+  "license": "MIT"
 }

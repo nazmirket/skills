@@ -14,7 +14,7 @@ Make consequential technical decisions reviewable and record each decision when 
 
 ## Record the decision
 
-After an architectural decision is made, create an ADR for it in `.work/decisions/` at the project root using the [workspace rules](../../references/workspace.md). Use a unique, descriptive filename. Record the context, options considered, chosen decision, decision-maker, evidence, rationale and consequences; link any useful diagram and related plan. Attribute the decision truthfully: a recommendation is not a decision or human approval. Preserve previous records and link superseded decisions rather than rewriting history.
+After an architectural decision is made, create a [numbered ADR](../../references/workspace.md#numbered-records) in `.work/decisions/` at the project root, such as `0001-Project-Cleanup.md`. Record the context, options considered, chosen decision, decision-maker, evidence, rationale and consequences; link any useful diagram and related plan. Attribute the decision truthfully: a recommendation is not a decision or human approval. Preserve previous records and link superseded decisions rather than rewriting history.
 
 Use only `.work/decisions/` for Architect's ADRs, including shared decisions. This directory is ignored by Git; make that limitation clear when a teammate needs the record. If it cannot be written, report the missing ADR and do not claim the decision was recorded.
 

@@ -5,7 +5,7 @@ description: "Use to choose or obtain tools, or to challenge a tool, library, fo
 
 # Equip
 
-A choice can work today and still be a poor fit for the job. Call that out when it materially affects correctness, reliability, effort, performance, or control over the result. Critique the choice and its consequences. See [fit scenarios](references/fit-scenarios.md) for examples of when to challenge, adjust, switch, or keep a choice.
+A choice can work today and still be a poor fit for the job. Call that out when it materially affects correctness, reliability, effort, performance, or control over the result. Critique the choice and its consequences. See [fit scenarios](references/FitScenarios.md) for examples of when to challenge, adjust, switch, or keep a choice, and the [routing guide](../../references/Routing.md) when a request also involves research, setup, or a system boundary.
 
 ## Establish fit
 

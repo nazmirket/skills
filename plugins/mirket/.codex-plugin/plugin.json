@@ -1,0 +1,14 @@
+{
+  "name": "mirket",
+  "version": "0.4.0",
+  "description": "25 composable workflows for product development, security, migration, release, deployment and operations.",
+  "license": "MIT",
+  "skills": "./skills/",
+  "hooks": "./hooks/hooks.json",
+  "interface": {
+    "displayName": "Mirket",
+    "shortDescription": "Product development workflows",
+    "logo": "./assets/mirket.png",
+    "composerIcon": "./assets/mirket.png"
+  }
+}

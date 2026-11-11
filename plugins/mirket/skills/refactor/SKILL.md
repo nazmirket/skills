@@ -10,7 +10,7 @@ Improve the target code with the smallest complete, evidence-backed change. Pres
 ## Understand and bound the work
 
 1. Use [adapt](../adapt/SKILL.md) to understand the target, its purpose, connected behavior, project patterns and the human's constraints. Reuse a current orientation when it covers the same scope. Inspect callers, inputs, outputs, side effects, errors, ordering, validation and existing checks relevant to the change. Preserve the human's existing work.
-2. Define the requested scope, structural improvement and observable behavior to preserve. Route consequential system boundary decisions to [Architect](../architect/SKILL.md) and performance targets to the [measured improvement method](../../references/measured-improvement.md). Obtain the human's direction if the change requires a product rule or public behavior to change.
+2. Define the requested scope, structural improvement and observable behavior to preserve. Route consequential system boundary decisions to [Architect](../architect/SKILL.md) and performance targets to the [measured improvement method](../../references/MeasuredImprovement.md). Obtain the human's direction if the change requires a product rule or public behavior to change.
 3. When the required development or verification environment is unknown or blocked, use [Preflight](../preflight/SKILL.md) to assess it. Reuse existing readiness evidence when current. Follow its confirmation requirements for installations, environment changes and inferior fallbacks.
 
 ## Establish evidence and improve

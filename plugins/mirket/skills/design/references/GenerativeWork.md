@@ -16,6 +16,6 @@ Use original composition, rules and assets appropriate to the brief. Choose tool
 
 ## Check the range and deliver the result
 
-Inspect the default, selected and adverse outputs. Try crowded, sparse, high movement or boundary settings as relevant; adjust the rules when they routinely produce clipped, unreadable or empty results. For live or interactive work, bound work and memory, provide usable controls and a still or less motion option where appropriate, and check representative devices. Use [motion and gestures](motion-and-gestures.md) for timing, input and comfort.
+Inspect the default, selected and adverse outputs. Try crowded, sparse, high movement or boundary settings as relevant; adjust the rules when they routinely produce clipped, unreadable or empty results. For live or interactive work, bound work and memory, provide usable controls and a still or less motion option where appropriate, and check representative devices. Use [motion and gestures](MotionAndGestures.md) for timing, input and comfort.
 
 Verify the actual exported dimensions, background, file format and, for animation, duration and end behavior. Confirm that a saved configuration recreates a promised result. Give [Critique](../../critique/SKILL.md) representative outputs and the brief. Report limitations on portability, performance, export or reproduction.

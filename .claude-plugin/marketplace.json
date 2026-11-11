@@ -7,7 +7,7 @@
     {
       "name": "mirket",
       "source": "./plugins/mirket",
-      "description": "Composable workflows for engineering, quality, design, authoring, product decisions, and project coordination."
+      "description": "25 composable workflows for product development, security, migration, release, deployment and operations."
     }
   ]
 }

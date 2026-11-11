@@ -11,6 +11,8 @@ import unittest
 
 HOOK = Path(__file__).resolve().parents[1] / "plugins/mirket/hooks/cleanup.py"
 CLEAN = HOOK.parent.parent / "skills/clean/SKILL.md"
+REPOSITORY = shlex.quote(str(HOOK.parents[3]))
+FINAL_REVIEW = "MIRKET_FINAL_REVIEW"
 
 
 def invoke(payload, *, env=None):
@@ -26,8 +28,11 @@ def invoke(payload, *, env=None):
     return json.loads(result.stdout)
 
 
-def before_shell(command):
-    return invoke({"hook_event_name": "PreToolUse", "tool_name": "Bash", "tool_input": {"command": command}})
+def before_shell(command, *, cwd=None, env=None):
+    payload = {"hook_event_name": "PreToolUse", "tool_name": "Bash", "tool_input": {"command": command}}
+    if cwd is not None:
+        payload["cwd"] = str(cwd)
+    return invoke(payload, env=env)
 
 
 def denied(output):
@@ -35,23 +40,33 @@ def denied(output):
 
 
 class CleanupHooksTest(unittest.TestCase):
-    def test_stop_combines_distill_and_clean_in_one_continuation(self):
+    def test_stop_is_neutral_by_default(self):
+        env = {key: value for key, value in os.environ.items() if key != FINAL_REVIEW}
+        for reply in ("The answer is 2.", "No files were changed.", "Paused as requested."):
+            with self.subTest(reply=reply):
+                self.assertEqual(invoke({"hook_event_name": "Stop", "stop_hook_active": False,
+                                         "last_assistant_message": reply}, env=env), {})
+        self.assertEqual(invoke({"hook_event_name": "Stop", "stop_hook_active": False},
+                                env={**env, FINAL_REVIEW: "true"}), {})
+
+    def test_opt_in_stop_combines_distill_and_clean_in_one_continuation(self):
         hooks = json.loads((HOOK.parent / "hooks.json").read_text())["hooks"]
         commands = [hook["command"] for group in hooks["Stop"] for hook in group["hooks"]]
         self.assertEqual(len(commands), 1)
         self.assertIn("/hooks/cleanup.py", commands[0])
-        first = invoke({"hook_event_name": "Stop", "stop_hook_active": False})
+        env = {**os.environ, FINAL_REVIEW: "1"}
+        first = invoke({"hook_event_name": "Stop", "stop_hook_active": False}, env=env)
         self.assertEqual(first.get("decision"), "block")
         self.assertIn(str(CLEAN), first.get("reason", ""))
         self.assertIn("Distill", first.get("reason", ""))
         self.assertIn("verified checks", first.get("reason", ""))
         self.assertTrue(CLEAN.is_file())
-        self.assertEqual(invoke({"hook_event_name": "Stop", "stop_hook_active": True}), {})
+        self.assertEqual(invoke({"hook_event_name": "Stop", "stop_hook_active": True}, env=env), {})
 
     def test_missing_or_invalid_stop_flag_does_not_loop(self):
         for payload in ({"hook_event_name": "Stop"}, {"hook_event_name": "Stop", "stop_hook_active": "false"}):
             with self.subTest(payload=payload):
-                result = invoke(payload)
+                result = invoke(payload, env={**os.environ, FINAL_REVIEW: "1"})
                 self.assertNotIn("decision", result)
                 self.assertIn("systemMessage", result)
 
@@ -81,8 +96,8 @@ class CleanupHooksTest(unittest.TestCase):
 
     def test_acknowledged_commits_are_neutral_not_allowed(self):
         commands = (
-            "MIRKET_CLEANUP_DONE=1 git commit -m first",
-            "env MIRKET_CLEANUP_DONE=1 git -C . commit -m first",
+            f"MIRKET_CLEANUP_DONE=1 git -C {REPOSITORY} commit -m first",
+            f"env MIRKET_CLEANUP_DONE=1 git -C {REPOSITORY} -C . commit -m first",
         )
         for command in commands:
             with self.subTest(command=command):
@@ -91,7 +106,28 @@ class CleanupHooksTest(unittest.TestCase):
     def test_quoted_and_escaped_operators_are_commit_arguments(self):
         for message in ("'|'", r"\;", '"("'):
             with self.subTest(message=message):
-                self.assertEqual(before_shell(f"MIRKET_CLEANUP_DONE=1 git commit -m {message} --allow-empty"), {})
+                self.assertEqual(before_shell(f"MIRKET_CLEANUP_DONE=1 git -C {REPOSITORY} commit -m {message} --allow-empty"), {})
+
+    def test_supported_commit_previews_do_not_need_cleanup_or_a_target(self):
+        for command in (
+            "git commit --dry-run",
+            "MIRKET_CLEANUP_DONE=1 git commit --dry-run",
+            "git commit --dry-run -a",
+            "env git -C . commit -m 'Preview only' --dry-run",
+            "command git commit --no-dry-run --dry-run",
+        ):
+            with self.subTest(command=command):
+                self.assertEqual(before_shell(command), {})
+
+    def test_commit_options_and_messages_do_not_accidentally_enable_preview(self):
+        for args in ("--dry-run --no-dry-run", "-m --dry-run", "--message=--dry-run", "-- --dry-run"):
+            with self.subTest(args=args):
+                self.assertTrue(denied(before_shell(f"git commit {args}")))
+
+    def test_unsupported_preview_guidance_keeps_the_operation_read_only(self):
+        result = before_shell("git commit --dry-run | cat")
+        self.assertTrue(denied(result))
+        self.assertIn("--dry-run", result["hookSpecificOutput"]["permissionDecisionReason"])
 
     def test_does_not_execute_command_selected_git(self):
         with tempfile.TemporaryDirectory() as root:
@@ -105,9 +141,10 @@ class CleanupHooksTest(unittest.TestCase):
                     result = invoke({**payload, "tool_input": {"command": f"MIRKET_CLEANUP_DONE=1 {command}"}})
                     self.assertTrue(denied(result))
                     self.assertFalse(sentinel.exists())
-            result = invoke({**payload, "tool_input": {"command": "MIRKET_CLEANUP_DONE=1 git commit -m x"}},
+            result = invoke({**payload, "tool_input": {"command": f"MIRKET_CLEANUP_DONE=1 git -C {shlex.quote(root)} commit -m x"}},
                             env={**os.environ, "PATH": "." + os.pathsep + os.defpath})
             self.assertTrue(denied(result))
+            self.assertIn("PATH", result["hookSpecificOutput"]["permissionDecisionReason"])
             self.assertFalse(sentinel.exists())
 
     def test_does_not_execute_fsmonitor_during_index_probe(self):
@@ -127,7 +164,7 @@ class CleanupHooksTest(unittest.TestCase):
             self.assertFalse(sentinel.exists())
             self.assertTrue(denied(result))
             subprocess.run(["git", "-C", root, "config", "core.fsmonitor", str(helper)], check=True)
-            result = invoke({**payload, "tool_input": {"command": "MIRKET_CLEANUP_DONE=1 git commit -m x"}})
+            result = invoke({**payload, "tool_input": {"command": f"MIRKET_CLEANUP_DONE=1 git -C {shlex.quote(root)} commit -m x"}})
             self.assertEqual(result, {})
             self.assertFalse(sentinel.exists())
             self.assertEqual((path / ".git/index").read_bytes(), index)
@@ -144,7 +181,7 @@ class CleanupHooksTest(unittest.TestCase):
         self.assertTrue(denied(output))
         reason = output["hookSpecificOutput"]["permissionDecisionReason"]
         self.assertIn(str(CLEAN), reason)
-        self.assertIn("MIRKET_CLEANUP_DONE=1 git commit", reason)
+        self.assertIn("MIRKET_CLEANUP_DONE=1 git -C", reason)
 
     def test_noncommit_commands_are_neutral(self):
         for command in ("git status", "echo git commit", "echo 'git commit'", "git show --format=commit"):
@@ -195,7 +232,7 @@ class CleanupHooksTest(unittest.TestCase):
             (work / "private.txt").write_text("private")
             subprocess.run(["git", "-C", root, "add", ".work/private.txt"], check=True)
             def request(command):
-                return invoke({"hook_event_name": "PreToolUse", "tool_name": "Bash", "cwd": root, "tool_input": {"command": command}})
+                return before_shell(command.replace("git commit", f"git -C {shlex.quote(root)} commit"), cwd=root)
             result = request("MIRKET_CLEANUP_DONE=1 git commit -m x")
             self.assertTrue(denied(result))
             self.assertIn(".work/private.txt", result["hookSpecificOutput"]["permissionDecisionReason"])
@@ -207,7 +244,9 @@ class CleanupHooksTest(unittest.TestCase):
 
     def test_staged_work_targets_git_c_directory(self):
         with tempfile.TemporaryDirectory() as root:
-            target = Path(root) / "target"
+            session = Path(root) / "session"
+            target = Path(root) / "target project"
+            subprocess.run(["git", "init", "-q", str(session)], check=True)
             subprocess.run(["git", "init", "-q", str(target)], check=True)
             subprocess.run(["git", "-C", str(target), "config", "diff.relative", "true"], check=True)
             (target / "nested").mkdir()
@@ -215,7 +254,12 @@ class CleanupHooksTest(unittest.TestCase):
             work.mkdir()
             (work / "secret").write_text("x")
             subprocess.run(["git", "-C", str(target), "add", ".work/secret"], check=True)
-            payload = {"hook_event_name": "PreToolUse", "tool_name": "Bash", "cwd": root, "tool_input": {"command": "MIRKET_CLEANUP_DONE=1 git -C target -C nested commit -m x"}}
+            for prefix in ("git", "git -C ."):
+                result = before_shell(f"MIRKET_CLEANUP_DONE=1 {prefix} commit -m x", cwd=session)
+                self.assertTrue(denied(result))
+                self.assertIn("absolute", result["hookSpecificOutput"]["permissionDecisionReason"])
+            payload = {"hook_event_name": "PreToolUse", "tool_name": "Bash", "cwd": str(session),
+                       "tool_input": {"command": f"MIRKET_CLEANUP_DONE=1 git -C {shlex.quote(str(target))} -C nested commit -m x"}}
             result = invoke(payload)
             self.assertTrue(denied(result))
             self.assertIn(".work/secret", result["hookSpecificOutput"]["permissionDecisionReason"])
@@ -225,11 +269,15 @@ class CleanupHooksTest(unittest.TestCase):
 
     def test_index_inspection_failure_blocks_an_acknowledged_commit(self):
         with tempfile.TemporaryDirectory() as root:
-            payload = {"hook_event_name": "PreToolUse", "tool_name": "Bash", "cwd": root, "tool_input": {"command": "MIRKET_CLEANUP_DONE=1 git commit -m x"}}
-            self.assertTrue(denied(invoke(payload)))
+            result = before_shell(f"MIRKET_CLEANUP_DONE=1 git -C {shlex.quote(root)} commit -m x", cwd=HOOK.parents[3])
+            self.assertTrue(denied(result))
+            self.assertIn("target Git index", result["hookSpecificOutput"]["permissionDecisionReason"])
 
     def test_compound_commands_cannot_change_index_before_inspection(self):
-        for command in ("git add -f .work/a && MIRKET_CLEANUP_DONE=1 git commit -m x", "cd other && MIRKET_CLEANUP_DONE=1 git commit -m x", "MIRKET_CLEANUP_DONE=1 git commit -m x && MIRKET_CLEANUP_DONE=1 git commit -m y"):
+        for command in ("git add -f .work/a && MIRKET_CLEANUP_DONE=1 git commit -m x",
+                        "cd other && MIRKET_CLEANUP_DONE=1 git commit -m x",
+                        "MIRKET_CLEANUP_DONE=1 git commit -m x && MIRKET_CLEANUP_DONE=1 git commit -m y",
+                        f"git commit --dry-run && MIRKET_CLEANUP_DONE=1 git -C {REPOSITORY} commit -m x"):
             with self.subTest(command=command):
                 self.assertTrue(denied(before_shell(command)))
 

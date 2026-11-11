@@ -5,7 +5,7 @@ Use under [Design](../skills/design/SKILL.md) for a visual or interaction questi
 ## Bound the experiment
 
 1. Name the decision, the alternatives, and the observable result that would favor one. Choose the smallest artifact the decision maker can run or inspect. Set a stopping point: what cases will be enough, when to stop if the result is inconclusive, and when to remove or retain the experiment.
-2. Keep the entire experiment outside production: routes, entry points, variant code, controls, fixtures and assets. Use `.work/temp/<task>/` under the [workspace rules](workspace.md) for a standalone artifact or isolated preview unless the project has a designated sandbox. Exclude it from deployment and production build inputs. Hiding a switcher is insufficient if a query parameter or import still reaches experiment code. Use labeled synthetic or approved, sanitized fixtures; default to in-memory state and stubbed writes. If persistence is the subject, use a disposable scratch store with an explicit reset.
+2. Keep the entire experiment outside production: routes, entry points, variant code, controls, fixtures and assets. Use `.work/temp/<task>/` under the [workspace rules](Workspace.md) for a standalone artifact or isolated preview unless the project has a designated sandbox. Exclude it from deployment and production build inputs. Hiding a switcher is insufficient if a query parameter or import still reaches experiment code. Use labeled synthetic or approved, sanitized fixtures; default to in-memory state and stubbed writes. If persistence is the subject, use a disposable scratch store with an explicit reset.
 
 ## Choose one branch
 

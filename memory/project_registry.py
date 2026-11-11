@@ -16,9 +16,44 @@ VERSION = "0.8.6"
 SURVEY_ENTRY = "mirket-codex-sessionstart-hook.js"
 PROMPT_ENTRY = "mirket-codex-hook.js"
 DEEPEN_ENTRY = "mirket-deepen.js"
+CONFIG_ENTRY = "mirket-config.js"
 SURVEY_COMMAND = '`mcp_servers.hindsight.command="node"`'
 SURVEY_ARGS = '`mcp_servers.hindsight.args=${tomlValue([opts.mcpServerPath])}`'
 SURVEY_RECEIPT = "SURVEY_DOC_IDS.some((id) => uploads.has(id))"
+SURVEY_CADENCE = "sinceLast !== null && sinceLast >= cfg.surveyRefreshCommits || findingsAbsent"
+SURVEY_EVIDENCE_JS = '''
+async function mirketSurveyEvidence(client, candidate) {
+  if (!candidate || candidate.behind !== 0 || candidate.sha !== gitHeadSha(REPO)) return null;
+  try {
+    const read = async (id) => {
+      const response = await client.req("GET", client.bankUrl(`/documents/${encodeURIComponent(id)}`));
+      if (!response.ok) throw new Error("Survey document unavailable");
+      const document = await response.json();
+      if (document.id !== id) throw new Error("Survey document identity mismatch");
+      return document;
+    };
+    const marker = await read(candidate.id);
+    const started = Date.parse(marker.updated_at);
+    if (!Number.isFinite(started) || !marker.tags?.includes("source:survey-baseline") ||
+        marker.tags.includes("survey-state:done")) return null;
+    const findings = {};
+    for (const id of SURVEY_DOC_IDS) {
+      const document = await read(id);
+      const updated = Date.parse(document.updated_at);
+      if (!document.tags?.includes("source:upload") || !Number.isFinite(updated) || updated <= started) return null;
+      findings[id] = document.updated_at;
+    }
+    // A retry must not change the pending generation while its evidence is read.
+    const current = await read(candidate.id);
+    if (current.updated_at !== marker.updated_at || current.tags?.includes("survey-state:done") ||
+        candidate.sha !== gitHeadSha(REPO)) return null;
+    return {mirket_survey_revision: candidate.sha, mirket_survey_started_at: marker.updated_at,
+            mirket_survey_finding_updates: JSON.stringify(findings)};
+  } catch {
+    return null;
+  }
+}
+'''
 SCRIPTS = {
     "start": "codex-sessionstart-hook.js",
     "prompt": "codex-hook.js",
@@ -77,7 +112,7 @@ def survey_source(source):
     """Adapt only the audited Codex survey recipe, failing on runtime drift."""
     if source.count(SURVEY_COMMAND) != 1 or source.count(SURVEY_ARGS) != 1:
         raise ValueError("Unsupported Hindsight Codex survey recipe")
-    return deepen_launcher(survey_receipts(source)).replace(
+    return deepen_launcher(survey_cadence(survey_receipts(source))).replace(
         SURVEY_COMMAND, '`mcp_servers.hindsight.command=${tomlValue(process.env.MIRKET_HINDSIGHT_PYTHON)}`'
     ).replace(
         SURVEY_ARGS, '`mcp_servers.hindsight.args=${tomlValue([process.env.MIRKET_HINDSIGHT_REGISTRY, "mcp"])}`,\n'
@@ -94,6 +129,40 @@ def survey_receipts(source):
     return source.replace(SURVEY_RECEIPT, SURVEY_RECEIPT.replace(".some(", ".every("))
 
 
+def survey_cadence(source):
+    marker = "              for (const id of markers) {"
+    if source.count(marker) != 1 or source.count(SURVEY_CADENCE) != 1:
+        raise ValueError("Unsupported Hindsight survey cadence")
+    return source.replace(marker,
+        '              const completedMarkers = await client.listDocumentIds("survey-state:done", "all_strict");\n' +
+        marker + '''
+                if (!completedMarkers.has(id)) continue;
+                const mirketAncestor = id.slice(SURVEY_BASELINE_PREFIX.length);
+                if (!/^[0-9a-f]{40}(?:[0-9a-f]{24})?$/.test(mirketAncestor)) continue;
+                try { gitLocal(cwd, "merge-base", "--is-ancestor", mirketAncestor, "HEAD"); }
+                catch { continue; }''').replace(
+        SURVEY_CADENCE, "sinceLast === null || sinceLast >= cfg.surveyRefreshCommits || findingsAbsent")
+
+
+def survey_completion(source):
+    source = survey_receipts(source)
+    select = "          const behind = commitsSince(REPO, sha);"
+    start_marker = "        if (best) {"
+    end_marker = '    await client.drain(client.opIds, "extraction");'
+    metadata = "metadata: Object.keys(stamp.metadata).length ? stamp.metadata : void 0"
+    if source.count(start_marker) != 1 or source.count(end_marker) != 1 or source.count(select) != 1:
+        raise ValueError("Unsupported Hindsight survey completion")
+    source = source.replace(select, "          if (sha !== gitHeadSha(REPO)) continue;\n" + select)
+    start, end = source.index(start_marker), source.index(end_marker)
+    block = source[start:end]
+    if block.count(metadata) != 1:
+        raise ValueError("Unsupported Hindsight survey evidence metadata")
+    block = block.replace(start_marker,
+        "        const mirketEvidence = await mirketSurveyEvidence(client, best);\n        if (mirketEvidence) {")
+    block = block.replace(metadata, "metadata: {...stamp.metadata, ...mirketEvidence}")
+    return source[:start] + block + source[end:] + SURVEY_EVIDENCE_JS
+
+
 def deepen_launcher(source):
     marker = 'join5(dirname4(fileURLToPath(import.meta.url)), "deepen.js")'
     if source.count(marker) != 1:
@@ -105,8 +174,48 @@ def adapters(dist):
     return {
         SURVEY_ENTRY: survey_source((dist / SCRIPTS["start"]).read_text()),
         PROMPT_ENTRY: deepen_launcher((dist / SCRIPTS["prompt"]).read_text()),
-        DEEPEN_ENTRY: survey_receipts((dist / "deepen.js").read_text()),
+        DEEPEN_ENTRY: survey_completion((dist / "deepen.js").read_text()),
+        CONFIG_ENTRY: config_source((dist / SCRIPTS["mcp"]).read_text()),
     }
+
+
+def config_source(source):
+    """Expose the pinned runtime's resolver without executing its MCP entry point."""
+    markers = ("function loadConfig(", "function applyBankConfig(",
+               "process.argv[1] === fileURLToPath3(import.meta.url)")
+    if any(source.count(marker) != 1 for marker in markers):
+        raise ValueError("Unsupported Hindsight configuration resolver")
+    return source + "\nexport { loadConfig, applyBankConfig };\n"
+
+
+def effective_config(home, directory, bank, environment=None):
+    """Read safe effective settings using upstream precedence; never return credentials."""
+    module = home / ".hindsight/coding-agents/dist" / CONFIG_ENTRY
+    if not module.is_file():
+        raise ValueError("Configuration adapter is missing; run memory/install.py --wire")
+    script = '''
+const [url, path, directory, bank] = process.argv.slice(1);
+const {loadConfig, applyBankConfig} = await import(url);
+const initial = loadConfig({path, harness: "codex"});
+// Match resolveHostConfig: an initially disabled host cannot be re-enabled by a bank override.
+const {cfg, bankId} = initial.disabled ? {cfg: initial, bankId: bank} : applyBankConfig(initial, bank, directory);
+const fields = ["serverMode", "apiUrl", "apiPort", "disabled", "retainSessions", "optInOnly",
+  "autoInject", "autoSeed", "gitIngest", "codebaseSurvey", "surveyRefreshCommits",
+  "pageRefreshEveryTurns", "pageTriggerType", "pageTriggerCron"];
+console.log(JSON.stringify({bank: bankId, apiTokenConfigured: Boolean(cfg.apiToken),
+  ...Object.fromEntries(fields.map(key => [key, cfg[key]]))}));
+'''
+    env = dict(os.environ if environment is None else environment)
+    env.update(HINDSIGHT_BANK_ID=bank, HINDSIGHT_DYNAMIC_BANK_ID="false")
+    result = subprocess.run(
+        ["node", "--input-type=module", "-e", script, module.as_uri(),
+         str(home / ".hindsight/coding-agent.json"), str(directory), bank],
+        env=env, capture_output=True, text=True, timeout=10, check=True,
+    )
+    value = json.loads(result.stdout)
+    if value.get("bank") != bank:
+        raise ValueError("Effective configuration redirects the selected bank")
+    return value
 
 
 def transcript_root(event, session_id, codex_home):
@@ -192,6 +301,58 @@ def check_config(config, version):
                 raise ValueError("Hindsight bank alias may redirect project memory")
 
 
+def canonical_entries(entries):
+    """Normalize both legacy mappings and persisted identities without losing old banks."""
+    result = {}
+    if not isinstance(entries, dict):
+        raise ValueError("Invalid project mappings")
+    for directory, bank in entries.items():
+        if not isinstance(directory, str) or not isinstance(bank, str) or not bank:
+            raise ValueError("Invalid project registry entries")
+        path = Path(directory).expanduser().resolve()
+        key = str(project_root(path) if path.is_dir() else path)
+        if key in result and result[key] != bank:
+            raise ValueError("Conflicting canonical project mapping")
+        result[key] = bank
+    return result
+
+
+def resolve_bank(root, mappings, projects=None, expected_bank=None):
+    """Pure selection shared by the writer and doctor; inspect before persisting."""
+    projects = canonical_entries(projects or {})
+    mapped = canonical_entries(mappings)
+    for key, bank in mapped.items():
+        if key in projects and projects[key] != bank:
+            raise ValueError("Conflicting legacy project mapping")
+        projects[key] = bank
+    key = str(Path(root).resolve(strict=True))
+    if any(Path(parent) in Path(key).parents and Path(parent).is_dir() and
+           not identify_project(parent)[1] for parent in mapped):
+        raise ValueError("Directory-prefix bank mappings require explicit canonical project mappings")
+    if key not in projects:
+        projects[key] = "coding-agent::project-" + hashlib.sha256(os.fsencode(key)).hexdigest()
+    if len(set(projects.values())) != len(projects):
+        raise ValueError("One bank is assigned to multiple project directories")
+    if expected_bank and projects[key] != expected_bank:
+        raise ValueError("Survey MCP resolved a different bank; no memory was written")
+    return projects[key], projects
+
+
+def read_projects(state_dir):
+    path = Path(state_dir) / "projects.json"
+    if path.is_symlink():
+        raise ValueError("Registry cannot be a symlink")
+    if not path.exists():
+        return {}
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except (ValueError, OSError) as exc:
+        raise ValueError("Cannot safely read project registry") from exc
+    if not isinstance(data, dict) or data.get("version") != 1 or not isinstance(data.get("projects"), dict):
+        raise ValueError("Invalid project registry")
+    return data["projects"]
+
+
 def register(state_dir, root, mappings, expected_bank=None):
     state_dir = Path(state_dir)
     state_dir.mkdir(mode=0o700, parents=True, exist_ok=True)
@@ -202,38 +363,11 @@ def register(state_dir, root, mappings, expected_bank=None):
     with os.fdopen(fd, "a+") as lock:
         fcntl.flock(lock, fcntl.LOCK_EX)
         path = state_dir / "projects.json"
-        if path.is_symlink():
-            raise ValueError("Registry cannot be a symlink")
-        if path.exists():
-            try:
-                data = json.loads(path.read_text(encoding="utf-8"))
-            except (ValueError, OSError) as exc:
-                raise ValueError("Cannot safely read project registry") from exc
-            if not isinstance(data, dict) or data.get("version") != 1 or not isinstance(data.get("projects"), dict):
-                raise ValueError("Invalid project registry")
-            projects = data["projects"]
-        else:
-            projects = {}
-        for directory, bank in mappings.items():
-            key = str(Path(directory).expanduser().resolve())
-            if not isinstance(bank, str) or not bank or (key in projects and projects[key] != bank):
-                raise ValueError("Conflicting legacy project mapping")
-            projects[key] = bank
-        if any(not isinstance(k, str) or not isinstance(v, str) or not v for k, v in projects.items()):
-            raise ValueError("Invalid project registry entries")
-        if len(set(projects.values())) != len(projects):
-            raise ValueError("One bank is assigned to multiple project directories")
-        key = str(Path(root).resolve(strict=True))
-        if key not in projects:
-            projects[key] = "coding-agent::project-" + hashlib.sha256(os.fsencode(key)).hexdigest()
-        if len(set(projects.values())) != len(projects):
-            raise ValueError("One bank is assigned to multiple project directories")
-        if expected_bank and projects[key] != expected_bank:
-            raise ValueError("Survey MCP resolved a different bank; no memory was written")
+        bank, projects = resolve_bank(root, mappings, read_projects(state_dir), expected_bank)
         updated = {"version": 1, "projects": projects}
         if not path.exists() or json.loads(path.read_text(encoding="utf-8")) != updated:
             atomic_text(path, json.dumps(updated, indent=2) + "\n")
-        return projects[key]
+        return bank
 
 
 def main():

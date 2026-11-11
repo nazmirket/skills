@@ -11,14 +11,14 @@
     ]
   },
   "example": {
-    "title": "Example: Build a site",
+    "title": "Example: Ship and learn",
     "figure": "02",
-    "asset": "build-a-site.svg",
+    "asset": "ship-and-learn.svg",
     "stages": [
-      ["Plan", "Set the direction", "plan"],
-      ["Design", "Shape the page", "design"],
-      ["Test", "Check the result", "check"],
-      ["Distill", "Share what changed", "signal"]
+      ["Release", "Prepare the version", "check"],
+      ["Deploy", "Roll it out", "signal"],
+      ["Operate", "Verify health", "target"],
+      ["Focus", "Evaluate outcomes", "target"]
     ]
   }
 }

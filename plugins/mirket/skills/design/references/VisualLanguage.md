@@ -10,7 +10,7 @@ Avoid adding a font to create character that composition or imagery could expres
 
 ## Color has a job
 
-Set roles for foreground, background, surfaces, action, focus, feedback and data. Establish actual foreground and background pairs, including layers, images, hover, disabled and selected states. Check relevant contrast against [accessibility needs](adaptive-and-accessible.md); distinguish state through words, shape or position as well as hue. Keep color reserved for the level of emphasis it earns. A dark theme needs tuned pairs and surface relationships rather than mechanically inverted colors.
+Set roles for foreground, background, surfaces, action, focus, feedback and data. Establish actual foreground and background pairs, including layers, images, hover, disabled and selected states. Check relevant contrast against [accessibility needs](AdaptiveAndAccessible.md); distinguish state through words, shape or position as well as hue. Keep color reserved for the level of emphasis it earns. A dark theme needs tuned pairs and surface relationships rather than mechanically inverted colors.
 
 ## Space shows relationships
 
@@ -22,7 +22,7 @@ Choose density by task and device. Compact controls may serve repeated desktop o
 
 Use actual product material, photography, illustration or data where it explains something. Select a crop that preserves the subject, scale and context, then check it at the final ratios. Protect text readability when it overlays media; reserve space for loaded imagery and choose a meaningful fallback when it fails. Do not represent a generated stand-in as a real product view, customer or result.
 
-Use a coherent icon family and size stroke and detail for the rendered scale. Label unfamiliar controls; name icon-only controls in their accessible semantics. For illustration systems and exports, use [visual artifacts and assets](artifacts-and-assets.md). For temporal behavior and responsive feedback, use [motion and gestures](motion-and-gestures.md).
+Use a coherent icon family and size stroke and detail for the rendered scale. Label unfamiliar controls; name icon-only controls in their accessible semantics. For illustration systems and exports, use [visual artifacts and assets](ArtifactsAndAssets.md). For temporal behavior and responsive feedback, use [motion and gestures](MotionAndGestures.md).
 
 ## Check the combination
 

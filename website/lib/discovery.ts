@@ -5,7 +5,7 @@ export const origin = "https://skills.mirket.dev";
 export const siteName = "Mirket";
 export const cardSize = {width: 1200, height: 630};
 export const canonicalUrl = (path: string) => new URL(path, origin).href;
-const cardVersion = "v1";
+const cardVersion = "v2";
 const cardFile = (name: string) => `${name}-${cardVersion}.png`;
 
 type PageInfo = {
@@ -21,17 +21,17 @@ type PageInfo = {
 export const homePage: PageInfo = {
   path: "/",
   title: "Mirket: Agent Skills for Codex & Claude Code",
-  description: "Mirket is a free, open-source skills plugin for Codex and Claude Code. Install it and browse workflows for planning, debugging, design, and code review.",
+  description: "25 free, open-source skills for Codex and Claude Code: product decisions, design, engineering, security, migration, release, deployment and operations.",
   image: cardFile("mirket"),
   cardTitle: "Mirket",
   cardLabel: "OPEN-SOURCE PLUGIN",
-  cardSummary: "Agent skills for Codex & Claude Code",
+  cardSummary: "25 workflows to build, ship and operate",
 };
 
 export const docsPage: PageInfo = {
   path: "/docs/",
   title: "Mirket Documentation: Install and Use Agent Skills",
-  description: "Install Mirket in Codex or Claude Code, learn how the plugin works, and find the right skill for planning, debugging, design, or review.",
+  description: "Install Mirket in Codex or Claude Code and choose from 25 skills for product development, security, migration, release, deployment and operations.",
   image: cardFile("documentation"),
   cardTitle: "Documentation",
   cardLabel: "FIELD GUIDE",
@@ -41,11 +41,11 @@ export const docsPage: PageInfo = {
 export const memoryPage: PageInfo = {
   path: "/docs/memory/",
   title: "Local Hindsight Setup for Codex & Claude Code | Mirket",
-  description: "Set up optional local Hindsight memory for Mirket in Codex or Claude Code. Learn how to choose a provider, scope capture, and verify recall.",
+  description: "Set up Hindsight for Mirket, preserve capture policy, check project routing and freshness, recover stale pages, and verify new capture and recall.",
   image: cardFile("local-hindsight"),
   cardTitle: "Local Hindsight",
   cardLabel: "OPTIONAL MEMORY",
-  cardSummary: "Set up local memory for your agent",
+  cardSummary: "Verify capture, freshness and recall",
 };
 
 type Skill = ReturnType<typeof getSkills>[number];
@@ -143,7 +143,7 @@ export function pageGraph(page: PageInfo, breadcrumbs?: readonly Breadcrumb[]) {
       description: homePage.description,
       codeRepository: repo,
       license: `${repo}/blob/main/LICENSE`,
-      version: JSON.parse(readSource("plugins/mirket/plugin.json")).version,
+      version: JSON.parse(readSource("plugins/mirket/.codex-plugin/plugin.json")).version,
       runtimePlatform: ["Codex", "Claude Code"],
       isAccessibleForFree: true,
     },

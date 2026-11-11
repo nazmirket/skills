@@ -6,6 +6,7 @@ import json
 import os
 from pathlib import Path
 import platform
+import re
 import shlex
 import shutil
 import socket
@@ -87,6 +88,69 @@ FRESHNESS_GUIDE = ("For recent status, decisions or corrections, check the sourc
 GUIDE = FRESHNESS_GUIDE + " A synced seed does not establish conversation coverage, survey coverage, or page freshness."
 
 
+def launcher(command):
+    """Read a literal executable and environment; refuse shell behavior we cannot preserve."""
+    if not isinstance(command, str) or any(char in command for char in "\n\r$`"):
+        raise ValueError("Ambiguous Hindsight hook command; preserve and review it before wiring")
+    tokens = shlex.split(command)
+    values = {}
+    if tokens and tokens[0] in ("env", "/usr/bin/env", "/bin/env"):
+        tokens.pop(0)
+        if tokens and tokens[0] == "--":
+            tokens.pop(0)
+    while tokens and re.match(r"^[A-Za-z_][A-Za-z0-9_]*=", tokens[0]):
+        key, value = tokens.pop(0).split("=", 1)
+        values[key] = value
+    if not tokens or any(token in {";", "&&", "||", "|", ">", "<", "&"} for token in tokens):
+        raise ValueError("Unsupported Hindsight hook wrapper or compound command")
+    return tokens, values
+
+
+def validate_environment(values):
+    if not isinstance(values, dict) or any(not isinstance(k, str) or not isinstance(v, str) for k, v in values.items()):
+        raise ValueError("Hindsight environment must contain string values")
+    if any(key in values for key in ("HINDSIGHT_CONFIG", "HINDSIGHT_BANK_ID", "HINDSIGHT_DYNAMIC_BANK_ID", "HINDSIGHT_MCP_PROJECT_CWD")):
+        raise ValueError("Review custom Hindsight configuration or routing overrides before wiring")
+
+
+def runtime_toml(text, dist):
+    """Python 3.8 fallback: reuse the parser bundled in the pinned installer."""
+    source = (dist / "installer.js").read_text()
+    markers = ('function parse2(toml, options = {})', 'if (isMain || mainPath?.endsWith("installer.js"))')
+    if any(source.count(marker) != 1 for marker in markers):
+        raise ValueError("Unsupported bundled TOML parser; configuration was not changed")
+    with tempfile.TemporaryDirectory(prefix="mirket-toml-") as temporary:
+        module = Path(temporary) / "parser.mjs"
+        module.write_text(source + "\nexport {parse2 as parseMirketToml};\n")
+        script = ('const {parseMirketToml}=await import(process.argv[1]); '
+                  'const {readFileSync}=await import("node:fs"); '
+                  'console.log(JSON.stringify(parseMirketToml(readFileSync(0,"utf8"))));')
+        result = subprocess.run(["node", "--input-type=module", "-e", script, module.as_uri()],
+                                input=text, capture_output=True, text=True, check=True, timeout=10)
+        return json.loads(result.stdout)
+
+
+def plain_upstream_mcp(home, dist, transport):
+    """The CLI's list projection omits restrictions: inspect raw TOML before replacement."""
+    try:
+        text = (home / ".codex/config.toml").read_text()
+        try:
+            import tomllib
+        except ImportError:
+            parsed = runtime_toml(text, dist)
+        else:
+            parsed = tomllib.loads(text)
+        entry = parsed.get("mcp_servers", {}).get("hindsight")
+    except (ValueError, OSError, subprocess.SubprocessError):
+        raise ValueError("Cannot safely inspect the raw Codex MCP configuration; no settings were changed") from None
+    if not isinstance(entry, dict) or set(entry) - {"command", "args", "env", "enabled"}:
+        raise ValueError("Custom Hindsight MCP options require review; automatic conversion would drop tool restrictions, timeouts or other fields")
+    if entry.get("enabled", True) is not True:
+        raise ValueError("The raw Hindsight MCP entry is disabled; preserve that choice")
+    if any(entry.get(key) != transport.get(key) for key in ("command", "args")) or (entry.get("env") or {}) != (transport.get("env") or {}):
+        raise ValueError("Raw and effective MCP settings differ; review configuration layers before wiring")
+
+
 def wiring(home, provider=None):
     """Prepare only recognized upstream or Mirket wiring; preserve unrelated settings."""
     root = home / ".hindsight"
@@ -118,13 +182,16 @@ def wiring(home, provider=None):
         if len(records) != 1:
             raise ValueError(f"Expected one recognized Hindsight hook for {event}")
         entry = records[0]
-        tokens = shlex.split(entry["command"])
-        if str(managed) not in tokens:
+        tokens, existing_env = launcher(entry["command"])
+        validate_environment(existing_env)
+        if tokens[1:] == [str(dist / registry.SCRIPTS[mode])] and Path(tokens[0]).name in ("node", "nodejs"):
+            hook_env = {k: v for k, v in env.items() if k != "HINDSIGHT_MCP_HARNESS"}
+            hook_env.update(existing_env)
             entry["command"] = shlex.join(
-                ["/usr/bin/env", *(f"{k}={v}" for k, v in env.items() if k != "HINDSIGHT_MCP_HARNESS"),
+                ["/usr/bin/env", *(f"{k}={v}" for k, v in hook_env.items()),
                  sys.executable, str(managed), mode]
             )
-        elif tokens[-2:] != [str(managed), mode]:
+        elif tokens[1:] != [str(managed), mode] or not Path(tokens[0]).name.startswith("python"):
             raise ValueError(f"Unexpected registry command for {event}")
     return config, hooks, patched, env
 
@@ -144,6 +211,19 @@ def wire(home, provider=None):
     if args not in ([str(managed), "mcp"], [str(dist / registry.SCRIPTS["mcp"])]):
         raise ValueError("Expected the upstream Hindsight or Mirket MCP registration.")
     already_wired = args == [str(managed), "mcp"]
+    if already_wired and not Path(transport.get("command") or "").name.startswith("python"):
+        raise ValueError("Unexpected executable for the registry MCP entry")
+    if server.get("enabled") is False:
+        raise ValueError("The existing Hindsight MCP entry is disabled; preserve that choice")
+    if not already_wired and (Path(transport.get("command") or "").name not in ("node", "nodejs") or
+                              transport.get("env_vars") or transport.get("cwd")):
+        raise ValueError("Review customized upstream MCP launch settings before wiring")
+    existing_env = transport.get("env") or {}
+    validate_environment(existing_env)
+    env.update(existing_env)
+    env["HINDSIGHT_MCP_HARNESS"] = "codex"
+    if not already_wired:
+        plain_upstream_mcp(home, dist, transport)
     if already_wired and (server.get("enabled") is False or (transport.get("env") or {}).get("HINDSIGHT_MCP_HARNESS") != "codex"):
         raise ValueError("The existing registry MCP entry is disabled or lacks the Codex harness.")
     managed.parent.mkdir(mode=0o700, exist_ok=True)
@@ -187,7 +267,7 @@ def wire(home, provider=None):
             cmd = ["codex", "mcp", "add", "hindsight"]
             for key, val in env.items():
                 cmd += ["--env", f"{key}={val}"]
-            subprocess.run(cmd + ["--", sys.executable, str(managed), "mcp"], check=True)
+            subprocess.run(cmd + ["--", sys.executable, str(managed), "mcp"], check=True, capture_output=True, text=True)
     except (OSError, subprocess.SubprocessError):
         for path, old in originals.items():
             if old is None:
@@ -198,13 +278,59 @@ def wire(home, provider=None):
     return backup
 
 
+def freshness_profile(home, directory):
+    """Opt one already-authorized project into prompt freshness; never widen capture."""
+    root = home / ".hindsight"
+    config_path = root / "coding-agent.json"
+    if config_path.is_symlink():
+        raise ValueError("Cannot replace a symlinked Hindsight configuration")
+    config = json.loads(config_path.read_text())
+    registry.check_config(config, json.loads((root / "coding-agents/package.json").read_text())["version"])
+    project = registry.project_root(directory)
+    bank, _ = registry.resolve_bank(project, config.get("mapPathToBank", {}), registry.read_projects(root / "mirket"))
+    server = codex_mcp() or {}
+    transport = server.get("transport", {})
+    if server.get("enabled") is False or transport.get("args") != [str(root / "mirket/project_registry.py"), "mcp"]:
+        raise ValueError("Wire and enable the recognized registry before setting project freshness")
+    environment = dict(os.environ, **(transport.get("env") or {}))
+    effective = registry.effective_config(home, Path(directory).resolve(), bank, environment)
+    if effective["disabled"]:
+        raise ValueError("This project is not enabled by the current capture policy; freshness does not opt it in")
+    codex = config["harnesses"]["codex"]
+    # Upstream merges bank names, not each bank's fields. Preserve the complete
+    # inherited section before adding a Codex-specific override.
+    section = codex.setdefault("banks", {}).setdefault(bank, dict(config.get("banks", {}).get(bank, {})))
+    desired = {"surveyRefreshCommits": 1, "pageTriggerType": "auto-refresh", "pageRefreshEveryTurns": 1}
+    if all(section.get(key) == value for key, value in desired.items()):
+        return {"bank": bank, "changed": False}
+    section.update(desired)
+    backups = root / "mirket/backups"
+    backups.mkdir(mode=0o700, parents=True, exist_ok=True)
+    if backups.is_symlink() or backups.parent.is_symlink():
+        raise ValueError("Mirket backup directory cannot be a symlink")
+    backup = Path(tempfile.mkdtemp(prefix="freshness-", dir=backups))
+    registry.atomic_text(backup / config_path.name, config_path.read_text())
+    registry.atomic_text(config_path, json.dumps(config, indent=2) + "\n")
+    return {"bank": bank, "changed": True, "backup": str(backup), "settings": desired,
+            "capture_policy_changed": False, "next_step": "Start a fresh trusted host session, then run the doctor and host capture check."}
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--check", action="store_true", help="check prerequisites and existing settings without installing")
     parser.add_argument("--wire", action="store_true", help="wire or update a recognized installed Hindsight runtime without reinstalling it")
+    parser.add_argument("--freshness", action="store_true", help="set bounded automatic freshness for one already-enabled project")
+    parser.add_argument("--directory", default=".", help="project for --freshness")
     args = parser.parse_args()
     try:
         provider = os.environ.get("HINDSIGHT_API_LLM_PROVIDER")
+        if args.freshness:
+            if args.check or args.wire:
+                parser.error("--freshness, --check and --wire are separate operations")
+            if os.environ.get("HINDSIGHT_CONFIG") or os.environ.get("CODEX_HOME") and Path(os.environ["CODEX_HOME"]).resolve() != (Path.home() / ".codex").resolve():
+                raise ValueError("Alternate configuration is not supported by the freshness profile")
+            print(json.dumps(freshness_profile(Path.home(), args.directory), indent=2))
+            return 0
         if args.wire:
             if args.check:
                 parser.error("--check and --wire are mutually exclusive")
@@ -224,7 +350,12 @@ def main():
         wire(Path.home(), provider)
         print("Installer finished. Follow memory/README.md to make your provider available to the host, review hooks, and verify capture and recall.")
         return 0
-    except (ValueError, subprocess.CalledProcessError) as exc:
+    except subprocess.CalledProcessError as exc:
+        # argv can contain preserved credential-bearing --env values. Neither it
+        # nor the subprocess's output belongs in a user-facing failure message.
+        print(f"Hindsight setup stopped: a setup command failed (exit {exc.returncode}); sensitive command details withheld.", file=sys.stderr)
+        return 1
+    except ValueError as exc:
         print(f"Hindsight setup stopped: {exc}", file=sys.stderr)
         return 1
 

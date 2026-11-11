@@ -5,7 +5,7 @@ description: "Use when investigating and fixing a concrete problem, defect, fail
 
 # Debug
 
-Debug from understanding and evidence. Start with an orientation finding, investigate its cause, and use guidance suited to the kind of work being fixed.
+Debug from understanding and evidence. Start with an orientation finding, investigate its cause, and use guidance suited to the kind of work being fixed. See the [routing guide](../../references/Routing.md) to distinguish diagnosis from a check or review.
 
 ## 1. Start with an orientation finding
 
@@ -19,6 +19,8 @@ Debug from understanding and evidence. Start with an orientation finding, invest
 5. If a relevant specialist or quality-check skill is unavailable, continue with available methods that can provide sufficient evidence. Identify the missing guidance and any material verification gap; do not claim the unavailable skill was followed or an unperformed check passed. If the available methods cannot establish the result, report the limitation and seek the missing capability or the human's decision where necessary. Honor explicit gates, host capabilities and Preflight's rules for inferior tool fallbacks.
 
 ## 3. Investigate before changing the target
+
+During an active incident, [Operate](../operate/SKILL.md) owns mitigation and recovery while Debug returns causal evidence and an authorized fix. Use [Secure](../secure/SKILL.md) for security/privacy boundaries, [Migrate](../migrate/SKILL.md) for repairs to persistent state, and [Deploy](../deploy/SKILL.md) for an authorized rollout. A local fix does not establish production recovery.
 
 6. Establish the smallest safe reproduction, or record conditions and uncertainty if it is intermittent or inaccessible. Compare a working case and walk the affected path, recording inputs and outputs at each relevant boundary until you find where they first diverge. For a race, observe the event or state transition rather than increasing a timeout blindly.
    - State one causal hypothesis and the observation that would falsify it. Vary one condition in the smallest discriminating check, record the result and update the hypothesis. If successive attempts fail, revisit assumptions, compare the working path again, and reconsider the investigation boundary before making another change.

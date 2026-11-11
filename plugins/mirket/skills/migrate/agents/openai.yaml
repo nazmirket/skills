@@ -1,0 +1,3 @@
+interface:
+  display_name: "Migrate"
+  short_description: "Change persistent state with verified recovery"

@@ -15,6 +15,7 @@ const glyphs: Record<string, PixelGlyph> = {
   debug: "bug", design: "design", distill: "signal", equip: "prompt",
   focus: "target", imagine: "design", orchestrate: "signal", plan: "plan",
   preflight: "check", refactor: "clean", sleep: "plan", test: "check",
+  secure: "inspect", release: "check", migrate: "plan", deploy: "signal", operate: "target",
 };
 
 export default function Home() {
@@ -28,7 +29,7 @@ export default function Home() {
           <Mascot/>
           <h1>Good work,<br/><span className="accent">on repeat.</span></h1>
         </div>
-        <p className="hero-description">Mirket is a free, open-source skills plugin for <strong>Codex</strong> and <strong>Claude Code</strong>. Use it to plan changes, debug failures, design interfaces, and verify results.</p>
+        <p className="hero-description">Mirket is a free, open-source skills plugin for <strong>Codex</strong> and <strong>Claude Code</strong>. Use its {skills.length} workflows to shape products, build and verify changes, ship releases, and keep services healthy.</p>
       </div>
       <Install {...getInstallGuide()}/>
     </section>

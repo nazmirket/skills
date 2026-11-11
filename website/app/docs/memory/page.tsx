@@ -16,6 +16,8 @@ export default function MemoryGuide() {
       ["coverage-and-recovery", "Coverage and recovery"],
       ["claude-code-with-the-upstream-installer", "Claude Code setup"],
       ["other-self-hosting-options", "Other options"],
+      ["project-freshness-and-bounded-recovery", "Freshness and recovery"],
+      ["real-host-capture-acceptance", "Capture acceptance"],
     ]}/>
     <div className="docs-content">
       <nav className="docs-breadcrumb" aria-label="Breadcrumb">

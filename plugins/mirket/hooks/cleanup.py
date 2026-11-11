@@ -24,6 +24,7 @@ class Commit(NamedTuple):
     acknowledged: bool
     exception: Optional[str]
     problem: Optional[str]
+    preview: bool
 
 
 def split_command(command):
@@ -91,19 +92,28 @@ def split_command(command):
     return parts, structural, heredoc, dynamic
 
 
-def uses_staged_index(args):
-    """Accept only known commit arguments that do not change the staged inputs."""
+def commit_is_preview(args):
+    """Return True for a supported dry run, False for a staged commit, or None."""
+    dry_run = changes_inputs = False
     i = 0
     while i < len(args):
         token = args[i]
         i += 1
         if token in COMMIT_FLAGS or token == "-S" or token.startswith("--gpg-sign=") or token == "--gpg-sign":
             continue
+        if token in {"--dry-run", "--no-dry-run"}:
+            dry_run = token == "--dry-run"
+            continue
+        if token in {"-a", "--all"}:
+            changes_inputs = True
+            continue
         if token == "--":
-            return i == len(args)
+            if i != len(args):
+                return None
+            break
         if token in COMMIT_VALUES:
             if i == len(args):
-                return False
+                return None
             i += 1
             continue
         option = token.partition("=")[0]
@@ -111,8 +121,8 @@ def uses_staged_index(args):
             len(token) > 2 and token[:2] in COMMIT_VALUES and not token.startswith("--")
         ):
             continue
-        return False
-    return True
+        return None
+    return None if changes_inputs and not dry_run else dry_run
 
 
 def commit_details(tokens):
@@ -158,25 +168,28 @@ def commit_details(tokens):
             problem = "Git global options other than literal -C paths"
     if i == len(tokens) or tokens[i] != "commit":
         return None
-    if not uses_staged_index(tokens[i + 1:]):
-        problem = "commit options or paths outside the supported staged-index form"
-    return Commit(directories, acknowledged, exception, problem)
+    preview = commit_is_preview(tokens[i + 1:])
+    if preview is None:
+        problem = "Git arguments outside the supported preview or staged commit forms"
+    return Commit(directories, acknowledged, exception, problem, preview is True)
 
 
 def deny(reason):
     return {"hookSpecificOutput": {"hookEventName": "PreToolUse", "permissionDecision": "deny", "permissionDecisionReason": reason}}
 
 
-def check_staged_work(commit, cwd):
+def check_staged_work(commit):
     git_overrides = any(name.startswith("GIT_") and name != "GIT_PAGER" for name in os.environ)
-    if not isinstance(cwd, str) or not os.path.isabs(cwd) or git_overrides:
-        return deny("Mirket cannot identify the index with an invalid working directory or inherited GIT_* overrides. Use a supported direct commit from its worktree.")
+    if git_overrides:
+        return deny("Mirket cannot identify the index with inherited GIT_* overrides. Use a supported direct commit without those overrides.")
     # Resolve the probe from system directories, never from the submitted command
     # or a workspace PATH. Refuse to inspect when the inherited PATH selects a
     # different executable, since the actual command might use that executable.
     git = shutil.which("git", path=SYSTEM_PATH)
-    path = os.pathsep.join(os.path.join(cwd, part) for part in os.get_exec_path())
-    selected = shutil.which("git", path=path)
+    search_path = os.get_exec_path()
+    if any(not os.path.isabs(part) for part in search_path):
+        return deny("Mirket cannot verify which Git a relative or empty PATH entry selects. Use a PATH containing only absolute directories for a guarded commit.")
+    selected = shutil.which("git", path=os.pathsep.join(search_path))
     if not git or not selected or os.path.realpath(selected) != os.path.realpath(git):
         return deny("Mirket requires the system Git executable for staged-index inspection. Use a supported direct commit with system Git on PATH.")
     env = {name: os.environ[name] for name in ("HOME", "XDG_CONFIG_HOME") if name in os.environ}
@@ -195,7 +208,7 @@ def check_staged_work(commit, cwd):
              "--no-ext-diff", "--no-textconv", "--no-relative", "--no-renames",
              "--submodule=short", "--ignore-submodules=none",
              "--name-only", "-z", "--diff-filter=ACMRT", "--", ":(top).work"],
-            cwd=cwd, env=env, capture_output=True, timeout=3, check=True,
+            cwd="/", env=env, capture_output=True, timeout=3, check=True,
         )
     except (OSError, ValueError, subprocess.SubprocessError):
         return deny("Mirket could not inspect the target Git index for staged .work files. Resolve the index or repository access issue before committing.")
@@ -209,6 +222,8 @@ def check_staged_work(commit, cwd):
 
 def handle(payload):
     event = payload.get("hook_event_name")
+    if event == "Stop" and os.environ.get("MIRKET_FINAL_REVIEW") != "1":
+        return {}
     if event == "Stop" and "stop_hook_active" not in payload:
         return {"systemMessage": "Mirket's final review was not requested: the Stop continuation flag is missing."}
     if event == "Stop" and not isinstance(payload.get("stop_hook_active"), bool):
@@ -218,7 +233,7 @@ def handle(payload):
             "decision": "block",
             "reason": (
                 f"Apply {SKILL} for task-scoped cleanup when relevant; respect scope, read-only restrictions, "
-                "and existing work. Distill the final reply: outcome first, then verified checks, material "
+                "pause requests, and existing work. Distill the final reply: outcome first, then verified checks, material "
                 "limits, and any needed next step. Skip narration of this review."
             ),
         }
@@ -240,21 +255,26 @@ def handle(payload):
         if uncertain:
             return {"systemMessage": "Mirket could not determine whether this shell command runs git commit; pre-commit cleanup and staged .work coverage are unknown."}
         return {}
-    if any(not commit.acknowledged for commit in commits):
-        return deny(
-                f"Before committing, read {SKILL} and perform its repository-wide cleanup review. "
-                "Preserve unrelated changes and historical evidence; do not auto-stage. "
-                "Then retry each commit with MIRKET_CLEANUP_DONE=1 in that command, "
-                "for example: MIRKET_CLEANUP_DONE=1 git commit -m 'message'. "
-                "The marker acknowledges the review and does not prove cleanup occurred."
-        )
     if len(parts) != 1 or structural:
-        return deny("Mirket cannot reliably inspect the final target index inside a compound command, redirection or heredoc. Run each git commit as a separate direct shell command after the preceding commands finish.")
+        return deny("Mirket cannot reliably inspect Git operations in a compound command, redirection or heredoc. Run each Git operation separately. If you intended a preview, keep --dry-run.")
     commit = commits[0]
     if dynamic or commit.problem:
         reason = commit.problem or "shell expansion"
-        return deny(f"Mirket cannot inspect a commit using {reason}. Stage the intended files explicitly and retry with a literal direct git commit command.")
-    return check_staged_work(commit, payload.get("cwd", os.getcwd())) or {}
+        return deny(f"Mirket cannot inspect a Git operation using {reason}. For a preview, keep --dry-run in a standalone literal command. For a commit, stage the intended files explicitly and use a standalone literal command.")
+    if commit.preview:
+        return {}
+    if not commit.acknowledged:
+        return deny(
+            f"Before committing, read {SKILL} and perform its repository-wide cleanup review. "
+            "Preserve unrelated changes and historical evidence; do not auto-stage. "
+            "Then use the acknowledgment and an absolute Git target: "
+            "MIRKET_CLEANUP_DONE=1 git -C '/absolute/worktree' commit -m 'message'. "
+            "The marker acknowledges the review and does not prove cleanup occurred."
+        )
+    # Hook cwd can describe the session, not the shell tool's execution directory.
+    if not commit.directories or not os.path.isabs(commit.directories[0]):
+        return deny("Mirket cannot verify the Git target from the session directory. Use a first -C with an absolute worktree path in the guarded commit command.")
+    return check_staged_work(commit) or {}
 
 
 

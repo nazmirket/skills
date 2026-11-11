@@ -36,7 +36,7 @@ The Codex-specific [project registry](project_registry.py) routes hooks and MCP 
 
 Hindsight's MCP server resolves its bank at session startup. Start a new Codex session when switching projects. Hooks persist the original project binding under `~/.hindsight/mirket/sessions/`; if the binding and old temporary marker are unavailable, a matching local Codex transcript can establish the original directory. A mismatched project or unverifiable resume is skipped and reported rather than routed to a new bank. The registry applies to Codex only. Other agents need equivalent routing and a separate host check.
 
-The wrapper requires coding-agents 0.8.6 and pins Codex auto-updates off. The installer generates adapters for the pinned survey launcher and its background worker; upstream files stay intact. The survey's MCP process must resolve the same bank as its parent, and the background worker requires all four findings before marking a survey complete. A runtime upgrade needs an adapter review; changed hook commands need host trust review. Existing banks and mappings remain intact.
+The wrapper requires coding-agents 0.8.6 and pins Codex auto-updates off. The installer generates adapters for the pinned survey launcher and its background worker; upstream files stay intact. The survey's MCP process must resolve the same bank as its parent. The worker completes only a pending receipt for the current HEAD when all four finding documents have update timestamps strictly newer than that pending generation, and the receipt remains unchanged during the evidence read. It saves the revision and timestamps with the completed receipt. Old document IDs alone cannot complete a new survey. Cadence counts only completed receipts whose revisions are ancestors of the current HEAD; an incomplete receipt cannot suppress retries, which remain bounded by upstream's lease and attempt limit. A runtime upgrade needs an adapter review; changed hook commands need host trust review. Existing banks and mappings remain intact.
 
 ## Coverage and recovery
 
@@ -77,3 +77,56 @@ Claude Code uses [Hindsight's Coding Agents integration](https://github.com/vect
 | **Self-hosted server + external PostgreSQL** | Persistent shared service with separate database and backup lifecycle. | Highest operational overhead; appropriate when multiple machines or explicit database administration are needed. |
 
 For Docker and external PostgreSQL, use Hindsight's supported [installation guide](https://hindsight.vectorize.io/developer/installation), [local-model Compose example](https://github.com/vectorize-io/hindsight/blob/main/docker/docker-compose/local-llm/README.md), and [external PostgreSQL example](https://github.com/vectorize-io/hindsight/blob/main/docker/docker-compose/external-pg/docker-compose.yaml). Connect Codex using the upstream installer with `--server self-hosted --api-url <your-server-url>`; this repository's local-daemon wrapper does not configure those alternatives.
+
+## Project freshness and bounded recovery
+
+The doctor now uses the pinned upstream configuration resolver rather than approximating its precedence. It reports effective MCP and hook settings separately: environment fallback, file, harness, path, and bank settings are resolved by the same runtime. Tokens are represented only by a configured/not-configured flag. The current shell plus explicit launcher settings cannot prove what a running Desktop process inherited; the fresh-host check below covers that boundary.
+
+Rewiring preserves literal upstream hook environment assignments and MCP environment settings, including capture restrictions. It inspects the raw Codex TOML as well as the CLI's projection: upstream entries with tool restrictions, timeouts or unknown options are refused before mutation because `codex mcp add` would discard them. Already-managed entries are left intact. It also refuses disabled MCP entries, unrecognized wrappers, compound commands and conflicting routing overrides. Python 3.11+ uses its standard TOML parser; older supported Python versions use the parser already bundled in the pinned runtime through a temporary import that never runs the installer. Setup failures suppress credential-bearing command arguments and subprocess output. Existing legacy mappings for Git subdirectories and linked worktrees are canonicalized to their main project; conflicting banks fail closed. Directory-prefix mappings need explicit project mappings rather than silently selecting a new bank.
+
+For a project already enabled by the existing capture policy, opt into a tighter freshness profile:
+
+```sh
+python3 -B memory/install.py --wire
+python3 -B memory/install.py --freshness --directory /absolute/project
+```
+
+The second command changes only that project's Codex bank settings: `surveyRefreshCommits: 1`, `pageTriggerType: "auto-refresh"`, and `pageRefreshEveryTurns: 1`. It backs up the prior configuration, preserves the entire inherited bank policy, and never enables capture, session retention, Git ingestion or surveys that were disabled. It does not broaden approved paths or change another host. When source capture and surveys are already enabled, the next fresh trusted session can survey a new commit, and upstream background maintenance aligns managed page triggers to refresh after consolidation. This increases processing within the selected project; it does not promise immediate consistency or survey uncommitted work. Keep the default profile elsewhere unless the benefit warrants the cost.
+
+Run `python3 -B memory/doctor.py --directory /absolute/project` after a fresh session. Inspect these dimensions separately:
+
+- `effective_mcp_settings` and `effective_hook_settings`: capture, retention, automatic seeding, Git ingestion, survey cadence and page trigger configuration. `hook_mcp_differences` identifies drift; differences may be intentional but must be understood.
+- `source_freshness`: current HEAD, dirty worktree, nearest **completed** survey receipt and commits behind it, plus whether that receipt carries generation timestamp evidence. Legacy receipts are reported as `legacy_receipt_only`; they are preserved, not retroactively certified. An in-progress receipt is not completion, and a clean survey cannot certify later uncommitted changes.
+- `missing_primary_session_ids`: locally identified primary sessions without a retained chat document. An active chat may still be waiting for Stop; this is a coverage signal, not proof of capture failure.
+- `stale_pages`, `pages_with_refresh_failure`, and `operation_health`: synthesis lag, failed refreshes, and bounded pending/processing/failed operation samples with creation ages and scheduled retry times. Attention flags distinguish pending from processing work; a zero pending count does not mean the worker is idle. A job's creation time does not establish when it failed; historical failures are not automatically current failures.
+
+For stale or failed pages after source ingestion has drained:
+
+```sh
+python3 -B memory/doctor.py --directory /absolute/project --refresh-pages --limit 3 --wait 45
+```
+
+This explicitly submits at most three refreshes, polls for at most 45 seconds between bounded API calls, and reports operation IDs and actual statuses. Limits are capped at five pages and 55 seconds. Existing content remains protected by the server's refresh behavior; the command never deletes pages, changes source scope, changes triggers, replays transcripts or retries indefinitely. Before submitting, it checks pending and processing operations separately and refuses to add work while either is active or its state cannot be established. This is a point-in-time check, not a lock against new background work. Inspect reported operation details and rerun the doctor before another batch. A successful page refresh cannot recover a transcript or source finding that was never ingested.
+
+A fresh page timestamp does not establish that its content reflects the latest facts. Check that relevant retained facts are retrievable under the page's filters: a general correction can lack the `knowledge:feature-work` tag used by initiative pages. For material changes to an existing initiative, use the supported `hindsight_capture_initiative` update with its existing `relates_to_page_id`, then verify the retained facts and their retrieval before accepting the refreshed page. Do not create duplicate initiatives or widen page filters to hide a coverage gap.
+
+If full refresh still presents superseded architecture as current, review the page's synthesis query rather than repeating refreshes blindly. Test a narrowly scoped supported query update, preserving the page ID, filters, trigger and generated-history records, and inspect the resulting content. When automatic seeding runs at SessionStart, seeded queries are synchronized: a durable override must also be recorded in the effective host's project-bank configuration under `pages["Component map"].source_query` (or the relevant seeded page name). Back up configuration first, preserve existing effective page overrides, and verify resolution in both MCP and hook contexts; a harness-level bank section can shadow the same bank’s top-level settings. Prefer guidance that compares the latest verified inventory with historical evidence, without permanently pinning a version. Re-seed idempotently and confirm the query survives without adding pages or changing capture policy.
+
+For a missing chat, first verify its session ID and project against the local transcript metadata. From that project, use `codex resume <verified-session-id>`, complete a harmless turn, and allow its real Stop hook to run. Recheck coverage and retrieve the remembered fact from a separate fresh session. Do not manufacture a Stop event or manually ingest a canary to claim host capture worked. Archived history that the host cannot resume needs a separately reviewed import; preserve originals and skip already retained IDs.
+
+For a missing or lagging survey, inspect effective `autoSeed`, `codebaseSurvey`, `surveyRefreshCommits`, pending operations and hook wiring. With the project freshness profile and eligible committed source, start a fresh trusted host session and allow upstream's bounded survey to finish. If capture or surveys are deliberately disabled, report that policy rather than overriding it. Do not delete survey receipts, banks or legacy history to force a refresh. Use current files and transcripts for fresh decisions while background consolidation catches up.
+
+The generation check fails closed when document metadata is unavailable, a retry changes the pending receipt, or unchanged-content retention does not advance a finding's timestamp. That condition requires direct review of source and survey output; old identical documents are not silently promoted to proof of a new survey. Generation timestamps establish refreshed source documents, not extraction completion, page correctness or host capture.
+
+### Real host capture acceptance
+
+Record a unique harmless decision in a normal session within an approved project. Let that turn finish through the host's real Stop event. Within five minutes, confirm that the bank contains the chat document for that session, then open a separate fresh session and retrieve the decision with its chat provenance. Repeat in a linked worktree and confirm an unrelated project cannot retrieve it. Record elapsed time, document/session identity, retrieval evidence and any pending operation or trust blocker. Manual document ingestion, a synthetic hook call, page refresh, and a healthy daemon are not substitutes for this test. If the five-minute expectation is missed, record a failure or pending condition rather than asserting readiness.
+
+### Verification commands
+
+```sh
+python3 -B -m unittest discover -s memory
+MIRKET_TEST_RUNTIME="$HOME/.hindsight/coding-agents" python3 -B -m unittest discover -s memory
+```
+
+The second command adds a real pinned-runtime configuration parity check in a disposable directory. It imports the generated adapter without starting MCP, a daemon, capture, or network activity. It verifies environment/file/harness/path/bank precedence and secret redaction. The installer packages this adapter alongside its survey adapters; a missing or incompatible adapter stops diagnostics and requests rewiring.

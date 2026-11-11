@@ -10,6 +10,7 @@ ROOT = Path(__file__).resolve().parents[1] / "plugins/mirket"
 HOOKS = ROOT / "hooks"
 DISTILL = HOOKS / "distill.py"
 CLEAN = ROOT / "skills/clean/SKILL.md"
+ROUTING = ROOT / "references/Routing.md"
 
 
 def invoke(payload):
@@ -36,6 +37,9 @@ class DistillHookTest(unittest.TestCase):
                 self.assertEqual(output["hookEventName"], "SessionStart")
                 self.assertIn("authorized work", output["additionalContext"])
                 self.assertIn("verified checks", output["additionalContext"])
+                self.assertIn("return evidence to that owner", output["additionalContext"])
+                self.assertIn(str(ROUTING), output["additionalContext"])
+                self.assertTrue(ROUTING.is_file())
 
     def test_prompt_context_can_stand_alone_without_echoing_prompt(self):
         output = invoke({"hook_event_name": "UserPromptSubmit", "prompt": "private sample prompt"})["hookSpecificOutput"]

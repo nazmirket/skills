@@ -58,6 +58,37 @@ class ProjectRegistryTest(unittest.TestCase):
         subprocess.run(["git", "-C", str(main), "worktree", "add", "-qb", "work", str(linked)], check=True)
         self.assertEqual(registry.project_root(linked), main)
 
+    def test_legacy_worktree_and_subdirectory_mappings_keep_their_bank(self):
+        main = self.git_init(self.base / "main")
+        subprocess.run(["git", "-C", str(main), "-c", "user.name=Test", "-c", "user.email=test@example.invalid", "commit", "--allow-empty", "-qm", "test"], check=True)
+        linked = self.base / "linked"
+        subprocess.run(["git", "-C", str(main), "worktree", "add", "-qb", "work", str(linked)], check=True)
+        sub = linked / "sub"
+        sub.mkdir()
+        bank = registry.register(self.state, registry.project_root(linked), {str(sub): "legacy-bank", str(main): "legacy-bank"})
+        self.assertEqual(bank, "legacy-bank")
+        self.assertEqual(registry.read_projects(self.state), {str(main): "legacy-bank"})
+
+    def test_conflicting_canonical_legacy_mappings_fail_before_write(self):
+        main = self.git_init(self.base / "main")
+        sub = main / "sub"
+        sub.mkdir()
+        with self.assertRaisesRegex(ValueError, "canonical"):
+            registry.register(self.state, main, {str(main): "one", str(sub): "two"})
+        self.assertFalse((self.state / "projects.json").exists())
+
+    def test_non_git_prefix_mapping_is_rejected_instead_of_silently_abandoned(self):
+        project = self.git_init(self.base / "project")
+        with self.assertRaisesRegex(ValueError, "prefix"):
+            registry.resolve_bank(project, {str(self.base): "legacy-parent"})
+
+    def test_pure_selection_does_not_create_registry(self):
+        project = self.git_init(self.base / "project")
+        bank, projects = registry.resolve_bank(project, {str(project): "existing"})
+        self.assertEqual(bank, "existing")
+        self.assertEqual(projects, {str(project): "existing"})
+        self.assertFalse(self.state.exists())
+
     def test_linked_worktree_with_separate_git_directory(self):
         main = self.base / "main"
         metadata = self.base / "metadata"

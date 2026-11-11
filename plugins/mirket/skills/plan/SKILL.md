@@ -1,11 +1,11 @@
 ---
 name: plan
-description: "Use for substantial work, an explicit request for a plan, or reporting or recording progress against authorized work."
+description: "Use to plan substantial implementation, answer an explicit planning request, or report or record status against authorized work."
 ---
 
 # Plan
 
-Produce an evidence-based plan for the outcome the human wants. Product decisions and business rules belong to the human. Use this skill when requested or when work involves consequential risk, unresolved decisions, or multiple dependent stages. File count alone does not make work substantial. Keep routine work direct.
+Produce an evidence-based plan for the outcome the human wants. Product decisions and business rules belong to the human. Use this skill when requested or when implementation involves consequential risk, unresolved decisions, or multiple dependent stages. File count alone does not make work substantial. A read-only review or investigation does not start a Plan record just because it is substantial. See the [routing guide](../../references/Routing.md) when ownership is unclear.
 
 For a status request on authorized work, go directly to [Track authorized work](#track-authorized-work).
 
@@ -16,10 +16,11 @@ For a status request on authorized work, go directly to [Track authorized work](
 - Compare the human's factual statements with the evidence. When they conflict, explain the discrepancy respectfully and ask how to proceed where it changes the decision. A deliberate hypothetical, simulation or explicit product decision may be planned as such, but must not be recorded as a verified fact about the current implementation.
 - Ask focused questions for unresolved product choices, business rules, success criteria or material scope. Offer evidence-based alternatives and a recommendation where useful. Continue independent investigation while an answer is pending; do not decide a business rule for the human or treat silence as agreement. Choose routine verification checks that follow from established behavior or agreed criteria. Use [Test](../test/SKILL.md) when selecting software checks needs its guidance.
 - Use [Focus](../focus/SKILL.md) for an unresolved product choice or [Architect](../architect/SKILL.md) for a consequential technical design. Keep their evidence with the decision; sequence the chosen work here.
+- When the outcome includes shipping or production changes, name the relevant owners and exit evidence: [Secure](../secure/SKILL.md) for security/privacy, [Migrate](../migrate/SKILL.md) for state transitions, [Release](../release/SKILL.md) for the candidate, [Deploy](../deploy/SKILL.md) for environment activation and [Operate](../operate/SKILL.md) for health/recovery. Include dependency order, irreversible boundaries and a usable recovery path where relevant. Do not turn these into mandatory stages for a local edit.
 
 ## 2. Keep one plan folder per task
 
-At the project root, create a [numbered plan folder](../../references/workspace.md#numbered-records) such as `.work/plans/0001-Sales-Contracts/`, or resume the existing folder for the same task. Preserve unrelated plans. Keep task-specific evidence alongside the plan. For substantial work, use these three files. For a small explicit plan request, you may use one `Plan.md` with `## Outcome`, `## Agreement`, and `## Plan` sections containing the same information.
+At the project root, create a [numbered plan folder](../../references/Workspace.md#numbered-records) such as `.work/plans/0001-Sales-Contracts/`, or resume the existing folder for the same task. Preserve unrelated plans. Keep task-specific evidence alongside the plan. For substantial work, use these three files. For a small explicit plan request, you may use one `Plan.md` with `## Outcome`, `## Agreement`, and `## Plan` sections containing the same information.
 
 - **`Outcome.md`** — desired outcome, scope and constraints; observable acceptance criteria and how the eventual work will be checked; unresolved criteria marked pending. Describe expected behavior without asserting that unfinished work is complete.
 - **`Agreement.md`** — decisions and the alternatives considered, including the human's choice, reason and relevant evidence when known. Attribute decisions accurately; distinguish proposed, pending, agreed and superseded choices. Record unanswered questions and retain prior decisions and alternatives when they change. Do not invent alternatives or agreement; say when no alternative has yet been identified.
@@ -31,7 +32,7 @@ Create the record while investigating, update it as evidence and decisions emerg
 
 Before presenting the plan, check the Outcome, Agreement, and Plan for proposed business rules, changed success criteria, or material scope decisions presented as settled without human confirmation. Mark unresolved decisions pending and ask the human to decide. Record routine checks that verify established behavior as the agent's verification choices.
 
-For a substantial plan, request a fresh read-only [Audit](../audit/SKILL.md) of the identified draft when the host permits delegation and it is authorized. Give the reviewer the goal, files, constraints and evidence; use [Orchestrate](../orchestrate/SKILL.md) when coordination is needed. Handle material findings with the [review loop](../../references/review-loop.md), and record the reviewer, findings, repairs and focused recheck in `Agreement.md`. If independent review is unavailable, record and disclose the gap; label any self-check accurately. Follow any stronger review gate required by the human or host.
+For a substantial plan, request a fresh read-only [Audit](../audit/SKILL.md) of the identified draft when the host permits delegation and it is authorized. Give the reviewer the goal, files, constraints and evidence; use [Orchestrate](../orchestrate/SKILL.md) when coordination is needed. Handle material findings with the [review loop](../../references/ReviewLoop.md), and record the reviewer, findings, repairs and focused recheck in `Agreement.md`. If independent review is unavailable, record and disclose the gap; label any self-check accurately. Follow any stronger review gate required by the human or host.
 
 Present a concise brief of the intended actions, outcome and checks, relevant evidence or constraints, and unresolved product decisions. Link the plan record in its current format. Ask the human to resolve material choices; continue independent authorized work while an answer is pending. If the request is for a plan or approval is otherwise required, obtain approval before dependent execution.
 

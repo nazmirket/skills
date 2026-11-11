@@ -18,6 +18,8 @@ Understand the target and the human's working context as a thoughtful coworker. 
 4. Use the human's stated goals, working principles, preferences, prior decisions and feedback from the conversation and relevant authorized project memory. Carry useful context forward instead of repeatedly starting from zero.
 5. Separate explicit preferences from tentative patterns. Check remembered context against current instructions and project evidence when it could affect a decision; ask only if a material uncertainty remains. Current instructions and corrections take precedence over stale memory. Do not infer a diagnosis or fixed personality, search unauthorized private history, or create a persistent profile without authorization.
 
+When project memory is enabled, follow the [memory evidence contract](../../references/Memory.md). Retrieve relevant prior decisions, check their freshness against source, and distinguish missing capture from a missing feature or decision.
+
 ## Share the understanding
 
 6. Carry a compact map of the relevant purpose, entry points, flow, conventions, evidence and gaps into the next task. Show the human the findings when requested or when they affect a decision; otherwise keep the handoff focused. Distinguish observed facts, the human's statements, inferences and unanswered questions. Give [Debug](../debug/SKILL.md) the expected and observed finding and supporting evidence, or give [Architect](../architect/SKILL.md) the affected boundaries and observed friction.

@@ -5,7 +5,7 @@ description: "Use when discovering or comparing options such as frameworks, libr
 
 # Curate
 
-Find and compare relevant options using current evidence. Scale research depth to the decision's stakes, uncertainty and cost. General research that does not involve an options comparison does not require this skill. Keep reusable evidence with its relevant plan or designated deliverable; use `.work/temp/<task>/` for scratch research under the [workspace rules](../../references/workspace.md).
+Find and compare relevant options using current evidence. Scale research depth to the decision's stakes, uncertainty and cost. General research that does not involve an options comparison does not require this skill. Keep reusable evidence with its relevant plan or designated deliverable; use `.work/temp/<task>/` for scratch research under the [workspace rules](../../references/Workspace.md).
 
 ## Compare options
 

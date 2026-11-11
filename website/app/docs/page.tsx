@@ -14,6 +14,7 @@ export default function Documentation() {
       ["purpose", "Purpose"],
       ["philosophy", "Philosophy"],
       ["skills", "Skills"],
+      ["from-a-product-decision-to-a-running-service", "Product lifecycle"],
       ["architecture", "Architecture"],
       ["optional-local-hindsight", "Hindsight opt-in"],
       ["codex-setup-prompt", "Codex prompt"],

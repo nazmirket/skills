@@ -1,6 +1,6 @@
 # Mirket skills website
 
-The local, static Next.js site for skills.mirket.dev. Its content and installation commands come from `docs/README.md`, the memory guide and the 25 packaged Mirket skills. The catalog, skill pages, navigation, sitemap and social previews are derived from those sources.
+The local, static Next.js site for skills.mirket.dev. Its content and installation commands come from `docs/README.md` and the 25 packaged Mirket skills. The catalog, skill pages, navigation, sitemap and social previews are derived from those sources.
 
 ```sh
 cd website

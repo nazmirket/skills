@@ -63,7 +63,6 @@ export default function Install({prompts, commands}: {prompts: Record<Host, stri
       </div>
       <InstallSnippet key={`${host}/${method}`} host={host} method={method} value={method === "Agent prompt" ? prompts[host] : commands[host]}/>
       <p className="install-note">Start a fresh session after installation. Review hooks if your host asks you to trust them.</p>
-      <p className="install-note">Memory is optional. <Link href="/docs/#optional-local-hindsight">Local Hindsight setup →</Link></p>
     </div>
   </section>;
 }

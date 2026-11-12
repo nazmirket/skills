@@ -4,7 +4,6 @@ import {parse} from "yaml";
 
 export const repo = "https://github.com/nazmirket/skills";
 export const guidePath = "docs/README.md";
-export const memoryGuidePath = "memory/README.md";
 export const skillsPath = "plugins/mirket/skills";
 const root = resolve(process.cwd(), "..");
 

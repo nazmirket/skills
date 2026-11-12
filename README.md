@@ -24,12 +24,6 @@ claude plugin install mirket@mirket
 
 Start a fresh session after installing. If your host asks you to trust hooks, review them first. See [hook requirements and behavior](CONTRIBUTING.md#lifecycle-hooks).
 
-### Optional: local Hindsight
-
-Mirket works without Hindsight. The [Codex setup prompt](docs/README.md#codex-setup-prompt) and [Claude Code setup prompt](docs/README.md#claude-code-setup-prompt) ask whether you want local Hindsight or Mirket only. They wait for an explicit yes before changing Hindsight.
-
-For manual setup, follow [Mirket's guarded Codex installer](memory/README.md#recommended-local-daemon) or [Hindsight's upstream Claude Code installer](memory/README.md#claude-code-with-the-upstream-installer). Review your provider, capture scope, and any existing Hindsight installation first.
-
 ## Try it
 
 Ask for the result you want, or name a skill:

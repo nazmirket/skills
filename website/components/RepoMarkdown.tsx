@@ -1,7 +1,7 @@
 import Markdown, {defaultUrlTransform} from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeSlug from "rehype-slug";
-import {guidePath, memoryGuidePath, repo, skillsPath} from "../lib/content";
+import {guidePath, repo, skillsPath} from "../lib/content";
 
 function resolveLink(url: string, key: string, source: string) {
   const safe = defaultUrlTransform(url);
@@ -12,7 +12,6 @@ function resolveLink(url: string, key: string, source: string) {
   const suffix = target.search + target.hash;
   if (key === "src") return `https://raw.githubusercontent.com/nazmirket/skills/main/${path}${suffix}`;
   if (path === guidePath) return `/docs/${suffix}`;
-  if (path === memoryGuidePath) return `/docs/memory/${suffix}`;
   if (path === skillsPath || path === `${skillsPath}/`) return "/#skills";
 
   const skill = /^plugins\/mirket\/skills\/([a-z][a-z0-9-]*)\/SKILL\.md$/.exec(path);

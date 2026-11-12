@@ -83,7 +83,7 @@ def markdown_sources():
     paths = set(REPO.glob("*.md"))
     for directory in (PLUGIN, REPO / "docs", REPO / "instructions", REPO / "tests"):
         paths.update(directory.rglob("*.md"))
-    paths.update(REPO / name for name in ("memory/README.md", "website/README.md", "website/AGENTS.md"))
+    paths.update(REPO / name for name in ("website/README.md", "website/AGENTS.md"))
     return sorted(paths)
 
 
@@ -167,7 +167,6 @@ class PackageWiringTest(unittest.TestCase):
         references = set()
         for path in (REPO / "instructions/AGENTS.md", REPO / "instructions/CLAUDE.md"):
             references.update(re.findall(r"`(references/[^`]+\.md)`", path.read_text(encoding="utf-8")))
-        self.assertIn("references/Memory.md", references)
         for reference in references:
             with self.subTest(reference=reference):
                 self.assertTrue(exact_path_exists(PLUGIN / reference))

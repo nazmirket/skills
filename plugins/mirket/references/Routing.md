@@ -31,5 +31,3 @@ Use the [project workspace](Workspace.md) for any agent-owned files the workflow
 | Remove verified leftovers or improve a response | [Clean](../skills/clean/SKILL.md) owns cleanup within scope. [Distill](../skills/distill/SKILL.md) applies to communication. |
 
 For work spanning the product lifecycle, use the requested outcome as the owner and name each handoff. Secure supplies risk evidence; Migrate supplies compatibility and reconciliation; Release identifies a distributable; Deploy verifies it in the target; Operate checks its continuing health; Focus evaluates whether it helped users. These are conditional responsibilities, not a mandatory sequence for every change.
-
-When project memory is enabled, use the [memory evidence contract](Memory.md). Operate owns reliability and freshness investigations; memory remains optional and does not override current project evidence or authority.

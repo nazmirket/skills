@@ -18,10 +18,9 @@ Use PascalCase for ordinary Markdown files, such as `ReviewLoop.md`. Keep the nu
 
 ```sh
 python3 -B -m unittest discover -s tests
-python3 -B -m unittest discover -s memory
 ```
 
-These tests cover hook logic, package wiring, and memory tooling. Use the [host smoke checks](tests/HostSmoke.md) for installed skill discovery, hook activation, and representative routing. Report host checks separately from the local test results.
+These tests cover hook logic and package wiring. Use the [host smoke checks](tests/HostSmoke.md) for installed skill discovery, hook activation, and representative routing. Report host checks separately from the local test results.
 
 Package checks include exact-case paths and heading anchors, catalog/display metadata, host manifest identity, license parity and identical optional global instructions. Use the behavioral fixtures to record actual owners, permitted writes, stopping behavior and reused evidence. A fixture prepared with unverified results is not a passing evaluation.
 
@@ -34,10 +33,6 @@ Use the Codex compatibility manifest without a root `plugin.json`. In Codex CLI 
 Keep both plugin versions and marketplace descriptions aligned. Verify the exact candidate package, all referenced files and supported installation/upgrade behavior. Installed caches and manually merged global instructions have separate lifecycles: compare the active package with the candidate and merge matching instructions without replacing unrelated user guidance. Use the host's supported reload/install command; never patch a version cache in place or bypass hook trust. Open a fresh session and record the host version, source revision, installed version and results using the smoke guide.
 
 Prepare release notes, artifact identity, compatibility and recovery instructions through [Release](plugins/mirket/skills/release/SKILL.md). Public distribution and website activation require their authorized scope; [Deploy](plugins/mirket/skills/deploy/SKILL.md) verifies the served version separately. Keep candidate checks distinct from a claim that a release is published or installed.
-
-## Memory reliability
-
-The optional memory subsystem must preserve existing banks, effective capture restrictions and unrelated configuration during rewiring. Test canonical identity and legacy mapping together, and compare diagnostics to the pinned runtime's actual configuration semantics. See [the memory guide](memory/README.md) for freshness settings, bounded recovery and the real capture/recall check. Do not mark a survey complete by updating a receipt, equate page refresh with source ingestion, or use manual document ingestion as proof that automatic chat capture works.
 
 ## Lifecycle hooks
 

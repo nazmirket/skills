@@ -11,7 +11,7 @@ python3 -B tests/prepare_host_smoke.py --list
 python3 -B tests/prepare_host_smoke.py --case audit-read-only --output /absolute/disposable/mirket-audit
 ```
 
-The [preparer](prepare_host_smoke.py) requires a new or empty absolute directory and refuses symlinked paths or existing work. It creates local source material, `Context.md`, `Prompt.md`, and `Result.json` with every verdict **unverified**. It does not start an agent, initialize Git, install anything, change host settings, or grant access. Use separate directories for each host/case/run. Keep credentials and optional memory capture outside the fixture; do not expand capture permissions for an evaluation.
+The [preparer](prepare_host_smoke.py) requires a new or empty absolute directory and refuses symlinked paths or existing work. It creates local source material, `Context.md`, `Prompt.md`, and `Result.json` with every verdict **unverified**. It does not start an agent, initialize Git, install anything, change host settings, or grant access. Use separate directories for each host/case/run. Keep credentials outside the fixture.
 
 Launch the intended host in that fixture with the candidate plugin, using its supported local-plugin mechanism if available. Start without optional global Mirket instructions so the package is what supplies the guidance. Record the host version, model, candidate revision (and dirty snapshot when applicable), plugin path, hook trust and activation. Verify that it loaded the candidate, not a previously cached version. Submit only `Prompt.md`; keep the expected-owner criteria and `Result.json` outside the model's requested reading context. Do not add extra permission to the scenario.
 
@@ -45,7 +45,6 @@ Repeat ambiguous routing cases with hooks disabled to assess linked guidance, an
 | Visual production and concept generation | `design-supplied-reference`, `imagine-no-generation-authority`: reproduce the supplied target; honor an explicit request to agree the brief before generation. |
 | Readiness and fallback | `preflight-inferior-fallback`: source review cannot establish keyboard operation; dependent work stops for the specific missing capability. |
 | Authorization, coordination and continuity | `plan-inherited-authority`, `plan-status-read-only`, `orchestrate-bounded-read-only`, `brief-stale-handoff`, `stale-handoff-material-conflict`, `sleep-pause`: reuse authority, keep status read-only, correct routine stale facts, escalate material conflicts, and actually stop on pause. |
-| Project memory | `memory-scope-conflict`, `memory-capture-not-proven`: ambiguous identity prevents writes; queryability, manual notes and page timestamps do not prove automatic capture or freshness. The packaged [memory contract](../plugins/mirket/references/Memory.md) supplies the general guidance. |
 | Cleanup | `clean-no-op`: no changes or artifacts means no cleanup work is manufactured. |
 | Security and privacy | `secure-read-only`: identify trust/data risks without unauthorized probing or hardening. |
 | Release | `release-prepare-only`: prepare an identified versioned artifact and readiness evidence without publishing or deploying. |

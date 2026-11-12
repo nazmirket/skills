@@ -15,10 +15,9 @@ Understand the target and the human's working context as a thoughtful coworker. 
 
 ## Get to know the human
 
-4. Use the human's stated goals, working principles, preferences, prior decisions and feedback from the conversation and relevant authorized project memory. Carry useful context forward instead of repeatedly starting from zero.
-5. Separate explicit preferences from tentative patterns. Check remembered context against current instructions and project evidence when it could affect a decision; ask only if a material uncertainty remains. Current instructions and corrections take precedence over stale memory. Do not infer a diagnosis or fixed personality, search unauthorized private history, or create a persistent profile without authorization.
+4. Use the human's stated goals, working principles, preferences, prior decisions and feedback from the conversation and relevant project records. Carry useful context forward instead of repeatedly starting from zero.
+5. Separate explicit preferences from tentative patterns. Check remembered context against current instructions and project evidence when it could affect a decision; ask only if a material uncertainty remains. Current instructions and corrections take precedence over stale records. Do not infer a diagnosis or fixed personality, search unauthorized private history, or create a persistent profile without authorization.
 
-When project memory is enabled, follow the [memory evidence contract](../../references/Memory.md). Retrieve relevant prior decisions, check their freshness against source, and distinguish missing capture from a missing feature or decision.
 
 ## Share the understanding
 

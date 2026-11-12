@@ -101,7 +101,7 @@ def check_page(file):
     web_page = next(node for node in nodes if node["@id"] == f"{url}#webpage")
     assert web_page["url"] == url and web_page["name"] == title
     assert web_page["mainEntity"]["@id"] in {node["@id"] for node in nodes}
-    if url.startswith((f"{ORIGIN}/docs/skills/", f"{ORIGIN}/docs/memory/")):
+    if url.startswith(f"{ORIGIN}/docs/skills/"):
         crumbs = next(node for node in nodes if node["@type"] == "BreadcrumbList")["itemListElement"]
         assert [item["position"] for item in crumbs] == list(range(1, len(crumbs) + 1))
         assert crumbs[-1]["item"] == url and len(crumbs) >= 2

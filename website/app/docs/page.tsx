@@ -16,7 +16,6 @@ export default function Documentation() {
       ["skills", "Skills"],
       ["from-a-product-decision-to-a-running-service", "Product lifecycle"],
       ["architecture", "Architecture"],
-      ["optional-local-hindsight", "Hindsight opt-in"],
       ["codex-setup-prompt", "Codex prompt"],
       ["claude-code-setup-prompt", "Claude Code prompt"],
       ["common-questions", "Common questions"],

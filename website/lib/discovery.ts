@@ -38,16 +38,6 @@ export const docsPage: PageInfo = {
   cardSummary: "Install Mirket and pick a skill",
 };
 
-export const memoryPage: PageInfo = {
-  path: "/docs/memory/",
-  title: "Local Hindsight Setup for Codex & Claude Code | Mirket",
-  description: "Set up Hindsight for Mirket, preserve capture policy, check project routing and freshness, recover stale pages, and verify new capture and recall.",
-  image: cardFile("local-hindsight"),
-  cardTitle: "Local Hindsight",
-  cardLabel: "OPTIONAL MEMORY",
-  cardSummary: "Verify capture, freshness and recall",
-};
-
 type Skill = ReturnType<typeof getSkills>[number];
 
 export function skillPageInfo(skill: Skill): PageInfo {
@@ -66,7 +56,7 @@ export function skillPageInfo(skill: Skill): PageInfo {
 }
 
 export function discoverablePages() {
-  return [homePage, docsPage, memoryPage, ...getSkills().map(skillPageInfo)];
+  return [homePage, docsPage, ...getSkills().map(skillPageInfo)];
 }
 
 export function pageMetadata(page: PageInfo): Metadata {

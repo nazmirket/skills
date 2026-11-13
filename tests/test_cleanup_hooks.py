@@ -9,9 +9,9 @@ import sys
 import tempfile
 import unittest
 
-HOOK = Path(__file__).resolve().parents[1] / "plugins/mirket/hooks/cleanup.py"
+HOOK = Path(__file__).resolve().parents[1] / "hooks/cleanup.py"
 CLEAN = HOOK.parent.parent / "skills/clean/SKILL.md"
-REPOSITORY = shlex.quote(str(HOOK.parents[3]))
+REPOSITORY = shlex.quote(str(HOOK.parents[1]))
 FINAL_REVIEW = "MIRKET_FINAL_REVIEW"
 
 
@@ -49,7 +49,7 @@ class CleanupHooksTest(unittest.TestCase):
         self.assertEqual(invoke({"hook_event_name": "Stop", "stop_hook_active": False},
                                 env={**env, FINAL_REVIEW: "true"}), {})
 
-    def test_opt_in_stop_combines_distill_and_clean_in_one_continuation(self):
+    def test_opt_in_stop_combines_execute_and_clean_in_one_continuation(self):
         hooks = json.loads((HOOK.parent / "hooks.json").read_text())["hooks"]
         commands = [hook["command"] for group in hooks["Stop"] for hook in group["hooks"]]
         self.assertEqual(len(commands), 1)
@@ -58,7 +58,7 @@ class CleanupHooksTest(unittest.TestCase):
         first = invoke({"hook_event_name": "Stop", "stop_hook_active": False}, env=env)
         self.assertEqual(first.get("decision"), "block")
         self.assertIn(str(CLEAN), first.get("reason", ""))
-        self.assertIn("Distill", first.get("reason", ""))
+        self.assertIn("Execute", first.get("reason", ""))
         self.assertIn("verified checks", first.get("reason", ""))
         self.assertTrue(CLEAN.is_file())
         self.assertEqual(invoke({"hook_event_name": "Stop", "stop_hook_active": True}, env=env), {})
@@ -269,7 +269,7 @@ class CleanupHooksTest(unittest.TestCase):
 
     def test_index_inspection_failure_blocks_an_acknowledged_commit(self):
         with tempfile.TemporaryDirectory() as root:
-            result = before_shell(f"MIRKET_CLEANUP_DONE=1 git -C {shlex.quote(root)} commit -m x", cwd=HOOK.parents[3])
+            result = before_shell(f"MIRKET_CLEANUP_DONE=1 git -C {shlex.quote(root)} commit -m x", cwd=HOOK.parents[1])
             self.assertTrue(denied(result))
             self.assertIn("target Git index", result["hookSpecificOutput"]["permissionDecisionReason"])
 

@@ -1,6 +1,6 @@
 # Mirket working instructions
 
-- On each request, identify and use the smallest relevant set of skills from the active **Mirket** plugin before substantive work. Follow the installed skills' instructions and use **Distill** for communication. Use **Author** for documents, substantive product copy and issue triage. If Mirket is unavailable, say so, follow these defaults, and continue authorized work.
+- On each request, identify and use the smallest relevant set of skills from the active **Mirket** plugin before substantive work. Apply **Execute** throughout: take the simplest complete path and report what matters. Use **Author** for documents, substantive product copy and issue triage. If Mirket is unavailable, say so, follow these defaults, and continue authorized work.
 - When it is unclear which skill should own the result, consult the active Mirket plugin's `references/Routing.md`. Load supporting skills only for distinct work or evidence.
 - For lifecycle work, use **Secure** for security/privacy, **Migrate** for persistent state, **Release** for versioned artifacts, **Deploy** for environment rollout and **Operate** for health/recovery. Honor existing authority; preparation, publication and production activation are separate scopes.
 - Read the project's instructions and current state before changing it. Respect existing conventions and user changes. Prefer the smallest complete solution; challenge a poor tool fit with evidence and a better option.

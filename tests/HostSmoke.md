@@ -4,7 +4,7 @@ The Python tests validate local contracts and fixture preparation. They do **not
 
 ## Prepare a behavioral case
 
-[behavior_cases.json](behavior_cases.json) contains 29 reusable cases covering all 25 owners. Each specifies the prompt and source context, expected owner and actions, allowed and prohibited writes, stopping condition, and evidence that should be reused. Expectations are reviewer criteria, not text to require the model to repeat.
+[behavior_cases.json](behavior_cases.json) contains 28 reusable cases covering all 25 owners. Each specifies the prompt and source context, expected owner and actions, allowed and prohibited writes, stopping condition, and evidence that should be reused. Expectations are reviewer criteria, not text to require the model to repeat.
 
 ```sh
 python3 -B tests/prepare_host_smoke.py --list
@@ -15,14 +15,14 @@ The [preparer](prepare_host_smoke.py) requires a new or empty absolute directory
 
 Launch the intended host in that fixture with the candidate plugin, using its supported local-plugin mechanism if available. Start without optional global Mirket instructions so the package is what supplies the guidance. Record the host version, model, candidate revision (and dirty snapshot when applicable), plugin path, hook trust and activation. Verify that it loaded the candidate, not a previously cached version. Submit only `Prompt.md`; keep the expected-owner criteria and `Result.json` outside the model's requested reading context. Do not add extra permission to the scenario.
 
-For Codex, a separate disposable `CODEX_HOME` keeps the candidate marketplace and plugin settings apart from the normal installation. Use the host's normal sign-in mechanism if that home needs authentication; never put credentials in the fixture or evidence. With that environment selected, register the repository and install the candidate through the CLI:
+For Codex, a separate disposable `CODEX_HOME` keeps the candidate marketplace and plugin settings apart from the normal installation. Use the host's normal sign-in mechanism if that home needs authentication; never put credentials in the fixture or evidence. Use a clean candidate checkout or export containing only the files intended for distribution. A local root package can copy ignored files, so keep private workspace notes, dependencies and build output outside the candidate directory. With the disposable Codex environment selected, register the candidate and install it through the CLI:
 
 ```sh
-codex plugin marketplace add /absolute/mirket-repository
+codex plugin marketplace add /absolute/clean-mirket-candidate
 codex plugin add mirket@mirket
 ```
 
-After editing a candidate at the same version, use `codex plugin remove mirket@mirket` and reinstall in that disposable home, then compare installed files with source. Do not modify the cache directly. For Claude Code, `claude --plugin-dir /absolute/mirket-repository/plugins/mirket` loads the local candidate for that session. Keep unrelated MCP/capture configuration out of disposable evaluations, and review hook trust through the host; do not bypass it. A successful plugin install or unauthenticated startup only establishes discovery/startup evidence, not model behavior.
+After editing a candidate at the same version, use `codex plugin remove mirket@mirket` and reinstall in that disposable home, then compare installed files with source. Do not modify the cache directly. For Claude Code, `claude --plugin-dir /absolute/clean-mirket-candidate` loads the local candidate for that session. Keep unrelated MCP/capture configuration out of disposable evaluations, and review hook trust through the host; do not bypass it. A successful plugin install or unauthenticated startup only establishes discovery/startup evidence, not model behavior.
 
 A case may exercise a particular skill without explicitly naming it. Record the skill actually loaded from the transcript, not just the skill the response claims to have used. If the host cannot expose that evidence, mark ownership unverified. A scenario's hypothetical unavailable capability is a constraint for that case; do not install a tool merely to erase the test.
 
@@ -40,7 +40,7 @@ Repeat ambiguous routing cases with hooks disabled to assess linked guidance, an
 | --- | --- |
 | Orientation, diagnosis, checks and review | `adapt-orientation`, `debug-authorized-fix`, `test-evidence-only`, `audit-read-only`: findings/checks return to their owner; an audit cannot silently become a fix. |
 | Technical choice and structural change | `architect-unresolved`, `refactor-preserve-behavior`: unresolved recommendations remain proposals; refactoring preserves the contract. |
-| Documents, routine replies and quality review | `author-document`, `distill-short-answer`, `critique-report`: durable content, routine communication and assessment have distinct outputs. |
+| Direct work, documents and quality review | `execute-short-answer`, `execute-direct-fix`, `author-document`, `critique-report`: take the simplest complete path, verify when needed, and keep documents and assessment with their owners. |
 | Product and tool decisions | `focus-outcome-learning`, `curate-internal-options`, `equip-tool-fit`: compare actual outcomes/options without inventing causation, adoption or product approval. |
 | Visual production and concept generation | `design-supplied-reference`, `imagine-no-generation-authority`: reproduce the supplied target; honor an explicit request to agree the brief before generation. |
 | Readiness and fallback | `preflight-inferior-fallback`: source review cannot establish keyboard operation; dependent work stops for the specific missing capability. |
@@ -59,8 +59,8 @@ Run these in fresh Codex and Claude Code sessions against the candidate, using d
 | Case | Expected observation |
 | --- | --- |
 | Start a session and explicitly invoke Mirket Audit. | All 25 skills are discoverable; the session hook supplies the routing pointer; Audit loads from the candidate plugin. |
-| Answer a short question, then perform an edit with final review disabled. | User-prompt guidance is present. Default Stop remains neutral. Clean still applies to relevant delivery work. |
-| Repeat with `MIRKET_FINAL_REVIEW=1` inherited at host launch. | At most one combined Distill/Clean continuation; a shared Stop-loop flag may mean another hook already consumed it. Record that outcome rather than claiming Mirket ran. |
+| Answer a short question, then perform an edit with final review disabled. | User-prompt Execute guidance is present. Default Stop remains neutral. Clean still applies to relevant delivery work. |
+| Repeat with `MIRKET_FINAL_REVIEW=1` inherited at host launch. | At most one Clean continuation with an Execute reminder; a shared Stop-loop flag may mean another hook already consumed it. Record that outcome rather than claiming Mirket ran. |
 | Request a standalone supported `git commit --dry-run`. | It remains a preview and needs neither cleanup acknowledgment nor an absolute target. |
 | Submit a guarded commit without an absolute target. | Hook denies it and explains the explicit-target requirement. No actual commit is required to observe denial. |
 | Stage a dummy `.work/private.txt` in a second disposable repository, then submit an acknowledged literal commit with that repository's absolute `-C` target. | The hook examines that target and denies the staged private path. A different session directory must not change this result. Never stage real private material for a test. |

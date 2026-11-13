@@ -133,7 +133,7 @@ export function pageGraph(page: PageInfo, breadcrumbs?: readonly Breadcrumb[]) {
       description: homePage.description,
       codeRepository: repo,
       license: `${repo}/blob/main/LICENSE`,
-      version: JSON.parse(readSource("plugins/mirket/.codex-plugin/plugin.json")).version,
+      version: JSON.parse(readSource(".codex-plugin/plugin.json")).version,
       runtimePlatform: ["Codex", "Claude Code"],
       isAccessibleForFree: true,
     },

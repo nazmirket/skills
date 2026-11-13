@@ -5,7 +5,7 @@ description: "Use when drafting or revising a document, report, or substantive p
 
 # Author
 
-Write for the reader's purpose and context. Identify what the reader needs, lead with useful substance, and verify claims that matter. [Distill](../distill/SKILL.md) is the default for routine replies and applies to communication throughout this work.
+Write for the reader's purpose and context. Identify what the reader needs, lead with useful substance, and verify claims that matter. Apply [Execute](../execute/SKILL.md) throughout this work.
 
 Use [Brief](../brief/SKILL.md) for handoffs and [Design](../design/SKILL.md) for visual direction and interface design. For product copy, apply the audience, claims and risk-appropriate checks below within the design or implementation workflow. For bug reports or a QA backlog, use [issue triage](references/IssueTriage.md): it owns intake, reproduction status, prioritization and issue drafts. Use the document workflow below when producing a durable artifact.
 

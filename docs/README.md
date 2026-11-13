@@ -33,21 +33,22 @@ Use the plugin one request at a time. The [Codex](../instructions/AGENTS.md) and
 - **Choose guidance for the job.** Pick one primary skill for the requested result. Add another when it supplies a distinct result or check. A small task can stay small.
 - **Keep consequential choices with the human.** A request to do work and approval of a written plan are separate. Ask for decisions that affect the outcome; proceed with routine choices within the agreed scope.
 - **Verify claims with evidence.** Inspect the actual change, run checks that match the risk, and say what could not be verified. A review or hook reminder does not prove that the work was checked.
-- **Leave enough context to resume.** Keep substantial plans and handoffs in the project's [workspace records](../plugins/mirket/references/Workspace.md). Record settled architectural decisions in the repository's ADR location, using `docs/decisions/` when the project has none. Keep the response focused on what happened and what comes next.
+- **Leave enough context to resume.** Keep substantial plans and handoffs in the project's [workspace records](../references/Workspace.md). Record settled architectural decisions in the repository's ADR location, using `docs/decisions/` when the project has none. Keep the response focused on what happened and what comes next.
 
 ## Skills
 
-A skill is a Markdown workflow with a trigger, guidance, and sometimes more detailed references. The host can choose a skill from its description; you can also request one by name. See the [routing guide](../plugins/mirket/references/Routing.md) when several skills sound relevant.
+A skill is a Markdown workflow with a trigger, guidance, and sometimes more detailed references. The host can choose a skill from its description; you can also request one by name. See the [routing guide](../references/Routing.md) when several skills sound relevant.
 
 | What you need | Skills |
 | --- | --- |
-| Understand the project and its environment | [Adapt](../plugins/mirket/skills/adapt/SKILL.md), [Preflight](../plugins/mirket/skills/preflight/SKILL.md) |
-| Decide what to do and how to approach it | [Focus](../plugins/mirket/skills/focus/SKILL.md), [Equip](../plugins/mirket/skills/equip/SKILL.md), [Curate](../plugins/mirket/skills/curate/SKILL.md), [Architect](../plugins/mirket/skills/architect/SKILL.md), [Plan](../plugins/mirket/skills/plan/SKILL.md) |
-| Make or improve something | [Design](../plugins/mirket/skills/design/SKILL.md), [Imagine](../plugins/mirket/skills/imagine/SKILL.md), [Author](../plugins/mirket/skills/author/SKILL.md), [Debug](../plugins/mirket/skills/debug/SKILL.md), [Refactor](../plugins/mirket/skills/refactor/SKILL.md) |
-| Check the result and tidy up | [Test](../plugins/mirket/skills/test/SKILL.md), [Audit](../plugins/mirket/skills/audit/SKILL.md), [Critique](../plugins/mirket/skills/critique/SKILL.md), [Clean](../plugins/mirket/skills/clean/SKILL.md) |
-| Protect data and change persistent state | [Secure](../plugins/mirket/skills/secure/SKILL.md), [Migrate](../plugins/mirket/skills/migrate/SKILL.md) |
-| Ship and operate | [Release](../plugins/mirket/skills/release/SKILL.md), [Deploy](../plugins/mirket/skills/deploy/SKILL.md), [Operate](../plugins/mirket/skills/operate/SKILL.md) |
-| Coordinate and communicate | [Orchestrate](../plugins/mirket/skills/orchestrate/SKILL.md), [Distill](../plugins/mirket/skills/distill/SKILL.md), [Brief](../plugins/mirket/skills/brief/SKILL.md), [Sleep](../plugins/mirket/skills/sleep/SKILL.md) |
+| Solve the assigned problem directly and report what matters | [Execute](../skills/execute/SKILL.md), the default across Mirket workflows |
+| Understand the project and its environment | [Adapt](../skills/adapt/SKILL.md), [Preflight](../skills/preflight/SKILL.md) |
+| Decide what to do and how to approach it | [Focus](../skills/focus/SKILL.md), [Equip](../skills/equip/SKILL.md), [Curate](../skills/curate/SKILL.md), [Architect](../skills/architect/SKILL.md), [Plan](../skills/plan/SKILL.md) |
+| Make or improve something | [Design](../skills/design/SKILL.md), [Imagine](../skills/imagine/SKILL.md), [Author](../skills/author/SKILL.md), [Debug](../skills/debug/SKILL.md), [Refactor](../skills/refactor/SKILL.md) |
+| Check the result and tidy up | [Test](../skills/test/SKILL.md), [Audit](../skills/audit/SKILL.md), [Critique](../skills/critique/SKILL.md), [Clean](../skills/clean/SKILL.md) |
+| Protect data and change persistent state | [Secure](../skills/secure/SKILL.md), [Migrate](../skills/migrate/SKILL.md) |
+| Ship and operate | [Release](../skills/release/SKILL.md), [Deploy](../skills/deploy/SKILL.md), [Operate](../skills/operate/SKILL.md) |
+| Coordinate, hand off, or pause work | [Orchestrate](../skills/orchestrate/SKILL.md), [Brief](../skills/brief/SKILL.md), [Sleep](../skills/sleep/SKILL.md) |
 
 ## From a product decision to a running service
 
@@ -68,10 +69,10 @@ For example, a version adding a new persisted field may need Migrate to rehearse
 
 ## Architecture
 
-The [plugin package](../plugins/mirket/) is shared by both hosts. Separate [Codex](../.agents/plugins/marketplace.json) and [Claude Code](../.claude-plugin/marketplace.json) marketplace manifests point to it.
+The repository root is the shared plugin package. [Codex](../.agents/plugins/marketplace.json) and [Claude Code](../.claude-plugin/marketplace.json) marketplace entries both point to it. The canonical [skills catalog](../skills/) is independent of the marketplace descriptors, so future targets can package the same definitions.
 
 - **Skills and references.** Each packaged skill has a `SKILL.md` with its trigger and workflow, plus `agents/openai.yaml` for its Codex display metadata. Skill-specific and shared references cover details such as routing, workspace records, and review loops.
-- **Plugin descriptors and hooks.** [`.codex-plugin/plugin.json`](../plugins/mirket/.codex-plugin/plugin.json) and [`.claude-plugin/plugin.json`](../plugins/mirket/.claude-plugin/plugin.json) preserve the same identity and version. The [Codex compatibility layout](decisions/0003-CodexHookCompatibility.md) keeps hook discovery working in the verified host version. On supported host events, [lifecycle hooks](../CONTRIBUTING.md#lifecycle-hooks) supply routing and communication guidance and guard certain commit paths. An extra final review is optional. Hooks depend on host support and trust settings; they cannot guarantee compliance.
+- **Plugin descriptors and hooks.** [`.codex-plugin/plugin.json`](../.codex-plugin/plugin.json) and [`.claude-plugin/plugin.json`](../.claude-plugin/plugin.json) preserve the same identity and version. The [Codex compatibility layout](decisions/0003-CodexHookCompatibility.md) keeps hook discovery working in the verified host version. On supported host events, [lifecycle hooks](../CONTRIBUTING.md#lifecycle-hooks) supply routing and communication guidance and guard certain commit paths. An extra final review is optional. Hooks depend on host support and trust settings; they cannot guarantee compliance.
 - **Documentation.** The website reads this guide and the packaged skill Markdown at build time. The documentation and the plugin workflows stay in the same repository.
 
 ### Codex setup prompt
@@ -106,11 +107,11 @@ Yes. Mirket is free to use, modify, and redistribute, including commercially, un
 
 ### What is the difference between Test and Audit?
 
-[Test](../plugins/mirket/skills/test/SKILL.md) checks whether behavior meets expectations and records the evidence. [Audit](../plugins/mirket/skills/audit/SKILL.md) reviews a change, plan, or system for defects and risks. A test result can be evidence in an audit.
+[Test](../skills/test/SKILL.md) checks whether behavior meets expectations and records the evidence. [Audit](../skills/audit/SKILL.md) reviews a change, plan, or system for defects and risks. A test result can be evidence in an audit.
 
 ### How do Release, Deploy and Operate differ?
 
-[Release](../plugins/mirket/skills/release/SKILL.md) identifies, checks and distributes a versioned artifact. [Deploy](../plugins/mirket/skills/deploy/SKILL.md) activates that artifact in a specific environment and verifies the served behavior. [Operate](../plugins/mirket/skills/operate/SKILL.md) assesses ongoing health, incidents and recovery. [Migrate](../plugins/mirket/skills/migrate/SKILL.md) handles persistent state and [Secure](../plugins/mirket/skills/secure/SKILL.md) handles security/privacy evidence across those boundaries.
+[Release](../skills/release/SKILL.md) identifies, checks and distributes a versioned artifact. [Deploy](../skills/deploy/SKILL.md) activates that artifact in a specific environment and verifies the served behavior. [Operate](../skills/operate/SKILL.md) assesses ongoing health, incidents and recovery. [Migrate](../skills/migrate/SKILL.md) handles persistent state and [Secure](../skills/secure/SKILL.md) handles security/privacy evidence across those boundaries.
 
 ### How do I verify an update is actually in use?
 

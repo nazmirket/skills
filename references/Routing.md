@@ -2,6 +2,8 @@
 
 Choose one primary owner for each requested result. Respect an explicitly requested skill and the authorized scope. Add a supporting skill only for a distinct deliverable or missing evidence. Give it the question and the evidence already available; it returns its result and limits to the owner without restarting the workflow or taking over execution.
 
+[Execute](../skills/execute/SKILL.md) applies across these workflows: take the simplest complete path, preserve quality, and report what matters.
+
 Use the [project workspace](Workspace.md) for any agent-owned files the workflow creates.
 
 | Request | Owner and stopping point |
@@ -12,7 +14,7 @@ Use the [project workspace](Workspace.md) for any agent-owned files the workflow
 | Discover or compare outside options without making an adoption decision | [Curate](../skills/curate/SKILL.md): sourced comparison. When the decision is whether to adopt or replace a tool, return this evidence to Equip. |
 | Decide how to change a system boundary | [Architect](../skills/architect/SKILL.md): alternatives, consequences, and a recommendation or draft decision record. |
 | Agree how to execute a substantial change | [Plan](../skills/plan/SKILL.md): evidence, human decisions, review when available, and a truthful record of authorization. A substantial review without an execution request belongs to Audit; it does not need a Plan record. |
-| Implement a known change | Execute the authorized work directly. Use [Plan](../skills/plan/SKILL.md) for substantial work and [Test](../skills/test/SKILL.md) for verification. [Refactor](../skills/refactor/SKILL.md) owns behavior-preserving simplification. |
+| Implement a known change | Do the authorized work directly. Use [Plan](../skills/plan/SKILL.md) for substantial work and [Test](../skills/test/SKILL.md) for verification. [Refactor](../skills/refactor/SKILL.md) owns behavior-preserving simplification. |
 | Assess security/privacy or harden an authorized target | [Secure](../skills/secure/SKILL.md): threat and data-flow evidence, prioritized risks, or verified hardening. Audit remains the owner of a general review; Operate owns an active incident. |
 | Prepare or publish a versioned artifact | [Release](../skills/release/SKILL.md): identified candidate, packaging/compatibility evidence, release notes and verified distribution when authorized. Preparing a release does not itself authorize publishing it. |
 | Change persistent data, schema, formats or configuration | [Migrate](../skills/migrate/SKILL.md): invariants, compatibility sequence, rehearsed recovery and reconciled state when execution is authorized. |
@@ -25,9 +27,9 @@ Use the [project workspace](Workspace.md) for any agent-owned files the workflow
 | Judge work against its brief during implementation or before delivery | [Critique](../skills/critique/SKILL.md): evidenced quality findings; reuse relevant Test results. |
 | Direct or produce visual work | [Design](../skills/design/SKILL.md) owns visual direction and production for UI, web, brand, illustration, motion, slides and other visual artifacts, including fidelity to a supplied reference. [Imagine](../skills/imagine/SKILL.md) owns generating an interface concept image from an agreed brief; a UI build does not require one. [Critique](../skills/critique/SKILL.md) owns visual assessment, including review-only requests. |
 | Resolve uncertainty cheaply | Use the [prototype method](Prototype.md). Design owns visual experiments, Focus product logic, Architect technical tradeoffs. Production implementation is a separate decision. |
-| Write a document or substantive copy, or triage issues | [Author](../skills/author/SKILL.md) owns the content and its audience. Use [Distill](../skills/distill/SKILL.md) for routine replies and clear communication throughout. |
+| Write a document or substantive copy, or triage issues | [Author](../skills/author/SKILL.md) owns the content and its audience. |
 | Report where authorized work stands, or coordinate its workers | [Plan’s tracking branch](../skills/plan/SKILL.md#track-authorized-work) owns the status snapshot; [Orchestrate](../skills/orchestrate/SKILL.md) owns assignments and integration. |
 | Transfer work, or pause it | [Brief](../skills/brief/SKILL.md) prepares the transfer. [Sleep](../skills/sleep/SKILL.md) persists it and stops work until asked to resume. |
-| Remove verified leftovers or improve a response | [Clean](../skills/clean/SKILL.md) owns cleanup within scope. [Distill](../skills/distill/SKILL.md) applies to communication. |
+| Remove verified leftovers | [Clean](../skills/clean/SKILL.md) owns cleanup within scope. |
 
 For work spanning the product lifecycle, use the requested outcome as the owner and name each handoff. Secure supplies risk evidence; Migrate supplies compatibility and reconciliation; Release identifies a distributable; Deploy verifies it in the target; Operate checks its continuing health; Focus evaluates whether it helped users. These are conditional responsibilities, not a mandatory sequence for every change.

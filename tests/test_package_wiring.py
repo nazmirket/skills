@@ -12,10 +12,10 @@ import unittest
 from urllib.parse import unquote, urlsplit
 
 REPO = Path(__file__).resolve().parents[1]
-PLUGIN = REPO / "plugins/mirket"
+SKILLS = REPO / "skills"
 EXPECTED_SKILLS = {
     "adapt", "architect", "audit", "author", "brief", "clean", "critique",
-    "curate", "debug", "deploy", "design", "distill", "equip", "focus",
+    "curate", "debug", "deploy", "design", "equip", "execute", "focus",
     "imagine", "migrate", "operate", "orchestrate", "plan", "preflight",
     "refactor", "release", "secure", "sleep", "test",
 }
@@ -81,7 +81,7 @@ def heading_anchors(markdown):
 
 def markdown_sources():
     paths = set(REPO.glob("*.md"))
-    for directory in (PLUGIN, REPO / "docs", REPO / "instructions", REPO / "tests"):
+    for directory in (SKILLS, REPO / "references", REPO / "docs", REPO / "instructions", REPO / "tests"):
         paths.update(directory.rglob("*.md"))
     paths.update(REPO / name for name in ("website/README.md", "website/AGENTS.md"))
     return sorted(paths)
@@ -118,20 +118,24 @@ class PackageWiringTest(unittest.TestCase):
     def test_compatibility_manifest_is_not_shadowed_by_a_portable_manifest(self):
         # Codex 0.167.0 discovers skills but drops hooks when root plugin.json wins.
         # Reconsider this contract only with actual host discovery/execution evidence.
-        self.assertFalse((PLUGIN / "plugin.json").exists())
-        codex = read_json(PLUGIN / ".codex-plugin/plugin.json")
+        self.assertFalse((REPO / "plugin.json").exists())
+        codex = read_json(REPO / ".codex-plugin/plugin.json")
         self.assertEqual(codex["skills"], "./skills/")
-        self.assertTrue(exact_path_exists(PLUGIN / codex["skills"]))
-        self.assertEqual((PLUGIN / codex["skills"]).resolve(), PLUGIN / "skills")
+        self.assertTrue(exact_path_exists(REPO / codex["skills"]))
+        self.assertEqual((REPO / codex["skills"]).resolve(), SKILLS)
         self.assertEqual(codex["hooks"], "./hooks/hooks.json")
         self.assertNotIn("extensions", codex)
         self.assertTrue(codex["interface"]["displayName"].strip())
         self.assertTrue(codex["interface"]["shortDescription"].strip())
         self.assertLessEqual(len(codex["interface"]["shortDescription"]), 30)
 
-    def test_both_marketplaces_resolve_to_the_package_and_its_hooks(self):
-        codex = read_json(PLUGIN / ".codex-plugin/plugin.json")
-        claude = read_json(PLUGIN / ".claude-plugin/plugin.json")
+    def test_both_marketplaces_use_the_root_catalog_and_hooks(self):
+        codex = read_json(REPO / ".codex-plugin/plugin.json")
+        claude = read_json(REPO / ".claude-plugin/plugin.json")
+        # Claude Code discovers the default skills/ and hooks/hooks.json at its plugin root.
+        self.assertNotIn("skills", claude)
+        self.assertNotIn("hooks", claude)
+        self.assertFalse(SKILLS.is_symlink())
         for key in ("name", "version", "license", "description"):
             self.assertEqual(codex[key], claude[key], key)
         self.assertRegex(codex["version"], r"^\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?$")
@@ -143,11 +147,12 @@ class PackageWiringTest(unittest.TestCase):
                 if isinstance(source, dict):
                     source = source["path"]
                 self.assertTrue(exact_path_exists(REPO / source))
-                self.assertEqual((REPO / source).resolve(), PLUGIN)
+                self.assertEqual(source, "./")
+                self.assertEqual((REPO / source).resolve(), REPO)
 
-        codex_hooks = PLUGIN / codex["hooks"]
+        codex_hooks = REPO / codex["hooks"]
         self.assertTrue(exact_path_exists(codex_hooks))
-        self.assertEqual(codex_hooks.resolve(), (PLUGIN / "hooks/hooks.json").resolve())
+        self.assertEqual(codex_hooks.resolve(), REPO / "hooks/hooks.json")
         for groups in read_json(codex_hooks)["hooks"].values():
             for group in groups:
                 for hook in group["hooks"]:
@@ -155,13 +160,12 @@ class PackageWiringTest(unittest.TestCase):
                     prefix = "${CLAUDE_PLUGIN_ROOT}/"
                     with self.subTest(script=script):
                         self.assertTrue(script.startswith(prefix))
-                        self.assertTrue(exact_path_exists(PLUGIN / script[len(prefix):]))
+                        self.assertTrue(exact_path_exists(REPO / script[len(prefix):]))
         for key in ("logo", "composerIcon"):
-            self.assertTrue(exact_path_exists(PLUGIN / codex["interface"][key]))
+            self.assertTrue(exact_path_exists(REPO / codex["interface"][key]))
 
-    def test_global_guidance_and_license_copies_agree(self):
+    def test_global_guidance_agrees(self):
         self.assertEqual((REPO / "instructions/AGENTS.md").read_bytes(), (REPO / "instructions/CLAUDE.md").read_bytes())
-        self.assertEqual((REPO / "LICENSE").read_bytes(), (PLUGIN / "LICENSE").read_bytes())
 
     def test_global_plugin_reference_paths_resolve(self):
         references = set()
@@ -169,19 +173,19 @@ class PackageWiringTest(unittest.TestCase):
             references.update(re.findall(r"`(references/[^`]+\.md)`", path.read_text(encoding="utf-8")))
         for reference in references:
             with self.subTest(reference=reference):
-                self.assertTrue(exact_path_exists(PLUGIN / reference))
+                self.assertTrue(exact_path_exists(REPO / reference))
 
     def test_catalog_matches_skill_metadata_routing_and_documentation(self):
-        catalog = {p.name for p in (PLUGIN / "skills").iterdir() if p.is_dir() and not p.name.startswith(".")}
+        catalog = {p.name for p in SKILLS.iterdir() if p.is_dir() and not p.name.startswith(".")}
         self.assertEqual(catalog, EXPECTED_SKILLS)
-        routing = (PLUGIN / "references/Routing.md").read_text(encoding="utf-8")
+        routing = (REPO / "references/Routing.md").read_text(encoding="utf-8")
         self.assertEqual(set(re.findall(r"\.\./skills/([^/]+)/SKILL\.md", routing)), catalog)
         guide = (REPO / "docs/README.md").read_text(encoding="utf-8")
-        self.assertEqual(set(re.findall(r"\.\./plugins/mirket/skills/([^/]+)/SKILL\.md", guide)), catalog)
+        self.assertEqual(set(re.findall(r"\.\./skills/([^/]+)/SKILL\.md", guide)), catalog)
         display_names = set()
         for name in sorted(catalog):
             with self.subTest(skill=name):
-                skill = PLUGIN / "skills" / name
+                skill = SKILLS / name
                 frontmatter = skill.joinpath("SKILL.md").read_text(encoding="utf-8").split("---", 2)[1]
                 self.assertRegex(frontmatter, rf"(?m)^name: {re.escape(name)}$")
                 self.assertRegex(frontmatter, r'(?m)^description: "[^"\n]+"$')

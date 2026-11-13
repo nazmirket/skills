@@ -14,7 +14,8 @@ function resolveLink(url: string, key: string, source: string) {
   if (path === guidePath) return `/docs/${suffix}`;
   if (path === skillsPath || path === `${skillsPath}/`) return "/#skills";
 
-  const skill = /^plugins\/mirket\/skills\/([a-z][a-z0-9-]*)\/SKILL\.md$/.exec(path);
+  const skill = path.startsWith(`${skillsPath}/`)
+    && /^([a-z][a-z0-9-]*)\/SKILL\.md$/.exec(path.slice(skillsPath.length + 1));
   if (skill) return `/docs/skills/${skill[1]}/${suffix}`;
 
   const kind = path.endsWith("/") ? "tree" : "blob";

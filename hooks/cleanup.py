@@ -233,7 +233,7 @@ def handle(payload):
             "decision": "block",
             "reason": (
                 f"Apply {SKILL} for task-scoped cleanup when relevant; respect scope, read-only restrictions, "
-                "pause requests, and existing work. Distill the final reply: outcome first, then verified checks, material "
+                "pause requests, and existing work. Apply Execute to the final reply: outcome first, then verified checks, material "
                 "limits, and any needed next step. Skip narration of this review."
             ),
         }

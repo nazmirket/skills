@@ -1,0 +1,3 @@
+interface:
+  display_name: "Execute"
+  short_description: "Solve the task directly and report what matters"

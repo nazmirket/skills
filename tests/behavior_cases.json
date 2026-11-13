@@ -117,7 +117,7 @@
       "id": "author-document",
       "primary_owner": "author",
       "supporting_skills": [
-        "distill"
+        "execute"
       ],
       "prompt": "Write Quickstart.md explaining how to run and check this fixture.",
       "context": "Readers know Python basics. The runnable command is documented in README.md.",
@@ -132,7 +132,7 @@
         "Unrelated source edits"
       ],
       "stopping_condition": "Deliver the checked local document.",
-      "evidence_reuse": "Reuse verified commands; Distill guides communication without owning the document.",
+      "evidence_reuse": "Reuse verified commands; Execute guides the approach and communication without owning the document.",
       "files": {}
     },
     {
@@ -247,8 +247,8 @@
       }
     },
     {
-      "id": "distill-short-answer",
-      "primary_owner": "distill",
+      "id": "execute-short-answer",
+      "primary_owner": "execute",
       "supporting_skills": [],
       "prompt": "What is 2 + 3? Answer directly.",
       "context": "This is a routine reply with no artifact or execution request.",
@@ -263,6 +263,32 @@
       "stopping_condition": "Stop after the answer; default Stop must not request another pass.",
       "evidence_reuse": "No investigation or redundant verification is needed.",
       "files": {}
+    },
+    {
+      "id": "execute-direct-fix",
+      "primary_owner": "execute",
+      "supporting_skills": [],
+      "prompt": "Fix the report heading: it should say Total, not Totals. You can use a formatting helper if useful.",
+      "context": "The heading is a literal in report.py; no other caller needs heading formatting. The existing test independently checks the requested heading. The suggested helper is optional.",
+      "expected_actions": [
+        "Make the direct literal change without adding a helper.",
+        "Run the existing focused check and report the result and verification.",
+        "Skip routine narration unless the host requires an update."
+      ],
+      "allowed_writes": [
+        "report.py"
+      ],
+      "prohibited_writes": [
+        "New formatting abstraction",
+        "Unrelated edits",
+        "Execution plan"
+      ],
+      "stopping_condition": "Stop once the heading is fixed and checked; default Stop stays neutral.",
+      "evidence_reuse": "Run python3 -B -m unittest test_report.py; reuse that check rather than adding another.",
+      "files": {
+        "report.py": "def heading():\n    return \"Totals\"\n",
+        "test_report.py": "import unittest\nfrom report import heading\n\nclass HeadingTest(unittest.TestCase):\n    def test_heading(self):\n        self.assertEqual(heading(), \"Total\")\n"
+      }
     },
     {
       "id": "equip-tool-fit",

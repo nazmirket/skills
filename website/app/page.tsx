@@ -12,7 +12,7 @@ export const metadata = pageMetadata(homePage);
 const glyphs: Record<string, PixelGlyph> = {
   adapt: "target", architect: "plan", audit: "inspect", author: "prompt",
   brief: "signal", clean: "clean", critique: "inspect", curate: "target",
-  debug: "bug", design: "design", distill: "signal", equip: "prompt",
+  debug: "bug", design: "design", equip: "prompt", execute: "signal",
   focus: "target", imagine: "design", orchestrate: "signal", plan: "plan",
   preflight: "check", refactor: "clean", sleep: "plan", test: "check",
   secure: "inspect", release: "check", migrate: "plan", deploy: "signal", operate: "target",

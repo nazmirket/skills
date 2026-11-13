@@ -34,7 +34,7 @@ Ask for the result you want, or name a skill:
 - “Use Mirket Release to prepare this version, then Deploy to roll it out to staging.”
 - “Use Mirket Operate to check whether this service is healthy and its data is current.”
 
-The [routing guide](plugins/mirket/references/Routing.md) helps you pick a workflow. You can also [browse all skills](plugins/mirket/skills/).
+The [routing guide](references/Routing.md) helps you pick a workflow. You can also [browse all skills](skills/).
 
 If you want Mirket to guide work by default, merge the [Codex instructions](instructions/AGENTS.md) into `~/.codex/AGENTS.md` or the [Claude Code instructions](instructions/CLAUDE.md) into `~/.claude/CLAUDE.md`.
 

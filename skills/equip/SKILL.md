@@ -7,6 +7,8 @@ description: "Use to choose a tool or format, or to assess whether a working cho
 
 Choose a tool or format that fits the job. Check fit before adding another workaround. Use [Debug](../debug/SKILL.md) for incorrect behavior and [Architect](../architect/SKILL.md) for shared abstractions. Bring in Equip only when a tool or format choice is part of their decision.
 
+Use [Search](../search/SKILL.md) when the choice needs broader external research. Equip owns the recommendation for this project.
+
 ## Check fit
 
 - Identify the required outcome, hard requirements, and project conventions. For a routine choice with no tool specified, use the project's established tool if it fits. Depart when another choice materially improves the result.

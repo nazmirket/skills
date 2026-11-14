@@ -9,6 +9,7 @@ Use the [project workspace](Workspace.md) for any agent-owned files the workflow
 | Request | Owner and stopping point |
 | --- | --- |
 | Discover or refresh project facts | [Adapt](../skills/adapt/SKILL.md): read-only orientation; pass findings to the skill responsible for acting on them. |
+| Research what is happening outside the project | [Search](../skills/search/SKILL.md): investigate communities, project activity, competitors, or historical records; return sourced findings and limits. Use Adapt for internal evidence and Equip for tool decisions. |
 | Check readiness on request or investigate a setup blocker | [Preflight](../skills/preflight/SKILL.md): evidence about the needed capability, authorized setup if needed, and a basic readiness check. Return acceptance checks to the verification owner. |
 | Choose a tool or format, or challenge one that falls short or works at a material cost | [Equip](../skills/equip/SKILL.md): evidence for keeping, adjusting, piloting, or switching. Once chosen, [Preflight](../skills/preflight/SKILL.md) owns authorized setup and readiness. Use [Debug](../skills/debug/SKILL.md) for unexpected failures. |
 | Assess architecture or change a lasting system boundary | [Architect](../skills/architect/SKILL.md): evidence and a recommendation while open; a self-contained ADR once a lasting boundary change is settled. Plan uses the ADR for steps and checks. |

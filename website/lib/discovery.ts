@@ -21,17 +21,17 @@ type PageInfo = {
 export const homePage: PageInfo = {
   path: "/",
   title: "Mirket: Agent Skills for Codex & Claude Code",
-  description: "16 free, open-source skills for Codex and Claude Code: planning, design, engineering, security, migration, release, deployment and operations.",
+  description: "17 free, open-source skills for Codex and Claude Code: research, planning, design, engineering, security, migration, release, deployment and operations.",
   image: cardFile("mirket"),
   cardTitle: "Mirket",
   cardLabel: "OPEN-SOURCE PLUGIN",
-  cardSummary: "16 workflows to build, ship and operate",
+  cardSummary: "17 workflows to research, build, ship and operate",
 };
 
 export const docsPage: PageInfo = {
   path: "/docs/",
   title: "Mirket Documentation: Install and Use Agent Skills",
-  description: "Install Mirket in Codex or Claude Code and choose from 16 skills for planning, design, engineering, security, migration, release, deployment and operations.",
+  description: "Install Mirket in Codex or Claude Code and choose from 17 skills for research, planning, design, engineering, security, migration, release, deployment and operations.",
   image: cardFile("documentation"),
   cardTitle: "Documentation",
   cardLabel: "FIELD GUIDE",

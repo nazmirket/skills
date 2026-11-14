@@ -7,6 +7,8 @@ description: "Use to discover or refresh missing or stale facts about a project,
 
 Adapt finds and explains project facts. It is read-only. The skill responsible for the requested outcome acts on the findings.
 
+Use [Search](../search/SKILL.md) to investigate what is happening outside the project.
+
 ## Build or refresh context
 
 Establish the target and what the next task needs to know. Ask a focused question if the target cannot be determined. On a new codebase, survey the main subsystems and how they fit together through representative paths before any edit. On a familiar project, reuse verified context. A different feature, worktree, or change in evidence may make earlier findings stale; refresh only what matters to the current task. Check the relevant working state and respect existing changes.

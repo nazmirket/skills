@@ -1,6 +1,6 @@
 # Mirket documentation
 
-Mirket is a free, open-source plugin with 16 skills for Codex and Claude Code. Its workflows cover planning, design, engineering, security, migration, release, deployment and operations.
+Mirket is a free, open-source plugin with 17 skills for Codex and Claude Code. Its workflows cover research, planning, design, engineering, security, migration, release, deployment and operations.
 
 ## Install Mirket
 
@@ -43,6 +43,7 @@ A skill is a Markdown workflow with a trigger, guidance, and sometimes more deta
 | --- | --- |
 | Solve the assigned problem directly and report what matters | [Execute](../skills/execute/SKILL.md), the default across Mirket workflows |
 | Understand the project and its environment | [Adapt](../skills/adapt/SKILL.md), [Preflight](../skills/preflight/SKILL.md) |
+| Learn what is happening outside the project | [Search](../skills/search/SKILL.md) for community activity, emerging projects, competitors, and historical context |
 | Compare options and plan the work | [Equip](../skills/equip/SKILL.md), [Architect](../skills/architect/SKILL.md), [Plan](../skills/plan/SKILL.md) |
 | Make or improve something | [Design](../skills/design/SKILL.md), [Author](../skills/author/SKILL.md), [Debug](../skills/debug/SKILL.md), [Refactor](../skills/refactor/SKILL.md) |
 | Check the result and tidy up | [Test](../skills/test/SKILL.md), [Audit](../skills/audit/SKILL.md), [Design](../skills/design/SKILL.md#visual-critique) for visual review, [Author](../skills/author/SKILL.md) for writing review, [Clean](../skills/clean/SKILL.md) |

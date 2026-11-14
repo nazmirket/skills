@@ -2,7 +2,7 @@
 
 <img src="website/public/mirket-sprite.png" alt="Mirket, the pixel-art meerkat mascot" width="64" height="64">
 
-Mirket is a free collection of **16 reusable skills** for **Codex** and **Claude Code**. Plan, build and verify changes, assess security, migrate state, release and deploy, and operate the result.
+Mirket is a free collection of **17 reusable skills** for **Codex** and **Claude Code**. Research what is happening outside the project, plan and build changes, verify results, and ship and operate services.
 
 Visit [skills.mirket.dev](https://skills.mirket.dev) for installation and workflow examples. Read the [repository documentation](docs/README.md) for the skills, philosophy, and plugin architecture.
 

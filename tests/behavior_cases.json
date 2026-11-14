@@ -141,6 +141,25 @@
       }
     },
     {
+      "id": "search-community-trends",
+      "primary_owner": "search",
+      "supporting_skills": [],
+      "prompt": "Over the last six months, which open-source local-first note apps are picking up traction among active users? Look beyond the familiar names and tell me what people are doing with them. I am not choosing a tool yet.",
+      "context": "The question concerns public activity, not this worktree. Public web access is available; private communities are out of scope. A list of familiar app names is already known and is only a starting point.",
+      "expected_actions": [
+        "Bound the date range, open relevant public discussions and project activity, and use terms or leads found there to look beyond the initial results.",
+        "Tie any traction claim to dated evidence and check it against independent signals or counterexamples. Distinguish attention from adoption and cite original threads or records."
+      ],
+      "allowed_writes": [],
+      "prohibited_writes": [
+        "Project changes or an execution plan",
+        "Community posts or outreach"
+      ],
+      "stopping_condition": "Return sourced findings, the time window, and any material coverage gaps without selecting or installing a tool.",
+      "evidence_reuse": "Treat familiar names as leads rather than findings; follow and cite the underlying records instead of repeating search snippets.",
+      "files": {}
+    },
+    {
       "id": "adapt-orientation",
       "primary_owner": "adapt",
       "supporting_skills": [],

@@ -17,7 +17,7 @@ EXPECTED_SKILLS = {
     "adapt", "architect", "audit", "author", "brief", "clean",
     "debug", "deploy", "design", "equip", "execute",
     "migrate", "plan", "preflight",
-    "refactor", "test",
+    "refactor", "search", "test",
 }
 
 

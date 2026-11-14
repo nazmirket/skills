@@ -1,7 +1,7 @@
 {
   "name": "mirket",
   "version": "0.4.0",
-  "description": "16 composable workflows for planning, development, security, migration, release, deployment and operations.",
+  "description": "17 composable workflows for research, planning, development, security, migration, release, deployment and operations.",
   "license": "MIT",
   "skills": "./skills/",
   "hooks": "./hooks/hooks.json",

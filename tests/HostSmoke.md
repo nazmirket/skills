@@ -4,7 +4,7 @@ The Python tests validate local contracts and fixture preparation. They do **not
 
 ## Prepare a behavioral case
 
-[behavior_cases.json](behavior_cases.json) contains 40 reusable cases covering all 16 owners. Each specifies the prompt and source context, expected owner and actions, allowed and prohibited writes, stopping condition, and evidence that should be reused. Expectations are reviewer criteria, not text to require the model to repeat.
+[behavior_cases.json](behavior_cases.json) contains 41 reusable cases covering all 17 owners. Each specifies the prompt and source context, expected owner and actions, allowed and prohibited writes, stopping condition, and evidence that should be reused. Expectations are reviewer criteria, not text to require the model to repeat.
 
 ```sh
 python3 -B tests/prepare_host_smoke.py --list
@@ -39,6 +39,7 @@ Repeat ambiguous routing cases with hooks disabled to assess linked guidance, an
 | Boundary | Cases and distinguishing result |
 | --- | --- |
 | Orientation and diagnosis | `adapt-orientation`, `adapt-contract-conflict`, `debug-authorized-fix`, `debug-two-failed-hypotheses`: orient in source order when needed, fix a clear cause directly, and pause after two failed hypotheses without inventing a cause. |
+| External research | `search-community-trends`: follow actual discussions and dated project activity beyond familiar names; distinguish evidence of traction from visibility without switching to internal discovery or tool adoption. |
 | Review | `audit-read-only`, `audit-independent-review-unavailable`: return findings without edits and leave a required independence gate open when only inline review is available. |
 | Verification | `test-evidence-only`, `test-regression-and-export-smoke`: return the failure without editing product code, and distinguish a focused regression check from a smoke check through the affected workflow. |
 | Technical choice and structural change | `architect-unresolved`, `architect-settled-boundary`, `refactor-preserve-behavior`, `refactor-characterize-and-fix`: clarify design requirements, record settled boundary changes, and distinguish behavior preserved by a refactor from a separately verified defect correction. |
@@ -60,7 +61,7 @@ Run these in fresh Codex and Claude Code sessions against the candidate, using d
 
 | Case | Expected observation |
 | --- | --- |
-| Start a session and explicitly invoke Mirket Audit. | All 16 skills are discoverable; the session hook supplies the routing pointer; Audit loads from the candidate plugin. |
+| Start a session and explicitly invoke Mirket Audit. | All 17 skills are discoverable; the session hook supplies the routing pointer; Audit loads from the candidate plugin. |
 | Answer a short question, then perform an edit. | User-prompt Execute guidance is present and Clean still applies to relevant delivery work. Mirket registers no Stop hook and requests no extra pass. |
 | Request a standalone supported `git commit --dry-run`. | It remains a preview and needs neither cleanup acknowledgment nor an absolute target. |
 | Submit a guarded commit without an absolute target. | Hook denies it and explains the explicit-target requirement. No actual commit is required to observe denial. |

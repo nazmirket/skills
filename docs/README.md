@@ -46,7 +46,7 @@ A skill is a Markdown workflow with a trigger, guidance, and sometimes more deta
 | Learn what is happening outside the project | [Search](../skills/search/SKILL.md) for community activity, emerging projects, competitors, and historical context |
 | Compare options and plan the work | [Equip](../skills/equip/SKILL.md), [Architect](../skills/architect/SKILL.md), [Plan](../skills/plan/SKILL.md) |
 | Make or improve something | [Design](../skills/design/SKILL.md), [Author](../skills/author/SKILL.md), [Debug](../skills/debug/SKILL.md), [Refactor](../skills/refactor/SKILL.md) |
-| Check the result and tidy up | [Test](../skills/test/SKILL.md), [Audit](../skills/audit/SKILL.md), [Design](../skills/design/SKILL.md#visual-critique) for visual review, [Author](../skills/author/SKILL.md) for writing review, [Clean](../skills/clean/SKILL.md) |
+| Check the result and tidy up | [Test](../skills/test/SKILL.md), [Audit](../skills/audit/SKILL.md), [Design critique](../skills/design/references/flows/Critique.md) for visual review, [Author](../skills/author/SKILL.md) for writing review, [Clean](../skills/clean/SKILL.md) |
 | Review security and privacy or model design threats | [Audit](../skills/audit/SKILL.md#security-and-privacy-review) for findings, [Architect](../skills/architect/SKILL.md#model-threats-during-design) for design decisions |
 | Change persistent state | [Migrate](../skills/migrate/SKILL.md) |
 | Ship and operate | The task owner prepares and publishes; [Deploy](../skills/deploy/SKILL.md) activates and handles [service health and recovery](../skills/deploy/SKILL.md#operate-and-recover) |

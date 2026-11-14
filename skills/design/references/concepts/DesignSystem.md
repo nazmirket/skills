@@ -1,12 +1,6 @@
-# Identity and design systems
+# Design systems
 
-Use for a new or evolving identity, a coherent family of surfaces, reusable components or themes. Keep brand and system changes proportional to the problem.
-
-## Decide what stays recognizable
-
-Start from approved marks, type, imagery, vocabulary, usage guidance and working examples. Distinguish an application of an existing identity, an extension that fills a gap, and a refresh that can change fundamentals. For a new identity, identify a meaningful trait of the product or organization and translate it into a repeatable visual principle. For a refresh, record which familiar cues, assets and roles must survive. Missing documentation is not permission to replace an established identity.
-
-When a board would clarify a decision, show one coherent direction with mark or wordmark, type and color in use, and a few representative applications at real sizes. For instance, test a small mark in a navigation bar and a full lockup on a cover before choosing one configuration for both. Consider clear space, small-size variants, backgrounds and monochrome reproduction when relevant. Provide separately usable source assets and avoid claiming clearance that has not been established.
+Use for shared tokens, component rules, variants, themes and guidelines that need to survive reuse.
 
 ## Define rules in use
 
@@ -23,3 +17,7 @@ A theme maps roles to an intentional set of treatments. Define foreground, surfa
 Use the same recognizable ideas across media without freezing their geometry: an editorial voice, particular use of color and recurring image treatment can survive a compact product view, a slide and a poster. Let the medium determine density, scale, crop and interaction. Keep wording consistent where it refers to the same thing, and adapt tone to the moment.
 
 Deliver only the guidance someone needs to repeat the result: intent, roles and locations, relevant component examples, exceptions, and editable assets when requested. Show at least one real application and state which themes, sizes or asset uses remain unverified.
+
+## Validate the system in use
+
+Inspect representative real components and combinations, including dense content and conflicting states. Check tokens at the semantic role rather than copying one raw value everywhere. Document what is stable, which extension is allowed, and what is an exception.

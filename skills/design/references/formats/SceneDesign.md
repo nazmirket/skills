@@ -17,3 +17,5 @@ Block out the important shapes and camera first. Compare their silhouette and pr
 | Interactive scene | Exercise representative input, camera bounds and reset; check loading, failure or fallback, and any relevant motion or input alternative. Verify budgets on the intended device or report the tested substitute. |
 
 Use [Gestures](../concepts/Gestures.md) for direct manipulation and [Motion Design](MotionDesign.md) when a sequence is a separate result. For interchange, use the consumer's supported features; consult the [glTF specification](https://registry.khronos.org/glTF/specs/2.0/glTF-2.0.html) only when glTF is the chosen format. Give the requested render, asset, or playable entry point, plus editable source and necessary dependencies where in scope. Name the consumer and settings used, and report import, interaction, or performance checks you could not run.
+
+Use [Blender](../tools/Blender.md) when the source or export work belongs there, or [Spline](../tools/Spline.md) when the result is a Spline scene or embed.

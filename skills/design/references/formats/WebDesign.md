@@ -29,4 +29,6 @@ Pick a primary path with realistic content and the smallest set of adverse condi
 
 Use [Browser](../tools/Browser.md) for a direct check, [Playwright](../tools/Playwright.md) when replayable interaction would add evidence, or [Screenshot](../tools/Screenshot.md) to record a visual state. Choose only what the evidence calls for. For craft decisions that change the result, consult [UX](../concepts/UX.md), [Responsive](../concepts/Responsive.md), or [Accessibility](../concepts/Accessibility.md).
 
+When implementing a supplied design, use [Figma](../tools/Figma.md) or [OpenPencil](../tools/OpenPencil.md) if that is how the source can be inspected. Use [Storybook](../tools/Storybook.md) if an existing story can isolate a state that matters.
+
 Give the working entry point or the requested review findings, with the tested revision or build, relevant view and state, and what was observed. Hand over editable source or approved assets when part of the deliverable. List meaningful departures and say which runtime, device, assistive technology, or fallback was not checked when that limits the claim.

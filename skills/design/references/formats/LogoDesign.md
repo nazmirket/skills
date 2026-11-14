@@ -21,3 +21,5 @@ A similarity check can flag visual confusion. Report only what was compared and 
 ## Hand over the requested result
 
 For concept work, deliver the agreed comparisons and stop at selection. For production, open the actual exports and check bounds, transparency, clipping and letterforms. Provide the editable master and the approved versions for their intended uses, such as horizontal, stacked, symbol-only, or reversed. Name files by use and include minimum size or clear-space guidance where helpful. Keep editable lettering and any outlined delivery copy distinct, and identify any required fonts or assets.
+
+Use [Figma](../tools/Figma.md) or [OpenPencil](../tools/OpenPencil.md) when the source or requested editable master uses that editor.

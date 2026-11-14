@@ -1,27 +1,33 @@
 ---
 name: adapt
-description: "Use when relevant understanding of a project, workspace, feature, workflow, or the human's working preferences is missing or stale."
+description: "Use to discover or refresh missing or stale facts about a project, its implementation, and the decisions or rules that govern it."
 ---
 
 # Adapt
 
-Understand the target and the human's working context as a thoughtful coworker. Orient when the task needs understanding that is missing or stale; reuse current evidence that covers the same scope. Adapt is read-only.
+Adapt finds and explains project facts. It is read-only. The skill responsible for the requested outcome acts on the findings.
 
-## Understand the target
+## Build or refresh context
 
-1. Establish the target and the purpose of this orientation from the human's request and available context. Identify the relevant scope and current task; ask a focused question if the target cannot be determined.
-2. Inspect the relevant instructions, current work, documentation and version-control state where available. Follow the affected entry points through connected behavior, outputs and dependencies. For a broader request, examine representative areas and how they fit together. Respect existing user changes.
-3. Establish the purpose, behavior, conventions, assumptions and constraints needed for the requested scope and its risks. Include architecture, principles and prior decisions when they matter. Distinguish documented reasons from inferences. Stop once the next task has enough grounded context; report material gaps rather than expanding into an unrelated audit.
+Establish the target and what the next task needs to know. Ask a focused question if the target cannot be determined. On a new codebase, survey the main subsystems and how they fit together through representative paths before any edit. On a familiar project, reuse verified context. A different feature, worktree, or change in evidence may make earlier findings stale; refresh only what matters to the current task. Check the relevant working state and respect existing changes.
 
-## Get to know the human
+Consult relevant sources in this order:
 
-4. Use the human's stated goals, working principles, preferences, prior decisions and feedback from the conversation and relevant project records. Carry useful context forward instead of repeatedly starting from zero.
-5. Separate explicit preferences from tentative patterns. Check remembered context against current instructions and project evidence when it could affect a decision; ask only if a material uncertainty remains. Current instructions and corrections take precedence over stale records. Do not infer a diagnosis or fixed personality, search unauthorized private history, or create a persistent profile without authorization.
+1. **Project documentation:** Read the applicable instructions and guides for the intended behavior and conventions.
+2. **Architecture decision records (ADRs):** Find relevant decisions, their rationale, and any superseding records.
+3. **Project memory:** For substantial or resumed work, consult relevant, authorized project memory when available. Skip recall for routine tasks. Treat remembered facts as leads and check anything that affects the next step against current evidence.
+4. **Codebase:** Trace the relevant entry points, callers, dependencies, and outputs. Use current code and checks to establish what is implemented.
 
+The order is for gathering context. Current user instructions and corrections take precedence over stale records. When documented intent and implementation disagree and the work depends on which contract applies, show the discrepancy and ask the human which should govern before proceeding on that part.
 
-## Share the understanding
+## Carry forward what matters
 
-6. Carry a compact map of the relevant purpose, entry points, flow, conventions, evidence and gaps into the next task. Show the human the findings when requested or when they affect a decision; otherwise keep the handoff focused. Distinguish observed facts, the human's statements, inferences and unanswered questions. Give [Debug](../debug/SKILL.md) the expected and observed finding and supporting evidence, or give [Architect](../architect/SKILL.md) the affected boundaries and observed friction.
-7. Surface a discrepancy, questionable assumption or potential problem when it matters; do not repair it during orientation. After orientation, continue to a fix or other work already authorized by the human without asking again. Resolve any new product decision or scope change with the human.
+Reuse relevant architecture decisions, solution patterns, system design direction, and enforced rules. A one-off correction stays local; apply it as a project default only when the human repeats or confirms it. Use inferred patterns as leads, without treating them as stated preferences. If a durable rule would help, propose its exact wording and destination and wait for approval before recording it. Do not search unauthorized private history or create a persistent profile.
 
-**Done:** The next task has enough evidence about its target, relevant conventions, human context and remaining gaps. No fix is performed during orientation.
+## Hand off the finding
+
+Stop once the next task has enough context. Pass the relevant facts, evidence, constraints, and remaining gaps to the skill that will act on them. For an observed problem that explains the requested issue, give [Debug](../debug/SKILL.md) the expected and observed behavior and the supporting evidence; an authorized fix continues there. For a consequential system boundary or tradeoff, give [Architect](../architect/SKILL.md) the affected boundaries and observed friction. Routing evidence to a skill does not require a separate agent.
+
+Share an orientation summary only when requested or when a finding needs the human's decision. If a finding changes the approach to already authorized work, give a one-line update and continue under the responsible skill. Adapt does not make repairs or broaden the authorized scope.
+
+**Done:** The responsible skill has the evidence it needs, or the human has the specific gap or decision needed to proceed.

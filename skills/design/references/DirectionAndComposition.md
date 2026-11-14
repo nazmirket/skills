@@ -6,14 +6,14 @@ Use when the form is unsettled, the existing result needs a rethink, or the info
 
 - Name a particular audience, their situation and the first decision, action or feeling the work should support. A first-time buyer comparing sizes has different needs from a returning operator clearing a queue.
 - Inventory what can carry the design: an actual product image, distinctive data, approved language, a physical material, a recurring shape, a brand asset or a useful interaction. Keep claims and constraints separate from mood references. Use a clear placeholder where material is missing.
-- Name the medium, viewing conditions, what must stay, and the decision the next artifact needs to answer. For open directions, look at a few relevant examples and extract a principle, such as how the page makes comparison easy. Leave the source's distinctive composition and assets there.
+- Agree on the intended effect and identity constraints. Name the medium, viewing conditions, and the decision the next artifact needs to answer. Start with the project's own material; look outside only when comparison could resolve an open direction or pattern. Extract applicable principles without copying distinctive composition or assets.
 - Make a short working direction: “Because this is for [person in situation], lead with [material/action], keep [convention] familiar, and use [visual choice] to express [intent].” Test the choices against the actual content, not the adjectives alone.
 
 ## Capture the redesign baseline
 
 Before changing an existing interface, open the affected flow in its browser or native runtime. View and capture the before state at the sizes and steps that matter. Note the entry point, viewport, representative inputs and states so the comparison is reproducible. Record content, actions, feedback, navigation, identity and access that must survive. Separate an existing problem from a regression and an authorized behavior change from an unintended one.
 
-If you cannot view the existing interface, stop the redesign and report what is missing. Source, screenshots of a different build and guesses about current behavior do not replace the live baseline. Give [Critique](../../critique/SKILL.md) the before evidence and give [Test](../../test/SKILL.md) any behavior invariants that need checking.
+If you cannot view the existing interface, pause the redesign and report what is missing. Source and captures do not replace the live baseline. Preserve working behavior and established identity; ask before changing interactions, access, content meaning, or distinctive identity unless already authorized. Include the baseline in the [visual critique](../SKILL.md#visual-critique) of substantial work. Use [Test](../../test/SKILL.md) for distinct behavioral evidence.
 
 ## Design the structure before the surface
 
@@ -21,7 +21,7 @@ If you cannot view the existing interface, stop the redesign and report what is 
 2. **Choose a composition that fits.** A list suggests sequence, a table supports comparison, a continuous canvas supports reading, and a grid supports browsing equivalent items. Use alignment, grouping, scale and quiet space to create the eye path. A utilitarian screen may need dense rows; a single poster image may need room.
 3. **Give emphasis selectively.** When everything is large, saturated, outlined or moving, nothing leads. Use contrast between important and supporting material. Keep the same hierarchy when the layout reflows.
 4. **Place character where it pays off.** Choose a treatment grounded in the subject, such as an annotated close-up of a tool or a rhythm drawn from an illustrated story. Repeat its logic where it helps; keep familiar interactions and important content easy to recognize.
-5. **Try it with the difficult material.** Use actual copy, the longest label, sparse and dense data, the narrow view or intended print size. Inspect the first useful slice before multiplying it. If two structures solve the job in meaningfully different ways, hold content and constraints constant and compare only that difference.
+5. **Try it with the difficult material.** Use actual copy, the longest label, sparse and dense data, the narrow view or intended print size. Inspect the first useful slice before multiplying it. For an open direction, show two or three materially different approaches before developing one. Hold content and constraints constant where possible so their tradeoffs are visible. For a scoped refinement, show one approach.
 
 ## Replace defaults with decisions
 

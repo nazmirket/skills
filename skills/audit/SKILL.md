@@ -1,35 +1,24 @@
 ---
 name: audit
-description: "Use when asked to audit or review a code change, draft plan, or explicitly scoped module, system, or repository."
+description: "Use to review a code change, draft plan, or scoped system and report material findings, including security and privacy risks."
 ---
 
 # Audit
 
-## Purpose
+Review the work and return findings to its owner.
 
-Return prioritized, evidence-backed findings about the requested target. Audit is read-only unless fixes are authorized. [Test](../test/SKILL.md) owns behavioral checks; [Critique](../critique/SKILL.md) judges work against its brief, including visual quality. Reuse their evidence where relevant. When reviewing for another workflow, return the findings to its owner; the [routing guide](../../references/Routing.md) explains the boundaries.
+1. **Pin the target.** Identify the revision, snapshot, or draft; state the scope and governing criteria. Trace affected behavior, integration boundaries, and dependencies far enough to support your conclusions. Reuse [Test](../test/SKILL.md) evidence for behavior and performance, and use focused non-destructive checks when needed. Judge performance claims against the target and workload the evidence covers.
+2. **Report material findings.** Separate confirmed defects, supported but unverified risks, and concrete improvements that address a meaningful cost, including unnecessary complexity. Prioritize by impact and likelihood. Give the location, triggering condition, evidence, consequence, and next step. Name missing evidence for risks and any material coverage limits. If there are no findings, say so for the reviewed scope.
+3. **Stop at the report.** Return findings to the task owner without editing the target. If corrections are already authorized, follow the [review loop](../../references/ReviewLoop.md).
 
-## Set scope and independence
+Require an [independent reviewer](#independent-review) for high-risk changes or an explicit gate.
 
-Identify the target, purpose, governing requirements, project conventions and intended coverage. Read enough connected context to understand the behavior and its boundaries. Seek a reviewer independent of the work's author when risk, the task or an applicable gate warrants it, subject to host permissions. If unavailable, state the gap; never call a self-review independent.
+## Security and privacy review
 
-## Code change
+- Identify the protected assets, affected people, and scope. Trace relevant trust boundaries and sensitive data from collection to deletion, including secondary copies and external sharing when they matter. Distinguish intended safeguards from those supported by evidence.
+- Assess the affected controls and prioritize findings by exposure and impact. Reuse [Test](../test/SKILL.md) evidence or use the smallest safe defensive check within scope. State what remains unverified; a partial assessment or a clean scanner result cannot establish overall security or compliance.
+- Keep only necessary, sanitized evidence in an authorized destination. Keep secrets out of reports and fixtures. Bring unresolved access, retention, or sharing policy to the human. Give [Deploy’s operations branch](../deploy/SKILL.md#operate-and-recover) relevant findings and evidence preservation needs during an active incident. Return hardening recommendations to the implementer; the review does not authorize changes.
 
-1. Pin the target. Record the base and head or the exact diff and snapshot; include staged, unstaged, and new files when in scope. Resolve refs and confirm the intended changes are present.
-2. Find the governing intent in the request, issue, plan, or documented behavior, and find the relevant project standards. Review spec fit and standards as separate passes so neither obscures the other. When no written spec is available, state the limit and continue with evidenced behavior and standards; label open questions about intent.
-3. Trace connected callers, contracts, failure paths, and checks to assess correctness and risk. Confirm each finding's triggering condition and practical consequence. Distinguish observed defects and supported risks from preferences or questions. Use existing evidence and focused non-destructive checks when useful. If delegation is unavailable or unnecessary, perform the passes inline; do not describe self-review as independent.
-4. When corrections are authorized, follow the [review loop](../../references/ReviewLoop.md), keep changes within scope and recheck material repairs.
+## Independent review
 
-## Existing module, system or repository
-
-For an explicitly scoped audit, identify entry points, important flows, data and trust boundaries, dependencies and existing checks. Trace connected behavior and failure paths; inspect correctness, security, reliability, integration and other risks relevant to the target. Choose coverage based on the repository's size and structure: read the relevant repository in full when manageable; for a larger one, select a defensible scope using risk and connected behavior. State the areas examined and excluded, why they were selected, and any limits. Reading every file does not prove every execution path is safe.
-
-For production-facing targets, follow the relevant contracts through [Secure](../secure/SKILL.md), [Migrate](../migrate/SKILL.md), [Release](../release/SKILL.md), [Deploy](../deploy/SKILL.md) or [Operate](../operate/SKILL.md). Reuse their evidence for threats, preserved state, artifact identity, rollout and recovery; load only the guidance needed for the audit. A review remains read-only even when a supporting skill describes execution.
-
-## Draft plan
-
-Review the fixed draft and criteria provided by the requester or [Plan](../plan/SKILL.md). Check outcome fit, evidence, assumptions, authorization and product decisions, dependencies, failure modes and verification. Identify missing decisions and unsupported claims. Return findings and open questions without editing the draft. Plan owns review coordination, repairs and the record of authorization.
-
-## Completion
-
-Report confirmed defects, supported but unverified risks, and concrete material improvements as distinct categories. Prioritize by impact and likelihood; give the location, triggering condition, evidence, consequence and useful next step. For an unverified risk, identify the missing evidence. Keep preferences and style suggestions out unless their impact is material. State the target or revision, coverage and exclusions, independence, and actual checks. If no material findings exist, say so without claiming complete safety. Stop after the report unless fixes were already authorized.
+Treat serious potential harm or hard-to-reverse consequences as high risk. The reviewer must not have authored the work. If an independent reviewer is unavailable or not authorized, report inline findings, identify them as such, and leave the gate open. Independence is optional otherwise.

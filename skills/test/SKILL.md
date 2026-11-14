@@ -1,23 +1,22 @@
 ---
 name: test
-description: "Use when asked to select, write, or run software checks, verify a regression fix, or validate an observable behavior or performance claim."
+description: "Use for explicit verification requests or when the task owner needs evidence about a behavior, regression, or performance claim."
 ---
 
 # Test
 
-## Purpose
+Fill a verification gap and return the evidence to the task owner. The owner can run known focused checks directly. Reuse relevant results and choose the smallest checks that can catch the meaningful failure.
 
-Produce a record of which behaviors were checked, what the results establish, and where evidence is still missing. When another skill requested the check, return the evidence to that owner; see the [routing guide](../../references/Routing.md).
+## Choose the check
 
-## Workflow
+- Get the expected result from a specification, accepted example, or prior decision independent of the implementation. If sources conflict or are silent on a material rule, ask and continue with undisputed checks.
+- Use the existing harness for deterministic behavior when adding coverage is warranted and authorized. Use a manual check when automation cannot exercise the interaction reliably. Keep a fast regression test near the cause. If the regression reached a user-facing workflow, run one smoke check through that path as well. For a quoted comma, the parser test checks the field; a real export checks that the job uses the corrected parser.
+- For a new regression test, run the same check against the original code in isolation and against the fix. Confirm the old code fails for the intended reason and the fix passes. Preserve the working tree. If you cannot exercise the original code, state the gap.
 
-1. Identify the expected behavior, affected boundary, likely failure modes, and required project checks. Reuse relevant current evidence and existing tests. Choose the narrowest check that can catch the risk: a manual path for a simple observable outcome, a focused automated check for repeatable logic, or an integration or smoke check where wiring and contracts matter. Add adverse inputs where their impact warrants it. For a performance or resource claim, use the [measured improvement method](../../references/MeasuredImprovement.md).
-2. Add an automated check when meaningful new behavior or regression risk warrants it and the work authorizes it; otherwise reuse sufficient focused checks or direct inspection. Derive the expected result from a spec, worked example, or known result independent of the implementation, and use the normal interface. For a test-first slice, run the check before the change and confirm it fails for the intended reason, then run it after the change and confirm it passes. Report if the old behavior cannot be exercised.
-3. Run the focused checks and required project checks in a suitable environment. Record the target, command or steps, relevant inputs and environment, expected and actual results, and evidence. Save scratch outputs in `.work/temp/<task>/` under the [workspace rules](../../references/Workspace.md). If a required check cannot run, report it as unverified with its blocker and run other relevant checks that remain possible. Record unavailable, skipped, and inconclusive checks separately from passes. Return unexpected failures to the current investigator; use [Debug](../debug/SKILL.md) when a new causal investigation is needed. Rerun only when a change, suspected flake, or new risk warrants it.
-4. When defect inspection or quality judgment is also needed, give the existing evidence to [Audit](../audit/SKILL.md) or [Critique](../critique/SKILL.md), respectively. Critique owns rendered quality checks.
+## Run and report
 
-## Completion
-
-Match delivery evidence to its claim: [Release](../release/SKILL.md) needs checks of the packaged artifact and supported upgrade; [Deploy](../deploy/SKILL.md) needs served-environment behavior; [Migrate](../migrate/SKILL.md) needs reconciliation, retry and recovery evidence; [Secure](../secure/SKILL.md) needs legitimate and denied-boundary cases; [Operate](../operate/SKILL.md) needs current consumer health and freshness. Return those results to the owner. A synthetic payload, configuration inspection or build pass does not substitute for a live host or production-path check.
-
-Stop when the requested behavior and required checks have sufficient evidence, or when an unresolved failure or prerequisite prevents that. Report the result and material gaps; selecting or running checks does not itself authorize product edits.
+- Reuse CI results for the exact revision and relevant matrix when they cover the behavior in question. Run more checks only for a material evidence gap or an outstanding required check.
+- If a new failure passes on retry, run one targeted diagnostic when available, such as repeating just the failed browser test with tracing. Report each attempt and hand any further investigation to [Debug](../debug/SKILL.md) or the task owner.
+- Report passes, failures, and unverified checks separately. For a blocked check, give the missing target or capability, the exact command or steps still needed, and the expected outcome. Continue checks that can run. Match evidence to the claim: a build or package inspection cannot verify a live install. Honor environment and release gates.
+- Claim a speedup only after repeated comparable runs on the same inputs and relevant conditions, with output correctness verified. Use the [measurement method](../../references/MeasuredImprovement.md).
+- Hand back the smallest useful evidence: target checked, command or steps, relevant input, and expected and actual results. Verification alone does not authorize product edits. Give evidence to [Audit](../audit/SKILL.md) for technical review, [Design](../design/SKILL.md#visual-critique) for visual review, or [Author](../author/SKILL.md) for writing review when relevant.

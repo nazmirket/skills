@@ -1,3 +1,0 @@
-interface:
-  display_name: "Release"
-  short_description: "Prepare and publish a verified versioned artifact"

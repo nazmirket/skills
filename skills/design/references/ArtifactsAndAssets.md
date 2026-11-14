@@ -26,4 +26,4 @@ Compose for presentation or reading as requested. Check chart labels and units, 
 
 ## Produce and verify
 
-For print, confirm finished size, bleed, safe margins, resolution, color handling and supplier requirements. For digital, check file weight, target dimensions, density, crops, background and transparency. For standalone visual web artifacts, open the actual delivered file or preview in its intended environment; verify external asset or offline assumptions when relevant. Keep editable source and separately reusable assets where needed. Give [Critique](../../critique/SKILL.md) the final export, brief and viewing conditions.
+For print, confirm finished size, bleed, safe margins, resolution, color handling and supplier requirements. For digital, check file weight, target dimensions, density, crops, background and transparency. For standalone visual web artifacts, open the actual delivered file or preview in its intended environment; verify external asset or offline assumptions when relevant. Keep editable source and separately reusable assets where needed. Follow [review and delivery](ReviewAndDelivery.md), including relevant viewing conditions.

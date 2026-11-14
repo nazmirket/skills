@@ -1,6 +1,6 @@
 # Mirket documentation
 
-Mirket is a free, open-source plugin with 25 skills for Codex and Claude Code. Its workflows cover product decisions, design, engineering, security, migration, release, deployment and operations.
+Mirket is a free, open-source plugin with 16 skills for Codex and Claude Code. Its workflows cover planning, design, engineering, security, migration, release, deployment and operations.
 
 ## Install Mirket
 
@@ -43,12 +43,13 @@ A skill is a Markdown workflow with a trigger, guidance, and sometimes more deta
 | --- | --- |
 | Solve the assigned problem directly and report what matters | [Execute](../skills/execute/SKILL.md), the default across Mirket workflows |
 | Understand the project and its environment | [Adapt](../skills/adapt/SKILL.md), [Preflight](../skills/preflight/SKILL.md) |
-| Decide what to do and how to approach it | [Focus](../skills/focus/SKILL.md), [Equip](../skills/equip/SKILL.md), [Curate](../skills/curate/SKILL.md), [Architect](../skills/architect/SKILL.md), [Plan](../skills/plan/SKILL.md) |
-| Make or improve something | [Design](../skills/design/SKILL.md), [Imagine](../skills/imagine/SKILL.md), [Author](../skills/author/SKILL.md), [Debug](../skills/debug/SKILL.md), [Refactor](../skills/refactor/SKILL.md) |
-| Check the result and tidy up | [Test](../skills/test/SKILL.md), [Audit](../skills/audit/SKILL.md), [Critique](../skills/critique/SKILL.md), [Clean](../skills/clean/SKILL.md) |
-| Protect data and change persistent state | [Secure](../skills/secure/SKILL.md), [Migrate](../skills/migrate/SKILL.md) |
-| Ship and operate | [Release](../skills/release/SKILL.md), [Deploy](../skills/deploy/SKILL.md), [Operate](../skills/operate/SKILL.md) |
-| Coordinate, hand off, or pause work | [Orchestrate](../skills/orchestrate/SKILL.md), [Brief](../skills/brief/SKILL.md), [Sleep](../skills/sleep/SKILL.md) |
+| Compare options and plan the work | [Equip](../skills/equip/SKILL.md), [Architect](../skills/architect/SKILL.md), [Plan](../skills/plan/SKILL.md) |
+| Make or improve something | [Design](../skills/design/SKILL.md), [Author](../skills/author/SKILL.md), [Debug](../skills/debug/SKILL.md), [Refactor](../skills/refactor/SKILL.md) |
+| Check the result and tidy up | [Test](../skills/test/SKILL.md), [Audit](../skills/audit/SKILL.md), [Design](../skills/design/SKILL.md#visual-critique) for visual review, [Author](../skills/author/SKILL.md) for writing review, [Clean](../skills/clean/SKILL.md) |
+| Review security and privacy or model design threats | [Audit](../skills/audit/SKILL.md#security-and-privacy-review) for findings, [Architect](../skills/architect/SKILL.md#model-threats-during-design) for design decisions |
+| Change persistent state | [Migrate](../skills/migrate/SKILL.md) |
+| Ship and operate | The task owner prepares and publishes; [Deploy](../skills/deploy/SKILL.md) activates and handles [service health and recovery](../skills/deploy/SKILL.md#operate-and-recover) |
+| Coordinate, hand off, pause, or resume work | [Plan](../skills/plan/SKILL.md#coordinate-workers) coordinates workers; [Brief](../skills/brief/SKILL.md) owns handoffs and continuity |
 
 ## From a product decision to a running service
 
@@ -56,14 +57,15 @@ Choose the owner by the requested result. These responsibilities can overlap in 
 
 | Outcome | Owner | Evidence at the handoff |
 | --- | --- | --- |
-| Decide what is worth building or whether a shipped feature helped | Focus | User problem, observed outcomes, options and human decisions |
+| Decide what is worth building or whether a shipped feature helped | The human | User problem, observed outcomes and options |
 | Establish a technical approach and sequence substantial work | Architect and Plan | Boundaries, constraints, authority, acceptance and recovery criteria |
-| Build the requested behavior or artifact | The implementer, with Design/Author/Debug/Refactor as relevant | Actual implementation and focused Test, Audit or Critique evidence |
-| Assess threats and privacy or harden an authorized target | Secure | Trust/data boundaries, tested controls, residual risk |
+| Build the requested behavior or artifact | The implementer, with Design/Author/Debug/Refactor as relevant | Actual implementation, focused checks, and review findings from the relevant owner |
+| Assess security and privacy or model design threats | Audit for review, Architect for design | Trust and data boundaries, evidence about safeguards, open risks and decisions |
+| Harden an authorized target | The implementer | Verified safeguards and preserved legitimate access |
 | Change schemas, data formats or persistent configuration | Migrate | Preserved meaning and access, compatible consumers, reconciled state and recovery |
-| Prepare or publish a version | Release | Exact artifact, packaging/upgrade checks, notes and distribution state |
+| Prepare or publish a version | The task owner | Exact artifact, packaging and upgrade checks, notes, and distribution state |
 | Roll that artifact into an environment | Deploy | Target, rollout and served-path verification, rollback or forward recovery |
-| Maintain health and respond to failure | Operate | Current signals, capture/freshness where relevant, recovery and runbook |
+| Maintain health and respond to failure | Deploy’s operations branch | Current signals, capture and freshness where relevant, recovery and runbook |
 
 For example, a version adding a new persisted field may need Migrate to rehearse compatibility and reconciliation before Deploy switches consumers. A documentation edit can go directly through implementation and focused checks. Preparation is not publication, and publication is not proof of deployment. Existing execution authorization remains valid; new production targets or data-sharing decisions need their own authority.
 
@@ -72,7 +74,7 @@ For example, a version adding a new persisted field may need Migrate to rehearse
 The repository root is the shared plugin package. [Codex](../.agents/plugins/marketplace.json) and [Claude Code](../.claude-plugin/marketplace.json) marketplace entries both point to it. The canonical [skills catalog](../skills/) is independent of the marketplace descriptors, so future targets can package the same definitions.
 
 - **Skills and references.** Each packaged skill has a `SKILL.md` with its trigger and workflow, plus `agents/openai.yaml` for its Codex display metadata. Skill-specific and shared references cover details such as routing, workspace records, and review loops.
-- **Plugin descriptors and hooks.** [`.codex-plugin/plugin.json`](../.codex-plugin/plugin.json) and [`.claude-plugin/plugin.json`](../.claude-plugin/plugin.json) preserve the same identity and version. The [Codex compatibility layout](decisions/0003-CodexHookCompatibility.md) keeps hook discovery working in the verified host version. On supported host events, [lifecycle hooks](../CONTRIBUTING.md#lifecycle-hooks) supply routing and communication guidance and guard certain commit paths. An extra final review is optional. Hooks depend on host support and trust settings; they cannot guarantee compliance.
+- **Plugin descriptors and hooks.** [`.codex-plugin/plugin.json`](../.codex-plugin/plugin.json) and [`.claude-plugin/plugin.json`](../.claude-plugin/plugin.json) preserve the same identity and version. The [Codex compatibility layout](decisions/0003-CodexHookCompatibility.md) keeps hook discovery working in the verified host version. On supported host events, [lifecycle hooks](../CONTRIBUTING.md#lifecycle-hooks) supply routing, communication, and delivery guidance and guard certain commit paths. Hooks depend on host support and trust settings; they cannot guarantee compliance.
 - **Documentation.** The website reads this guide and the packaged skill Markdown at build time. The documentation and the plugin workflows stay in the same repository.
 
 ### Codex setup prompt
@@ -109,9 +111,9 @@ Yes. Mirket is free to use, modify, and redistribute, including commercially, un
 
 [Test](../skills/test/SKILL.md) checks whether behavior meets expectations and records the evidence. [Audit](../skills/audit/SKILL.md) reviews a change, plan, or system for defects and risks. A test result can be evidence in an audit.
 
-### How do Release, Deploy and Operate differ?
+### How do publication, deployment and operation differ?
 
-[Release](../skills/release/SKILL.md) identifies, checks and distributes a versioned artifact. [Deploy](../skills/deploy/SKILL.md) activates that artifact in a specific environment and verifies the served behavior. [Operate](../skills/operate/SKILL.md) assesses ongoing health, incidents and recovery. [Migrate](../skills/migrate/SKILL.md) handles persistent state and [Secure](../skills/secure/SKILL.md) handles security/privacy evidence across those boundaries.
+The task owner follows the [versioned distribution guide](../references/VersionedDistribution.md) to identify, check, and distribute the artifact when authorized. [Deploy](../skills/deploy/SKILL.md) activates that artifact in a specific environment and verifies the served behavior. Its [operations branch](../skills/deploy/SKILL.md#operate-and-recover) covers ongoing health, incidents, and recovery. [Migrate](../skills/migrate/SKILL.md) handles persistent state. [Audit](../skills/audit/SKILL.md#security-and-privacy-review) supplies security and privacy findings when needed.
 
 ### How do I verify an update is actually in use?
 

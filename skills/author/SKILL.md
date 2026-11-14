@@ -1,18 +1,21 @@
 ---
 name: author
-description: "Use when drafting or revising a document, report, or substantive product copy, or when triaging bug reports or drafting issue tickets."
+description: "Use when drafting, revising, or reviewing a document, report, or substantive product copy, or when triaging bug reports or drafting issue tickets."
 ---
 
 # Author
 
-Write for the reader's purpose and context. Identify what the reader needs, lead with useful substance, and verify claims that matter. Apply [Execute](../execute/SKILL.md) throughout this work.
+Own substantive writing: documents, reports, and substantive product copy. Keep routine replies and small wording changes within the ongoing task. Apply [Execute](../execute/SKILL.md) throughout this work.
 
 Use [Brief](../brief/SKILL.md) for handoffs and [Design](../design/SKILL.md) for visual direction and interface design. For product copy, apply the audience, claims and risk-appropriate checks below within the design or implementation workflow. For bug reports or a QA backlog, use [issue triage](references/IssueTriage.md): it owns intake, reproduction status, prioritization and issue drafts. Use the document workflow below when producing a durable artifact.
 
 Keep intermediate files in `.work/temp/<task>/` under the [project workspace rules](../../references/Workspace.md). Deliver the final document to its designated destination.
 
-1. Establish the readers, what they need to know or do, the scope and destination. Infer routine audience or format details from context; ask when the choice could materially change the result. For a revision, inspect the existing artifact and preserve unrelated content. Follow a requested format and the relevant host workflow.
-2. Organize content around the reader's task. Verify claims that matter using suitable sources or project evidence; label uncertainty when a claim cannot be verified. Link sources where readers need them. Match the evidence to the purpose: fiction, an internal draft and a technical guide have different needs.
-3. Check the artifact in its intended format, choosing checks by risk. Verify consequential instructions, links, calculations or totals as appropriate. For layout-sensitive output, open or render the final file and inspect relevant pages, slides or sheets at readable size. Text extraction cannot establish layout quality. Report material checks or capabilities that were unavailable.
+1. Infer the reader, purpose, and destination from the available context. State assumptions that could change the result. Ask when a material choice cannot be inferred. Follow the requested format and relevant host workflow.
+2. Organize the writing around what the reader needs to know or do. Follow the nearest applicable project writing and style guidance. Depart when the audience or purpose calls for it. For a broad revision, adjust structure and tone across the artifact for coherence. Preserve unrelated content and keep established facts and commitments unless the human authorizes changing them.
+3. Verify material claims against suitable sources or project evidence. Keep a useful claim with a clear qualification when the evidence is limited; cite supporting evidence where readers need it.
+4. Check the artifact in its intended format, choosing checks by risk. Verify consequential instructions, links, calculations or totals as appropriate. For layout-sensitive output, open or render the final file and inspect relevant pages, slides or sheets at readable size. Text extraction cannot establish layout quality.
 
-**Done:** Return the document or its location, supporting sources where useful, and the material checks and limits. Publish or send it when the request or prior instructions authorize that action.
+For a writing review, apply those checks to the existing artifact. Judge whether its clarity and structure serve the reader's purpose and whether material claims are supported. Report findings and evidence limits without rewriting when the request is review-only.
+
+**Done:** Return the artifact or its location. Include checks and gaps when they affect use. Publish or send it when the request or prior instructions authorize that action.

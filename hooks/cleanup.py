@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Review delivery and guard supported agent-shell commits."""
+"""Guard supported agent-shell commits."""
 
 import json
 import os
@@ -221,23 +221,7 @@ def check_staged_work(commit):
 
 
 def handle(payload):
-    event = payload.get("hook_event_name")
-    if event == "Stop" and os.environ.get("MIRKET_FINAL_REVIEW") != "1":
-        return {}
-    if event == "Stop" and "stop_hook_active" not in payload:
-        return {"systemMessage": "Mirket's final review was not requested: the Stop continuation flag is missing."}
-    if event == "Stop" and not isinstance(payload.get("stop_hook_active"), bool):
-        return {"systemMessage": "Mirket's final review was not requested: the Stop continuation flag is invalid."}
-    if event == "Stop" and payload.get("stop_hook_active") is False:
-        return {
-            "decision": "block",
-            "reason": (
-                f"Apply {SKILL} for task-scoped cleanup when relevant; respect scope, read-only restrictions, "
-                "pause requests, and existing work. Apply Execute to the final reply: outcome first, then verified checks, material "
-                "limits, and any needed next step. Skip narration of this review."
-            ),
-        }
-    if event != "PreToolUse" or payload.get("tool_name") != "Bash":
+    if payload.get("hook_event_name") != "PreToolUse" or payload.get("tool_name") != "Bash":
         return {}
     tool_input = payload.get("tool_input")
     command = tool_input.get("command") if isinstance(tool_input, dict) else None
@@ -265,7 +249,7 @@ def handle(payload):
         return {}
     if not commit.acknowledged:
         return deny(
-            f"Before committing, read {SKILL} and perform its repository-wide cleanup review. "
+            f"Before committing, read {SKILL} and perform its pre-commit review. "
             "Preserve unrelated changes and historical evidence; do not auto-stage. "
             "Then use the acknowledgment and an absolute Git target: "
             "MIRKET_CLEANUP_DONE=1 git -C '/absolute/worktree' commit -m 'message'. "

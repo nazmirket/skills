@@ -12,7 +12,6 @@ import unittest
 HOOK = Path(__file__).resolve().parents[1] / "hooks/cleanup.py"
 CLEAN = HOOK.parent.parent / "skills/clean/SKILL.md"
 REPOSITORY = shlex.quote(str(HOOK.parents[1]))
-FINAL_REVIEW = "MIRKET_FINAL_REVIEW"
 
 
 def invoke(payload, *, env=None):
@@ -40,35 +39,16 @@ def denied(output):
 
 
 class CleanupHooksTest(unittest.TestCase):
-    def test_stop_is_neutral_by_default(self):
-        env = {key: value for key, value in os.environ.items() if key != FINAL_REVIEW}
-        for reply in ("The answer is 2.", "No files were changed.", "Paused as requested."):
-            with self.subTest(reply=reply):
-                self.assertEqual(invoke({"hook_event_name": "Stop", "stop_hook_active": False,
-                                         "last_assistant_message": reply}, env=env), {})
-        self.assertEqual(invoke({"hook_event_name": "Stop", "stop_hook_active": False},
-                                env={**env, FINAL_REVIEW: "true"}), {})
-
-    def test_opt_in_stop_combines_execute_and_clean_in_one_continuation(self):
+    def test_package_does_not_register_a_stop_hook(self):
         hooks = json.loads((HOOK.parent / "hooks.json").read_text())["hooks"]
-        commands = [hook["command"] for group in hooks["Stop"] for hook in group["hooks"]]
-        self.assertEqual(len(commands), 1)
-        self.assertIn("/hooks/cleanup.py", commands[0])
-        env = {**os.environ, FINAL_REVIEW: "1"}
-        first = invoke({"hook_event_name": "Stop", "stop_hook_active": False}, env=env)
-        self.assertEqual(first.get("decision"), "block")
-        self.assertIn(str(CLEAN), first.get("reason", ""))
-        self.assertIn("Execute", first.get("reason", ""))
-        self.assertIn("verified checks", first.get("reason", ""))
-        self.assertTrue(CLEAN.is_file())
-        self.assertEqual(invoke({"hook_event_name": "Stop", "stop_hook_active": True}, env=env), {})
+        self.assertNotIn("Stop", hooks)
+        bash_commands = [hook["command"] for group in hooks["PreToolUse"]
+                         if group["matcher"] == "^Bash$" for hook in group["hooks"]]
+        self.assertTrue(any("/hooks/cleanup.py" in command for command in bash_commands))
 
-    def test_missing_or_invalid_stop_flag_does_not_loop(self):
-        for payload in ({"hook_event_name": "Stop"}, {"hook_event_name": "Stop", "stop_hook_active": "false"}):
-            with self.subTest(payload=payload):
-                result = invoke(payload, env={**os.environ, FINAL_REVIEW: "1"})
-                self.assertNotIn("decision", result)
-                self.assertIn("systemMessage", result)
+    def test_stale_stop_event_with_old_opt_in_cannot_continue(self):
+        self.assertEqual(invoke({"hook_event_name": "Stop", "stop_hook_active": False},
+                                env={**os.environ, "MIRKET_FINAL_REVIEW": "1"}), {})
 
     def test_malformed_payload_reports_gap_without_loop(self):
         for payload in ("{invalid", "[]", "null"):

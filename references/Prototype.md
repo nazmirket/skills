@@ -1,6 +1,6 @@
 # Prototype method
 
-Use under [Design](../skills/design/SKILL.md) for a visual or interaction question, [Focus](../skills/focus/SKILL.md) for a product rule or workflow, or [Architect](../skills/architect/SKILL.md) for a technical model or boundary. Deliver a disposable experiment and the evidence needed for a decision.
+Use for an authorized disposable experiment that answers a concrete question. [Design](../skills/design/SKILL.md) owns visual or interaction questions; [Architect](../skills/architect/SKILL.md) owns technical models or boundaries. When exploring a product rule or workflow, bring the evidence back to the human who owns the decision.
 
 ## Bound the experiment
 

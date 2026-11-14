@@ -1,23 +1,26 @@
 ---
 name: architect
-description: "Use for consequential technical choices in a new or existing system, or when asked to assess architecture or record an architectural decision."
+description: "Use to assess architecture, make a consequential technical choice, or record a settled change to a lasting system boundary."
 ---
 
 # Architect
 
-Make consequential technical decisions reviewable and record each decision when made. For a behavior-preserving change within an agreed boundary, use [Refactor](../refactor/SKILL.md).
+Make consequential technical choices reviewable. Write an architecture decision record (ADR) for a settled choice that changes a lasting boundary, such as an interface, ownership of data, or where hosts get their inputs. Use [Refactor](../refactor/SKILL.md) for behavior-preserving work within an agreed boundary; keep local choices in the diff or plan.
 
-1. Pin the decision, desired outcome, affected system and constraints. For an existing system, read relevant architecture decision records (ADRs), use project terminology and trace representative behavior, ownership, data and tests. Ground friction in concrete examples. For a new system, use the stated outcomes, constraints and available evidence; identify unknowns and assumptions rather than inventing existing behavior.
-2. Compare viable alternatives before settling on an interface. Consider the current approach when applicable. For each option, explain boundaries, responsibilities, what callers must know and how behavior can be tested. For a questionable existing boundary, ask whether removing the module would simplify the system or scatter complexity among callers. Research external technologies or patterns when they could materially change the decision; use [Curate](../curate/SKILL.md) to compare outside options. Use a diagram when it clarifies boundaries, flows or tradeoffs.
-3. Compare tradeoffs against actual constraints, including failure modes, migration and rollback where relevant. Cite conflicts with prior ADRs and explain evidence for reopening a decision. For a narrow uncertainty, use the [prototype method](../../references/Prototype.md) when an experiment is authorized. Present options, evidence, consequences and a recommendation; keep unresolved questions explicit.
-4. Bring decisions with material effects on product, cost, security or operations to the human. Make routine technical choices within the authorized scope, preserving prior decisions. An architectural assessment or recommendation alone does not authorize implementation.
+## Compare the options
 
-Use [Secure](../secure/SKILL.md) for threat and privacy evidence, [Migrate](../migrate/SKILL.md) for persistent-state compatibility and recovery, and [Operate](../operate/SKILL.md) for operational requirements when those could change the choice. Give the chosen constraints to [Release](../release/SKILL.md) and [Deploy](../deploy/SKILL.md) when delivery is in scope; an ADR is not proof that a rollout or restore works.
+- Define the decision and constraints. Read relevant ADRs and trace representative behavior, ownership, and data. Ask the human about unresolved requirements that determine the design. For example, trace both write paths before asking whether concurrent writes must be supported. An [authorized prototype](../../references/Prototype.md) can test a design against that requirement.
+- Compare the current approach with the strongest viable alternative. If there is no current approach, compare the leading proposal with its strongest alternative. Explain why serious contenders were ruled out. Use actual constraints, including failure, migration, and recovery where relevant. Stop when the evidence supports a recommendation.
+- Make technical choices within the approved outcome. Bring material tradeoffs that need human judgment to the human, including effects on product, cost, security, or operations. Use [Migrate](../migrate/SKILL.md) or [Deploy’s operations branch](../deploy/SKILL.md#operate-and-recover) when their evidence could change the choice.
+- If an accepted decision's assumption plausibly changed, note that it is under review and name the check that would settle it. Keep the accepted decision in force. Reopen it only when evidence challenges its rationale; keep the original record and link any successor.
+
+## Model threats during design
+
+When trust or data boundaries matter to the decision, identify what needs protection, who crosses the boundaries, and how each design changes exposure and sensitive data handling. Compare the safeguards, and record material assumptions and tradeoffs with the decision. Ask the human to resolve access, retention, or sharing policy that affects the choice. Use [Audit](../audit/SKILL.md#security-and-privacy-review) for a separate assessment when needed.
 
 ## Record the decision
 
-After an architectural decision is made, record it in the project's established ADR location and follow its format and numbering. If no location is established, create `docs/decisions/` at the project root and save the first [numbered ADR](../../references/Workspace.md#numbered-records) there, such as `0001-ProjectCleanup.md`. Record the context, options considered, chosen decision, decision-maker, evidence, rationale and consequences; link any useful diagram and related plan. Attribute the decision truthfully: a recommendation is not a decision or human approval. Preserve previous records and link superseded decisions rather than rewriting history.
-
-Use `.work/decisions/` only for private notes or drafts. Do not copy older private material into shared records without authorization. If the ADR destination cannot be written, report the missing record and its intended location.
-
-**Done:** The decision has an ADR, or the missing record is reported. For an unresolved choice, present the options and open decisions without creating an ADR. Route a chosen change to [Plan](../plan/SKILL.md) when execution planning is requested.
+- For an open decision that needs its own comparison, keep a private draft in `.work/decisions/` and link it from the active plan if there is one. Do not present a recommendation as an accepted decision.
+- Once settled, follow the project's ADR format and numbering. If there is no established location, use `docs/decisions/` and the [workspace numbering rules](../../references/Workspace.md#numbered-records). If the record cannot be saved, report its intended location.
+- Make the ADR usable on its own: include the context, constraints, alternatives, choice, decision-maker, rationale, and consequences. Include any known condition for revisiting. For checks that informed the decision, record the setup, commands or steps, and observed results so a maintainer can reproduce them without the private plan. Label unverified claims. Link useful supporting detail and keep private material out of the project record unless authorized.
+- Hand the ADR to [Plan](../plan/SKILL.md) when execution planning is needed. Plan derives the implementation steps and checks. The ADR records the decision; it does not authorize implementation.

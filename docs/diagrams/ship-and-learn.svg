@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 788 163" width="788" height="163" role="img" aria-labelledby="title description">
   <title id="title">Example: Ship and learn</title>
-  <desc id="description">Release: Prepare the version; Deploy: Roll it out; Operate: Verify health; Focus: Evaluate outcomes</desc>
+  <desc id="description">Task owner: Prepare the version; Deploy: Roll it out; Deploy: Verify health; You: Review user outcomes</desc>
   <rect x="0.5" y="0.5" width="787" height="162" fill="#191217" stroke="#67434c"/>
   <path d="M1 1h786v42H1z" fill="#22171d"/>
   <path d="M1 43h786" stroke="#67434c"/>
@@ -12,7 +12,7 @@
     <rect width="173" height="87" fill="#120e13" stroke="#67434c"/>
     <rect width="173" height="3" fill="#b22222"/>
     <text x="12" y="27" font-size="12" fill="#ff717d">01</text>
-    <text x="12" y="50" font-size="16" font-weight="bold" fill="#fff2e9">Release</text>
+    <text x="12" y="50" font-size="16" font-weight="bold" fill="#fff2e9">Task owner</text>
     <text x="12" y="71" font-size="12" fill="#c2aeb2">Prepare the version</text>
   </g>
   <path d="M196 102h9m-4-4 4 4-4 4" fill="none" stroke="#ff717d"/>
@@ -28,7 +28,7 @@
     <rect width="173" height="87" fill="#120e13" stroke="#67434c"/>
     <rect width="173" height="3" fill="#b22222"/>
     <text x="12" y="27" font-size="12" fill="#ff717d">03</text>
-    <text x="12" y="50" font-size="16" font-weight="bold" fill="#fff2e9">Operate</text>
+    <text x="12" y="50" font-size="16" font-weight="bold" fill="#fff2e9">Deploy</text>
     <text x="12" y="71" font-size="12" fill="#c2aeb2">Verify health</text>
   </g>
   <path d="M582 102h9m-4-4 4 4-4 4" fill="none" stroke="#ff717d"/>
@@ -36,8 +36,8 @@
     <rect width="173" height="87" fill="#120e13" stroke="#67434c"/>
     <rect width="173" height="3" fill="#b22222"/>
     <text x="12" y="27" font-size="12" fill="#ff717d">04</text>
-    <text x="12" y="50" font-size="16" font-weight="bold" fill="#fff2e9">Focus</text>
-    <text x="12" y="71" font-size="12" fill="#c2aeb2">Evaluate outcomes</text>
+    <text x="12" y="50" font-size="16" font-weight="bold" fill="#fff2e9">You</text>
+    <text x="12" y="71" font-size="12" fill="#c2aeb2">Review user outcomes</text>
   </g>
   </g>
 </svg>

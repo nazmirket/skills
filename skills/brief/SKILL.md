@@ -1,6 +1,6 @@
 ---
 name: brief
-description: "Use when writing a work handoff for another agent, session, or worker, or updating a recipient about a relevant change in parallel work."
+description: "Use to hand off work to another agent or session, send a relevant coordination update, or pause and resume work on request."
 ---
 
 # Brief
@@ -9,16 +9,21 @@ Write a concise, actionable handoff suited to its recipient. Preserve useful con
 
 ## Prepare the handoff
 
-1. Identify the recipient and include a small core: the purpose and desired result, exact next action, authorized boundaries, essential evidence, and an instruction to check whether the context is still current. State what success looks like. Tailor other detail to the recipient and task.
-2. Link authoritative plans, sources and results, particularly evidence expensive to gather again. If a source may be inaccessible, include the essential facts, identify the missing source and its evidence limits, and avoid implying those facts were independently verified. Redact secrets and unnecessary personal information.
-3. Ask the recipient to check the current task and working state, relevant paths and evidence before relying on the handoff. Describe the actual authority already given; an authorized task need not have an approved written plan. A handoff supplies context, not new authority, and never overrides current instructions.
+1. Identify the recipient. Give them the desired outcome, exact next action, authorized scope and its source, essential evidence, and what to recheck. Add detail only when it changes what the recipient should do.
+2. Link authoritative plans, sources, and results or give their exact locations when the recipient can access them. Copy only what they cannot retrieve or what would materially delay the next action. Label evidence limits, and omit secrets and unnecessary personal information.
+3. Recheck the current working state and the facts needed for the next action. Reuse authority recorded in the handoff only while it still applies and agrees with current instructions. Correct routine drift and continue within scope. Pause affected work if a conflict changes the goal, authority, product decision, ownership, interface, or acceptance criteria. Give the evidence to the human or coordinating owner for a decision.
 
 ## Adapt to the target
 
-4. For a future session, include task identity, current status, relevant workspace or plan paths, and enough context to continue without this conversation. Direct it to correct routine stale facts from current evidence and ask the human about material conflicts affecting the goal, product decisions or authorized scope. [Sleep](../sleep/SKILL.md) owns the pause and resume workflow; a brief alone does not pause work.
-5. For a subagent, define its exact scope, ownership boundaries, expected deliverable, dependencies and verification. Explain relevant parallel work and shared boundaries. The worker reports routine corrections, such as a renamed internal symbol with unchanged behavior, and continues. If a discrepancy affects the target, authority, ownership, interface, or acceptance criteria, report the evidence and pause affected work until the root gives direction. The root updates affected workers; the subagent does not change another worker's scope.
-6. When coordinating parallel work, [Orchestrate](../orchestrate/SKILL.md) decides when to update affected workers. Make each update actionable: state what changed, its impact on their scope, and what they should do. If it cannot be delivered, report the limitation; do not claim it was received.
+4. For a future session, include task identity, current status, and the workspace or plan location so the recipient can proceed without the old conversation.
+5. For a subagent, specify owned scope, deliverable, dependencies, and verification. Include parallel work only where it affects the assignment. The worker reports routine corrections and continues. Raise material conflicts with the coordinator before changing assignments or shared boundaries.
+6. [Plan’s coordination branch](../plan/SKILL.md#coordinate-workers) decides which workers need a material update. State what changed, its impact on their work, and what they should do next. Report when delivery cannot be confirmed.
 
-Save a handoff intended for later reuse or when requested. Use its designated destination, or save a [numbered Markdown brief](../../references/Workspace.md#numbered-records) in `.work/briefs/` at the project root, such as `0001-SalesContractsHandoff.md`. An ordinary subagent assignment can remain in the coordination channel. Sending a message outside the authorized task requires authorization.
+Save handoffs intended for reuse or when requested. Use the designated destination or a [numbered Markdown brief](../../references/Workspace.md#numbered-records) in `.work/briefs/` at the project root. Keep immediate worker assignments and updates in the coordination channel. Sending a message outside the authorized task requires authorization.
 
-**Done:** The recipient has a clear purpose, next action, essential evidence, authorized boundaries and a relevance check appropriate to its role.
+## Pause or resume
+
+- **Pause on request:** Stop starting new work. Check only enough to leave a reliable resume point. Stop task-owned workers only when safe and supported; leave operations running if interruption would be unsafe. Record what is still running or uncertain. For unfinished work, save a numbered handoff in `.work/briefs/` with the current state and next action. Give the human the path and a resume prompt, or give the handoff in the reply if saving fails. If no unfinished work is identifiable, say so and save context only if asked. Stop until the human asks to resume.
+- **Resume on request:** Read the named handoff or the one for the clearly identified task. Recheck current state and evidence, correct routine drift, and continue work already authorized. Escalate material conflicts before proceeding with the affected work.
+
+**Done:** The recipient can take the next authorized action, or the task is paused with a usable resume point.

@@ -4,7 +4,7 @@ The Python tests validate local contracts and fixture preparation. They do **not
 
 ## Prepare a behavioral case
 
-[behavior_cases.json](behavior_cases.json) contains 28 reusable cases covering all 25 owners. Each specifies the prompt and source context, expected owner and actions, allowed and prohibited writes, stopping condition, and evidence that should be reused. Expectations are reviewer criteria, not text to require the model to repeat.
+[behavior_cases.json](behavior_cases.json) contains 40 reusable cases covering all 16 owners. Each specifies the prompt and source context, expected owner and actions, allowed and prohibited writes, stopping condition, and evidence that should be reused. Expectations are reviewer criteria, not text to require the model to repeat.
 
 ```sh
 python3 -B tests/prepare_host_smoke.py --list
@@ -38,19 +38,21 @@ Repeat ambiguous routing cases with hooks disabled to assess linked guidance, an
 
 | Boundary | Cases and distinguishing result |
 | --- | --- |
-| Orientation, diagnosis, checks and review | `adapt-orientation`, `debug-authorized-fix`, `test-evidence-only`, `audit-read-only`: findings/checks return to their owner; an audit cannot silently become a fix. |
-| Technical choice and structural change | `architect-unresolved`, `refactor-preserve-behavior`: unresolved recommendations remain proposals; refactoring preserves the contract. |
-| Direct work, documents and quality review | `execute-short-answer`, `execute-direct-fix`, `author-document`, `critique-report`: take the simplest complete path, verify when needed, and keep documents and assessment with their owners. |
-| Product and tool decisions | `focus-outcome-learning`, `curate-internal-options`, `equip-tool-fit`: compare actual outcomes/options without inventing causation, adoption or product approval. |
-| Visual production and concept generation | `design-supplied-reference`, `imagine-no-generation-authority`: reproduce the supplied target; honor an explicit request to agree the brief before generation. |
-| Readiness and fallback | `preflight-inferior-fallback`: source review cannot establish keyboard operation; dependent work stops for the specific missing capability. |
-| Authorization, coordination and continuity | `plan-inherited-authority`, `plan-status-read-only`, `orchestrate-bounded-read-only`, `brief-stale-handoff`, `stale-handoff-material-conflict`, `sleep-pause`: reuse authority, keep status read-only, correct routine stale facts, escalate material conflicts, and actually stop on pause. |
-| Cleanup | `clean-no-op`: no changes or artifacts means no cleanup work is manufactured. |
-| Security and privacy | `secure-read-only`: identify trust/data risks without unauthorized probing or hardening. |
-| Release | `release-prepare-only`: prepare an identified versioned artifact and readiness evidence without publishing or deploying. |
-| Deployment | `deploy-review-target`: pin artifact and environment; define rollout/rollback checks without treating candidate preparation as rollout authority. |
-| Migration | `migrate-dry-run`: rehearse a state transition, reconcile invariants and preserve a usable recovery source; no production authority is inferred. |
-| Operations | `operate-incident`: prioritize recovery and verification; separate mitigation from later causal diagnosis and rollout mechanics. |
+| Orientation and diagnosis | `adapt-orientation`, `adapt-contract-conflict`, `debug-authorized-fix`, `debug-two-failed-hypotheses`: orient in source order when needed, fix a clear cause directly, and pause after two failed hypotheses without inventing a cause. |
+| Review | `audit-read-only`, `audit-independent-review-unavailable`: return findings without edits and leave a required independence gate open when only inline review is available. |
+| Verification | `test-evidence-only`, `test-regression-and-export-smoke`: return the failure without editing product code, and distinguish a focused regression check from a smoke check through the affected workflow. |
+| Technical choice and structural change | `architect-unresolved`, `architect-settled-boundary`, `refactor-preserve-behavior`, `refactor-characterize-and-fix`: clarify design requirements, record settled boundary changes, and distinguish behavior preserved by a refactor from a separately verified defect correction. |
+| Direct work and writing review | `execute-short-answer`, `execute-direct-fix`, `author-document`, `author-review`: take the simplest complete path, verify when needed, and stop at findings for writing review. |
+| Choosing tools | `equip-tool-fit`, `equip-pilot-needs-approval`: rule out a format that fails hard requirements and propose a pilot without running it merely because the tool is available. |
+| Visual production and review | `design-supplied-reference`, `design-no-generation-authority`, `design-redesign-baseline-blocked`, `design-visual-review`: carry over reference intent, agree on the brief before generating, require a live redesign baseline, and stop at findings for visual review. |
+| Readiness and fallback | `preflight-inferior-fallback`, `preflight-equivalent-fallback`: a page load cannot establish keyboard operation; an equivalent browser can unblock the exact check without a setup change. |
+| Authorization, coordination and continuity | `plan-inherited-authority`, `plan-status-read-only`, `plan-coordinate-read-only`, `brief-stale-handoff`, `stale-handoff-material-conflict`, `brief-pause`: preserve traceable authority, keep status read-only, point to current evidence, pause only work affected by a conflict, and stop on an explicit pause. |
+| Cleanup | `clean-no-op`, `clean-commit-blocked-by-stale-guide`: skip answer-only cleanup; hold a commit for an unresolved inconsistency caused by the task while preserving work owned by others. |
+| Security and privacy | `audit-security-read-only`, `architect-threat-model`: assess and prioritize risks without editing the target, and compare design exposure without assuming permission to implement. |
+| Versioned distribution | `release-prepare-only`: the task owner prepares an identified candidate and readiness evidence without publishing or deploying. |
+| Deployment | `deploy-review-target`, `deploy-production-authority`: pin artifact and target, reuse matching evidence, and keep target prerequisites, recovery compatibility, and production activation authority separate. |
+| Migration | `migrate-dry-run`, `migrate-resume-checkpoint`: demonstrate recovery, resume from a verified checkpoint under existing authority, and leave unmet acceptance criteria open. |
+| Operations | `deploy-incident`: use Deploy's operations branch without assuming rollout or mitigation authority; separate stabilization from causal investigation. |
 
 ## Lifecycle hook checks
 
@@ -58,12 +60,11 @@ Run these in fresh Codex and Claude Code sessions against the candidate, using d
 
 | Case | Expected observation |
 | --- | --- |
-| Start a session and explicitly invoke Mirket Audit. | All 25 skills are discoverable; the session hook supplies the routing pointer; Audit loads from the candidate plugin. |
-| Answer a short question, then perform an edit with final review disabled. | User-prompt Execute guidance is present. Default Stop remains neutral. Clean still applies to relevant delivery work. |
-| Repeat with `MIRKET_FINAL_REVIEW=1` inherited at host launch. | At most one Clean continuation with an Execute reminder; a shared Stop-loop flag may mean another hook already consumed it. Record that outcome rather than claiming Mirket ran. |
+| Start a session and explicitly invoke Mirket Audit. | All 16 skills are discoverable; the session hook supplies the routing pointer; Audit loads from the candidate plugin. |
+| Answer a short question, then perform an edit. | User-prompt Execute guidance is present and Clean still applies to relevant delivery work. Mirket registers no Stop hook and requests no extra pass. |
 | Request a standalone supported `git commit --dry-run`. | It remains a preview and needs neither cleanup acknowledgment nor an absolute target. |
 | Submit a guarded commit without an absolute target. | Hook denies it and explains the explicit-target requirement. No actual commit is required to observe denial. |
 | Stage a dummy `.work/private.txt` in a second disposable repository, then submit an acknowledged literal commit with that repository's absolute `-C` target. | The hook examines that target and denies the staged private path. A different session directory must not change this result. Never stage real private material for a test. |
 | Inspect an explicit-path exception using synthetic events, or a separately authorized disposable host run. | Only the named path is excepted; another staged `.work/` path remains denied. The assertion marker is not proof of human authorization. |
 
-If measuring final-review cost, record model requests, token counts when available, wall time, duplicated output and any material issue the review caught. Hook activation, behavioral quality and cost are separate observations. Do not label an unobserved host or a disabled/untrusted hook as working.
+Hook activation and agent behavior are separate observations. Do not label an unobserved host or a disabled/untrusted hook as working.

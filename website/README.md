@@ -1,6 +1,6 @@
 # Mirket skills website
 
-The local, static Next.js site for skills.mirket.dev. Its content and installation commands come from `docs/README.md` and the 25 Mirket skills in the repository’s root `skills/` directory. The catalog, skill pages, navigation, sitemap and social previews are derived from those sources.
+The local, static Next.js site for skills.mirket.dev. Its content and installation commands come from `docs/README.md` and the Mirket skills in the repository’s root `skills/` directory. The catalog, skill pages, navigation, sitemap and social previews are derived from those sources.
 
 ```sh
 cd website
@@ -14,7 +14,7 @@ The homepage reads the packaged skill display metadata. The docs index renders [
 
 The animated workflow diagrams and the repository README diagrams share [one set of steps](data/workflows.json). After changing those steps, run `npm run docs:diagrams` from this directory to refresh the checked-in SVGs.
 
-The shipping example distinguishes Release, Deploy, Operate and Focus. Secure and Migrate supply the relevant risk and state-transition evidence; the documentation explains their boundaries. Keep the examples aligned with the packaged routing guide instead of maintaining a second workflow definition in page components.
+The shipping example shows the task owner preparing the version, Deploy rolling it out and verifying health. The human reviews user outcomes. Keep the examples aligned with the packaged routing guide.
 
 ## Search and share previews
 
@@ -22,6 +22,6 @@ The static export includes canonical metadata, JSON-LD, and a page-specific 1200
 
 Run `npm run build` and `npm run seo:check` to validate the exported HTML, PNGs, and discovery files. To preview cards locally, open the PNGs in `out/social/`. When the card artwork changes, update the filename version in the discovery data so sharing services can fetch a new image URL.
 
-The 25-skill catalog produces 27 indexable pages and matching social previews. Verify the new skill routes, catalog navigation and long summaries at desktop and narrow mobile widths, including reduced-motion mode, before claiming visual quality. Build success alone is not rendered verification.
+The 16-skill catalog produces 18 indexable pages and matching social previews. Verify the new skill routes, catalog navigation and long summaries at desktop and narrow mobile widths, including reduced-motion mode, before claiming visual quality. Build success alone is not rendered verification.
 
 After deployment, verify that `/robots.txt`, `/sitemap.xml`, and the PNG URLs return 200 at the production hostname. Submit the sitemap in Google Search Console and Bing Webmaster Tools if you manage those properties. Use the platform's preview tool if an older card stays cached. Neither structured data nor `llms.txt` guarantees indexing, rankings, or inclusion in generated answers.

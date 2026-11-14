@@ -1,6 +1,6 @@
 # Review and delivery
 
-Use to prepare the evidence for [Critique](../../critique/SKILL.md) and hand over a design someone can use. Critique owns the rendered assessment and the recheck after material visual corrections.
+Inspect the result in its intended medium before delivery. For substantial visual work, follow the first inspection with a separate [visual critique](../SKILL.md#visual-critique) of the brief and actual preview or export. Recheck material corrections before delivery. Use the same branch for visual review-only requests.
 
 ## Give the reviewer a representative result
 

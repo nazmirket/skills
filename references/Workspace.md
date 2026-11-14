@@ -4,8 +4,8 @@ Use `.work/` at the project root for agent-owned files. In Git, use the current 
 
 | Path | What belongs there |
 | --- | --- |
-| `.work/plans/0001-Sales-Contracts/` | The task's outcome, agreement, plan, status and supporting evidence. Small plans may keep the record in one file; see [Plan](../skills/plan/SKILL.md). Link related architectural decisions. |
-| `.work/decisions/` | Private architecture notes and drafts. [Architect](../skills/architect/SKILL.md#record-the-decision) records settled decisions in the project's ADR location, defaulting to `docs/decisions/`. |
+| `.work/plans/0001-Sales-Contracts/` | Durable [Plan](../skills/plan/SKILL.md) records: `Evidences.md`, `Scope.md`, `Outcome.md`, `Plan.md`, and `Progress.md`. Short plans can stay in chat. Use a shared project location only when the human asks or the project explicitly requires it. Link related architectural decisions. |
+| `.work/decisions/` | Private architecture notes and drafts. [Architect](../skills/architect/SKILL.md#record-the-decision) records settled changes to lasting boundaries in the project's ADR location, defaulting to `docs/decisions/`. |
 | `.work/stashes/<task>/` | Temporary file-based snapshots or patches needed to set aside work. Record what they contain and how to restore them. |
 | `.work/recover/<task>/` | A targeted recovery copy of important work at risk of being lost. Record its original path and how to restore it; check the copy before removing the original. This is not a trash folder or a routine backup. |
 | `.work/briefs/0001-SalesContractsHandoff.md` | Standalone handoff prompts and other briefs without a designated destination. |

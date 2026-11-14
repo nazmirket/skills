@@ -14,10 +14,10 @@ from urllib.parse import unquote, urlsplit
 REPO = Path(__file__).resolve().parents[1]
 SKILLS = REPO / "skills"
 EXPECTED_SKILLS = {
-    "adapt", "architect", "audit", "author", "brief", "clean", "critique",
-    "curate", "debug", "deploy", "design", "equip", "execute", "focus",
-    "imagine", "migrate", "operate", "orchestrate", "plan", "preflight",
-    "refactor", "release", "secure", "sleep", "test",
+    "adapt", "architect", "audit", "author", "brief", "clean",
+    "debug", "deploy", "design", "equip", "execute",
+    "migrate", "plan", "preflight",
+    "refactor", "test",
 }
 
 

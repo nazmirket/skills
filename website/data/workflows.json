@@ -15,10 +15,10 @@
     "figure": "02",
     "asset": "ship-and-learn.svg",
     "stages": [
-      ["Release", "Prepare the version", "check"],
+      ["Task owner", "Prepare the version", "check"],
       ["Deploy", "Roll it out", "signal"],
-      ["Operate", "Verify health", "target"],
-      ["Focus", "Evaluate outcomes", "target"]
+      ["Deploy", "Verify health", "target"],
+      ["You", "Review user outcomes", "target"]
     ]
   }
 }

@@ -1,29 +1,24 @@
 ---
 name: preflight
-description: "Use when checking whether the current execution environment is ready for a project's development work, including missing tools, incompatible versions, and setup blockers."
+description: "Use when asked to check environment readiness, when a tool fails to run, or when evidence points to a setup blocker."
 ---
 
 # Preflight
 
-Determine whether the environment where the agent will actually work can support the requested project work. Base the assessment on the project's requirements and observed environment; do not change the environment during inspection.
+Check whether the environment can support the task. Skip routine prechecks for ordinary work.
 
-## Identify what the project needs
+## Diagnose the blocker
 
-1. Identify the project, the requested work, and where commands will run: the local device, a container, remote machine, or another available execution environment. State when the agent cannot inspect the relevant environment.
-2. Read the relevant setup documentation, project instructions, manifests, lockfiles, version pins, configuration, and existing development or CI commands. Identify the tools, runtimes, versions and services required for the requested work, as well as optional components. Respect the project's existing setup and conventions. If a requirement is unclear or sources conflict, report the uncertainty instead of inventing a requirement.
+- Identify where the work or check must run and which capabilities it needs. For a handoff from [Equip](../equip/SKILL.md), use the chosen tool, target environment, and required capabilities. Inspect only what's relevant, using read-only checks. Do not expose secrets or change the environment during inspection.
+- Use the configuration that governs the task, such as the container, lockfile, or CI job. If a setup guide disagrees, flag misleading guidance. Ask when the conflict changes what can be done or affects an explicit requirement.
+- Report what is ready, missing, incompatible, or unknown and what the evidence establishes. Block only the work that depends on the missing capability. Continue independent authorized implementation and available checks. Name the exact blocked check and leave it unverified.
 
-## Inspect and compare
+## Use equivalent evidence
 
-3. Use focused, read-only checks appropriate to the operating system and execution environment. Identify the active executable or service, its version and availability, and compare them with the project's stated requirements. Check the capabilities relevant to this work rather than collecting an unrelated inventory. Avoid exposing credentials, secrets, or unnecessary personal data.
-4. Classify each material requirement as **ready**, **missing**, **incompatible**, or **unknown**, and distinguish required components from optional ones. A command that cannot be inspected or executed is not necessarily absent; describe the observed failure and limits. Report the project evidence and actual observations supporting each blocker. Do not claim readiness when a required capability remains unknown.
+- Use a fallback within existing authority when it proves the same requirement. Report where and how it ran. Ask before using a weaker or uncertain substitute. A host browser can exercise the same build if the container browser isn't required; screenshots can't prove keyboard operation.
+- A local run using CI's pinned image, dependencies, and test command can establish readiness if other requirements for the task also match. Say where it ran and that the test itself has not run in CI.
 
-## Resolve blockers with the human
+## Set up and hand back
 
-Return environment evidence to [Deploy](../deploy/SKILL.md) for rollout, [Migrate](../migrate/SKILL.md) for state changes, or [Operate](../operate/SKILL.md) for service health. Readiness is a prerequisite; it does not prove deployment, migration, capture or recovery succeeded.
-
-5. For a missing required component, propose a specific installation that fits the project and current platform. For a breaking mismatch, explain the expected and observed setup, its impact, and a concrete project-compatible fix. Describe the relevant command or changes, scope and meaningful effects so the human can review the proposal. If more than one valid approach exists, show the tradeoff and recommendation. Ask for confirmation before any installation or environment change, unless the human has already explicitly authorized that specific action.
-6. When a required component is missing, incompatible or cannot be verified, stop work that depends on it. Present the proposed fix before proceeding with the affected project work. Continue independent read-only investigation where useful, and do not call a proposed fix complete until it has actually been applied and checked.
-7. If a preferred or project-required tool is unavailable, do not silently substitute an inferior method. An alternative is inferior when it reduces required capability, correctness, reliability, security, project fidelity or verification coverage for the task. Explain what the alternative would change and ask for explicit confirmation before using it. If its quality relative to the required method is unclear, explain that uncertainty and ask before substituting. Earlier explicit authorization for that specific alternative remains valid.
-8. After an approved change, recheck the affected requirement and report the actual result. Return readiness evidence and blockers to the person or workflow responsible for the affected work. A proposal does not authorize an environment change.
-
-**Done:** Report a concise readiness assessment, evidence for material findings, the effects and approval needed for each proposed fix or inferior fallback, and any remaining unknowns. The affected work remains blocked until its requirements are met or the human explicitly accepts an identified alternative.
+- Verify the documented setup command and explain what it changes. Wait before installing or changing the environment unless that setup is already authorized. If fresh environments routinely lack a tool needed for normal project checks, recommend fixing the shared setup and get approval before editing it.
+- After approved setup, check the tool's basic function in the target environment. For a browser, launch it and open the app. Return the readiness evidence and blockers to the workflow responsible for the work; the verification owner runs the change's acceptance checks. For lifecycle work, return environment evidence to [Deploy](../deploy/SKILL.md) or [Migrate](../migrate/SKILL.md) as appropriate.

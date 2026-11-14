@@ -1,6 +1,6 @@
 # Motion
 
-Use to design, tune or remove motion. Start with what the change helps a person notice or understand. For direct input and cancellation, use [Gestures](Gestures.md).
+Use to design, tune or remove motion. Start with what the change helps a person notice or understand. For direct input and cancellation, use [Gestures](Gestures.md). For a motion deliverable and its playback checks, use [Motion Design](../formats/MotionDesign.md).
 
 ## Decide what should move
 

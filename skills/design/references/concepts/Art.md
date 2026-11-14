@@ -1,6 +1,6 @@
 # Art direction and illustration
 
-Use for illustration, posters, slides and expressive visual artifacts. Start with a concrete subject, medium, viewing condition and what the audience should carry away.
+Use for illustration, posters and expressive visual artifacts. Start with a concrete subject, medium, viewing condition and what the audience should carry away. Use [Presentation Design](../formats/PresentationDesign.md) for the contract for a slide deck.
 
 ## Start from where it will be seen
 
@@ -17,12 +17,6 @@ Select one dominant element for the composition or frame. Sketch the eye path, i
 5. **Inspect the actual artwork.** Check subject accuracy, legible silhouette, clipping, awkward joins, lighting or anatomy when relevant, consistent treatment and export transparency. Give meaningful imagery an appropriate text alternative. Test a small mark or icon at its actual size and, when needed, with a single color.
 
 For example, an installation guide can use a simplified side view and directional marks to make orientation unmistakable. The corresponding announcement might use a closer crop and fuller texture for atmosphere. Preserve the product's recognizable geometry in both.
-
-## Design a sequence for a presentation
-
-Name the audience's decision or question and organize the argument around it. Give each slide a clear job: orient, explain, compare, show evidence, or request a decision. Put evidence where it answers the claim, and move supporting detail to notes or an appendix when appropriate. Use repeated layout where comparison benefits; change scale or structure at a meaningful transition.
-
-Compose for presentation or reading as requested. Check chart labels and units, type at the expected viewing distance, image quality, content order, repeated elements and speaker notes. Inspect the exported deck or PDF, including dense and sparse slides, as well as the editable file when one is requested. For timed motion or transitions, use [Motion](Motion.md).
 
 ## Generative work
 

@@ -21,7 +21,7 @@ Choose the craft guidance that answers the decision in front of you. A concept i
 
 ## Artwork, media, and input
 
-- [Art](Art.md) — Illustration, slides, and generative art.
+- [Art](Art.md) — Illustration, visual artifacts, and generative art.
 - [Image](Image.md) — Raster assets, cropping, and export.
 - [Vector](Vector.md) — Scalable, editable shape work.
 - [Motion](Motion.md) — Timing, transitions, and interruption.

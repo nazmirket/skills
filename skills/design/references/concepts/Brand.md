@@ -1,6 +1,6 @@
 # Brand
 
-Use to establish or preserve recognizable identity across assets, channels and product surfaces. Begin with intended effect and the identity cues the human needs to keep.
+Use to establish or preserve recognizable identity across assets, channels and product surfaces. Begin with intended effect and the identity cues the human needs to keep. When the deliverable is the mark or its variants, use [Logo Design](../formats/LogoDesign.md).
 
 ## Decide what stays recognizable
 

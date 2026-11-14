@@ -5,7 +5,6 @@ Choose the craft guidance that answers the decision in front of you. A concept i
 ## Structure and experience
 
 - [Composition](Composition.md) — Hierarchy, grouping, and Bento Box.
-- [Web](Web.md) — Browser surfaces and real content.
 - [UX](UX.md) — Actions, states, feedback, and recovery.
 - [Journey](Journey.md) — Tasks across steps, channels, and roles.
 - [Mobile](Mobile.md) — Touch and phone-specific constraints.

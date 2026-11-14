@@ -4,6 +4,8 @@ Use for a new visual direction, a new artifact, or implementing a supplied visua
 
 ## Set the direction
 
+Use [Web Design](../formats/WebDesign.md) for a browser deliverable that needs web-specific design or acceptance.
+
 1. Identify the audience, intended effect, main action or idea, and what the identity must preserve. Inspect the project's own content, assets, conventions and approved decisions first. Use outside comparisons only when they can resolve an open direction or pattern. If the direction or constraints are still unsettled, use [Author Brief](AuthorBrief.md).
 2. For an open direction, show two or three materially different approaches using comparable content and constraints. Identify what leads, what stays familiar, and what each approach does better. Resolve consequential direction or product choices with the human; reuse decisions already made.
 3. Prove the consequential part first with a representative screen, state, crop, frame, or section. Use realistic material and mark placeholders. Pick the relevant [concept references](../concepts/README.md); use a [style reference](../styles/README.md) only when it serves the brief.

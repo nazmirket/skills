@@ -2,6 +2,8 @@
 
 Use when an existing interface needs a materially different visual direction, structure or treatment. Start with the affected path and the requested effect. This workflow requires a live baseline.
 
+For a browser interface, use [Web Design](../formats/WebDesign.md) to identify the cases and conditions that matter to the baseline and acceptance.
+
 1. Open the affected path in its browser or native runtime before designing. Capture relevant sizes, steps, states and inputs. Record what already works: content meaning, navigation, feedback, actions, access and distinctive identity. Use [Collect Evidence](CollectEvidence.md) for deeper coverage. If you cannot see the affected path live, pause the redesign and identify the missing access or setup. Source and old captures are not substitutes.
 2. Explain what needs to change and what must survive. Agree on intended effect and identity constraints. Ask before changing working interactions, access, content meaning or distinctive identity unless already authorized. Use [Author Brief](AuthorBrief.md) if those decisions need a shared record.
 3. Start with the project's material. If direction is open, show two or three meaningfully different approaches using comparable content before developing one. Seek external comparisons only to resolve a real question. Prove the riskiest visual change with a representative real task or state. For a requested interface concept image, retain the live baseline and follow the [generation agreement](Create.md#generate-an-interface-concept). For a supplied target, use [reference translation](Create.md#implement-a-supplied-visual-reference).

@@ -368,6 +368,29 @@
       }
     },
     {
+      "id": "design-web-review-with-browser",
+      "primary_owner": "design",
+      "supporting_skills": [],
+      "prompt": "Review the local checkout redesign against the old version. Focus on how the confirmation dialog works with a keyboard on a narrow screen. Findings only.",
+      "context": "The supplied before and after files are runnable local previews of the affected path, with the same product and test data. An interactive browser is available, but Playwright is not. No installation or product changes are authorized.",
+      "expected_actions": [
+        "Use Design's Critique flow and Web Design acceptance guidance. Open both previews under matched conditions and use the available browser to exercise keyboard focus and dismissal.",
+        "Identify the introduced loss of Escape dismissal, and separate observation in the tested viewport and browser from unverified coverage. Reuse evidence rather than requiring automation or an additional review."
+      ],
+      "allowed_writes": [],
+      "prohibited_writes": [
+        "Changing the previews",
+        "Installing or requiring Playwright",
+        "Claiming that a screenshot verifies keyboard behavior"
+      ],
+      "stopping_condition": "Return findings and relevant limits; leave both previews unchanged.",
+      "evidence_reuse": "Use the supplied baseline and equivalent direct interaction in the available browser. A new capture is only helpful if it establishes a visible condition.",
+      "files": {
+        "before.html": "<!doctype html><html lang=\"en\"><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"><title>Checkout</title><main><h1>Checkout</h1><p>Notebook · $12.00</p><button id=\"review\">Review order</button><dialog aria-labelledby=\"confirm\"><h2 id=\"confirm\">Confirm order</h2><form method=\"dialog\"><button autofocus>Back</button></form></dialog></main><script>const dialog = document.querySelector('dialog'); document.querySelector('#review').addEventListener('click', () => dialog.showModal());</script></html>\n",
+        "after.html": "<!doctype html><html lang=\"en\"><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"><title>Checkout</title><main><h1>Checkout</h1><p>Notebook · $12.00</p><button id=\"review\">Review order</button><dialog aria-labelledby=\"confirm\"><h2 id=\"confirm\">Confirm order</h2><form method=\"dialog\"><button autofocus>Back</button></form></dialog></main><script>const dialog = document.querySelector('dialog'); document.querySelector('#review').addEventListener('click', () => dialog.showModal()); dialog.addEventListener('cancel', event => event.preventDefault());</script></html>\n"
+      }
+    },
+    {
       "id": "design-visual-review",
       "primary_owner": "design",
       "supporting_skills": [],

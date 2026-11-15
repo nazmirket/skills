@@ -1,11 +1,11 @@
 # Mobile design
 
-Use for a phone-sized web or native experience where touch, intermittent attention, depth, or device constraints change the design. Responsive layout is covered in [Responsive](Responsive.md).
+Use for craft decisions shaped by touch, intermittent attention, and system controls. [Responsive](Responsive.md) covers layout reflow; [Mobile Design](../formats/MobileDesign.md) covers the deliverable and device verification.
 
 ## Keep the task reachable
 
 Show the main action when it is useful and keep context when navigating back or resuming. Work with a thumb or a second hand, system text size, the keyboard, safe areas, and platform navigation. Avoid hover-only controls and custom gestures that compete with system gestures.
 
-## Check in context
+## Keep context through interruptions
 
-Run the primary task on a representative device, including text entry with the keyboard open, a long item, and the relevant orientation or interruption. Inspect loading and retry behavior when connection quality matters. Check that overlays or sticky controls do not hide focus, feedback or the next action.
+When an overlay, keyboard, or system gesture takes over, keep the current state and the response understandable. Show which action remains available, and restore a sensible place to resume. Place important feedback near the interrupted action when it helps someone recover.

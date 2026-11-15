@@ -1,11 +1,11 @@
 # Video
 
-Use when time, framing, sound and edit order carry a story or instruction. Establish the audience, destination, viewing conditions and required duration.
+Use when time, framing, sound and edit order carry a story or instruction. [Video Design](../formats/VideoDesign.md) covers the edited deliverable, playback checks and handoff.
 
 ## Design the sequence
 
-Storyboard beats with a purpose and tempo. Plan for normal and muted viewing, legible titles, captions and the action safe area for the destination. Lock framing and crop for the intended aspect ratios before building a full cut; check the first and final frame and any poster image.
+Give each shot one reason to exist: orient the viewer, show a change, supply evidence or explain the next action. Establish spatial context before moving to a detail. Cut when the viewer has seen the relevant change; leave enough time for information to register without a replay. Establish a rhythm first, then spend slower or faster moments where they change the meaning.
 
-## Review the export
+## Make picture and sound work together
 
-Watch at normal speed with sound, then check a muted pass and important cuts or titles at actual size. Confirm text time, caption sync, audio intelligibility, aspect ratio, duration, and export playback. Keep editable sources and note any footage, music or fonts the recipient must supply.
+Let the picture, narration, titles and sound do complementary work. For example, narration can explain why a choice matters while the recording shows where it is made and what changes. Use music or sound to support the pace without masking words or essential feedback. Make key action legible when framing or delivery changes.

@@ -1,6 +1,6 @@
 # Typography
 
-Use to give text a reading order, a voice and readable form at its actual size.
+Use to give text a reading order, a voice and readable form at its actual size. Use [Typeface Design](../formats/TypefaceDesign.md) if the task is to produce a font.
 
 ## Assign type roles
 

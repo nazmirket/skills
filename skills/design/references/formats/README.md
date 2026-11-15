@@ -27,8 +27,10 @@ A format describes what a deliverable must include, preserve, and prove in its i
 | A wordmark, symbol, or logo variants | [Logo Design](LogoDesign.md) |
 | An illustrated subject or a family of illustrations | [Illustration Design](IllustrationDesign.md) |
 | A composed static artifact, such as a poster, cover, or handout | [Canvas Design](CanvasDesign.md) |
+| A campaign banner, channel header, or mounted sign with placement constraints | [Banner Design](BannerDesign.md) |
 | A scalable or editable vector asset, including a trace | [Vector Design](VectorDesign.md) |
 | Artwork produced by a rule system, or a reusable generator | [Generative Art](GenerativeArt.md) |
 | A 3D still, asset, or interactive scene | [Scene Design](SceneDesign.md) |
+| A typeface that needs glyph coverage and usable font files | [Typeface Design](TypefaceDesign.md) |
 
 Start with the requested result. A single deliverable can need a second guide when that adds a distinct check; a diagram delivered as independently opened HTML needs both correct relationships and the agreed portability. An ordinary local refinement can stay in its flow. Open only the craft or tools that settle a decision or collect evidence.

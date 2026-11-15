@@ -1,6 +1,6 @@
 # Canvas design
 
-Use for a composed static artifact such as a poster, cover, print piece, or visual handout. The format describes the finished surface and its handoff, regardless of the tool used. Use [Illustration Design](IllustrationDesign.md) when the image itself is the result, or [Presentation Design](PresentationDesign.md) when the sequence across slides is the result.
+Use for a composed static artifact such as a poster, cover, print piece, or visual handout. The format describes the finished surface and its handoff, regardless of the tool used. Use [Illustration Design](IllustrationDesign.md) when the image itself is the result, [Banner Design](BannerDesign.md) when placement crops or mounting drive the design, or [Presentation Design](PresentationDesign.md) when the sequence across slides is the result.
 
 ## Compose for the destination
 

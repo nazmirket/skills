@@ -4,7 +4,7 @@ The Python tests validate local contracts and fixture preparation. They do **not
 
 ## Prepare a behavioral case
 
-[behavior_cases.json](behavior_cases.json) contains 45 reusable cases covering all 20 owners. Each specifies the prompt and source context, expected owner and actions, allowed and prohibited writes, stopping condition, and evidence that should be reused. Expectations are reviewer criteria, not text to require the model to repeat.
+[behavior_cases.json](behavior_cases.json) contains reusable cases covering all 20 skills. Each specifies the prompt and source context, expected owner and actions, allowed and prohibited writes, stopping condition, and evidence that should be reused. Expectations are reviewer criteria, not text to require the model to repeat.
 
 ```sh
 python3 -B tests/prepare_host_smoke.py --list
@@ -39,6 +39,7 @@ Repeat ambiguous routing cases with hooks disabled to assess linked guidance, an
 | Boundary | Cases and distinguishing result |
 | --- | --- |
 | Orientation and diagnosis | `adapt-orientation`, `adapt-contract-conflict`, `debug-authorized-fix`, `debug-two-failed-hypotheses`: orient in source order when needed, fix a clear cause directly, and pause after two failed hypotheses without inventing a cause. |
+| Concurrent migration guidance | `migrate-concurrent-transition-plan`, `migrate-single-transition-plan`: load the compatibility reference only when versions or writers overlap; use the saved race and rehearsal evidence, and keep planning separate from execution. |
 | External research | `search-community-trends`: follow actual discussions and dated project activity beyond familiar names; distinguish evidence of traction from visibility without switching to internal discovery or tool adoption. |
 | Review | `audit-read-only`, `audit-independent-review-unavailable`: return findings without edits and leave a required independence gate open when only inline review is available. |
 | Verification | `test-evidence-only`, `test-regression-and-export-smoke`: return the failure without editing product code, and distinguish a focused regression check from a smoke check through the affected workflow. |

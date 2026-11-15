@@ -7,6 +7,8 @@ description: "Use to plan, rehearse, or carry out an authorized persistent-state
 
 Own the transition of persistent data, schemas, formats, or configuration. Keep routine reversible changes with the task that already owns them. [Plan](../plan/SKILL.md) coordinates the broader work, [Architect](../architect/SKILL.md) owns consequential design choices, [Deploy](../deploy/SKILL.md) activates the application, and [Test](../test/SKILL.md) supplies verification.
 
+For overlapping versions or ongoing writes, use [concurrent transitions](references/ConcurrentTransitions.md) when compatibility, backfill, or catch-up needs design. Skip it for a single transition or when matching evidence already settles those questions.
+
 ## Define the transition
 
 1. **Agree on a preservation contract.** Identify the actual stores, source and target versions, and authorized environments. Inspect the schemas or configuration and representative sanitized records. Agree what must stay true, what may change, how to handle exclusions and conflicts, and what evidence will satisfy acceptance. Resolve ambiguous mappings and business rules before transforming affected state. Preserve identities, permissions, unknown fields, and unrelated settings unless the agreed target changes them.

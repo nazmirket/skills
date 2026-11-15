@@ -11,7 +11,7 @@ HOOKS = ROOT / "hooks"
 EXECUTE = HOOKS / "execute.py"
 SKILL = ROOT / "skills/execute/SKILL.md"
 CLEAN = ROOT / "skills/clean/SKILL.md"
-ROUTING = ROOT / "references/Routing.md"
+ROUTING = ROOT / "skills/execute/references/Routing.md"
 
 
 def invoke(payload):
@@ -39,6 +39,8 @@ class ExecuteHookTest(unittest.TestCase):
                 self.assertIn("within existing authority", output["additionalContext"])
                 self.assertIn("simplest complete path", output["additionalContext"])
                 self.assertIn("return evidence to that owner", output["additionalContext"])
+                self.assertIn("read it if it is not already in context", output["additionalContext"])
+                self.assertIn("supporting skills only for distinct unresolved questions", output["additionalContext"])
                 self.assertIn(str(SKILL), output["additionalContext"])
                 self.assertIn(str(ROUTING), output["additionalContext"])
                 self.assertTrue(SKILL.is_file())
@@ -52,6 +54,7 @@ class ExecuteHookTest(unittest.TestCase):
         self.assertIn("simplest complete path", context)
         self.assertIn("meaningful check plus required checks", context)
         self.assertIn("Skip routine narration", context)
+        self.assertIn("If the task made changes or produced an artifact", context)
         self.assertIn(str(CLEAN), context)
         self.assertNotIn("private sample prompt", context)
 

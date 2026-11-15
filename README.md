@@ -39,7 +39,7 @@ Ask for the result you want, or name a skill:
 - “Prepare this versioned artifact, then use Mirket Deploy to roll it out to staging.”
 - “Use Mirket Deploy to check whether this service is healthy and its data is current.”
 
-The [routing guide](references/Routing.md) helps you pick a workflow. You can also [browse all skills](skills/).
+The [routing guide](skills/execute/references/Routing.md) helps you pick a workflow. You can also [browse all skills](skills/).
 
 If you want Mirket to guide work by default, merge the [Codex instructions](instructions/AGENTS.md) into `~/.codex/AGENTS.md` or the [Claude Code instructions](instructions/CLAUDE.md) into `~/.claude/CLAUDE.md`.
 
@@ -48,8 +48,6 @@ If you want Mirket to guide work by default, merge the [Codex instructions](inst
 ![One skill owns the result. Bring in another only when it answers a distinct question. The human decides changes in scope. The agent reports what changed and what its checks proved.](docs/diagrams/mirket-loop.svg)
 
 ![Illustrative run: Debug traces a slow CSV export to repeated queries, Code supplies SQL guidance, and Test checks that the same fixture finishes within its timeout and the output is unchanged.](docs/diagrams/debug-with-evidence.svg)
-
-The [routing guide](skills/execute/references/Routing.md) explains which skill owns each result and when another skill should help.
 
 ## License
 

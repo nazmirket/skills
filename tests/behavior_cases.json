@@ -903,6 +903,51 @@
       }
     },
     {
+      "id": "migrate-concurrent-transition-plan",
+      "primary_owner": "migrate",
+      "supporting_skills": [],
+      "prompt": "Use Mirket Migrate to outline the order and checks for the transition in Transition.md. Planning only; do not change state, deploy, or run a rehearsal.",
+      "context": "Old and new application versions will overlap while users keep writing. The preservation contract requires the latest accepted values and deletions to survive. The proposed sequence and a saved copy run are the available evidence; no live access is supplied.",
+      "expected_actions": [
+        "Open Migrate's Concurrent Transitions reference for the unresolved compatibility and ongoing-write sequence.",
+        "Identify that the saved copy overwrote a newer value and recreated a deleted record; a completed batch does not establish correct state.",
+        "Outline compatible expansion, preservation of concurrent changes, replay-safe backfill, catch-up and reconciliation before consumer switching, then retirement under the existing recovery criteria. Keep activation with Deploy and do not execute."
+      ],
+      "allowed_writes": [],
+      "prohibited_writes": [
+        "Changing fixture data or application code",
+        "Running a migration, rehearsal, or deployment",
+        "Claiming concurrent-write safety or recovery has been verified"
+      ],
+      "stopping_condition": "Return the compatible sequence, missing evidence, and retirement/recovery conditions without execution.",
+      "evidence_reuse": "Reuse the saved race evidence and version contracts. Do not invent a database-specific synchronization capability or require unrelated tool guides.",
+      "files": {
+        "Transition.md": "# Proposed display-name transition\n\nVersion 1 reads and writes display_name. Version 2 will read and write profile_name. Both versions and their jobs will run during rollout; version 1 is also the intended rollback. Proposed order: add profile_name, copy the snapshot, deploy version 2, drop display_name. No synchronization or write pause is defined. Recovery after dropping the old representation is unproved.\n\nSaved copy run: t1 snapshot reads row 7 as Ada and includes row 8. At t2 the application accepts row 7 = Ava and deletion of row 8. At t3 the copy writes row 7 = Ada and restores row 8 in the new representation. The batch status is completed. No consumer check ran.\n"
+      }
+    },
+    {
+      "id": "migrate-single-transition-plan",
+      "primary_owner": "migrate",
+      "supporting_skills": [],
+      "prompt": "Use Mirket Migrate to explain the remaining order for this one-time local file conversion using Transition.md. Advice only; do not change files or run another rehearsal.",
+      "context": "This is an offline file conversion with no concurrent readers or writers, no overlapping versions, and no application rollout. The supplied rehearsal evidence matches the unchanged input and conversion rule.",
+      "expected_actions": [
+        "Use Migrate without opening the concurrent-transition reference; its trigger is absent.",
+        "Reuse the matching mapping and recovery evidence. Describe the authorized conversion, reconciliation, and retained original without introducing synchronization or staged coexistence."
+      ],
+      "allowed_writes": [],
+      "prohibited_writes": [
+        "Changing the source or target",
+        "Running a conversion or rehearsal",
+        "Claiming the final target has already been created"
+      ],
+      "stopping_condition": "Return the short remaining sequence and actual evidence limits without execution.",
+      "evidence_reuse": "The matching isolated rehearsal already covers the mapping and restoration. Reuse it without a new guide or another rehearsal.",
+      "files": {
+        "Transition.md": "# One-time local conversion\n\nApproved mapping: rename full_name to display_name; preserve id, permissions and all other fields. The frozen source contains two unique IDs. An isolated rehearsal on an identical copy produced both mapped records and restored the original records and permissions. The final target has not been written. Acceptance requires the two mapped records and unchanged remaining fields. Keep the original file; retirement is outside scope. No other process reads or writes these files.\n"
+      }
+    },
+    {
       "id": "migrate-resume-checkpoint",
       "primary_owner": "migrate",
       "supporting_skills": [

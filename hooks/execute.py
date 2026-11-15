@@ -8,7 +8,7 @@ import sys
 ROOT = Path(__file__).resolve().parent.parent
 EXECUTE = ROOT / "skills" / "execute" / "SKILL.md"
 CLEAN = ROOT / "skills" / "clean" / "SKILL.md"
-ROUTING = ROOT / "references" / "Routing.md"
+ROUTING = ROOT / "skills" / "execute" / "references" / "Routing.md"
 
 GUIDANCE = (
     "Execute: take the simplest complete path within existing authority. Preserve quality and run the "
@@ -23,12 +23,13 @@ def handle(payload):
     if event == "SessionStart":
         context = (
             f"{GUIDANCE} Apply {EXECUTE} throughout the session. "
-            "Choose one Mirket skill to own each outcome; supporting skills return evidence to that owner. "
+            "Choose one Mirket skill to own each outcome and read it if it is not already in context. "
+            "Add supporting skills only for distinct unresolved questions; they return evidence to that owner. "
             f"If ownership is unclear, consult {ROUTING}."
         )
     elif event == "UserPromptSubmit":
         context = (
-            f"{GUIDANCE} Apply {CLEAN} before delivery when relevant."
+            f"{GUIDANCE} If the task made changes or produced an artifact, apply {CLEAN} before delivery."
         )
     else:
         return {}

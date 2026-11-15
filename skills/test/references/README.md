@@ -1,6 +1,6 @@
 # Test runner guides
 
-Identify the runner, installed version, and project command from the lockfile, config and CI. Open only the guide for the check you’re running. Use the repository’s existing harness and choose the smallest check that can disprove the expected behavior. An existing check that already answers the question does not require another guide.
+Identify the runner, installed version, and project command from the lockfile, config and CI. Open only the guide for the check you’re running or interpreting. Use the repository’s existing harness and [Test’s check-selection and regression method](../SKILL.md#choose-the-check). An existing check that already answers the question does not require another guide.
 
 | Existing harness | Guide |
 | --- | --- |

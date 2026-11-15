@@ -1,6 +1,6 @@
 # Choose the workflow by the result
 
-Choose one primary owner for each requested result. Respect an explicitly requested skill and the authorized scope. At the start or during work, add a supporting skill when it can answer a distinct question, fill an evidence gap, or guide a decision that affects the result. Give it the question and the evidence already available; it returns guidance or evidence and limits to the owner without restarting the workflow or taking over execution.
+Choose one primary owner for each requested result. Respect an explicitly requested skill and the authorized scope. At the start or during work, add a supporting skill for a distinct unresolved question, evidence gap, or decision that affects the result. A cross-skill link or reused result does not by itself require loading that skill. Give support the question and the evidence already available; it returns guidance or evidence and limits to the owner without restarting the workflow or taking over execution.
 
 [Execute](../SKILL.md) applies across these workflows: take the simplest complete path, preserve quality, and report what matters.
 

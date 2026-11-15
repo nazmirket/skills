@@ -170,7 +170,8 @@ class PackageWiringTest(unittest.TestCase):
     def test_global_plugin_reference_paths_resolve(self):
         references = set()
         for path in (REPO / "instructions/AGENTS.md", REPO / "instructions/CLAUDE.md"):
-            references.update(re.findall(r"`(references/[^`]+\.md)`", path.read_text(encoding="utf-8")))
+            references.update(re.findall(r"`((?:skills/execute/)?references/[^`]+\.md)`", path.read_text(encoding="utf-8")))
+        self.assertTrue(references, "No plugin reference paths found in global guidance")
         for reference in references:
             with self.subTest(reference=reference):
                 self.assertTrue(exact_path_exists(REPO / reference))

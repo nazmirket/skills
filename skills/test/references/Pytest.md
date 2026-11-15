@@ -7,6 +7,6 @@ Confirm the project interpreter, virtual environment, config, test collection ro
 - Use the narrow node ID or a focused selector through the project runner. Confirm which tests actually collected, then run the wider related set if the change affects shared fixtures, import layout or a plugin. Prefer a real database, filesystem or HTTP boundary when a fake would miss the contract.
 - Inspect slow tests with duration reports before changing scope or parallelism. Separate setup, call and teardown; widen fixture scope only when isolation allows it. Use parallel execution only when already supported or authorized and test data, fixtures, and external resources can safely be independent.
 
-Record interpreter, command, selected case, data and outcome. For a regression, show the same check failed for the intended reason against the baseline and passed after the fix, or name the evidence that is unavailable.
+Record interpreter, command, selected case, data and outcome.
 
 Upstream: [Good integration practices](https://docs.pytest.org/en/stable/explanation/goodpractices.html), [Fixtures](https://docs.pytest.org/en/stable/how-to/fixtures.html), [Invocation and duration reports](https://docs.pytest.org/en/stable/how-to/usage.html).

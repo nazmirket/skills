@@ -1,6 +1,6 @@
 ---
 name: test
-description: "Use for explicit verification requests or when the task owner needs evidence about a behavior, regression, or performance claim."
+description: "Use to verify behavior, regressions or performance, interpret test results, or fill a verification gap for the task owner."
 ---
 
 # Test

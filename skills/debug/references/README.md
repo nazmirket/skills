@@ -10,7 +10,8 @@ Start with the failure and the next observation that could change the diagnosis.
 | What was the native program doing when it failed? | [LLDB](LLDB.md), [GDB](GDB.md) |
 | Which release, error event, or trace explains a production symptom? | [Sentry](Sentry.md) |
 | Which framework state, update, or render caused an issue? | [Vue Devtools](VueDevTools.md), [React Developer Tools](ReactDevTools.md), [Angular DevTools](AngularDevTools.md) |
-| Did a dev server, resolver, transform, or bundler change behavior or become slow? | [Vite](Vite.md), [webpack](Webpack.md), [esbuild](Esbuild.md) |
+| Did Vite accept a hot update, perform a full reload, or miss a change? Did its resolver or dependency optimizer affect the result? | [Vite](Vite.md) |
+| Did another bundler's resolver, transform, or build change behavior or become slow? | [webpack](Webpack.md), [esbuild](Esbuild.md) |
 
 - Start with the browser request or trace when a user interaction is slow. Use a framework profiler when evidence points to component updates, and a build tool when the problem is startup, rebuild, or emitted output.
 - For network symptoms, compare an affected client with a known working path. Prefer existing logs, connection checks and approved captures. A port state, successful handshake or single capture point does not prove application health.

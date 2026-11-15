@@ -7,7 +7,7 @@ description: "Use to find the cause of a concrete failure or unexpected behavior
 
 Start with what should happen, what actually happened, and the best evidence already available. Use [Adapt](../adapt/SKILL.md) if relevant facts are missing. Bring in other skills only for a distinct question, such as [Design](../design/SKILL.md) for unclear interaction intent or [Test](../test/SKILL.md) when a reliable check needs specialist work.
 
-When a tool can distinguish plausible causes, open the matching [Debug tool guide](references/README.md). Use existing evidence or a focused check directly when it answers the question.
+Open the matching [Debug tool guide](references/README.md) before interpreting tool-specific behavior or choosing a tool-specific diagnostic, even when working from saved traces. Skip guides when the evidence already establishes the cause and no tool-specific check is needed.
 
 ## Find the cause
 

@@ -1,13 +1,13 @@
 ---
 name: deploy
-description: "Use for CI/CD design and tuning, rollout and rollback in shared environments, service health or freshness, incident response, or verifying backup and recovery."
+description: "Use for CI/CD, rollout readiness, activation and rollback, interpreting rollout monitoring and alerts, service health or freshness, incident response, or backup and recovery checks."
 ---
 
 # Deploy
 
 Own readiness, activation, verification, and rollout recovery for artifact or configuration changes to shared running environments. Scale the work to risk. Use [the operations branch](#operate-and-recover) for health, observation, incidents, or backup recovery even when there is no rollout. The task owner supplies the [versioned artifact](../execute/references/VersionedDistribution.md), [Migrate](../migrate/SKILL.md) owns persistent-state transitions, and [Debug](../debug/SKILL.md) investigates causes.
 
-When a tool or platform affects the outcome, open the matching [stack guide](references/README.md). For a CI/CD design or performance question that spans tools, use [delivery pipeline practices](references/DeliveryPipelines.md).
+Before deciding how to use a tool or interpreting its behavior, open its [stack guide](references/README.md) first and on its own. This includes interpreting saved queries, alerts, and status output. Skip guides for evidence you can reuse as-is. For CI/CD design or performance across tools, use [delivery pipeline practices](references/DeliveryPipelines.md).
 
 ## Establish readiness
 

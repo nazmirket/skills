@@ -23,8 +23,8 @@ function resolveLink(url: string, key: string, source: string) {
   return `${repo}/${kind}/main/${path}${suffix}`;
 }
 
-export default function RepoMarkdown({markdown, source}: {markdown: string; source: string}) {
-  return <article className="prose" id="main-content" tabIndex={-1}>
+export default function RepoMarkdown({markdown, source, id = "main-content"}: {markdown: string; source: string; id?: string}) {
+  return <article className="prose" id={id} tabIndex={id === "main-content" ? -1 : undefined}>
     <Markdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeSlug]} urlTransform={(url, key) => resolveLink(url, key, source)}
       components={{table: ({node: _node, ...props}) => <div className="prose-table"><table {...props}/></div>}}>
       {markdown}

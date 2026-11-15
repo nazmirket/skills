@@ -218,6 +218,13 @@ h2 { margin: 9px 0 0; font: clamp(15px, 1.9vw, 22px)/1.55 var(--pixel); letter-s
 .prose table { width: 100%; border-collapse: collapse; }
 .prose th, .prose td { padding: 8px; border: 1px solid var(--rule); text-align: left; vertical-align: top; }
 .prose th { background: var(--raised); }
+.skill-overview h2 { margin: 18px 0 4px; font: 600 .875rem/1.5 var(--mono); letter-spacing: 0; }
+.skill-overview blockquote { max-width: 76ch; margin-top: 7px; padding: 9px 12px; background: var(--panel); color: var(--ink); }
+.skill-overview blockquote p { margin: 0; }
+.skill-instructions { margin-top: 20px; border: 1px solid var(--rule); }
+.skill-instructions summary { padding: 10px 12px; background: var(--panel); cursor: pointer; font: .8125rem/1.5 var(--mono); }
+.skill-instructions summary::marker { color: var(--accent); }
+.skill-instructions .prose { padding: 12px; }
 @media (max-width: 680px) {
   .docs-layout { grid-template-columns: minmax(0, 1fr); padding-block: 21px 30px; gap: 18px; }
   .docs-sidebar { position: static; max-height: none; overflow: visible; border-right: 0; border-bottom: 1px solid var(--rule); padding: 0 0 6px; }

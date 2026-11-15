@@ -20,7 +20,7 @@ export default function Home() {
           <Mascot/>
           <h1>Good work,<br/><span className="accent">on repeat.</span></h1>
         </div>
-        <p className="hero-description">Mirket is a free, open-source skills plugin for <strong>Codex</strong> and <strong>Claude Code</strong>. Use its {skills.length} workflows to research, shape products, build and verify changes, ship releases, and keep services healthy.</p>
+        <p className="hero-description">Mirket gives <strong>Codex</strong> and <strong>Claude Code</strong> reusable playbooks: what to inspect first, when to ask you for a decision, and how to verify the result.</p>
       </div>
       <Install {...getInstallGuide()}/>
     </section>

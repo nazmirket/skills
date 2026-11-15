@@ -1,0 +1,22 @@
+{
+  "adapt": "Unfamiliar project? Reads the code and local rules so the next task starts with the facts.",
+  "architect": "Making a big technical choice? Compares tradeoffs and records decisions that change system boundaries.",
+  "audit": "Reviewing a plan or change? Flags defects and risks with evidence and next steps.",
+  "author": "Writing docs or filing issues? Turns scattered facts into clear copy or actionable tickets.",
+  "brief": "Pausing or handing off? Captures the next step, what’s approved, and what to recheck.",
+  "clean": "Cleaning up or committing? Checks what can go and protects unrelated work.",
+  "code": "Implementing in a known stack? Brings in patterns and pitfalls for the language and version in use.",
+  "debug": "Something broke? Traces the failure to its cause and checks the smallest fix.",
+  "deploy": "Rolling out a change or handling an incident? Checks live health and guides rollout or recovery.",
+  "design": "Creating or revising visuals? Sets a direction and checks the result as users see it.",
+  "equip": "Choosing a tool or format? Compares fit and switching cost before changing course.",
+  "execute": "Default for any task. Keeps the work direct and reports only what matters.",
+  "market": "Positioning an offer or planning a campaign? Uses audience evidence to shape the message and next action.",
+  "migrate": "Changing stored data or schemas? Defines what to preserve and how to recover.",
+  "plan": "Coordinating complex work? Turns the agreed outcome into steps, checks, and handoffs.",
+  "preflight": "Unsure the environment can run the task? Finds missing tools or incompatible setup.",
+  "refactor": "Simplifying existing code? Improves the structure and checks that behavior stays the same.",
+  "search": "Need outside evidence? Investigates beyond the project and shows what the sources support.",
+  "ship": "Deciding what to build or launch? Weighs user evidence, priorities, and how to measure success.",
+  "test": "Need to verify a result? Runs focused checks and reports what passed and what’s unverified."
+}

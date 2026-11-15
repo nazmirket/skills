@@ -4,13 +4,19 @@ import Mascot from "../components/Mascot";
 import PixelIcon from "../components/PixelIcon";
 import StructuredData from "../components/StructuredData";
 import WorkflowDiagrams from "../components/WorkflowDiagram";
+import skillCards from "../data/skill-cards.json";
 import {getInstallGuide, getSkills} from "../lib/content";
 import {homePage, pageGraph, pageMetadata} from "../lib/discovery";
 
 export const metadata = pageMetadata(homePage);
+const cardDescriptions: Partial<Record<string, string>> = skillCards;
 
 export default function Home() {
-  const skills = getSkills();
+  const skills = getSkills().map(skill => {
+    const cardDescription = cardDescriptions[skill.slug];
+    if (!cardDescription) throw new Error(`Missing homepage description for skill: ${skill.slug}`);
+    return {...skill, cardDescription};
+  });
   return <main id="main-content" tabIndex={-1}>
     <StructuredData data={pageGraph(homePage)}/>
     <section className="hero wrap">
@@ -39,9 +45,9 @@ export default function Home() {
         <Link className="text-link catalog-link" href="/docs/">Read the docs <span aria-hidden="true">→</span></Link>
       </div>
       <div className="skill-grid">
-        {skills.map(({slug, name, summary}) => <Link className="skill-card" key={slug} href={`/docs/skills/${slug}/`}>
+        {skills.map(({slug, name, cardDescription}) => <Link className="skill-card" key={slug} href={`/docs/skills/${slug}/`}>
           <span className="skill-glyph"><PixelIcon glyph={slug}/></span>
-          <div><h3>{name}</h3><p>{summary}</p></div>
+          <div><h3>{name}</h3><p>{cardDescription}</p></div>
           <span className="skill-arrow" aria-hidden="true">→</span>
         </Link>)}
       </div>

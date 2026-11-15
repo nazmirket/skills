@@ -1,6 +1,6 @@
 # Choose the workflow by the result
 
-Choose one primary owner for each requested result. Respect an explicitly requested skill and the authorized scope. Add a supporting skill only for a distinct deliverable or missing evidence. Give it the question and the evidence already available; it returns its result and limits to the owner without restarting the workflow or taking over execution.
+Choose one primary owner for each requested result. Respect an explicitly requested skill and the authorized scope. At the start or during work, add a supporting skill when it can answer a distinct question, fill an evidence gap, or guide a decision that affects the result. Give it the question and the evidence already available; it returns guidance or evidence and limits to the owner without restarting the workflow or taking over execution.
 
 [Execute](../skills/execute/SKILL.md) applies across these workflows: take the simplest complete path, preserve quality, and report what matters.
 

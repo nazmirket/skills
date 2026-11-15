@@ -12,7 +12,7 @@ Leave the task coherent and protect existing work. Use Clean during the ordinary
 - Skip cleanup for an answer-only task that made no changes and produced no artifacts. Otherwise inspect the task's changes, direct references, and temporary output. A cleanup request can set a different scope.
 - Fix stale references in docs or agent instructions and remove steps the replacement demonstrably covers. Ask the human before changing the conditions that require verification. Check the resulting diff and affected references.
 - Remove only verified temporary files made by this task unless the human has authorized other deletions. Keep unrelated edits, plans, handoffs, and historical records. Before an authorized deletion, confirm the exact content can be recovered from Git or reliably regenerated. If it cannot, make and verify a targeted [recovery copy](../../references/Workspace.md) with restore instructions before deleting.
-- Record what you checked, what it showed, and material limits in the reply or existing task record. Keep screenshots only when the human asks or an active handoff needs them.
+- Record what you checked, what it showed, and material limits in the reply or existing task record. Keep screenshots needed for the requested deliverable, active review, or handoff.
 
 ## Before an authorized commit
 

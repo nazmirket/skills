@@ -5,9 +5,9 @@ description: "Use when drafting, revising, or reviewing a document, report, or s
 
 # Author
 
-Own substantive writing: documents, reports, and substantive product copy. Keep routine replies and small wording changes within the ongoing task. Apply [Execute](../execute/SKILL.md) throughout this work.
+Own general documents, reports, and substantive product copy. Keep routine replies and small wording changes within the ongoing task. Apply [Execute](../execute/SKILL.md) throughout this work.
 
-Use [Brief](../brief/SKILL.md) for handoffs and [Design](../design/SKILL.md) for visual direction and interface design. For product copy, apply the audience, claims and risk-appropriate checks below within the design or implementation workflow. For bug reports or a QA backlog, use [issue triage](references/IssueTriage.md): it owns intake, reproduction status, prioritization and issue drafts. Use the document workflow below when producing a durable artifact.
+Use [Brief](../brief/SKILL.md) for handoffs and [Design](../design/SKILL.md) for visual direction and interface design. [Market](../market/SKILL.md) owns marketing messaging and claims; [Ship](../ship/SKILL.md) owns product requirements. Use Author for writing support when a specialist owns the result. For bug reports or a QA backlog, use [issue triage](references/IssueTriage.md) for intake, reproduction status, priorities and issue drafts.
 
 Keep intermediate files in `.work/temp/<task>/` under the [project workspace rules](../../references/Workspace.md). Deliver the final document to its designated destination.
 

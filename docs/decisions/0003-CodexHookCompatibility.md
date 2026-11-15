@@ -6,7 +6,7 @@ The user authorized installing Mirket 0.4.0 with active lifecycle hooks. A fresh
 
 Controlled local comparisons used the same skill and hook configuration across manifest layouts. A portable root `plugin.json` suppressed discovery with explicit or default hook paths, including when a `.codex-plugin/plugin.json` fallback was present. Compatibility-only packages exposed the hook. Repeating the comparison with the full Mirket package exposed all 25 skills and all four hooks. These observations establish discovery, not hook execution.
 
-Use `.codex-plugin/plugin.json` for Codex and retain `.claude-plugin/plugin.json` for Claude Code. Synchronize identity, version and description, and keep the 25 skills, hook scripts and assets shared at the package root. The Codex manifest explicitly references `./skills/` and `./hooks/hooks.json`. Omit root `plugin.json` so it cannot shadow the working compatibility manifest.
+Use `.codex-plugin/plugin.json` for Codex and retain `.claude-plugin/plugin.json` for Claude Code. Synchronize identity, version and description, and keep the skill catalog, hook scripts and assets shared at the package root. The Codex manifest explicitly references `./skills/` and `./hooks/hooks.json`. Omit root `plugin.json` so it cannot shadow the working compatibility manifest.
 
 The [official packaging documentation](https://developers.openai.com/plugins/build/plugins) supports compatibility packages and also describes portable hook configuration. The observed 0.167.0 behavior disagrees with the latter. Adding another manifest while keeping the portable root did not solve it; bypassing trust cannot repair missing discovery. This decision favors the verified supported layout over portable-manifest distribution for now.
 

@@ -9,9 +9,9 @@ Help the human decide what product outcome to pursue, what to deliver, and how t
 
 | Requested result | Open |
 | --- | --- |
-| Product direction, target segment, or strategic bet | [Product strategy](references/ProductStrategy.md) |
+| Choose or reconsider product direction, target segment, or outcome | [Product strategy](references/ProductStrategy.md) |
 | Understand a user problem or test an assumption | [Discovery](references/Discovery.md) |
-| Rank opportunities or build an outcome roadmap | [Prioritization](references/Prioritization.md) |
+| Rank opportunities or build a roadmap toward a set outcome | Open [Prioritization](references/Prioritization.md) first, on its own. |
 | Define behavior, non-goals, and acceptance | [Requirements](references/Requirements.md) |
 | Decide product pricing, packaging, or entitlements | [Pricing and packaging](references/PricingAndPackaging.md) |
 | Define launch readiness, scope cuts, or a product go/no-go | [Delivery and readiness](references/DeliveryAndReadiness.md) |

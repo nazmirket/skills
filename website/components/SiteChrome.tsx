@@ -16,6 +16,7 @@ export function SiteHeader() {
       <Brand/>
       <nav aria-label="Main navigation">
         <Link href="/docs/">Docs</Link><Link href="/#skills">Skills</Link><Link href="/#install">Install</Link>
+        <a href="https://remember.mirket.dev/">Remember</a>
       </nav>
       <a className="header-link" href={repo}>GitHub <span aria-hidden="true">↗</span></a>
     </div>

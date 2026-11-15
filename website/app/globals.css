@@ -165,7 +165,7 @@ h2 { margin: 9px 0 0; font: clamp(15px, 1.9vw, 22px)/1.55 var(--pixel); letter-s
   .skill-grid { grid-template-columns: minmax(0, 1fr); }
 }
 @media (max-width: 380px) {
-  .header { gap: 8px; }
+  .header { flex-wrap: wrap; gap: 0 8px; }
   .header nav { gap: 8px; }
   .header nav a { font-size: 11px; }
   .mascot { width: 64px; }

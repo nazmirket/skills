@@ -7,6 +7,8 @@ description: "Use for explicit verification requests or when the task owner need
 
 Fill a verification gap and return the evidence to the task owner. The owner can run known focused checks directly. Reuse relevant results and choose the smallest checks that can catch the meaningful failure.
 
+When runner-specific behavior affects the check, open only the matching [test runner guide](references/README.md).
+
 ## Choose the check
 
 - Get the expected result from a specification, accepted example, or prior decision independent of the implementation. If sources conflict or are silent on a material rule, ask and continue with undisputed checks.

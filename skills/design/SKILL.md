@@ -13,7 +13,7 @@ Own the visual result. Agree with the human on the intended effect and what the 
 | Compare visual or interaction approaches | [Prototype a comparison](references/flows/Create.md#compare-approaches-without-changing-production) |
 | Change the direction of an existing interface | [Redesign](references/flows/Redesign.md) |
 | Refine the established direction or remove generic choices | [Polish](references/flows/Polish.md) |
-| Judge an actual preview or export | [Critique](references/flows/Critique.md) |
+| Review a preview, export, or live interaction | [Critique](references/flows/Critique.md): read the deliverable's format before inspecting it or running a probe. |
 | Record what is observable about the existing work | [Collect Evidence](references/flows/CollectEvidence.md) |
 | Explain the audience, intent or problem | [Understand](references/flows/Understand.md) |
 | Agree what the design must achieve and preserve | [Author Brief](references/flows/AuthorBrief.md) |

@@ -4,7 +4,7 @@ Use for a visual review or as a separate pass after initial inspection of substa
 
 ## Load the deliverable's format
 
-For a deliverable review, select the matching guide from the [format index](../formats/README.md), then open and read that guide before choosing cases or writing findings. The index only points to the review criteria. Match the deliverable, even if the available evidence is a screenshot, export, or handoff note. Open a second format guide only if a separate part of the deliverable needs different checks.
+As soon as you know the deliverable, open and read its format guide before collecting more evidence. Use [Web Design](../formats/WebDesign.md) for a running website or browser app, and the [format index](../formats/README.md) to find other guides. Read the matching guide even if the human already named the cases, supplied the findings, or provided a browser probe ready to run. The guide defines what the evidence can establish; a probe only gathers it. Match the deliverable, even if the available evidence is a screenshot, export, or handoff note. Open a second format guide only if a separate part of the deliverable needs different checks.
 
 Tool guides are optional. Open one only if you need its instructions to collect or verify evidence; use evidence and tools already sufficient for the review. When reviewing a change, compare matched before and after states and distinguish introduced problems from existing ones.
 

@@ -48,7 +48,7 @@ A skill is a Markdown workflow with a trigger, guidance, and sometimes more deta
 | Define a message and get it to the right people | [Market](../skills/market/SKILL.md) for positioning, brand voice, campaigns, conversion, and measurement |
 | Compare options and plan the work | [Equip](../skills/equip/SKILL.md), [Architect](../skills/architect/SKILL.md), [Plan](../skills/plan/SKILL.md) |
 | Make or improve something | [Design](../skills/design/SKILL.md), [Author](../skills/author/SKILL.md), [Debug](../skills/debug/SKILL.md), [Refactor](../skills/refactor/SKILL.md) |
-| Apply practices for the current technology | [Code](../skills/code/SKILL.md), with [23 stack guides](../skills/code/references/README.md) |
+| Apply coding practices for the current stack | [Code](../skills/code/SKILL.md), with [32 stack guides](../skills/code/references/README.md) and [shared engineering practices](../skills/code/references/EngineeringPractices.md) |
 | Check the result and tidy up | [Test](../skills/test/SKILL.md), [Audit](../skills/audit/SKILL.md), [Design critique](../skills/design/references/flows/Critique.md) for visual review, [Author](../skills/author/SKILL.md) for writing review, [Clean](../skills/clean/SKILL.md) |
 | Review security and privacy or model design threats | [Audit](../skills/audit/SKILL.md#security-and-privacy-review) for findings, [Architect](../skills/architect/SKILL.md#model-threats-during-design) for design decisions |
 | Change persistent state | [Migrate](../skills/migrate/SKILL.md) |

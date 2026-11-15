@@ -7,6 +7,12 @@ Read the JDK, target or release level, dependency platform and runtime limits. F
 - Handle exceptions where context or recovery is available, and keep the cause for diagnostics. Use try-with-resources for owned resources. Restore the interrupted status when catching an interruption you cannot propagate and the contract calls for preserving it.
 - Choose concurrency primitives from the target JDK and workload. Respect executor and connection pool ownership, deadlines and shutdown. Lightweight threads do not make downstream capacity unlimited.
 
+## Put limits where work accumulates
+
+- Separate deterministic rules from transport, persistence and threads. Keep small APIs expressive, including mutation, nullability and failure. Test serialization or database contracts with the configured implementation rather than with mocks of generated internals.
+- With managed concurrency, name the executor, queue limits, cancellation policy, and how the application shuts down. Check backpressure on the smallest external pool. Preserve caller context and interrupts across boundaries when the relevant API promises it.
+- Use representative warmed-up measurements. Use a JVM recording or profiler to distinguish CPU, lock, allocation and GC cost. Change hot loops or object allocation patterns only when the measured cost warrants the tradeoff.
+
 Check the supported build and a representative runtime, including a failure and any important ordering or concurrency condition. Confirm serialization and public API compatibility if across process or library boundaries.
 
-Sources: [Java Language Specification](https://docs.oracle.com/javase/specs/jls/se25/html/index.html) (select the target edition), [Google Java Style Guide](https://google.github.io/styleguide/javaguide.html) as an example style, not a replacement for local conventions.
+Sources: [Java Language Specification](https://docs.oracle.com/javase/specs/jls/se25/html/index.html) (select the target edition), [Google Java Style Guide](https://google.github.io/styleguide/javaguide.html) as an example style, not a replacement for local conventions, [JDK Flight Recorder](https://docs.oracle.com/en/java/javase/25/jfapi/) (select the target JDK).

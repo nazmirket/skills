@@ -7,6 +7,12 @@ Confirm the React version and renderer, SSR or hydration setup, and existing sta
 - Handle pending, empty, and error states close to the surface that can explain or recover from them. Respect the host's hydration contract: the first client render should agree with server output. Move browser-only reads to a suitable client boundary.
 - Measure a slow interaction before adding memoization. Prefer removing unnecessary work, narrowing state ownership, or reducing rerender scope where a profile supports it. Check compiler and framework settings before prescribing a blanket memo pattern.
 
+## Make components easier to change and measure
+
+- Preserve ownership of controlled and uncontrolled state. Extract a custom hook for a cohesive lifecycle or repeated behavior, and return just what the consumer needs. Test visible transitions rather than calls to internal hooks.
+- Use a reducer when multiple events mutate a coordinated state and the transitions need a readable place to live. Keep it deterministic. Keep broad context or shared stores for state with real cross-tree consumers; check updates against the existing selectors and memoization model.
+- Use the React Profiler and a browser performance trace when rendering appears slow. Separate rerenders from DOM, network and asset work, and compare the same interaction before and after. Prefer a narrow state owner or simpler render path before introducing cache and identity concerns.
+
 Verify a real transition, reordered list or changed props as applicable; inspect console hydration warnings when supported. Exercise behavior through accessible controls using the existing test stack.
 
-Official: [Thinking in React](https://react.dev/learn/thinking-in-react), [When an effect is useful](https://react.dev/learn/you-might-not-need-an-effect).
+Official: [Thinking in React](https://react.dev/learn/thinking-in-react), [When an effect is useful](https://react.dev/learn/you-might-not-need-an-effect), [Profiler](https://react.dev/reference/react/Profiler).

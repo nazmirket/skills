@@ -26,10 +26,10 @@ export default function Home() {
     </section>
 
     <section id="diagrams" className="section wrap" aria-labelledby="diagram-title">
-      <div className="section-heading">
-        <div><p className="eyebrow">MIRKET IN PRACTICE</p><h2 id="diagram-title">What changes with Mirket</h2></div>
-        <p>Your request drives the work. Mirket helps the agent pick the right skill, stay within scope, and show how it checked the result.</p>
-      </div>
+      <header className="diagram-heading">
+        <p className="eyebrow">MIRKET IN PRACTICE</p>
+        <h2 id="diagram-title">What changes with Mirket</h2>
+      </header>
       <WorkflowDiagrams/>
     </section>
 

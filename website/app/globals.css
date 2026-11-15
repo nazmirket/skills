@@ -70,7 +70,7 @@ p, figure { margin: 0; }
 .section { border-top: 1px solid var(--rule); padding-block: 26px 29px; scroll-margin-top: 10px; }
 .section-heading { display: flex; align-items: flex-end; justify-content: space-between; gap: 14px 24px; margin-bottom: 16px; }
 h2 { margin: 9px 0 0; font: clamp(15px, 1.9vw, 22px)/1.55 var(--pixel); letter-spacing: -.055em; }
-.section-heading > p { max-width: 47ch; color: var(--muted); font-size: 14px; }
+.diagram-heading { margin-bottom: 16px; }
 .diagram-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
 .diagram-frame { display: flex; flex-direction: column; }
 .diagram-caption { padding: 13px 16px; background: var(--raised); border-bottom: 1px solid #5d353e; }
@@ -103,15 +103,15 @@ h2 { margin: 9px 0 0; font: clamp(15px, 1.9vw, 22px)/1.55 var(--pixel); letter-s
 .trace-steps p { grid-column: 1 / -1; padding-left: 34px; }
 .trace-skill { display: inline-flex; position: relative; align-items: center; gap: 9px; width: max-content; font: 600 .875rem var(--mono); }
 .trace-skill:hover { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
-.trace-glyph { display: grid; width: 24px; height: 24px; padding: 4px; place-items: center; background: #3b1922; color: var(--accent); }
+.trace-glyph { display: grid; width: 24px; height: 24px; padding: 2px; place-items: center; background: var(--panel); color: var(--accent); }
 .copy-button { background: var(--panel); border: 1px solid var(--control-border); padding: 4px 9px; min-height: 32px; color: var(--ink); cursor: pointer; font: .6875rem var(--mono); white-space: nowrap; }
 .copy-button:hover { background: #482029; border-color: var(--accent); }
 .catalog-link { color: var(--accent); min-height: 33px; }
 .skill-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
-.skill-card { display: grid; grid-template-columns: 34px minmax(0, 1fr) auto; align-items: start; gap: 9px; min-height: 78px; padding: 11px; background: var(--panel); border: 1px solid var(--rule); }
+.skill-card { display: grid; grid-template-columns: 24px minmax(0, 1fr) auto; align-items: start; gap: 9px; min-height: 78px; padding: 11px; background: var(--panel); border: 1px solid var(--rule); }
 .skill-card:hover { border-color: var(--accent); background: #2a1820; }
-.skill-glyph { display: grid; place-items: center; width: 34px; height: 34px; background: #3b1922; color: var(--accent); }
-.skill-glyph svg { width: 24px; height: 24px; }
+.skill-glyph { display: grid; place-items: center; width: 24px; height: 24px; color: var(--accent); }
+.skill-glyph svg { width: 20px; height: 20px; }
 .skill-card h3 { margin: 4px 0 5px; color: var(--ink); font: .625rem/1.45 var(--pixel); overflow-wrap: anywhere; }
 .skill-card p { color: var(--muted); font-size: .8125rem; line-height: 1.45; }
 .skill-arrow { color: var(--accent); font: .8125rem var(--mono); }

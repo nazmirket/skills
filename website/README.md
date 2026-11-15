@@ -14,7 +14,7 @@ The homepage reads the packaged skill display metadata. The docs index renders [
 
 The homepage diagrams and the repository README SVGs share [one source](data/workflows.json). The first shows when the owning skill asks for help or a human decision; the second follows an illustrative bug fix from request to evidence. Keep both aligned with the packaged routing guide. After changing the data, run `npm run docs:diagrams` to refresh the SVGs.
 
-Each catalog card has a 12 × 12 [pixel icon](components/PixelIcon.tsx) drawn on the same grid. Add a distinct icon under the skill slug when adding a skill.
+Each catalog card has a 10 × 10 [pixel icon](components/PixelIcon.tsx) drawn on the same grid. Add a distinct icon under the skill slug when adding a skill.
 
 ## Search and share previews
 

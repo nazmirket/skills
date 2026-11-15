@@ -1,59 +1,70 @@
-"use client";
-
-import { Player } from "@remotion/player";
-import { useCurrentFrame } from "remotion";
-import { useEffect, useRef, useState } from "react";
-import PixelIcon, { type PixelGlyph } from "./PixelIcon";
-
+import Link from "next/link";
+import PixelIcon from "./PixelIcon";
 import workflows from "../data/workflows.json";
 
-type Variant = keyof typeof workflows;
-type CompositionProps = { variant: Variant; compact: boolean };
+const {routing, example} = workflows;
 
-function StageList({variant, active, layout}: {variant: Variant; active: number; layout: string}) {
-  return <ol className={`workflow-stages ${layout}`}>
-    {workflows[variant].stages.map(([label, detail, glyph], index) => <li key={label} className={`workflow-stage${index === active ? " is-current" : ""}`}>
-      <div className="stage-marker"><PixelIcon glyph={glyph as PixelGlyph}/><span aria-hidden="true">0{index + 1}</span></div>
-      <strong>{label}</strong>
-      <span className="stage-detail">{detail}</span>
-    </li>)}
-  </ol>;
+function DiagramCaption({figure, label, title}: {figure: string; label: string; title: string}) {
+  return <figcaption className="diagram-caption">
+    <span className="diagram-label">{figure} / {label}</span>
+    <h3>{title}</h3>
+  </figcaption>;
 }
 
-function Workflow({variant, compact}: CompositionProps) {
-  const frame = useCurrentFrame();
-  return <StageList variant={variant} active={Math.floor(frame / 45)} layout={compact ? "workflow-stages--compact" : ""}/>;
-}
-
-export default function WorkflowDiagram({variant = "loop"}: {variant?: Variant}) {
-  const {title, figure} = workflows[variant];
-  const [width, setWidth] = useState(0);
-  const compact = width < 510;
-  const [reducedMotion, setReducedMotion] = useState(true);
-  const media = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const query = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const update = () => setReducedMotion(query.matches);
-    update();
-    query.addEventListener("change", update);
-    return () => query.removeEventListener("change", update);
-  }, []);
-
-  useEffect(() => {
-    const element = media.current;
-    if (!element) return;
-    const observer = new ResizeObserver(([entry]) => setWidth(Math.round(entry.contentRect.width)));
-    observer.observe(element);
-    return () => observer.disconnect();
-  }, []);
-
+function RoutingDiagram() {
   return <figure className="diagram-frame">
-    <figcaption className="panel-bar diagram-title"><span><b>{figure}</b> / {title}</span></figcaption>
-    <div className="diagram-media" ref={media}>
-      {reducedMotion || !width
-        ? <StageList variant={variant} active={0} layout="workflow-stages--static"/>
-        : <Player component={Workflow} inputProps={{variant, compact}} durationInFrames={180} compositionWidth={width} compositionHeight={compact ? 202 : 116} fps={30} autoPlay initiallyMuted numberOfSharedAudioTags={0} controls={false} clickToPlay={false} allowFullscreen={false} spaceKeyToPlayOrPause={false} loop style={{width:"100%", display:"block"}}/>}
+    <DiagramCaption {...routing}/>
+    <div className="routing-flow">
+      <div className="route-node route-node--primary">
+        <strong>{routing.start.label}</strong>
+        <p>{routing.start.detail}</p>
+      </div>
+      <div className="route-options">
+        <p className="diagram-label route-cue">{routing.branchCue}</p>
+        <div className="route-branches">
+          {routing.branches.map(({label, detail}) => <div className="route-node" key={label}>
+            <strong>{label}</strong>
+            <p>{detail}</p>
+          </div>)}
+        </div>
+      </div>
+      <div className="route-node route-node--result">
+        <strong>{routing.finish.label}</strong>
+        <p>{routing.finish.detail}</p>
+      </div>
     </div>
   </figure>;
+}
+
+function ExampleDiagram() {
+  return <figure className="diagram-frame">
+    <DiagramCaption {...example}/>
+    <div className="example-trace">
+      <div className="trace-prompt">
+        <span className="diagram-label">YOU ASK</span>
+        <p>{example.prompt}</p>
+      </div>
+      <ol className="trace-steps">
+        {example.steps.map(({skill, label, role, detail}) => <li key={skill}>
+          <Link className="trace-skill" href={`/docs/skills/${skill}/`}>
+            <span className="trace-glyph"><PixelIcon glyph={skill}/></span>
+            {label}
+          </Link>
+          <span className="diagram-label">{role}</span>
+          <p>{detail}</p>
+        </li>)}
+      </ol>
+      <div className="trace-result">
+        <span className="diagram-label">WHAT YOU GET BACK</span>
+        <p>{example.report}</p>
+      </div>
+    </div>
+  </figure>;
+}
+
+export default function WorkflowDiagrams() {
+  return <div className="diagram-grid">
+    <RoutingDiagram/>
+    <ExampleDiagram/>
+  </div>;
 }

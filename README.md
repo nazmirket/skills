@@ -45,11 +45,11 @@ If you want Mirket to guide work by default, merge the [Codex instructions](inst
 
 ## Mirket in practice
 
-![The Mirket loop: name the outcome, pick a skill, make and verify, and report the change.](docs/diagrams/mirket-loop.svg)
+![One skill owns the result. Bring in another only when it answers a distinct question. The human decides changes in scope. The agent reports what changed and what its checks proved.](docs/diagrams/mirket-loop.svg)
 
-![Shipping and learning with Mirket: the task owner prepares the version, Deploy rolls it out and verifies health, and you review the user outcomes.](docs/diagrams/ship-and-learn.svg)
+![Illustrative run: Debug traces a slow CSV export to repeated queries, Code supplies SQL guidance, and Test checks that the same fixture finishes within its timeout and the output is unchanged.](docs/diagrams/debug-with-evidence.svg)
 
-The task owner follows the [versioned distribution guide](references/VersionedDistribution.md) to prepare or publish an identified artifact. Deploy changes the target environment and owns service health, recovery, and freshness checks. Migrate owns persistent-state transitions, and Audit supplies security and privacy findings.
+The [routing guide](skills/execute/references/Routing.md) explains which skill owns each result and when another skill should help.
 
 ## License
 

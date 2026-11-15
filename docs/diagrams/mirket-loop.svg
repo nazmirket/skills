@@ -1,43 +1,42 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 788 163" width="788" height="163" role="img" aria-labelledby="title description">
-  <title id="title">The Mirket loop</title>
-  <desc id="description">Request: Name the outcome; Route: Pick a skill; Work + check: Make and verify; Result: Report the change</desc>
-  <rect x="0.5" y="0.5" width="787" height="162" fill="#191217" stroke="#67434c"/>
-  <path d="M1 1h786v42H1z" fill="#22171d"/>
-  <path d="M1 43h786" stroke="#67434c"/>
-  <rect x="18" y="17" width="9" height="9" fill="#b22222"/>
-  <g font-family="ui-monospace, monospace">
-    <text x="38" y="26" font-size="15" font-weight="bold" fill="#fff2e9">The Mirket loop</text>
-    <text x="770" y="26" font-size="12" text-anchor="end" fill="#ff717d">FIG. 01</text>
-  <g transform="translate(18,58)">
-    <rect width="173" height="87" fill="#120e13" stroke="#67434c"/>
-    <rect width="173" height="3" fill="#b22222"/>
-    <text x="12" y="27" font-size="12" fill="#ff717d">01</text>
-    <text x="12" y="50" font-size="16" font-weight="bold" fill="#fff2e9">Request</text>
-    <text x="12" y="71" font-size="12" fill="#c2aeb2">Name the outcome</text>
-  </g>
-  <path d="M196 102h9m-4-4 4 4-4 4" fill="none" stroke="#ff717d"/>
-  <g transform="translate(211,58)">
-    <rect width="173" height="87" fill="#120e13" stroke="#67434c"/>
-    <rect width="173" height="3" fill="#b22222"/>
-    <text x="12" y="27" font-size="12" fill="#ff717d">02</text>
-    <text x="12" y="50" font-size="16" font-weight="bold" fill="#fff2e9">Route</text>
-    <text x="12" y="71" font-size="12" fill="#c2aeb2">Pick a skill</text>
-  </g>
-  <path d="M389 102h9m-4-4 4 4-4 4" fill="none" stroke="#ff717d"/>
-  <g transform="translate(404,58)">
-    <rect width="173" height="87" fill="#120e13" stroke="#67434c"/>
-    <rect width="173" height="3" fill="#b22222"/>
-    <text x="12" y="27" font-size="12" fill="#ff717d">03</text>
-    <text x="12" y="50" font-size="16" font-weight="bold" fill="#fff2e9">Work + check</text>
-    <text x="12" y="71" font-size="12" fill="#c2aeb2">Make and verify</text>
-  </g>
-  <path d="M582 102h9m-4-4 4 4-4 4" fill="none" stroke="#ff717d"/>
-  <g transform="translate(597,58)">
-    <rect width="173" height="87" fill="#120e13" stroke="#67434c"/>
-    <rect width="173" height="3" fill="#b22222"/>
-    <text x="12" y="27" font-size="12" fill="#ff717d">04</text>
-    <text x="12" y="50" font-size="16" font-weight="bold" fill="#fff2e9">Result</text>
-    <text x="12" y="71" font-size="12" fill="#c2aeb2">Report the change</text>
-  </g>
-  </g>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 788 379" width="788" height="379" role="img" aria-labelledby="title description">
+  <title id="title">One owner. Help when it matters.</title>
+  <desc id="description">Start with your outcome: One skill owns the result and takes the simplest path that can deliver it. Need separate expertise?: Bring in one skill for the specific question or check. The original owner keeps the task. Decision changes scope?: You make the call. The agent can keep working on what you already authorized. Get a result you can trust: Report what changed, what the checks proved, and any material limits.</desc>
+  <style>
+    text { font-family: ui-monospace, monospace; fill: #fff2e9; }
+    .label { font-size: 11px; fill: #ff717d; font-weight: bold; }
+    .heading { font-size: 19px; font-weight: bold; }
+    .card-title { font-size: 14px; font-weight: bold; }
+    .detail { font-size: 13px; fill: #c2aeb2; }
+    .centered { text-anchor: middle; }
+    .card { fill: #120e13; stroke: #67434c; }
+    .featured { fill: #25171d; stroke: #67434c; }
+    .branch { stroke: #91646d; stroke-dasharray: 3 3; fill: none; }
+    .connector { stroke: #ff717d; fill: none; }
+  </style>
+  <rect x=".5" y=".5" width="787" height="378" fill="#191217" stroke="#67434c"/>
+  <path d="M1 1h786v63H1z" fill="#22171d"/>
+  <path d="M1 64h786" stroke="#67434c"/>
+  <text class="label" x="19" y="23">01 / THE WORKING RULE</text>
+  <text class="heading" x="19" y="48">One owner. Help when it matters.</text>
+  <rect class="featured" x="19" y="80" width="750" height="59"/>
+  <rect x="19" y="80" width="3" height="59" fill="#ff717d"/>
+  <text class="card-title" x="33" y="105">Start with your outcome</text>
+  <text class="detail" x="33" y="127">One skill owns the result and takes the simplest path that can deliver it.</text>
+  <path class="connector" d="M394 139V299m-4-5 4 5 4-5"/>
+  <path class="branch" d="M203 180v-10h382v10 M203 277v10h382v-10"/>
+  <rect x="327" y="150" width="134" height="17" fill="#191217"/>
+  <text class="label centered" x="394" y="163">ONLY WHEN NEEDED</text>
+  <rect class="card" x="19" y="180" width="368" height="97"/>
+  <text class="card-title" x="33" y="205">Need separate expertise?</text>
+  <text class="detail" x="33" y="227">Bring in one skill for the specific</text>
+<text class="detail" x="33" y="246">question or check. The original owner</text>
+<text class="detail" x="33" y="265">keeps the task.</text>
+<rect class="card" x="401" y="180" width="368" height="97"/>
+  <text class="card-title" x="415" y="205">Decision changes scope?</text>
+  <text class="detail" x="415" y="227">You make the call. The agent can keep</text>
+<text class="detail" x="415" y="246">working on what you already authorized.</text>
+  <rect class="featured" x="19" y="301" width="750" height="59"/>
+  <rect x="19" y="301" width="3" height="59" fill="#ff717d"/>
+  <text class="card-title" x="33" y="326">Get a result you can trust</text>
+  <text class="detail" x="33" y="348">Report what changed, what the checks proved, and any material limits.</text>
 </svg>

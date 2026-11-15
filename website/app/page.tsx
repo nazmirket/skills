@@ -1,22 +1,13 @@
 import Link from "next/link";
 import Install from "../components/Install";
 import Mascot from "../components/Mascot";
-import PixelIcon, {type PixelGlyph} from "../components/PixelIcon";
+import PixelIcon from "../components/PixelIcon";
 import StructuredData from "../components/StructuredData";
-import WorkflowDiagram from "../components/WorkflowDiagram";
+import WorkflowDiagrams from "../components/WorkflowDiagram";
 import {getInstallGuide, getSkills} from "../lib/content";
 import {homePage, pageGraph, pageMetadata} from "../lib/discovery";
 
 export const metadata = pageMetadata(homePage);
-
-const glyphs: Record<string, PixelGlyph> = {
-  adapt: "target", architect: "plan", audit: "inspect", author: "prompt",
-  brief: "signal", clean: "clean", code: "prompt",
-  debug: "bug", design: "design", equip: "prompt", execute: "signal",
-  plan: "plan",
-  preflight: "check", refactor: "clean", search: "inspect", test: "check",
-  market: "target", migrate: "plan", deploy: "signal", ship: "plan",
-};
 
 export default function Home() {
   const skills = getSkills();
@@ -35,8 +26,11 @@ export default function Home() {
     </section>
 
     <section id="diagrams" className="section wrap" aria-labelledby="diagram-title">
-      <div className="section-heading"><h2 id="diagram-title">How it Works</h2></div>
-      <div className="diagram-grid"><WorkflowDiagram/><WorkflowDiagram variant="example"/></div>
+      <div className="section-heading">
+        <div><p className="eyebrow">MIRKET IN PRACTICE</p><h2 id="diagram-title">What changes with Mirket</h2></div>
+        <p>Your request drives the work. Mirket helps the agent pick the right skill, stay within scope, and show how it checked the result.</p>
+      </div>
+      <WorkflowDiagrams/>
     </section>
 
     <section id="skills" className="section wrap">
@@ -46,7 +40,7 @@ export default function Home() {
       </div>
       <div className="skill-grid">
         {skills.map(({slug, name, summary}) => <Link className="skill-card" key={slug} href={`/docs/skills/${slug}/`}>
-          <span className="skill-glyph"><PixelIcon glyph={glyphs[slug] ?? "prompt"}/></span>
+          <span className="skill-glyph"><PixelIcon glyph={slug}/></span>
           <div><h3>{name}</h3><p>{summary}</p></div>
           <span className="skill-arrow" aria-hidden="true">→</span>
         </Link>)}

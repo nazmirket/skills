@@ -8,13 +8,13 @@ npm install
 npm run dev
 ```
 
-Open the local URL printed by Next.js. Run `npm run build` to create the deployable static export in `out/`. No server-side services or deployment configuration are required. The workflow illustration is an editable Remotion composition embedded with `@remotion/player`; reduced-motion visitors see a still frame.
+Open the local URL printed by Next.js. Run `npm run build` to create the deployable static export in `out/`. No server-side services or deployment configuration are required.
 
 The homepage reads the packaged skill display metadata. The docs index renders [the repository guide](../docs/README.md), and each skill page renders its packaged `SKILL.md`. Changes to these Markdown sources appear in the next static export.
 
-The animated workflow diagrams and the repository README diagrams share [one set of steps](data/workflows.json). After changing those steps, run `npm run docs:diagrams` from this directory to refresh the checked-in SVGs.
+The homepage diagrams and the repository README SVGs share [one source](data/workflows.json). The first shows when the owning skill asks for help or a human decision; the second follows an illustrative bug fix from request to evidence. Keep both aligned with the packaged routing guide. After changing the data, run `npm run docs:diagrams` to refresh the SVGs.
 
-The shipping example shows the task owner preparing the version, Deploy rolling it out and verifying health. The human reviews user outcomes. Keep the examples aligned with the packaged routing guide.
+Each catalog card has a 12 × 12 [pixel icon](components/PixelIcon.tsx) drawn on the same grid. Add a distinct icon under the skill slug when adding a skill.
 
 ## Search and share previews
 

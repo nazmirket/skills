@@ -7,6 +7,8 @@ description: "Use to find the cause of a concrete failure or unexpected behavior
 
 Start with what should happen, what actually happened, and the best evidence already available. Use [Adapt](../adapt/SKILL.md) if relevant facts are missing. Bring in other skills only for a distinct question, such as [Design](../design/SKILL.md) for unclear interaction intent or [Test](../test/SKILL.md) when a reliable check needs specialist work.
 
+When a tool can distinguish plausible causes, open the matching [Debug tool guide](references/README.md). Use existing evidence or a focused check directly when it answers the question.
+
 ## Find the cause
 
 - **Fix directly when the evidence is clear.** If a focused check confirms the failure and the code directly explains it, make the smallest authorized fix and rerun the check. Skip a separate orientation or investigation pass.

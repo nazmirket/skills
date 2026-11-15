@@ -7,6 +7,7 @@ export const cardSize = {width: 1200, height: 630};
 export const canonicalUrl = (path: string) => new URL(path, origin).href;
 const cardVersion = "v2";
 const cardFile = (name: string) => `${name}-${cardVersion}.png`;
+const skillCount = getSkills().length;
 
 type PageInfo = {
   path: string;
@@ -21,17 +22,17 @@ type PageInfo = {
 export const homePage: PageInfo = {
   path: "/",
   title: "Mirket: Agent Skills for Codex & Claude Code",
-  description: "17 free, open-source skills for Codex and Claude Code: research, planning, design, engineering, security, migration, release, deployment and operations.",
+  description: `${skillCount} free, open-source skills for Codex and Claude Code: research, product management, marketing, design, engineering, verification and operations.`,
   image: cardFile("mirket"),
   cardTitle: "Mirket",
   cardLabel: "OPEN-SOURCE PLUGIN",
-  cardSummary: "17 workflows to research, build, ship and operate",
+  cardSummary: `${skillCount} workflows to research, build, ship and operate`,
 };
 
 export const docsPage: PageInfo = {
   path: "/docs/",
   title: "Mirket Documentation: Install and Use Agent Skills",
-  description: "Install Mirket in Codex or Claude Code and choose from 17 skills for research, planning, design, engineering, security, migration, release, deployment and operations.",
+  description: `Install Mirket in Codex or Claude Code and choose from ${skillCount} skills for research, product management, marketing, design, engineering and operations.`,
   image: cardFile("documentation"),
   cardTitle: "Documentation",
   cardLabel: "FIELD GUIDE",

@@ -2,7 +2,7 @@
 
 <img src="website/public/mirket-sprite.png" alt="Mirket, the pixel-art meerkat mascot" width="64" height="64">
 
-Mirket is a free collection of **17 reusable skills** for **Codex** and **Claude Code**. Research what is happening outside the project, plan and build changes, verify results, and ship and operate services.
+Mirket is a free collection of **20 reusable skills** for **Codex** and **Claude Code**. Research markets, shape products, plan and build changes, verify results, and release and operate services.
 
 Visit [skills.mirket.dev](https://skills.mirket.dev) for installation and workflow examples. Read the [repository documentation](docs/README.md) for the skills, philosophy, and plugin architecture.
 
@@ -29,6 +29,9 @@ Start a fresh session after installing. If your host asks you to trust hooks, re
 Ask for the result you want, or name a skill:
 
 - “Use Mirket Plan to outline this change and how we’ll verify it.”
+- “Use Mirket Market to define our brand voice and check it against our onboarding copy.”
+- “Use Mirket Ship to compare these product opportunities and propose what to test first.”
+- “Use Mirket Code to review the React state model and the Next.js server boundary.”
 - “Use Mirket Debug to reproduce this failure and find its cause.”
 - “Use Mirket Audit to review this patch and report findings.”
 - “Prepare this versioned artifact, then use Mirket Deploy to roll it out to staging.”

@@ -11,11 +11,11 @@ export const metadata = pageMetadata(homePage);
 
 const glyphs: Record<string, PixelGlyph> = {
   adapt: "target", architect: "plan", audit: "inspect", author: "prompt",
-  brief: "signal", clean: "clean",
+  brief: "signal", clean: "clean", code: "prompt",
   debug: "bug", design: "design", equip: "prompt", execute: "signal",
   plan: "plan",
   preflight: "check", refactor: "clean", search: "inspect", test: "check",
-  migrate: "plan", deploy: "signal",
+  market: "target", migrate: "plan", deploy: "signal", ship: "plan",
 };
 
 export default function Home() {

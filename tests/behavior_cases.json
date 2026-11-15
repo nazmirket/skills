@@ -978,6 +978,74 @@
       "files": {
         "Handoff.md": "# Earlier handoff\nImplement automatic refunds; assumed approved.\n"
       }
+    },
+    {
+      "id": "market-brand-voice",
+      "primary_owner": "market",
+      "supporting_skills": [],
+      "prompt": "Define a brand voice from our approved samples and rewrite the onboarding and billing lines in that voice. Keep this as a draft.",
+      "context": "Positioning and product terms are settled. This is an internal exercise. Do not survey customers, change prices, or publish.",
+      "expected_actions": [
+        "Use Market and open the Brand and Voice reference. Preserve the product terms and infer voice from the supplied examples.",
+        "Distinguish stable voice from tone and give a useful next action in onboarding while keeping billing plain and precise."
+      ],
+      "allowed_writes": [],
+      "prohibited_writes": [
+        "Editing the approved examples",
+        "Sending or publishing copy",
+        "Changing billing terms"
+      ],
+      "stopping_condition": "Return a short voice guide and two draft lines. Keep brand approval with the human.",
+      "evidence_reuse": "Reuse the three approved lines and the settled billing terms. Do not substitute competitor voice.",
+      "files": {
+        "Brand.md": "# Approved lines\nMake your first report with one sample.\nYour export is ready in Downloads.\nWe could not verify your address. Check the postal code and try again.\n",
+        "Draft.md": "# Lines to revise\nOnboarding: Start your data journey. The action opens the sample report.\nBilling: Big things are coming! An annual plan renews on June 20 for $120.\n"
+      }
+    },
+    {
+      "id": "ship-product-readiness",
+      "primary_owner": "ship",
+      "supporting_skills": [],
+      "prompt": "Are we ready to launch shared reports to all customers, or should we narrow or hold? Give a product readiness recommendation based on the supplied notes.",
+      "context": "The original scope is all accounts. The team has an internal preview and the supplied candidate review. The user asked for a recommendation; rollout and communication are not authorized.",
+      "expected_actions": [
+        "Use Ship and open Delivery and Readiness. Distinguish technical availability and product readiness.",
+        "Treat the unverified access path as a blocker for the proposed audience, identify evidence and an owner needed for the decision, and leave activation to its owner."
+      ],
+      "allowed_writes": [],
+      "prohibited_writes": [
+        "Changing access or flags",
+        "Rolling out the candidate",
+        "Sending an announcement"
+      ],
+      "stopping_condition": "Return go, hold, or bounded alternative with conditions and unresolved evidence.",
+      "evidence_reuse": "Use the candidate review. Do not rerun checks or infer that an internal preview represents all accounts.",
+      "files": {
+        "Readiness.md": "# Shared reports readiness\nCandidate v1.4.2: report creation and viewing passed in the internal preview. The scoped audience was staff-only test accounts. Cross-workspace sharing access for customer accounts has not been checked. Support and help copy are ready; the opt-in flag is off.\n"
+      }
+    },
+    {
+      "id": "code-react-state-review",
+      "primary_owner": "code",
+      "supporting_skills": [],
+      "prompt": "Which React practice would you use to simplify the stale derived state in List.jsx? Explain the smallest change and how to verify it. Advice only.",
+      "context": "This is React 18.3 with client-only rendering. The local fixture is enough to reason about the component. Do not edit it or install dependencies.",
+      "expected_actions": [
+        "Use Code and open the React guide after checking the installed stack facts. Skip unrelated stack guides.",
+        "Explain that visible items can be derived from items and query during render; describe checking changed items and query without claiming a test ran."
+      ],
+      "allowed_writes": [],
+      "prohibited_writes": [
+        "Editing List.jsx",
+        "Installing dependencies or changing tools",
+        "Expanding the work into a state-management rewrite"
+      ],
+      "stopping_condition": "Return stack-specific advice with a focused check and no implementation.",
+      "evidence_reuse": "Use the existing component and package version rather than assuming framework, server rendering, or compiler features.",
+      "files": {
+        "package.json": "{ \"dependencies\": { \"react\": \"18.3.1\" } }\n",
+        "List.jsx": "import {useEffect, useState} from 'react';\nexport default function List({items, query}) {\n  const [visible, setVisible] = useState(items);\n  useEffect(() => setVisible(items.filter(item => item.name.includes(query))), [query]);\n  return <ul>{visible.map(item => <li key={item.id}>{item.name}</li>)}</ul>;\n}\n"
+      }
     }
   ]
 }

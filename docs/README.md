@@ -1,6 +1,6 @@
 # Mirket documentation
 
-Mirket is a free, open-source plugin with 17 skills for Codex and Claude Code. Its workflows cover research, planning, design, engineering, security, migration, release, deployment and operations.
+Mirket is a free, open-source plugin with 20 skills for Codex and Claude Code. Its workflows cover research, product management, marketing, planning, design, engineering, verification, and operations.
 
 ## Install Mirket
 
@@ -44,12 +44,15 @@ A skill is a Markdown workflow with a trigger, guidance, and sometimes more deta
 | Solve the assigned problem directly and report what matters | [Execute](../skills/execute/SKILL.md), the default across Mirket workflows |
 | Understand the project and its environment | [Adapt](../skills/adapt/SKILL.md), [Preflight](../skills/preflight/SKILL.md) |
 | Learn what is happening outside the project | [Search](../skills/search/SKILL.md) for community activity, emerging projects, competitors, and historical context |
+| Decide what to build and learn from launch outcomes | [Ship](../skills/ship/SKILL.md) for discovery, strategy, priorities, requirements, and product readiness |
+| Define a message and get it to the right people | [Market](../skills/market/SKILL.md) for positioning, brand voice, campaigns, conversion, and measurement |
 | Compare options and plan the work | [Equip](../skills/equip/SKILL.md), [Architect](../skills/architect/SKILL.md), [Plan](../skills/plan/SKILL.md) |
 | Make or improve something | [Design](../skills/design/SKILL.md), [Author](../skills/author/SKILL.md), [Debug](../skills/debug/SKILL.md), [Refactor](../skills/refactor/SKILL.md) |
+| Apply practices for the current technology | [Code](../skills/code/SKILL.md), with [23 stack guides](../skills/code/references/README.md) |
 | Check the result and tidy up | [Test](../skills/test/SKILL.md), [Audit](../skills/audit/SKILL.md), [Design critique](../skills/design/references/flows/Critique.md) for visual review, [Author](../skills/author/SKILL.md) for writing review, [Clean](../skills/clean/SKILL.md) |
 | Review security and privacy or model design threats | [Audit](../skills/audit/SKILL.md#security-and-privacy-review) for findings, [Architect](../skills/architect/SKILL.md#model-threats-during-design) for design decisions |
 | Change persistent state | [Migrate](../skills/migrate/SKILL.md) |
-| Ship and operate | The task owner prepares and publishes; [Deploy](../skills/deploy/SKILL.md) activates and handles [service health and recovery](../skills/deploy/SKILL.md#operate-and-recover) |
+| Release, roll out, and operate | The task owner prepares and publishes; [Deploy](../skills/deploy/SKILL.md) activates and handles [service health and recovery](../skills/deploy/SKILL.md#operate-and-recover) |
 | Coordinate, hand off, pause, or resume work | [Plan](../skills/plan/SKILL.md#coordinate-workers) coordinates workers; [Brief](../skills/brief/SKILL.md) owns handoffs and continuity |
 
 ## From a product decision to a running service
@@ -58,9 +61,10 @@ Choose the owner by the requested result. These responsibilities can overlap in 
 
 | Outcome | Owner | Evidence at the handoff |
 | --- | --- | --- |
-| Decide what is worth building or whether a shipped feature helped | The human | User problem, observed outcomes and options |
+| Decide what is worth building or whether a shipped feature helped | The human, supported by Ship | User problem, observed outcomes and options |
+| Prepare positioning and launch communications | Market | Approved offer, audience, claims and distribution plan |
 | Establish a technical approach and sequence substantial work | Architect and Plan | Boundaries, constraints, authority, acceptance and recovery criteria |
-| Build the requested behavior or artifact | The implementer, with Design/Author/Debug/Refactor as relevant | Actual implementation, focused checks, and review findings from the relevant owner |
+| Build the requested behavior or artifact | The implementer, with stack guidance from Code when relevant | Actual implementation, focused checks, and review findings from the relevant owner |
 | Assess security and privacy or model design threats | Audit for review, Architect for design | Trust and data boundaries, evidence about safeguards, open risks and decisions |
 | Harden an authorized target | The implementer | Verified safeguards and preserved legitimate access |
 | Change schemas, data formats or persistent configuration | Migrate | Preserved meaning and access, compatible consumers, reconciled state and recovery |

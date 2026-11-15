@@ -4,7 +4,7 @@ The Python tests validate local contracts and fixture preparation. They do **not
 
 ## Prepare a behavioral case
 
-[behavior_cases.json](behavior_cases.json) contains 42 reusable cases covering all 17 owners. Each specifies the prompt and source context, expected owner and actions, allowed and prohibited writes, stopping condition, and evidence that should be reused. Expectations are reviewer criteria, not text to require the model to repeat.
+[behavior_cases.json](behavior_cases.json) contains 45 reusable cases covering all 20 owners. Each specifies the prompt and source context, expected owner and actions, allowed and prohibited writes, stopping condition, and evidence that should be reused. Expectations are reviewer criteria, not text to require the model to repeat.
 
 ```sh
 python3 -B tests/prepare_host_smoke.py --list
@@ -47,6 +47,7 @@ Repeat ambiguous routing cases with hooks disabled to assess linked guidance, an
 | Choosing tools | `equip-tool-fit`, `equip-pilot-needs-approval`: rule out a format that fails hard requirements and propose a pilot without running it merely because the tool is available. |
 | Visual production and review | `design-supplied-reference`, `design-no-generation-authority`, `design-redesign-baseline-blocked`, `design-visual-review`: carry over reference intent, agree on the brief before generating, require a live redesign baseline, and stop at findings for visual review. |
 | Web design acceptance | `design-web-review-with-browser`: match before and after conditions and use the available browser to verify an interaction without requiring Playwright or changing the target. |
+| Specialist boundaries | `market-brand-voice` uses approved claims and samples; `ship-product-readiness` leaves activation with its owner; `code-react-state-review` opens only the identified stack guide. |
 | Readiness and fallback | `preflight-inferior-fallback`, `preflight-equivalent-fallback`: a page load cannot establish keyboard operation; an equivalent browser can unblock the exact check without a setup change. |
 | Authorization, coordination and continuity | `plan-inherited-authority`, `plan-status-read-only`, `plan-coordinate-read-only`, `brief-stale-handoff`, `stale-handoff-material-conflict`, `brief-pause`: preserve traceable authority, keep status read-only, point to current evidence, pause only work affected by a conflict, and stop on an explicit pause. |
 | Cleanup | `clean-no-op`, `clean-commit-blocked-by-stale-guide`: skip answer-only cleanup; hold a commit for an unresolved inconsistency caused by the task while preserving work owned by others. |
@@ -62,7 +63,7 @@ Run these in fresh Codex and Claude Code sessions against the candidate, using d
 
 | Case | Expected observation |
 | --- | --- |
-| Start a session and explicitly invoke Mirket Audit. | All 17 skills are discoverable; the session hook supplies the routing pointer; Audit loads from the candidate plugin. |
+| Start a session and explicitly invoke Mirket Audit. | All 20 skills are discoverable; the session hook supplies the routing pointer; Audit loads from the candidate plugin. |
 | Answer a short question, then perform an edit. | User-prompt Execute guidance is present and Clean still applies to relevant delivery work. Mirket registers no Stop hook and requests no extra pass. |
 | Request a standalone supported `git commit --dry-run`. | It remains a preview and needs neither cleanup acknowledgment nor an absolute target. |
 | Submit a guarded commit without an absolute target. | Hook denies it and explains the explicit-target requirement. No actual commit is required to observe denial. |

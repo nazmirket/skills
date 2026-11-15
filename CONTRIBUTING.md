@@ -6,9 +6,9 @@ The repository root is the shared plugin package. Both marketplaces point to it.
 
 Add a skill at `skills/<name>/SKILL.md` with a lowercase name and a clear trigger. Add `agents/openai.yaml` for its Codex display metadata. If ownership changes, update the [routing guide](references/Routing.md) and related skill references.
 
-The catalog has 17 skills. Search owns external research; Adapt owns internal orientation. Audit owns security and privacy findings, Architect owns design-time threat modeling, and the implementer owns authorized hardening. The task owner prepares and publishes versioned artifacts when authorized. Migrate owns persistent-state transitions; Deploy owns environment rollout, service health, incidents, and recovery.
+The catalog has 20 skills. Search owns external research; Adapt owns internal orientation. Ship supports product decisions and readiness; Market owns marketing strategy and communications; Code supplies stack guidance to the current task. Audit owns security and privacy findings, Architect owns design-time threat modeling, and the implementer owns authorized hardening. The task owner prepares and publishes versioned artifacts when authorized. Migrate owns persistent-state transitions; Deploy owns environment rollout, service health, incidents, and recovery.
 
-Write original skill guidance based on Mirket's requirements and observed behavior. Do not use external skills, prompts, or workflow guides as sources for authoring. The root license is included in the plugin package.
+Write original skill guidance based on Mirket's requirements and observed behavior. When the maintainer specifies external influences, cite what informed the work and adapt the useful ideas to Mirket's ownership and authority rules. Do not import external skills, prompts, or workflow guides wholesale. Use maintained upstream sources for stack-specific facts. The root license is included in the plugin package.
 
 ## Markdown filenames
 

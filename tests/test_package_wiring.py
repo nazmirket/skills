@@ -178,8 +178,8 @@ class PackageWiringTest(unittest.TestCase):
     def test_catalog_matches_skill_metadata_routing_and_documentation(self):
         catalog = {p.name for p in SKILLS.iterdir() if p.is_dir() and not p.name.startswith(".")}
         self.assertEqual(catalog, EXPECTED_SKILLS)
-        routing = (REPO / "references/Routing.md").read_text(encoding="utf-8")
-        self.assertEqual(set(re.findall(r"\.\./skills/([^/]+)/SKILL\.md", routing)), catalog)
+        routing = (SKILLS / "execute/references/Routing.md").read_text(encoding="utf-8")
+        self.assertEqual(set(re.findall(r"\.\./\.\./([^/]+)/SKILL\.md", routing)) | {"execute"}, catalog)
         guide = (REPO / "docs/README.md").read_text(encoding="utf-8")
         self.assertEqual(set(re.findall(r"\.\./skills/([^/]+)/SKILL\.md", guide)), catalog)
         display_names = set()
@@ -213,6 +213,15 @@ class PackageWiringTest(unittest.TestCase):
                     self.assertTrue(exact_path_exists(destination), f"Missing or incorrectly cased path: {destination}")
                     if target.fragment and destination.suffix.lower() == ".md":
                         self.assertIn(unquote(target.fragment), heading_anchors(destination.read_text(encoding="utf-8")))
+
+    def test_skill_references_stay_inside_the_portable_catalog(self):
+        for path in SKILLS.rglob("*.md"):
+            for url in re.findall(r"\]\(([^\s)]+)\)", "\n".join(prose_lines(path.read_text(encoding="utf-8")))):
+                target = urlsplit(url)
+                if target.scheme or target.netloc or not target.path:
+                    continue
+                with self.subTest(source=path.relative_to(SKILLS), target=url):
+                    self.assertIn(SKILLS, (path.parent / unquote(target.path)).resolve().parents)
 
 
 if __name__ == "__main__":

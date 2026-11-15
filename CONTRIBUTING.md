@@ -1,10 +1,12 @@
 # Contributing to Mirket
 
-The repository root is the shared plugin package. Both marketplaces point to it. The [Codex descriptor](.codex-plugin/plugin.json) declares `./skills/`, and the [Claude Code descriptor](.claude-plugin/plugin.json) uses the host’s default root `skills/` discovery. Add future targets by wiring them to the same catalog. Keep shared `references/`, `hooks/`, and `assets/` alongside `skills/` so installed links and hooks resolve. See the [root catalog decision](docs/decisions/0004-RootSkillsCatalog.md) for packaging and local install guidance.
+The repository root is the shared plugin package. Both marketplaces point to it. The [Codex descriptor](.codex-plugin/plugin.json) declares `./skills/`, and the [Claude Code descriptor](.claude-plugin/plugin.json) uses the host’s default root `skills/` discovery. Add future targets by wiring them to the same catalog. Keep plugin references, `hooks/`, and `assets/` alongside `skills/` so native installs retain their existing paths. See the [root catalog decision](docs/decisions/0004-RootSkillsCatalog.md) for packaging and local install guidance.
 
 ## Skills
 
 Add a skill at `skills/<name>/SKILL.md` with a lowercase name and a clear trigger. Add `agents/openai.yaml` for its Codex display metadata. If ownership changes, update the [routing guide](references/Routing.md) and related skill references.
+
+The [other-agent guide](docs/OtherAgents.md) uses `npx skills add`, which copies individual skill directories. Keep skill links within the catalog and shared skill references in [Execute](skills/execute/references/Routing.md). The old root reference paths still point to the maintained guides. Keep the [catalog's copy of the license](skills/execute/LICENSE) in sync with the [root license](LICENSE).
 
 The catalog has 20 skills. Search owns external research; Adapt owns internal orientation. Ship supports product decisions and readiness; Market owns marketing strategy and communications; Code supplies stack guidance to the current task. Audit owns security and privacy findings, Architect owns design-time threat modeling, and the implementer owns authorized hardening. The task owner prepares and publishes versioned artifacts when authorized. Migrate owns persistent-state transitions; Deploy owns environment rollout, service health, incidents, and recovery.
 

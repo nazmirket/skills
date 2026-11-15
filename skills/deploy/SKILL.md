@@ -5,7 +5,7 @@ description: "Use to activate or roll back artifacts or configuration in a share
 
 # Deploy
 
-Own readiness, activation, verification, and rollout recovery for artifact or configuration changes to shared running environments. Scale the work to risk. Use [the operations branch](#operate-and-recover) for health, observation, incidents, or backup recovery even when there is no rollout. The task owner supplies the [versioned artifact](../../references/VersionedDistribution.md), [Migrate](../migrate/SKILL.md) owns persistent-state transitions, and [Debug](../debug/SKILL.md) investigates causes.
+Own readiness, activation, verification, and rollout recovery for artifact or configuration changes to shared running environments. Scale the work to risk. Use [the operations branch](#operate-and-recover) for health, observation, incidents, or backup recovery even when there is no rollout. The task owner supplies the [versioned artifact](../execute/references/VersionedDistribution.md), [Migrate](../migrate/SKILL.md) owns persistent-state transitions, and [Debug](../debug/SKILL.md) investigates causes.
 
 ## Establish readiness
 
@@ -20,7 +20,7 @@ Own readiness, activation, verification, and rollout recovery for artifact or co
 6. **Halt further exposure at a stop condition.** Use the agreed and authorized rollback or forward repair after checking its preconditions. If recovery exceeds authority or could damage state, preserve evidence and escalate the decision. Verify service behavior after recovery and report whether rollout succeeded or was reversed.
 7. Record the deployed identity, health evidence, remaining observation, runbook and known risks. Continue a requested bounded watch using the operations branch until its completion condition or a material blocker.
 
-**Done:** Report what is active, where, its verified behavior, rollout or recovery result, and any unfinished operation or check. Keep deployment evidence in the established project record; use the [workspace rules](../../references/Workspace.md) for scratch files. Publishing a release and deploying it are separately observable outcomes.
+**Done:** Report what is active, where, its verified behavior, rollout or recovery result, and any unfinished operation or check. Keep deployment evidence in the established project record; use the [workspace rules](../execute/references/Workspace.md) for scratch files. Publishing a release and deploying it are separately observable outcomes.
 
 ## Operate and recover
 

@@ -15,7 +15,7 @@ Turn the stated outcome into steps that can be executed and checked. Plan when m
 
 ## Save only what needs to last
 
-Keep a short plan in chat when it can be used there. When a plan needs to outlive the conversation, use one [numbered folder](../../references/Workspace.md#numbered-records) under `.work/plans/` at the project root. Use a shared project location only when the human asks or the project explicitly requires it. Follow the [workspace rules](../../references/Workspace.md) before writing.
+Keep a short plan in chat when it can be used there. When a plan needs to outlive the conversation, use one [numbered folder](../execute/references/Workspace.md#numbered-records) under `.work/plans/` at the project root. Use a shared project location only when the human asks or the project explicitly requires it. Follow the [workspace rules](../execute/references/Workspace.md) before writing.
 
 - `Evidences.md`: The relevant project state before execution. Link the evidence the plan relies on. When the starting state will be hard to reconstruct, include enough to reproduce it: relevant revision, environment, commands, and baseline results. Label material gaps.
 - `Scope.md`: In plain language, what is authorized, what needs a separate decision, and which instruction establishes that boundary. Keep material decisions traceable to the person who made them.

@@ -4,6 +4,7 @@ import {parse} from "yaml";
 
 export const repo = "https://github.com/nazmirket/skills";
 export const guidePath = "docs/README.md";
+export const otherAgentsPath = "docs/OtherAgents.md";
 export const skillsPath = "skills";
 const root = resolve(process.cwd(), "..");
 

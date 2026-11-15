@@ -141,6 +141,13 @@ def main():
     assert "codex plugin add mirket@mirket" in docs.source
     assert "claude plugin install mirket@mirket" in docs.source
 
+    other_agents = Document(OUT / "docs/other-agents/index.html")
+    assert {"cursor", "pi", "oh-my-pi", "github-copilot", "google-antigravity", "opencode",
+            "hermes-agent", "muse-code"} <= other_agents.ids
+    assert "npx skills add nazmirket/skills" in other_agents.source
+    assert 'href="/docs/other-agents/"' in (OUT / "index.html").read_text()
+    assert 'href="/docs/other-agents/"' in docs.source
+
     for fallback in ("404.html", "404/index.html", "_not-found/index.html"):
         file = OUT / fallback
         if fallback != "404.html" and not file.is_file():

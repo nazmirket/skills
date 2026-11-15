@@ -24,6 +24,8 @@ claude plugin install mirket@mirket
 
 Start a fresh session after installing. If your host asks you to trust hooks, review them first. See [hook requirements and behavior](CONTRIBUTING.md#lifecycle-hooks).
 
+For Cursor, Pi, Oh My Pi, GitHub Copilot, Google Antigravity, OpenCode, Hermes Agent, or Muse Code, follow the [skills-only installation guide](docs/OtherAgents.md).
+
 ## Try it
 
 Ask for the result you want, or name a skill:

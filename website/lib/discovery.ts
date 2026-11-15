@@ -39,6 +39,16 @@ export const docsPage: PageInfo = {
   cardSummary: "Install Mirket and pick a skill",
 };
 
+export const otherAgentsPage: PageInfo = {
+  path: "/docs/other-agents/",
+  title: "Install Mirket Skills in Other Agents",
+  description: "Install the shared Mirket catalog in Cursor, Pi, Oh My Pi, GitHub Copilot, Google Antigravity, OpenCode, Hermes Agent, or Muse Code.",
+  image: cardFile("other-agents"),
+  cardTitle: "Other agents",
+  cardLabel: "INSTALLATION",
+  cardSummary: "Use the shared skill catalog in your agent",
+};
+
 type Skill = ReturnType<typeof getSkills>[number];
 
 export function skillPageInfo(skill: Skill): PageInfo {
@@ -57,7 +67,7 @@ export function skillPageInfo(skill: Skill): PageInfo {
 }
 
 export function discoverablePages() {
-  return [homePage, docsPage, ...getSkills().map(skillPageInfo)];
+  return [homePage, docsPage, otherAgentsPage, ...getSkills().map(skillPageInfo)];
 }
 
 export function pageMetadata(page: PageInfo): Metadata {

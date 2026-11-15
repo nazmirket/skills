@@ -4,7 +4,7 @@ import {getSkills, repo} from "../lib/content";
 type SkillLink = {slug: string; name: string};
 
 type Props = {
-  current: "overview" | "skill";
+  current: "overview" | "skill" | "other-agents";
   source: string;
   sections?: ReadonlyArray<readonly [id: string, title: string]>;
   skills?: SkillLink[];
@@ -17,6 +17,7 @@ export default function DocsNavigation({current, source, sections, skills = getS
     <nav aria-label="Documentation">
       <Link href="/docs/" aria-current={current === "overview" ? "page" : undefined}>Overview</Link>
       <Link href="/docs/#skills">Skill reference</Link>
+      <Link href="/docs/other-agents/" aria-current={current === "other-agents" ? "page" : undefined}>Other agents</Link>
     </nav>
 
     {sections && <div className="docs-section-links">

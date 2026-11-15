@@ -24,7 +24,7 @@ Open the relevant [format](../formats/README.md) when the deliverable has medium
 
 ## Compare approaches without changing production
 
-When the result is a decision, name the uncertainty and the observable difference that would settle it. Build the smallest isolated comparison outside production. Hold content and unrelated dimensions steady and make the alternatives easy to switch or replay. Give the human the comparison and what it establishes, including any remaining uncertainty. Use the [shared prototype method](../../../../references/Prototype.md) for further guidance. Stop without adopting the prototype in production unless that was separately authorized.
+When the result is a decision, name the uncertainty and the observable difference that would settle it. Build the smallest isolated comparison outside production. Hold content and unrelated dimensions steady and make the alternatives easy to switch or replay. Give the human the comparison and what it establishes, including any remaining uncertainty. Use the [shared prototype method](../../../execute/references/Prototype.md) for further guidance. Stop without adopting the prototype in production unless that was separately authorized.
 
 ## Finish
 

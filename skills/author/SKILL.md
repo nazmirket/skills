@@ -9,7 +9,7 @@ Own general documents, reports, and substantive product copy. Keep routine repli
 
 Use [Brief](../brief/SKILL.md) for handoffs and [Design](../design/SKILL.md) for visual direction and interface design. [Market](../market/SKILL.md) owns marketing messaging and claims; [Ship](../ship/SKILL.md) owns product requirements. Use Author for writing support when a specialist owns the result. For bug reports or a QA backlog, use [issue triage](references/IssueTriage.md) for intake, reproduction status, priorities and issue drafts.
 
-Keep intermediate files in `.work/temp/<task>/` under the [project workspace rules](../../references/Workspace.md). Deliver the final document to its designated destination.
+Keep intermediate files in `.work/temp/<task>/` under the [project workspace rules](../execute/references/Workspace.md). Deliver the final document to its designated destination.
 
 1. Infer the reader, purpose, and destination from the available context. State assumptions that could change the result. Ask when a material choice cannot be inferred. Follow the requested format and relevant host workflow.
 2. Organize the writing around what the reader needs to know or do. Follow the nearest applicable project writing and style guidance. Depart when the audience or purpose calls for it. For a broad revision, adjust structure and tone across the artifact for coherence. Preserve unrelated content and keep established facts and commitments unless the human authorizes changing them.

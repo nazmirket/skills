@@ -18,6 +18,6 @@ Help the human decide what product outcome to pursue, what to deliver, and how t
 | Define metrics or test an uncertain change | [Metrics and experiments](references/MetricsAndExperiments.md) |
 | Interpret what happened and choose what to do next | [Product review](references/ProductReview.md) |
 
-Use [Search](../search/SKILL.md) for outside evidence and [Market](../market/SKILL.md) for positioning and launch communications. Give the agreed behavior and outcome to [Plan](../plan/SKILL.md) to sequence implementation. An agreed product launch decision is distinct from [versioned distribution](../../references/VersionedDistribution.md) and [Deploy](../deploy/SKILL.md)'s authority to change an environment.
+Use [Search](../search/SKILL.md) for outside evidence and [Market](../market/SKILL.md) for positioning and launch communications. Give the agreed behavior and outcome to [Plan](../plan/SKILL.md) to sequence implementation. An agreed product launch decision is distinct from [versioned distribution](../execute/references/VersionedDistribution.md) and [Deploy](../deploy/SKILL.md)'s authority to change an environment.
 
 Return a recommendation or decision record, evidence and uncertainty, and the next decision or check. Leave launch or rollout pending when its authority or readiness evidence is missing.

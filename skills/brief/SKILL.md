@@ -19,7 +19,7 @@ Write a concise, actionable handoff suited to its recipient. Preserve useful con
 5. For a subagent, specify owned scope, deliverable, dependencies, and verification. Include parallel work only where it affects the assignment. The worker reports routine corrections and continues. Raise material conflicts with the coordinator before changing assignments or shared boundaries.
 6. [Plan’s coordination branch](../plan/SKILL.md#coordinate-workers) decides which workers need a material update. State what changed, its impact on their work, and what they should do next. Report when delivery cannot be confirmed.
 
-Save handoffs intended for reuse or when requested. Use the designated destination or a [numbered Markdown brief](../../references/Workspace.md#numbered-records) in `.work/briefs/` at the project root. Keep immediate worker assignments and updates in the coordination channel. Sending a message outside the authorized task requires authorization.
+Save handoffs intended for reuse or when requested. Use the designated destination or a [numbered Markdown brief](../execute/references/Workspace.md#numbered-records) in `.work/briefs/` at the project root. Keep immediate worker assignments and updates in the coordination channel. Sending a message outside the authorized task requires authorization.
 
 ## Pause or resume
 

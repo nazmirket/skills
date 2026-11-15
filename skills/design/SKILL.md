@@ -18,6 +18,6 @@ Own the visual result. Agree with the human on the intended effect and what the 
 | Explain the audience, intent or problem | [Understand](references/flows/Understand.md) |
 | Agree what the design must achieve and preserve | [Author Brief](references/flows/AuthorBrief.md) |
 
-Start with one flow. Use the other flows only for a distinct result you need. Open the relevant [concepts](references/concepts/README.md) for craft decisions and [styles](references/styles/README.md) when a visual treatment serves the brief. Keep scratch work under the [workspace rules](../../references/Workspace.md).
+Start with one flow. Use the other flows only for a distinct result you need. Open the relevant [concepts](references/concepts/README.md) for craft decisions and [styles](references/styles/README.md) when a visual treatment serves the brief. Keep scratch work under the [workspace rules](../execute/references/Workspace.md).
 
 Use a [format](references/formats/README.md) when the deliverable needs its own checks or handoff.

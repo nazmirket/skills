@@ -1,5 +1,5 @@
 import {getSkills, repo} from "../../lib/content";
-import {canonicalUrl, docsPage, homePage, skillPageInfo} from "../../lib/discovery";
+import {canonicalUrl, docsPage, homePage, otherAgentsPage, skillPageInfo} from "../../lib/discovery";
 
 export const dynamic = "force-static";
 
@@ -17,6 +17,7 @@ export function GET() {
     `- [Mirket](${canonicalUrl(homePage.path)}): Workflow examples, installer and skill catalog.`,
     `- [Documentation](${docs}): Purpose, philosophy, architecture and common questions.`,
     `- [Install Mirket](${docs}#install-mirket): Commands for Codex and Claude Code.`,
+    `- [Install in other agents](${canonicalUrl(otherAgentsPage.path)}): Project skills for Cursor, Pi, Oh My Pi, GitHub Copilot, Antigravity, OpenCode, Hermes, and Muse.`,
     "",
     "## Skill reference",
     "",

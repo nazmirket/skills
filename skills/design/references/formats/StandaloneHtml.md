@@ -6,7 +6,7 @@ Use when an HTML file the recipient can open is the deliverable: an explainer, r
 
 Agree on how the recipient will open it: directly from disk, from a supplied local server, or from another specified environment. Confirm whether it needs to work offline and whether the delivery must be a single file. Use local or embedded assets when portability requires them; if companions are allowed, keep their paths portable. Document any required network resources and what still works without them.
 
-Match fidelity to the decision. A wireframe should make structure easy to compare; an interactive prototype should let someone complete the relevant path and reach its important alternate states. Use representative data, clearly distinguish simulation from actual operations, and avoid controls that imply a submission or external effect they cannot perform. Keep the file usable with ordinary navigation, keyboard input, and browser zoom. For variants, use the [prototype method](../../../../references/Prototype.md).
+Match fidelity to the decision. A wireframe should make structure easy to compare; an interactive prototype should let someone complete the relevant path and reach its important alternate states. Use representative data, clearly distinguish simulation from actual operations, and avoid controls that imply a submission or external effect they cannot perform. Keep the file usable with ordinary navigation, keyboard input, and browser zoom. For variants, use the [prototype method](../../../execute/references/Prototype.md).
 
 ## Open the delivered copy
 

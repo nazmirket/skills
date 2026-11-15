@@ -4,7 +4,7 @@ Mirket is a free, open-source plugin with 20 skills for Codex and Claude Code. I
 
 ## Install Mirket
 
-Add the Mirket marketplace in your host, install `mirket@mirket`, and start a fresh session. Install it in each host you want to use.
+For Codex or Claude Code, add the Mirket marketplace, install `mirket@mirket`, and start a fresh session. For other targets, follow the [skills-only installation guide](OtherAgents.md).
 
 ### Install in Codex
 

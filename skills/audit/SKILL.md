@@ -9,7 +9,7 @@ Review the work and return findings to its owner.
 
 1. **Pin the target.** Identify the revision, snapshot, or draft; state the scope and governing criteria. Trace affected behavior, integration boundaries, and dependencies far enough to support your conclusions. Reuse [Test](../test/SKILL.md) evidence for behavior and performance, and use focused non-destructive checks when needed. Judge performance claims against the target and workload the evidence covers.
 2. **Report material findings.** Separate confirmed defects, supported but unverified risks, and concrete improvements that address a meaningful cost, including unnecessary complexity. Prioritize by impact and likelihood. Give the location, triggering condition, evidence, consequence, and next step. Name missing evidence for risks and any material coverage limits. If there are no findings, say so for the reviewed scope.
-3. **Stop at the report.** Return findings to the task owner without editing the target. If corrections are already authorized, follow the [review loop](../../references/ReviewLoop.md).
+3. **Stop at the report.** Return findings to the task owner without editing the target. If corrections are already authorized, follow the [review loop](../execute/references/ReviewLoop.md).
 
 Require an [independent reviewer](#independent-review) for high-risk changes or an explicit gate.
 

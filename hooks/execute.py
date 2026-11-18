@@ -12,6 +12,8 @@ ROUTING = ROOT / "skills" / "execute" / "references" / "Routing.md"
 
 GUIDANCE = (
     "Execute: choose one Mirket skill to own each outcome and read it if it is not already in context. "
+    "Briefly announce the skills you select for the request using their lowercase identifiers in backticks, "
+    "as in ‘I’ll use `execute` and `design` skills.’ "
     "Take the simplest complete path within existing authority. Preserve quality and run the "
     "narrowest meaningful check plus required checks. Skip routine narration; speak when the human needs "
     "to act, expectations change, or a material assumption or blocker matters. Lead the final reply with "

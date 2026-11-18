@@ -1,8 +1,12 @@
 """Check evaluation fixtures, not whether a model follows their expectations."""
 
+import doctest
 import hashlib
 import json
 from pathlib import Path
+import shutil
+import subprocess
+import sys
 import tempfile
 import unittest
 
@@ -61,6 +65,24 @@ class HostSmokeFixtureTest(unittest.TestCase):
                 prepare(case, link / "new")
         with self.assertRaisesRegex(ValueError, "absolute"):
             prepare(case, Path("relative"))
+
+    def test_release_fixture_example_runs_with_only_the_shipped_files(self):
+        case = next(case for case in load_cases() if case["id"] == "release-prepare-only")
+        with tempfile.TemporaryDirectory() as root:
+            root = Path(root).resolve()
+            source = prepare(case, root / "source")
+            consumer = root / "consumer"
+            consumer.mkdir()
+            for name in ("app.py", "README.md"):
+                shutil.copyfile(source / name, consumer / name)
+            readme = (consumer / "README.md").read_text(encoding="utf-8")
+            examples = doctest.DocTestParser().get_examples(readme)
+            self.assertTrue(any(example.want for example in examples), "The shipped example must check a result")
+            result = subprocess.run(
+                [sys.executable, "-E", "-s", "-B", "-m", "doctest", "README.md"],
+                cwd=consumer, text=True, capture_output=True,
+            )
+            self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
 
 
 if __name__ == "__main__":

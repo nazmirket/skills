@@ -49,6 +49,24 @@
       }
     },
     {
+      "id": "author-bug-intake",
+      "primary_owner": "author",
+      "supporting_skills": [],
+      "prompt": "A customer says the final item is missing from their total. Draft a ticket I can file.",
+      "context": "The fixture's test checks the agreed total. Customer identifiers are unnecessary for the ticket.",
+      "expected_actions": [
+        "Use the existing check to distinguish the customer's report from the reproduced result.",
+        "Draft a ticket with the expected and actual totals, reproduction, impact and next action."
+      ],
+      "allowed_writes": [],
+      "prohibited_writes": ["Editing the implementation or tests", "Filing the ticket"],
+      "stopping_condition": "Return the ticket draft in chat.",
+      "evidence_reuse": "The existing test supplies an example. Its result is enough for intake even when the defect is apparent.",
+      "files": {
+        "app.py": "def total(items):\n    return sum(items[:-1])\n"
+      }
+    },
+    {
       "id": "debug-authorized-fix",
       "primary_owner": "debug",
       "supporting_skills": [],
@@ -806,10 +824,11 @@
         "clean"
       ],
       "prompt": "Prepare a versioned candidate package and release notes in release/. Do not publish, tag, push, or deploy.",
-      "context": "Candidate version: 1.0.0. Package only app.py and README.md. Existing tests must pass before readiness can be claimed. There is no distribution target or publishing authority.",
+      "context": "Candidate version: 1.0.0. Package only app.py and README.md. The source tests must pass and the example in the shipped README must work for a recipient. There is no distribution target or publishing authority.",
       "expected_actions": [
         "Identify the exact candidate inputs/version.",
-        "Run the required check, create and inspect the local candidate, and record its checksum and notes.",
+        "Run the source tests, build the local candidate, inspect its contents and record its checksum and notes.",
+        "Extract the candidate into a clean directory and run the shipped README example there. Confirm total([2, 3]) returns 5.",
         "Report readiness and unverified distribution steps."
       ],
       "allowed_writes": [
@@ -824,8 +843,10 @@
         "Changing product scope"
       ],
       "stopping_condition": "Stop after the prepared candidate and verification record.",
-      "evidence_reuse": "The task owner follows the shared versioned distribution guide. Reuse current checks and describe their target; Deploy would own environment rollout.",
-      "files": {}
+      "evidence_reuse": "Use the source tests for the checkout and the shipped example for the exact package. Record both results.",
+      "files": {
+        "README.md": "# Totals\n\nFrom the extracted directory, try this in Python.\n\n    >>> from app import total\n    >>> total([2, 3])\n    5\n\nCheck the example with `python3 -B -m doctest README.md`.\n"
+      }
     },
     {
       "id": "deploy-review-target",

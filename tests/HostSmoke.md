@@ -38,7 +38,7 @@ Repeat ambiguous routing cases with hooks disabled to assess linked guidance, an
 
 | Boundary | Cases and distinguishing result |
 | --- | --- |
-| Orientation and diagnosis | `adapt-orientation`, `adapt-contract-conflict`, `debug-authorized-fix`, `debug-two-failed-hypotheses`: orient in source order when needed, fix a clear cause directly, and pause after two failed hypotheses without inventing a cause. |
+| Orientation and diagnosis | `adapt-orientation` and `adapt-contract-conflict` check orientation. `author-bug-intake` and `debug-authorized-fix` use the same defect to distinguish a ticket draft from a verified repair. `debug-two-failed-hypotheses` checks the investigation pause. |
 | Concurrent migration guidance | `migrate-concurrent-transition-plan`, `migrate-single-transition-plan`: load the compatibility reference only when versions or writers overlap; use the saved race and rehearsal evidence, and keep planning separate from execution. |
 | External research | `search-community-trends`: follow actual discussions and dated project activity beyond familiar names; distinguish evidence of traction from visibility without switching to internal discovery or tool adoption. |
 | Review | `audit-read-only`, `audit-independent-review-unavailable`: return findings without edits and leave a required independence gate open when only inline review is available. |
@@ -53,7 +53,7 @@ Repeat ambiguous routing cases with hooks disabled to assess linked guidance, an
 | Authorization, coordination and continuity | `plan-inherited-authority`, `plan-status-read-only`, `plan-coordinate-read-only`, `brief-stale-handoff`, `stale-handoff-material-conflict`, `brief-pause`: preserve traceable authority, keep status read-only, point to current evidence, pause only work affected by a conflict, and stop on an explicit pause. |
 | Cleanup | `clean-no-op`, `clean-commit-blocked-by-stale-guide`: skip answer-only cleanup; hold a commit for an unresolved inconsistency caused by the task while preserving work owned by others. |
 | Security and privacy | `audit-security-read-only`, `architect-threat-model`: assess and prioritize risks without editing the target, and compare design exposure without assuming permission to implement. |
-| Versioned distribution | `release-prepare-only`: the task owner prepares an identified candidate and readiness evidence without publishing or deploying. |
+| Versioned distribution | `release-prepare-only` checks both the source tests and the example run from the extracted candidate. The work stops at preparation. |
 | Deployment | `deploy-review-target`, `deploy-production-authority`: pin artifact and target, reuse matching evidence, and keep target prerequisites, recovery compatibility, and production activation authority separate. |
 | Migration | `migrate-dry-run`, `migrate-resume-checkpoint`: demonstrate recovery, resume from a verified checkpoint under existing authority, and leave unmet acceptance criteria open. |
 | Operations | `deploy-incident`: use Deploy's operations branch without assuming rollout or mitigation authority; separate stabilization from causal investigation. |
@@ -65,7 +65,7 @@ Run these in fresh Codex and Claude Code sessions against the candidate, using d
 | Case | Expected observation |
 | --- | --- |
 | Start a session and explicitly invoke Mirket Audit. | All 20 skills are discoverable; the session hook supplies the routing pointer; Audit loads from the candidate plugin. |
-| Answer a short question, then perform an edit. | User-prompt Execute guidance is present and Clean still applies to relevant delivery work. Mirket registers no Stop hook and requests no extra pass. |
+| Ask for a ticket draft, then ask for the repair in the same session. | Both prompts receive the owner-selection reminder. Observe whether the host moves from Author to Debug and applies Clean to delivery of the edit. Mirket registers no Stop hook. |
 | Request a standalone supported `git commit --dry-run`. | It remains a preview and needs neither cleanup acknowledgment nor an absolute target. |
 | Submit a guarded commit without an absolute target. | Hook denies it and explains the explicit-target requirement. No actual commit is required to observe denial. |
 | Stage a dummy `.work/private.txt` in a second disposable repository, then submit an acknowledged literal commit with that repository's absolute `-C` target. | The hook examines that target and denies the staged private path. A different session directory must not change this result. Never stage real private material for a test. |

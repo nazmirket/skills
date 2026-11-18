@@ -4,7 +4,7 @@ The repository root is the shared plugin package. Both marketplaces point to it.
 
 ## Skills
 
-Add a skill at `skills/<name>/SKILL.md` with a lowercase name and a clear trigger. Add `agents/openai.yaml` for its Codex display metadata. If ownership changes, update the [routing guide](references/Routing.md) and related skill references.
+Add a skill at `skills/<name>/SKILL.md` with a lowercase name and a clear trigger. Add `agents/openai.yaml` for its Codex display metadata. If ownership changes, update the [routing guide](references/Routing.md) and related skill references. Start each routing row’s owner column with a link to the skill responsible for that result.
 
 The [other-agent guide](docs/OtherAgents.md) uses `npx skills add`, which copies individual skill directories. Keep skill links within the catalog and shared skill references in [Execute](skills/execute/references/Routing.md). The old root reference paths still point to the maintained guides. Keep the [catalog's copy of the license](skills/execute/LICENSE) in sync with the [root license](LICENSE).
 
@@ -41,7 +41,7 @@ Use the [versioned distribution guide](references/VersionedDistribution.md) to p
 Mirket handles three lifecycle events and requires Python 3.8 or later in the host environment:
 
 - **At session start:** supply [Execute](skills/execute/SKILL.md) guidance for taking the simplest complete path and reporting what matters. Point to the [routing guide](references/Routing.md) to keep one owner per outcome.
-- **On a user prompt:** repeat the core Execute guidance and remind the agent to apply Clean before delivery when relevant. Mirket does not request an extra review at turn end.
+- **On each user prompt** the hook reminds the agent to select the owner for the current outcome, apply Execute and use Clean for relevant delivery work.
 - **Before an agent-issued commit:** for supported direct `git commit` calls through the agent's Bash tool, ask for [Clean](skills/clean/SKILL.md) before inspecting staged files. Use a standalone literal command such as `MIRKET_CLEANUP_DONE=1 git -C "/absolute/worktree" commit -m "message"`. The first `-C` must be absolute; later literal `-C` values can be relative to it. Codex's hook session directory may differ from the tool's execution directory, so the same explicit target rule applies in both hosts. A standalone supported `git commit --dry-run` preview needs neither an acknowledgment nor an absolute target; keep the flag when retrying a preview.
 
 The staged check requires system Git from `/usr/bin` or `/bin` with `--no-lazy-fetch` support and an absolute-only `PATH` that selects it. External helpers are disabled. The hook supports basic `env` and `command` wrappers and known staged commit flags. It blocks recognized commits with custom executables, overrides such as `git -c` or `GIT_INDEX_FILE`, or modes such as `-a`, `--include`, `--only`, or a pathspec. Stage intended paths explicitly for a real commit. If the human authorizes one exact `.work/` path, add `MIRKET_WORK_EXCEPTION=.work/path` to the commit command. Both markers record assertions and neither overrides host permissions. See the [Git target decision](docs/decisions/0001-ExplicitGitTarget.md) for the tradeoff.

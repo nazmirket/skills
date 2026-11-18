@@ -179,8 +179,14 @@ class PackageWiringTest(unittest.TestCase):
     def test_catalog_matches_skill_metadata_routing_and_documentation(self):
         catalog = {p.name for p in SKILLS.iterdir() if p.is_dir() and not p.name.startswith(".")}
         self.assertEqual(catalog, EXPECTED_SKILLS)
-        routing = (SKILLS / "execute/references/Routing.md").read_text(encoding="utf-8")
-        self.assertEqual(set(re.findall(r"\.\./\.\./([^/]+)/SKILL\.md", routing)) | {"execute"}, catalog)
+        routing = SKILLS / "execute/references/Routing.md"
+        # A cross-reference to a supporting skill does not give it an owner row.
+        owner_links = re.findall(
+            r"^\| [^|\n]+ \| \[[^\]]+\]\(([^\s)#]+/SKILL\.md)(?:#[^)]*)?\)",
+            routing.read_text(encoding="utf-8"), re.MULTILINE,
+        )
+        owners = {(routing.parent / link).resolve() for link in owner_links}
+        self.assertEqual(owners, {SKILLS / name / "SKILL.md" for name in catalog})
         guide = (REPO / "docs/README.md").read_text(encoding="utf-8")
         self.assertEqual(set(re.findall(r"\.\./skills/([^/]+)/SKILL\.md", guide)), catalog)
         display_names = set()

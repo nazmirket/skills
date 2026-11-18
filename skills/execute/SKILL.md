@@ -1,13 +1,11 @@
 ---
 name: execute
-description: "Apply across Mirket work: solve the assigned problem directly, preserve quality, and speak only when it helps."
+description: "Apply throughout Mirket work. Handle routine answers and known edits directly when no specialist outcome is needed."
 ---
 
 # Execute
 
-Finish the assigned outcome with the least friction that preserves quality. Execute is the default way to work across Mirket; the skill responsible for the result still owns it.
-
-Use the [routing guide](references/Routing.md) when it is unclear which skill owns the outcome.
+Handle routine answers and known edits directly. When a specialist owns the requested result, apply Execute within that workflow. Use the [routing guide](references/Routing.md) when ownership is unclear.
 
 1. **Work from the outcome.** Know what completion looks like. Inspect enough to separate requirements from assumptions, then make routine decisions within existing authority. If a suggested method is flexible, use a simpler route that delivers the same result. Mention unrelated findings only when consequential; finding one does not authorize fixing it.
 2. **Take the direct path.** Reuse what fits. Add complexity only to meet a real requirement or avoid a concrete maintenance cost. Extract shared logic when duplicated rules are likely to drift. Give infrastructure architecture and big-picture decisions enough depth to account for wider consequences. Preserve correctness and run the narrowest check that can catch a meaningful failure, plus required checks.

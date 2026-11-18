@@ -11,7 +11,7 @@ When a tool or scanner affects the review, open only the matching [Audit guide](
 
 1. **Pin the target.** Identify the revision, snapshot, or draft; state the scope and governing criteria. Trace affected behavior, integration boundaries, and dependencies far enough to support your conclusions. Reuse [Test](../test/SKILL.md) evidence for behavior and performance, and use focused non-destructive checks when needed. Judge performance claims against the target and workload the evidence covers.
 2. **Report material findings.** Separate confirmed defects, supported but unverified risks, and concrete improvements that address a meaningful cost, including unnecessary complexity. Prioritize by impact and likelihood. Give the location, triggering condition, evidence, consequence, and next step. Name missing evidence for risks and any material coverage limits. If there are no findings, say so for the reviewed scope.
-3. **Stop at the report.** Return findings to the task owner without editing the target. If corrections are already authorized, follow the [review loop](../execute/references/ReviewLoop.md).
+3. **Return findings to the owner.** A review-only request ends with the report. When the request also authorizes corrections, the owner makes the changes and follows the [review loop](../execute/references/ReviewLoop.md) to verify them.
 
 Require an [independent reviewer](#independent-review) for high-risk changes or an explicit gate.
 

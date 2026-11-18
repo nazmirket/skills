@@ -17,7 +17,7 @@ Open the matching [Debug tool guide](references/README.md) before interpreting t
 
 ## Fix and verify
 
-- A clearly reported bug authorizes an in-scope fix. Stop at diagnosis when requested, and ask before changing agreed behavior. An orientation finding alone does not authorize a repair.
+- Match the action to the request. For diagnosis, return the cause and evidence. For a repair, fix the established failure within scope and ask before changing agreed behavior. A request to turn the same report into a ticket belongs to [issue triage](../author/references/IssueTriage.md).
 - Reuse a focused check that catches the failure. If a regression case needs coverage, extend an existing test when it fits naturally. Add a separate test if it needs different setup or would make the existing test unclear. Run the required project checks and verify affected behavior.
 - Report the cause, fix, and actual results. If the original check cannot run, deliver the in-scope fix with the evidence you have, name the exact check still needed, and leave that behavior unverified. Honor explicit completion gates. Use [Preflight](../preflight/SKILL.md) for setup blockers and its rules for weaker fallbacks.
 

@@ -3,11 +3,13 @@
 import json
 import os
 from pathlib import Path
+import runpy
 import shlex
 import subprocess
 import sys
 import tempfile
 import unittest
+from unittest.mock import patch
 
 HOOK = Path(__file__).resolve().parents[1] / "hooks/cleanup.py"
 CLEAN = HOOK.parent.parent / "skills/clean/SKILL.md"
@@ -36,6 +38,23 @@ def before_shell(command, *, cwd=None, env=None):
 
 def denied(output):
     return output.get("hookSpecificOutput", {}).get("permissionDecision") == "deny"
+
+
+def transport_environment():
+    env = {name: value for name, value in os.environ.items() if not name.startswith("GIT_")}
+    url = "https://example.invalid:443/team/a%20repository.git"
+    entries = [
+        (f"credential.{url}.helper", ""),
+        (f"credential.{url}.helper", "example-helper"),
+        (f"credential.{url}.useHttpPath", "true"),
+        (f"http.{url}.proactiveAuth", "basic"),
+        (f"http.{url}.followRedirects", "false"),
+    ]
+    env["GIT_CONFIG_COUNT"] = str(len(entries))
+    for index, (key, value) in enumerate(entries):
+        env[f"GIT_CONFIG_KEY_{index}"] = key
+        env[f"GIT_CONFIG_VALUE_{index}"] = value
+    return env
 
 
 class CleanupHooksTest(unittest.TestCase):
@@ -82,6 +101,70 @@ class CleanupHooksTest(unittest.TestCase):
         for command in commands:
             with self.subTest(command=command):
                 self.assertEqual(before_shell(command), {})
+
+    def test_https_transport_settings_preserve_the_staged_work_check(self):
+        with tempfile.TemporaryDirectory() as root:
+            subprocess.run(["git", "init", "-q", root], check=True)
+            env = transport_environment()
+            command = f"MIRKET_CLEANUP_DONE=1 git -C {shlex.quote(root)} commit -m first"
+            (Path(root) / "reviewed.md").write_text("reviewed")
+            subprocess.run(["git", "-C", root, "add", "reviewed.md"], check=True)
+            self.assertEqual(before_shell(command, env=env), {})
+            private = Path(root) / ".work" / "local.md"
+            private.parent.mkdir()
+            private.write_text("test fixture")
+            subprocess.run(["git", "-C", root, "add", "-f", ".work/local.md"], check=True)
+            result = before_shell(command, env=env)
+            self.assertTrue(denied(result))
+            self.assertIn(".work/local.md", result["hookSpecificOutput"]["permissionDecisionReason"])
+
+    def test_transport_settings_cannot_hide_other_git_overrides(self):
+        base = transport_environment()
+        command = f"MIRKET_CLEANUP_DONE=1 git -C {REPOSITORY} commit -m first"
+        for name, value in (
+            ("GIT_INDEX_FILE", "other-index"),
+            ("GIT_DIR", "other-repository"),
+            ("GIT_CONFIG_PARAMETERS", ""),
+            ("GIT_CONFIG_KEY_0", "core.worktree"),
+            ("GIT_CONFIG_KEY_0", "include.path"),
+            ("GIT_CONFIG_KEY_0", "credential.helper"),
+            ("GIT_CONFIG_KEY_0", "http.https://example.invalid/repo.proxy"),
+            ("GIT_CONFIG_KEY_0", "credential.https://example.invalid:65536/repo.helper"),
+            ("GIT_CONFIG_KEY_0", "credential.https://example.invalid/re%2.helper"),
+            ("GIT_CONFIG_COUNT", "50000000"),
+            ("GIT_CONFIG_COUNT", "1"),
+            ("GIT_CONFIG_KEY_7", "credential.https://example.invalid/repo.helper"),
+        ):
+            with self.subTest(name=name, value=value):
+                self.assertTrue(denied(before_shell(command, env={**base, name: value})))
+        for missing in ("GIT_CONFIG_COUNT", "GIT_CONFIG_KEY_1", "GIT_CONFIG_VALUE_1"):
+            with self.subTest(missing=missing):
+                self.assertTrue(denied(before_shell(command, env={k: v for k, v in base.items() if k != missing})))
+
+    def test_transport_values_stay_out_of_probes_and_errors(self):
+        hook = runpy.run_path(str(HOOK))
+        env = transport_environment()
+        marker = "inert-test-helper-value"
+        env["GIT_CONFIG_VALUE_1"] = marker
+        env["PATH"] = os.defpath
+        command = f"MIRKET_CLEANUP_DONE=1 git -C {REPOSITORY} commit -m first"
+        payload = {"hook_event_name": "PreToolUse", "tool_name": "Bash", "tool_input": {"command": command}}
+        with patch.dict(os.environ, env, clear=True), patch("subprocess.run") as run:
+            run.side_effect = [
+                subprocess.CompletedProcess([], 0),
+                subprocess.CalledProcessError(1, ["git"], stderr=marker.encode()),
+            ]
+            result = hook["handle"](payload)
+        self.assertTrue(denied(result))
+        self.assertIn("target Git index", result["hookSpecificOutput"]["permissionDecisionReason"])
+        self.assertNotIn(marker, json.dumps(result))
+        self.assertEqual(run.call_count, 2)
+        for call in run.call_args_list:
+            child_env = call.kwargs["env"]
+            self.assertFalse(any(name.startswith("GIT_CONFIG_") for name in child_env))
+            self.assertNotIn(marker, child_env.values())
+            self.assertEqual(child_env["GIT_ALLOW_PROTOCOL"], "")
+            self.assertIn("--no-lazy-fetch", call.args[0])
 
     def test_quoted_and_escaped_operators_are_commit_arguments(self):
         for message in ("'|'", r"\;", '"("'):

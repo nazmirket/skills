@@ -12,6 +12,13 @@ SKILL = str(Path(__file__).resolve().parent.parent / "skills" / "clean" / "SKILL
 MARKER = "MIRKET_CLEANUP_DONE=1"
 ASSIGNMENT = re.compile(r"^[A-Za-z_][A-Za-z0-9_]*=.*$", re.DOTALL)
 SYSTEM_PATH = "/usr/bin:/bin"
+HOST_LABEL = r"[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?"
+HTTPS_SCOPE = re.compile(
+    rf"https://{HOST_LABEL}(?:\.{HOST_LABEL})*(?::(?P<port>[0-9]{{1,5}}))?"
+    r"(?:/(?:[a-z0-9._~/-]|%[0-9a-f]{2})*)?",
+    re.ASCII | re.IGNORECASE,
+)
+TRANSPORT_OPTIONS = {"credential": {"helper", "usehttppath"}, "http": {"proactiveauth", "followredirects"}}
 GIT_OPTIONS_WITH_VALUE = {"-C", "-c", "--git-dir", "--work-tree", "--namespace", "--config-env", "--exec-path"}
 COMMIT_VALUES = {"-m", "-F", "-C", "-c", "--message", "--file", "--reuse-message", "--reedit-message", "--author", "--date"}
 COMMIT_FLAGS = {"-q", "--quiet", "--amend", "--no-edit", "--allow-empty", "--allow-empty-message", "-s", "--signoff", "--no-signoff", "--no-gpg-sign"}
@@ -176,12 +183,37 @@ def deny(reason):
     return {"hookSpecificOutput": {"hookEventName": "PreToolUse", "permissionDecision": "deny", "permissionDecisionReason": reason}}
 
 
+def is_scoped_transport_key(key):
+    section, _, rest = key.partition(".")
+    scope, _, option = rest.rpartition(".")
+    if option.lower() not in TRANSPORT_OPTIONS.get(section.lower(), ()):
+        return False
+    match = HTTPS_SCOPE.fullmatch(scope)
+    return match is not None and (match["port"] is None or 0 < int(match["port"]) <= 65535)
+
+
+def supports_index_probe(environ):
+    names = {name for name in environ if name.startswith("GIT_") and name != "GIT_PAGER"}
+    if not names:
+        return True
+    # Bound the check by the supplied keys. Git needs one complete pair per slot.
+    count = sum(name.startswith("GIT_CONFIG_KEY_") for name in names)
+    if environ.get("GIT_CONFIG_COUNT") != str(count):
+        return False
+    expected = {"GIT_CONFIG_COUNT"}
+    for index in range(count):
+        key = f"GIT_CONFIG_KEY_{index}"
+        if not is_scoped_transport_key(environ.get(key, "")):
+            return False
+        expected.update((key, f"GIT_CONFIG_VALUE_{index}"))
+    return names == expected
+
+
 def check_staged_work(commit):
     import shutil
     import subprocess
 
-    git_overrides = any(name.startswith("GIT_") and name != "GIT_PAGER" for name in os.environ)
-    if git_overrides:
+    if not supports_index_probe(os.environ):
         return deny("Mirket cannot identify the index with inherited GIT_* overrides. Use a supported direct commit without those overrides.")
     # Resolve the probe from system directories, never from the submitted command
     # or a workspace PATH. Refuse to inspect when the inherited PATH selects a
@@ -193,6 +225,7 @@ def check_staged_work(commit):
     selected = shutil.which("git", path=os.pathsep.join(search_path))
     if not git or not selected or os.path.realpath(selected) != os.path.realpath(git):
         return deny("Mirket requires the system Git executable for staged-index inspection. Use a supported direct commit with system Git on PATH.")
+    # Transport settings stay with the host. The local probe never receives helper values.
     env = {name: os.environ[name] for name in ("HOME", "XDG_CONFIG_HOME") if name in os.environ}
     env.update(PATH=SYSTEM_PATH, LC_ALL="C", GIT_ALLOW_PROTOCOL="")
     try:

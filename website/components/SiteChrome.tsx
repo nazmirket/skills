@@ -16,7 +16,6 @@ export function SiteHeader() {
       <Brand/>
       <nav aria-label="Main navigation">
         <Link href="/docs/">Docs</Link><Link href="/#skills">Skills</Link><Link href="/#install">Install</Link>
-        <a href="https://remember.mirket.dev/">Remember</a>
       </nav>
       <a className="header-link" href={repo}>GitHub <span aria-hidden="true">↗</span></a>
     </div>
@@ -28,7 +27,6 @@ export function SiteFooter() {
     <Brand small/>
     <div className="footer-links">
       <a href={repo}>GitHub ↗</a><Link href="/docs/">Documentation</Link><a href={`${repo}/blob/main/LICENSE`}>MIT License ↗</a>
-      <a href="https://remember.mirket.dev/">Remember <span aria-hidden="true">&nbsp;↗</span></a>
       <a href="https://x.com/nazmirket" aria-label="X — Nazmi Yılmaz">X<span aria-hidden="true">&nbsp;↗</span></a>
       <a href="https://www.linkedin.com/in/nazmirket/" aria-label="LinkedIn — Nazmi Yılmaz">LinkedIn<span aria-hidden="true">&nbsp;↗</span></a>
     </div>

@@ -40,4 +40,3 @@ See an [example debugging workflow](docs/diagrams/debug-with-evidence.svg) from 
 ## Contribute
 
 Read [CONTRIBUTING.md](CONTRIBUTING.md) to improve a skill or run the package checks. Mirket is available under the [MIT license](LICENSE).
-

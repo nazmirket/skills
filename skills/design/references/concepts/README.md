@@ -8,7 +8,7 @@ Choose the craft guidance that answers the decision in front of you. A concept i
 - [UX](UX.md) — Actions, states, feedback, and recovery.
 - [Journey](Journey.md) — Tasks across steps, channels, and roles.
 - [Mobile](Mobile.md) — Touch and phone-specific constraints.
-- [Responsive](Responsive.md) — Reflow across viewports and containers.
+- [Responsive](Responsive.md) — Reflow, reading order and mixed-direction content.
 - [Accessibility](Accessibility.md) — Equivalent access, semantics, and checks.
 
 ## Visual language and systems

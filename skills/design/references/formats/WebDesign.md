@@ -13,7 +13,7 @@ Identify the affected routes or component entry points, the person using them, a
 | Store or catalog | Useful distinctions, accurate availability, and clear commitments | A representative comparison or filter, and a relevant empty or unavailable state |
 | App, admin, or workspace | The active task, familiar controls, useful density, and clear feedback | A real completion or recovery path, including the state most likely to fail |
 
-Make the surface recognizable through the subject, material, or task. Keep claims and product facts traceable; label stand-in assets, sample data, and simulated actions. Use a list for sequence, a table for exact comparisons, or a chart for a relationship worth seeing. Give important data its units, time period, and meaningful missing-value treatment. Keep essential information available without hover or color alone.
+Make the surface recognizable through the subject, material, or task. Keep claims and product facts traceable; label stand-in assets, sample data, and simulated actions. Use a list for sequence, a table for exact comparisons, or the [chart checks](DiagramDesign.md#compare-values-and-trends) for a quantitative relationship worth seeing. Give important data its units, time period, and meaningful missing-value treatment. Keep essential information available without hover or color alone.
 
 ## Choose a supported implementation
 

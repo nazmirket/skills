@@ -17,5 +17,7 @@ Open a style guide when the brief calls for a particular visual treatment or whe
 | [Synthwave](Synthwave.md) | Retrofuturist darkness, perspective and glow |
 | [Pop](Pop.md) | Decisive graphic contrast, repetition and saturation |
 | [Doodle](Doodle.md) | Playful shorthand and hand-drawn annotation |
+| [International Typographic Style](InternationalTypographicStyle.md) | Asymmetric grids and information hierarchy across a poster or program |
+| [Ukiyo-e woodblock composition](UkiyoE.md) | Silhouette, depth and overlapping color shapes in an illustration |
 
 For a modular Bento Box layout, use [Composition](../concepts/Composition.md#bento-box-layout). A layout pattern can work with several visual treatments.

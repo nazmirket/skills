@@ -10,6 +10,8 @@ Start with a readable silhouette and a hierarchy of shapes, then choose a treatm
 
 ## Check the artwork in its placement
 
+When exploring silhouette and depth in a restricted palette, use the [ukiyo-e woodblock specimen](../styles/UkiyoE.md) to compare two compositions of the actual subject.
+
 Inspect the final image at intended size and the smallest or tightest requested crop. Check the subject or sequence survives, contrast works against actual backgrounds, and fine details, edges or textures still read. Check labels separately when precision matters. For a family, compare a simple and a difficult subject; repeat the rules, not the same composition.
 
 Return the agreed assets and editable sources where requested, plus any variants for crop, background or reproduction. Check dimensions, transparency and legibility in the actual export. For informative artwork, supply an appropriate text alternative or state where it belongs; note unsupported uses or fidelity limits.

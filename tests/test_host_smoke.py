@@ -25,6 +25,7 @@ class HostSmokeFixtureTest(unittest.TestCase):
                 for key in ("prompt", "context", "stopping_condition", "evidence_reuse"):
                     self.assertTrue(case[key].strip(), key)
                 self.assertTrue(case["expected_actions"])
+                self.assertIn(case.get("invocation", "implicit"), {"implicit", "explicit"})
                 self.assertTrue(case["prohibited_writes"])
                 self.assertIsInstance(case["allowed_writes"], list)
                 self.assertLessEqual(set(case["supporting_skills"]), EXPECTED_SKILLS)
@@ -36,17 +37,63 @@ class HostSmokeFixtureTest(unittest.TestCase):
     def test_prepared_cases_start_unverified_and_record_the_input_snapshot(self):
         with tempfile.TemporaryDirectory() as root:
             root = Path(root).resolve()
-            for case in load_cases():
+            for index, case in enumerate(load_cases()):
                 with self.subTest(case=case["id"]):
-                    destination = prepare(case, root / case["id"])
-                    result = json.loads((destination / "Result.json").read_text())
+                    destination = prepare(case, root / f"trial-{index}")
+                    result = json.loads((root / f"trial-{index}.result.json").read_text())
+                    self.assertEqual(result["case_id"], case["id"])
+                    self.assertEqual(result["invocation"], case.get("invocation", "implicit"))
+                    self.assertEqual(result["rubric_exposure"], "unverified")
+                    self.assertIsNone(result["host"]["global_mirket_instructions"])
+                    visible = {f.relative_to(destination).as_posix() for f in destination.rglob("*") if f.is_file()}
+                    self.assertEqual(visible, set(result["fixture_sha256"]))
+                    self.assertNotIn("Result.json", visible)
                     self.assertEqual(result["status"], "unverified")
                     self.assertTrue(all(item["status"] == "unverified" for item in result["criteria"].values()))
+                    self.assertLessEqual({"owner", "support_selection", "announcement", "outcome", "write_scope", "stopping_condition"}, result["criteria"].keys())
                     self.assertIsNone(result["observed"]["primary_owner"])
                     self.assertEqual(result["observed"]["writes"], [])
                     self.assertIn(case["prompt"], (destination / "Prompt.md").read_text())
                     for relative, digest in result["fixture_sha256"].items():
                         self.assertEqual(hashlib.sha256((destination / relative).read_bytes()).hexdigest(), digest)
+
+    def test_cli_accepts_an_unpublished_catalog_and_keeps_its_label_outside_workspace(self):
+        with tempfile.TemporaryDirectory() as root:
+            root = Path(root).resolve()
+            case = dict(load_cases()[0], id="reviewer-only-label", prompt="Explain the result.", files={}, include_sample_app=False)
+            catalog = root / "private.json"
+            catalog.write_text(json.dumps({"cases": [case]}))
+            workspace = root / "trial-01"
+            workspace.mkdir()
+            results = root / "evaluator"
+            subprocess.run([sys.executable, str(Path(__file__).with_name("prepare_host_smoke.py")),
+                            "--cases", str(catalog), "--case", case["id"], "--output", str(workspace),
+                            "--results-dir", str(results)],
+                           capture_output=True, check=True)
+            record = json.loads((results / "trial-01.result.json").read_text())
+            self.assertEqual(record["case_id"], case["id"])
+            self.assertEqual({p.name for p in workspace.iterdir()}, {".gitignore", "README.md", "Context.md", "Prompt.md"})
+            self.assertFalse((root / "trial-01.result.json").exists())
+            for path in workspace.rglob("*"):
+                if path.is_file():
+                    self.assertNotIn(case["id"], path.read_text())
+
+    def test_failed_preparation_preserves_previous_results_and_removes_its_partial_files(self):
+        with tempfile.TemporaryDirectory() as root:
+            root = Path(root).resolve()
+            workspace = root / "trial-02"
+            record = root / "trial-02.result.json"
+            case = load_cases()[0]
+            record.write_text("earlier verdict")
+            with self.assertRaisesRegex(ValueError, "existing work is preserved"):
+                prepare(case, workspace)
+            self.assertFalse(workspace.exists())
+            self.assertEqual(record.read_text(), "earlier verdict")
+            broken = dict(case, files={"a": "file", "a/b": "conflicting entry"})
+            with self.assertRaises(OSError):
+                prepare(broken, root / "trial-03")
+            self.assertFalse((root / "trial-03").exists())
+            self.assertFalse((root / "trial-03.result.json").exists())
 
     def test_preparer_preserves_existing_work_and_rejects_indirect_paths(self):
         case = load_cases()[0]
@@ -63,6 +110,10 @@ class HostSmokeFixtureTest(unittest.TestCase):
             link.symlink_to(destination, target_is_directory=True)
             with self.assertRaisesRegex(ValueError, "symlink"):
                 prepare(case, link / "new")
+            empty = root / "empty"
+            with self.assertRaisesRegex(ValueError, "outside the agent workspace"):
+                prepare(case, empty, results_dir=empty / "review")
+            self.assertFalse(empty.exists())
         with self.assertRaisesRegex(ValueError, "absolute"):
             prepare(case, Path("relative"))
 

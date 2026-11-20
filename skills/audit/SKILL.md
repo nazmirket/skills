@@ -5,7 +5,7 @@ description: "Use to review a code change, draft plan, or scoped system and repo
 
 # Audit
 
-Review the work and return findings to its owner.
+Review the work and return findings to its owner. Route a review of how a person navigates or recovers in a rendered interface to [Design critique](../design/references/flows/Critique.md).
 
 When a tool or scanner affects the review, open only the matching [Audit guide](references/README.md).
 

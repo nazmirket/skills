@@ -1,13 +1,15 @@
 ---
 name: search
-description: "Use for external research into what people are discussing, which projects are gaining traction, how competitors work, or what history explains a topic."
+description: "Use for external fact-checks, research papers, technical documentation, practitioner discussions, project traction, competitor research and historical context."
 ---
 
 # Search
 
-Go where the people working on the topic share what they are doing. Find evidence the human would miss in a generic overview. Search is read-only external research. Use [Adapt](../adapt/SKILL.md) for internal project facts and [Equip](../equip/SKILL.md) to decide whether a tool fits this project.
+Answer external questions from the original work and the people who did it. Search is read-only external research. Use [Adapt](../adapt/SKILL.md) for internal project facts and [Equip](../equip/SKILL.md) to decide whether a tool fits this project.
 
 ## Find the signal
+
+For a technical question, find the original specification, versioned documentation or research paper. Check the relevant version, methods, comparison and limitations. If a paper measures one configuration and a practitioner reports a different outcome, establish what each tested before drawing a conclusion.
 
 1. **Set the question and the window.** Identify whose activity matters and what would count as a useful answer. For “trending” and “lately,” use an explicit date range and look for change within it. For history, follow earlier names and accounts back to the decisions or events that explain the present.
 2. **Search where the work happens.** Use a broad search to find leads, then search the relevant places directly. Open actual threads, issue trackers, repository discussions, release histories, user forums, or other places where people exchange work and experience. For competitors, inspect the public product or a demo, documentation, and changelog for what it actually does; look at user discussions for how that plays out in practice. For history, read dated originals or archived copies. Pick sources to match the question; skip venues that add no useful perspective.

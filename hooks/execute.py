@@ -10,14 +10,9 @@ EXECUTE = ROOT / "skills" / "execute" / "SKILL.md"
 CLEAN = ROOT / "skills" / "clean" / "SKILL.md"
 ROUTING = ROOT / "skills" / "execute" / "references" / "Routing.md"
 
-GUIDANCE = (
-    "Execute: choose one Mirket skill to own each outcome and read it if it is not already in context. "
-    "Briefly announce the skills you select for the request using their lowercase identifiers in backticks, "
-    "as in ‘I’ll use `execute` and `design` skills.’ "
-    "Take the simplest complete path within existing authority. Preserve quality and run the "
-    "narrowest meaningful check plus required checks. Skip routine narration; speak when the human needs "
-    "to act, expectations change, or a material assumption or blocker matters. Lead the final reply with "
-    "the result, useful verification, and material limits."
+SELECTION = (
+    "Choose one Mirket owner per outcome. Read selected skills missing from context. "
+    "Announce them with lowercase backticked names, as in ‘I’ll use `execute` and `design` skills.’"
 )
 
 
@@ -25,13 +20,16 @@ def handle(payload):
     event = payload.get("hook_event_name") if isinstance(payload, dict) else None
     if event == "SessionStart":
         context = (
-            f"{GUIDANCE} Apply {EXECUTE} throughout the session. "
+            f"Apply {EXECUTE} throughout the session. {SELECTION} "
+            "Take the simplest complete path within existing authority. Run the narrowest meaningful check "
+            "plus required checks. Skip routine narration. Report the result, verification and material limits. "
             "Add supporting skills only for distinct unresolved questions; they return evidence to that owner. "
             f"If ownership is unclear, consult {ROUTING}."
         )
     elif event == "UserPromptSubmit":
         context = (
-            f"{GUIDANCE} If the task made changes or produced an artifact, apply {CLEAN} before delivery."
+            f"Apply Execute. {SELECTION} Work directly within scope, run focused and required checks, "
+            f"and skip routine narration. Apply {CLEAN} before delivering edits or artifacts."
         )
     else:
         return {}

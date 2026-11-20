@@ -5,8 +5,6 @@ import json
 import os
 from pathlib import Path
 import re
-import shutil
-import subprocess
 import sys
 from typing import NamedTuple, Optional
 
@@ -179,6 +177,9 @@ def deny(reason):
 
 
 def check_staged_work(commit):
+    import shutil
+    import subprocess
+
     git_overrides = any(name.startswith("GIT_") and name != "GIT_PAGER" for name in os.environ)
     if git_overrides:
         return deny("Mirket cannot identify the index with inherited GIT_* overrides. Use a supported direct commit without those overrides.")

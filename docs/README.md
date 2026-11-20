@@ -49,7 +49,7 @@ A skill is a Markdown workflow with a trigger, guidance, and sometimes more deta
 | Compare options and plan the work | [Equip](../skills/equip/SKILL.md), [Architect](../skills/architect/SKILL.md), [Plan](../skills/plan/SKILL.md) |
 | Make or improve something | [Design](../skills/design/SKILL.md), [Author](../skills/author/SKILL.md), [Debug](../skills/debug/SKILL.md), [Refactor](../skills/refactor/SKILL.md) |
 | Apply coding practices for the current stack | [Code](../skills/code/SKILL.md), with [32 stack guides](../skills/code/references/README.md) and [shared engineering practices](../skills/code/references/EngineeringPractices.md) |
-| Check the result and tidy up | [Test](../skills/test/SKILL.md), [Audit](../skills/audit/SKILL.md), [Design critique](../skills/design/references/flows/Critique.md) for visual review, [Author](../skills/author/SKILL.md) for writing review, [Clean](../skills/clean/SKILL.md) |
+| Check the result and tidy up | [Test](../skills/test/SKILL.md), [Audit](../skills/audit/SKILL.md), [Design critique](../skills/design/references/flows/Critique.md) for visual and interaction review, [Author](../skills/author/SKILL.md) for writing review, [Clean](../skills/clean/SKILL.md) |
 | Review security and privacy or model design threats | [Audit](../skills/audit/SKILL.md#security-and-privacy-review) for findings, [Architect](../skills/architect/SKILL.md#model-threats-during-design) for design decisions |
 | Change persistent state | [Migrate](../skills/migrate/SKILL.md) |
 | Release, roll out, and operate | The task owner prepares and publishes; [Deploy](../skills/deploy/SKILL.md) activates and handles [service health and recovery](../skills/deploy/SKILL.md#operate-and-recover) |
@@ -64,7 +64,7 @@ Choose the owner by the requested result. These responsibilities can overlap in 
 | Decide what is worth building or whether a shipped feature helped | The human, supported by Ship | User problem, observed outcomes and options |
 | Prepare positioning and launch communications | Market | Approved offer, audience, claims and distribution plan |
 | Establish a technical approach and sequence substantial work | Architect and Plan | Boundaries, constraints, authority, acceptance and recovery criteria |
-| Build the requested behavior or artifact | The implementer, with stack guidance from Code when relevant | Actual implementation, focused checks, and review findings from the relevant owner |
+| Implement settled requirements with no specialist owner | Execute, with stack guidance from Code when relevant | Working behavior, focused checks and any required review |
 | Assess security and privacy or model design threats | Audit for review, Architect for design | Trust and data boundaries, evidence about safeguards, open risks and decisions |
 | Harden an authorized target | The implementer | Verified safeguards and preserved legitimate access |
 | Change schemas, data formats or persistent configuration | Migrate | Preserved meaning and access, compatible consumers, reconciled state and recovery |

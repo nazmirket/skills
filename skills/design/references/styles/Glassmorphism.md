@@ -13,3 +13,5 @@ Avoid stacking multiple blurred layers, losing focus indication, or making textu
 ## Check it in use
 
 Check busy, light and dark backgrounds and focus states in the real viewport. Measure if large moving blur regions introduce visible slowdown.
+
+Compare Microsoft’s acrylic pane with its solid fallback. Place the same label on each over a busy background and check its contrast after the transparency setting changes. [Microsoft acrylic examples](https://learn.microsoft.com/en-us/windows/apps/design/style/acrylic)

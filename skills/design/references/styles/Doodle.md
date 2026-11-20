@@ -13,3 +13,5 @@ Avoid visual clutter, ambiguous doodles as control icons and imitating handwritt
 ## Check it in use
 
 Check the marks in context and remove some: the notes should help interpretation, and the remaining decoration should still feel coherent.
+
+Follow a figure in Keith Haring’s 1981 subway drawing in chalk on paper. See how few turns of the line are needed to suggest an action, then draw three original annotations for a real page and check each at its final size. [Museum Brandhorst collection object](https://www.museum-brandhorst.de/en/collection/untitled-subway-drawing-1217/)

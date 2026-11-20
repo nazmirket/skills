@@ -11,3 +11,9 @@ Inspect the narrow, wide and first awkward intermediate view, plus any important
 ## Choose how the layout adapts
 
 Start with fluid sizing and wrapping. Add a breakpoint where content or interaction actually breaks; use container size when the component can live in different layouts. Inspect visual order against reading and focus order after reflow. Keep one source of truth for behavior across sizes when possible.
+
+## Check mixed-direction content
+
+Set the document's language and base direction separately. On the web, give an Arabic page `lang="ar" dir="rtl"`, use logical start and end spacing, and isolate embedded identifiers from neighboring text. An invoice can wrap a known Latin SKU in `<bdi dir="ltr">AB-12</bdi>`. For a customer note whose direction is unknown, `dir="auto"` lets the first strong character establish its direction. [W3C structural direction guidance](https://www.w3.org/International/questions/qa-html-dir) · [W3C inline bidirectional text](https://www.w3.org/International/articles/inline-bidi-markup/)
+
+Render the invoice at a narrow width with Arabic labels, the SKU, an amount, punctuation and a note in each direction. Inspect how the characters group and copy the identifier to check its logical order. Tab through the actual task and verify focus follows its meaning after reflow.

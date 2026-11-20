@@ -13,3 +13,5 @@ Avoid equating all historical ornament with Victorian design. A fitting title an
 ## Check it in use
 
 Inspect body copy, captions and fine linework at intended size and reproduction quality. Check whether the specifics match the claimed reference.
+
+In the 1896 Kelmscott *Works of Geoffrey Chaucer*, compare the border, illustration and type on one spread. Give each a distinct visual weight in a new book layout, then check that readers can still locate the start of the text. [V&A on the Kelmscott Press](https://www.vam.ac.uk/articles/william-morris-text)

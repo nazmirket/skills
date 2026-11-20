@@ -1,6 +1,6 @@
 ---
 name: architect
-description: "Use to assess architecture, make a consequential technical choice, or record a settled change to a lasting system boundary."
+description: "Use to compare technical designs, model threats and privacy tradeoffs between proposed designs, make architectural choices or record a settled system boundary."
 ---
 
 # Architect
@@ -20,7 +20,7 @@ When trust or data boundaries matter to the decision, identify what needs protec
 
 ## Record the decision
 
-- For an open decision that needs its own comparison, keep a private draft in `.work/decisions/` and link it from the active plan if there is one. Do not present a recommendation as an accepted decision.
+- Return a recommendation-only comparison in the reply. When the human requests a reusable draft or an agreed project deliverable requires one, save it in `.work/decisions/` and link it from the active plan if there is one. Label the decision as open until settled.
 - Once settled, follow the project's ADR format and numbering. If there is no established location, use `docs/decisions/` and the [workspace numbering rules](../execute/references/Workspace.md#numbered-records). If the record cannot be saved, report its intended location.
 - Make the ADR usable on its own: include the context, constraints, alternatives, choice, decision-maker, rationale, and consequences. Include any known condition for revisiting. For checks that informed the decision, record the setup, commands or steps, and observed results so a maintainer can reproduce them without the private plan. Label unverified claims. Link useful supporting detail and keep private material out of the project record unless authorized.
 - Hand the ADR to [Plan](../plan/SKILL.md) when execution planning is needed. Plan derives the implementation steps and checks. The ADR records the decision; it does not authorize implementation.

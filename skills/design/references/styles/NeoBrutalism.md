@@ -13,3 +13,5 @@ Avoid putting a border, bright fill and shadow on every element. Keep decorative
 ## Check it in use
 
 Compare ordinary and pressed controls, verify visible focus and check a narrow screen with realistic labels.
+
+Compare the default and shadowless buttons in the component library. Follow one through hover, keyboard focus and press. Decide which cue establishes depth and which independently identifies a focused control. [Neobrutalism button examples](https://www.neobrutalism.dev/docs/button)

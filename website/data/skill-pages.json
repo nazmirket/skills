@@ -5,7 +5,7 @@
     "prompt": "Use Mirket Adapt to trace how CSV exports are queued and generated in this repo. Point me to the key files and decisions. Don’t change anything."
   },
   "architect": {
-    "when": "You’re making a technical choice that will shape how parts of the system fit together.",
+    "when": "You’re comparing technical designs, modeling threats across them, or recording a settled architectural decision.",
     "adds": "Compares viable options against real constraints and shows the tradeoffs. It records the rationale once a lasting decision is settled.",
     "prompt": "Use Mirket Architect to compare generating exports inside the web service with moving them to a worker. Weigh failure recovery and ownership, then recommend an option."
   },
@@ -45,7 +45,7 @@
     "prompt": "Use Mirket Deploy to roll v1.8.2 out to staging. Verify sign-in and CSV export there. Roll back if either check fails."
   },
   "design": {
-    "when": "You’re creating, revising, or reviewing an interface or other visual work.",
+    "when": "You’re creating or reviewing visual work, or checking how people navigate, use and recover in an interface.",
     "adds": "Sets a direction that fits the brief, then checks how the result looks and behaves in its intended setting.",
     "prompt": "Use Mirket Design to simplify the export settings dialog. Keep its behavior intact and check the finished design at desktop and narrow mobile widths."
   },
@@ -55,7 +55,7 @@
     "prompt": "Use Mirket Equip to compare CSV and XLSX for sharing monthly reports with finance. Check compatibility and maintenance cost before recommending a format."
   },
   "execute": {
-    "when": "Use it throughout Mirket work, from routine fixes to larger tasks.",
+    "when": "Use it throughout Mirket work. It owns implementation of settled requirements when no specialist owns the result.",
     "adds": "Keeps the agent on the simplest path that meets the request. It checks what matters and reports the result without narrating every step.",
     "prompt": "Use Mirket Execute to correct the CSV download label. Keep the change focused, verify it in the dialog, and tell me the result."
   },
@@ -85,7 +85,7 @@
     "prompt": "Use Mirket Refactor to consolidate the two CSV formatting paths. Keep column order, escaping, and output bytes the same for both callers."
   },
   "search": {
-    "when": "You need evidence from outside the project, such as community practice, competing products, or historical context.",
+    "when": "You need to check an external claim against papers, technical documentation, practitioner accounts or historical records.",
     "adds": "Follows leads into primary sources and shows what they support. It separates verified findings from inference and notes missing evidence.",
     "prompt": "Use Mirket Search to compare how three open-source CLI projects communicate breaking changes. Cite release notes and maintainer discussions, and explain where their practices differ."
   },

@@ -13,3 +13,5 @@ Avoid mixed pixel sizes that make the grid feel accidental, blurry interpolation
 ## Check it in use
 
 Check at native size, a representative enlarged size and the host's actual scaling. For animation, inspect silhouettes and placement across frames.
+
+Inspect a single symbol in Susan Kare’s *Graphic icon sketch* against its grid. Draw two versions of an icon for your own task, change one square at a time and compare which silhouette reads at native size. [MoMA icon sketch](https://www.moma.org/collection/works/188396)

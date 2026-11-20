@@ -11,6 +11,8 @@ Use to make content and actions perceivable and usable with the relevant inputs,
 
 ## Check the applicable standard
 
+For an editable combobox with a listbox popup, distinguish the active suggestion from the committed value. Exercise typing, arrow navigation, Enter to accept and Escape to dismiss. Check the expanded state and accessible option as focus moves, including implementations that keep DOM focus on the input with `aria-activedescendant`. Verify dismissal preserves the value specified by that interaction. For multi-field validation, exercise the [form recovery sequence](UX.md#review-the-whole-task). [WAI-ARIA combobox pattern](https://www.w3.org/WAI/ARIA/apg/patterns/combobox/)
+
 For web work, identify the target level and scope of [WCAG 2.2](https://www.w3.org/TR/WCAG22/) or the project's applicable standard. For example, AA generally requires 4.5:1 contrast for normal text and 3:1 for large text; use the actual criterion and its exceptions. Check non-text contrast, target size, reflow, focus obstruction and an alternative to dragging as applicable. Use platform guidance where web criteria do not govern the surface. Aim for comfortable use, not just a minimum measurement.
 
 Run the important path with the relevant inputs, preferences and difficult content in the actual preview. Use [Test](../../../test/SKILL.md) for distinct measurable behavior and follow [review and delivery](../flows/Critique.md) for visual assessment. Name the assistive technologies, devices, states or criteria that were not checked.

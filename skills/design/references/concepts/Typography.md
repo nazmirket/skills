@@ -10,4 +10,6 @@ Avoid adding a font to create character that composition or imagery could expres
 
 ## Check real text
 
+For mixed scripts, inspect both glyph shaping and [directional isolation](Responsive.md#check-mixed-direction-content). Use the actual fallback fonts at the intended size.
+
 Compare an ordinary sample, long text, and a dense or localized case at the target size. Watch widows, clipping, baseline drift, awkward wrapping and silent changes in fallback. Fix hierarchy using roles, measure and spacing before adding another typeface.

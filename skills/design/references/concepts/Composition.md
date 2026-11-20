@@ -12,6 +12,8 @@ Use to decide the hierarchy, grouping, focal point and reading order of a screen
 
 ## Use space to show relationships
 
+For an event program or timetable, try the [International Typographic Style](../styles/InternationalTypographicStyle.md) specimen to test how a grid can establish priority across sizes.
+
 Use proximity for belonging and larger intervals for transitions. Reuse a few spacing relationships where they help, and adjust for actual content and optical alignment. Establish clear edges and reading measure before refining margins or corner radii. A border can separate rows; a shadow can place a floating surface; a plain background can let the content carry its own boundaries. Avoid giving every group a container or every label a badge.
 
 Choose density by task and device. Compact controls may serve repeated desktop operations, while touch actions and long-form reading need different spacing. Use separate layout treatments when one density rule would harm either.

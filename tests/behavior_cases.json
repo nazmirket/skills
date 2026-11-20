@@ -925,6 +925,7 @@
     },
     {
       "id": "migrate-concurrent-transition-plan",
+      "invocation": "explicit",
       "primary_owner": "migrate",
       "supporting_skills": [],
       "prompt": "Use Mirket Migrate to outline the order and checks for the transition in Transition.md. Planning only; do not change state, deploy, or run a rehearsal.",
@@ -948,6 +949,7 @@
     },
     {
       "id": "migrate-single-transition-plan",
+      "invocation": "explicit",
       "primary_owner": "migrate",
       "supporting_skills": [],
       "prompt": "Use Mirket Migrate to explain the remaining order for this one-time local file conversion using Transition.md. Advice only; do not change files or run another rehearsal.",
@@ -1111,6 +1113,161 @@
       "files": {
         "package.json": "{ \"dependencies\": { \"react\": \"18.3.1\" } }\n",
         "List.jsx": "import {useEffect, useState} from 'react';\nexport default function List({items, query}) {\n  const [visible, setVisible] = useState(items);\n  useEffect(() => setVisible(items.filter(item => item.name.includes(query))), [query]);\n  return <ul>{visible.map(item => <li key={item.id}>{item.name}</li>)}</ul>;\n}\n"
+      }
+    },
+    {
+      "id": "search-paper-and-standard",
+      "include_sample_app": false,
+      "primary_owner": "search",
+      "supporting_skills": [],
+      "prompt": "What does the Design2Code benchmark measure, and what additional evidence would support a claim about keyboard use in a modal dialog? Check the original paper and current public guidance.",
+      "context": "The deliverable is a sourced answer about external evidence. Public web access is in scope.",
+      "expected_actions": [
+        "Identify the paper's screenshot-to-code task and rendered and human evaluation.",
+        "Use WAI-ARIA dialog guidance to explain an observable keyboard check and the limit of visual evidence."
+      ],
+      "allowed_writes": [],
+      "prohibited_writes": [
+        "Project edits or an implementation plan"
+      ],
+      "stopping_condition": "Return sources, findings and measurement limits.",
+      "evidence_reuse": "Use the original publication and applicable guidance for their different questions.",
+      "files": {}
+    },
+    {
+      "id": "architect-reusable-comparison",
+      "include_sample_app": false,
+      "primary_owner": "architect",
+      "supporting_skills": [],
+      "prompt": "Save a reusable private comparison of the two storage options for next week's decision. Include the outstanding question. We have not chosen an option.",
+      "context": "The project workspace is ignored. Options.md contains the alternatives, constraints and decision status.",
+      "expected_actions": [
+        "Save a draft in .work/decisions/ and describe the unresolved tradeoff.",
+        "Keep the recommendation distinct from an accepted ADR."
+      ],
+      "allowed_writes": [
+        ".work/decisions/"
+      ],
+      "prohibited_writes": [
+        "Recording an accepted ADR or implementing either option"
+      ],
+      "stopping_condition": "Return the draft path and open question.",
+      "evidence_reuse": "Use the recorded ownership and availability constraints.",
+      "files": {
+        "Options.md": "The current local store runs offline with one writer. A shared store simplifies coordination for concurrent writers. Whether offline access or concurrent edits take precedence is open.\n"
+      }
+    },
+    {
+      "id": "execute-settled-feature",
+      "primary_owner": "execute",
+      "supporting_skills": [],
+      "prompt": "Add a public subtotal(items) function in app.py. It should sum each quantity times its unit price. The item shape and empty-input rule are settled. Use the existing test.",
+      "context": "Each item is a (quantity, unit_price) integer pair. The empty subtotal is zero. Use the existing module and preserve total(). No additional design decision is needed.",
+      "expected_actions": [
+        "Implement the agreed function in app.py and retain total().",
+        "Run the focused check and required fixture tests."
+      ],
+      "allowed_writes": [
+        "app.py"
+      ],
+      "prohibited_writes": [
+        "An ADR, changed tests or a new product rule"
+      ],
+      "stopping_condition": "Return the implementation and observed verification.",
+      "evidence_reuse": "Use the supplied test_subtotal.py examples through the public function.",
+      "files": {
+        "test_subtotal.py": "import unittest\nfrom app import subtotal\n\nclass SubtotalTest(unittest.TestCase):\n    def test_values(self):\n        self.assertEqual(subtotal([(3, 5), (2, 7)]), 29)\n        self.assertEqual(subtotal([]), 0)\n"
+      }
+    },
+    {
+      "id": "code-cascade-scope",
+      "include_sample_app": false,
+      "primary_owner": "code",
+      "supporting_skills": [],
+      "prompt": "Which color should each label in sample.html get in a browser that supports the scoped CSS in this example? Explain the cascade and check the result if a browser is available.",
+      "context": "The two matching scoped rules use the same selector specificity. Advice only.",
+      "expected_actions": [
+        "Explain the inner scope tie-break and the ordinary source-order control.",
+        "Report inner blue, outer-only red and control red. Identify the browser if verified."
+      ],
+      "allowed_writes": [],
+      "prohibited_writes": [
+        "Changing the CSS or claiming an unobserved browser result"
+      ],
+      "stopping_condition": "Return the three results and the rule responsible.",
+      "evidence_reuse": "Use the existing nested scopes and control.",
+      "files": {
+        "sample.html": "<!doctype html><html lang=\"en\"><title>Labels</title><style>@scope (.inner){.sample{color:blue}} @scope (.outer){.sample{color:red}} .control{color:blue}.control{color:red}</style><div class=\"outer\"><div class=\"inner\"><span class=\"sample\" id=\"inside\">Inside</span></div><span class=\"sample\" id=\"outside\">Outside</span><span class=\"control\" id=\"control\">Control</span></div></html>\n"
+      }
+    },
+    {
+      "id": "design-regional-chart",
+      "include_sample_app": false,
+      "primary_owner": "design",
+      "supporting_skills": [],
+      "prompt": "Make a standalone report.html that lets readers compare absolute quarterly sales across three regions. Readers should also be able to answer the comparison without seeing the chart.",
+      "context": "sales.csv contains units sold. A blank cell means unobserved. The report is read on desktop and phone.",
+      "expected_actions": [
+        "Use comparable quantitative scales across regions and show the missing measurement explicitly.",
+        "Verify the visible and text or tabular readings against the source at a narrow width."
+      ],
+      "allowed_writes": [
+        "report.html",
+        ".work/temp/"
+      ],
+      "prohibited_writes": [
+        "Inventing a zero or interpolating the missing observation",
+        "Changing the supplied data"
+      ],
+      "stopping_condition": "Deliver the report and verified reading, with any unobserved conditions.",
+      "evidence_reuse": "Check the South Q2 entry and the quarter with the highest reported units against sales.csv.",
+      "files": {
+        "sales.csv": "region,Q1,Q2,Q3\nNorth,5,9,8\nSouth,40,,42\nWest,17,20,18\n"
+      }
+    },
+    {
+      "id": "design-mixed-direction",
+      "include_sample_app": false,
+      "primary_owner": "design",
+      "supporting_skills": [],
+      "prompt": "Fix the reading direction of this Arabic invoice and its customer note. Preserve the product identifier, field values and keyboard sequence. Check the result in both note directions.",
+      "context": "invoice.html is a local preview. Customers use Arabic and English notes and copy the Latin SKU into support requests.",
+      "expected_actions": [
+        "Set Arabic base direction independently of language, isolate the Latin identifier and support an unknown-direction note.",
+        "Check the SKU and punctuation, narrower layout, note direction and actual keyboard order."
+      ],
+      "allowed_writes": [
+        "invoice.html",
+        ".work/temp/"
+      ],
+      "prohibited_writes": [
+        "Translating identifiers or changing invoice amounts"
+      ],
+      "stopping_condition": "Return the corrected invoice and the observed checks.",
+      "evidence_reuse": "Use the present SKU AB-12, punctuation and both note examples.",
+      "files": {
+        "invoice.html": "<!doctype html><html lang=\"ar\"><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"><title>فاتورة</title><main><h1>فاتورة</h1><p>رقم المنتج: <span>AB-12</span> (125.50 USD)</p><label>ملاحظة <textarea id=\"note\">التسليم غدًا</textarea></label><button>حفظ</button></main></html>\n"
+      }
+    },
+    {
+      "id": "design-form-recovery",
+      "include_sample_app": false,
+      "primary_owner": "design",
+      "supporting_skills": [],
+      "prompt": "Review this signup form using the keyboard. Submit it, correct one error and report whether a person can find and recover from the remaining error. Findings only.",
+      "context": "form.html is a self-contained local preview. The name and city start empty and the email is valid. No data leaves the page.",
+      "expected_actions": [
+        "Observe focus immediately after an invalid submission and test whether each error leads to its field.",
+        "Correct only the name, resubmit and verify the remaining error and persistence of the email value."
+      ],
+      "allowed_writes": [],
+      "prohibited_writes": [
+        "Editing the form or claiming keyboard results from source alone"
+      ],
+      "stopping_condition": "Return observations with the tested sequence and limits.",
+      "evidence_reuse": "Reuse the provided field values, validation and locally runnable preview.",
+      "files": {
+        "form.html": "<!doctype html><html lang=\"en\"><meta charset=\"utf-8\"><title>Signup</title><form novalidate><label>Name <input id=\"name\" required></label><label>City <input id=\"city\" required></label><label>Email <input id=\"email\" value=\"reader@example.invalid\"></label><button>Continue</button><p id=\"errors\"></p></form><script>document.querySelector('form').onsubmit = event => { event.preventDefault(); const missing = [...document.querySelectorAll('[required]')].filter(field => !field.value); document.querySelector('#errors').textContent = missing.map(field => 'Enter ' + field.id).join('. '); };</script></html>\n"
       }
     }
   ]

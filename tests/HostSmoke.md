@@ -8,12 +8,20 @@ The Python tests validate local contracts and fixture preparation. They do **not
 
 ```sh
 python3 -B tests/prepare_host_smoke.py --list
-python3 -B tests/prepare_host_smoke.py --case audit-read-only --output /absolute/disposable/mirket-audit
+python3 -B tests/prepare_host_smoke.py --case audit-read-only --output /absolute/disposable/trial-01
+python3 -B tests/prepare_host_smoke.py --cases /absolute/evaluator/holdouts.json --case sample-07 --output /absolute/disposable/trial-02 --results-dir /absolute/evaluator/results
 ```
 
-The [preparer](prepare_host_smoke.py) requires a new or empty absolute directory and refuses symlinked paths or existing work. It creates local source material, `Context.md`, `Prompt.md`, and `Result.json` with every verdict **unverified**. It does not start an agent, initialize Git, install anything, change host settings, or grant access. Use separate directories for each host/case/run. Keep credentials outside the fixture.
+The [preparer](prepare_host_smoke.py) takes a new or empty absolute workspace path. Choose an opaque name, including its parent directories. It writes only the prompt, context and project files there. The evaluator record starts unverified. By default it is a sibling such as `trial-01.result.json`. Use `--results-dir` to put it under a separately permissioned evaluator directory. Existing inputs and prior results are preserved. Give the host access to the workspace and runtime plugin. Keep the result, private case catalog, transcripts and credentials outside its reading scope.
 
-Launch the intended host in that fixture with the candidate plugin, using its supported local-plugin mechanism if available. Start without optional global Mirket instructions so the package is what supplies the guidance. Record the host version, model, candidate revision (and dirty snapshot when applicable), plugin path, hook trust and activation. Verify that it loaded the candidate, not a previously cached version. Submit only `Prompt.md`; keep the expected-owner criteria and `Result.json` outside the model's requested reading context. Do not add extra permission to the scenario.
+For a blind routing trial, supply an unpublished case catalog using `--cases`. Use the same JSON shape as `behavior_cases.json`. Set `include_sample_app` to false for cases that do not use the starter Python module and tests. Split by scenario before tuning descriptions and keep held-out prompts and rubrics outside the source checkout, installed plugin and agent workspace. The public catalog is for development and smoke checks. A full root marketplace install can contain those public answers. For a committed candidate, stage only the runtime files for development trials as shown below. For a working-tree candidate, stage the same paths including the intended edits, and compare their contents with source.
+
+```sh
+mkdir /absolute/disposable/runtime
+git archive HEAD -- .agents/plugins .claude-plugin .codex-plugin assets hooks references skills LICENSE | tar -x -C /absolute/disposable/runtime
+```
+
+Launch the intended host in the prepared workspace with the candidate plugin. Submit `Prompt.md`. Record host, model, candidate identity, plugin path, enabled hooks and trust. Start without optional global Mirket instructions when testing the package alone. Use a fresh workspace for each run.
 
 For Codex, a separate disposable `CODEX_HOME` keeps the candidate marketplace and plugin settings apart from the normal installation. Use the host's normal sign-in mechanism if that home needs authentication; never put credentials in the fixture or evidence. Use a clean candidate checkout or export containing only the files intended for distribution. A local root package can copy ignored files, so keep private workspace notes, dependencies and build output outside the candidate directory. With the disposable Codex environment selected, register the candidate and install it through the CLI:
 
@@ -28,11 +36,15 @@ A case may exercise a particular skill without explicitly naming it. Record the 
 
 ## Assess the observed run
 
-After the host stops, compare the transcript, commands and resulting files with the case's criteria. The fixture hashes in `Result.json` establish the starting content; inspect newly created files too. An attempted forbidden write is a failure even if host permissions block it. Read-only cases should not create execution plans. Substantive implementations may create appropriate ignored workspace records when the case permits them.
+After the host stops, compare the transcript, commands and resulting files with the case's criteria. The fixture hashes in the evaluator result establish the starting content; inspect newly created files too. An attempted forbidden write is a failure even if host permissions block it. Read-only cases should not create execution plans. Substantive implementations may create appropriate ignored workspace records when the case permits them.
 
-Fill in the observed owner, loaded skills, writes, commands, evidence reused and stopping reason. Link the transcript and evidence. For each criterion use `pass`, `fail`, `unverified`, or `not_applicable` with a reason. A missing host, blocked prerequisite or inaccessible transcript is **unverified**, never a pass. Leave the overall result unverified until every applicable criterion has evidence; any failed criterion makes the case fail. Fixture generation and unit-test success never change these behavioral verdicts.
+In the evaluator record, capture actual skill reads, the primary owner, additional skills, writes, commands, evidence reused and stopping reason. Grade unnecessary specialist reads, the lowercase backticked selection announcement and the delivered outcome separately. Review the transcript for access to the rubric, evaluator result or another run's answers. Set `rubric_exposure` to `clear`, `exposed` or `unverified`. Exclude exposed and unobservable runs from blind accuracy and report their counts. Keep explicitly named invocations and implicit discovery in separate totals. A failed criterion makes the case fail. Use `unverified` for missing evidence, with a reason and a link to the evidence available.
 
-Repeat ambiguous routing cases with hooks disabled to assess linked guidance, and repeat with optional global instructions when testing those instructions specifically. Keep the settings and results distinct. Rerun only the cases affected by a correction or newly identified risk. One successful run supports that observed case and model; it does not prove universal compliance.
+Use identical prompts, model, host version, permissions and competing catalog within each comparison. For skill value compare with a no-Mirket baseline. For hook contribution compare the same catalog with hooks off and on. For a wording change vary only that wording. Rotate order, repeat in fresh sessions and report raw counts per host for owner, unnecessary reads, outcome, write scope and stopping point. A two-turn owner change and a resumed session exercise the per-turn reminder. Optional global instructions get their own comparison.
+
+Record the observed catalog and global instructions for each condition. Exclude a nominal no-Mirket control if its transcript reads a user-installed copy. A disabled plugin entry alone cannot establish what files the agent consulted.
+
+Check that each prompt distinguishes its intended outcome from neighboring skills. A request to choose a product priority can reasonably select Ship even when its context mentions storage. Preserve the original score if an ambiguous prompt surfaces, then test a fresh scenario that explicitly requests the technical comparison.
 
 ## Boundaries covered
 
@@ -40,14 +52,16 @@ Repeat ambiguous routing cases with hooks disabled to assess linked guidance, an
 | --- | --- |
 | Orientation and diagnosis | `adapt-orientation` and `adapt-contract-conflict` check orientation. `author-bug-intake` and `debug-authorized-fix` use the same defect to distinguish a ticket draft from a verified repair. `debug-two-failed-hypotheses` checks the investigation pause. |
 | Concurrent migration guidance | `migrate-concurrent-transition-plan`, `migrate-single-transition-plan`: load the compatibility reference only when versions or writers overlap; use the saved race and rehearsal evidence, and keep planning separate from execution. |
-| External research | `search-community-trends`: follow actual discussions and dated project activity beyond familiar names; distinguish evidence of traction from visibility without switching to internal discovery or tool adoption. |
+| External research | `search-community-trends` checks discussions and dated project activity. `search-paper-and-standard` checks the original study, its limits and applicable interaction guidance. Compare with `adapt-orientation` for internal project facts. |
 | Review | `audit-read-only`, `audit-independent-review-unavailable`: return findings without edits and leave a required independence gate open when only inline review is available. |
 | Verification | `test-evidence-only`, `test-regression-and-export-smoke`: return the failure without editing product code, and distinguish a focused regression check from a smoke check through the affected workflow. |
-| Technical choice and structural change | `architect-unresolved`, `architect-settled-boundary`, `refactor-preserve-behavior`, `refactor-characterize-and-fix`: clarify design requirements, record settled boundary changes, and distinguish behavior preserved by a refactor from a separately verified defect correction. |
+| Technical choice and structural change | `architect-unresolved`, `architect-reusable-comparison` and `architect-settled-boundary` distinguish an answer in chat, a requested private draft and a settled decision record. `refactor-preserve-behavior` and `refactor-characterize-and-fix` distinguish preserved behavior from a separately verified correction. |
 | Direct work and writing review | `execute-short-answer`, `execute-direct-fix`, `author-document`, `author-review`: take the simplest complete path, verify when needed, and stop at findings for writing review. |
+| Implementation and stack advice | `execute-settled-feature` checks a new capability against agreed requirements. `code-cascade-scope` checks a CSS explanation against three browser-computed colors. |
 | Choosing tools | `equip-tool-fit`, `equip-pilot-needs-approval`: rule out a format that fails hard requirements and propose a pilot without running it merely because the tool is available. |
 | Visual production and review | `design-supplied-reference`, `design-no-generation-authority`, `design-redesign-baseline-blocked`, `design-visual-review`: carry over reference intent, agree on the brief before generating, require a live redesign baseline, and stop at findings for visual review. |
 | Web design acceptance | `design-web-review-with-browser`: match before and after conditions and use the available browser to verify an interaction without requiring Playwright or changing the target. |
+| Design decisions in use | `design-regional-chart` checks the scale, missing observation and accessible comparison. `design-mixed-direction` checks both note directions, the product ID and keyboard order. `design-form-recovery` checks focus, the remaining error and preservation of a valid entry after resubmission. |
 | Specialist boundaries | `market-brand-voice` uses approved claims and samples; `ship-product-readiness` leaves activation with its owner; `code-react-state-review` opens only the identified stack guide. |
 | Readiness and fallback | `preflight-inferior-fallback`, `preflight-equivalent-fallback`: a page load cannot establish keyboard operation; an equivalent browser can unblock the exact check without a setup change. |
 | Authorization, coordination and continuity | `plan-inherited-authority`, `plan-status-read-only`, `plan-coordinate-read-only`, `brief-stale-handoff`, `stale-handoff-material-conflict`, `brief-pause`: preserve traceable authority, keep status read-only, point to current evidence, pause only work affected by a conflict, and stop on an explicit pause. |
@@ -62,6 +76,8 @@ Repeat ambiguous routing cases with hooks disabled to assess linked guidance, an
 
 Run these in fresh Codex and Claude Code sessions against the candidate, using disposable projects and dummy data. Record actual hook events and decisions when the host exposes them. These checks supplement the behavioral cases.
 
+A loopback model stub can request fixed tool calls to check native dispatch and enforcement reproducibly. Label the model as scripted and inspect the host's event and tool result for each call. Use real model sessions to grade skill selection, the delivered result and the stopping point.
+
 | Case | Expected observation |
 | --- | --- |
 | Start a session and explicitly invoke Mirket Audit. | All 20 skills are discoverable; the session hook supplies the routing pointer; Audit loads from the candidate plugin. |
@@ -71,4 +87,6 @@ Run these in fresh Codex and Claude Code sessions against the candidate, using d
 | Stage a dummy `.work/private.txt` in a second disposable repository, then submit an acknowledged literal commit with that repository's absolute `-C` target. | The hook examines that target and denies the staged private path. A different session directory must not change this result. Never stage real private material for a test. |
 | Inspect an explicit-path exception using synthetic events, or a separately authorized disposable host run. | Only the named path is excepted; another staged `.work/` path remains denied. The assertion marker is not proof of human authorization. |
 
-Hook activation and agent behavior are separate observations. Do not label an unobserved host or a disabled/untrusted hook as working.
+For the paired guard check, record a permitted read-only shell call and the host's actual denial on the same installed revision. In a disposable repository, an independent pre-commit hook that always exits unsuccessfully can prevent an unintended commit if the host guard is inactive. Record which layer denied the call and verify HEAD and the index afterward. For startup or timeout failures, record the native host outcome and the effect on ordinary shell operations. The shared matcher applies to all Bash calls. Host outage policy and protected-branch merge rules are separate operator decisions.
+
+When assessing advisory noise, distinguish a hook warning from a denial. Count warnings out of the observed ordinary shell calls, record the command category (for example a benign here-document) and note whether the command proceeded.

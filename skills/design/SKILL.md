@@ -1,11 +1,11 @@
 ---
 name: design
-description: "Use to direct, create, redesign, implement, polish or review visual work: UI, websites, mockups, brands, art, motion, slides and visual prototypes."
+description: "Use to create, redesign, implement, polish or review visual work and UI interactions, including keyboard access, form recovery, websites, mockups, brands, art, motion, slides and prototypes."
 ---
 
 # Design
 
-Own the visual result. Agree with the human on the intended effect and what the identity must preserve; choose the composition, visual language and execution within those boundaries. Inspect the result in its intended medium before delivery.
+Own the visual result and how people use the interface. For an interaction review, exercise the task with the requested input method and report what the person can perceive, operate and recover from. Agree with the human on the intended effect and what the identity must preserve; choose the composition, visual language and execution within those boundaries. Inspect the result in its intended medium before delivery.
 
 | Requested result | Start here |
 | --- | --- |

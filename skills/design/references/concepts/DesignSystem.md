@@ -20,4 +20,19 @@ Deliver only the guidance someone needs to repeat the result: intent, roles and 
 
 ## Validate the system in use
 
+When tokens move between tools, follow one semantic alias through export and import. This DTCG example gives the focus ring a color type and a reference to the palette. [Design Tokens Community Group format](https://www.designtokens.org/tr/2025.10/format/)
+
+```json
+{
+  "palette": {
+    "ink": {"$type": "color", "$value": {"colorSpace": "srgb", "components": [0.12, 0.18, 0.34]}}
+  },
+  "focus": {
+    "ring": {"$type": "color", "$value": "{palette.ink}"}
+  }
+}
+```
+
+Change the referenced color in one theme and inspect the focused control in each supported theme. Check the recipient's exported token still contains the alias and type when editability is part of the handoff. Flattening the alias to its current color loses that relationship.
+
 Inspect representative real components and combinations, including dense content and conflicting states. Check tokens at the semantic role rather than copying one raw value everywhere. Document what is stable, which extension is allowed, and what is an exception.

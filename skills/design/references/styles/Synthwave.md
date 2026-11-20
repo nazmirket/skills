@@ -13,3 +13,5 @@ Avoid neon outlines around everything, glare around small text and animated loop
 ## Check it in use
 
 Check contrast outside the glow, repeated viewing, and a subdued device or print treatment. Verify the silhouette reads without relying on the effects.
+
+Study the cover of Kavinsky’s *OutRun* at album and thumbnail size. Identify which silhouette, light source and title treatment carry the mood after fine detail disappears. Use those relationships to compose a different subject. [Record Makers album artwork](https://recordmakers.com/album/outrun/)

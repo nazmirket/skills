@@ -41,6 +41,3 @@ See an [example debugging workflow](docs/diagrams/debug-with-evidence.svg) from 
 
 Read [CONTRIBUTING.md](CONTRIBUTING.md) to improve a skill or run the package checks. Mirket is available under the [MIT license](LICENSE).
 
-## Companion project
-
-[Remember](https://github.com/nazmirket/remember) gives Codex and Claude Code persistent project memory. Use it with Mirket Skills to carry decisions and corrections across sessions and Git worktrees.

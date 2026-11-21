@@ -5,17 +5,16 @@ description: "Use for requested cleanup, relevant delivery checks, or a review o
 
 # Clean
 
-Leave the task coherent and protect existing work. Use Clean during the ordinary delivery or commit workflow.
+Clean owns requested cleanup and delivery or pre-commit checks. Skip the delivery pass for an answer that made no changes and produced no artifacts.
 
 ## Before delivery
 
-- Skip cleanup for an answer-only task that made no changes and produced no artifacts. Otherwise inspect the task's changes, direct references, and temporary output. A cleanup request can set a different scope.
-- Fix stale references in docs or agent instructions and remove steps the replacement demonstrably covers. Ask the human before changing the conditions that require verification. Check the resulting diff and affected references.
-- Remove only verified temporary files made by this task unless the human has authorized other deletions. Keep unrelated edits, plans, handoffs, and historical records. Before an authorized deletion, confirm the exact content can be recovered from Git or reliably regenerated. If it cannot, make and verify a targeted [recovery copy](../execute/references/Workspace.md) with restore instructions before deleting.
-- Record what you checked, what it showed, and material limits in the reply or existing task record. Keep screenshots needed for the requested deliverable, active review, or handoff.
+- Inspect the task's changes, direct references and temporary output, or the scope named in a cleanup request. Fix stale references in docs and agent instructions. Remove a redundant step only when its replacement demonstrably covers it. Ask before changing when verification is required.
+- Delete only verified temporary files from this task unless other deletions are authorized. Preserve unrelated edits, plans, handoffs, historical records and screenshots still needed for delivery, review or handoff. Before deletion, verify that the exact content is recoverable from Git or can be regenerated. Otherwise make and verify a targeted [recovery copy](../execute/references/Workspace.md) with restore instructions.
+- Check the resulting diff and references. Record the checks, results and material limits in the reply or existing task record.
 
 ## Before an authorized commit
 
-- Also scan nearby docs and agent instructions for inconsistencies. Fix what the task caused. Hold the commit if such an inconsistency remains. Report material pre-existing issues; they do not block the commit unless the task made them worse.
-- Inspect staged and unstaged changes. If unrelated work is staged, isolate the authorized hunks, even within a shared file, only when you can verify the intended commit and preserve the human's staged and unstaged changes. If hunks overlap or preservation cannot be verified, stop and show the conflict.
-- Check the intended index for private `.work/` files; only explicitly authorized paths may be included. With Mirket's guard active, use a standalone literal `MIRKET_CLEANUP_DONE=1 git -C "/absolute/worktree" commit ...` after the review. The guard checks the commit request; it does not authorize one.
+- Also inspect nearby docs and agent instructions. Fix inconsistencies the task caused or worsened. Hold the commit while any such issue remains. Report other material pre-existing issues and proceed when the commit checks pass.
+- Inspect staged and unstaged changes. If unrelated work is staged, isolate authorized hunks, even within a shared file, only when you can verify the intended commit and preserve the human's staged and unstaged changes. Stop and show the conflict when hunks overlap or preservation is uncertain.
+- Check the intended index for private `.work/` files. Include only explicitly authorized paths. With Mirket's guard active, acknowledge the completed review in a standalone literal command such as `MIRKET_CLEANUP_DONE=1 git -C "/absolute/worktree" commit ...`. The commit itself requires existing authority.

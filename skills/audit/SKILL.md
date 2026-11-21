@@ -5,22 +5,18 @@ description: "Use to review a code change, draft plan, or scoped system and repo
 
 # Audit
 
-Review the work and return findings to its owner. Route a review of how a person navigates or recovers in a rendered interface to [Design critique](../design/references/flows/Critique.md).
+Audit owns technical, security and privacy findings on a fixed target. [Design critique](../design/references/flows/Critique.md) owns reviews of a person's interaction with a rendered interface.
 
-When a tool or scanner affects the review, open only the matching [Audit guide](references/README.md).
-
-1. **Pin the target.** Identify the revision, snapshot, or draft; state the scope and governing criteria. Trace affected behavior, integration boundaries, and dependencies far enough to support your conclusions. Reuse [Test](../test/SKILL.md) evidence for behavior and performance, and use focused non-destructive checks when needed. Judge performance claims against the target and workload the evidence covers.
-2. **Report material findings.** Separate confirmed defects, supported but unverified risks, and concrete improvements that address a meaningful cost, including unnecessary complexity. Prioritize by impact and likelihood. Give the location, triggering condition, evidence, consequence, and next step. Name missing evidence for risks and any material coverage limits. If there are no findings, say so for the reviewed scope.
-3. **Return findings to the owner.** A review-only request ends with the report. When the request also authorizes corrections, the owner makes the changes and follows the [review loop](../execute/references/ReviewLoop.md) to verify them.
-
-Require an [independent reviewer](#independent-review) for high-risk changes or an explicit gate.
+1. Identify the revision, snapshot or draft, scope and criteria. Trace affected behavior, dependencies and integration boundaries. Reuse [Test](../test/SKILL.md) evidence and run focused, non-destructive checks for gaps. Open only the matching [tool guide](references/README.md) when a scanner or tool affects the assessment. Bound performance claims to the tested target and workload.
+2. Distinguish confirmed defects, supported but unverified risks, and improvements that address a concrete cost such as needless complexity. Prioritize by impact and likelihood. Give each finding a location, trigger, evidence, consequence and next action. Name missing evidence and coverage limits. Say when the reviewed scope has no material findings.
+3. End a review-only request with the report. When corrections are authorized, the work's owner makes and verifies them using the [review loop](../execute/references/ReviewLoop.md).
 
 ## Security and privacy review
 
-- Identify the protected assets, affected people, and scope. Trace relevant trust boundaries and sensitive data from collection to deletion, including secondary copies and external sharing when they matter. Distinguish intended safeguards from those supported by evidence.
-- Assess the affected controls and prioritize findings by exposure and impact. Reuse [Test](../test/SKILL.md) evidence or use the smallest safe defensive check within scope. State what remains unverified; a partial assessment or a clean scanner result cannot establish overall security or compliance.
-- Keep only necessary, sanitized evidence in an authorized destination. Keep secrets out of reports and fixtures. Bring unresolved access, retention, or sharing policy to the human. Give [Deploy’s operations branch](../deploy/SKILL.md#operate-and-recover) relevant findings and evidence preservation needs during an active incident. Return hardening recommendations to the implementer; the review does not authorize changes.
+Identify protected assets and affected people. Trace trust boundaries and sensitive data from collection to deletion, including secondary copies and external sharing where relevant. Compare intended safeguards with evidence of actual controls. Rank risks by exposure and impact. Use the smallest safe defensive check needed. Bound conclusions about security and compliance to the controls assessed, including when a scan is clean.
+
+Retain only necessary, sanitized evidence in authorized locations. Exclude secrets from reports and fixtures. The human decides unresolved access, retention or sharing policy. Give [Deploy](../deploy/SKILL.md#operate-and-recover) incident findings and evidence-preservation needs. The implementer owns authorized hardening.
 
 ## Independent review
 
-Treat serious potential harm or hard-to-reverse consequences as high risk. The reviewer must not have authored the work. If an independent reviewer is unavailable or not authorized, report inline findings, identify them as such, and leave the gate open. Independence is optional otherwise.
+High risk (serious potential harm or hard-to-reverse consequences) or an explicit gate requires a reviewer who did not author the work. If that reviewer is unavailable or unauthorized, label your findings as inline and leave the gate open. For other reviews, independence is optional.

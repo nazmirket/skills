@@ -9,7 +9,6 @@ import sys
 from typing import NamedTuple, Optional
 
 SKILL = str(Path(__file__).resolve().parent.parent / "skills" / "clean" / "SKILL.md")
-MARKER = "MIRKET_CLEANUP_DONE=1"
 ASSIGNMENT = re.compile(r"^[A-Za-z_][A-Za-z0-9_]*=.*$", re.DOTALL)
 SYSTEM_PATH = "/usr/bin:/bin"
 HOST_LABEL = r"[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?"
@@ -21,7 +20,10 @@ HTTPS_SCOPE = re.compile(
 TRANSPORT_OPTIONS = {"credential": {"helper", "usehttppath"}, "http": {"proactiveauth", "followredirects"}}
 GIT_OPTIONS_WITH_VALUE = {"-C", "-c", "--git-dir", "--work-tree", "--namespace", "--config-env", "--exec-path"}
 COMMIT_VALUES = {"-m", "-F", "-C", "-c", "--message", "--file", "--reuse-message", "--reedit-message", "--author", "--date"}
-COMMIT_FLAGS = {"-q", "--quiet", "--amend", "--no-edit", "--allow-empty", "--allow-empty-message", "-s", "--signoff", "--no-signoff", "--no-gpg-sign"}
+COMMIT_FLAGS = {
+    "-q", "--quiet", "--amend", "--no-edit", "--allow-empty", "--allow-empty-message",
+    "-s", "--signoff", "--no-signoff", "-S", "--gpg-sign", "--no-gpg-sign",
+}
 
 
 class Commit(NamedTuple):
@@ -100,11 +102,9 @@ def split_command(command):
 def commit_is_preview(args):
     """Return True for a supported dry run, False for a staged commit, or None."""
     dry_run = changes_inputs = False
-    i = 0
-    while i < len(args):
-        token = args[i]
-        i += 1
-        if token in COMMIT_FLAGS or token == "-S" or token.startswith("--gpg-sign=") or token == "--gpg-sign":
+    args = iter(args)
+    for token in args:
+        if token in COMMIT_FLAGS or token.startswith("--gpg-sign="):
             continue
         if token in {"--dry-run", "--no-dry-run"}:
             dry_run = token == "--dry-run"
@@ -113,67 +113,64 @@ def commit_is_preview(args):
             changes_inputs = True
             continue
         if token == "--":
-            if i != len(args):
+            if next(args, None) is not None:
                 return None
             break
         if token in COMMIT_VALUES:
-            if i == len(args):
+            if next(args, None) is None:
                 return None
-            i += 1
             continue
-        option = token.partition("=")[0]
-        if (option.startswith("--") and option in COMMIT_VALUES and "=" in token) or (
-            len(token) > 2 and token[:2] in COMMIT_VALUES and not token.startswith("--")
-        ):
+        option, equals, _ = token.partition("=")
+        if option.startswith("--") and equals and option in COMMIT_VALUES:
+            continue
+        if len(token) > 2 and token[:2] in COMMIT_VALUES:
             continue
         return None
     return None if changes_inputs and not dry_run else dry_run
 
 
 def commit_details(tokens):
-    i = 0
+    words = iter(tokens)
+    token = next(words, "")
     acknowledged = False
     exception = problem = None
-    while i < len(tokens):
-        token = tokens[i]
-        if ASSIGNMENT.match(token):
+    while token in {"env", "command"} or ASSIGNMENT.match(token):
+        if token in {"env", "command"}:
+            token = next(words, "")
+            if token == "--":
+                token = next(words, "")
+            if token.startswith("-"):
+                return None
+        else:
             name, _, value = token.partition("=")
             if name == "MIRKET_CLEANUP_DONE":
-                acknowledged = token == MARKER
+                acknowledged = value == "1"
             elif name == "MIRKET_WORK_EXCEPTION":
                 exception = value
             else:
                 problem = "command-local environment assignments"
-            i += 1
-        elif token in {"env", "command"}:
-            i += 1
-            if i < len(tokens) and tokens[i] == "--":
-                i += 1
-            if i < len(tokens) and tokens[i].startswith("-"):
-                return None
-        else:
-            break
-    if i == len(tokens) or os.path.basename(tokens[i]) != "git":
+            token = next(words, "")
+    if os.path.basename(token) != "git":
         return None
-    if tokens[i] != "git":
+    if token != "git":
         problem = "a path-qualified Git executable"
-    i += 1
     directories = []
-    while i < len(tokens) and tokens[i].startswith("-"):
-        token = tokens[i]
-        i += 1
+    for token in words:
+        if token == "commit":
+            break
+        if not token.startswith("-"):
+            return None
         if token in GIT_OPTIONS_WITH_VALUE:
-            if i == len(tokens):
+            value = next(words, None)
+            if value is None:
                 return None
-            value = tokens[i]
-            i += 1
-        if token == "-C":
-            directories.append(value)
-        else:
-            problem = "Git global options other than literal -C paths"
-    if i == len(tokens) or tokens[i] != "commit":
+            if token == "-C":
+                directories.append(value)
+                continue
+        problem = "Git global options other than literal -C paths"
+    else:
         return None
-    preview = commit_is_preview(tokens[i + 1:])
+    preview = commit_is_preview(words)
     if preview is None:
         problem = "Git arguments outside the supported preview or staged commit forms"
     return Commit(directories, acknowledged, exception, problem, preview is True)
@@ -263,19 +260,20 @@ def handle(payload):
         return {"systemMessage": "Mirket could not inspect the shell command for pre-commit cleanup."}
     try:
         parts, structural, heredoc, dynamic = split_command(command)
-        commits = [commit for part in parts if (commit := commit_details(part))]
-        uncertain = any("git" in part and "commit" in part and part[0] not in {"echo", "printf"} for part in parts)
     except ValueError:
         return {"systemMessage": "Mirket could not parse the shell command; pre-commit cleanup coverage is unknown."}
-    if not commits:
+    for part in parts:
+        commit = commit_details(part)
+        if commit is not None:
+            break
+    else:
         if heredoc:
             return {"systemMessage": "Mirket did not fully inspect a shell command containing a heredoc or here-string for pre-commit cleanup."}
-        if uncertain:
+        if any("git" in part and "commit" in part and part[0] not in {"echo", "printf"} for part in parts):
             return {"systemMessage": "Mirket could not determine whether this shell command runs git commit; pre-commit cleanup and staged .work coverage are unknown."}
         return {}
     if len(parts) != 1 or structural:
         return deny("Mirket cannot reliably inspect Git operations in a compound command, redirection or heredoc. Run each Git operation separately. If you intended a preview, keep --dry-run.")
-    commit = commits[0]
     if dynamic or commit.problem:
         reason = commit.problem or "shell expansion"
         return deny(f"Mirket cannot inspect a Git operation using {reason}. For a preview, keep --dry-run in a standalone literal command. For a commit, stage the intended files explicitly and use a standalone literal command.")
@@ -293,7 +291,6 @@ def handle(payload):
     if not commit.directories or not os.path.isabs(commit.directories[0]):
         return deny("Mirket cannot verify the Git target from the session directory. Use a first -C with an absolute worktree path in the guarded commit command.")
     return check_staged_work(commit) or {}
-
 
 
 def main():

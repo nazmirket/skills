@@ -5,19 +5,17 @@ description: "Use for product management: discovery, strategy, prioritization, r
 
 # Ship
 
-Help the human decide what product outcome to pursue, what to deliver, and how to know it helped. Start with the decision, the people affected, current evidence, and the cost of being wrong. Keep strategy, product rules, pricing, and launch commitments with the human. Size the work to the decision.
+Ship owns product discovery, requirements and recommendations on strategy, prioritization, readiness and shipped outcomes. The human decides strategy, product rules, pricing and launch commitments. Start with the decision, who it affects, current evidence and the cost of being wrong. Scale the work to that decision.
 
-| Requested result | Open |
+| Product decision | Guide |
 | --- | --- |
-| Choose or reconsider product direction, target segment, or outcome | [Product strategy](references/ProductStrategy.md) |
-| Understand a user problem or test an assumption | [Discovery](references/Discovery.md) |
-| Rank opportunities or build a roadmap toward a set outcome | Open [Prioritization](references/Prioritization.md) first, on its own. |
-| Define behavior, non-goals, and acceptance | [Requirements](references/Requirements.md) |
-| Decide product pricing, packaging, or entitlements | [Pricing and packaging](references/PricingAndPackaging.md) |
-| Define launch readiness, scope cuts, or a product go/no-go | [Delivery and readiness](references/DeliveryAndReadiness.md) |
-| Define metrics or test an uncertain change | [Metrics and experiments](references/MetricsAndExperiments.md) |
-| Interpret what happened and choose what to do next | [Product review](references/ProductReview.md) |
+| Direction, target segment or outcome | [Product strategy](references/ProductStrategy.md) |
+| User problem or assumption to test | [Discovery](references/Discovery.md) |
+| Opportunity ranking or roadmap toward a set outcome | Open [Prioritization](references/Prioritization.md) first, on its own. |
+| Behavior, non-goals and acceptance | [Requirements](references/Requirements.md) |
+| Pricing, packaging or entitlements | [Pricing and packaging](references/PricingAndPackaging.md) |
+| Launch readiness, scope cuts or go/no-go | [Delivery and readiness](references/DeliveryAndReadiness.md) |
+| Metrics or an experiment for an uncertain change | [Metrics and experiments](references/MetricsAndExperiments.md) |
+| Observed outcomes and the next decision | [Product review](references/ProductReview.md) |
 
-Use [Search](../search/SKILL.md) for outside evidence and [Market](../market/SKILL.md) for positioning and launch communications. Give the agreed behavior and outcome to [Plan](../plan/SKILL.md) to sequence implementation. An agreed product launch decision is distinct from [versioned distribution](../execute/references/VersionedDistribution.md) and [Deploy](../deploy/SKILL.md)'s authority to change an environment.
-
-Return a recommendation or decision record, evidence and uncertainty, and the next decision or check. Leave launch or rollout pending when its authority or readiness evidence is missing.
+Return the recommendation or decision record, supporting evidence, uncertainty and next check or decision. Use [Search](../search/SKILL.md) for external evidence and [Market](../market/SKILL.md) for positioning and launch communications. Give [Plan](../plan/SKILL.md) agreed behavior and outcomes to sequence implementation. The task owner handles [versioned distribution](../execute/references/VersionedDistribution.md) and [Deploy](../deploy/SKILL.md) handles activation. Keep launch or rollout pending where readiness evidence or authority is missing.

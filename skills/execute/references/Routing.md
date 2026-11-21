@@ -1,47 +1,47 @@
 # Choose the workflow by the result
 
-Choose one owner for each requested outcome. Honor a named skill and the authorized scope. [Execute](../SKILL.md) applies throughout. Reuse evidence directly when it answers the question. Add support only for a distinct unresolved question, evidence gap or decision that could change the result. Give it the existing evidence and return its answer and limits to the owner. Use the [project workspace](Workspace.md) for agent-owned files.
+Choose one owner per requested outcome. Honor named skills and existing authority. Apply [Execute](../SKILL.md) throughout. Reuse available evidence. Bring in support when a distinct question, evidence gap or decision could change the result. Give the owner the answer and its limits. Keep agent-owned files in the [project workspace](Workspace.md).
 
 ## Understand and decide
 
 | Requested result | Owner and stopping point |
 | --- | --- |
-| Understand the project, its behavior or its recorded decisions | [Adapt](../../adapt/SKILL.md) returns current project facts from read-only inspection. |
-| Check an external claim, synthesize papers or technical documentation, or research communities, emerging projects, competitors or history | [Search](../../search/SKILL.md) returns sourced findings, disagreements and coverage limits. |
-| Choose, keep, adjust or replace a tool or format | [Equip](../../equip/SKILL.md) recommends a choice or a bounded pilot. |
-| Check whether the chosen tool or environment can run the work | [Preflight](../../preflight/SKILL.md) verifies readiness and handles authorized setup. The verification owner checks the actual behavior. |
-| Decide product direction, priorities, requirements, success measures or launch readiness | [Ship](../../ship/SKILL.md) brings evidence and a recommendation to the human who owns the product decision. |
-| Choose a lasting system boundary or compare design threats | [Architect](../../architect/SKILL.md) compares designs, [models threats](../../architect/SKILL.md#model-threats-during-design) where relevant, and records a settled boundary change in an ADR. |
-| Sequence substantial work, coordinate workers or check progress | [Plan](../../plan/SKILL.md) records steps, checks and existing authority. Use [coordination](../../plan/SKILL.md#coordinate-workers) for assignments and integration, or [tracking](../../plan/SKILL.md#track-authorized-work) for a status-only request. |
+| Understand a project or its recorded decisions | [Adapt](../../adapt/SKILL.md) returns facts from read-only inspection. |
+| Check an external claim or research papers, documentation, communities, trends or history | [Search](../../search/SKILL.md) reports sourced findings, disagreements and limits. |
+| Choose, keep, adjust or replace a tool or format | [Equip](../../equip/SKILL.md) recommends a choice or bounded pilot. |
+| Check tool or environment readiness | [Preflight](../../preflight/SKILL.md) verifies readiness and handles authorized setup. The verification owner checks behavior. |
+| Set product direction, priorities, requirements, success measures or launch readiness | [Ship](../../ship/SKILL.md) recommends an option. The human makes the product decision. |
+| Choose a lasting system boundary or compare design threats | [Architect](../../architect/SKILL.md) compares designs, [models threats](../../architect/SKILL.md#model-threats-during-design) and records settled boundary changes in an ADR. |
+| Sequence substantial work, coordinate workers or check progress | [Plan](../../plan/SKILL.md) records steps, checks and authority. Use [coordination](../../plan/SKILL.md#coordinate-workers) for assignments and [tracking](../../plan/SKILL.md#track-authorized-work) for status. |
 
 ## Produce or change the work
 
 | Requested result | Owner and stopping point |
 | --- | --- |
-| Give a routine answer, make a known edit or implement settled requirements with no specialist owner | [Execute](../SKILL.md) owns the result through verification. Code can support a stack decision and Plan can coordinate substantial work. |
-| Get advice on an identified language, framework or database | [Code](../../code/SKILL.md) answers the stack question. During implementation it supports the owner when stack guidance changes a decision. |
-| Write or review a document, report or product copy, or triage bug reports | [Author](../../author/SKILL.md) delivers writing, editorial findings or [issue drafts](../../author/references/IssueTriage.md) with reproduction status and priority. |
-| Position an offer, shape marketing claims or voice, run a campaign or measure conversion | [Market](../../market/SKILL.md) owns the marketing message, distribution and measurement. Ship owns changes to the offer and Design owns visual identity. |
-| Create or critique visual work, or review how people use an interface | [Design](../../design/SKILL.md) owns the visual result and [interface concepts](../../design/references/flows/Create.md#generate-an-interface-concept). Use [critique](../../design/references/flows/Critique.md) to review keyboard navigation, form recovery or the rendered design. |
-| Explain an observed failure or fix the reported behavior | [Debug](../../debug/SKILL.md) establishes the cause. A diagnosis ends with evidence. A repair request continues through the smallest fix and its check. |
-| Simplify existing code as a distinct structural change | [Refactor](../../refactor/SKILL.md) verifies the observable contract before and after. Check and report a bounded contract correction separately. |
-| Change persistent state when compatibility, preservation or recovery needs separate work | [Migrate](../../migrate/SKILL.md) defines the preservation contract, proves recovery and reconciles the authorized transition. Routine reversible edits stay with their owner. |
+| Give a routine answer, make a known edit or implement settled requirements without a specialist owner | [Execute](../SKILL.md) delivers and verifies the result. |
+| Get language, framework or database advice | [Code](../../code/SKILL.md) answers the stack question or advises the implementer. |
+| Write or review a document, report or product copy, or triage a bug | [Author](../../author/SKILL.md) delivers writing, editorial findings or an [issue draft](../../author/references/IssueTriage.md) with reproduction status and priority. |
+| Position an offer, shape claims or voice, run a campaign or measure conversion | [Market](../../market/SKILL.md) owns the message, distribution and measurement. Ship handles offer changes and Design owns visual identity. |
+| Create visual work or review an interface | [Design](../../design/SKILL.md) delivers the visual result, an [interface concept](../../design/references/flows/Create.md#generate-an-interface-concept) or a [critique](../../design/references/flows/Critique.md) of the rendered design and interactions. |
+| Diagnose or fix an observed failure | [Debug](../../debug/SKILL.md) reports the cause and evidence. A repair request continues through the smallest fix and its check. |
+| Simplify existing code | [Refactor](../../refactor/SKILL.md) checks behavior before and after. Verify and report any bounded contract correction separately. |
+| Change persistent state with compatibility or recovery requirements | [Migrate](../../migrate/SKILL.md) defines what to preserve, proves recovery and reconciles the transition. Routine reversible edits stay with their owner. |
 
 ## Verify, operate and hand off
 
 | Requested result | Owner and stopping point |
 | --- | --- |
-| Verify behavior or performance, or fill a gap in test evidence | [Test](../../test/SKILL.md) returns observations and failures to the owner. The owner can run known checks directly. For a requested speedup, Test supplies [comparable measurements](MeasuredImprovement.md) and the implementer owns the change. |
-| Review a change, draft plan or system for technical, security or privacy findings | [Audit](../../audit/SKILL.md) reports findings and limits against a fixed target. A review-only request ends there. High-risk changes and explicit gates require [independent review](../../audit/SKILL.md#independent-review). Return [authorized hardening](#authorized-hardening) to the implementer. |
-| Design CI/CD, roll out or roll back a candidate, assess health or recover a service | [Deploy](../../deploy/SKILL.md) owns pipelines, target readiness and verified rollout. Its [operations branch](../../deploy/SKILL.md#operate-and-recover) handles incidents, service health, recovery and bounded monitoring. Debug supplies causal evidence. |
-| Transfer work, pause it or resume it | [Brief](../../brief/SKILL.md) hands over the next action, its authority and supporting evidence. Use its [pause or resume branch](../../brief/SKILL.md#pause-or-resume) on request. |
-| Clean up, check delivery or inspect an authorized commit | [Clean](../../clean/SKILL.md) checks the affected work and removes verified leftovers within scope. |
+| Verify behavior or performance, or fill a test evidence gap | [Test](../../test/SKILL.md) reports observations and failures. Owners can run known checks. For speedups, Test supplies [comparable measurements](MeasuredImprovement.md) and the implementer owns the change. |
+| Review a change, plan or system for technical, security or privacy risks | [Audit](../../audit/SKILL.md) reports findings and limits for a fixed target. High-risk changes and explicit gates require [independent review](../../audit/SKILL.md#independent-review). The implementer owns [authorized hardening](#authorized-hardening). |
+| Design CI/CD, roll out or roll back a candidate, assess health or recover a service | [Deploy](../../deploy/SKILL.md) owns pipelines, target readiness and rollout verification. Its [operations branch](../../deploy/SKILL.md#operate-and-recover) covers incidents, health, recovery and bounded monitoring. Debug investigates causes. |
+| Hand off, pause or resume work | [Brief](../../brief/SKILL.md) carries forward the next action, its authority and evidence. Use [pause or resume](../../brief/SKILL.md#pause-or-resume) on request. |
+| Clean up, check delivery or inspect an authorized commit | [Clean](../../clean/SKILL.md) reviews affected work and removes verified leftovers within scope. |
 
 ## Work across skills
 
-- For a [prototype](Prototype.md), Design owns visual experiments and Architect owns technical tradeoffs. Take product rules to the human. Production work needs its own authority.
-- For [versioned distribution](VersionedDistribution.md), the task owner prepares the candidate and publishes within the authority granted. Execute owns a standalone preparation request. Migrate supplies state compatibility and reconciliation. Production activation needs a decision for the exact candidate and target, then Deploy verifies what is served.
+- For a [prototype](Prototype.md), Design owns visual experiments, Architect owns technical tradeoffs and the human decides product rules. Production work needs its own authority.
+- For [versioned distribution](VersionedDistribution.md), the task owner prepares the candidate and publishes when authorized. Execute owns standalone preparation. Migrate covers state compatibility and reconciliation. Production activation needs a decision on the exact candidate and target. Deploy verifies the served version.
 
 ## Authorized hardening
 
-The implementer makes the smallest correction that addresses the [security or privacy finding](../../audit/SKILL.md#security-and-privacy-review). Reuse Test evidence that disallowed access is denied and legitimate behavior still works. Involve Migrate for state transitions and Deploy for rollout. Production changes and shared credential rotation require applicable authority.
+The implementer makes the smallest correction that addresses the [finding](../../audit/SKILL.md#security-and-privacy-review). Reuse Test evidence that disallowed access is denied and legitimate behavior still works. Involve Migrate for state transitions and Deploy for rollout. Production changes and shared credential rotation require applicable authority.

@@ -5,20 +5,18 @@ description: "Use to find the cause of a concrete failure or unexpected behavior
 
 # Debug
 
-Start with what should happen, what actually happened, and the best evidence already available. Use [Adapt](../adapt/SKILL.md) if relevant facts are missing. Bring in other skills only for a distinct question, such as [Design](../design/SKILL.md) for unclear interaction intent or [Test](../test/SKILL.md) when a reliable check needs specialist work.
-
-Open the matching [Debug tool guide](references/README.md) before interpreting tool-specific behavior or choosing a tool-specific diagnostic, even when working from saved traces. Skip guides when the evidence already establishes the cause and no tool-specific check is needed.
+Debug owns diagnosis and authorized repair of a concrete failure. [Author](../author/references/IssueTriage.md) owns turning a report into a ticket. During an incident, give [Deploy](../deploy/SKILL.md#operate-and-recover) causal evidence and any authorized fix for its mitigation and recovery work.
 
 ## Find the cause
 
-- **Fix directly when the evidence is clear.** If a focused check confirms the failure and the code directly explains it, make the smallest authorized fix and rerun the check. Skip a separate orientation or investigation pass.
-- **Trace an unclear cause.** Use the smallest safe reproduction. Compare a working run with a failing one and trace the relevant path to the first point where their behavior diverges. For each plausible cause, choose a check that can rule it out. After two plausible hypotheses fail, pause the investigation. Report what you ruled out, where the evidence stops, and the next check you recommend.
-- **Keep intermittent reports separate.** If the reported failure will not reproduce, record the conditions and what remains unknown. Fix an independently proven, in-scope defect if you find one. Leave the reported failure unverified until evidence connects it to that cause.
+Start with expected behavior, observed behavior and existing evidence. Use [Adapt](../adapt/SKILL.md) for missing facts or [Design](../design/SKILL.md) for unclear interaction intent. Before choosing a tool-specific diagnostic or interpreting tool behavior, including saved traces, open the matching [Debug guide](references/README.md). Skip it when the evidence already establishes the cause and no tool-specific check is needed.
+
+- When a focused check and the code establish the cause, skip further investigation.
+- Otherwise use the smallest safe reproduction. Trace a working and a failing run to their first divergence. Choose a check that can rule out each plausible cause. **After two plausible hypotheses fail, pause.** Report both, the last confirmed evidence and the next check you recommend.
+- If the report will not reproduce, record the conditions and uncertainty. Fix an independently proven defect when it falls within the authorized repair. Leave the original failure unverified until evidence connects the two.
 
 ## Fix and verify
 
-- Match the action to the request. For diagnosis, return the cause and evidence. For a repair, fix the established failure within scope and ask before changing agreed behavior. A request to turn the same report into a ticket belongs to [issue triage](../author/references/IssueTriage.md).
-- Reuse a focused check that catches the failure. If a regression case needs coverage, extend an existing test when it fits naturally. Add a separate test if it needs different setup or would make the existing test unclear. Run the required project checks and verify affected behavior.
-- Report the cause, fix, and actual results. If the original check cannot run, deliver the in-scope fix with the evidence you have, name the exact check still needed, and leave that behavior unverified. Honor explicit completion gates. Use [Preflight](../preflight/SKILL.md) for setup blockers and its rules for weaker fallbacks.
+A diagnosis ends with the cause and evidence. For a repair, make the smallest fix and rerun the check that caught the failure. Ask before changing agreed behavior. Extend an existing test for a regression when it fits. Use a separate test if setup differs or the existing test would become unclear. Run required project checks.
 
-During an incident, [Deploy’s operations branch](../deploy/SKILL.md#operate-and-recover) owns mitigation and recovery. Give it causal evidence and any authorized fix. Use [Audit](../audit/SKILL.md#security-and-privacy-review) for a separate security or privacy review and [Migrate](../migrate/SKILL.md) for persistent state transitions.
+Report the cause, fix and results. If the original check is blocked, deliver the in-scope fix with its evidence and the [outstanding check](../test/SKILL.md#run-and-report). [Audit](../audit/SKILL.md#security-and-privacy-review) owns a separate security or privacy assessment and [Migrate](../migrate/SKILL.md) owns persistent-state transitions.

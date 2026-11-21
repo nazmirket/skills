@@ -10,7 +10,7 @@ npm run dev
 
 Open the local URL printed by Next.js. Run `npm run build` to create the deployable static export in `out/`. No server-side services or deployment configuration are required.
 
-The homepage uses packaged skill names and its own [card descriptions](data/skill-cards.json). Each skill page opens with a [quick start](data/skill-pages.json) and one example prompt. Expand **Full skill instructions** to read the packaged `SKILL.md`. The docs index renders [the repository guide](../docs/README.md).
+The homepage uses packaged skill names. Each [website catalog entry](data/skill-pages.json) supplies the homepage card description, quick start and example prompt for one skill. Expand **Full skill instructions** to read the packaged `SKILL.md`. The docs index renders [the repository guide](../docs/README.md).
 
 The homepage diagrams and the repository README SVGs share [one source](data/workflows.json). The first shows when the owning skill asks for help or a human decision; the second follows an illustrative bug fix from request to evidence. Keep both aligned with the packaged routing guide. After changing the data, run `npm run docs:diagrams` to refresh the SVGs.
 

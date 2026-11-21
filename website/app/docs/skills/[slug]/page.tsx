@@ -4,12 +4,10 @@ import {notFound} from "next/navigation";
 import DocsNavigation from "../../../../components/DocsNavigation";
 import RepoMarkdown from "../../../../components/RepoMarkdown";
 import StructuredData from "../../../../components/StructuredData";
-import skillPages from "../../../../data/skill-pages.json";
 import {getSkills} from "../../../../lib/content";
 import {docsBreadcrumb, pageGraph, pageMetadata, skillPageInfo} from "../../../../lib/discovery";
 
 type Props = {params: Promise<{slug: string}>};
-const quickStarts: Partial<Record<string, {when: string; adds: string; prompt: string}>> = skillPages;
 
 export function generateStaticParams() {
   return getSkills().map(({slug}) => ({slug}));
@@ -29,9 +27,6 @@ export default async function SkillPage({params}: Props) {
   const skill = skills.find(item => item.slug === slug);
   if (!skill) notFound();
 
-  const quickStart = quickStarts[slug];
-  if (!quickStart) throw new Error(`Missing website quick start for skill: ${slug}`);
-
   const page = skillPageInfo(skill);
   const index = skills.indexOf(skill);
   const previous = skills[index - 1];
@@ -49,11 +44,11 @@ export default async function SkillPage({params}: Props) {
       <article className="prose skill-overview" id="main-content" tabIndex={-1}>
         <h1 id={slug}>{skill.name}</h1>
         <h2 id="when-to-use">When to use it</h2>
-        <p>{quickStart.when}</p>
+        <p>{skill.page.when}</p>
         <h2 id="what-it-adds">What it adds</h2>
-        <p>{quickStart.adds}</p>
+        <p>{skill.page.adds}</p>
         <h2 id="example-prompt">Example prompt</h2>
-        <blockquote><p>{quickStart.prompt}</p></blockquote>
+        <blockquote><p>{skill.page.prompt}</p></blockquote>
       </article>
       <details className="skill-instructions" id="full-instructions">
         <summary>Full skill instructions</summary>

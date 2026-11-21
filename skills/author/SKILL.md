@@ -5,17 +5,13 @@ description: "Use when drafting, revising, or reviewing a document, report, or s
 
 # Author
 
-Own general documents, reports, and substantive product copy. Keep routine replies and small wording changes within the ongoing task. Apply [Execute](../execute/SKILL.md) throughout this work.
+Author owns general documents, reports, substantive product copy, writing reviews and ticket drafts. For bug reports and QA backlogs, use [issue triage](references/IssueTriage.md) to establish reproduction status, priorities and ticket content. Routine replies and small wording changes stay with the current task.
 
-Use [Brief](../brief/SKILL.md) for handoffs and [Design](../design/SKILL.md) for visual direction and interface design. [Market](../market/SKILL.md) owns marketing messaging and claims; [Ship](../ship/SKILL.md) owns product requirements. Use Author for writing support when a specialist owns the result. For bug reports or a QA backlog, use [issue triage](references/IssueTriage.md) for intake, reproduction status, priorities and issue drafts.
+For specialist work, Author supports the owner. [Market](../market/SKILL.md) owns marketing claims and messaging, [Ship](../ship/SKILL.md) product requirements, [Design](../design/SKILL.md) visual direction and interfaces, and [Brief](../brief/SKILL.md) handoffs.
 
-Keep intermediate files in `.work/temp/<task>/` under the [project workspace rules](../execute/references/Workspace.md). Deliver the final document to its designated destination.
+1. Identify the reader, purpose, destination, requested format and host workflow. State consequential assumptions. Ask when a material choice cannot be inferred.
+2. Organize the writing around what the reader needs to understand or do. Follow the nearest project style guidance unless the audience or purpose calls for a departure. Across a broad revision, keep structure and tone coherent. Preserve unrelated content, established facts and commitments unless a change is authorized.
+3. Verify material claims against suitable sources. Qualify useful claims with limited evidence and cite support where the reader needs it.
+4. Check the final format. Verify consequential instructions, links, calculations or totals. For layout-sensitive work, open or render the final artifact and inspect the relevant pages, slides or sheets at readable size.
 
-1. Infer the reader, purpose, and destination from the available context. State assumptions that could change the result. Ask when a material choice cannot be inferred. Follow the requested format and relevant host workflow.
-2. Organize the writing around what the reader needs to know or do. Follow the nearest applicable project writing and style guidance. Depart when the audience or purpose calls for it. For a broad revision, adjust structure and tone across the artifact for coherence. Preserve unrelated content and keep established facts and commitments unless the human authorizes changing them.
-3. Verify material claims against suitable sources or project evidence. Keep a useful claim with a clear qualification when the evidence is limited; cite supporting evidence where readers need it.
-4. Check the artifact in its intended format, choosing checks by risk. Verify consequential instructions, links, calculations or totals as appropriate. For layout-sensitive output, open or render the final file and inspect relevant pages, slides or sheets at readable size. Text extraction cannot establish layout quality.
-
-For a writing review, apply those checks to the existing artifact. Judge whether its clarity and structure serve the reader's purpose and whether material claims are supported. Report findings and evidence limits without rewriting when the request is review-only.
-
-**Done:** Return the artifact or its location. Include checks and gaps when they affect use. Publish or send it when the request or prior instructions authorize that action.
+For a review, assess the existing writing against the same criteria and return findings and evidence limits. For a draft or revision, keep scratch files in [the project workspace](../execute/references/Workspace.md) under `.work/temp/<task>/`. Return the artifact at its designated destination, with any checks or gaps that affect use. Send or publish only under existing authority.

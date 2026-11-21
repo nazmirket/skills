@@ -4,7 +4,7 @@ The repository root is the shared plugin package. Both marketplaces point to it.
 
 ## Skills
 
-Add a skill at `skills/<name>/SKILL.md` with a lowercase name and a clear trigger. Add `agents/openai.yaml` for its Codex display metadata. If ownership changes, update the [routing guide](references/Routing.md) and related skill references. Start each routing row’s owner column with a link to the skill responsible for that result.
+Add a skill at `skills/<name>/SKILL.md` with a lowercase name and a clear trigger. Add `agents/openai.yaml` for its Codex display metadata. If ownership changes, update the [routing guide](skills/execute/references/Routing.md) and related skill references. Start each routing row’s owner column with a link to the skill responsible for that result.
 
 The [other-agent guide](docs/OtherAgents.md) uses `npx skills add`, which copies individual skill directories. Keep skill links within the catalog and shared skill references in [Execute](skills/execute/references/Routing.md). The old root reference paths still point to the maintained guides. Keep the [catalog's copy of the license](skills/execute/LICENSE) in sync with the [root license](LICENSE).
 
@@ -34,13 +34,13 @@ Use the Codex compatibility manifest without a root `plugin.json`. A controlled 
 
 Keep both plugin versions and marketplace descriptions aligned. Verify the exact candidate package, all referenced files and supported installation/upgrade behavior. Installed caches and manually merged global instructions have separate lifecycles: compare the active package with the candidate and merge matching instructions without replacing unrelated user guidance. Use the host's supported reload/install command; never patch a version cache in place or bypass hook trust. Open a fresh session and record the host version, source revision, installed version and results using the smoke guide.
 
-Use the [versioned distribution guide](references/VersionedDistribution.md) to prepare release notes, artifact identity, compatibility and recovery instructions. Public distribution and website activation require their authorized scope; [Deploy](skills/deploy/SKILL.md) verifies the served version separately. Keep candidate checks distinct from publication and installation results.
+Use the [versioned distribution guide](skills/execute/references/VersionedDistribution.md) to prepare release notes, artifact identity, compatibility and recovery instructions. Public distribution and website activation require their authorized scope; [Deploy](skills/deploy/SKILL.md) verifies the served version separately. Keep candidate checks distinct from publication and installation results.
 
 ## Lifecycle hooks
 
 Mirket handles three lifecycle events and requires Python 3.8 or later in the host environment:
 
-- **At session start:** supply [Execute](skills/execute/SKILL.md) guidance for taking the simplest complete path and reporting what matters. Point to the [routing guide](references/Routing.md) to keep one owner per outcome.
+- **At session start:** supply [Execute](skills/execute/SKILL.md) guidance for taking the simplest complete path and reporting what matters. Point to the [routing guide](skills/execute/references/Routing.md) to keep one owner per outcome.
 - **On each user prompt** the hook reminds the agent to select the owner for the current outcome, apply Execute and use Clean for relevant delivery work.
 - **Before an agent-issued commit:** for supported direct `git commit` calls through the agent's Bash tool, ask for [Clean](skills/clean/SKILL.md) before inspecting staged files. Use a standalone literal command such as `MIRKET_CLEANUP_DONE=1 git -C "/absolute/worktree" commit -m "message"`. The first `-C` must be absolute; later literal `-C` values can be relative to it. Codex's hook session directory may differ from the tool's execution directory, so the same explicit target rule applies in both hosts. A standalone supported `git commit --dry-run` preview needs neither an acknowledgment nor an absolute target; keep the flag when retrying a preview.
 

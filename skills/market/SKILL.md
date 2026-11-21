@@ -5,18 +5,18 @@ description: "Use for marketing strategy or execution: positioning, brand and vo
 
 # Market
 
-Turn evidence about an audience and an offer into a clear promise, a useful next action, and a way to tell whether it worked. Start with the audience, objective, available proof, and channel. Reuse current product and brand decisions; flag material assumptions and get the human's decision on disputed promises, spend, or changes to the offer.
+Market owns marketing strategy, messaging, claims and measurement, including the intent behind commissioned writing or visuals. Start with the audience, objective, offer, proof and channel. Use established product and brand decisions to shape a promise, next action and measure of success. Flag material assumptions. The human decides disputed promises, spend and offer changes.
 
-| Requested result | Open |
+| Requested result | First guide |
 | --- | --- |
-| Brand character, language standards, and voice by situation | [Brand and voice](references/BrandAndVoice.md) |
-| Audience, promise, differentiation, or competitive positioning | [Positioning](references/Positioning.md) |
-| Marketing page, email, or ad message and copy | [Messaging and copy](references/MessagingAndCopy.md) |
-| Campaign, commercial launch, or distribution plan | [Campaigns and channels](references/CampaignsAndChannels.md) |
-| Signup, onboarding, retention, or conversion improvement | [Lifecycle and conversion](references/LifecycleAndConversion.md) |
-| Search visibility or an editorial discovery plan | [Discovery and SEO](references/DiscoveryAndSeo.md) |
-| Marketing funnel, attribution, or experiment measurement | [Measure results](references/Measurement.md) |
+| Brand character, language standards or situational voice | [Brand and voice](references/BrandAndVoice.md) |
+| Audience, promise, differentiation or competitive position | [Positioning](references/Positioning.md) |
+| Copy for a marketing page, email or ad | [Messaging and copy](references/MessagingAndCopy.md) |
+| Campaign, commercial launch or distribution plan | [Campaigns and channels](references/CampaignsAndChannels.md) |
+| Signup, onboarding, retention or conversion | [Lifecycle and conversion](references/LifecycleAndConversion.md) |
+| Search visibility or editorial discovery | [Discovery and SEO](references/DiscoveryAndSeo.md) |
+| Funnel, attribution or experiment measurement | [Measure results](references/Measurement.md) |
 
-Open the relevant guide first; add another only for a separate decision. Use [Search](../search/SKILL.md) to gather external evidence, [Ship](../ship/SKILL.md) for product decisions and readiness, [Design](../design/SKILL.md) for visual identity, and [Author](../author/SKILL.md) for general writing. Market owns the marketing intent and claim even when another skill produces a visual or written artifact.
+Add a guide only for a separate decision. [Search](../search/SKILL.md) supplies external evidence, [Ship](../ship/SKILL.md) supports product decisions and readiness, [Design](../design/SKILL.md) owns visual identity and [Author](../author/SKILL.md) owns general writing.
 
-Return the requested material, its evidence, and the decision or signal that would change it. Drafting or planning does not authorize sending, publishing, spend, or collecting new personal data.
+Return the requested material, its evidence and the decision or signal that would change it. Sending, publishing, spending and collecting new personal data each require authority beyond drafting or planning.

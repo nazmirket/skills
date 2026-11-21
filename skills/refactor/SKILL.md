@@ -5,17 +5,18 @@ description: "Use for distinct structural work that simplifies existing code whi
 
 # Refactor
 
-Make the smallest change that improves the structure. Handle incidental simplification within the current task. Raise a separate change when the work expands scope, such as merging untouched helpers with multiple callers.
+Refactor owns structural changes that preserve observable behavior. Keep incidental simplification with the current task. Make the smallest useful change and scope broader work separately. [Architect](../architect/SKILL.md) owns changes to lasting boundaries.
 
 ## Establish what must stay true
 
-- Inspect the callers and behavior the edit could affect, including outputs, ordering, errors, and side effects. Use [Adapt](../adapt/SKILL.md) if project facts are missing. If a consumer might rely on undocumented behavior, show the evidence and ask what to preserve. Continue work that cannot change it. Route lasting boundary choices to [Architect](../architect/SKILL.md).
-- Reuse focused checks that cover the affected behavior. If an important outcome is untested and the edit could change it, add a focused characterization case and run it before and after. Reuse the existing test file when it fits.
-- Record baseline failures. Continue if a failure is demonstrably unrelated; if it might overlap, investigate that overlap before editing.
+- Trace affected callers, outputs, ordering, errors and side effects. Use [Adapt](../adapt/SKILL.md) for missing project facts. If a consumer may rely on undocumented behavior, show the evidence and ask what to preserve. Continue unaffected work.
+- Run existing focused checks and record baseline failures. Proceed past demonstrably unrelated failures. Investigate possible overlap before editing.
+- Add a characterization case for important untested behavior the edit could change. Use the existing test file if it fits. Run the same case before and after.
 
 ## Simplify and verify
 
-- Remove duplication when it enforces one shared rule. Keep similar logic local when its callers or requirements evolve independently. Review the affected diff for scope and unintended changes.
-- Fix a bounded, in-scope violation of an established contract in the same task. Verify the correction separately and report the exact behavior that changed. Use [Debug](../debug/SKILL.md) if the cause is unclear. Flag unrelated defects and ask before changing a product rule.
-- Compare against the baseline and rerun relevant and required project checks. Use [Test](../test/SKILL.md) when verification needs specialist work. Report pre-existing failures and what actually passed. If a behavior check cannot run, deliver the patch with the exact steps still needed and mark that behavior unverified. Honor explicit completion gates and use [Preflight](../preflight/SKILL.md) for setup blockers.
-- Describe what became simpler or what work was removed. Claim a runtime gain only with [comparable measurements](../execute/references/MeasuredImprovement.md).
+Consolidate copies of a shared rule. Keep logic local where callers or requirements evolve independently. Inspect the diff for scope and unintended changes.
+
+Fix a bounded, in-scope violation of an established contract. Verify and report that behavior change separately. [Debug](../debug/SKILL.md) investigates an unclear cause. Flag unrelated defects and ask before changing a product rule.
+
+Compare with the baseline and run relevant and required checks. Report what became simpler, what passed and any pre-existing failures. If verification is blocked, hand over the patch with the [outstanding check](../test/SKILL.md#run-and-report). Claim runtime gains only with [comparable measurements](../execute/references/MeasuredImprovement.md).

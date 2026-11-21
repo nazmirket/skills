@@ -5,25 +5,24 @@ description: "Use to hand off work to another agent or session, send a relevant 
 
 # Brief
 
-Write a concise, actionable handoff suited to its recipient. Preserve useful context without assuming it will still be current.
+Brief owns handoffs, coordination messages, and requested pauses and resumptions. [Plan](../plan/SKILL.md#coordinate-workers) assigns work and chooses who needs a material update.
 
 ## Prepare the handoff
 
-1. Identify the recipient. Give them the desired outcome, exact next action, authorized scope and its source, essential evidence, and what to recheck. Add detail only when it changes what the recipient should do.
-2. Link authoritative plans, sources, and results or give their exact locations when the recipient can access them. Copy only what they cannot retrieve or what would materially delay the next action. Label evidence limits, and omit secrets and unnecessary personal information.
-3. Recheck the current working state and the facts needed for the next action. Reuse authority recorded in the handoff only while it still applies and agrees with current instructions. Correct routine drift and continue within scope. Pause affected work if a conflict changes the goal, authority, product decision, ownership, interface, or acceptance criteria. Give the evidence to the human or coordinating owner for a decision.
+Give the recipient the outcome, exact next action, authorized scope and its source, essential evidence and what to recheck. Link accessible plans and results. Copy only what the recipient cannot retrieve or what would materially delay the next action. State evidence limits and omit secrets and unnecessary personal information.
+
+Check current state and authority against the instructions for the next action. Correct routine drift and continue within scope. If sources conflict on the goal, authority, product decision, ownership, interface or acceptance criteria, pause only the affected work and take the evidence to the coordinator or human.
 
 ## Adapt to the target
 
-4. For a future session, include task identity, current status, and the workspace or plan location so the recipient can proceed without the old conversation.
-5. For a subagent, specify owned scope, deliverable, dependencies, and verification. Include parallel work only where it affects the assignment. The worker reports routine corrections and continues. Raise material conflicts with the coordinator before changing assignments or shared boundaries.
-6. [Plan’s coordination branch](../plan/SKILL.md#coordinate-workers) decides which workers need a material update. State what changed, its impact on their work, and what they should do next. Report when delivery cannot be confirmed.
+- **Future session.** Include the task identity, status and workspace or plan location so work can resume without the old conversation.
+- **Worker.** Specify the owned scope, deliverable, dependencies and checks. Mention parallel work only where it affects the assignment. Report routine corrections.
+- **Coordination update.** Tell affected recipients what changed, how it affects their work and what to do next. Report unconfirmed delivery.
 
-Save handoffs intended for reuse or when requested. Use the designated destination or a [numbered Markdown brief](../execute/references/Workspace.md#numbered-records) in `.work/briefs/` at the project root. Keep immediate worker assignments and updates in the coordination channel. Sending a message outside the authorized task requires authorization.
+Use the coordination channel for immediate assignments and updates. For a requested or reusable handoff, use the designated destination or save a [numbered brief](../execute/references/Workspace.md#numbered-records) in `.work/briefs/` at the project root. Get authorization before sending outside the task.
 
 ## Pause or resume
 
-- **Pause on request:** Stop starting new work. Check only enough to leave a reliable resume point. Stop task-owned workers only when safe and supported; leave operations running if interruption would be unsafe. Record what is still running or uncertain. For unfinished work, save a numbered handoff in `.work/briefs/` with the current state and next action. Give the human the path and a resume prompt, or give the handoff in the reply if saving fails. If no unfinished work is identifiable, say so and save context only if asked. Stop until the human asks to resume.
-- **Resume on request:** Read the named handoff or the one for the clearly identified task. Recheck current state and evidence, correct routine drift, and continue work already authorized. Escalate material conflicts before proceeding with the affected work.
+On a pause request, stop starting work. Check only what is needed for a reliable resume point. Stop task-owned workers when safe and supported. Leave unsafe-to-interrupt operations running and record what is running or uncertain. For unfinished work, save a numbered brief with current state and next action. Give the human its path and a resume prompt, or the handoff itself if saving fails. If no unfinished work is identifiable, say so and save context only on request. Wait for the human to resume.
 
-**Done:** The recipient can take the next authorized action, or the task is paused with a usable resume point.
+On resume, read the named handoff or the one for the clearly identified task. Apply the state and authority checks above, then continue the authorized next action.

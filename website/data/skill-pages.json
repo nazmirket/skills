@@ -1,100 +1,120 @@
 {
   "adapt": {
+    "cardDescription": "Unfamiliar project? Reads the code and local rules so the next task starts with the facts.",
     "when": "You’re new to a project, returning after changes, or missing facts needed for the next task.",
     "adds": "Reads the relevant code, project rules, and prior decisions. It hands back verified context for the next step without editing the project.",
     "prompt": "Use Mirket Adapt to trace how CSV exports are queued and generated in this repo. Point me to the key files and decisions. Don’t change anything."
   },
   "architect": {
+    "cardDescription": "Making a big technical choice? Compares tradeoffs and records decisions that change system boundaries.",
     "when": "You’re comparing technical designs, modeling threats across them, or recording a settled architectural decision.",
     "adds": "Compares viable options against real constraints and shows the tradeoffs. It records the rationale once a lasting decision is settled.",
     "prompt": "Use Mirket Architect to compare generating exports inside the web service with moving them to a worker. Weigh failure recovery and ownership, then recommend an option."
   },
   "audit": {
+    "cardDescription": "Reviewing a plan or change? Flags defects and risks with evidence and next steps.",
     "when": "You need a review of a patch, plan, or system before deciding what to change or accept.",
     "adds": "Reports material defects, risks, and improvements with evidence and a next step. It names gaps in the review and leaves edits to the owner.",
     "prompt": "Use Mirket Audit to review this pagination patch. Check empty pages, duplicate records, and compatibility with existing callers. Report findings without editing."
   },
   "author": {
+    "cardDescription": "Writing docs or filing issues? Turns scattered facts into clear copy or actionable tickets.",
     "when": "You’re writing or reviewing docs, product copy, or issue reports.",
     "adds": "Turns source material into clear writing for the intended reader. It checks claims against evidence and makes the next action easy to find.",
     "prompt": "Use Mirket Author to turn this export bug report into a ticket. Separate confirmed reproduction steps from what still needs checking."
   },
   "brief": {
+    "cardDescription": "Pausing or handing off? Captures the next step, what’s approved, and what to recheck.",
     "when": "You’re pausing work, resuming it, or handing it to another person or agent.",
     "adds": "Captures the exact next action, what’s already approved, and the evidence worth carrying forward. It identifies which facts to recheck before resuming.",
     "prompt": "Use Mirket Brief to hand off the paused export fix. Include the approved scope, the reproduction command, and the first check the next agent should run."
   },
   "clean": {
+    "cardDescription": "Cleaning up or committing? Checks what can go and protects unrelated work.",
     "when": "You’re tidying up or reviewing what should go into an authorized commit.",
     "adds": "Checks which files are verified leftovers and which changes belong in the delivery. It protects unrelated work and keeps private scratch files out of the commit.",
     "prompt": "Use Mirket Clean to review this staged patch. Flag generated files, stale links, and any unrelated edits that should stay out of the commit."
   },
   "code": {
+    "cardDescription": "Implementing in a known stack? Brings in patterns and pitfalls for the language and version in use.",
     "when": "You’re implementing or reviewing a change in a known language, framework, or database.",
     "adds": "Brings in patterns and pitfalls for the versions actually in use. It helps the agent choose readable code and checks that fit the change.",
     "prompt": "Use Mirket Code to review this Next.js settings page. Check what belongs on the server and where client interactivity is needed."
   },
   "debug": {
+    "cardDescription": "Something broke? Traces the failure to its cause and checks the smallest fix.",
     "when": "Something fails or behaves differently from what you expected.",
     "adds": "Starts from the observed failure, tests plausible causes, and narrows the fix to what the evidence supports.",
     "prompt": "Use Mirket Debug to find why CSV exports time out at 10,000 rows. Reproduce the failure, fix the cause, and rerun the same case."
   },
   "deploy": {
+    "cardDescription": "Rolling out a change or handling an incident? Checks live health and guides rollout or recovery.",
     "when": "You’re rolling out a change, checking a live service, or recovering from an incident.",
     "adds": "Pins the exact release and environment, verifies what’s actually running, and defines when to stop or roll back.",
     "prompt": "Use Mirket Deploy to roll v1.8.2 out to staging. Verify sign-in and CSV export there. Roll back if either check fails."
   },
   "design": {
+    "cardDescription": "Creating or revising visuals? Sets a direction and checks the result as users see it.",
     "when": "You’re creating or reviewing visual work, or checking how people navigate, use and recover in an interface.",
     "adds": "Sets a direction that fits the brief, then checks how the result looks and behaves in its intended setting.",
     "prompt": "Use Mirket Design to simplify the export settings dialog. Keep its behavior intact and check the finished design at desktop and narrow mobile widths."
   },
   "equip": {
+    "cardDescription": "Choosing a tool or format? Compares fit and switching cost before changing course.",
     "when": "You need to choose a tool or format, or decide whether an existing one is worth keeping.",
     "adds": "Compares the options against the actual task and the cost of switching. It identifies what would justify a change.",
     "prompt": "Use Mirket Equip to compare CSV and XLSX for sharing monthly reports with finance. Check compatibility and maintenance cost before recommending a format."
   },
   "execute": {
+    "cardDescription": "Default for any task. Keeps the work direct and reports only what matters.",
     "when": "Use it throughout Mirket work. It owns implementation of settled requirements when no specialist owns the result.",
     "adds": "Keeps the agent on the simplest path that meets the request. It checks what matters and reports the result without narrating every step.",
     "prompt": "Use Mirket Execute to correct the CSV download label. Keep the change focused, verify it in the dialog, and tell me the result."
   },
   "market": {
+    "cardDescription": "Positioning an offer or planning a campaign? Uses audience evidence to shape the message and next action.",
     "when": "You’re positioning an offer, shaping its message, or planning how to reach people.",
     "adds": "Uses audience evidence to choose what to say, where to say it, and what action to ask for. It keeps claims tied to what you can support.",
     "prompt": "Use Mirket Market to draft a launch email for scheduled exports. Use the attached customer interviews to pick one benefit and one call to action."
   },
   "migrate": {
+    "cardDescription": "Changing stored data or schemas? Defines what to preserve and how to recover.",
     "when": "You’re changing stored data, schemas, or configuration and need to preserve what already matters.",
     "adds": "Spells out what must survive, sequences the transition around existing readers and writers, and checks that recovery is workable.",
     "prompt": "Use Mirket Migrate to rehearse renaming the customer status field with anonymized staging data. Check that older readers still work and that the previous state can be restored."
   },
   "plan": {
+    "cardDescription": "Coordinating complex work? Turns the agreed outcome into steps, checks, and handoffs.",
     "when": "A task has dependencies, meaningful risk, or work that several people or agents need to coordinate.",
     "adds": "Turns the agreed outcome into ordered steps with owners, checks, and a record of progress.",
     "prompt": "Use Mirket Plan to sequence the move to background exports. Identify which work can run in parallel, the integration checks, and the rollback point. Stop at the plan."
   },
   "preflight": {
+    "cardDescription": "Unsure the environment can run the task? Finds missing tools or incompatible setup.",
     "when": "A tool won’t run, or you need to know whether an environment can support the task.",
     "adds": "Checks the actual setup and separates blockers from capabilities that already work. It gives you the smallest check or fix needed to move forward.",
     "prompt": "Use Mirket Preflight to check why the browser tests won’t start in CI. Identify the missing or incompatible prerequisite before changing the setup."
   },
   "refactor": {
+    "cardDescription": "Simplifying existing code? Improves the structure and checks that behavior stays the same.",
     "when": "Existing code is hard to change, but its observable behavior should stay the same.",
     "adds": "Finds a simpler structure and uses focused before-and-after checks to catch changes callers would notice.",
     "prompt": "Use Mirket Refactor to consolidate the two CSV formatting paths. Keep column order, escaping, and output bytes the same for both callers."
   },
   "search": {
+    "cardDescription": "Need outside evidence? Investigates beyond the project and shows what the sources support.",
     "when": "You need to check an external claim against papers, technical documentation, practitioner accounts or historical records.",
     "adds": "Follows leads into primary sources and shows what they support. It separates verified findings from inference and notes missing evidence.",
     "prompt": "Use Mirket Search to compare how three open-source CLI projects communicate breaking changes. Cite release notes and maintainer discussions, and explain where their practices differ."
   },
   "ship": {
+    "cardDescription": "Deciding what to build or launch? Weighs user evidence, priorities, and how to measure success.",
     "when": "You’re deciding what to build, what to launch, or whether a release helped users.",
     "adds": "Connects user evidence to priorities, requirements, and measures of success. It makes the tradeoffs clear so you can make the product call.",
     "prompt": "Use Mirket Ship to rank saved filters, bulk edits, and scheduled exports using the attached support tickets. Recommend what to build first and how we’d measure success."
   },
   "test": {
+    "cardDescription": "Need to verify a result? Runs focused checks and reports what passed and what’s unverified.",
     "when": "You need evidence that a change works, a regression stays fixed, or a performance claim holds.",
     "adds": "Chooses checks that can expose meaningful failures and reports what passed, what failed, and what remains unverified.",
     "prompt": "Use Mirket Test to verify the CSV escaping fix. Cover quotes, commas, and newlines with a real download, then report what passed and any gaps."

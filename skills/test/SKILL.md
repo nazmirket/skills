@@ -5,20 +5,21 @@ description: "Use to verify behavior, regressions or performance, interpret test
 
 # Test
 
-Fill a verification gap and return the evidence to the task owner. The owner can run known focused checks directly. Reuse relevant results and choose the smallest checks that can catch the meaningful failure.
-
-When runner-specific behavior affects the check, open only the matching [test runner guide](references/README.md).
+Test owns verification of behavior, regressions and performance. Task owners run known focused checks directly. The implementer owns product changes.
 
 ## Choose the check
 
-- Get the expected result from a specification, accepted example, or prior decision independent of the implementation. If sources conflict or are silent on a material rule, ask and continue with undisputed checks.
-- Use the existing harness for deterministic behavior when adding coverage is warranted and authorized. Use a manual check when automation cannot exercise the interaction reliably. Keep a fast regression test near the cause. If the regression reached a user-facing workflow, run one smoke check through that path as well. For a quoted comma, the parser test checks the field; a real export checks that the job uses the corrected parser.
-- For a new regression test, run the same check against the original code in isolation and against the fix. Confirm the old code fails for the intended reason and the fix passes. Preserve the working tree. If you cannot exercise the original code, state the gap.
+- Establish the expected result independently from a specification, accepted example or prior decision. Ask about conflicting or missing material rules and continue undisputed checks.
+- Reuse relevant results, including CI for the exact revision and relevant matrix. Run the smallest check that can catch the meaningful failure, plus outstanding required checks. Open only the matching [runner guide](references/README.md) when runner behavior matters.
+- For warranted, authorized coverage, use the existing harness for deterministic behavior. Use a manual check when automation cannot reliably exercise the interaction. Keep a fast regression test near the cause. If the regression reached a user-facing workflow, also run one smoke check through that entry point.
+- Run a new regression case against the original code in isolation and against the fix, preserving the worktree. Confirm the original fails for the intended reason and the fix passes. State the gap if the original cannot be exercised.
 
 ## Run and report
 
-- Reuse CI results for the exact revision and relevant matrix when they cover the behavior in question. Run more checks only for a material evidence gap or an outstanding required check.
-- If a new failure passes on retry, run one targeted diagnostic when available, such as repeating just the failed browser test with tracing. Report each attempt and hand any further investigation to [Debug](../debug/SKILL.md) or the task owner.
-- Report passes, failures, and unverified checks separately. For a blocked check, give the missing target or capability, the exact command or steps still needed, and the expected outcome. Continue checks that can run. Match evidence to the claim: a build or package inspection cannot verify a live install. Honor environment and release gates.
-- Claim a speedup only after repeated comparable runs on the same inputs and relevant conditions, with output correctness verified. Use the [measurement method](../execute/references/MeasuredImprovement.md).
-- Hand back the smallest useful evidence: target checked, command or steps, relevant input, and expected and actual results. Verification alone does not authorize product edits. Give evidence to [Audit](../audit/SKILL.md) for technical review, [Design critique](../design/references/flows/Critique.md) for visual review, or [Author](../author/SKILL.md) for writing review when relevant.
+If a new failure passes on retry, run one targeted diagnostic when available, such as a trace of the failed browser test. Report each attempt. Give further investigation to [Debug](../debug/SKILL.md) or the task owner.
+
+For a speedup claim, use [repeated comparable measurements](../execute/references/MeasuredImprovement.md) with the same inputs, relevant conditions and verified outputs.
+
+Report the target, command or steps, input, expected and actual results. Distinguish passes, failures and unverified checks. For a blocker, name the missing capability or target, exact remaining check and expected outcome. Continue available checks and honor environment and release gates. Limit claims to the path exercised, including for a live installation.
+
+Return evidence to the responsible reviewer when relevant. [Audit](../audit/SKILL.md) owns technical findings, [Design critique](../design/references/flows/Critique.md) visual and interaction findings, and [Author](../author/SKILL.md) writing findings.

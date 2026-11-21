@@ -33,11 +33,11 @@ Use the plugin one request at a time. The [Codex](../instructions/AGENTS.md) and
 - **Choose guidance for the job.** Pick one primary skill for the requested result. Add another when it supplies a distinct result or check. A small task can stay small.
 - **Keep consequential choices with the human.** A request to do work and approval of a written plan are separate. Ask for decisions that affect the outcome; proceed with routine choices within the agreed scope.
 - **Verify claims with evidence.** Inspect the actual change, run checks that match the risk, and say what could not be verified. A review or hook reminder does not prove that the work was checked.
-- **Leave enough context to resume.** Keep substantial plans and handoffs in the project's [workspace records](../references/Workspace.md). Record settled architectural decisions in the repository's ADR location, using `docs/decisions/` when the project has none. Keep the response focused on what happened and what comes next.
+- **Leave enough context to resume.** Keep substantial plans and handoffs in the project's [workspace records](../skills/execute/references/Workspace.md). Record settled architectural decisions in the repository's ADR location, using `docs/decisions/` when the project has none. Keep the response focused on what happened and what comes next.
 
 ## Skills
 
-A skill is a Markdown workflow with a trigger, guidance, and sometimes more detailed references. The host can choose a skill from its description; you can also request one by name. See the [routing guide](../references/Routing.md) when several skills sound relevant.
+A skill is a Markdown workflow with a trigger, guidance, and sometimes more detailed references. The host can choose a skill from its description; you can also request one by name. See the [routing guide](../skills/execute/references/Routing.md) when several skills sound relevant.
 
 | What you need | Skills |
 | --- | --- |
@@ -118,7 +118,7 @@ Yes. Mirket is free to use, modify, and redistribute, including commercially, un
 
 ### How do publication, deployment and operation differ?
 
-The task owner follows the [versioned distribution guide](../references/VersionedDistribution.md) to identify, check, and distribute the artifact when authorized. [Deploy](../skills/deploy/SKILL.md) activates that artifact in a specific environment and verifies the served behavior. Its [operations branch](../skills/deploy/SKILL.md#operate-and-recover) covers ongoing health, incidents, and recovery. [Migrate](../skills/migrate/SKILL.md) handles persistent state. [Audit](../skills/audit/SKILL.md#security-and-privacy-review) supplies security and privacy findings when needed.
+The task owner follows the [versioned distribution guide](../skills/execute/references/VersionedDistribution.md) to identify, check, and distribute the artifact when authorized. [Deploy](../skills/deploy/SKILL.md) activates that artifact in a specific environment and verifies the served behavior. Its [operations branch](../skills/deploy/SKILL.md#operate-and-recover) covers ongoing health, incidents, and recovery. [Migrate](../skills/migrate/SKILL.md) handles persistent state. [Audit](../skills/audit/SKILL.md#security-and-privacy-review) supplies security and privacy findings when needed.
 
 ### How do I verify an update is actually in use?
 

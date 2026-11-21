@@ -344,7 +344,7 @@ class CleanupHooksTest(unittest.TestCase):
             project = Path(root)
             subprocess.run(["git", "init", "-q", root], check=True)
             (project / ".gitignore").write_bytes((HOOK.parents[1] / ".gitignore").read_bytes())
-            routine = project / ".work/routines/deploy.md"
+            routine = project / ".work/routines/DeploySkillsWebsite.md"
             routine.parent.mkdir(parents=True)
             routine.touch()
             path = routine.relative_to(project).as_posix()

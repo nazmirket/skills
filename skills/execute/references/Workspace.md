@@ -6,7 +6,7 @@ Use `.work/` at the project root for agent-owned files. In Git, use the current 
 | --- | --- |
 | `.work/plans/0001-Sales-Contracts/` | Durable [Plan](../../plan/SKILL.md) records: `Evidences.md`, `Scope.md`, `Outcome.md`, `Plan.md`, and `Progress.md`. Short plans can stay in chat. Use a shared project location only when the human asks or the project explicitly requires it. Link related architectural decisions. |
 | `.work/decisions/` | Default location for decision drafts and accepted architecture decision records (ADRs). [Architect](../../architect/SKILL.md#record-the-decision) uses the project's existing decision directory when present. |
-| `.work/routines/` | Reusable project procedures specific to this device, such as a website deployment runbook that uses a local SSH alias. Look here for an existing routine before writing one. Keep it across tasks. |
+| `.work/routines/DeploySkillsWebsite.md` | A reusable project procedure specific to this device. Store each routine directly in `.work/routines/` as one self-contained Markdown file. Give it a descriptive PascalCase filename without a numeric prefix. Include the prerequisites, steps and verification in the same file. Reuse the existing routine across tasks. |
 | `.work/stashes/<task>/` | Temporary file-based snapshots or patches needed to set aside work. Record what they contain and how to restore them. |
 | `.work/recover/<task>/` | A targeted recovery copy of important work at risk of being lost. Record its original path and how to restore it; check the copy before removing the original. This is not a trash folder or a routine backup. |
 | `.work/briefs/0001-SalesContractsHandoff.md` | Standalone handoff prompts and other briefs without a designated destination. |

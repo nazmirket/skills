@@ -339,6 +339,22 @@ class CleanupHooksTest(unittest.TestCase):
             command = f"MIRKET_CLEANUP_DONE=1 git -C {shlex.quote(root)} commit -m records"
             self.assertEqual(before_shell(command), {})
 
+    def test_device_routine_is_ignored_and_blocked_if_force_added(self):
+        with tempfile.TemporaryDirectory() as root:
+            project = Path(root)
+            subprocess.run(["git", "init", "-q", root], check=True)
+            (project / ".gitignore").write_bytes((HOOK.parents[1] / ".gitignore").read_bytes())
+            routine = project / ".work/routines/deploy.md"
+            routine.parent.mkdir(parents=True)
+            routine.touch()
+            path = routine.relative_to(project).as_posix()
+            subprocess.run(["git", "-C", root, "check-ignore", "-q", "--", path], check=True)
+            subprocess.run(["git", "-C", root, "add", "-f", "--", path], check=True)
+            command = f"MIRKET_CLEANUP_DONE=1 git -C {shlex.quote(root)} commit -m routine"
+            result = before_shell(command)
+            self.assertTrue(denied(result))
+            self.assertIn(path, result["hookSpecificOutput"]["permissionDecisionReason"])
+
     def test_staged_work_is_blocked_even_after_cleanup_acknowledgment(self):
         with tempfile.TemporaryDirectory() as root:
             subprocess.run(["git", "init", "-q", root], check=True)

@@ -20,7 +20,7 @@ Before choosing a tool operation or interpreting tool behavior, consult the matc
 4. Promote the identified artifact without rebuilding it. Record the operation ID and actual state. For an uncertain outcome, check the operation record and what is served. Retry only when the attempt did not apply and retry is safe.
 5. Verify the active identity, affected consumer paths and dependencies against target criteria. Compare health with the baseline over the agreed window. Record activation and verified behavior separately. Keep unmet criteria open, including when the only evidence is an accepted upload or HTTP 200.
 6. At a stop condition, halt further exposure. Check recovery preconditions, carry out the authorized rollback or forward repair and verify service behavior. If recovery exceeds authority or could damage state, preserve evidence and escalate.
-7. Record the active identity and target, rollout or recovery outcome, health evidence, runbook, risks and outstanding operations, checks or observation in the project record. Use the [workspace](../execute/references/Workspace.md) for scratch files. Continue a requested bounded watch until its completion condition or a material blocker.
+7. Record the active identity and target, rollout or recovery outcome, health evidence, runbook, risks and outstanding operations, checks or observation in the project record. Use the [workspace](../execute/references/Workspace.md) for scratch files. Keep device-specific deployment procedures in `.work/routines/` so later runs on this device can reuse them. Continue a requested bounded watch until its completion condition or a material blocker.
 
 ## Operate and recover
 

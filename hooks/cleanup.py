@@ -253,7 +253,7 @@ def check_staged_work(commit):
              "--no-ext-diff", "--no-textconv", "--no-relative", "--no-renames",
              "--submodule=short", "--ignore-submodules=none",
              "--name-only", "-z", "--diff-filter=ACMRT", "--",
-             ":(top).work/temp", ":(top).work/recover", ":(top).work/stashes"],
+             ":(top).work/temp", ":(top).work/recover", ":(top).work/stashes", ":(top).work/routines"],
             cwd="/", env=env, capture_output=True, timeout=3, check=True,
         )
     except (OSError, ValueError, subprocess.SubprocessError):
@@ -262,7 +262,7 @@ def check_staged_work(commit):
     # A marker records the agent's assertion, not human authorization.
     blocked = [path for path in paths if path != commit.exception]
     if blocked:
-        return deny("Staged workspace scratch files require an explicitly named human exception: " + ", ".join(repr(path) for path in blocked) + ". Unstage them, or only when the human explicitly authorizes one exact path, retry with MIRKET_WORK_EXCEPTION=<that-path>. The marker does not prove authorization.")
+        return deny("Staged files from ignored workspace directories require an explicitly named human exception: " + ", ".join(repr(path) for path in blocked) + ". Unstage them, or only when the human explicitly authorizes one exact path, retry with MIRKET_WORK_EXCEPTION=<that-path>. The marker does not prove authorization.")
     return None
 
 

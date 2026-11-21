@@ -1,0 +1,21 @@
+{
+  "codex_changed_config_keys": [
+    "hooks.state.mirket@mirket:hooks/hooks.json:pre_tool_use:0:0",
+    "hooks.state.mirket@mirket:hooks/hooks.json:session_start:0:0",
+    "hooks.state.mirket@mirket:hooks/hooks.json:stop:0:0",
+    "hooks.state.mirket@mirket:hooks/hooks.json:user_prompt_submit:0:0",
+    "marketplaces.mirket.source",
+    "marketplaces.mirket.source_type",
+    "projects./Users/nazmi/Projects/skills/.work/temp/HookDiscovery/live-default/session",
+    "tui.model_availability_nux.gpt-6.1-sol"
+  ],
+  "claude_settings_preserved": false,
+  "codex_hindsight_mcp_preserved": true,
+  "claude_changed_config_keys": [
+    "extraKnownMarketplaces.mirket.source.path",
+    "extraKnownMarketplaces.mirket.source.repo",
+    "extraKnownMarketplaces.mirket.source.source"
+  ],
+  "claude_hindsight_hooks_preserved": true,
+  "claude_mirket_enabled": true
+}

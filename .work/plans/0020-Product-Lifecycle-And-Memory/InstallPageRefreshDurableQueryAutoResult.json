@@ -1,0 +1,40 @@
+{
+  "operation_id": "b744ee79-4901-49cf-b1f1-ef65c242d679",
+  "status": "completed",
+  "operation_type": "refresh_mental_model",
+  "id": "b744ee79-4901-49cf-b1f1-ef65c242d679",
+  "task_type": "refresh_mental_model",
+  "mental_model_id": "mm-408496ae0b4149309a00cfaeae4ba95a",
+  "created_at": "2026-11-11T09:58:14.854257+00:00",
+  "updated_at": "2026-11-11T10:00:02.359767+00:00",
+  "completed_at": "2026-11-11T10:00:02.359767+00:00",
+  "error_message": null,
+  "retry_count": 0,
+  "next_retry_at": null,
+  "progress": null,
+  "result_metadata": {
+    "name": "Component map",
+    "outcome": "content_written",
+    "content_len": 15874,
+    "failure_reason": null,
+    "based_on_counts": {
+      "world": 36,
+      "opinion": 0,
+      "directives": 0,
+      "experience": 10,
+      "observation": 30,
+      "mental-models": 0
+    },
+    "mental_model_id": "mm-408496ae0b4149309a00cfaeae4ba95a",
+    "delta_ops_applied": 0,
+    "delta_ops_skipped": 0,
+    "populated_content": true
+  },
+  "details": {
+    "operation_type": "refresh_mental_model",
+    "outcome": "content_written",
+    "failure_reason": null
+  },
+  "child_operations": null,
+  "task_payload": null
+}

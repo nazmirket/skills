@@ -1,0 +1,275 @@
+{
+  "landing-wide": {
+    "prompt": "Gather screenshot evidence for a reviewer of the entire landing.html page at desktop width. Give capture IDs and explain what each shows. Make the small pricing terms readable in the review packet. Findings and evidence only; do not edit the page or run behavior tests.",
+    "expected_owner": "design",
+    "skills": {
+      "design": 5,
+      "audit": 5,
+      "execute": 5
+    },
+    "guides": {
+      "CollectEvidence": 7,
+      "Screenshot": 9
+    },
+    "captures": [
+      {
+        "id": "full_page-1280-1x",
+        "view": "full_page",
+        "width": 1280,
+        "viewportHeight": 800,
+        "scale": 1,
+        "documentHeight": 1884,
+        "pixels": [
+          1280,
+          1884
+        ],
+        "sha256": "14e9f20fd1a923bf679c561a0b47b2aa305b094b4b761db6c6ff5067077b37a3"
+      },
+      {
+        "id": "section-pricing-1280-2x",
+        "view": "section",
+        "section": "pricing",
+        "width": 1280,
+        "viewportHeight": 800,
+        "scale": 2,
+        "documentHeight": 1884,
+        "pixels": [
+          2560,
+          1020
+        ],
+        "sha256": "b583de70dda430100c29c28a0e2874ab3a80c72f27d7bb96693f0f6d2908f049"
+      }
+    ],
+    "commands": [
+      {
+        "line": 5,
+        "command": "/bin/zsh -lc \"pwd; rg --files --hidden -g '\"'! .git'\"'; cat <fixture>/home/plugins/cache/mirket/mirket/0.4.0/skills/{design,audit,execute}/SKILL.md\"",
+        "exit": 0
+      },
+      {
+        "line": 7,
+        "command": "/bin/zsh -lc \"cat <fixture>/home/plugins/cache/mirket/mirket/0.4.0/skills/design/references/flows/CollectEvidence.md; cat Prompt.md Context.md; rg -n 'pricing|terms|<h[1-4]' landing.html\"",
+        "exit": 0
+      },
+      {
+        "line": 9,
+        "command": "/bin/zsh -lc 'cat <fixture>/home/plugins/cache/mirket/mirket/0.4.0/skills/design/references/tools/Screenshot.md; tail -2 landing.html'",
+        "exit": 0
+      }
+    ],
+    "unchanged": true,
+    "final": "## Desktop screenshot evidence\n\nBoth captures show the initial browser render of [landing.html](<fixture>/cases/landing-wide/landing.html) at a 1280 × 800 CSS-pixel viewport.\n\n| Capture ID | What it shows |\n|---|---|\n| `full_page-1280-1x` | The entire page from header to footer, including the hero and “See a sample” button, features, pricing, and FAQ. The image is 1280 × 1884 px. |\n| `section-pricing-1280-2x` | The pricing section at 2× capture scale, showing the $19/month headline, starter workspace eligibility, and annual billing terms together. The image is 2560 × 1020 px. |\n\n## Finding\n\nThe annual billing terms are easy to miss. They appear below the eligibility copy in pale 12 px text, while **$19 / month** is prominent. The terms remain faint in the 2× capture.\n\n**Pricing terms, transcribed verbatim**\n\n> Annual commitment applies; billed as $228 at checkout.",
+    "completed": true
+  },
+  "landing-local": {
+    "prompt": "Capture a 360 × 640 PNG of the initial viewport of landing.html so I can review its headline and primary action. Give the capture ID and say what it establishes. No full page or behavior checks.",
+    "expected_owner": "design",
+    "skills": {
+      "design": 5
+    },
+    "guides": {
+      "CollectEvidence": 7
+    },
+    "captures": [
+      {
+        "id": "viewport-360-1x",
+        "view": "viewport",
+        "width": 360,
+        "viewportHeight": 640,
+        "scale": 1,
+        "documentHeight": 1884,
+        "pixels": [
+          360,
+          640
+        ],
+        "sha256": "68968255d59a9319dc97ced88c79a5b8d762439e901ac359429fa7bfd7f0ed06"
+      }
+    ],
+    "commands": [
+      {
+        "line": 5,
+        "command": "/bin/zsh -lc \"cat <fixture>/home/plugins/cache/mirket/mirket/0.4.0/skills/design/SKILL.md; rg --files --hidden -g 'AGENTS.md' -g 'landing.html'\"",
+        "exit": 0
+      },
+      {
+        "line": 7,
+        "command": "/bin/zsh -lc 'cat <fixture>/home/plugins/cache/mirket/mirket/0.4.0/skills/design/references/flows/CollectEvidence.md'",
+        "exit": 0
+      }
+    ],
+    "unchanged": true,
+    "final": "Capture ID `viewport-360-1x` · 360 × 640 PNG\n\nThe initial viewport of `landing.html` shows the full headline, “Share the numbers your team trusts.”, wrapping across two lines. The primary action, “See a sample,” is fully visible below the supporting copy without scrolling.",
+    "completed": true
+  },
+  "landing-local-explicit": {
+    "prompt": "Use Mirket's screenshot guidance. Capture one 360 × 640 PNG of the initial viewport of landing.html so I can review the headline and primary action. Give its capture ID and say what it establishes. No full page or behavior checks.",
+    "expected_owner": "design",
+    "skills": {
+      "design": 5
+    },
+    "guides": {
+      "CollectEvidence": 7,
+      "Screenshot": 9
+    },
+    "captures": [
+      {
+        "id": "viewport-360-1x",
+        "view": "viewport",
+        "width": 360,
+        "viewportHeight": 640,
+        "scale": 1,
+        "documentHeight": 1884,
+        "pixels": [
+          360,
+          640
+        ],
+        "sha256": "68968255d59a9319dc97ced88c79a5b8d762439e901ac359429fa7bfd7f0ed06"
+      }
+    ],
+    "commands": [
+      {
+        "line": 5,
+        "command": "/bin/zsh -lc 'cat <fixture>/home/plugins/cache/mirket/mirket/0.4.0/skills/design/SKILL.md; rg --files --hidden'",
+        "exit": 0
+      },
+      {
+        "line": 7,
+        "command": "/bin/zsh -lc 'cat <fixture>/home/plugins/cache/mirket/mirket/0.4.0/skills/design/references/flows/CollectEvidence.md; cat <fixture>/home/plugins/cache/mirket/mirket/0.4.0/skills/design/references/formats/README.md; cat Context.md Prompt.md'",
+        "exit": 0
+      },
+      {
+        "line": 9,
+        "command": "/bin/zsh -lc 'cat <fixture>/home/plugins/cache/mirket/mirket/0.4.0/skills/design/references/tools/Screenshot.md'",
+        "exit": 0
+      }
+    ],
+    "unchanged": true,
+    "final": "Capture ID `viewport-360-1x` is a 360 × 640 PNG of `landing.html` on initial load.\n\nThe headline “Share the numbers your team trusts.” wraps across two lines, and the primary action “See a sample” is fully visible below the supporting copy without scrolling.",
+    "completed": true
+  },
+  "market-message": {
+    "prompt": "Write a headline and opening paragraph for the approved shared reports launch. Preserve the terms and keep this a draft.",
+    "expected_owner": "market",
+    "skills": {
+      "market": 6,
+      "author": 6,
+      "execute": 11
+    },
+    "guides": {
+      "MessagingAndCopy": 11
+    },
+    "captures": [],
+    "commands": [
+      {
+        "line": 6,
+        "command": "/bin/zsh -lc 'cat <fixture>/home/plugins/cache/mirket/mirket/0.4.0/skills/{market,author}/SKILL.md'",
+        "exit": 0
+      },
+      {
+        "line": 7,
+        "command": "/bin/zsh -lc \"rg --files --hidden -g '\"'!.git'\"'\"",
+        "exit": 0
+      },
+      {
+        "line": 10,
+        "command": "/bin/zsh -lc 'cat Context.md Prompt.md'",
+        "exit": 0
+      },
+      {
+        "line": 11,
+        "command": "/bin/zsh -lc 'cat <fixture>/home/plugins/cache/mirket/mirket/0.4.0/skills/{market/references/MessagingAndCopy.md,execute/SKILL.md}'",
+        "exit": 0
+      }
+    ],
+    "unchanged": true,
+    "final": "*Draft*\n\n## Introducing shared reports for your workspace\n\nWith shared reports, authorized workspace teammates can open a shared report link to view the report.",
+    "completed": true
+  },
+  "ship-requirements": {
+    "prompt": "Turn the agreed behavior in Notes.md into clear product requirements and acceptance cases. Include non-goals and the one unresolved decision. Return the outline only, with no implementation sequencing.",
+    "expected_owner": "ship",
+    "skills": {
+      "ship": 5,
+      "author": 5,
+      "execute": 5
+    },
+    "guides": {
+      "Requirements": 9
+    },
+    "captures": [],
+    "commands": [
+      {
+        "line": 5,
+        "command": "/bin/zsh -lc 'cat <fixture>/home/plugins/cache/mirket/mirket/0.4.0/skills/{ship,author,execute}/SKILL.md'",
+        "exit": 0
+      },
+      {
+        "line": 7,
+        "command": "/bin/zsh -lc 'cat Notes.md; rg --files --hidden -g AGENTS.md'",
+        "exit": 1
+      },
+      {
+        "line": 9,
+        "command": "/bin/zsh -lc 'cat <fixture>/home/plugins/cache/mirket/mirket/0.4.0/skills/ship/references/Requirements.md'",
+        "exit": 0
+      }
+    ],
+    "unchanged": true,
+    "final": "## Product requirements\n\n- Workspace members with current access to a shared report can open it through its shared link.\n- Anyone without current access is denied when opening the link.\n- Revocation takes effect immediately. The first attempt to open the link after revocation is denied, even if the member previously used the same link successfully.\n\n## Acceptance cases\n\n| Given | When | Then |\n|---|---|---|\n| A workspace member has current access to the report | They open its shared link | The report opens |\n| A workspace member has no current access to the report | They open its shared link | Access is denied |\n| A person outside the workspace has the shared link | They open it | Access is denied |\n| A workspace member previously opened the report through its shared link and their access has just been revoked | They immediately reopen the same link | Access is denied on that attempt |\n\n## Non-goals\n\n- Public report links.\n\n## Unresolved decision\n\n- Can admins set an expiry for shared-report links?",
+    "completed": true
+  },
+  "plan-with-stack-need": {
+    "prompt": "Write an engineering plan for the approved shared-report view described in Approved.md. Use Context.md first, then inspect Handoff.md during planning to account for risks that change the checks. Keep the engineering sequence as the requested result and do not edit files.",
+    "expected_owner": "plan",
+    "skills": {
+      "execute": 8,
+      "plan": 8,
+      "code": 14
+    },
+    "guides": {
+      "Next": 18,
+      "React": 18
+    },
+    "captures": [],
+    "commands": [
+      {
+        "line": 5,
+        "command": "/bin/zsh -lc 'cat Context.md'",
+        "exit": 0
+      },
+      {
+        "line": 8,
+        "command": "/bin/zsh -lc 'cat <fixture>/home/plugins/cache/mirket/mirket/0.4.0/skills/{execute,plan}/SKILL.md'",
+        "exit": 0
+      },
+      {
+        "line": 9,
+        "command": "/bin/zsh -lc \"cat Approved.md; rg --files --hidden -g '\"'!.git'\"'\"",
+        "exit": 0
+      },
+      {
+        "line": 11,
+        "command": "/bin/zsh -lc 'cat Handoff.md; ls -a'",
+        "exit": 0
+      },
+      {
+        "line": 14,
+        "command": "/bin/zsh -lc 'cat <fixture>/home/plugins/cache/mirket/mirket/0.4.0/skills/code/SKILL.md'",
+        "exit": 0
+      },
+      {
+        "line": 16,
+        "command": "/bin/zsh -lc 'cat <fixture>/home/plugins/cache/mirket/mirket/0.4.0/skills/code/references/README.md'",
+        "exit": 0
+      },
+      {
+        "line": 18,
+        "command": "/bin/zsh -lc 'cat <fixture>/home/plugins/cache/mirket/mirket/0.4.0/skills/code/references/{Next,React}.md'",
+        "exit": 0
+      }
+    ],
+    "unchanged": true,
+    "final": "## Shared-report engineering plan\n\n1. **Trace the route and its caches.** Locate the report query, membership lookup, Client Component boundary, and any route handlers or server actions that return report data. Check the Next.js cache configuration and how users reach the route through links and prefetching. Confirm where a warm request can reuse data or a rendered response. [Context.md](<fixture>/cases/plan-with-stack-need/Context.md) · [Handoff.md](<fixture>/cases/plan-with-stack-need/Handoff.md)\n2. **Authorize every report read on the server.** Resolve the report’s workspace and check current membership against the authoritative store before returning any report data. Where the data layer supports it, enforce membership in the same query as the report read. Keep membership decisions and authorized report responses out of persistent caches. Make navigation paths that initiate a new read reach the server even when the route was previously visited or prefetched. Verify that a member can read the report and that anonymous users, nonmembers, and members of another workspace receive no report data.\n3. **Filter and project rows before rendering.** Have the server-side query return only the permitted public-facing labels. Render the list in a Server Component and pass only those labels to any Client Component needed for interaction. Seed a test report with a distinctive internal note and an excluded row label, then verify that both values are absent from the initial HTML, React Server Component payloads, and any report endpoint responses. Confirm the authorized member sees the expected labels. [Approved.md](<fixture>/cases/plan-with-stack-need/Approved.md) · [Next.js Server and Client Components](https://nextjs.org/docs/app/getting-started/server-and-client-components)\n4. **Verify revocation in a production build.** Load and prefetch the report as a member, revoke membership while keeping the same session, then attempt the next read through direct access and in-app navigation. Require both paths to deny access without returning report rows. Repeat with a still-authorized member to check that the denial stays isolated to the revoked user. [Next.js caching](https://nextjs.org/docs/app/getting-started/caching)\n\nThe Server Component is the proposed rendering default. The repository snapshot contains planning documents only, so the route’s actual cache configuration and navigation behavior still need to be confirmed in step 1.",
+    "completed": true
+  }
+}

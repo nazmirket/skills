@@ -1,0 +1,1 @@
+Coordinate separate edits to visual direction, product and marketing, and selected adjacent skills. Integrate the screenshot standard, a reusable capture check, package link rules and fixtures. Check source links, capture and reject representative evidence, build the site and inspect the exported catalog.

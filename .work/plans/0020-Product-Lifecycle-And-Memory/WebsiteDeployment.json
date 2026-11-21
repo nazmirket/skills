@@ -1,0 +1,17 @@
+{
+  "commit": "cf41945c46bde6fd581b25379733143794f02762",
+  "work": "/Users/nazmi/Projects/skills/.work/temp/WebsiteDeploy040-pcaqcwl7",
+  "source": "/Users/nazmi/Projects/skills/.work/temp/WebsiteDeploy040-pcaqcwl7/source",
+  "out": "/Users/nazmi/Projects/skills/.work/temp/WebsiteDeploy040-pcaqcwl7/source/website/out",
+  "site": "https://skills.mirket.dev",
+  "prior_live_skill_count": 20,
+  "archive_sha256": "4d96f9ec50cdc42b032e49904443a248441f6cf5659b4b7192e6ad8bb640596f",
+  "archive_bytes": 1885970,
+  "remote_upload": "/tmp/mirket-skills-deploy.YooODT01",
+  "previous_release": "/opt/skills.mirket.dev/releases/b47b89f5bbd14456ff4ccc549addedc6abeafd5c",
+  "activated_release": "/opt/skills.mirket.dev/releases/cf41945c46bde6fd581b25379733143794f02762",
+  "final_health_checked_at": "2026-11-11T10:33:47.438130+00:00",
+  "status": "deployed_and_verified",
+  "browser_snapshot_directory": "/Users/nazmi/Projects/skills/.work/temp/WebsiteDeploymentBrowserSnapshots-20261111T103505",
+  "local_staging_removed": true
+}

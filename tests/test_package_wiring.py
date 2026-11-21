@@ -83,6 +83,7 @@ def markdown_sources():
     paths = set(REPO.glob("*.md"))
     for directory in (SKILLS, REPO / "references", REPO / "docs", REPO / "instructions", REPO / "tests"):
         paths.update(directory.rglob("*.md"))
+    paths.update((REPO / ".work/decisions").glob("*.md"))
     paths.update(REPO / name for name in ("website/README.md", "website/AGENTS.md"))
     return sorted(paths)
 

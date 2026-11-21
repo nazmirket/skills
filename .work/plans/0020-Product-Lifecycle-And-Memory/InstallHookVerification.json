@@ -1,0 +1,292 @@
+{
+  "date": "2026-11-11",
+  "codex_version": "0.167.0",
+  "plugin_version": "0.4.0",
+  "setup": {
+    "installed_plugin": true,
+    "normal_persisted_trust": true,
+    "trust_bypass": false,
+    "model_override": false,
+    "permission_override": false,
+    "ephemeral_test_threads": true,
+    "fixture_repositories": "Independent initialized dummy repositories; no production/source repository commit targets.",
+    "final_review_opt_in": "MIRKET_FINAL_REVIEW=1 only in opt-in process environment; no persisted setting changed."
+  },
+  "codex_cases": [
+    {
+      "case": "session_start",
+      "status": "pass",
+      "evidence": "Actual hook/completed, routing context from installed cache in both runs"
+    },
+    {
+      "case": "user_prompt_submit",
+      "status": "pass",
+      "evidence": "Actual hook/completed, Distill/Clean context from installed cache in both runs"
+    },
+    {
+      "case": "pre_tool_supported_dry_run",
+      "status": "pass",
+      "evidence": "Actual shell git commit --dry-run exited 0 with staged dummy filenames; no mutation/acknowledgment/absolute target required"
+    },
+    {
+      "case": "pre_tool_missing_absolute_target",
+      "status": "pass",
+      "evidence": "Actual preToolUse blocked with missing first absolute -C feedback"
+    },
+    {
+      "case": "pre_tool_second_repository_staged_work",
+      "status": "pass",
+      "evidence": "Actual preToolUse blocked the absolute target repository .work/private.txt despite a different session repository"
+    },
+    {
+      "case": "stop_default",
+      "status": "pass",
+      "evidence": "Actual stop completed with empty entries; one final answer and no continuation"
+    },
+    {
+      "case": "stop_opt_in",
+      "status": "pass",
+      "evidence": "First stop blocked with combined Distill/Clean feedback; one continued final answer, then stop completed with empty entries"
+    },
+    {
+      "case": "updated_global_instructions_loaded",
+      "status": "pass",
+      "evidence": "Fresh thread/start instructionSources includes /Users/nazmi/.codex/AGENTS.md; current file fingerprint and relevant lines recorded below"
+    }
+  ],
+  "runs": [
+    {
+      "mode": "default",
+      "thread_id": "01a1c9f3-0515-7701-9816-3c7142295412",
+      "model": "gpt-6-astra",
+      "completed": true,
+      "events": "/Users/nazmi/Projects/skills/.work/temp/HookDiscovery/installed-default-events.jsonl",
+      "hooks": [
+        {
+          "id": "session-start:10:/Users/nazmi/.codex/plugins/cache/mirket/mirket/0.4.0/hooks/hooks.json",
+          "eventName": "sessionStart",
+          "sourcePath": "/Users/nazmi/.codex/plugins/cache/mirket/mirket/0.4.0/hooks/hooks.json",
+          "status": "completed",
+          "entries": [
+            {
+              "kind": "context",
+              "text": "Distill throughout the session: do authorized work directly. Skip routine narration; report material progress or blockers. Lead final replies with the result, then verified checks and material limits. Keep the depth the user needs. Choose one Mirket skill to own each outcome; supporting skills return evidence to that owner. If ownership is unclear, consult /Users/nazmi/.codex/plugins/cache/mirket/mirket/0.4.0/references/Routing.md."
+            }
+          ],
+          "startedAt": 1794389511,
+          "completedAt": 1794389511,
+          "durationMs": 88
+        },
+        {
+          "id": "user-prompt-submit:11:/Users/nazmi/.codex/plugins/cache/mirket/mirket/0.4.0/hooks/hooks.json",
+          "eventName": "userPromptSubmit",
+          "sourcePath": "/Users/nazmi/.codex/plugins/cache/mirket/mirket/0.4.0/hooks/hooks.json",
+          "status": "completed",
+          "entries": [
+            {
+              "kind": "context",
+              "text": "Distill: do authorized work directly; report meaningful progress only. Before sending, lead with the result and verified facts, and cut repetition. Apply /Users/nazmi/.codex/plugins/cache/mirket/mirket/0.4.0/skills/clean/SKILL.md when relevant."
+            }
+          ],
+          "startedAt": 1794389511,
+          "completedAt": 1794389511,
+          "durationMs": 66
+        },
+        {
+          "id": "pre-tool-use:9:/Users/nazmi/.codex/plugins/cache/mirket/mirket/0.4.0/hooks/hooks.json:exec-53b2da72-9486-4fd2-8291-d5a1b9ff87cd",
+          "eventName": "preToolUse",
+          "sourcePath": "/Users/nazmi/.codex/plugins/cache/mirket/mirket/0.4.0/hooks/hooks.json",
+          "status": "completed",
+          "entries": [],
+          "startedAt": 1794389520,
+          "completedAt": 1794389521,
+          "durationMs": 93
+        },
+        {
+          "id": "pre-tool-use:9:/Users/nazmi/.codex/plugins/cache/mirket/mirket/0.4.0/hooks/hooks.json:exec-ef99c6be-1502-438b-afc4-997cba0b14b9",
+          "eventName": "preToolUse",
+          "sourcePath": "/Users/nazmi/.codex/plugins/cache/mirket/mirket/0.4.0/hooks/hooks.json",
+          "status": "completed",
+          "entries": [],
+          "startedAt": 1794389526,
+          "completedAt": 1794389526,
+          "durationMs": 112
+        },
+        {
+          "id": "pre-tool-use:9:/Users/nazmi/.codex/plugins/cache/mirket/mirket/0.4.0/hooks/hooks.json:exec-3fcfae99-bd01-4891-b6d6-a21db2f0891c",
+          "eventName": "preToolUse",
+          "sourcePath": "/Users/nazmi/.codex/plugins/cache/mirket/mirket/0.4.0/hooks/hooks.json",
+          "status": "completed",
+          "entries": [],
+          "startedAt": 1794389533,
+          "completedAt": 1794389533,
+          "durationMs": 108
+        },
+        {
+          "id": "pre-tool-use:9:/Users/nazmi/.codex/plugins/cache/mirket/mirket/0.4.0/hooks/hooks.json:exec-2e98cc7a-21bf-493f-9197-eb3f5e0f6029",
+          "eventName": "preToolUse",
+          "sourcePath": "/Users/nazmi/.codex/plugins/cache/mirket/mirket/0.4.0/hooks/hooks.json",
+          "status": "blocked",
+          "entries": [
+            {
+              "kind": "feedback",
+              "text": "Mirket cannot verify the Git target from the session directory. Use a first -C with an absolute worktree path in the guarded commit command."
+            }
+          ],
+          "startedAt": 1794389537,
+          "completedAt": 1794389537,
+          "durationMs": 113
+        },
+        {
+          "id": "pre-tool-use:9:/Users/nazmi/.codex/plugins/cache/mirket/mirket/0.4.0/hooks/hooks.json:exec-e362556e-ce21-456e-9afe-73c43d56ccca",
+          "eventName": "preToolUse",
+          "sourcePath": "/Users/nazmi/.codex/plugins/cache/mirket/mirket/0.4.0/hooks/hooks.json",
+          "status": "blocked",
+          "entries": [
+            {
+              "kind": "feedback",
+              "text": "Staged .work files require an explicitly named human exception: '.work/private.txt'. Unstage them, or only when the human explicitly authorizes one exact path, retry with MIRKET_WORK_EXCEPTION=<that-path>. The marker does not prove authorization."
+            }
+          ],
+          "startedAt": 1794389542,
+          "completedAt": 1794389542,
+          "durationMs": 129
+        },
+        {
+          "id": "stop:12:/Users/nazmi/.codex/plugins/cache/mirket/mirket/0.4.0/hooks/hooks.json",
+          "eventName": "stop",
+          "sourcePath": "/Users/nazmi/.codex/plugins/cache/mirket/mirket/0.4.0/hooks/hooks.json",
+          "status": "completed",
+          "entries": [],
+          "startedAt": 1794389548,
+          "completedAt": 1794389548,
+          "durationMs": 97
+        }
+      ]
+    },
+    {
+      "mode": "opt-in",
+      "thread_id": "01a1c9f3-bfbe-7dd1-8f43-91d107d6f94f",
+      "model": "gpt-6-astra",
+      "completed": true,
+      "events": "/Users/nazmi/Projects/skills/.work/temp/HookDiscovery/installed-opt-in-events.jsonl",
+      "hooks": [
+        {
+          "id": "session-start:10:/Users/nazmi/.codex/plugins/cache/mirket/mirket/0.4.0/hooks/hooks.json",
+          "eventName": "sessionStart",
+          "sourcePath": "/Users/nazmi/.codex/plugins/cache/mirket/mirket/0.4.0/hooks/hooks.json",
+          "status": "completed",
+          "entries": [
+            {
+              "kind": "context",
+              "text": "Distill throughout the session: do authorized work directly. Skip routine narration; report material progress or blockers. Lead final replies with the result, then verified checks and material limits. Keep the depth the user needs. Choose one Mirket skill to own each outcome; supporting skills return evidence to that owner. If ownership is unclear, consult /Users/nazmi/.codex/plugins/cache/mirket/mirket/0.4.0/references/Routing.md."
+            }
+          ],
+          "startedAt": 1794389559,
+          "completedAt": 1794389559,
+          "durationMs": 91
+        },
+        {
+          "id": "user-prompt-submit:11:/Users/nazmi/.codex/plugins/cache/mirket/mirket/0.4.0/hooks/hooks.json",
+          "eventName": "userPromptSubmit",
+          "sourcePath": "/Users/nazmi/.codex/plugins/cache/mirket/mirket/0.4.0/hooks/hooks.json",
+          "status": "completed",
+          "entries": [
+            {
+              "kind": "context",
+              "text": "Distill: do authorized work directly; report meaningful progress only. Before sending, lead with the result and verified facts, and cut repetition. Apply /Users/nazmi/.codex/plugins/cache/mirket/mirket/0.4.0/skills/clean/SKILL.md when relevant."
+            }
+          ],
+          "startedAt": 1794389559,
+          "completedAt": 1794389559,
+          "durationMs": 63
+        },
+        {
+          "id": "stop:12:/Users/nazmi/.codex/plugins/cache/mirket/mirket/0.4.0/hooks/hooks.json",
+          "eventName": "stop",
+          "sourcePath": "/Users/nazmi/.codex/plugins/cache/mirket/mirket/0.4.0/hooks/hooks.json",
+          "status": "blocked",
+          "entries": [
+            {
+              "kind": "feedback",
+              "text": "Apply /Users/nazmi/.codex/plugins/cache/mirket/mirket/0.4.0/skills/clean/SKILL.md for task-scoped cleanup when relevant; respect scope, read-only restrictions, pause requests, and existing work. Distill the final reply: outcome first, then verified checks, material limits, and any needed next step. Skip narration of this review."
+            }
+          ],
+          "startedAt": 1794389564,
+          "completedAt": 1794389564,
+          "durationMs": 102
+        },
+        {
+          "id": "stop:12:/Users/nazmi/.codex/plugins/cache/mirket/mirket/0.4.0/hooks/hooks.json",
+          "eventName": "stop",
+          "sourcePath": "/Users/nazmi/.codex/plugins/cache/mirket/mirket/0.4.0/hooks/hooks.json",
+          "status": "completed",
+          "entries": [],
+          "startedAt": 1794389567,
+          "completedAt": 1794389567,
+          "durationMs": 106
+        }
+      ]
+    }
+  ],
+  "global_instructions": {
+    "path": "/Users/nazmi/.codex/AGENTS.md",
+    "sha256": "db7c0ca554a903a88b84fe51e73ad463d32731331ae623e348a4736d39adccd3",
+    "loaded_sources": [
+      "/Users/nazmi/.codex/AGENTS.md"
+    ],
+    "relevant_lines": [
+      "- When it is unclear which skill should own the result, consult the active Mirket plugin's `references/Routing.md`. Load supporting skills only for distinct work or evidence.",
+      "- For lifecycle work, use **Secure** for security/privacy, **Migrate** for persistent state, **Release** for versioned artifacts, **Deploy** for environment rollout and **Operate** for health/recovery. Honor existing authority; preparation, publication and production activation are separate scopes.",
+      "- When project memory is enabled, follow the active plugin's `references/Memory.md`: recall relevant decisions before substantial work, verify project scope and current evidence, record material corrections and distinguish capture, freshness and retrieval. Report stale or unavailable memory; do not widen capture or treat a synced seed as proof of currency.",
+      "- Use `.work/` at the current Git worktree root or the selected non-Git project root: `plans` for planning, `decisions` for private architecture drafts, `stashes` for temporary snapshots, `recover` for important recovery copies only, `briefs` for standalone handoffs and briefs, and `temp` for disposable files. Number new plans and standalone handoffs using the active plugin's `references/Workspace.md`. Record settled architecture decisions in the project's ADR location, creating `docs/decisions/` if none exists. Use designated paths for real deliverables. Before writing to `.work/`, ensure `/.work/` is ignored in that repository, with a local Git exclude if appropriate, and check for tracked workspace files. Keep it out of the index unless the human explicitly names an exception."
+    ]
+  },
+  "fixture_head_checks": [
+    {
+      "path": "/Users/nazmi/Projects/skills/.work/temp/HookDiscovery/live-default/session",
+      "head_exists": false
+    },
+    {
+      "path": "/Users/nazmi/Projects/skills/.work/temp/HookDiscovery/live-default/target",
+      "head_exists": false
+    },
+    {
+      "path": "/Users/nazmi/Projects/skills/.work/temp/HookDiscovery/live-opt-in/session",
+      "head_exists": false
+    },
+    {
+      "path": "/Users/nazmi/Projects/skills/.work/temp/HookDiscovery/live-opt-in/target",
+      "head_exists": false
+    }
+  ],
+  "claude": {
+    "evidence": "/Users/nazmi/Projects/skills/.work/temp/ClaudeInstalled040.jsonl",
+    "actual_hook_responses": [
+      {
+        "hook_name": "SessionStart:startup",
+        "hook_event": "SessionStart",
+        "stdout": "{\"hookSpecificOutput\": {\"hookEventName\": \"SessionStart\", \"additionalContext\": \"Distill throughout the session: do authorized work directly. Skip routine narration; report material progress or blockers. Lead final replies with the result, then verified checks and material limits. Keep the depth the user needs. Choose one Mirket skill to own each outcome; supporting skills return evidence to that owner. If ownership is unclear, consult /Users/nazmi/Projects/skills/plugins/mirket/references/Routing.md.\"}}\n",
+        "exit_code": 0
+      },
+      {
+        "hook_name": "UserPromptSubmit",
+        "hook_event": "UserPromptSubmit",
+        "stdout": "{\"hookSpecificOutput\": {\"hookEventName\": \"UserPromptSubmit\", \"additionalContext\": \"Distill: do authorized work directly; report meaningful progress only. Before sending, lead with the result and verified facts, and cut repetition. Apply /Users/nazmi/Projects/skills/plugins/mirket/skills/clean/SKILL.md when relevant.\"}}\n",
+        "exit_code": 0
+      }
+    ],
+    "session_start": "pass",
+    "user_prompt_submit": "pass",
+    "pre_tool_use": "unverified",
+    "stop": "unverified",
+    "blocker": "Actual host model turn ended is_error=true: Not logged in \u00b7 Please run /login."
+  },
+  "limits": [
+    "These are live Codex app-server hook events from fresh ephemeral sessions, not interactive TUI output or a full behavioral-case evaluation.",
+    "Loading global instructions establishes injection/source presence, not universal model compliance with every rule.",
+    "Claude SessionStart and UserPromptSubmit ran before the authentication failure; model-driven PreToolUse and Stop remain unverified.",
+    "Synthetic Python contract checks supplement these observations but do not establish Claude runtime enforcement.",
+    "No full-token cost measurement was collected. Opt-in short answer visibly produced the answer twice."
+  ]
+}

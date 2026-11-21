@@ -1,0 +1,32 @@
+{
+  "summary": {
+    "id": "mirket@mirket",
+    "localVersion": "0.4.0",
+    "name": "mirket",
+    "source": {
+      "type": "local",
+      "path": "/Users/nazmi/Projects/skills/plugins/mirket"
+    },
+    "installed": true,
+    "enabled": true
+  },
+  "hooks": [
+    {
+      "key": "mirket@mirket:hooks/hooks.json:pre_tool_use:0:0",
+      "eventName": "preToolUse"
+    },
+    {
+      "key": "mirket@mirket:hooks/hooks.json:session_start:0:0",
+      "eventName": "sessionStart"
+    },
+    {
+      "key": "mirket@mirket:hooks/hooks.json:user_prompt_submit:0:0",
+      "eventName": "userPromptSubmit"
+    },
+    {
+      "key": "mirket@mirket:hooks/hooks.json:stop:0:0",
+      "eventName": "stop"
+    }
+  ],
+  "skills_count": 25
+}

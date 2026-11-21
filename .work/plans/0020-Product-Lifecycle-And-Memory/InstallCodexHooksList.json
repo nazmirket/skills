@@ -1,0 +1,60 @@
+{
+  "data": [
+    {
+      "cwd": "/Users/nazmi/Projects/skills",
+      "errors": [],
+      "warnings": [],
+      "hooks": [
+        {
+          "eventName": "sessionStart",
+          "pluginId": null,
+          "sourcePath": "/Users/nazmi/.codex/hooks.json",
+          "trustStatus": "trusted",
+          "enabled": true
+        },
+        {
+          "eventName": "userPromptSubmit",
+          "pluginId": null,
+          "sourcePath": "/Users/nazmi/.codex/hooks.json",
+          "trustStatus": "trusted",
+          "enabled": true
+        },
+        {
+          "eventName": "stop",
+          "pluginId": null,
+          "sourcePath": "/Users/nazmi/.codex/hooks.json",
+          "trustStatus": "trusted",
+          "enabled": true
+        },
+        {
+          "eventName": "preToolUse",
+          "pluginId": "mirket@mirket",
+          "sourcePath": "/Users/nazmi/.codex/plugins/cache/mirket/mirket/0.4.0/hooks/hooks.json",
+          "trustStatus": "trusted",
+          "enabled": true
+        },
+        {
+          "eventName": "sessionStart",
+          "pluginId": "mirket@mirket",
+          "sourcePath": "/Users/nazmi/.codex/plugins/cache/mirket/mirket/0.4.0/hooks/hooks.json",
+          "trustStatus": "trusted",
+          "enabled": true
+        },
+        {
+          "eventName": "userPromptSubmit",
+          "pluginId": "mirket@mirket",
+          "sourcePath": "/Users/nazmi/.codex/plugins/cache/mirket/mirket/0.4.0/hooks/hooks.json",
+          "trustStatus": "trusted",
+          "enabled": true
+        },
+        {
+          "eventName": "stop",
+          "pluginId": "mirket@mirket",
+          "sourcePath": "/Users/nazmi/.codex/plugins/cache/mirket/mirket/0.4.0/hooks/hooks.json",
+          "trustStatus": "trusted",
+          "enabled": true
+        }
+      ]
+    }
+  ]
+}

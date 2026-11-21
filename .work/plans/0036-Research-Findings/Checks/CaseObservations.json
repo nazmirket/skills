@@ -1,0 +1,200 @@
+[
+  {
+    "case": "candidate privacy options",
+    "session": "01",
+    "first_comment": "I’ll use Mirket Execute and Architect to compare the two proposals in `Options.md` and identify the decision the team still owns.",
+    "read_evidence": [
+      "/bin/zsh -lc \"rg --files --hidden -g 'Options.md' -g 'AGENTS.md' -g '\"'!.git'\"' && cat .agents/skills/{execute,architect}/SKILL.md\"",
+      "/bin/zsh -lc \"cat -n Options.md && rg --files -g '\"'!*SKILL.md'\"' | head -40\""
+    ],
+    "final_excerpt": "**Keep employee calendars on each device and share only the availability needed to schedule**, such as free/busy windows. If a confirmed requirement calls for central storage, store derived availability with restricted access and a defined retention period. [Options.md](<fixture>/trial-01/Options.md:1)\n\n| Option | Threats that differ |\n|-",
+    "command_count": 2,
+    "turn_completed": true
+  },
+  {
+    "case": "release chart",
+    "session": "02",
+    "first_comment": "I’ll use Mirket Execute, Author, Design, and Clean to inspect the fixtures, build the report, and verify that the comparison works with and without the chart.",
+    "read_evidence": [
+      "/bin/zsh -lc \"ls -a; rg --files --hidden -g '\"'!.git'\"' -g '\"'!.agents/**'\"'; cat .agents/skills/{execute,author,design,clean}/SKILL.md\"",
+      "/bin/zsh -lc \"cat .agents/skills/preflight/SKILL.md which weasyprint wkhtmltoimage firefox python3 -B - <<'PY' import csv, re from pathlib import Path from html.parser import HTMLParser html = Path('report.html').read_text() class Table(HTMLParser): rows = [] in_body = "
+    ],
+    "final_excerpt": "Created [report.html](<fixture>/trial-02/report.html), a standalone report with a shared-scale bar chart, a written comparison, and an accessible table of exact unit counts.\n\nSouth led Q1 and Q3. West led among regions with observed Q2 sales, and South’s Q2 value is marked “Unobserved.”\n\nThe chart values and table matched `sales.csv`, and",
+    "command_count": 5,
+    "turn_completed": true
+  },
+  {
+    "case": "candidate chart",
+    "session": "03",
+    "first_comment": "I’ll use Mirket Execute, Design, and Clean to read the fixtures, build the report, and check that readers can make the comparison with or without the chart.",
+    "read_evidence": [
+      "/bin/zsh -lc \"ls -a; rg --files --hidden -g '\"'!**/.git/**'\"' -g '\"'!**/.agents/**'\"'; cat .agents/skills/{execute,design,clean}/SKILL.md\""
+    ],
+    "final_excerpt": "Created [report.html](<fixture>/trial-03/report.html), a standalone report with a shared-scale bar chart, a data table, and a written comparison.\n\nSouth sold the most units in Q1 and Q3. In Q2, West sold 20 units and North sold 9. South’s Q2 sales were unobserved, so the overall Q2 leader is unknown.\n\nThe chart and table match `sales.csv`",
+    "command_count": 7,
+    "turn_completed": true
+  },
+  {
+    "case": "candidate invoice",
+    "session": "04",
+    "first_comment": "I’ll use Mirket Execute, Design, Test, and Clean to inspect the fixture, fix the reading direction, and verify both note directions and the keyboard sequence.",
+    "read_evidence": [
+      "/bin/zsh -lc \"pwd && rg --files --hidden -g '\"'!.git'\"' -g '\"'!.agents/**'\"' && cat .agents/skills/{execute,design,test,clean}/SKILL.md\"",
+      "/bin/zsh -lc 'cat .agents/skills/preflight/SKILL.md ls /Users/nazmi/Library/Caches/ms-playwright command -v firefox wkhtmltoimage'"
+    ],
+    "final_excerpt": "Fixed [invoice.html](<fixture>/trial-04/invoice.html) so the invoice reads right to left and the customer note follows the language of its text. The SKU `AB-12` and amount `125.50 USD` retain their left-to-right display and original values.\n\nVerified both Arabic and English notes in Chromium. In both cases, Tab moved from the note to Save",
+    "command_count": 6,
+    "turn_completed": true
+  },
+  {
+    "case": "release invoice",
+    "session": "05",
+    "first_comment": "I’ll use Mirket Execute, Design, Test, and Clean to inspect the invoice, fix its reading direction, and verify both note directions.",
+    "read_evidence": [
+      "/bin/zsh -lc \"cat Context.md; rg --files --hidden -g '\"'!.git'\"' -g '\"'!.agents'\"' -g '\"'!.codex'\"'; git status --short; for s in execute design test clean; do cat .agents/skills/\"'$s/SKILL.md; done'"
+    ],
+    "final_excerpt": "Fixed the [Arabic invoice](invoice.html) to read right to left. The SKU `AB-12` and price `(125.50 USD)` retain their left-to-right order, and the customer note adapts to Arabic or English input.\n\nChromium confirmed both note directions, preserved field values, and the original Tab sequence from the note to Save. Both project tests passed",
+    "command_count": 4,
+    "turn_completed": true
+  },
+  {
+    "case": "release recovery review",
+    "session": "06",
+    "first_comment": "I’ll use Mirket Execute, Design, and Test to read the fixture and check the signup form’s keyboard recovery flow.",
+    "read_evidence": [
+      "/bin/zsh -lc 'cat .agents/skills/{execute,design,test}/SKILL.md'",
+      "/bin/zsh -lc 'cat Context.md README.md app.py test_app.py .agents/skills/design/references/flows/Critique.md .agents/skills/design/references/formats/README.md .agents/skills/clean/SKILL.md; ls -a'"
+    ],
+    "final_excerpt": "- **The city error is recoverable by keyboard, but easy to miss.** The first submission displays “Enter name. Enter city” below Continue. After correcting Name, the message still lists both errors until the next submission. Resubmitting leaves “Enter city,” but the form does not move focus to City or associate the message with that field.",
+    "command_count": 10,
+    "turn_completed": true
+  },
+  {
+    "case": "early candidate recovery review",
+    "session": "07",
+    "first_comment": "I’ll use Mirket Execute and Audit to read the fixture, then check what happens when someone corrects one error using the keyboard.",
+    "read_evidence": [
+      "/bin/zsh -lc \"cat Context.md .agents/skills/execute/SKILL.md .agents/skills/audit/SKILL.md; rg --files --hidden -g '\"'!.git'\"' | head -70\""
+    ],
+    "final_excerpt": "- **City is reachable by keyboard, but the form gives weak guidance for finding it.** The first submission shows “Enter name. Enter city” below Continue. After Name is corrected, both messages stay visible until the next submission. Resubmitting leaves “Enter city,” but the form does not move focus to City, associate the message with the ",
+    "command_count": 5,
+    "turn_completed": true
+  },
+  {
+    "case": "candidate settled implementation",
+    "session": "08",
+    "first_comment": "I’ll use Mirket Execute, Code, Test, and Clean to read the fixture contract, make the change, and verify it with the existing test.",
+    "read_evidence": [
+      "/bin/zsh -lc \"git status --short; rg --files --hidden -g '\"'!.git'\"' -g '\"'!.agents/**'\"'; cat .agents/skills/{execute,code,test,clean}/SKILL.md\""
+    ],
+    "final_excerpt": "Added `subtotal(items)` to [app.py](<fixture>/trial-08/app.py:5). It sums `quantity * unit_price` for each pair and returns `0` for empty input.\n\nAll three existing tests passed, including the subtotal test.",
+    "command_count": 3,
+    "turn_completed": true
+  },
+  {
+    "case": "release settled implementation",
+    "session": "09",
+    "first_comment": "I’ll use Mirket Execute and Clean to read the fixture, add `subtotal`, and verify it with the existing test.",
+    "read_evidence": [
+      "/bin/zsh -lc \"cat .agents/skills/{execute,clean}/SKILL.md; git status --short; rg --files -g '\"'!.agents/**'\"'\""
+    ],
+    "final_excerpt": "Added `subtotal(items)` to [app.py](<fixture>/trial-09/app.py:5). It sums `quantity * unit_price` for each item and returns `0` for empty input.\n\nAll three existing tests passed, including the tests for `total()`.",
+    "command_count": 3,
+    "turn_completed": true
+  },
+  {
+    "case": "candidate literature",
+    "session": "10",
+    "first_comment": "I’ll use Mirket Execute and Search. I’ll read Context.md and the relevant fixtures first, then check the original paper and current accessibility guidance.",
+    "read_evidence": [
+      "/bin/zsh -lc 'cat .agents/skills/{execute,search}/SKILL.md'",
+      "/bin/zsh -lc 'cat Context.md Prompt.md README.md app.py test_app.py .agents/skills/clean/SKILL.md'"
+    ],
+    "final_excerpt": "**Design2Code measures screenshot-to-code visual fidelity.** Given a reference screenshot, a multimodal model generates webpage code. The benchmark renders that code and compares it with the reference across 484 curated real-world webpages. It scores overall visual similarity with CLIP, plus visual block matching and the similarity of tex",
+    "command_count": 4,
+    "turn_completed": true
+  },
+  {
+    "case": "revised candidate recovery review",
+    "session": "11",
+    "first_comment": "I’m using Mirket Execute and Design to read the fixture, then review how keyboard focus moves through submission and error recovery.",
+    "read_evidence": [
+      "/bin/zsh -lc \"pwd; rg --files --hidden -g '\"'!.git'\"' | head -75; cat .agents/skills/{execute,design}/SKILL.md; cat Context.md\"",
+      "/bin/zsh -lc 'ls -la; cat form.html .agents/skills/design/references/flows/Critique.md .agents/skills/design/references/formats/README.md .agents/skills/clean/SKILL.md'",
+      "/bin/zsh -lc 'cat .agents/skills/preflight/SKILL.md /Users/nazmi/Library/Caches/ms-playwright/chromium_headless_shell-1234/chrome-headless-shell-mac-arm64/chrome-headless-shell --disable-dev-shm-usage --no-sandbox --dump-dom \"file://$PWD/form.html\"'"
+    ],
+    "final_excerpt": "**City is reachable and correctable with the keyboard, but the form gives weak cues for finding the remaining error.** In headless Chromium, submitting with Space on Continue displayed “Enter name. Enter city” and left focus on Continue. After I filled in Name, both messages stayed visible until I submitted again. The summary then showed ",
+    "command_count": 8,
+    "turn_completed": true
+  },
+  {
+    "case": "revised candidate recovery paraphrase A",
+    "session": "12",
+    "first_comment": "I’m using Mirket Execute and Design to review the fixture, then I’ll try the signup flow using only the keyboard.",
+    "read_evidence": [
+      "/bin/zsh -lc 'cat .agents/skills/{execute,design}/SKILL.md Context.md'",
+      "/bin/zsh -lc 'cat .agents/skills/preflight/SKILL.md'"
+    ],
+    "final_excerpt": "After filling in only **Name** and pressing Enter on **Continue** again, the page shows **“Enter city”** beneath the button. Focus stays on **Continue**. Press **Shift+Tab** twice to reach **City**, passing through **Email**. The message is plain text, so the person has to use the field label and tab order to find City.\n\nOn the first atte",
+    "command_count": 5,
+    "turn_completed": true
+  },
+  {
+    "case": "revised candidate recovery paraphrase B",
+    "session": "13",
+    "first_comment": "I’m using Mirket Execute, Design, and Test to walk the signup with the keyboard and record where focus lands.",
+    "read_evidence": [
+      "/bin/zsh -lc \"cat Context.md rg --files --hidden -g '\"'!.git'\"' | head -80 for s in execute design test clean; do cat \\\".agents/skills/\"'$s/SKILL.md\"; done'",
+      "/bin/zsh -lc \"cat .agents/skills/preflight/SKILL.md ls -ld /tmp /dev/shm ps -ax -o comm | rg 'Chrome|Safari|Chromium' | head\""
+    ],
+    "final_excerpt": "Yes. In headless Chromium, I could correct the missing fields and resubmit [form.html](<fixture>/trial-13/form.html) using the keyboard. The preview cleared the errors without showing a confirmation or advancing to another screen.\n\n1. Tab moved through **Name → City → Email → Continue**.\n2. With Name and City empty, I pressed Enter on **C",
+    "command_count": 10,
+    "turn_completed": true
+  },
+  {
+    "case": "release recovery paraphrase A",
+    "session": "14",
+    "first_comment": "I’ll use Mirket Execute and Test to read the context and fixture, then check the signup flow using only the keyboard.",
+    "read_evidence": [
+      "/bin/zsh -lc \"rg --files --hidden -g '\"'!.git'\"' | head -80; cat .agents/skills/{execute,test}/SKILL.md\"",
+      "/bin/zsh -lc 'cat .agents/skills/{preflight,clean}/SKILL.md; test -x /Users/nazmi/Library/Caches/ms-playwright/chromium_headless_shell-1234/chrome-headless-shell-mac-arm64/chrome-headless-shell'"
+    ],
+    "final_excerpt": "The fixture shows “Enter name. Enter city” below **Continue** on the first submission. After you fill in **Name** and activate **Continue** again, the message changes to “Enter city.”\n\nFocus stays on **Continue** when you activate it with Enter. The message is plain text, so it gives you the field name but offers no shortcut to it. Press ",
+    "command_count": 5,
+    "turn_completed": true
+  },
+  {
+    "case": "candidate settled implementation repeat",
+    "session": "15",
+    "first_comment": "I’ll use Mirket Execute, Test, and Clean to read the fixture, implement `subtotal`, and verify it with the existing test.",
+    "read_evidence": [
+      "/bin/zsh -lc \"rg --files --hidden -g '\"'!.git'\"' -g '\"'!.agents/**'\"'; git status --short; cat .agents/skills/{execute,test,clean}/SKILL.md\""
+    ],
+    "final_excerpt": "Added `subtotal(items)` to [app.py](<fixture>/trial-15/app.py:5). It sums `quantity * unit_price` for each pair and returns `0` for empty input.\n\nAll three existing tests passed with `python3 -B -m unittest -v`.",
+    "command_count": 3,
+    "turn_completed": true
+  },
+  {
+    "case": "full install ambiguous recommendation",
+    "session": "20",
+    "first_comment": "I’ll use Mirket Execute, read `Context.md` and the relevant fixtures, then give the team my recommendation and state the open requirement here.",
+    "read_evidence": [
+      "/bin/zsh -lc \"ls -a && cat Context.md && cat .agents/skills/execute/SKILL.md && rg --files --hidden -g '\"'!.git'\"' | head -100\"",
+      "/bin/zsh -lc 'cat .agents/skills/ship/SKILL.md && git status --short && git ls-files | head -30'"
+    ],
+    "final_excerpt": "I recommend starting with the local editor if the first release is primarily for individual work. It lets people edit without a connection. If the core workflow depends on multiple people editing the same document at once, start with the shared hosted editor. [Context.md](<fixture>/trial-20/Context.md)\n\n**Open requirement:** The product o",
+    "command_count": 4,
+    "turn_completed": true
+  },
+  {
+    "case": "full install technical comparison",
+    "session": "21",
+    "first_comment": "I’ll use Mirket Execute and Architect to read the fixture, trace how each design handles restarts and duplicate deliveries, and identify what the team still needs to measure.",
+    "read_evidence": [
+      "/bin/zsh -lc 'cat .agents/skills/execute/SKILL.md .agents/skills/architect/SKILL.md'"
+    ],
+    "final_excerpt": "Recommend **writing the reservation and decrementing capacity in one relational transaction**. Both designs meet the agreed product requirements and staffing budget. The transaction keeps those two changes consistent through a restart and makes the committed capacity immediately available to the next booking decision.\n\n| Design | Restart ",
+    "command_count": 5,
+    "turn_completed": true
+  }
+]

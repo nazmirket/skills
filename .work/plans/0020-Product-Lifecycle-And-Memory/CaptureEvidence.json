@@ -1,0 +1,66 @@
+[
+  {
+    "id": "conversation:01a1c9cc-bf0d-7d12-978a-0fe995b1f830",
+    "bank_id": "coding-agent::desktop-skills",
+    "content_hash": "a452727b46bcde5bea4f63858f0d7899c925ace1812501bc01e1b42f46baf082",
+    "created_at": "2026-11-11T08:50:18.200220+00:00",
+    "updated_at": "2026-11-11T08:50:18.200220+00:00",
+    "text_length": 780,
+    "memory_unit_count": 1,
+    "retain_params": {
+      "context": "conversation between the user and you (the coding agent): user turns are the user's words and decisions, assistant turns are yours. When an assistant turn says something is fixed, passes or works, record it as the agent's claim (\"the agent reported X fixed\"), not as an established fact.",
+      "metadata": {
+        "ref_id": "conversation:01a1c9cc-bf0d-7d12-978a-0fe995b1f830",
+        "source": "chat",
+        "harness": "codex",
+        "session_id": "01a1c9cc-bf0d-7d12-978a-0fe995b1f830"
+      },
+      "strategy": "conversation",
+      "event_date": "2026-11-11T08:50:05.050000+00:00",
+      "observation_scopes": "shared"
+    },
+    "document_metadata": {
+      "ref_id": "conversation:01a1c9cc-bf0d-7d12-978a-0fe995b1f830",
+      "source": "chat",
+      "harness": "codex",
+      "session_id": "01a1c9cc-bf0d-7d12-978a-0fe995b1f830"
+    },
+    "tags": [
+      "source:chat",
+      "harness:codex"
+    ],
+    "matched_fields": []
+  },
+  {
+    "id": "conversation:01a1c9ca-7990-7271-976a-5596b740967e",
+    "bank_id": "coding-agent::desktop-skills",
+    "content_hash": "cd7eeac5478bb4cf594a8c0b7afcea3276aa2a236ababbc8a286c0356d19daac",
+    "created_at": "2026-11-11T08:47:47.328041+00:00",
+    "updated_at": "2026-11-11T08:47:47.328041+00:00",
+    "text_length": 818,
+    "memory_unit_count": 1,
+    "retain_params": {
+      "context": "conversation between the user and you (the coding agent): user turns are the user's words and decisions, assistant turns are yours. When an assistant turn says something is fixed, passes or works, record it as the agent's claim (\"the agent reported X fixed\"), not as an established fact.",
+      "metadata": {
+        "ref_id": "conversation:01a1c9ca-7990-7271-976a-5596b740967e",
+        "source": "chat",
+        "harness": "codex",
+        "session_id": "01a1c9ca-7990-7271-976a-5596b740967e"
+      },
+      "strategy": "conversation",
+      "event_date": "2026-11-11T08:47:35.765000+00:00",
+      "observation_scopes": "shared"
+    },
+    "document_metadata": {
+      "ref_id": "conversation:01a1c9ca-7990-7271-976a-5596b740967e",
+      "source": "chat",
+      "harness": "codex",
+      "session_id": "01a1c9ca-7990-7271-976a-5596b740967e"
+    },
+    "tags": [
+      "source:chat",
+      "harness:codex"
+    ],
+    "matched_fields": []
+  }
+]

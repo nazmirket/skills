@@ -1,0 +1,49 @@
+{
+  "checked_at": "2026-11-11T10:16:06.460439+00:00",
+  "commit": "cf41945c46bde6fd581b25379733143794f02762",
+  "source_file_count": 76,
+  "hosts": {
+    "codex": {
+      "cache_matches_commit": true,
+      "skill_count": 25,
+      "registration": {
+        "pluginId": "mirket@mirket",
+        "name": "mirket",
+        "marketplaceName": "mirket",
+        "version": "0.4.0",
+        "installed": true,
+        "enabled": true,
+        "source": {
+          "source": "local",
+          "path": "/Users/nazmi/.codex/.tmp/marketplaces/mirket/plugins/mirket"
+        },
+        "marketplaceSource": {
+          "sourceType": "git",
+          "source": "https://github.com/nazmirket/skills.git"
+        },
+        "installPolicy": "AVAILABLE",
+        "authPolicy": "ON_INSTALL"
+      },
+      "marketplace_checkout_commit": "cf41945c46bde6fd581b25379733143794f02762"
+    },
+    "claude": {
+      "cache_matches_commit": true,
+      "skill_count": 25,
+      "registration": {
+        "id": "mirket@mirket",
+        "version": "0.4.0",
+        "scope": "user",
+        "enabled": true,
+        "installPath": "/Users/nazmi/.claude/plugins/cache/mirket/mirket/0.4.0",
+        "installedAt": "2026-11-11T10:15:39.537Z",
+        "lastUpdated": "2026-11-11T10:15:39.537Z",
+        "projectEnabled": false
+      },
+      "marketplace_checkout_commit": "cf41945c46bde6fd581b25379733143794f02762"
+    }
+  },
+  "global_instructions": {
+    ".codex/AGENTS.md": true,
+    ".claude/CLAUDE.md": true
+  }
+}

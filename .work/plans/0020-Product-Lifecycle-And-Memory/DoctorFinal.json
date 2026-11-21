@@ -1,0 +1,288 @@
+{
+  "bank": "coding-agent::desktop-skills",
+  "workspace": "/Users/nazmi/Projects/skills",
+  "runtime": "0.8.6",
+  "configuration_scope": "Current shell plus explicit registered launcher settings; inherited desktop environment and hook trust require host verification",
+  "effective_mcp_settings": {
+    "bank": "coding-agent::desktop-skills",
+    "apiTokenConfigured": false,
+    "serverMode": "daemon",
+    "apiUrl": "http://127.0.0.1:9077",
+    "apiPort": 9077,
+    "disabled": false,
+    "retainSessions": true,
+    "optInOnly": false,
+    "autoInject": "pages",
+    "autoSeed": true,
+    "gitIngest": "message",
+    "codebaseSurvey": true,
+    "surveyRefreshCommits": 1,
+    "pageRefreshEveryTurns": 1,
+    "pageTriggerType": "auto-refresh",
+    "pageTriggerCron": "H * * * *"
+  },
+  "effective_hook_settings": {
+    "SessionStart": {
+      "bank": "coding-agent::desktop-skills",
+      "apiTokenConfigured": false,
+      "serverMode": "daemon",
+      "apiUrl": "http://127.0.0.1:9077",
+      "apiPort": 9077,
+      "disabled": false,
+      "retainSessions": true,
+      "optInOnly": false,
+      "autoInject": "pages",
+      "autoSeed": true,
+      "gitIngest": "message",
+      "codebaseSurvey": true,
+      "surveyRefreshCommits": 1,
+      "pageRefreshEveryTurns": 1,
+      "pageTriggerType": "auto-refresh",
+      "pageTriggerCron": "H * * * *"
+    },
+    "UserPromptSubmit": {
+      "bank": "coding-agent::desktop-skills",
+      "apiTokenConfigured": false,
+      "serverMode": "daemon",
+      "apiUrl": "http://127.0.0.1:9077",
+      "apiPort": 9077,
+      "disabled": false,
+      "retainSessions": true,
+      "optInOnly": false,
+      "autoInject": "pages",
+      "autoSeed": true,
+      "gitIngest": "message",
+      "codebaseSurvey": true,
+      "surveyRefreshCommits": 1,
+      "pageRefreshEveryTurns": 1,
+      "pageTriggerType": "auto-refresh",
+      "pageTriggerCron": "H * * * *"
+    },
+    "Stop": {
+      "bank": "coding-agent::desktop-skills",
+      "apiTokenConfigured": false,
+      "serverMode": "daemon",
+      "apiUrl": "http://127.0.0.1:9077",
+      "apiPort": 9077,
+      "disabled": false,
+      "retainSessions": true,
+      "optInOnly": false,
+      "autoInject": "pages",
+      "autoSeed": true,
+      "gitIngest": "message",
+      "codebaseSurvey": true,
+      "surveyRefreshCommits": 1,
+      "pageRefreshEveryTurns": 1,
+      "pageTriggerType": "auto-refresh",
+      "pageTriggerCron": "H * * * *"
+    }
+  },
+  "hook_configuration_errors": {},
+  "hook_mcp_differences": {},
+  "source_freshness": {
+    "head": "b47b89f5bbd14456ff4ccc549addedc6abeafd5c",
+    "dirty_worktree": true,
+    "completed_survey_baseline": "b47b89f5bbd14456ff4ccc549addedc6abeafd5c",
+    "survey_commits_behind": 0,
+    "survey_receipt_evidence": "legacy_receipt_only"
+  },
+  "attention": [
+    "uncommitted_source_not_proven_by_survey",
+    "knowledge_pages_stale",
+    "operations_pending"
+  ],
+  "operation_health": {
+    "totals": {
+      "pending": 1,
+      "processing": 1,
+      "failed": 19
+    },
+    "samples": {
+      "pending": [
+        {
+          "id": "a3149141-d11b-40cc-852b-6467d3f79f7e",
+          "status": "pending",
+          "created_age_seconds": 1102,
+          "next_retry_at": null,
+          "operation_type": "consolidation"
+        }
+      ],
+      "processing": [
+        {
+          "id": "ccc3e2a8-cdaf-4371-a530-6c1ce6001e44",
+          "status": "processing",
+          "created_age_seconds": 1123,
+          "next_retry_at": null,
+          "operation_type": "consolidation"
+        }
+      ],
+      "failed": [
+        {
+          "id": "099696c8-1ac1-4cd4-86e1-c3b35aac818e",
+          "status": "failed",
+          "created_age_seconds": 35583,
+          "next_retry_at": null,
+          "operation_type": "refresh_mental_model"
+        },
+        {
+          "id": "e906195c-5006-4a54-8c14-daea87bb440e",
+          "status": "failed",
+          "created_age_seconds": 64883,
+          "next_retry_at": null,
+          "operation_type": "refresh_mental_model"
+        },
+        {
+          "id": "561cf14a-ac65-468f-b79f-f56eaf403cd9",
+          "status": "failed",
+          "created_age_seconds": 64883,
+          "next_retry_at": null,
+          "operation_type": "refresh_mental_model"
+        },
+        {
+          "id": "b58bfffb-982c-4f5d-be66-7f2cb667ac78",
+          "status": "failed",
+          "created_age_seconds": 64883,
+          "next_retry_at": null,
+          "operation_type": "refresh_mental_model"
+        },
+        {
+          "id": "f35abc91-6ff1-45cb-807e-86b7b30ea521",
+          "status": "failed",
+          "created_age_seconds": 64883,
+          "next_retry_at": null,
+          "operation_type": "refresh_mental_model"
+        },
+        {
+          "id": "9a5770b2-fe91-4725-a158-dfe2f81c60dc",
+          "status": "failed",
+          "created_age_seconds": 92041,
+          "next_retry_at": "2026-11-10T07:39:35.917391+00:00",
+          "operation_type": "refresh_mental_model"
+        },
+        {
+          "id": "ba704d71-7b19-48bd-a5f2-057261f705b3",
+          "status": "failed",
+          "created_age_seconds": 92041,
+          "next_retry_at": "2026-11-10T07:39:32.232302+00:00",
+          "operation_type": "refresh_mental_model"
+        },
+        {
+          "id": "a357c158-66ea-41ed-a09b-0860a63e0bbc",
+          "status": "failed",
+          "created_age_seconds": 92903,
+          "next_retry_at": "2026-11-10T07:23:47.069329+00:00",
+          "operation_type": "refresh_mental_model"
+        },
+        {
+          "id": "86b68a01-3e4a-4ed4-919d-9fb4ce571a08",
+          "status": "failed",
+          "created_age_seconds": 126886,
+          "next_retry_at": "2026-11-09T21:57:20.517210+00:00",
+          "operation_type": "refresh_mental_model"
+        },
+        {
+          "id": "6ef7499d-5d20-4dfb-a621-5446966ab247",
+          "status": "failed",
+          "created_age_seconds": 128815,
+          "next_retry_at": "2026-11-09T21:25:16.675066+00:00",
+          "operation_type": "refresh_mental_model"
+        },
+        {
+          "id": "5a09d566-0102-4ace-9160-08bc2a9daf4f",
+          "status": "failed",
+          "created_age_seconds": 128815,
+          "next_retry_at": "2026-11-09T21:30:49.406385+00:00",
+          "operation_type": "refresh_mental_model"
+        },
+        {
+          "id": "eb4621d1-ba2b-45f0-8a1f-52e6b8887829",
+          "status": "failed",
+          "created_age_seconds": 129406,
+          "next_retry_at": "2026-11-09T21:15:24.802023+00:00",
+          "operation_type": "refresh_mental_model"
+        },
+        {
+          "id": "b29e8c1f-9ee6-4e80-844a-805ce69ce4be",
+          "status": "failed",
+          "created_age_seconds": 130114,
+          "next_retry_at": "2026-11-09T21:03:35.712422+00:00",
+          "operation_type": "refresh_mental_model"
+        },
+        {
+          "id": "638836af-9478-4301-9dea-bf360a8610c0",
+          "status": "failed",
+          "created_age_seconds": 130315,
+          "next_retry_at": "2026-11-09T21:00:16.903576+00:00",
+          "operation_type": "refresh_mental_model"
+        },
+        {
+          "id": "91ded212-0edf-4751-869a-7902ea4c822e",
+          "status": "failed",
+          "created_age_seconds": 130564,
+          "next_retry_at": "2026-11-09T20:56:04.628551+00:00",
+          "operation_type": "refresh_mental_model"
+        },
+        {
+          "id": "98965113-23a2-453d-9157-8b9753367d1a",
+          "status": "failed",
+          "created_age_seconds": 130915,
+          "next_retry_at": "2026-11-09T20:50:15.171716+00:00",
+          "operation_type": "refresh_mental_model"
+        },
+        {
+          "id": "7f5c968a-3467-4460-8433-1c003bcf4402",
+          "status": "failed",
+          "created_age_seconds": 131488,
+          "next_retry_at": "2026-11-09T20:40:45.423908+00:00",
+          "operation_type": "refresh_mental_model"
+        },
+        {
+          "id": "5959b7fe-cf48-4af1-9b5f-0899754febf2",
+          "status": "failed",
+          "created_age_seconds": 132579,
+          "next_retry_at": "2026-11-09T20:22:32.685948+00:00",
+          "operation_type": "refresh_mental_model"
+        },
+        {
+          "id": "522af833-05e4-4532-a6a4-0ea072bc6f89",
+          "status": "failed",
+          "created_age_seconds": 135130,
+          "next_retry_at": "2026-11-09T19:40:06.217462+00:00",
+          "operation_type": "refresh_mental_model"
+        }
+      ]
+    },
+    "samples_complete": true
+  },
+  "hooks_wired": {
+    "SessionStart": true,
+    "UserPromptSubmit": true,
+    "Stop": true
+  },
+  "mcp_wired": true,
+  "survey_adapter_current": true,
+  "installed_registry_current": true,
+  "daemon_reachable": true,
+  "auto_inject": "pages",
+  "git_ingestion": "message",
+  "opt_in_only": false,
+  "documents": 62,
+  "source_counts": {
+    "source:chat": 12,
+    "source:git-log": 1,
+    "source:git-diff": 0,
+    "source:survey-baseline": 5
+  },
+  "survey_findings": 4,
+  "local_primary_sessions": 6,
+  "primary_sessions_missing_from_bank": 0,
+  "missing_primary_session_ids": [],
+  "page_count": 26,
+  "stale_pages": 26,
+  "pages_with_refresh_failure": 0,
+  "pending_operations": 1,
+  "historical_failed_operations": 19,
+  "last_memory_write": "2026-11-11T09:07:45.829491+00:00",
+  "live_host_capture_verified_by_doctor": false,
+  "source_capture_complete_verified": false
+}

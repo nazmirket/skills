@@ -1,0 +1,11 @@
+{
+  "url": "https://skills.mirket.dev/",
+  "width": 320,
+  "overflow": false,
+  "skillCount": 25,
+  "visibleCommands": "claude plugin marketplace add nazmirket/skills\nclaude plugin install mirket@mirket",
+  "selectedInputs": [
+    "Claude Code",
+    "Manual commands"
+  ]
+}

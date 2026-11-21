@@ -1,0 +1,74 @@
+[
+  {
+    "page_id": "kp-6a62f0e9fe9f4f4fa270ce07170fc187",
+    "name": "Component map",
+    "mental_model_id": "mm-408496ae0b4149309a00cfaeae4ba95a",
+    "queued_at": "2026-11-11T09:36:53.267918+00:00",
+    "mode": "full",
+    "operation_id": "dd44f6d3-1f32-486b-ba56-94566eeb5550",
+    "status": "queued"
+  },
+  {
+    "page_id": "kp-acbde8d64df84c9bad154c6e54cbb29b",
+    "name": "Conventions and patterns",
+    "mental_model_id": "mm-b57fbad0a1b142c6964435fc98ccc4c9",
+    "queued_at": "2026-11-11T09:36:53.272772+00:00",
+    "mode": "full",
+    "operation_id": "d7e0adac-5249-4cca-bf77-889a2deaa964",
+    "status": "queued"
+  },
+  {
+    "page_id": "kp-a724304d0a0d4a77ae1a6201f944a7fc",
+    "name": "Core concepts",
+    "mental_model_id": "mm-0590d38703264895baeb883f51a3d074",
+    "queued_at": "2026-11-11T09:36:53.276770+00:00",
+    "mode": "full",
+    "operation_id": "2a8240b7-bf68-4a88-b348-bc4d488ddbe9",
+    "status": "queued"
+  },
+  {
+    "page_id": "kp-4cc43ea235cc4a9bb6bde8d02c7488c5",
+    "name": "Build the Mirket skills website",
+    "mental_model_id": "mm-a11c08752f1a423a91895cdc987d5922",
+    "queued_at": "2026-11-11T09:36:53.281061+00:00",
+    "mode": "full",
+    "operation_id": "eb27aef2-2e46-4fdb-8459-16d2e2c7c8f7",
+    "status": "queued"
+  },
+  {
+    "page_id": "kp-efd36376017c46ebb2bf7eaba91e5e41",
+    "name": "Expand Mirket Design into a design director",
+    "mental_model_id": "mm-70d1ae0a755f43eb8ec3c4deb67e22ee",
+    "queued_at": "2026-11-11T09:36:53.285174+00:00",
+    "mode": "full",
+    "operation_id": "0873c205-e074-4df6-b53d-d49499b882f4",
+    "status": "queued"
+  },
+  {
+    "page_id": "kp-5d3a84ca72374015b13892171f125528",
+    "name": "Expand Mirket to 25 skills and make project memory reliable",
+    "mental_model_id": "mm-78396c0cbdca4e268101150cb24dbc27",
+    "queued_at": "2026-11-11T09:36:53.289535+00:00",
+    "mode": "full",
+    "operation_id": "64e44151-9930-40d8-9d94-ab20bb7b91ee",
+    "status": "queued"
+  },
+  {
+    "page_id": "kp-4d79b3d4502b4345b6305dd78ad8bda8",
+    "name": "Harden Mirket routing and lifecycle hooks",
+    "mental_model_id": "mm-604292e4a2544ebba0ba4fa6e571e120",
+    "queued_at": "2026-11-11T09:36:53.293686+00:00",
+    "mode": "full",
+    "operation_id": "9cfae7cc-e060-4fcf-8cee-5c618e2fa611",
+    "status": "queued"
+  },
+  {
+    "page_id": "kp-d97e53ba15d94f27875c686caed884e4",
+    "name": "Implement the Astra Mirket audit follow-up",
+    "mental_model_id": "mm-c01300b9891243afbfa3032283577461",
+    "queued_at": "2026-11-11T09:36:53.297954+00:00",
+    "mode": "full",
+    "operation_id": "428276ea-0b95-4aaa-8fdf-89a922f202ce",
+    "status": "queued"
+  }
+]

@@ -1,0 +1,173 @@
+{
+  "codex-fixture": [
+    {
+      "event": "preToolUse",
+      "trust": "trusted",
+      "enabled": true
+    },
+    {
+      "event": "sessionStart",
+      "trust": "trusted",
+      "enabled": true
+    },
+    {
+      "event": "userPromptSubmit",
+      "trust": "trusted",
+      "enabled": true
+    },
+    {
+      "event": "sessionStart",
+      "status": "completed",
+      "entries": [
+        "context"
+      ]
+    },
+    {
+      "event": "userPromptSubmit",
+      "status": "completed",
+      "entries": [
+        "context"
+      ]
+    },
+    {
+      "event": "preToolUse",
+      "status": "completed",
+      "entries": []
+    },
+    {
+      "event": "preToolUse",
+      "status": "completed",
+      "entries": []
+    },
+    {
+      "event": "preToolUse",
+      "status": "blocked",
+      "entries": [
+        "feedback"
+      ]
+    },
+    {
+      "tool_outputs": {
+        "call_fixture_0": "Chunk ID: d68489\nWall time: 0.1459 seconds\nProcess exited with code 0\nOriginal token count: 4\nOutput:\nA  dummy.txt\n",
+        "call_fixture_1": "Chunk ID: 345e1b\nWall time: 0.0000 seconds\nProcess exited with code 128\nOriginal token count: 41\nOutput:\nfatal: Unable to create '<fixture>/probe-codex-fixture-g4p1skgv/.git/index.lock': Operation not permitted\n",
+        "call_fixture_2": "Command blocked by PreToolUse hook: Before committing, read <fixture>/profile/plugins/cache/mirket/mirket/0.5.1/skills/clean/SKILL.md and perform its pre-commit review. Preserve unrelated changes and historical evidence; do not auto-stage. Then use the acknowledgment and an absolute Git target: MIRKET_CLEANUP_DONE=1 git -C '/absolute/worktree' commit -m 'message'. The marker acknowledges the review and does not prove cleanup occurred.. Command: git commit -m fixture-check"
+      }
+    }
+  ],
+  "claude": [
+    {
+      "event": "SessionStart",
+      "status": "success",
+      "decision": null
+    },
+    {
+      "event": "UserPromptSubmit",
+      "status": "success",
+      "decision": null
+    },
+    {
+      "event": "PreToolUse",
+      "status": "success",
+      "decision": null
+    },
+    {
+      "tool_result": "A  dummy.txt",
+      "error": false
+    },
+    {
+      "event": "PreToolUse",
+      "status": "success",
+      "decision": null
+    },
+    {
+      "tool_result": "On branch main\n\nInitial commit\n\nChanges to be committed:\n  (use \"git rm --cached <file>...\" to unstage)\n\tnew file:   dummy.txt",
+      "error": false
+    },
+    {
+      "event": "PreToolUse",
+      "status": "success",
+      "decision": "deny"
+    },
+    {
+      "tool_result": "PreToolUse:Bash hook error: Before committing, read <fixture>/v2/skills/clean/SKILL.md and perform its pre-commit review. Preserve unrelated changes and historical evidence; do not auto-stage. Then use the acknowledgment and an absolute Git target: MIRKET_CLEANUP_DONE=1 git -C '/absolute/worktree' commit -m 'message'. The marker acknowledges the review and does not prove cleanup occurred.",
+      "error": true
+    }
+  ],
+  "codex-live": [
+    {
+      "event": "preToolUse",
+      "trust": "trusted",
+      "enabled": true
+    },
+    {
+      "event": "sessionStart",
+      "trust": "trusted",
+      "enabled": true
+    },
+    {
+      "event": "userPromptSubmit",
+      "trust": "trusted",
+      "enabled": true
+    },
+    {
+      "event": "sessionStart",
+      "status": "completed",
+      "entries": [
+        "context"
+      ]
+    },
+    {
+      "event": "userPromptSubmit",
+      "status": "completed",
+      "entries": [
+        "context"
+      ]
+    },
+    {
+      "event": "preToolUse",
+      "status": "completed",
+      "entries": []
+    },
+    {
+      "event": "preToolUse",
+      "status": "completed",
+      "entries": []
+    },
+    {
+      "event": "preToolUse",
+      "status": "completed",
+      "entries": []
+    },
+    {
+      "event": "preToolUse",
+      "status": "blocked",
+      "entries": [
+        "feedback"
+      ]
+    }
+  ],
+  "claude-outage-status-block": [
+    {
+      "result": "PreToolUse:Bash hook error: [exit 1]: failed; blocking because onFailure is \"block\"\nNo stderr output",
+      "error": true
+    }
+  ],
+  "claude-outage-status-default": [
+    {
+      "result": "A  dummy.txt",
+      "error": false
+    }
+  ],
+  "claude-outage-timeout-block": [
+    {
+      "result": "PreToolUse:Bash hook error: [sleep 2]: timed out; blocking because onFailure is \"block\"",
+      "error": true
+    }
+  ],
+  "claude-outage-timeout-default": [
+    {
+      "result": "A  dummy.txt",
+      "error": false
+    }
+  ]
+}

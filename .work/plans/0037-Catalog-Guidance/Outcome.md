@@ -1,0 +1,1 @@
+A design review has an inspectable full-surface original or an explicit evidence gap. Design can travel as one folder. Product and marketing workflows select a useful internal guide by decision. The catalog retains 20 owners.

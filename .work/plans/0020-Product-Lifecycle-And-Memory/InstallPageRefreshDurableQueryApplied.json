@@ -1,0 +1,19 @@
+{
+  "changed_at": "2026-11-11T09:57:54.552219+00:00",
+  "config_path": "/Users/nazmi/.hindsight/coding-agent.json",
+  "backup_path": "/Users/nazmi/Projects/skills/.work/recover/HindsightComponentQuery20261111/coding-agent.before.json",
+  "changed_json_path": [
+    "harnesses",
+    "codex",
+    "banks",
+    "coding-agent::desktop-skills",
+    "pages",
+    "Component map",
+    "source_query"
+  ],
+  "all_other_fields_unchanged": true,
+  "before_sha256": "21e46bc16c6d960e3b40e23d7df89920c0d6a719c2d8759b36f66b211baf0b31",
+  "after_sha256": "fe04b2dbb31980f77d1f47ac712075b29c547d6200c779099f8ba20647458b30",
+  "capture_scope_changed": false,
+  "claude_destination_bank": "coding-agent::desktop-skills-claude"
+}

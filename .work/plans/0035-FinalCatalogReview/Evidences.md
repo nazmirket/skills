@@ -1,0 +1,3 @@
+# Starting evidence
+
+The repository started clean on `0e29f6c98c5f14bbd26fac708a58bbddab543479`, matching origin/main. The catalog has 20 skill entry points, detailed references, a native plugin for Codex and Claude Code, and optional global instructions. The last live suite passed all 16 technology-guide selections and operational scope checks, but four sessions also loaded extra skill entries or indexes. See [live evidence](../../temp/live-deploy-debug-test-audit-0e29f6c-OS3VA6/Evidence.md). Prior review evidence is under [0027](../0027-Catalog-Review/). Static tests and live activation are separate checks.

@@ -1,0 +1,6 @@
+- [x] Baseline and target boundaries checked.
+- [x] Art direction and style guides.
+- [x] Product and marketing guides.
+- [x] Adjacent practices.
+- [x] Capture workflow and package integration.
+- [x] Required tests, positive and negative capture trials, and rendered review.

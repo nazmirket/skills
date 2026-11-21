@@ -1,0 +1,11 @@
+{
+  "operation_id": "8ec6e7b6-7e8d-4c9a-9d50-2bd8fed9c04b",
+  "status": "queued",
+  "queued_at": "2026-11-11T09:52:12.567970+00:00",
+  "mental_model_id": "mm-408496ae0b4149309a00cfaeae4ba95a",
+  "page_id": "kp-6a62f0e9fe9f4f4fa270ce07170fc187",
+  "mode": "full",
+  "changed_fields": [
+    "source_query"
+  ]
+}

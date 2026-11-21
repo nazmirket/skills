@@ -1,0 +1,19 @@
+# Outcome: implement the Astra review
+
+Implement an ordered set of changes for Mirket, starting with the pre-commit probe and parser, then Design routing, then skill guidance. The scope includes both simplifications the human accepted: Distill as the default for routine replies and a single planning file for smaller plans.
+
+Baseline: clean `main` at `29645eceae5c4281a7d98cf77c254d648ef2da8b` (Astra repository audit and current checkout). This is a plan for implementation, not a record of completed fixes.
+
+## Acceptance checks
+
+| ID | Expected result | Evidence to collect during implementation |
+| --- | --- | --- |
+| H1 | The probe never runs the proposed executable or command-selected Git helpers. For supported direct commits that use the staged index unchanged, it inspects the intended index or reports that it could not. Recognizable modes that change the commit inputs receive a clear unsupported response. | Test a workspace-local executable, a PATH override, command-line and repository-configured fsmonitor helpers, an uninspectable target, a nested-directory `git -C` case, and `-a`/`--all`, `--include`, `--only`, and pathspec commits. Use harmless sentinels in disposable repositories. |
+| H2 | Normal single commands with quoted or escaped punctuation are recognized correctly. Recognized compound commands cannot change the target before inspection. | Check quoted/escaped operators, genuine separators, simple supported wrappers, malformed input, and documented unsupported shell forms. |
+| H3 | Preserve the cleanup acknowledgement and the staged `.work/` protection, including the exact human-authorized path exception. Inspection never stages or commits files. | Exercise staged files, an exact exception, an additional staged path, a normal clean index, and an unborn repository; retain existing Stop behavior. |
+| D1 | A generated UI reference routes to Imagine; a generated poster or identity reference stays with Design’s artifact guidance; a supplied mockup still routes to reference fidelity. | Trace the three routes against the descriptions, bodies, and routing guide; check live selection separately where available. |
+| G1 | Plan leaves material product choices with the human while allowing checks derived from agreed behavior. Equip permits routine suitable method choices. Brief and Orchestrate only stop affected work for material discrepancies. Curate scales discovery and adoption research to the decision. | Walk through a specified bug fix, a browser-based check, an inconsequential stale handoff vs. changed pinned revision, and a named internal comparison vs. open vendor discovery. |
+| G2 | Routine replies default to Distill. Author covers substantive writing, product copy, and issue triage. The prompt hook still reminds the agent about Clean when relevant. | Check prompt-hook output, README, packaged host instructions, skill descriptions and routing for consistency; try routine reply, document, and issue intake scenarios. |
+| G3 | Small plans can use one file with Outcome, Agreement, and Plan sections. Substantial plans retain the three records. Existing plans remain readable without migration. | Check new compact and existing three-file records through Plan’s creation, approval, and tracking guidance, including where saved status goes. |
+
+Keep the hook a bounded guardrail for supported command forms. Preserve the existing workspace, Stop hook and host trust policies; do not broaden the task into a general shell parser, memory redesign, or unrelated cleanup. Live activation and skill selection are separate from synthetic and static checks. Use fresh, isolated host sessions for smoke checks when available; report unavailable host checks. Publishing, changing the active plugin installation, and committing are outside the authorized scope.

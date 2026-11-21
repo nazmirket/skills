@@ -1,0 +1,443 @@
+{
+  "id": "mm-408496ae0b4149309a00cfaeae4ba95a",
+  "bank_id": "coding-agent::desktop-skills",
+  "name": "Component map",
+  "source_query": "From this project's commit history and past discussions, what are the main components/modules/subsystems, what is each responsible for, and how do they relate to or depend on one another? Describe the structure and responsibilities. This bank is shared by several projects: attribute each thing you include to the repository or project its sources name, and group by project where that helps. Leave out facts about external tools, libraries and services those projects merely use, configure, deploy or discuss \u2014 they belong to somebody else's codebase \u2014 including any commit SHA or identifier from such a dependency's repository.\n\nCurrent-state evidence rules: Describe the currently active Mirket architecture using the latest verified source and installed-state inventory, including the November 11, 2026 Mirket 0.4.0 installation correction and subsequent existing-initiative update. Resolve conflicts in favor of that later verified evidence, not superseded plans, older surveys, or older conversation summaries. Distinguish historical architecture explicitly from the active package. Check each currently active skill name and repository path against the latest inventory facts; omit an uncertain current claim rather than promote an obsolete one. In particular, Review-plan, Delegate, Get-feedback and pick-skills are historical names, not active skills in the current 25-skill inventory. Verify the latest host-specific descriptor layout rather than presenting a portable root plugin.json as current; verify PascalCase reference paths rather than presenting historical lowercase routing.md as an active link. Keep original initiative history separate from present ownership and installed behavior. Report evidence limits without turning an old validation gap into a claim that later verified activation did not occur.",
+  "content": "Mirket is the primary repository/project identified in the sources: a reusable, distributable skills package under `plugins/mirket/`, accompanied by repository-level tests and documentation, an optional `memory/` integration subsystem, and a `website/` documentation/discovery application. The central architectural idea is that packaged skills are the source of truth: routing selects an appropriate owner, skills perform bounded work, hooks reinforce lifecycle behavior, and the website derives its catalog and documentation from the same packaged files.\n\n## Mirket repository structure\n\nThe primary distributable package is `plugins/mirket/`. Its main parts are:\n\n- `plugins/mirket/plugin.json` \u2014 package metadata for the distribution.\n- `plugins/mirket/.claude-plugin/plugin.json` \u2014 the second package manifest.\n- `plugins/mirket/skills/` \u2014 the workflow catalog; the current source and normal user installations are recorded as version `0.4.0` with exactly 25 original natively authored skills as of November 11, 2026.\n- `plugins/mirket/references/` \u2014 shared references, including the active routing guide.\n- `plugins/mirket/assets/` \u2014 package branding assets.\n- `plugins/mirket/hooks/` \u2014 Python lifecycle integrations.\n- Root `.agents/plugins/marketplace.json` and `.claude-plugin/marketplace.json` \u2014 two repository marketplace entry points that both point to the same Mirket package.\n\nThe package is therefore organized around one shared catalog rather than separate catalogs for each host or surface. The website consumes the packaged skill structure instead of maintaining an independent skill list. Older records describe 20 packaged skills and earlier 43-skill or `pick-skills` structures, but the later current-state records supersede those counts: the active package has 25 skills, and the historical `pick-skills` catalog is not a feature of the active package. [REF-ID: `conversation:01a1c424-d21a-7612-8642-2ada920a8fd0`]\n\n## Skill catalog and routing subsystem\n\n### Routing and ownership\n\n`plugins/mirket/references/routing.md`, together with each packaged skill\u2019s trigger description, defines active routing. The catalog assigns one skill responsibility for each outcome; supporting skills return evidence to that owner rather than competing to own the same result. The current working-tree hook also surfaces the one-owner rule and the exact routing-guide path at SessionStart, and key packaged skills link back to that guide.\n\nThe routing layer is the central dependency between the skills: it determines which skill owns an outcome, while the individual `SKILL.md` files define the responsibilities and handoffs for that skill. The source explicitly distinguishes this current arrangement from the historical 43-skill catalog and historical `pick-skills` references, which are not active-package features.\n\n### Core workflow responsibilities\n\nThe catalog spans project understanding, planning, engineering quality, design, communication, coordination, and lifecycle work. The main responsibilities recorded in the sources are:\n\n- **Adapt** \u2014 runs when relevant context is missing or stale; investigates only enough to understand scope and risks; reports findings when requested or when they affect a decision; uses authorized memory but rechecks decision-affecting details against current project evidence; remains read-only during orientation and then continues to an already authorized fix without asking again. Its source is `plugins/mirket/skills/adapt/SKILL.md`. [REF-ID: `conversation:01a1bb84-4822-7903-a68a-ab67584fa15c`]\n- **Plan** \u2014 creates persistent explicit plans. It preserves three files for substantial work but permits compact plans for small work. Compact plans record authorization in their own Agreement section. It also records routine technical adjustments rather than turning every routine regression check into a new approval gate. Its principal file is `plugins/mirket/skills/plan/SKILL.md`.\n- **Review-plan** \u2014 provides independent review of a plan before execution; it belongs to the planning and quality boundary rather than owning implementation.\n- **Orchestrate** \u2014 coordinates delegated work and handoffs. The current rule permits bounded root integration after workers hand ownership back while retaining independent review when required. This supersedes the earlier default that assigned all integration to workers. Its principal file is `plugins/mirket/skills/orchestrate/SKILL.md`.\n- **Delegate** \u2014 assigns work to subagents with task-appropriate reasoning effort.\n- **Brief** \u2014 creates actionable handoffs with a small core: purpose and desired result, next action, authorized boundaries, essential evidence, and a reminder to check whether context is current. If an important source may be inaccessible, it includes the essential facts and identifies the missing source. Its principal file is `plugins/mirket/skills/brief/SKILL.md`. [REF-ID: `conversation:01a1bb84-4822-7903-a68a-ab67584fa15c`]\n- **Get-feedback** \u2014 obtains user feedback on partial implementations before completing the full implementation.\n- **Audit** \u2014 performs repository and system review within the explicitly stated scope. It covers changes, plans, and included systems or repositories; for manageable repositories it should inspect the repository completely, while for large repositories it uses a defensible risk-based scope and reports exclusions. Its default is read-only, and fixes require authorization. Its source is `plugins/mirket/skills/audit/SKILL.md`.\n- **Critique** \u2014 assesses work during implementation and before delivery using task-relevant quality lenses. It requires evidence for visual and performance claims, brings material product and design choices to the user, and rechecks authorized corrections within scope. It is a quality-review partner to implementation and Audit rather than the owner of the implementation itself. Its source is `plugins/mirket/skills/critique/SKILL.md`.\n- **Clean** \u2014 performs cleanup and recovery work. It uses a quick applicability check for simple replies, reviews broadly before commits, cleans only the intended scope, preserves files with uncertain purpose, corrects task-related stale guidance when evidence supports replacement, and makes a verified recovery copy before authorized removal of important hard-to-recreate work. Its source is `plugins/mirket/skills/clean/SKILL.md`.\n- **Distill** \u2014 handles routine responses and encourages direct, factual communication. It runs at session start and on each prompt; its turn-end guidance is integrated into Clean\u2019s existing review pass. The current responsibility boundary is explicit: \u201cDistill gestiona las respuestas rutinarias.\u201d Its implementation is described in `plugins/mirket/skills/distill/SKILL.md` and `plugins/mirket/hooks/distill.py`.\n- **Author** \u2014 owns documents, substantive copy, and issue triage rather than routine replies. The current boundary is: \u201cAuthor se ocupa de documentos, copy sustantivo y triage de issues.\u201d Its source is `plugins/mirket/skills/author/SKILL.md`.\n- **Curate** \u2014 performs option discovery and comparison, but only expands a known comparison when the expansion is material and within scope. It is connected to research, shortlists, and decision-making, but does not broaden comparisons indiscriminately. Its source is `plugins/mirket/skills/curate/SKILL.md`.\n- **Design** \u2014 acts as the design-director entry point for product UI, websites, illustration, brand systems, motion, slides, and generative artwork. It provides deeper guidance and routes to focused references rather than splitting the published package into mandatory `design-*` stages. The current design package has one `Design` skill with ten selectable references, including `motion-and-gestures.md`; `Imagine` and `Critique` retain distinct handoffs. The older five-stage `design-*` structure is not part of the package described as published on November 10, 2026. Its main file is `plugins/mirket/skills/design/SKILL.md`.\n- **Imagine** \u2014 participates in the design handoff and selection process; its picker states that implementation is optional. It is distinct from Design and Critique rather than being absorbed into Design.\n- **Equip** \u2014 challenges a working-but-poor-fit choice as an explicit trigger, compares keeping, adjusting, piloting, and switching, and, when a change is authorized, guides setup through a representative check. Its scenarios are kept in a separate reference under `plugins/mirket/skills/equip`.\n- **Secure** \u2014 owns security and privacy.\n- **Release** \u2014 prepares versioned releases.\n- **Deploy** \u2014 rolls releases out.\n- **Operate** \u2014 maintains service health and recovery.\n- **Migrate** \u2014 changes persistent state.\n- **Focus** \u2014 includes a shipped-outcome review branch and participates in the lifecycle after delivery.\n\nThe lifecycle relationship explicitly documented for the newer skills is **Release \u2192 Deploy \u2192 Operate \u2192 Focus**. Secure and Migrate provide separate cross-cutting or state-transition ownership rather than being interchangeable release stages. [REF-ID: `conversation:01a1c9a5-1c5c-7731-9a91-262b7402b72e`]\n\n### Cross-cutting skills\n\nThe catalog diagram described **Distill** and **Clean** as cross-cutting skills without individual arrows. This reflects their role across many workflows: Distill influences how work is communicated at session and prompt boundaries, while Clean reviews or prepares delivery and recovery behavior. They support the outcome-owning skills rather than replacing their ownership. [REF-ID: `conversation:01a1bb84-4822-7903-a68a-ab67584fa15c`]\n\n## Lifecycle hooks subsystem\n\n`plugins/mirket/hooks/` provides lightweight Python integrations for four lifecycle events: `SessionStart`, `UserPromptSubmit`, `Stop`, and `Bash PreToolUse`. Hook commands run in Python isolated mode and have five-second manifest timeouts.\n\nThe hooks reinforce, but do not replace, the skill catalog and routing guide:\n\n- The SessionStart path emits the one-owner rule and the path to `plugins/mirket/references/Routing.md` in the current working tree.\n- The prompt hook supplies before-send Distill guidance.\n- `plugins/mirket/hooks/cleanup.py` owns cleanup and Stop-related behavior, including the guarded pre-commit checks and optional final review.\n- The current `cleanup.py` behavior is neutral by default and activates final review only when `MIRKET_FINAL_REVIEW=1`. With that opt-in enabled and `stop_hook_active` false, it can request continuation; therefore the broader claim that it never requests another continuation is not accurate.\n- The pre-commit logic inspects the target Git index for staged `.work/` additions and changes, supports commands using `git -C`, blocks when the index cannot be inspected, and permits one exact explicitly authorized path exception. It uses a trusted executable and fixed probe arguments, disables external helpers for read-only index inspection, preserves quoted punctuation, and handles commit modes such as `git commit -a` and path-based commits.\n\nThe hooks are an enforcement and guidance layer around the skills, not a guarantee that the model will follow every skill. The package requires explicit trust review for newly discovered hooks, and hook discovery/activation has been separately verified for the four events. [REF-ID: `conversation:01a1c424-d21a-7612-8642-2ada920a8fd0`]\n\n## Optional project-memory subsystem\n\n`memory/` is repository-owned integration tooling, separate from the Mirket plugin runtime. It provides project-specific installation and wiring, project registration, diagnostics, and tests for the optional memory integration. The sources identify these principal modules:\n\n- `memory/install.py` \u2014 installs or rewires the integration and preserves or validates configuration before replacement.\n- `memory/project_registry.py` \u2014 canonicalizes project paths, links worktrees to their main project, preserves explicit mappings, and assigns new unmapped projects a `coding-agent::project-` identifier derived from a SHA-256 path hash. It uses versioned mappings, atomic replacement, and POSIX locking.\n- `memory/doctor.py` \u2014 inspects configuration, coverage, and freshness and supports bounded page refresh.\n- `memory/test_*.py` \u2014 tests the optional memory integration.\n\nThe subsystem\u2019s internal relationship is a shared routing model: hooks, interactive memory access, surveys, and backfill use the same project-bank resolver; session bindings can be recovered from verified transcript metadata when a temporary marker is absent; and diagnostics use the same effective configuration semantics as the hooks. Linked worktrees resolve to the main project bank, while unrelated repositories do not share a bank merely because they have the same name. The integration also separates source capture, survey, and synthesis freshness and distinguishes operation creation age from unknown failure time.\n\nThis subsystem is optional and its runtime configuration and memory storage are outside the repository. Those external runtime systems are not components of Mirket\u2019s own codebase; only the repository-owned integration modules and their responsibilities belong in this map. The memory work is intended to make capture, recall, resume, routing, freshness, recovery, and diagnostics reliable without destructive changes to legacy history. [REF-ID: `conversation:01a1c424-d21a-7612-8642-2ada920a8fd0`; `conversation:01a1c9a5-1c5c-7731-9a91-262b7402b72e`]\n\n## Website and documentation subsystem\n\n`website/` is a separate repository application that turns the package\u2019s source material into a static documentation and discovery site. It does not maintain a second skill catalog. Its primary modules are:\n\n- `website/lib/content.ts` \u2014 reads repository Markdown and skill YAML metadata at build time. Packaged skill metadata powers homepage cards, each `SKILL.md` powers its detail page, and the repository guide is rendered on the site.\n- `website/components/RepoMarkdown.tsx` \u2014 renders Markdown, translates relative source links, preserves query strings and fragments, and maps repository links to local documentation routes or GitHub.\n- `website/lib/discovery.ts` \u2014 centralizes discovery metadata through a shared `PageInfo` model containing canonical path, title, description, and social-card fields. It derives page metadata, structured data, and discovery lists from that model.\n- `website/data/workflows.json` \u2014 supplies workflow data to the animated workflow component.\n- `website/scripts/generate-diagrams.mjs` \u2014 generates SVG diagrams into `docs/diagrams/`; static diagram versions are also generated for the README.\n- `website/next.config.ts` \u2014 configures the static output into `website/out/`.\n- `website/app/page.tsx` \u2014 is identified as one of the implementation bases for the site.\n\nThe dependency direction is repository source \u2192 content/discovery readers \u2192 documentation pages and workflow diagrams \u2192 static output. Skill routes are constrained to generated `/docs/skills/<slug>/` pages, so unknown slugs do not create arbitrary dynamic pages. The site generates skill documentation, adjacent-skill navigation, source-aware Markdown links, responsive workflow diagrams, reduced-motion static presentation, canonical metadata, structured data, sitemap, robots information, `llms.txt`, and versioned `1200-by-630` social images. As of November 11, 2026, the documentation described 28 indexable pages for the 25-skill catalog.\n\nThe website therefore depends on the package\u2019s directory and file conventions, especially lowercase skill directories, `SKILL.md`, `agents/openai.yaml` metadata, repository Markdown, routing guidance, and README content. In turn, it provides a public documentation/discovery surface for those same sources rather than becoming an independent implementation of the workflows. [REF-ID: `conversation:01a1c517-3c3f-7313-8a93-2858baddff8c`]\n\n## Documentation, decisions, tests, and contributor structure\n\nThe repository-level support structure consists of:\n\n- `README.md` \u2014 introduces installation and features and links the repository\u2019s documentation to the public site.\n- `CONTRIBUTING.md` \u2014 documents contributor checks and requires original native guidance for contributions.\n- `docs/` \u2014 contains the main guide, diagrams, audits, and decision records.\n- `docs/decisions/` \u2014 is the current location for settled ADRs. `plugins/mirket/skills/architect/SKILL.md` initializes it for the first settled ADR when it does not exist.\n- `.work/decisions/` \u2014 is reserved for private notes and drafts, not settled ADRs. This supersedes the earlier convention that restricted settled ADRs to ignored `.work/decisions/`.\n- `tests/` \u2014 covers hooks, distribution wiring, and behavioral-fixture preparation.\n\nThese areas support the runtime components rather than participating in workflow execution: documentation records the structure and decisions, tests validate hooks and packaging, and contributor guidance defines how changes are checked and authored. The current ADR-location rule is especially important because earlier component-map material claiming that accepted ADRs live in `.work/decisions` is outdated.\n\n## Overall dependency and control flow\n\nThe project can be read as four connected layers:\n\n1. **Packaged source layer:** `plugins/mirket/skills/`, `references/`, `assets/`, and manifests define the distributable catalog, its ownership boundaries, shared routing, and package metadata.\n2. **Coordination and lifecycle layer:** routing selects the owner; supporting skills return evidence; Orchestrate, Plan, Brief, Delegate, Review-plan, Audit, Critique, Clean, Distill, and the lifecycle skills coordinate or review work; Python hooks reinforce routing, communication, cleanup, and guarded delivery behavior.\n3. **Repository support layer:** tests, README, `CONTRIBUTING.md`, `docs/`, and `docs/decisions/` validate, explain, and record the package. The current decision-record convention is `docs/decisions/`, with `.work/decisions/` only for private drafts.\n4. **Derived presentation and optional integration layers:** `website/` derives documentation and discovery pages from the packaged source, while `memory/` supplies optional repository-owned integration tooling for project-specific memory routing, diagnostics, freshness, and recovery. The website depends on repository content; the memory subsystem is separate from plugin runtime execution and stores its runtime state outside the repository.\n\nThe resulting structure is intentionally source-backed: the skill files are the catalog, routing references connect the skills, hooks provide lifecycle reinforcement, documentation and the website consume those same sources, and the optional memory modules bind project context without making external runtime storage part of the repository itself.\n",
+  "tags": [
+    "knowledge:component"
+  ],
+  "max_tokens": 4096,
+  "trigger": {
+    "budget": null,
+    "mode": "delta",
+    "refresh_after_consolidation": true,
+    "refresh_cron": null,
+    "full_refresh_cron": null,
+    "min_refresh_interval_seconds": null,
+    "fact_types": [
+      "world",
+      "experience",
+      "observation"
+    ],
+    "exclude_mental_models": true,
+    "exclude_mental_model_ids": null,
+    "tags_match": "all",
+    "tag_groups": null,
+    "include_chunks": null,
+    "recall_max_tokens": null,
+    "recall_chunks_max_tokens": null,
+    "reflect_search_observations_max_tokens": null,
+    "reflect_search_observations_include_entities": null,
+    "response_schema": null,
+    "keep_trace": false
+  },
+  "last_refreshed_at": "2026-11-11T09:49:46.696372+00:00",
+  "last_memory_seen_at": "2026-11-11T09:41:13.745698+00:00",
+  "last_refresh_failed_at": null,
+  "last_full_refreshed_at": "2026-11-11T09:49:46.696372+00:00",
+  "created_at": "2026-11-09T19:29:12.905162+00:00",
+  "is_page": true,
+  "is_knowledge_page": true,
+  "reflect_response": {
+    "text": "Mirket is the primary repository/project identified in the sources: a reusable, distributable skills package under `plugins/mirket/`, accompanied by repository-level tests and documentation, an optional `memory/` integration subsystem, and a `website/` documentation/discovery application. The central architectural idea is that packaged skills are the source of truth: routing selects an appropriate owner, skills perform bounded work, hooks reinforce lifecycle behavior, and the website derives its catalog and documentation from the same packaged files.\n\n## Mirket repository structure\n\nThe primary distributable package is `plugins/mirket/`. Its main parts are:\n\n- `plugins/mirket/plugin.json` \u2014 package metadata for the distribution.\n- `plugins/mirket/.claude-plugin/plugin.json` \u2014 the second package manifest.\n- `plugins/mirket/skills/` \u2014 the workflow catalog; the current source and normal user installations are recorded as version `0.4.0` with exactly 25 original natively authored skills as of November 11, 2026.\n- `plugins/mirket/references/` \u2014 shared references, including the active routing guide.\n- `plugins/mirket/assets/` \u2014 package branding assets.\n- `plugins/mirket/hooks/` \u2014 Python lifecycle integrations.\n- Root `.agents/plugins/marketplace.json` and `.claude-plugin/marketplace.json` \u2014 two repository marketplace entry points that both point to the same Mirket package.\n\nThe package is therefore organized around one shared catalog rather than separate catalogs for each host or surface. The website consumes the packaged skill structure instead of maintaining an independent skill list. Older records describe 20 packaged skills and earlier 43-skill or `pick-skills` structures, but the later current-state records supersede those counts: the active package has 25 skills, and the historical `pick-skills` catalog is not a feature of the active package. [REF-ID: `conversation:01a1c424-d21a-7612-8642-2ada920a8fd0`]\n\n## Skill catalog and routing subsystem\n\n### Routing and ownership\n\n`plugins/mirket/references/routing.md`, together with each packaged skill\u2019s trigger description, defines active routing. The catalog assigns one skill responsibility for each outcome; supporting skills return evidence to that owner rather than competing to own the same result. The current working-tree hook also surfaces the one-owner rule and the exact routing-guide path at SessionStart, and key packaged skills link back to that guide.\n\nThe routing layer is the central dependency between the skills: it determines which skill owns an outcome, while the individual `SKILL.md` files define the responsibilities and handoffs for that skill. The source explicitly distinguishes this current arrangement from the historical 43-skill catalog and historical `pick-skills` references, which are not active-package features.\n\n### Core workflow responsibilities\n\nThe catalog spans project understanding, planning, engineering quality, design, communication, coordination, and lifecycle work. The main responsibilities recorded in the sources are:\n\n- **Adapt** \u2014 runs when relevant context is missing or stale; investigates only enough to understand scope and risks; reports findings when requested or when they affect a decision; uses authorized memory but rechecks decision-affecting details against current project evidence; remains read-only during orientation and then continues to an already authorized fix without asking again. Its source is `plugins/mirket/skills/adapt/SKILL.md`. [REF-ID: `conversation:01a1bb84-4822-7903-a68a-ab67584fa15c`]\n- **Plan** \u2014 creates persistent explicit plans. It preserves three files for substantial work but permits compact plans for small work. Compact plans record authorization in their own Agreement section. It also records routine technical adjustments rather than turning every routine regression check into a new approval gate. Its principal file is `plugins/mirket/skills/plan/SKILL.md`.\n- **Review-plan** \u2014 provides independent review of a plan before execution; it belongs to the planning and quality boundary rather than owning implementation.\n- **Orchestrate** \u2014 coordinates delegated work and handoffs. The current rule permits bounded root integration after workers hand ownership back while retaining independent review when required. This supersedes the earlier default that assigned all integration to workers. Its principal file is `plugins/mirket/skills/orchestrate/SKILL.md`.\n- **Delegate** \u2014 assigns work to subagents with task-appropriate reasoning effort.\n- **Brief** \u2014 creates actionable handoffs with a small core: purpose and desired result, next action, authorized boundaries, essential evidence, and a reminder to check whether context is current. If an important source may be inaccessible, it includes the essential facts and identifies the missing source. Its principal file is `plugins/mirket/skills/brief/SKILL.md`. [REF-ID: `conversation:01a1bb84-4822-7903-a68a-ab67584fa15c`]\n- **Get-feedback** \u2014 obtains user feedback on partial implementations before completing the full implementation.\n- **Audit** \u2014 performs repository and system review within the explicitly stated scope. It covers changes, plans, and included systems or repositories; for manageable repositories it should inspect the repository completely, while for large repositories it uses a defensible risk-based scope and reports exclusions. Its default is read-only, and fixes require authorization. Its source is `plugins/mirket/skills/audit/SKILL.md`.\n- **Critique** \u2014 assesses work during implementation and before delivery using task-relevant quality lenses. It requires evidence for visual and performance claims, brings material product and design choices to the user, and rechecks authorized corrections within scope. It is a quality-review partner to implementation and Audit rather than the owner of the implementation itself. Its source is `plugins/mirket/skills/critique/SKILL.md`.\n- **Clean** \u2014 performs cleanup and recovery work. It uses a quick applicability check for simple replies, reviews broadly before commits, cleans only the intended scope, preserves files with uncertain purpose, corrects task-related stale guidance when evidence supports replacement, and makes a verified recovery copy before authorized removal of important hard-to-recreate work. Its source is `plugins/mirket/skills/clean/SKILL.md`.\n- **Distill** \u2014 handles routine responses and encourages direct, factual communication. It runs at session start and on each prompt; its turn-end guidance is integrated into Clean\u2019s existing review pass. The current responsibility boundary is explicit: \u201cDistill gestiona las respuestas rutinarias.\u201d Its implementation is described in `plugins/mirket/skills/distill/SKILL.md` and `plugins/mirket/hooks/distill.py`.\n- **Author** \u2014 owns documents, substantive copy, and issue triage rather than routine replies. The current boundary is: \u201cAuthor se ocupa de documentos, copy sustantivo y triage de issues.\u201d Its source is `plugins/mirket/skills/author/SKILL.md`.\n- **Curate** \u2014 performs option discovery and comparison, but only expands a known comparison when the expansion is material and within scope. It is connected to research, shortlists, and decision-making, but does not broaden comparisons indiscriminately. Its source is `plugins/mirket/skills/curate/SKILL.md`.\n- **Design** \u2014 acts as the design-director entry point for product UI, websites, illustration, brand systems, motion, slides, and generative artwork. It provides deeper guidance and routes to focused references rather than splitting the published package into mandatory `design-*` stages. The current design package has one `Design` skill with ten selectable references, including `motion-and-gestures.md`; `Imagine` and `Critique` retain distinct handoffs. The older five-stage `design-*` structure is not part of the package described as published on November 10, 2026. Its main file is `plugins/mirket/skills/design/SKILL.md`.\n- **Imagine** \u2014 participates in the design handoff and selection process; its picker states that implementation is optional. It is distinct from Design and Critique rather than being absorbed into Design.\n- **Equip** \u2014 challenges a working-but-poor-fit choice as an explicit trigger, compares keeping, adjusting, piloting, and switching, and, when a change is authorized, guides setup through a representative check. Its scenarios are kept in a separate reference under `plugins/mirket/skills/equip`.\n- **Secure** \u2014 owns security and privacy.\n- **Release** \u2014 prepares versioned releases.\n- **Deploy** \u2014 rolls releases out.\n- **Operate** \u2014 maintains service health and recovery.\n- **Migrate** \u2014 changes persistent state.\n- **Focus** \u2014 includes a shipped-outcome review branch and participates in the lifecycle after delivery.\n\nThe lifecycle relationship explicitly documented for the newer skills is **Release \u2192 Deploy \u2192 Operate \u2192 Focus**. Secure and Migrate provide separate cross-cutting or state-transition ownership rather than being interchangeable release stages. [REF-ID: `conversation:01a1c9a5-1c5c-7731-9a91-262b7402b72e`]\n\n### Cross-cutting skills\n\nThe catalog diagram described **Distill** and **Clean** as cross-cutting skills without individual arrows. This reflects their role across many workflows: Distill influences how work is communicated at session and prompt boundaries, while Clean reviews or prepares delivery and recovery behavior. They support the outcome-owning skills rather than replacing their ownership. [REF-ID: `conversation:01a1bb84-4822-7903-a68a-ab67584fa15c`]\n\n## Lifecycle hooks subsystem\n\n`plugins/mirket/hooks/` provides lightweight Python integrations for four lifecycle events: `SessionStart`, `UserPromptSubmit`, `Stop`, and `Bash PreToolUse`. Hook commands run in Python isolated mode and have five-second manifest timeouts.\n\nThe hooks reinforce, but do not replace, the skill catalog and routing guide:\n\n- The SessionStart path emits the one-owner rule and the path to `plugins/mirket/references/Routing.md` in the current working tree.\n- The prompt hook supplies before-send Distill guidance.\n- `plugins/mirket/hooks/cleanup.py` owns cleanup and Stop-related behavior, including the guarded pre-commit checks and optional final review.\n- The current `cleanup.py` behavior is neutral by default and activates final review only when `MIRKET_FINAL_REVIEW=1`. With that opt-in enabled and `stop_hook_active` false, it can request continuation; therefore the broader claim that it never requests another continuation is not accurate.\n- The pre-commit logic inspects the target Git index for staged `.work/` additions and changes, supports commands using `git -C`, blocks when the index cannot be inspected, and permits one exact explicitly authorized path exception. It uses a trusted executable and fixed probe arguments, disables external helpers for read-only index inspection, preserves quoted punctuation, and handles commit modes such as `git commit -a` and path-based commits.\n\nThe hooks are an enforcement and guidance layer around the skills, not a guarantee that the model will follow every skill. The package requires explicit trust review for newly discovered hooks, and hook discovery/activation has been separately verified for the four events. [REF-ID: `conversation:01a1c424-d21a-7612-8642-2ada920a8fd0`]\n\n## Optional project-memory subsystem\n\n`memory/` is repository-owned integration tooling, separate from the Mirket plugin runtime. It provides project-specific installation and wiring, project registration, diagnostics, and tests for the optional memory integration. The sources identify these principal modules:\n\n- `memory/install.py` \u2014 installs or rewires the integration and preserves or validates configuration before replacement.\n- `memory/project_registry.py` \u2014 canonicalizes project paths, links worktrees to their main project, preserves explicit mappings, and assigns new unmapped projects a `coding-agent::project-` identifier derived from a SHA-256 path hash. It uses versioned mappings, atomic replacement, and POSIX locking.\n- `memory/doctor.py` \u2014 inspects configuration, coverage, and freshness and supports bounded page refresh.\n- `memory/test_*.py` \u2014 tests the optional memory integration.\n\nThe subsystem\u2019s internal relationship is a shared routing model: hooks, interactive memory access, surveys, and backfill use the same project-bank resolver; session bindings can be recovered from verified transcript metadata when a temporary marker is absent; and diagnostics use the same effective configuration semantics as the hooks. Linked worktrees resolve to the main project bank, while unrelated repositories do not share a bank merely because they have the same name. The integration also separates source capture, survey, and synthesis freshness and distinguishes operation creation age from unknown failure time.\n\nThis subsystem is optional and its runtime configuration and memory storage are outside the repository. Those external runtime systems are not components of Mirket\u2019s own codebase; only the repository-owned integration modules and their responsibilities belong in this map. The memory work is intended to make capture, recall, resume, routing, freshness, recovery, and diagnostics reliable without destructive changes to legacy history. [REF-ID: `conversation:01a1c424-d21a-7612-8642-2ada920a8fd0`; `conversation:01a1c9a5-1c5c-7731-9a91-262b7402b72e`]\n\n## Website and documentation subsystem\n\n`website/` is a separate repository application that turns the package\u2019s source material into a static documentation and discovery site. It does not maintain a second skill catalog. Its primary modules are:\n\n- `website/lib/content.ts` \u2014 reads repository Markdown and skill YAML metadata at build time. Packaged skill metadata powers homepage cards, each `SKILL.md` powers its detail page, and the repository guide is rendered on the site.\n- `website/components/RepoMarkdown.tsx` \u2014 renders Markdown, translates relative source links, preserves query strings and fragments, and maps repository links to local documentation routes or GitHub.\n- `website/lib/discovery.ts` \u2014 centralizes discovery metadata through a shared `PageInfo` model containing canonical path, title, description, and social-card fields. It derives page metadata, structured data, and discovery lists from that model.\n- `website/data/workflows.json` \u2014 supplies workflow data to the animated workflow component.\n- `website/scripts/generate-diagrams.mjs` \u2014 generates SVG diagrams into `docs/diagrams/`; static diagram versions are also generated for the README.\n- `website/next.config.ts` \u2014 configures the static output into `website/out/`.\n- `website/app/page.tsx` \u2014 is identified as one of the implementation bases for the site.\n\nThe dependency direction is repository source \u2192 content/discovery readers \u2192 documentation pages and workflow diagrams \u2192 static output. Skill routes are constrained to generated `/docs/skills/<slug>/` pages, so unknown slugs do not create arbitrary dynamic pages. The site generates skill documentation, adjacent-skill navigation, source-aware Markdown links, responsive workflow diagrams, reduced-motion static presentation, canonical metadata, structured data, sitemap, robots information, `llms.txt`, and versioned `1200-by-630` social images. As of November 11, 2026, the documentation described 28 indexable pages for the 25-skill catalog.\n\nThe website therefore depends on the package\u2019s directory and file conventions, especially lowercase skill directories, `SKILL.md`, `agents/openai.yaml` metadata, repository Markdown, routing guidance, and README content. In turn, it provides a public documentation/discovery surface for those same sources rather than becoming an independent implementation of the workflows. [REF-ID: `conversation:01a1c517-3c3f-7313-8a93-2858baddff8c`]\n\n## Documentation, decisions, tests, and contributor structure\n\nThe repository-level support structure consists of:\n\n- `README.md` \u2014 introduces installation and features and links the repository\u2019s documentation to the public site.\n- `CONTRIBUTING.md` \u2014 documents contributor checks and requires original native guidance for contributions.\n- `docs/` \u2014 contains the main guide, diagrams, audits, and decision records.\n- `docs/decisions/` \u2014 is the current location for settled ADRs. `plugins/mirket/skills/architect/SKILL.md` initializes it for the first settled ADR when it does not exist.\n- `.work/decisions/` \u2014 is reserved for private notes and drafts, not settled ADRs. This supersedes the earlier convention that restricted settled ADRs to ignored `.work/decisions/`.\n- `tests/` \u2014 covers hooks, distribution wiring, and behavioral-fixture preparation.\n\nThese areas support the runtime components rather than participating in workflow execution: documentation records the structure and decisions, tests validate hooks and packaging, and contributor guidance defines how changes are checked and authored. The current ADR-location rule is especially important because earlier component-map material claiming that accepted ADRs live in `.work/decisions` is outdated.\n\n## Overall dependency and control flow\n\nThe project can be read as four connected layers:\n\n1. **Packaged source layer:** `plugins/mirket/skills/`, `references/`, `assets/`, and manifests define the distributable catalog, its ownership boundaries, shared routing, and package metadata.\n2. **Coordination and lifecycle layer:** routing selects the owner; supporting skills return evidence; Orchestrate, Plan, Brief, Delegate, Review-plan, Audit, Critique, Clean, Distill, and the lifecycle skills coordinate or review work; Python hooks reinforce routing, communication, cleanup, and guarded delivery behavior.\n3. **Repository support layer:** tests, README, `CONTRIBUTING.md`, `docs/`, and `docs/decisions/` validate, explain, and record the package. The current decision-record convention is `docs/decisions/`, with `.work/decisions/` only for private drafts.\n4. **Derived presentation and optional integration layers:** `website/` derives documentation and discovery pages from the packaged source, while `memory/` supplies optional repository-owned integration tooling for project-specific memory routing, diagnostics, freshness, and recovery. The website depends on repository content; the memory subsystem is separate from plugin runtime execution and stores its runtime state outside the repository.\n\nThe resulting structure is intentionally source-backed: the skill files are the catalog, routing references connect the skills, hooks provide lifecycle reinforcement, documentation and the website consume those same sources, and the optional memory modules bind project context without making external runtime storage part of the repository itself.",
+    "outcome": "content_written",
+    "based_on": {
+      "world": [
+        {
+          "id": "59471063-28ab-4994-852d-c289deec3461",
+          "text": "The repository distributes Mirket, a reusable skill plugin for Codex and Claude Code. The distributable package is plugins/mirket/, where plugin.json provides Codex metadata, .claude-plugin/plugin.json provides Claude metadata, skills/ contains the workflow catalog, references/ contains shared references, assets/ contains branding, and hooks/ contains Python lifecycle integrations; both manifests declare version 0.4.0 and 25 workflows. | Where: /Users/nazmi/Projects/skills/plugins/mirket/ | This is the repository's primary distributable package structure.",
+          "type": "world",
+          "context": "ingested document"
+        },
+        {
+          "id": "8c578038-ab17-4566-b338-ef5963f1e46c",
+          "text": "The current routing convention is defined by plugins/mirket/references/routing.md together with each packaged skill's trigger description; the historical 43-skill catalog and pick-skills references are not features of the active package. | Where: plugins/mirket/references/routing.md | This distinguishes active Mirket routing from obsolete documentation.",
+          "type": "world",
+          "context": "ingested document"
+        },
+        {
+          "id": "0ba134f5-295a-4df3-8eca-97091ff38448",
+          "text": "memory/ provides optional Codex-oriented Hindsight integration tooling separate from the plugin runtime: install.py installs or rewires the pinned upstream integration, project_registry.py binds hooks, MCP, and survey workers to project banks, and doctor.py inspects configuration, coverage, and freshness while supporting bounded page refresh. Runtime configuration and memory storage live outside the repository. | Where: /Users/nazmi/Projects/skills/memory/ | The memory subsystem is optional and externally stores its runtime configuration and data.",
+          "type": "world",
+          "context": "ingested document"
+        },
+        {
+          "id": "ab57893a-e290-4ece-a36e-813c72d9ba0f",
+          "text": "In the current working tree at base b47b89f plus uncommitted changes, plugins/mirket/hooks/distill.py emits the one-owner rule and the exact path to plugins/mirket/references/Routing.md on SessionStart, and key packaged skills link to that routing guide. This supersedes the earlier Component map description for working-tree audits only; live activation, released behavior, and semantic routing remain unverified. | Where: plugins/mirket/hooks/distill.py; plugins/mirket/references/Routing.md | The earlier routing-gap description was outdated for working-tree audits, but the change has not been verified in live or released behavior.",
+          "type": "world",
+          "context": "ingested document"
+        },
+        {
+          "id": "6b48596a-bb35-40e1-8b79-30f9efcf1465",
+          "text": "La p\u00e1gina Component map est\u00e1 desactualizada en varios puntos: la implementaci\u00f3n actual de Orchestrate respeta la autorizaci\u00f3n de ejecuci\u00f3n existente sin declarar aprobado el plan escrito; Plan permite planes peque\u00f1os compactos y conserva tres archivos para trabajo sustancial; Curate solo ampl\u00eda una comparaci\u00f3n conocida cuando es material y est\u00e1 dentro del alcance; y Distill gestiona respuestas rutinarias mientras Author se reserva para documentos, copy sustantivo y triage de issues. | Where: Mirket | La documentaci\u00f3n de Component map no refleja el comportamiento actual de las skills y hooks.",
+          "type": "world",
+          "context": "ingested document"
+        },
+        {
+          "id": "1fa47e85-6a94-44b9-b9b5-ae24e6d1ee42",
+          "text": "tests/ covers hooks, distribution wiring, and behavioral-fixture preparation, while memory/test_*.py covers the optional memory integration. docs/ contains the main guide, diagrams, and decision records; README.md introduces installation and features, and CONTRIBUTING.md documents checks. | Where: /Users/nazmi/Projects/skills/ | These directories and documents define the repository's testing, documentation, and contributor guidance.",
+          "type": "world",
+          "context": "ingested document"
+        },
+        {
+          "id": "77dea2ed-129c-42bd-8252-83f62f9d2f0e",
+          "text": "Distill gestiona las respuestas rutinarias; Author se ocupa de documentos, copy sustantivo y triage de issues. | Where: plugins/mirket/skills/author/SKILL.md:3,8; plugins/mirket/hooks/distill.py:12 | Involving: Distill, Author | Establece la separaci\u00f3n de responsabilidades entre respuestas rutinarias y trabajo editorial o de triage.",
+          "type": "world",
+          "context": "ingested document"
+        },
+        {
+          "id": "76e87d05-39a4-4a11-a031-fe8c4e465148",
+          "text": "Mirket uses lightweight Python hooks for SessionStart, UserPromptSubmit, Stop, and Bash PreToolUse events; hook commands run in Python isolated mode with five-second manifest timeouts. | When: November 11, 2026 | Describes the plugin runtime integration and operational constraint.",
+          "type": "world",
+          "context": "ingested document"
+        },
+        {
+          "id": "53c66a2e-73b7-4e4a-8e0b-f90434cbfe81",
+          "text": "The Mirket skills website has been implemented locally under `website/` as a static-export Next.js app with Remotion diagrams, based on `website/package.json`, `website/next.config.ts`, and `website/app/page.tsx`. On November 10, 2026, `npm run dev` served it successfully on localhost. | When: November 10, 2026 | Where: repository `website/`; localhost | This corrects the prior project memory that no separate website application existed under the initiative.",
+          "type": "world",
+          "context": "ingested document"
+        },
+        {
+          "id": "c54f2d4d-ee47-4d85-afe3-8b7b52a7c6b0",
+          "text": "Mirket was expanded to 25 native skills, with the initiative focused on making project memory reliable. Local Mirket 0.4.0 is installed in the normal Codex and Claude environments, both matching the 76-file package, and all 26 knowledge pages were refreshed; there has been no commit, public release, or website deployment. | When: November 11, 2026 | Where: Codex and Claude environments | This advances the initiative from source-candidate preparation to reliable local project-memory operation.",
+          "type": "world",
+          "context": "initiative marker for [[page:kp-5d3a84ca72374015b13892171f125528]]"
+        },
+        {
+          "id": "7e62769f-266b-4907-bcf2-cc21a1d1720a",
+          "text": "New initiative to harden Mirket routing and lifecycle hooks by making commit targets deterministic, enabling read-only Git previews, making the extra final review opt-in, surfacing the one-owner routing rule, and simplifying bounded integration handoffs. The initiative also includes respecting existing ADR conventions, initializing `docs/decisions` for the first settled architecture decision when no convention exists, adding host contract regressions, and creating a cross-host smoke matrix. | Involving: Architect; Astra reviewers | To implement the two Astra reviewers\u2019 findings and strengthen routing, lifecycle, architecture documentation, and cross-host integration reliability.",
+          "type": "world",
+          "context": "initiative marker for [[page:kp-4d79b3d4502b4345b6305dd78ad8bda8]]"
+        },
+        {
+          "id": "83674e53-4b06-4ef8-b0e9-cf7dcd1396fb",
+          "text": "Current source places settled ADRs in the established project location or docs/decisions, including plugins/mirket/skills/architect/SKILL.md and references/Workspace.md; the component map's claim that accepted ADRs live in .work/decisions is outdated. | Where: plugins/mirket/skills/architect/SKILL.md; references/Workspace.md; .work/decisions | The audit should rely on current source rather than the stale component map.",
+          "type": "world",
+          "context": "ingested document"
+        },
+        {
+          "id": "da0bf0c7-3d9e-4fa9-a6c8-ff74a714b90a",
+          "text": "Installed plugin/read reports 25 skills and four hooks. Codex /hooks UI and hooks/list show Mirket PreToolUse, SessionStart, UserPromptSubmit, and Stop enabled and trusted, with no hook warnings or errors; no forged trust hashes or trust bypass are used. | When: November 11, 2026 | Where: Codex CLI | Confirms actual hook discovery and activation rather than relying only on packaging inspection.",
+          "type": "world",
+          "context": "ingested document"
+        },
+        {
+          "id": "96f9bf93-eee9-414a-90bc-a8823e31de7a",
+          "text": "`plugins/mirket/skills/orchestrate/SKILL.md` permits bounded root integration after workers hand ownership back, while retaining independent review when required. | This supersedes the earlier Orchestrate default that assigned all integration to workers.",
+          "type": "world",
+          "context": "ingested document"
+        },
+        {
+          "id": "e305eb1c-7b54-4b7e-ad59-3fb6668777b8",
+          "text": "Settled ADRs use the project's established `docs/decisions/` location; `plugins/mirket/skills/architect/SKILL.md` initializes this directory for the first settled ADR when it does not exist, while `.work/decisions/` is reserved for private notes and drafts. | This supersedes the earlier convention that restricted settled ADRs to ignored `.work/decisions/`.",
+          "type": "world",
+          "context": "ingested document"
+        },
+        {
+          "id": "c64d2676-aa01-4b32-b003-c237eab72e17",
+          "text": "A packaged skill is the central catalog entity: website/lib/content.ts discovers lowercase skill directories and builds records from packaged Markdown plus agents/openai.yaml metadata. The website consumes this package structure instead of maintaining a separate skill catalog; current README and manifests identify 25 composable workflows. | When: As surveyed on November 11, 2026 | Where: Repository | This defines the repository's source of truth for skills and workflows.",
+          "type": "world",
+          "context": "ingested document"
+        },
+        {
+          "id": "45535ef1-27d0-4314-8715-49068dec16bc",
+          "text": "Hindsight routing and recall were made reliable by using the project registry for Codex hooks, MCP, and surveys; recovering session bindings from verified transcripts; adding reproducible wiring and page-first injection; and introducing a doctor for coverage and freshness. | When: November 10, 2026 | Involving: nazmirket | To make Hindsight integration, session recovery, and knowledge coverage more dependable and diagnosable.",
+          "type": "world",
+          "context": "git commit-message history for skills"
+        },
+        {
+          "id": "cc3d27c6-1317-4db6-b1d1-133522932814",
+          "text": "website/ is a static Next.js documentation and discovery site. website/lib/content.ts reads repository Markdown and skill YAML metadata at build time; components/RepoMarkdown.tsx renders Markdown and maps repository links to local documentation routes or GitHub; lib/discovery.ts centralizes metadata and public-page discovery; data/workflows.json feeds the Remotion workflow component and scripts/generate-diagrams.mjs, which writes docs/diagrams/ SVGs; next.config.ts exports deployable files into website/out/. | Where: /Users/nazmi/Projects/skills/website/ | These components define how repository content becomes the documentation and discovery site.",
+          "type": "world",
+          "context": "ingested document"
+        },
+        {
+          "id": "c1e993fd-3ff8-48d5-abfa-9131f991d151",
+          "text": "The site uses a shared PageInfo model in lib/discovery.ts containing canonical path, title, description, and social-card fields; it derives Next metadata, structured data, and discovery lists from that model. Skill routes are constrained to generated /docs/skills/<slug>/ pages, so unknown slugs do not create arbitrary dynamic pages. | When: As surveyed on November 11, 2026 | Where: Repository website | This establishes the site's metadata and routing architecture.",
+          "type": "world",
+          "context": "ingested document"
+        },
+        {
+          "id": "864b72fe-4a1b-4523-b8b7-ac2f13885fe5",
+          "text": "REF-ID: conversation:01a1bb84-4822-7903-a68a-ab67584fa15c \u2014 Adapt will run when relevant context is missing or stale; investigate only enough to understand the requested scope and risks; show findings when requested or when they affect a decision; use relevant authorized memory but recheck decision-affecting details against current instructions and project evidence; remain read-only during orientation, then continue directly to an already authorized fix without asking again. | When: November 9, 2026 | Where: plugins/mirket/skills/adapt/SKILL.md | Involving: user and coding agent | These rules define Adapt\u2019s boundary, depth, reporting, memory, and handoff behavior.",
+          "type": "world",
+          "context": "conversation between the user and you (the coding agent): user turns are the user's words and decisions, assistant turns are yours. When an assistant turn says something is fixed, passes or works, rec..."
+        },
+        {
+          "id": "617a2d63-54c3-4eee-9a8d-c5b8f039dc83",
+          "text": "`plugins/mirket/hooks/cleanup.py` is neutral by default and activates final review only when `MIRKET_FINAL_REVIEW=1`; the prompt hook continues to provide before-send Distill guidance. | This supersedes the earlier default Stop continuation behavior; these are working-tree changes, not claims about a published release or live hook validation.",
+          "type": "world",
+          "context": "ingested document"
+        },
+        {
+          "id": "4e31b735-c5d1-4e1c-979c-f1b2f55dbdbd",
+          "text": "As of November 11, 2026, Mirket source and NORMAL user installations in Codex CLI 0.167.0 and Claude Code 2.1.311 are version 0.4.0 with exactly 25 original natively authored skills; Secure, Release, Migrate, Deploy, and Operate are present. | When: November 11, 2026 | Where: /Users/nazmi/Projects/skills | This supersedes older current-state claims.",
+          "type": "world",
+          "context": "ingested document"
+        },
+        {
+          "id": "62a8e187-67c6-45e3-840d-d7524e71191e",
+          "text": "Mirket's memory reliability work must preserve existing working-tree revisions while fixing memory configuration preservation, canonical bank migration, effective diagnostics, and explicit freshness and recovery checks; validation must cover the package, installed guidance, and host behavior without claiming impossible instantaneous memory consistency. | When: Wednesday, November 11, 2026 | These constraints define the reliability and verification requirements for the initiative.",
+          "type": "world",
+          "context": "initiative marker for [[page:kp-5d3a84ca72374015b13892171f125528]]"
+        },
+        {
+          "id": "e3a43d24-1949-4d3e-93fe-169213cb931a",
+          "text": "REF-ID: conversation:01a1bb84-4822-7903-a68a-ab67584fa15c \u2014 Brief will require a small handoff core\u2014purpose and desired result, next action, authorized boundaries, essential evidence, and a reminder to check whether context is current\u2014then adapt additional detail to the recipient and task. If an important source may be inaccessible, include its essential facts and identify the missing source. | When: November 9, 2026 | Where: plugins/mirket/skills/brief/SKILL.md | Involving: user and coding agent | The decisions make handoffs actionable while exposing evidence gaps and avoiding unnecessary standardization.",
+          "type": "world",
+          "context": "conversation between the user and you (the coding agent): user turns are the user's words and decisions, assistant turns are yours. When an assistant turn says something is fixed, passes or works, rec..."
+        },
+        {
+          "id": "681f3e69-4dfb-4bea-8aa6-3bc7150c4796",
+          "text": "hooks/cleanup.py is Stop-neutral by default and only performs final review behavior when MIRKET_FINAL_REVIEW=1; with opt-in enabled and stop_hook_active false, it requests continuation, so the Harden Mirket routing page's blanket claim that it no longer requests another continuation is too broad. | Where: hooks/cleanup.py | Stop behavior depends on both the MIRKET_FINAL_REVIEW opt-in and stop_hook_active state.",
+          "type": "world",
+          "context": "ingested document"
+        },
+        {
+          "id": "cf3701d8-908b-4dae-b99a-7736474473e5",
+          "text": "The final pre-commit hook plan requires a trusted Git executable with fixed probe arguments, read-only index inspection with external helpers disabled, preservation of quoted punctuation when detecting compound commands, and explicit handling of commit modes such as `git commit -a` and path-based commits whose file set differs from the current index. REF-ID: conversation:01a1c424-d21a-7612-8642-2ada920a8fd0 | Where: plugins/mirket/hooks/cleanup.py | These constraints address command execution risks, quoted-argument false positives, and incorrect assumptions about which files a commit will include.",
+          "type": "world",
+          "context": "conversation between the user and you (the coding agent): user turns are the user's words and decisions, assistant turns are yours. When an assistant turn says something is fixed, passes or works, rec..."
+        },
+        {
+          "id": "1a9c7a45-6879-46a9-8cc5-6d180aacfd2a",
+          "text": "New initiative to make Mirket Hindsight routing and recall reliable by unifying Codex hook, MCP, survey, and backfill routing; making resume and setup reproducible; using fast page-first injection with source recall for fresh facts; preserving legacy banks; reconciling eligible history non-destructively; and verifying live readiness, coverage, and freshness separately. | When: Tuesday, November 10, 2026 | To make Hindsight auditing, routing, recall, and readiness checks reliable without destructive history changes.",
+          "type": "world",
+          "context": "initiative marker for [[page:kp-ce9ec8fe18d443f29df6c3e3e5625133]]"
+        },
+        {
+          "id": "08f1ae7a-8f90-41d0-a272-06272db9aa91",
+          "text": "Optional memory tooling treats project identity and a memory bank as separate concepts. project_registry.py canonicalizes project paths, links worktrees to their main project, preserves explicit mappings, and assigns new unmapped projects a coding-agent::project- identifier derived from a SHA-256 path hash, preventing unrelated same-named projects from sharing a bank. Registry updates use versioned project mappings, atomic replacement, and POSIX locking. | When: As surveyed on November 11, 2026 | Where: memory/project_registry.py | The registry prevents cross-project memory contamination and supports safe concurrent updates.",
+          "type": "world",
+          "context": "ingested document"
+        },
+        {
+          "id": "92684ab3-65d4-4384-8888-0f9a3833fb4e",
+          "text": "REF-ID: conversation:01a1bb84-4822-7903-a68a-ab67584fa15c \u2014 Updated the pre-commit hook in `plugins/mirket/hooks/cleanup.py` to inspect the target Git index for staged `.work/` additions and changes, including commands using `git -C`; it blocks when the index cannot be inspected and supports one exact, explicitly authorized path exception. | When: November 9, 2026 | Where: `plugins/mirket/hooks/cleanup.py` | Involving: user and coding agent | To enforce the workspace rule for staged `.work/` files.",
+          "type": "world",
+          "context": "conversation between the user and you (the coding agent): user turns are the user's words and decisions, assistant turns are yours. When an assistant turn says something is fixed, passes or works, rec..."
+        },
+        {
+          "id": "5c121552-436a-4e85-bc56-55b47eb2122b",
+          "text": "Mirket's frontend and design workflow requires `design-get-inspiration` to reference an established public design and propose a design direction before implementation, `design-interface` to create the design from that direction, `design-implement` to guide frontend implementation, `design-unslop` to improve naturalness and professionalism, and `design-qa` to visually review every designed element before it is considered complete. | Where: Mirket | The workflow encodes quality design work as a required sequence of inspiration, direction, implementation, refinement, and visual verification.",
+          "type": "world",
+          "context": "Codex Desktop archived Mirket conversation; user requests and final responses only"
+        },
+        {
+          "id": "6adfefdd-3c64-43a5-a3a3-02bc46df5a75",
+          "text": "The website generates skill documentation and adjacent-skill navigation, supports source-aware Markdown links and responsive animated workflow diagrams with reduced-motion static presentation, and publishes canonical metadata, JSON-LD, sitemap, robots.txt, llms.txt, and versioned 1200-by-630 social PNGs. Documentation currently describes 28 indexable pages for the 25-skill catalog. | When: November 11, 2026 | Where: website/ | Summarizes the site's documentation, accessibility, SEO, and discoverability features.",
+          "type": "world",
+          "context": "ingested document"
+        }
+      ],
+      "opinion": [],
+      "directives": [],
+      "experience": [
+        {
+          "id": "4cda3b7c-2085-4239-9289-5d4aa4ae3b24",
+          "text": "REF-ID: conversation:01a1c424-d21a-7612-8642-2ada920a8fd0 \u2014 The agent summarized Mirket as a collection of 20 composable agent workflows packaged for Codex and Claude Code, with skills, shared routing references, Python hooks, and distribution manifests. The workflows span project understanding, planning, engineering quality, design, communication, and coordination. | When: November 10, 2026 | Where: plugins/mirket | Involving: The agent | To explain the plugin's structure and capabilities.",
+          "type": "experience",
+          "context": "conversation between the user and you (the coding agent): user turns are the user's words and decisions, assistant turns are yours. When an assistant turn says something is fixed, passes or works, rec..."
+        },
+        {
+          "id": "29926d35-93ad-4d90-a9a9-4814d376c134",
+          "text": "REF-ID: conversation:01a1c9a5-1c5c-7731-9a91-262b7402b72e \u2014 The agent reported implementing five skills with distinct ownership boundaries: Secure handles security and privacy, Release prepares versioned releases, Deploy rolls them out, Migrate changes persistent state, and Operate maintains service health and recovery; Focus also gained a shipped-outcome review branch. The website and documentation now present a 25-skill catalog with a Release \u2192 Deploy \u2192 Operate \u2192 Focus lifecycle example. | When: November 11, 2026 | Where: Mirket project repository | Involving: The coding agent | To establish clear lifecycle ownership and document the expanded skill catalog.",
+          "type": "experience",
+          "context": "conversation between the user and you (the coding agent): user turns are the user's words and decisions, assistant turns are yours. When an assistant turn says something is fixed, passes or works, rec..."
+        },
+        {
+          "id": "450f9cac-fc43-4af4-b69f-2f32d4bb1566",
+          "text": "REF-ID: conversation:01a1c424-d21a-7612-8642-2ada920a8fd0 \u2014 The agent rewrote `plugins/mirket/skills/design/SKILL.md` as a design-director guide covering product UI, websites, illustration, brand systems, motion, slides, and generative artwork, with a short entry point routing to ten focused references. The new motion-and-gestures reference covers timing, interruption, reduced motion, alternate controls, and safe removal. | When: November 10, 2026 | Where: plugins/mirket/skills/design/ | Involving: The agent | To provide comprehensive, self-contained design guidance and clarify handoffs to Imagine and Critique.",
+          "type": "experience",
+          "context": "conversation between the user and you (the coding agent): user turns are the user's words and decisions, assistant turns are yours. When an assistant turn says something is fixed, passes or works, rec..."
+        },
+        {
+          "id": "589ee83d-90d9-4c21-9f3e-8193b58d6a5b",
+          "text": "REF-ID: conversation:01a1c517-3c3f-7313-8a93-2858baddff8c \u2014 The agent reported implementing Mirket audit fixes: guarded commits now require an absolute `git -C` target; `git commit --dry-run` previews remain read-only; Distill runs before replies while the extra final review is opt-in via `MIRKET_FINAL_REVIEW=1`; routing guidance enforces one owner per outcome, excludes read-only audits from execution plans, and permits bounded root integration fixes. The agent also reported creating the first ADR under `docs/decisions/` and passing 63 tests plus the static-site build and SEO checks; changes were uncommitted and undeployed. | When: November 11, 2026 | Where: Mirket repository | Involving: the agent | To address the Astra High audit findings and the user's ADR-location requirement.",
+          "type": "experience",
+          "context": "conversation between the user and you (the coding agent): user turns are the user's words and decisions, assistant turns are yours. When an assistant turn says something is fixed, passes or works, rec..."
+        },
+        {
+          "id": "7c4fade6-f58e-4cbf-bba9-0a7b5ab768e7",
+          "text": "REF-ID: conversation:01a1c517-3c3f-7313-8a93-2858baddff8c \u2014 The documentation page uses repository Markdown as its source: packaged skill metadata powers homepage cards, each `SKILL.md` powers its detail page, and the repository guide is rendered on the website so the documentation is available both on GitHub and on the site. Animated diagrams remain in the docs, with static versions generated for the README. | When: Tuesday, November 10, 2026 | Where: Mirket website and repository | The shared Markdown sources keep GitHub and website documentation aligned.",
+          "type": "experience",
+          "context": "conversation between the user and you (the coding agent): user turns are the user's words and decisions, assistant turns are yours. When an assistant turn says something is fixed, passes or works, rec..."
+        },
+        {
+          "id": "143a8265-b213-4c67-9e57-31e975b8cb1b",
+          "text": "REF-ID: conversation:01a1c424-d21a-7612-8642-2ada920a8fd0 \u2014 The agent reported applying all three Astra High routing fixes: compact plans record authorization in their own Agreement section, Imagine\u2019s picker says implementation is optional, and Codex and Claude instructions point to the routing guide when skill ownership is unclear. | Where: plugins/mirket/skills/plan, plugins/mirket/skills/imagine/agents/openai.yaml, plugins/mirket/references/routing.md, Codex and Claude instructions | Involving: Astra High | To address the reviewer\u2019s routing and skill-guidance findings.",
+          "type": "experience",
+          "context": "conversation between the user and you (the coding agent): user turns are the user's words and decisions, assistant turns are yours. When an assistant turn says something is fixed, passes or works, rec..."
+        },
+        {
+          "id": "cb3cab17-8f67-487a-8617-0fc60205fb68",
+          "text": "REF-ID: conversation:01a1c424-d21a-7612-8642-2ada920a8fd0 \u2014 The agent reported using Mirket\u2019s Plan, Design, and Orchestrate skills, splitting the 28 requested skill paths across Astra High reviewers, and structuring the rewrite so Design, Imagine, and Critique retain distinct responsibilities while the Design skill provides deeper guidance and references. | When: November 10, 2026 | Where: Mirket plugin | Involving: the agent; Astra High reviewers | To review every requested source path and synthesize its useful patterns without directly migrating the sources.",
+          "type": "experience",
+          "context": "conversation between the user and you (the coding agent): user turns are the user's words and decisions, assistant turns are yours. When an assistant turn says something is fixed, passes or works, rec..."
+        },
+        {
+          "id": "1f47b78d-ad22-4245-b2a5-bbb2afcd56ff",
+          "text": "REF-ID: conversation:01a1c517-3c3f-7313-8a93-2858baddff8c \u2014 The agent reported that Distill was rewritten to make the target agent do authorized work first, skip routine narration, and lead with verified results; its guidance now runs at session start and on each prompt, while turn-end guidance is integrated into Clean\u2019s existing review pass without requesting another continuation. | When: November 10, 2026 | Where: plugins/mirket/skills/distill/SKILL.md; plugins/mirket/hooks | Involving: assistant/agent | To encourage direct, factual communication and reduce unnecessary output; actual token savings were not measured.",
+          "type": "experience",
+          "context": "conversation between the user and you (the coding agent): user turns are the user's words and decisions, assistant turns are yours. When an assistant turn says something is fixed, passes or works, rec..."
+        },
+        {
+          "id": "9042c47e-5aac-4b60-8603-7dba4bf09909",
+          "text": "REF-ID: conversation:01a1bb84-4822-7903-a68a-ab67584fa15c \u2014 The agent reported revising Clean to use a quick applicability check for simple replies; review broadly before commits while cleaning only the intended scope; preserve files with uncertain purpose; correct task-related stale guidance when evidence supports the replacement; and make a verified recovery copy before an authorized removal of important, hard-to-recreate work. | When: November 9, 2026 | Where: plugins/mirket/skills/clean/SKILL.md | Involving: user; Clean; coding agent | These are the settled boundaries for Clean's cleanup and recovery behavior.",
+          "type": "experience",
+          "context": "conversation between the user and you (the coding agent): user turns are the user's words and decisions, assistant turns are yours. When an assistant turn says something is fixed, passes or works, rec..."
+        },
+        {
+          "id": "f93a88eb-5d53-40e7-b17a-3dd4255b375d",
+          "text": "REF-ID: conversation:01a1c424-d21a-7612-8642-2ada920a8fd0 \u2014 The agent reported adding a guarded survey adapter that uses the same bank resolver as hooks and interactive MCP, refuses writes when the resolved bank differs, and adds durable session-to-project binding recovery from verified transcript metadata when the temporary marker is absent. | When: November 10, 2026 | Where: Mirket Hindsight integration | Involving: the coding agent | To fix survey bank divergence and resume-time memory routing gaps.",
+          "type": "experience",
+          "context": "conversation between the user and you (the coding agent): user turns are the user's words and decisions, assistant turns are yours. When an assistant turn says something is fixed, passes or works, rec..."
+        },
+        {
+          "id": "4e843fd6-c43b-41e4-bc25-a4d9d16205e9",
+          "text": "REF-ID: conversation:01a1c9a5-1c5c-7731-9a91-262b7402b72e \u2014 The agent reported hardening Hindsight memory so capture and freshness are verifiable, missed updates have recovery handling, stale memory is not silently treated as current, and diagnostics and hooks use the pinned runtime\u2019s shared configuration resolver for consistent effective settings. | When: November 11, 2026 | Where: Mirket memory implementation | Involving: The coding agent | To make memory freshness, failure reporting, and effective configuration semantics detectable and consistent.",
+          "type": "experience",
+          "context": "conversation between the user and you (the coding agent): user turns are the user's words and decisions, assistant turns are yours. When an assistant turn says something is fixed, passes or works, rec..."
+        }
+      ],
+      "observation": [
+        {
+          "id": "8d66e568-c682-44fd-a158-eea1284d173a",
+          "text": "Curate solo ampl\u00eda una comparaci\u00f3n conocida cuando la ampliaci\u00f3n es material y est\u00e1 dentro del alcance. (2026-11-10 07:24: La p\u00e1gina Component map est\u00e1 desactualizada en varios puntos: la implementaci\u00f3n actual de Orchestrate respeta la autorizaci\u00f3n de ejecuci\u00f3n existente sin declarar aprobado el plan escrito; Plan permite planes peque\u00f1os compactos y conserva tres archivos para trabajo sustancial; Curate solo ampl\u00eda una comparaci\u00f3n conocida cuando es material y est\u00e1 dentro del alcance; y Distill gestiona respuestas rutinarias mientras Author se reserva para documentos, copy sustantivo y triage de issues.)",
+          "type": "observation",
+          "context": null
+        },
+        {
+          "id": "0129e073-58b1-4e91-b795-43b0679aab96",
+          "text": "The component map's claim that accepted ADRs live in `.work/decisions` is outdated; audits should rely on current source. (2026-11-10 07:24: La p\u00e1gina Component map est\u00e1 desactualizada en varios puntos: la implementaci\u00f3n actual de Orchestrate respeta la autorizaci\u00f3n de ejecuci\u00f3n existente sin declarar aprobado el plan escrito; Plan permite planes peque\u00f1os compactos y conserva tres archivos para trabajo sustancial; Curate solo ampl\u00eda una comparaci\u00f3n conocida cuando es material y est\u00e1 dentro del alcance; y Distill gestiona respuestas rutinarias mientras Author se reserva para documentos, copy sustantivo y triage de issues.) (2026-11-10 07:24: En Mirket, Plan usa tres archivos para trabajo sustancial, pero permite planes compactos para trabajos peque\u00f1os.)",
+          "type": "observation",
+          "context": null
+        },
+        {
+          "id": "1ba61b4a-5c39-46ed-9635-2712bfcf5ea9",
+          "text": "`website/components/RepoMarkdown.tsx` renders Markdown and maps repository links to local documentation routes or GitHub.",
+          "type": "observation",
+          "context": null
+        },
+        {
+          "id": "c0cf48c0-8829-4122-b9e2-457728dc6c7e",
+          "text": "`website/` is a static-export Next.js documentation and discovery site whose implementation is based on `website/package.json`, `website/next.config.ts`, and `website/app/page.tsx`; its build reads repository Markdown and skill YAML metadata, renders repository links locally or to GitHub, centralizes discovery metadata, and feeds Remotion workflow diagrams.",
+          "type": "observation",
+          "context": null
+        },
+        {
+          "id": "7e9ff7a9-7dff-4dc1-bc93-f8f78029938f",
+          "text": "The active Mirket package contains 25 workflow files and no files matching `*pick-skills*`. (2026-11-10 07:53: REF-ID: conversation:01a1c424-d21a-7612-8642-2ada920a8fd0 \u2014 The agent reported that the live Codex/Hindsight setup was fixed: hooks, interactive MCP, and background surveys use the same project bank; linked worktrees resolve to that bank while unrelated repositories with the same name are rejected; Codex uses page-first injection; two archived chats and all four survey documents were recovered without overwriting legacy history; and the doctor found all four primary Mirket sessions in the active bank.)",
+          "type": "observation",
+          "context": null
+        },
+        {
+          "id": "40523867-fa52-400e-851b-893deb4cbd3d",
+          "text": "The initiative will validate hook behavior with isolated synthetic events and repositories.",
+          "type": "observation",
+          "context": null
+        },
+        {
+          "id": "f01dc66b-d906-45bd-999c-ee67ca091876",
+          "text": "The 25 Mirket workflows cover project understanding, planning, engineering quality, design, communication, and coordination, and are packaged with skills, shared routing references, Python hooks, and distribution manifests.",
+          "type": "observation",
+          "context": null
+        },
+        {
+          "id": "43b7d8e1-a233-485c-bb72-b7ce5c5720e2",
+          "text": "Settled ADRs use `docs/decisions/`; `plugins/mirket/skills/architect/SKILL.md` initializes that directory for the first settled ADR when it does not exist, while `.work/decisions/` is reserved for private notes and drafts. This revises the earlier convention that restricted settled ADRs to ignored `.work/decisions/`. (2026-11-08 14:16: REF-ID: conversation:01a1bb84-4822-7903-a68a-ab67584fa15c \u2014 Architect \u0434\u043e\u043b\u0436\u0435\u043d \u043f\u0440\u0438\u043c\u0435\u043d\u044f\u0442\u044c\u0441\u044f \u0434\u043b\u044f \u0441\u0443\u0449\u0435\u0441\u0442\u0432\u0435\u043d\u043d\u044b\u0445 \u0442\u0435\u0445\u043d\u0438\u0447\u0435\u0441\u043a\u0438\u0445 \u0440\u0435\u0448\u0435\u043d\u0438\u0439 \u0438 \u044f\u0432\u043d\u044b\u0445 \u0437\u0430\u043f\u0440\u043e\u0441\u043e\u0432 \u043d\u0430 \u0430\u0440\u0445\u0438\u0442\u0435\u043a\u0442\u0443\u0440\u0443, \u043e\u0445\u0432\u0430\u0442\u044b\u0432\u0430\u0442\u044c \u043d\u043e\u0432\u044b\u0435 \u0438 \u0441\u0443\u0449\u0435\u0441\u0442\u0432\u0443\u044e\u0449\u0438\u0435 \u0441\u0438\u0441\u0442\u0435\u043c\u044b \u0441 \u0440\u0430\u0437\u043d\u044b\u043c\u0438 \u0438\u0441\u0442\u043e\u0447\u043d\u0438\u043a\u0430\u043c\u0438 \u0434\u043e\u043a\u0430\u0437\u0430\u0442\u0435\u043b\u044c\u0441\u0442\u0432, \u0430 \u0440\u0435\u0448\u0435\u043d\u0438\u044f \u0441 \u043c\u0430\u0442\u0435\u0440\u0438\u0430\u043b\u044c\u043d\u044b\u043c \u0432\u043b\u0438\u044f\u043d\u0438\u0435\u043c \u043d\u0430 \u043f\u0440\u043e\u0434\u0443\u043a\u0442, \u0441\u0442\u043e\u0438\u043c\u043e\u0441\u0442\u044c, \u0431\u0435\u0437\u043e\u043f\u0430\u0441\u043d\u043e\u0441\u0442\u044c \u0438\u043b\u0438 \u044d\u043a\u0441\u043f\u043b\u0443\u0430\u0442\u0430\u0446\u0438\u044e \u0432\u044b\u043d\u043e\u0441\u0438\u0442\u044c \u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u0435\u043b\u044e; \u0440\u0443\u0442\u0438\u043d\u043d\u044b\u0435 \u0440\u0435\u0448\u0435\u043d\u0438\u044f \u043e\u0441\u0442\u0430\u044e\u0442\u0441\u044f \u0432 \u0440\u0430\u043c\u043a\u0430\u0445 \u0443\u0436\u0435 \u0432\u044b\u0434\u0430\u043d\u043d\u044b\u0445 \u043f\u043e\u043b\u043d\u043e\u043c\u043e\u0447\u0438\u0439. \u0412\u043d\u0435\u0448\u043d\u0438\u0435 \u0442\u0435\u0445\u043d\u043e\u043b\u043e\u0433\u0438\u0438 \u0438 \u043f\u0430\u0442\u0442\u0435\u0440\u043d\u044b \u0438\u0441\u0441\u043b\u0435\u0434\u0443\u044e\u0442\u0441\u044f \u0442\u043e\u043b\u044c\u043a\u043e \u0435\u0441\u043b\u0438 \u043c\u043e\u0433\u0443\u0442 \u0441\u0443\u0449\u0435\u0441\u0442\u0432\u0435\u043d\u043d\u043e \u0438\u0437\u043c\u0435\u043d\u0438\u0442\u044c \u0440\u0435\u0448\u0435\u043d\u0438\u0435.)",
+          "type": "observation",
+          "context": null
+        },
+        {
+          "id": "6b7d3d98-3fc5-424a-9ca9-0886c56374e3",
+          "text": "The workflows cover project understanding, planning, engineering quality, design, communication, and coordination.",
+          "type": "observation",
+          "context": null
+        },
+        {
+          "id": "4c921860-8c42-44a2-8e8f-bdef6e73abfb",
+          "text": "The current README and manifests identify 25 composable workflows.",
+          "type": "observation",
+          "context": null
+        },
+        {
+          "id": "492d7f8d-4750-478a-943c-197ec626323e",
+          "text": "El agente conserv\u00f3 los tres archivos de planificaci\u00f3n y la rama de seguimiento.",
+          "type": "observation",
+          "context": null
+        },
+        {
+          "id": "a7c9452a-aae7-4dae-934b-d101d01cf2b6",
+          "text": "`RepoMarkdown` translates relative source links while preserving query strings and fragments.",
+          "type": "observation",
+          "context": null
+        },
+        {
+          "id": "6a69c60c-8116-4290-b656-84fe7c1e5bfc",
+          "text": "The current catalog draws skills from 14 repositories.",
+          "type": "observation",
+          "context": null
+        },
+        {
+          "id": "01e3b891-be7c-4cd5-a6dd-3cfdac64c3bc",
+          "text": "Mirket packaging no longer includes a separate skill provenance manifest; `plugins/mirket/sources.json` is deleted in the working tree.",
+          "type": "observation",
+          "context": null
+        },
+        {
+          "id": "72dc51f7-389e-4c01-b68d-2ad9982c0495",
+          "text": "Distill gestiona las respuestas rutinarias; Author se ocupa de documentos, copy sustantivo y triage de issues.",
+          "type": "observation",
+          "context": null
+        },
+        {
+          "id": "be2959a9-bce5-42ed-90fd-b8b56155c582",
+          "text": "Mirket assigns one skill responsibility for each outcome, with supporting skills returning evidence to that skill; earlier, parent skills routed each task to the relevant subskill. (2026-11-08 11:20: The user wants addyosmani/agent-skills\u2019 simplification guidance combined with DietrichGebert/ponytail and multica-ai/andrej-karpathy-skills, and wants parent skills created to route each task to the relevant subskill.) (2026-11-08 11:20: Mirket uses all 18 parent skills linked to upstream guidance, with `pick-skills` as the main router. Hooks reinforce coding principles, persistent planning, concise output, and design checks, while preserving source attribution and adaptations; bundled `agent-browser` was removed.) (2026-11-08 11:20: Mirket defines a skill-based workflow in which `pick-skills` runs on every prompt to select the appropriate skillset, while `resolve-intent` clarifies the user's request, `plan` creates persistent explicit plans, `review-plan` spawns an independent reviewer, `delegate` assigns subagents with task-appropriate reasoning effort, and `get-feedback` requires user feedback on partial implementations before completing the full implementation.)",
+          "type": "observation",
+          "context": null
+        },
+        {
+          "id": "b247b38d-2d05-439c-82fa-fd7e1e7f1bbe",
+          "text": "React components use PascalCase filenames, while Next App Router pages and routes use page.tsx and route.ts entry points.",
+          "type": "observation",
+          "context": null
+        },
+        {
+          "id": "233d804c-b072-4afa-bb09-dc58c2aa5600",
+          "text": "The website implementation corrects the prior project memory that no separate website application existed under the initiative.",
+          "type": "observation",
+          "context": null
+        },
+        {
+          "id": "d14b14a3-9721-45df-937e-355d67ace372",
+          "text": "Mirket's Hindsight integration recovers durable session-to-project bindings from verified transcript metadata when the temporary marker is absent.",
+          "type": "observation",
+          "context": null
+        },
+        {
+          "id": "a227b1a3-cc8b-4612-a4b4-4e673c83adc3",
+          "text": "Mirket Hindsight setup and resume should be reproducible. (2026-11-10 22:54: Hindsight routing and recall were made reliable by using the project registry for Codex hooks, MCP, and surveys; recovering session bindings from verified transcripts; adding reproducible wiring and page-first injection; and introducing a doctor for coverage and freshness.)",
+          "type": "observation",
+          "context": null
+        },
+        {
+          "id": "8086ae05-0f67-4f67-954c-593b3d4e88f2",
+          "text": "En Mirket, Plan conserva tres archivos para trabajo sustancial y permite planes compactos para trabajos peque\u00f1os.",
+          "type": "observation",
+          "context": null
+        },
+        {
+          "id": "673df534-4a5a-43b7-ae43-d2f97ca58c9b",
+          "text": "Curate ampl\u00eda una comparaci\u00f3n conocida solo cuando la ampliaci\u00f3n es material y est\u00e1 dentro del alcance.",
+          "type": "observation",
+          "context": null
+        }
+      ],
+      "mental-models": []
+    },
+    "mental_models": []
+  },
+  "is_stale": false
+}

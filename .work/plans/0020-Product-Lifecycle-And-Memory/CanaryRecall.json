@@ -1,0 +1,37 @@
+[
+  {
+    "id": "ca41b9df-a428-4812-be9c-6632d39c0c87",
+    "text": "REF-ID: conversation:01a1c9ca-7990-7271-976a-5596b740967e \u2014 MIRKET-CANARY-20261111-25-OWL identifies the 25-skill reliability check and is not a product requirement; no files should be changed, content manually ingested, or publications made, and capture should be left to the normal host Stop hook. | Involving: user | Harmless real-host capture verification.",
+    "type": "world",
+    "entities": [
+      "25-skill reliability check",
+      "MIRKET-CANARY-20261111-25-OWL",
+      "normal host Stop hook",
+      "user"
+    ],
+    "context": "conversation between the user and you (the coding agent): user turns are the user's words and decisions, assistant turns are yours. When an assistant turn says something is fixed, passes or works, record it as the agent's claim (\"the agent reported X fixed\"), not as an established fact.",
+    "occurred_start": null,
+    "occurred_end": null,
+    "mentioned_at": "2026-11-11T08:47:35.765000+00:00",
+    "document_id": "conversation:01a1c9ca-7990-7271-976a-5596b740967e",
+    "metadata": {
+      "ref_id": "conversation:01a1c9ca-7990-7271-976a-5596b740967e",
+      "source": "chat",
+      "harness": "codex",
+      "session_id": "01a1c9ca-7990-7271-976a-5596b740967e"
+    },
+    "chunk_id": "coding-agent::desktop-skills_conversation:01a1c9ca-7990-7271-976a-5596b740967e_0",
+    "tags": [
+      "source:chat",
+      "harness:codex"
+    ],
+    "source_fact_ids": null,
+    "scores": {
+      "final": 1.0991818847972215,
+      "reranker": 0.9992564537474933,
+      "semantic": 0.7531775685058588,
+      "keyword": 1.0
+    },
+    "attachments": null
+  }
+]

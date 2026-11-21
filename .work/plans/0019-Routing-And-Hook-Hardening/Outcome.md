@@ -1,0 +1,3 @@
+# Outcome
+
+Resolve both independent Astra audits of Mirket at b47b89f. Guarded commits inspect the explicit Git target, not a session directory; ordinary Git previews do not require Clean acknowledgment or suggest committing. Distill remains in the first model pass, with an optional and loop-guarded final pass. A default install can discover the routing guide, supporting skills return to the owner, and a substantial read-only audit does not create an execution plan. The root may make bounded integration fixes after ownership is returned. Architect records settled decisions in the project's ADR location, initializing docs/decisions when no convention exists.

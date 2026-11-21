@@ -1,0 +1,64 @@
+{
+  "checked_at": "2026-11-11T09:31:28.368091+00:00",
+  "source_file_count": 76,
+  "hosts": {
+    "codex": {
+      "version": "0.4.0",
+      "cache": "/Users/nazmi/.codex/plugins/cache/mirket/mirket/0.4.0",
+      "exact_source_match": true,
+      "portable_root_manifest_exists": false,
+      "skills": 25,
+      "registration": [
+        {
+          "pluginId": "mirket@mirket",
+          "name": "mirket",
+          "marketplaceName": "mirket",
+          "version": "0.4.0",
+          "installed": true,
+          "enabled": true,
+          "source": {
+            "source": "local",
+            "path": "/Users/nazmi/Projects/skills/plugins/mirket"
+          },
+          "marketplaceSource": {
+            "sourceType": "local",
+            "source": "/Users/nazmi/Projects/skills"
+          },
+          "installPolicy": "AVAILABLE",
+          "authPolicy": "ON_INSTALL"
+        }
+      ]
+    },
+    "claude": {
+      "version": "0.4.0",
+      "cache": "/Users/nazmi/.claude/plugins/cache/mirket/mirket/0.4.0",
+      "exact_source_match": true,
+      "portable_root_manifest_exists": false,
+      "skills": 25,
+      "registration": [
+        {
+          "id": "mirket@mirket",
+          "version": "0.4.0",
+          "scope": "user",
+          "enabled": true,
+          "installPath": "/Users/nazmi/.claude/plugins/cache/mirket/mirket/0.4.0",
+          "readFromFolder": "/Users/nazmi/Projects/skills/plugins/mirket",
+          "folderVersion": "0.4.0",
+          "installedAt": "2026-11-11T09:26:17.482Z",
+          "lastUpdated": "2026-11-11T09:26:17.482Z",
+          "projectEnabled": false
+        }
+      ]
+    }
+  },
+  "global_instructions": {
+    ".codex/AGENTS.md": {
+      "matches_template": true,
+      "backup_directory": "/Users/nazmi/Projects/skills/.work/recover/Mirket040Installation"
+    },
+    ".claude/CLAUDE.md": {
+      "matches_template": true,
+      "backup_directory": "/Users/nazmi/Projects/skills/.work/recover/Mirket040Installation"
+    }
+  }
+}

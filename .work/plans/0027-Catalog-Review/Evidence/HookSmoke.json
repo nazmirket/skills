@@ -1,0 +1,531 @@
+{
+  "repository": [
+    {
+      "eventName": "preToolUse",
+      "enabled": true,
+      "trustStatus": "trusted",
+      "matcher": "^Bash$",
+      "sourcePath": "<codex-home>/plugins/cache/mirket/mirket/0.4.0/hooks/hooks.json",
+      "statusMessage": null
+    },
+    {
+      "eventName": "sessionStart",
+      "enabled": true,
+      "trustStatus": "trusted",
+      "matcher": null,
+      "sourcePath": "<codex-home>/plugins/cache/mirket/mirket/0.4.0/hooks/hooks.json",
+      "statusMessage": null
+    },
+    {
+      "eventName": "userPromptSubmit",
+      "enabled": true,
+      "trustStatus": "trusted",
+      "matcher": null,
+      "sourcePath": "<codex-home>/plugins/cache/mirket/mirket/0.4.0/hooks/hooks.json",
+      "statusMessage": null
+    }
+  ],
+  "fixture": [
+    {
+      "eventName": "preToolUse",
+      "enabled": true,
+      "trustStatus": "trusted",
+      "matcher": "^Bash$",
+      "sourcePath": "<codex-home>/plugins/cache/mirket/mirket/0.4.0/hooks/hooks.json",
+      "statusMessage": null
+    },
+    {
+      "eventName": "sessionStart",
+      "enabled": true,
+      "trustStatus": "trusted",
+      "matcher": null,
+      "sourcePath": "<codex-home>/plugins/cache/mirket/mirket/0.4.0/hooks/hooks.json",
+      "statusMessage": null
+    },
+    {
+      "eventName": "userPromptSubmit",
+      "enabled": true,
+      "trustStatus": "trusted",
+      "matcher": null,
+      "sourcePath": "<codex-home>/plugins/cache/mirket/mirket/0.4.0/hooks/hooks.json",
+      "statusMessage": null
+    }
+  ],
+  "turnStatus": "completed",
+  "events": [
+    {
+      "method": "hook/started",
+      "params": {
+        "threadId": "01a1de07-f751-7522-84c5-f4a86eefc1b8",
+        "turnId": "01a1de07-f7af-7a02-92ee-bec8eba5083a",
+        "run": {
+          "id": "session-start:14:<codex-home>/plugins/cache/mirket/mirket/0.4.0/hooks/hooks.json",
+          "eventName": "sessionStart",
+          "handlerType": "command",
+          "executionMode": "sync",
+          "scope": "thread",
+          "sourcePath": "<codex-home>/plugins/cache/mirket/mirket/0.4.0/hooks/hooks.json",
+          "source": "plugin",
+          "displayOrder": 14,
+          "status": "running",
+          "statusMessage": null,
+          "startedAt": 1794726427,
+          "completedAt": null,
+          "durationMs": null,
+          "entries": []
+        }
+      },
+      "emittedAtMs": 1794726427929
+    },
+    {
+      "method": "hook/completed",
+      "params": {
+        "threadId": "01a1de07-f751-7522-84c5-f4a86eefc1b8",
+        "turnId": "01a1de07-f7af-7a02-92ee-bec8eba5083a",
+        "run": {
+          "id": "session-start:14:<codex-home>/plugins/cache/mirket/mirket/0.4.0/hooks/hooks.json",
+          "eventName": "sessionStart",
+          "handlerType": "command",
+          "executionMode": "sync",
+          "scope": "thread",
+          "sourcePath": "<codex-home>/plugins/cache/mirket/mirket/0.4.0/hooks/hooks.json",
+          "source": "plugin",
+          "displayOrder": 14,
+          "status": "completed",
+          "statusMessage": null,
+          "startedAt": 1794726427,
+          "completedAt": 1794726428,
+          "durationMs": 98,
+          "entries": [
+            {
+              "kind": "context",
+              "text": "Execute: take the simplest complete path within existing authority. Preserve quality and run the narrowest meaningful check plus required checks. Skip routine narration; speak when the human needs to act, expectations change, or a material assumption or blocker matters. Lead the final reply with the result, useful verification, and material limits. Apply <codex-home>/plugins/cache/mirket/mirket/0.4.0/skills/execute/SKILL.md throughout the session. Choose one Mirket skill to own each outcome; supporting skills return evidence to that owner. If ownership is unclear, consult <codex-home>/plugins/cache/mirket/mirket/0.4.0/references/Routing.md."
+            }
+          ]
+        }
+      },
+      "emittedAtMs": 1794726428031
+    },
+    {
+      "method": "hook/started",
+      "params": {
+        "threadId": "01a1de07-f751-7522-84c5-f4a86eefc1b8",
+        "turnId": "01a1de07-f7af-7a02-92ee-bec8eba5083a",
+        "run": {
+          "id": "user-prompt-submit:15:<codex-home>/plugins/cache/mirket/mirket/0.4.0/hooks/hooks.json",
+          "eventName": "userPromptSubmit",
+          "handlerType": "command",
+          "executionMode": "sync",
+          "scope": "turn",
+          "sourcePath": "<codex-home>/plugins/cache/mirket/mirket/0.4.0/hooks/hooks.json",
+          "source": "plugin",
+          "displayOrder": 15,
+          "status": "running",
+          "statusMessage": null,
+          "startedAt": 1794726428,
+          "completedAt": null,
+          "durationMs": null,
+          "entries": []
+        }
+      },
+      "emittedAtMs": 1794726428031
+    },
+    {
+      "method": "hook/completed",
+      "params": {
+        "threadId": "01a1de07-f751-7522-84c5-f4a86eefc1b8",
+        "turnId": "01a1de07-f7af-7a02-92ee-bec8eba5083a",
+        "run": {
+          "id": "user-prompt-submit:15:<codex-home>/plugins/cache/mirket/mirket/0.4.0/hooks/hooks.json",
+          "eventName": "userPromptSubmit",
+          "handlerType": "command",
+          "executionMode": "sync",
+          "scope": "turn",
+          "sourcePath": "<codex-home>/plugins/cache/mirket/mirket/0.4.0/hooks/hooks.json",
+          "source": "plugin",
+          "displayOrder": 15,
+          "status": "completed",
+          "statusMessage": null,
+          "startedAt": 1794726428,
+          "completedAt": 1794726428,
+          "durationMs": 69,
+          "entries": [
+            {
+              "kind": "context",
+              "text": "Execute: take the simplest complete path within existing authority. Preserve quality and run the narrowest meaningful check plus required checks. Skip routine narration; speak when the human needs to act, expectations change, or a material assumption or blocker matters. Lead the final reply with the result, useful verification, and material limits. Apply <codex-home>/plugins/cache/mirket/mirket/0.4.0/skills/clean/SKILL.md before delivery when relevant."
+            }
+          ]
+        }
+      },
+      "emittedAtMs": 1794726428100
+    },
+    {
+      "method": "item/completed",
+      "params": {
+        "item": {
+          "type": "agentMessage",
+          "id": "msg_0d5f35572b7eaf5f016af95a1d857c87d29a9009acd2dbd470",
+          "text": "I\u2019m applying Mirket\u2019s Execute and Test skills to the smoke check and Clean to the final verification.",
+          "phase": "commentary",
+          "memoryCitation": null,
+          "delivery": null,
+          "questions": null,
+          "startedAtMs": 1794726429594,
+          "completedAtMs": 1794726430411
+        },
+        "threadId": "01a1de07-f751-7522-84c5-f4a86eefc1b8",
+        "turnId": "01a1de07-f7af-7a02-92ee-bec8eba5083a",
+        "completedAtMs": 1794726430411
+      },
+      "emittedAtMs": 1794726430411
+    },
+    {
+      "method": "hook/started",
+      "params": {
+        "threadId": "01a1de07-f751-7522-84c5-f4a86eefc1b8",
+        "turnId": "01a1de07-f7af-7a02-92ee-bec8eba5083a",
+        "run": {
+          "id": "pre-tool-use:13:<codex-home>/plugins/cache/mirket/mirket/0.4.0/hooks/hooks.json:exec-a308c42d-9a44-483e-b07b-8ff3105df0ac",
+          "eventName": "preToolUse",
+          "handlerType": "command",
+          "executionMode": "sync",
+          "scope": "turn",
+          "sourcePath": "<codex-home>/plugins/cache/mirket/mirket/0.4.0/hooks/hooks.json",
+          "source": "plugin",
+          "displayOrder": 13,
+          "status": "running",
+          "statusMessage": null,
+          "startedAt": 1794726434,
+          "completedAt": null,
+          "durationMs": null,
+          "entries": []
+        }
+      },
+      "emittedAtMs": 1794726434961
+    },
+    {
+      "method": "hook/started",
+      "params": {
+        "threadId": "01a1de07-f751-7522-84c5-f4a86eefc1b8",
+        "turnId": "01a1de07-f7af-7a02-92ee-bec8eba5083a",
+        "run": {
+          "id": "pre-tool-use:13:<codex-home>/plugins/cache/mirket/mirket/0.4.0/hooks/hooks.json:exec-b28b486d-c1d3-4e3b-8e83-e700ca16d568",
+          "eventName": "preToolUse",
+          "handlerType": "command",
+          "executionMode": "sync",
+          "scope": "turn",
+          "sourcePath": "<codex-home>/plugins/cache/mirket/mirket/0.4.0/hooks/hooks.json",
+          "source": "plugin",
+          "displayOrder": 13,
+          "status": "running",
+          "statusMessage": null,
+          "startedAt": 1794726434,
+          "completedAt": null,
+          "durationMs": null,
+          "entries": []
+        }
+      },
+      "emittedAtMs": 1794726434961
+    },
+    {
+      "method": "hook/completed",
+      "params": {
+        "threadId": "01a1de07-f751-7522-84c5-f4a86eefc1b8",
+        "turnId": "01a1de07-f7af-7a02-92ee-bec8eba5083a",
+        "run": {
+          "id": "pre-tool-use:13:<codex-home>/plugins/cache/mirket/mirket/0.4.0/hooks/hooks.json:exec-b28b486d-c1d3-4e3b-8e83-e700ca16d568",
+          "eventName": "preToolUse",
+          "handlerType": "command",
+          "executionMode": "sync",
+          "scope": "turn",
+          "sourcePath": "<codex-home>/plugins/cache/mirket/mirket/0.4.0/hooks/hooks.json",
+          "source": "plugin",
+          "displayOrder": 13,
+          "status": "failed",
+          "statusMessage": null,
+          "startedAt": 1794726434,
+          "completedAt": 1794726434,
+          "durationMs": 30,
+          "entries": [
+            {
+              "kind": "error",
+              "text": "plugin contents changed; hook approval required"
+            }
+          ]
+        }
+      },
+      "emittedAtMs": 1794726435016
+    },
+    {
+      "method": "hook/completed",
+      "params": {
+        "threadId": "01a1de07-f751-7522-84c5-f4a86eefc1b8",
+        "turnId": "01a1de07-f7af-7a02-92ee-bec8eba5083a",
+        "run": {
+          "id": "pre-tool-use:13:<codex-home>/plugins/cache/mirket/mirket/0.4.0/hooks/hooks.json:exec-a308c42d-9a44-483e-b07b-8ff3105df0ac",
+          "eventName": "preToolUse",
+          "handlerType": "command",
+          "executionMode": "sync",
+          "scope": "turn",
+          "sourcePath": "<codex-home>/plugins/cache/mirket/mirket/0.4.0/hooks/hooks.json",
+          "source": "plugin",
+          "displayOrder": 13,
+          "status": "failed",
+          "statusMessage": null,
+          "startedAt": 1794726434,
+          "completedAt": 1794726434,
+          "durationMs": 30,
+          "entries": [
+            {
+              "kind": "error",
+              "text": "plugin contents changed; hook approval required"
+            }
+          ]
+        }
+      },
+      "emittedAtMs": 1794726435044
+    },
+    {
+      "method": "item/completed",
+      "params": {
+        "item": {
+          "type": "commandExecution",
+          "id": "exec-b28b486d-c1d3-4e3b-8e83-e700ca16d568",
+          "pluginId": null,
+          "scriptPath": null,
+          "command": "/bin/zsh -lc \"rg --files --hidden -g AGENTS.md -g '\"'!**/.git/**'\"' <fixture>\"",
+          "cwd": "<fixture>/hook-session",
+          "processId": "66885",
+          "source": "unifiedExecStartup",
+          "status": "failed",
+          "commandActions": [
+            {
+              "type": "listFiles",
+              "command": "rg --files --hidden -g AGENTS.md -g '!**/.git/**' <fixture>",
+              "path": "mirket-review.Cskkd4"
+            }
+          ],
+          "aggregatedOutput": null,
+          "exitCode": 1,
+          "durationMs": 0,
+          "startedAtMs": 1794726435063,
+          "completedAtMs": 1794726435063
+        },
+        "threadId": "01a1de07-f751-7522-84c5-f4a86eefc1b8",
+        "turnId": "01a1de07-f7af-7a02-92ee-bec8eba5083a",
+        "completedAtMs": 1794726435063
+      },
+      "emittedAtMs": 1794726435063
+    },
+    {
+      "method": "item/completed",
+      "params": {
+        "item": {
+          "type": "commandExecution",
+          "id": "exec-a308c42d-9a44-483e-b07b-8ff3105df0ac",
+          "pluginId": null,
+          "scriptPath": null,
+          "command": "/bin/zsh -lc 'cat <codex-home>/plugins/cache/mirket/mirket/0.4.0/skills/execute/SKILL.md <codex-home>/plugins/cache/mirket/mirket/0.4.0/skills/test/SKILL.md <codex-home>/plugins/cache/mirket/mirket/0.4.0/skills/clean/SKILL.md'",
+          "cwd": "<fixture>/hook-session",
+          "processId": "43221",
+          "source": "unifiedExecStartup",
+          "status": "completed",
+          "commandActions": [
+            {
+              "type": "unknown",
+              "command": "cat <codex-home>/plugins/cache/mirket/mirket/0.4.0/skills/execute/SKILL.md <codex-home>/plugins/cache/mirket/mirket/0.4.0/skills/test/SKILL.md <codex-home>/plugins/cache/mirket/mirket/0.4.0/skills/clean/SKILL.md"
+            }
+          ],
+          "aggregatedOutput": "---\nname: execute\ndescription: \"Apply across Mirket work: solve the assigned problem directly, preserve quality, and speak only when it helps.\"\n---\n\n# Execute\n\nFinish the assigned outcome with the least friction that preserves quality. Execute is the default way to work across Mirket; the skill responsible for the result still owns it.\n\n1. **Work from the outcome.** Know what completion looks like. Inspect enough to separate requirements from assumptions, then make routine decisions within existing authority. If a suggested method is flexible, use a simpler route that delivers the same result. Mention unrelated findings only when consequential; finding one does not authorize fixing it.\n2. **Take the direct path.** Reuse what fits. Add complexity only to meet a real requirement or avoid a concrete maintenance cost. Extract shared logic when duplicated rules are likely to drift. Give infrastructure architecture and big-picture decisions enough depth to account for wider consequences. Preserve correctness and run the narrowest check that can catch a meaningful failure, plus required checks.\n3. **Rethink what is blocking you.** After two attempts fail for the same reason, revisit the assumption and try one different check that can distinguish the likely causes. Consider whether an existing capability or a smaller change solves the real problem. Get the human's approval before reframing work on a widely used project when doing so could break an existing feature or its ecosystem. In creative work, surface consequential assumptions and alternatives without imposing your taste as the answer.\n4. **Speak only when it helps.** Start a straightforward, authorized fix quietly unless a material assumption needs surfacing or the host requires an update. Skip ordinary steps, unsettled thoughts, and details of settled decisions that the human does not need to act on. Raise material blockers promptly; mention a recovered detour only if the human needs to act or expectations change. Lead the final reply with the result and the most useful verification. Keep material limits and distinguish what happened from what is planned.\n\n**Done:** The requested outcome is complete to the extent verified. The human has enough information to use it or decide what comes next.\n---\nname: test\ndescription: \"Use for explicit verification requests or when the task owner needs evidence about a behavior, regression, or performance claim.\"\n---\n\n# Test\n\nFill a verification gap and return the evidence to the task owner. The owner can run known focused checks directly. Reuse relevant results and choose the smallest checks that can catch the meaningful failure.\n\n## Choose the check\n\n- Get the expected result from a specification, accepted example, or prior decision independent of the implementation. If sources conflict or are silent on a material rule, ask and continue with undisputed checks.\n- Use the existing harness for deterministic behavior when adding coverage is warranted and authorized. Use a manual check when automation cannot exercise the interaction reliably. Keep a fast regression test near the cause. If the regression reached a user-facing workflow, run one smoke check through that path as well. For a quoted comma, the parser test checks the field; a real export checks that the job uses the corrected parser.\n- For a new regression test, run the same check against the original code in isolation and against the fix. Confirm the old code fails for the intended reason and the fix passes. Preserve the working tree. If you cannot exercise the original code, state the gap.\n\n## Run and report\n\n- Reuse CI results for the exact revision and relevant matrix when they cover the behavior in question. Run more checks only for a material evidence gap or an outstanding required check.\n- If a new failure passes on retry, run one targeted diagnostic when available, such as repeating just the failed browser test with tracing. Report each attempt and hand any further investigation to [Debug](../debug/SKILL.md) or the task owner.\n- Report passes, failures, and unverified checks separately. For a blocked check, give the missing target or capability, the exact command or steps still needed, and the expected outcome. Continue checks that can run. Match evidence to the claim: a build or package inspection cannot verify a live install. Honor environment and release gates.\n- Claim a speedup only after repeated comparable runs on the same inputs and relevant conditions, with output correctness verified. Use the [measurement method](../../references/MeasuredImprovement.md).\n- Hand back the smallest useful evidence: target checked, command or steps, relevant input, and expected and actual results. Verification alone does not authorize product edits. Give evidence to [Audit](../audit/SKILL.md) for technical review, [Design critique](../design/references/flows/Critique.md) for visual review, or [Author](../author/SKILL.md) for writing review when relevant.\n---\nname: clean\ndescription: \"Use for requested cleanup, relevant delivery checks, or a review of an authorized commit.\"\n---\n\n# Clean\n\nLeave the task coherent and protect existing work. Use Clean during the ordinary delivery or commit workflow.\n\n## Before delivery\n\n- Skip cleanup for an answer-only task that made no changes and produced no artifacts. Otherwise inspect the task's changes, direct references, and temporary output. A cleanup request can set a different scope.\n- Fix stale references in docs or agent instructions and remove steps the replacement demonstrably covers. Ask the human before changing the conditions that require verification. Check the resulting diff and affected references.\n- Remove only verified temporary files made by this task unless the human has authorized other deletions. Keep unrelated edits, plans, handoffs, and historical records. Before an authorized deletion, confirm the exact content can be recovered from Git or reliably regenerated. If it cannot, make and verify a targeted [recovery copy](../../references/Workspace.md) with restore instructions before deleting.\n- Record what you checked, what it showed, and material limits in the reply or existing task record. Keep screenshots only when the human asks or an active handoff needs them.\n\n## Before an authorized commit\n\n- Also scan nearby docs and agent instructions for inconsistencies. Fix what the task caused. Hold the commit if such an inconsistency remains. Report material pre-existing issues; they do not block the commit unless the task made them worse.\n- Inspect staged and unstaged changes. If unrelated work is staged, isolate the authorized hunks, even within a shared file, only when you can verify the intended commit and preserve the human's staged and unstaged changes. If hunks overlap or preservation cannot be verified, stop and show the conflict.\n- Check the intended index for private `.work/` files; only explicitly authorized paths may be included. With Mirket's guard active, use a standalone literal `MIRKET_CLEANUP_DONE=1 git -C \"/absolute/worktree\" commit ...` after the review. The guard checks the commit request; it does not authorize one.\n",
+          "exitCode": 0,
+          "durationMs": 0,
+          "startedAtMs": 1794726435086,
+          "completedAtMs": 1794726435086
+        },
+        "threadId": "01a1de07-f751-7522-84c5-f4a86eefc1b8",
+        "turnId": "01a1de07-f7af-7a02-92ee-bec8eba5083a",
+        "completedAtMs": 1794726435086
+      },
+      "emittedAtMs": 1794726435086
+    },
+    {
+      "method": "hook/started",
+      "params": {
+        "threadId": "01a1de07-f751-7522-84c5-f4a86eefc1b8",
+        "turnId": "01a1de07-f7af-7a02-92ee-bec8eba5083a",
+        "run": {
+          "id": "pre-tool-use:13:<codex-home>/plugins/cache/mirket/mirket/0.4.0/hooks/hooks.json:exec-ffd919ee-74ab-44d1-b098-a0bfc8067a9b",
+          "eventName": "preToolUse",
+          "handlerType": "command",
+          "executionMode": "sync",
+          "scope": "turn",
+          "sourcePath": "<codex-home>/plugins/cache/mirket/mirket/0.4.0/hooks/hooks.json",
+          "source": "plugin",
+          "displayOrder": 13,
+          "status": "running",
+          "statusMessage": null,
+          "startedAt": 1794726437,
+          "completedAt": null,
+          "durationMs": null,
+          "entries": []
+        }
+      },
+      "emittedAtMs": 1794726437973
+    },
+    {
+      "method": "hook/completed",
+      "params": {
+        "threadId": "01a1de07-f751-7522-84c5-f4a86eefc1b8",
+        "turnId": "01a1de07-f7af-7a02-92ee-bec8eba5083a",
+        "run": {
+          "id": "pre-tool-use:13:<codex-home>/plugins/cache/mirket/mirket/0.4.0/hooks/hooks.json:exec-ffd919ee-74ab-44d1-b098-a0bfc8067a9b",
+          "eventName": "preToolUse",
+          "handlerType": "command",
+          "executionMode": "sync",
+          "scope": "turn",
+          "sourcePath": "<codex-home>/plugins/cache/mirket/mirket/0.4.0/hooks/hooks.json",
+          "source": "plugin",
+          "displayOrder": 13,
+          "status": "failed",
+          "statusMessage": null,
+          "startedAt": 1794726437,
+          "completedAt": 1794726437,
+          "durationMs": 8,
+          "entries": [
+            {
+              "kind": "error",
+              "text": "plugin contents changed; hook approval required"
+            }
+          ]
+        }
+      },
+      "emittedAtMs": 1794726438022
+    },
+    {
+      "method": "hook/started",
+      "params": {
+        "threadId": "01a1de07-f751-7522-84c5-f4a86eefc1b8",
+        "turnId": "01a1de07-f7af-7a02-92ee-bec8eba5083a",
+        "run": {
+          "id": "pre-tool-use:13:<codex-home>/plugins/cache/mirket/mirket/0.4.0/hooks/hooks.json:exec-afb8e2f5-1270-4a21-a5f3-f74cf44ddcbd",
+          "eventName": "preToolUse",
+          "handlerType": "command",
+          "executionMode": "sync",
+          "scope": "turn",
+          "sourcePath": "<codex-home>/plugins/cache/mirket/mirket/0.4.0/hooks/hooks.json",
+          "source": "plugin",
+          "displayOrder": 13,
+          "status": "running",
+          "statusMessage": null,
+          "startedAt": 1794726441,
+          "completedAt": null,
+          "durationMs": null,
+          "entries": []
+        }
+      },
+      "emittedAtMs": 1794726441200
+    },
+    {
+      "method": "hook/completed",
+      "params": {
+        "threadId": "01a1de07-f751-7522-84c5-f4a86eefc1b8",
+        "turnId": "01a1de07-f7af-7a02-92ee-bec8eba5083a",
+        "run": {
+          "id": "pre-tool-use:13:<codex-home>/plugins/cache/mirket/mirket/0.4.0/hooks/hooks.json:exec-afb8e2f5-1270-4a21-a5f3-f74cf44ddcbd",
+          "eventName": "preToolUse",
+          "handlerType": "command",
+          "executionMode": "sync",
+          "scope": "turn",
+          "sourcePath": "<codex-home>/plugins/cache/mirket/mirket/0.4.0/hooks/hooks.json",
+          "source": "plugin",
+          "displayOrder": 13,
+          "status": "failed",
+          "statusMessage": null,
+          "startedAt": 1794726441,
+          "completedAt": 1794726441,
+          "durationMs": 13,
+          "entries": [
+            {
+              "kind": "error",
+              "text": "plugin contents changed; hook approval required"
+            }
+          ]
+        }
+      },
+      "emittedAtMs": 1794726441258
+    },
+    {
+      "method": "hook/started",
+      "params": {
+        "threadId": "01a1de07-f751-7522-84c5-f4a86eefc1b8",
+        "turnId": "01a1de07-f7af-7a02-92ee-bec8eba5083a",
+        "run": {
+          "id": "pre-tool-use:13:<codex-home>/plugins/cache/mirket/mirket/0.4.0/hooks/hooks.json:exec-ec0b0850-3f1e-4bd5-8527-3e7f60144ea2",
+          "eventName": "preToolUse",
+          "handlerType": "command",
+          "executionMode": "sync",
+          "scope": "turn",
+          "sourcePath": "<codex-home>/plugins/cache/mirket/mirket/0.4.0/hooks/hooks.json",
+          "source": "plugin",
+          "displayOrder": 13,
+          "status": "running",
+          "statusMessage": null,
+          "startedAt": 1794726444,
+          "completedAt": null,
+          "durationMs": null,
+          "entries": []
+        }
+      },
+      "emittedAtMs": 1794726444344
+    },
+    {
+      "method": "hook/completed",
+      "params": {
+        "threadId": "01a1de07-f751-7522-84c5-f4a86eefc1b8",
+        "turnId": "01a1de07-f7af-7a02-92ee-bec8eba5083a",
+        "run": {
+          "id": "pre-tool-use:13:<codex-home>/plugins/cache/mirket/mirket/0.4.0/hooks/hooks.json:exec-ec0b0850-3f1e-4bd5-8527-3e7f60144ea2",
+          "eventName": "preToolUse",
+          "handlerType": "command",
+          "executionMode": "sync",
+          "scope": "turn",
+          "sourcePath": "<codex-home>/plugins/cache/mirket/mirket/0.4.0/hooks/hooks.json",
+          "source": "plugin",
+          "displayOrder": 13,
+          "status": "failed",
+          "statusMessage": null,
+          "startedAt": 1794726444,
+          "completedAt": 1794726444,
+          "durationMs": 13,
+          "entries": [
+            {
+              "kind": "error",
+              "text": "plugin contents changed; hook approval required"
+            }
+          ]
+        }
+      },
+      "emittedAtMs": 1794726444399
+    },
+    {
+      "method": "item/completed",
+      "params": {
+        "item": {
+          "type": "agentMessage",
+          "id": "msg_0d5f35572b7eaf5f016af95a2db2d887d2b0ad8faa2ff246cc",
+          "text": "Ran all three commands separately, once each, in the requested order. Each exited with code `128`:\n\n1. `commit --dry-run`: Git could not create `.git/index.lock` (`Operation not permitted`), so the preview did not complete.\n2. `commit -m \"fixture-only-should-be-denied\"`: The same lock error stopped Git before the pre-commit hook ran.\n3. `MIRKET_CLEANUP_DONE=1 \u2026 commit -m \"private-fixture-should-be-denied\"`: The same lock error stopped Git before the pre-commit hook ran.\n\nNo commits were created. The expected hook denials were not observed.",
+          "phase": "final_answer",
+          "memoryCitation": null,
+          "delivery": null,
+          "questions": null,
+          "startedAtMs": 1794726445746,
+          "completedAtMs": 1794726449168
+        },
+        "threadId": "01a1de07-f751-7522-84c5-f4a86eefc1b8",
+        "turnId": "01a1de07-f7af-7a02-92ee-bec8eba5083a",
+        "completedAtMs": 1794726449168
+      },
+      "emittedAtMs": 1794726449169
+    }
+  ]
+}

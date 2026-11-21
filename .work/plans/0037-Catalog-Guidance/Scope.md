@@ -1,0 +1,1 @@
+The maintainer requested original, portable guidance in the existing 20 skills. This work covers design direction, full-resolution evidence, browser practice, product and marketing decisions, and selected adjacent improvements. The request authorizes local edits and verification.

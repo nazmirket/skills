@@ -1,0 +1,620 @@
+{
+  "checked_at": "2026-11-11T10:31:08.115562+00:00",
+  "commit": "cf41945c46bde6fd581b25379733143794f02762",
+  "skill_count": 25,
+  "skill_slugs": [
+    "adapt",
+    "architect",
+    "audit",
+    "author",
+    "brief",
+    "clean",
+    "critique",
+    "curate",
+    "debug",
+    "deploy",
+    "design",
+    "distill",
+    "equip",
+    "focus",
+    "imagine",
+    "migrate",
+    "operate",
+    "orchestrate",
+    "plan",
+    "preflight",
+    "refactor",
+    "release",
+    "secure",
+    "sleep",
+    "test"
+  ],
+  "checked_responses": 71,
+  "responses": [
+    {
+      "path": "/",
+      "status": 200,
+      "matches_export": true,
+      "sha256": "e77e488fb9a31b44091d4e7c16df767da514f70e1a48c0e91084b9a0c891500e",
+      "content_type": "text/html",
+      "cache_control": "no-cache"
+    },
+    {
+      "path": "/docs/",
+      "status": 200,
+      "matches_export": true,
+      "sha256": "37524f74675997b0110b80713dfdaa4944ce078ecacaea7ac66e37614a7ff6e6",
+      "content_type": "text/html",
+      "cache_control": "no-cache"
+    },
+    {
+      "path": "/docs/memory/",
+      "status": 200,
+      "matches_export": true,
+      "sha256": "3c9c1886310db3fd178f4d252ba229883d9f7ded49762515340c62e12cc5a653",
+      "content_type": "text/html",
+      "cache_control": "no-cache"
+    },
+    {
+      "path": "/robots.txt",
+      "status": 200,
+      "matches_export": true,
+      "sha256": "68e1854a8f1b1049bc8eedce88c32e2aebcf8c159e23d26609081915d8e23190",
+      "content_type": "text/plain",
+      "cache_control": "no-cache"
+    },
+    {
+      "path": "/sitemap.xml",
+      "status": 200,
+      "matches_export": true,
+      "sha256": "bfc933708223f0738d696e47937815f42a6218cf955421160aa56555601a924b",
+      "content_type": "text/xml",
+      "cache_control": "no-cache"
+    },
+    {
+      "path": "/llms.txt",
+      "status": 200,
+      "matches_export": true,
+      "sha256": "6f558d9aa38028bae771f010634aabfe758adf75824c21b5f76c99c28cd1f987",
+      "content_type": "text/plain",
+      "cache_control": "no-cache"
+    },
+    {
+      "path": "/docs/skills/adapt/",
+      "status": 200,
+      "matches_export": true,
+      "sha256": "85bf1d28da20f504fa6c937fe8363f3a28a6ac173cf564ccf19d360fc049d83a",
+      "content_type": "text/html",
+      "cache_control": "no-cache"
+    },
+    {
+      "path": "/docs/skills/architect/",
+      "status": 200,
+      "matches_export": true,
+      "sha256": "80a236a1f162b015849b6ca5ccad1f31d0824ce7505951fc3051dd7da47bb126",
+      "content_type": "text/html",
+      "cache_control": "no-cache"
+    },
+    {
+      "path": "/docs/skills/audit/",
+      "status": 200,
+      "matches_export": true,
+      "sha256": "7db26824663c4faa621da7f156b97166c3aa6a364b9b7f1c48dff5ff05c01ba5",
+      "content_type": "text/html",
+      "cache_control": "no-cache"
+    },
+    {
+      "path": "/docs/skills/author/",
+      "status": 200,
+      "matches_export": true,
+      "sha256": "9f2d3693decf7bc7efb36188ef95b3948f3e87f7d38f5a3e8112396f0c748b0f",
+      "content_type": "text/html",
+      "cache_control": "no-cache"
+    },
+    {
+      "path": "/docs/skills/brief/",
+      "status": 200,
+      "matches_export": true,
+      "sha256": "07c3308ef9a428e19c77163ab098d355b2412de343f5fc8f5a0736397d97235f",
+      "content_type": "text/html",
+      "cache_control": "no-cache"
+    },
+    {
+      "path": "/docs/skills/clean/",
+      "status": 200,
+      "matches_export": true,
+      "sha256": "a520896d0756f83b20d2949b8b3fb1b82fcb67a8fec3ef2d51b7a1787113b921",
+      "content_type": "text/html",
+      "cache_control": "no-cache"
+    },
+    {
+      "path": "/docs/skills/critique/",
+      "status": 200,
+      "matches_export": true,
+      "sha256": "5eba31c2ca5661379f8ac8a6841a35a87fe43ab0bf1f6e21be3344232340b846",
+      "content_type": "text/html",
+      "cache_control": "no-cache"
+    },
+    {
+      "path": "/docs/skills/curate/",
+      "status": 200,
+      "matches_export": true,
+      "sha256": "ec7d15e2ca49044011f761a501e96ee7a3a566677a54ae891e52027dbe0c7a11",
+      "content_type": "text/html",
+      "cache_control": "no-cache"
+    },
+    {
+      "path": "/docs/skills/debug/",
+      "status": 200,
+      "matches_export": true,
+      "sha256": "da922cc20150d35dfcbc9d0d15228faf3f51df4f490ad31844ce71c3727df63c",
+      "content_type": "text/html",
+      "cache_control": "no-cache"
+    },
+    {
+      "path": "/docs/skills/deploy/",
+      "status": 200,
+      "matches_export": true,
+      "sha256": "669e88ea3138b29ffed4f5270f817ec277bba737fdb2d70c4fbd96c59397c065",
+      "content_type": "text/html",
+      "cache_control": "no-cache"
+    },
+    {
+      "path": "/docs/skills/design/",
+      "status": 200,
+      "matches_export": true,
+      "sha256": "c20c49772f057eb148abd50f53c4cd8986995c9c2b375e1fc27fcd2e598b4b42",
+      "content_type": "text/html",
+      "cache_control": "no-cache"
+    },
+    {
+      "path": "/docs/skills/distill/",
+      "status": 200,
+      "matches_export": true,
+      "sha256": "f1169fa373d674d6ae2d344c52923627a202d72e00a2f70039ad2cb2f3edea9e",
+      "content_type": "text/html",
+      "cache_control": "no-cache"
+    },
+    {
+      "path": "/docs/skills/equip/",
+      "status": 200,
+      "matches_export": true,
+      "sha256": "59021d806e9d4faf4a8511a5be7a483f24b6d5cd7f6c4b2788299fe899299d3e",
+      "content_type": "text/html",
+      "cache_control": "no-cache"
+    },
+    {
+      "path": "/docs/skills/focus/",
+      "status": 200,
+      "matches_export": true,
+      "sha256": "e1802690dff7f80ad20c18e347a177edc5ca3ecba0bee1770c213a45d41c8328",
+      "content_type": "text/html",
+      "cache_control": "no-cache"
+    },
+    {
+      "path": "/docs/skills/imagine/",
+      "status": 200,
+      "matches_export": true,
+      "sha256": "f158e82be9db4aba69d0b0f58c79a38a94a14375e7063bd9c0d1cc353dfc7c37",
+      "content_type": "text/html",
+      "cache_control": "no-cache"
+    },
+    {
+      "path": "/docs/skills/migrate/",
+      "status": 200,
+      "matches_export": true,
+      "sha256": "a135fda15de91c98f439150f116a6f95e1397c367b55955e11380e0af97ce2b9",
+      "content_type": "text/html",
+      "cache_control": "no-cache"
+    },
+    {
+      "path": "/docs/skills/operate/",
+      "status": 200,
+      "matches_export": true,
+      "sha256": "c0fc6725a9e7b9dec07c9174ff165c3de9db332d19e6803dd6259c3c905d0de0",
+      "content_type": "text/html",
+      "cache_control": "no-cache"
+    },
+    {
+      "path": "/docs/skills/orchestrate/",
+      "status": 200,
+      "matches_export": true,
+      "sha256": "5cba07f4795b37fce7d85f9ae301a41a5dc072925cb2f1793925246d9aceb392",
+      "content_type": "text/html",
+      "cache_control": "no-cache"
+    },
+    {
+      "path": "/docs/skills/plan/",
+      "status": 200,
+      "matches_export": true,
+      "sha256": "f8d4dff8bd2e18ecbd01704d158c42e9b7e5ffbed4261a2b9e2812b0398b336e",
+      "content_type": "text/html",
+      "cache_control": "no-cache"
+    },
+    {
+      "path": "/docs/skills/preflight/",
+      "status": 200,
+      "matches_export": true,
+      "sha256": "e62a80503d1892a168d141e68add4f8b5d33f64eaa64f841ff38611d9c58cfde",
+      "content_type": "text/html",
+      "cache_control": "no-cache"
+    },
+    {
+      "path": "/docs/skills/refactor/",
+      "status": 200,
+      "matches_export": true,
+      "sha256": "9f166d920e46c609ab4d5c8d559439f31d1cca352d77ef77fdb8e7bdbecb227f",
+      "content_type": "text/html",
+      "cache_control": "no-cache"
+    },
+    {
+      "path": "/docs/skills/release/",
+      "status": 200,
+      "matches_export": true,
+      "sha256": "d81ccdd2777c7cc32d75966494c42329a4de310e536a476e2751392c7604d98c",
+      "content_type": "text/html",
+      "cache_control": "no-cache"
+    },
+    {
+      "path": "/docs/skills/secure/",
+      "status": 200,
+      "matches_export": true,
+      "sha256": "7152979cdd5c4c90291514417b0e04515628d558a9711424379896289fef4dea",
+      "content_type": "text/html",
+      "cache_control": "no-cache"
+    },
+    {
+      "path": "/docs/skills/sleep/",
+      "status": 200,
+      "matches_export": true,
+      "sha256": "6d4c5a832428e29c40ba6b65a3dfb707204dbc96d32a8a66b21fe3cc20c568b4",
+      "content_type": "text/html",
+      "cache_control": "no-cache"
+    },
+    {
+      "path": "/docs/skills/test/",
+      "status": 200,
+      "matches_export": true,
+      "sha256": "7cfab86e77d11120ca9a4e60a8804f4a89c538bf43e6ea8ec0e20ba9711d890e",
+      "content_type": "text/html",
+      "cache_control": "no-cache"
+    },
+    {
+      "path": "/social/skill-clean-v2.png",
+      "status": 200,
+      "matches_export": true,
+      "sha256": "457800ed601177daa5aa02041eecd2328ee53ef393974862346608a7f784d233",
+      "content_type": "image/png",
+      "cache_control": "no-cache"
+    },
+    {
+      "path": "/social/skill-audit-v2.png",
+      "status": 200,
+      "matches_export": true,
+      "sha256": "25facafaf4adb00d5e47e427c64f9b4aaa5008e2edd308a9e16b3852b444830f",
+      "content_type": "image/png",
+      "cache_control": "no-cache"
+    },
+    {
+      "path": "/social/skill-secure-v2.png",
+      "status": 200,
+      "matches_export": true,
+      "sha256": "9b14ebdbf788fa5e03dc3d0a42a1b3d148fa46e010fbb35a87c6f9e05a9b7865",
+      "content_type": "image/png",
+      "cache_control": "no-cache"
+    },
+    {
+      "path": "/social/skill-design-v2.png",
+      "status": 200,
+      "matches_export": true,
+      "sha256": "de4ba2c98f16b50815058b9d50cab04544182ca0052097dbcb64a0b17ab07d1c",
+      "content_type": "image/png",
+      "cache_control": "no-cache"
+    },
+    {
+      "path": "/social/skill-migrate-v2.png",
+      "status": 200,
+      "matches_export": true,
+      "sha256": "fdfcfea514b3795c8e85a69d25c63357cac5d6617b1031becb8d8009ea8f8595",
+      "content_type": "image/png",
+      "cache_control": "no-cache"
+    },
+    {
+      "path": "/social/documentation-v2.png",
+      "status": 200,
+      "matches_export": true,
+      "sha256": "cf92a49fb50b52b0f3b935db258b596d4605ed91388f7017083aa0fe8c3776e9",
+      "content_type": "image/png",
+      "cache_control": "no-cache"
+    },
+    {
+      "path": "/social/skill-critique-v2.png",
+      "status": 200,
+      "matches_export": true,
+      "sha256": "ce482c46bac81acdb1d097c82ba137c6b4ce93eb5002099dea5044970f6ccdff",
+      "content_type": "image/png",
+      "cache_control": "no-cache"
+    },
+    {
+      "path": "/social/skill-brief-v2.png",
+      "status": 200,
+      "matches_export": true,
+      "sha256": "36113765371cee3f200271046fc7d307b847f5919d6a83d2b47e59375031613d",
+      "content_type": "image/png",
+      "cache_control": "no-cache"
+    },
+    {
+      "path": "/social/skill-test-v2.png",
+      "status": 200,
+      "matches_export": true,
+      "sha256": "fb8ebf387a2a372215e3e7f6a8210233335d4e0b7dac9dd850d1e6ea15f7cb67",
+      "content_type": "image/png",
+      "cache_control": "no-cache"
+    },
+    {
+      "path": "/social/skill-focus-v2.png",
+      "status": 200,
+      "matches_export": true,
+      "sha256": "7f7aa84e99f1b601387d501c6fd436954f89d2795362e902274c600797f7e91b",
+      "content_type": "image/png",
+      "cache_control": "no-cache"
+    },
+    {
+      "path": "/social/skill-distill-v2.png",
+      "status": 200,
+      "matches_export": true,
+      "sha256": "03fac56cb2439b536c781cb620f501c66cafde560788b1db988fa5a00a3a85a0",
+      "content_type": "image/png",
+      "cache_control": "no-cache"
+    },
+    {
+      "path": "/social/local-hindsight-v2.png",
+      "status": 200,
+      "matches_export": true,
+      "sha256": "06842f82768352df3eedebfbeca04fa15868560994eabaf29efb16328ab0766e",
+      "content_type": "image/png",
+      "cache_control": "no-cache"
+    },
+    {
+      "path": "/social/skill-sleep-v2.png",
+      "status": 200,
+      "matches_export": true,
+      "sha256": "d10a7b04906494b5b14169c0b27056a89aa5faf1192c80b206728b4a0495fa1b",
+      "content_type": "image/png",
+      "cache_control": "no-cache"
+    },
+    {
+      "path": "/social/skill-debug-v2.png",
+      "status": 200,
+      "matches_export": true,
+      "sha256": "9cb86408e3429fb4a407394b56cce1194b81bc7b0d95adeb940f540511c5f684",
+      "content_type": "image/png",
+      "cache_control": "no-cache"
+    },
+    {
+      "path": "/social/skill-deploy-v2.png",
+      "status": 200,
+      "matches_export": true,
+      "sha256": "2e023e080ff8703c4071d03acce8924324c919dfeeb4fe57b46be4ead1d50c45",
+      "content_type": "image/png",
+      "cache_control": "no-cache"
+    },
+    {
+      "path": "/social/skill-preflight-v2.png",
+      "status": 200,
+      "matches_export": true,
+      "sha256": "6463d155c359a1013236e9d3e2dd0fc533af7791c90e8b606a8c4be7662c4151",
+      "content_type": "image/png",
+      "cache_control": "no-cache"
+    },
+    {
+      "path": "/social/skill-refactor-v2.png",
+      "status": 200,
+      "matches_export": true,
+      "sha256": "0c63680bc41b75cd33ecff5257ff22e50f379f4e9dc27ae01ad0440eb4fbbd05",
+      "content_type": "image/png",
+      "cache_control": "no-cache"
+    },
+    {
+      "path": "/social/skill-orchestrate-v2.png",
+      "status": 200,
+      "matches_export": true,
+      "sha256": "378014f830bafd1a29371d3bf6cfc92ec9590e0d84a308920db256d297464826",
+      "content_type": "image/png",
+      "cache_control": "no-cache"
+    },
+    {
+      "path": "/social/skill-curate-v2.png",
+      "status": 200,
+      "matches_export": true,
+      "sha256": "dd3d03372d6a7abd6625e5c1cb95a3b66849a42cd95e635ec032add03e7a3071",
+      "content_type": "image/png",
+      "cache_control": "no-cache"
+    },
+    {
+      "path": "/social/skill-adapt-v2.png",
+      "status": 200,
+      "matches_export": true,
+      "sha256": "1258f18488e480569312b0446465dc184eb07e425f2b5dfe1c09530983b21db7",
+      "content_type": "image/png",
+      "cache_control": "no-cache"
+    },
+    {
+      "path": "/social/skill-imagine-v2.png",
+      "status": 200,
+      "matches_export": true,
+      "sha256": "c3c0121bc4c0ab3c289d09e7bb037ab406ce9f75f906c1afc56196b0cc16f5cf",
+      "content_type": "image/png",
+      "cache_control": "no-cache"
+    },
+    {
+      "path": "/social/skill-equip-v2.png",
+      "status": 200,
+      "matches_export": true,
+      "sha256": "28da109a8fb2271ed761ee6131dbd56239aa420772a0bf1e483db8e57c0c392f",
+      "content_type": "image/png",
+      "cache_control": "no-cache"
+    },
+    {
+      "path": "/social/mirket-v2.png",
+      "status": 200,
+      "matches_export": true,
+      "sha256": "c875253f67bd9ec604470819ed9ee9c4acc45bb8f289e8104b53176964bc8e03",
+      "content_type": "image/png",
+      "cache_control": "no-cache"
+    },
+    {
+      "path": "/social/skill-operate-v2.png",
+      "status": 200,
+      "matches_export": true,
+      "sha256": "ad0e06bc108b24f1d4ccebdc6e7cdd2bc3eacba1b9c4ac6a4f8430c9ba85de4c",
+      "content_type": "image/png",
+      "cache_control": "no-cache"
+    },
+    {
+      "path": "/social/skill-release-v2.png",
+      "status": 200,
+      "matches_export": true,
+      "sha256": "7c891540cd070082a2c5fff8c2681eea0cfcc095dadf77fc8070464065009f24",
+      "content_type": "image/png",
+      "cache_control": "no-cache"
+    },
+    {
+      "path": "/social/skill-architect-v2.png",
+      "status": 200,
+      "matches_export": true,
+      "sha256": "d1049ce23209c8b15ca909b063bd20cc7cb81f56bf542ce42f64c0d6a3c87365",
+      "content_type": "image/png",
+      "cache_control": "no-cache"
+    },
+    {
+      "path": "/social/skill-plan-v2.png",
+      "status": 200,
+      "matches_export": true,
+      "sha256": "96a41847b8065ecb289d66fc14cfbcfb413753cb5675eede99df3a78d2172d97",
+      "content_type": "image/png",
+      "cache_control": "no-cache"
+    },
+    {
+      "path": "/social/skill-author-v2.png",
+      "status": 200,
+      "matches_export": true,
+      "sha256": "8f2747c1bfd5fe2ae9ffcbe4abbc93c2b37d7c56ce6cb88532a0918589aecaa3",
+      "content_type": "image/png",
+      "cache_control": "no-cache"
+    },
+    {
+      "path": "/_next/static/chunks/2-liacn1-fmrj.js",
+      "status": 200,
+      "matches_export": true,
+      "sha256": "5b52d11f10b21da5f96a70b186335b6ce0886b4238099ef4b534cf1ae3e83da3",
+      "content_type": "application/javascript",
+      "cache_control": "public, max-age=31536000, immutable"
+    },
+    {
+      "path": "/_next/static/chunks/0c98xzjfks9hq.js",
+      "status": 200,
+      "matches_export": true,
+      "sha256": "b88c90eab0168f0d183a364bc2b7cd65ca72995d1344f3a32224719e2ef6e409",
+      "content_type": "application/javascript",
+      "cache_control": "public, max-age=31536000, immutable"
+    },
+    {
+      "path": "/_next/static/chunks/3airlue-emlqe.css",
+      "status": 200,
+      "matches_export": true,
+      "sha256": "a832faf77e6df1481eaa8fb9f9778c600931a1d9a6d66dac81a4c32c41d17957",
+      "content_type": "text/css",
+      "cache_control": "public, max-age=31536000, immutable"
+    },
+    {
+      "path": "/_next/static/chunks/2if7jmaq4jpxr.js",
+      "status": 200,
+      "matches_export": true,
+      "sha256": "0cf27154b66186823361d66ff684aa09a1f593e90a3f87927d9646dfd55819de",
+      "content_type": "application/javascript",
+      "cache_control": "public, max-age=31536000, immutable"
+    },
+    {
+      "path": "/_next/static/chunks/turbopack-077hmtqrhcoji.js",
+      "status": 200,
+      "matches_export": true,
+      "sha256": "3f0ba0c36a0758d76b55b6717fd77e65f46ae1295bb22fa441476e1eb7854d51",
+      "content_type": "application/javascript",
+      "cache_control": "public, max-age=31536000, immutable"
+    },
+    {
+      "path": "/_next/static/chunks/1pcw6gskne7pf.js",
+      "status": 200,
+      "matches_export": true,
+      "sha256": "6dbc40a359da7b95b1b5d62b81884098dc2a8bc342bb4493b87712049f4fac08",
+      "content_type": "application/javascript",
+      "cache_control": "public, max-age=31536000, immutable"
+    },
+    {
+      "path": "/_next/static/chunks/2e87_uhac6-t7.js",
+      "status": 200,
+      "matches_export": true,
+      "sha256": "06bb5fbb27d83da7d68491e23ea1a8418e542504bbf23587f19b293af307b4a2",
+      "content_type": "application/javascript",
+      "cache_control": "public, max-age=31536000, immutable"
+    },
+    {
+      "path": "/_next/static/chunks/0vm8zo6v48m9c.js",
+      "status": 200,
+      "matches_export": true,
+      "sha256": "df010fb26daadc10b973aafa21246ae68c7d9aad023f3cf13b45a5a19a4e788e",
+      "content_type": "application/javascript",
+      "cache_control": "public, max-age=31536000, immutable"
+    },
+    {
+      "path": "/_next/static/chunks/0cz1d0mv5g_q7.js",
+      "status": 200,
+      "matches_export": true,
+      "sha256": "0973c1d64c88adc8e3c950410cb58b288f72118d5965b78049438deb8f2f9683",
+      "content_type": "application/javascript",
+      "cache_control": "public, max-age=31536000, immutable"
+    },
+    {
+      "path": "/docs/index.txt",
+      "status": 200,
+      "matches_export": true,
+      "sha256": "47ba82c18aa34b114e53fd942cfb6f3f86598ace4ee1f95f7ac13bade19368c8",
+      "content_type": "text/plain",
+      "cache_control": "no-cache"
+    },
+    {
+      "path": "/docs/memory/index.txt",
+      "status": 200,
+      "matches_export": true,
+      "sha256": "8ec79dfab194407f6a3c4e517e4481795e73188cea7bab4982cf417edd413ae3",
+      "content_type": "text/plain",
+      "cache_control": "no-cache"
+    },
+    {
+      "path": "/docs/skills/secure/index.txt",
+      "status": 200,
+      "matches_export": true,
+      "sha256": "1deeeb0ae26af79c67529f38557012b71451f5d7b0729b29e8bd043133d0871f",
+      "content_type": "text/plain",
+      "cache_control": "no-cache"
+    }
+  ],
+  "installation_and_memory_terms": {
+    "docs": [
+      "codex plugin marketplace add https://github.com/nazmirket/skills.git",
+      "claude plugin marketplace add nazmirket/skills",
+      "25 skills"
+    ],
+    "memory": [
+      "--freshness",
+      "--refresh-pages",
+      "pending and processing operations separately",
+      "hindsight_capture_initiative",
+      "source_query",
+      "capture policy"
+    ]
+  },
+  "missing_route_status": 404,
+  "sibling_byte_unchanged": true
+}

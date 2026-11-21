@@ -1,0 +1,48 @@
+ M CONTRIBUTING.md
+ M README.md
+ M docs/README.md
+ M instructions/AGENTS.md
+ M instructions/CLAUDE.md
+ M plugins/mirket/hooks/cleanup.py
+ M plugins/mirket/hooks/distill.py
+R  plugins/mirket/references/measured-improvement.md -> plugins/mirket/references/MeasuredImprovement.md
+RM plugins/mirket/references/prototype.md -> plugins/mirket/references/Prototype.md
+R  plugins/mirket/references/review-loop.md -> plugins/mirket/references/ReviewLoop.md
+RM plugins/mirket/references/routing.md -> plugins/mirket/references/Routing.md
+RM plugins/mirket/references/workspace.md -> plugins/mirket/references/Workspace.md
+ M plugins/mirket/skills/architect/SKILL.md
+ M plugins/mirket/skills/audit/SKILL.md
+ M plugins/mirket/skills/author/SKILL.md
+RM plugins/mirket/skills/author/references/issue-triage.md -> plugins/mirket/skills/author/references/IssueTriage.md
+ M plugins/mirket/skills/brief/SKILL.md
+ M plugins/mirket/skills/clean/SKILL.md
+ M plugins/mirket/skills/critique/SKILL.md
+R  plugins/mirket/skills/critique/references/ui-stress.md -> plugins/mirket/skills/critique/references/UiStress.md
+ M plugins/mirket/skills/curate/SKILL.md
+ M plugins/mirket/skills/debug/SKILL.md
+ M plugins/mirket/skills/design/SKILL.md
+R  plugins/mirket/skills/design/references/adaptive-and-accessible.md -> plugins/mirket/skills/design/references/AdaptiveAndAccessible.md
+RM plugins/mirket/skills/design/references/artifacts-and-assets.md -> plugins/mirket/skills/design/references/ArtifactsAndAssets.md
+R  plugins/mirket/skills/design/references/direction-and-composition.md -> plugins/mirket/skills/design/references/DirectionAndComposition.md
+RM plugins/mirket/skills/design/references/generative-work.md -> plugins/mirket/skills/design/references/GenerativeWork.md
+R  plugins/mirket/skills/design/references/identity-and-systems.md -> plugins/mirket/skills/design/references/IdentityAndSystems.md
+RM plugins/mirket/skills/design/references/interaction-and-content.md -> plugins/mirket/skills/design/references/InteractionAndContent.md
+R  plugins/mirket/skills/design/references/motion-and-gestures.md -> plugins/mirket/skills/design/references/MotionAndGestures.md
+R  plugins/mirket/skills/design/references/reference-fidelity.md -> plugins/mirket/skills/design/references/ReferenceFidelity.md
+R  plugins/mirket/skills/design/references/review-and-delivery.md -> plugins/mirket/skills/design/references/ReviewAndDelivery.md
+RM plugins/mirket/skills/design/references/visual-language.md -> plugins/mirket/skills/design/references/VisualLanguage.md
+ M plugins/mirket/skills/equip/SKILL.md
+R  plugins/mirket/skills/equip/references/fit-scenarios.md -> plugins/mirket/skills/equip/references/FitScenarios.md
+ M plugins/mirket/skills/focus/SKILL.md
+ M plugins/mirket/skills/imagine/SKILL.md
+ M plugins/mirket/skills/orchestrate/SKILL.md
+ M plugins/mirket/skills/plan/SKILL.md
+ M plugins/mirket/skills/refactor/SKILL.md
+ M plugins/mirket/skills/sleep/SKILL.md
+ M plugins/mirket/skills/test/SKILL.md
+ D plugins/mirket/sources.json
+ M tests/test_cleanup_hooks.py
+ M tests/test_distill_hook.py
+?? docs/decisions/
+?? tests/HostSmoke.md
+?? tests/test_package_wiring.py

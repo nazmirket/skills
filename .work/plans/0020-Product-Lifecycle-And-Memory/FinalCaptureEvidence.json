@@ -1,0 +1,34 @@
+[
+  {
+    "id": "conversation:01a1c9dd-29f9-7311-947a-4fa1b6483e68",
+    "bank_id": "coding-agent::desktop-skills",
+    "content_hash": "35145347724992ee1685dcc11464dcaec7df8cef74d7638b0dbe94f359f624f2",
+    "created_at": "2026-11-11T09:08:13.771708+00:00",
+    "updated_at": "2026-11-11T09:08:13.771708+00:00",
+    "text_length": 647,
+    "memory_unit_count": 1,
+    "retain_params": {
+      "context": "conversation between the user and you (the coding agent): user turns are the user's words and decisions, assistant turns are yours. When an assistant turn says something is fixed, passes or works, record it as the agent's claim (\"the agent reported X fixed\"), not as an established fact.",
+      "metadata": {
+        "ref_id": "conversation:01a1c9dd-29f9-7311-947a-4fa1b6483e68",
+        "source": "chat",
+        "harness": "codex",
+        "session_id": "01a1c9dd-29f9-7311-947a-4fa1b6483e68"
+      },
+      "strategy": "conversation",
+      "event_date": "2026-11-11T09:08:01.116000+00:00",
+      "observation_scopes": "shared"
+    },
+    "document_metadata": {
+      "ref_id": "conversation:01a1c9dd-29f9-7311-947a-4fa1b6483e68",
+      "source": "chat",
+      "harness": "codex",
+      "session_id": "01a1c9dd-29f9-7311-947a-4fa1b6483e68"
+    },
+    "tags": [
+      "source:chat",
+      "harness:codex"
+    ],
+    "matched_fields": []
+  }
+]

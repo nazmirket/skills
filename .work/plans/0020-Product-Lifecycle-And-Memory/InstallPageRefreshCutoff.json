@@ -1,0 +1,16 @@
+{
+  "id": "correction-mirket-0-4-0-installed-state-lifecycle-ownership-and-current-working-conventions",
+  "created_at": "2026-11-11T09:32:18.669383+00:00",
+  "updated_at": "2026-11-11T09:32:18.669383+00:00",
+  "content_hash": "82b834f4ffb250002e8a469eecbd8aa916e14cb518b7619f593a7399716f7146",
+  "memory_unit_count": 11,
+  "tags": [
+    "harness:codex",
+    "source:upload"
+  ],
+  "document_metadata": {
+    "harness": "codex"
+  },
+  "observed_at": "2026-11-11T09:34:33.647555+00:00",
+  "bank_id": "coding-agent::desktop-skills"
+}

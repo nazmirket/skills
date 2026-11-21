@@ -1,0 +1,22 @@
+{
+  "operation_id": "8ec6e7b6-7e8d-4c9a-9d50-2bd8fed9c04b",
+  "status": "processing",
+  "operation_type": "refresh_mental_model",
+  "id": "8ec6e7b6-7e8d-4c9a-9d50-2bd8fed9c04b",
+  "task_type": "refresh_mental_model",
+  "mental_model_id": "mm-408496ae0b4149309a00cfaeae4ba95a",
+  "created_at": "2026-11-11T09:52:12.561633+00:00",
+  "updated_at": "2026-11-11T09:52:12.777265+00:00",
+  "completed_at": null,
+  "error_message": null,
+  "retry_count": 0,
+  "next_retry_at": null,
+  "progress": null,
+  "result_metadata": {
+    "name": "Component map",
+    "mental_model_id": "mm-408496ae0b4149309a00cfaeae4ba95a"
+  },
+  "details": null,
+  "child_operations": null,
+  "task_payload": null
+}

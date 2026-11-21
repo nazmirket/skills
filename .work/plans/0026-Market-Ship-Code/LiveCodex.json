@@ -1,0 +1,42 @@
+{
+  "market-brand-voice": {
+    "owner": "market",
+    "reference": "BrandAndVoice.md",
+    "fixture_writes": [],
+    "prompt": "Read Context.md and relevant fixture files first. Define a brand voice from our approved samples and rewrite the onboarding and billing lines in that voice. Keep this as a draft.",
+    "successful_reads": [
+      "/bin/zsh -lc 'cat <run>/home/plugins/cache/mirket/mirket/0.4.0/skills/{market,author}/SKILL.md'",
+      "/bin/zsh -lc 'ls -a; rg --files --hidden'",
+      "/bin/zsh -lc 'cat <run>/home/plugins/cache/mirket/mirket/0.4.0/skills/market/references/BrandAndVoice.md <run>/home/plugins/cache/mirket/mirket/0.4.0/skills/execute/SKILL.md'",
+      "/bin/zsh -lc 'cat Context.md Brand.md Draft.md Prompt.md README.md app.py test_app.py'"
+    ],
+    "final": "## Brand voice \u2014 internal draft\n\nPlain, practical, and calm. Speak directly to the reader and use concrete product terms.\n\n- **Lead with the action.** Use a short verb phrase that tells readers what they\u2019ll do. \u201cMake your first report with one sample\u201d names both the task and what they\u2019ll use.\n- **Name the result.** \u201cYour export is ready in Downloads\u201d tells readers what happened and where to find it. Keep details that help them act.\n- **State problems and obligations plainly.** The address message explains what happened and gives a specific next step. For billing, use the same matter-of-fact tone and put the plan term, renewal date, and amount in one sentence.\n\n[Approved samples](<run>/cases/market-brand-voice/Brand.md)\n\n## Revised copy \u2014 internal draft\n\n| Surface | Draft |\n|---|---|\n| Onboarding | Open the sample report. |\n| Billing | Your annual plan renews on June 20 for $120. |\n\nThe onboarding line assumes the copy labels the action that opens the sample report. [Original lines](<run>/cases/market-brand-voice/Draft.md)"
+  },
+  "ship-product-readiness": {
+    "owner": "ship",
+    "reference": "DeliveryAndReadiness.md",
+    "fixture_writes": [],
+    "prompt": "Read Context.md and relevant fixture files first. Are we ready to launch shared reports to all customers, or should we narrow or hold? Give a product readiness recommendation based on the supplied notes.",
+    "successful_reads": [
+      "/bin/zsh -lc 'cat <run>/home/plugins/cache/mirket/mirket/0.4.0/skills/{ship,execute}/SKILL.md'",
+      "/bin/zsh -lc 'cat Context.md; rg --files --hidden'",
+      "/bin/zsh -lc 'cat Readiness.md README.md Prompt.md app.py test_app.py'",
+      "/bin/zsh -lc 'cat <run>/home/plugins/cache/mirket/mirket/0.4.0/skills/ship/references/DeliveryAndReadiness.md'"
+    ],
+    "final": "**Hold the all-customer launch and keep shared reports in staff preview.** In v1.4.2, report creation and viewing passed with staff-only test accounts. Support and help copy are ready, and the opt-in flag is off. The launch blocker is unverified cross-workspace access for customer accounts. [Readiness.md](Readiness.md)\n\nBefore exposing the feature to customers, have engineering verify that intended customer recipients can open shared reports and that unauthorized accounts are denied. If both checks pass, I\u2019d recommend a limited opt-in cohort before expanding to all customers. Any unintended access or failure for an intended recipient should pause expansion and return the decision to the product owner."
+  },
+  "code-react-state-review": {
+    "owner": "code",
+    "reference": "React.md",
+    "fixture_writes": [],
+    "prompt": "Read Context.md and relevant fixture files first. Which React practice would you use to simplify the stale derived state in List.jsx? Explain the smallest change and how to verify it. Advice only.",
+    "successful_reads": [
+      "/bin/zsh -lc 'cat <run>/home/plugins/cache/mirket/mirket/0.4.0/skills/code/SKILL.md'",
+      "/bin/zsh -lc \"cat Context.md; rg --files --hidden -g '\"'!.git'\"'\"",
+      "/bin/zsh -lc \"cat '<run>/home/plugins/cache/mirket/mirket/0.4.0/skills/code/references/README.md'; rg --files '<run>/home/plugins/cache/mirket/mirket/0.4.0/skills/code/references' | rg -i react\"",
+      "/bin/zsh -lc 'cat app.py test_app.py'",
+      "/bin/zsh -lc 'cat <run>/home/plugins/cache/mirket/mirket/0.4.0/skills/code/references/React.md'"
+    ],
+    "final": "Derive `visible` from props during render. In [List.jsx](<run>/cases/code-react-state-review/List.jsx:3), remove the `useState` and `useEffect` calls and their import, then use:\n\n```jsx\nconst visible = items.filter(item => item.name.includes(query));\n```\n\nKeep the existing JSX and `item.id` keys. The current effect only reruns when `query` changes, so an `items` update with the same query can leave stale rows. Filtering during render uses both current props immediately, including on the first render.\n\nTo verify, render with `[\"apple\", \"banana\"]` and query `\"ap\"` and expect only `apple`. Replace `items` with `[\"apricot\", \"banana\"]` while keeping `\"ap\"` and expect only `apricot`. Then change the query to `\"ban\"` and expect only `banana`. Use item objects with stable IDs for each case. The fixture\u2019s Python tests cover `total()` and provide no React coverage."
+  }
+}

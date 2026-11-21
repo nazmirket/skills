@@ -1,0 +1,189 @@
+{
+  "observed_at": "2026-11-11T09:40:07.344094+00:00",
+  "document": {
+    "id": "initiative-marker-kp-5d3a84ca72374015b13892171f125528-update",
+    "bank_id": "coding-agent::desktop-skills",
+    "original_text": "Update to an existing initiative: Expand Mirket to 25 skills and make project memory reliable. The user expanded this initiative from source-candidate preparation to installing local Mirket 0.4.0 in the normal Codex and Claude environments, adopting matching live global instructions, and completing all 26 knowledge-page refreshes; both installations now exactly match the 76-file package with all25 native skills, with no commit, public release or website deployment. Current lifecycle ownership is Secure security/privacy, Migrate persistent state, Release versioned artifacts/distribution, Deploy environment rollout, and Operate health/recovery; Distill owns routine communication, Author owns durable documents/substantive copy/issues, settled ADRs go in docs/decisions while .work/decisions is private drafts, references use PascalCase including Routing.md and Memory.md, and existing execution authorization suffices for delegation without a separately approved written plan. The verified Codex0.167.0 hook-discovery defect required .codex-plugin/plugin.json alongside the Claude descriptor and removal of portable root plugin.json: normal installed Codex now discovers25skills/four trusted active hooks and actual fresh sessions passed startup/prompt guidance, dry-run allowance, absolute-target and staged-.work commit denials, neutral default Stop and exactly one opt-in review continuation; Claude startup/prompt hooks pass but model-driven verification requires login, and final page synthesis is being checked for semantic currency after consolidated corrections rather than treating timestamps as sufficient.",
+    "content_hash": "5bb172bcac3b8c50c9f3105390f932519b5e9d5bc039a38e09097ef4e58c381b",
+    "created_at": "2026-11-11T09:39:24.635022+00:00",
+    "updated_at": "2026-11-11T09:39:24.635022+00:00",
+    "memory_unit_count": 5,
+    "nodes_by_fact_type": {
+      "world": 5,
+      "experience": 0,
+      "observation": 0
+    },
+    "tags": [
+      "knowledge:feature-work"
+    ],
+    "document_metadata": {
+      "relatedPageId": "kp-5d3a84ca72374015b13892171f125528"
+    },
+    "retain_params": {
+      "context": "initiative marker for [[page:kp-5d3a84ca72374015b13892171f125528]]",
+      "metadata": {
+        "relatedPageId": "kp-5d3a84ca72374015b13892171f125528"
+      },
+      "strategy": "document",
+      "observation_scopes": "shared"
+    },
+    "observation_scopes": "shared",
+    "attachments": null
+  },
+  "facts": {
+    "items": [
+      {
+        "id": "92f75c38-8d3c-4767-ba38-575cf619bc81",
+        "text": "Fresh Codex sessions passed startup and prompt guidance, dry-run allowance, absolute-target denial, staged-.work commit denial, neutral default Stop, and exactly one opt-in review continuation. Claude startup and prompt hooks pass, but model-driven verification still requires login; final knowledge-page synthesis is being checked for semantic currency rather than relying on timestamps alone. | Where: Codex and Claude environments | These verification constraints define the current validation status and acceptance criteria.",
+        "context": "initiative marker for [[page:kp-5d3a84ca72374015b13892171f125528]]",
+        "date": "2026-11-11T09:38:58.980272+00:00",
+        "fact_type": "world",
+        "document_id": "initiative-marker-kp-5d3a84ca72374015b13892171f125528-update",
+        "mentioned_at": "2026-11-11T09:38:58.980272+00:00",
+        "occurred_start": null,
+        "occurred_end": null,
+        "entities": "Claude, Codex, hooks, knowledge pages, knowledge:component, knowledge:convention",
+        "chunk_id": "coding-agent::desktop-skills_initiative-marker-kp-5d3a84ca72374015b13892171f125528-update_0",
+        "proof_count": 1,
+        "tags": [
+          "knowledge:feature-work",
+          "knowledge:convention",
+          "knowledge:component"
+        ],
+        "metadata": {
+          "relatedPageId": "kp-5d3a84ca72374015b13892171f125528"
+        },
+        "consolidated_at": null,
+        "consolidation_failed_at": null,
+        "state": "valid",
+        "invalidation_reason": null,
+        "invalidated_at": null,
+        "edited_at": null,
+        "updated_at": "2026-11-11T09:39:24.635022+00:00",
+        "source_memory_ids": []
+      },
+      {
+        "id": "dff3bae4-fcec-4384-855c-1eb5d17d2cdb",
+        "text": "A verified Codex 0.167.0 hook-discovery defect was resolved by adding .codex-plugin/plugin.json alongside the Claude descriptor and removing the portable root plugin.json. Normal installed Codex now discovers 25 skills and four trusted active hooks. | Where: Codex and Claude plugin environments | The change fixes hook discovery in the normal installed Codex environment.",
+        "context": "initiative marker for [[page:kp-5d3a84ca72374015b13892171f125528]]",
+        "date": "2026-11-11T09:38:58.970272+00:00",
+        "fact_type": "world",
+        "document_id": "initiative-marker-kp-5d3a84ca72374015b13892171f125528-update",
+        "mentioned_at": "2026-11-11T09:38:58.970272+00:00",
+        "occurred_start": null,
+        "occurred_end": null,
+        "entities": ".codex-plugin/plugin.json, Claude, Codex 0.167.0, hooks, knowledge:component, knowledge:decision, plugin.json",
+        "chunk_id": "coding-agent::desktop-skills_initiative-marker-kp-5d3a84ca72374015b13892171f125528-update_0",
+        "proof_count": 1,
+        "tags": [
+          "knowledge:feature-work",
+          "knowledge:decision",
+          "knowledge:component"
+        ],
+        "metadata": {
+          "relatedPageId": "kp-5d3a84ca72374015b13892171f125528"
+        },
+        "consolidated_at": null,
+        "consolidation_failed_at": null,
+        "state": "valid",
+        "invalidation_reason": null,
+        "invalidated_at": null,
+        "edited_at": null,
+        "updated_at": "2026-11-11T09:39:24.635022+00:00",
+        "source_memory_ids": []
+      },
+      {
+        "id": "f5e1301f-546d-41c4-b7d9-1c457c3ee689",
+        "text": "Settled ADRs belong in docs/decisions, while .work/decisions is reserved for private drafts. References use PascalCase, including Routing.md and Memory.md, and existing execution authorization is sufficient for delegation without a separately approved written plan. | Where: docs/decisions and .work/decisions | These are established documentation, naming, and authorization conventions.",
+        "context": "initiative marker for [[page:kp-5d3a84ca72374015b13892171f125528]]",
+        "date": "2026-11-11T09:38:58.960272+00:00",
+        "fact_type": "world",
+        "document_id": "initiative-marker-kp-5d3a84ca72374015b13892171f125528-update",
+        "mentioned_at": "2026-11-11T09:38:58.960272+00:00",
+        "occurred_start": null,
+        "occurred_end": null,
+        "entities": ".work/decisions, docs/decisions, knowledge:convention, knowledge:decision, memory, routing",
+        "chunk_id": "coding-agent::desktop-skills_initiative-marker-kp-5d3a84ca72374015b13892171f125528-update_0",
+        "proof_count": 1,
+        "tags": [
+          "knowledge:feature-work",
+          "knowledge:convention",
+          "knowledge:decision"
+        ],
+        "metadata": {
+          "relatedPageId": "kp-5d3a84ca72374015b13892171f125528"
+        },
+        "consolidated_at": null,
+        "consolidation_failed_at": null,
+        "state": "valid",
+        "invalidation_reason": null,
+        "invalidated_at": null,
+        "edited_at": null,
+        "updated_at": "2026-11-11T09:39:24.635022+00:00",
+        "source_memory_ids": []
+      },
+      {
+        "id": "b6b1d102-bc4b-4f7c-8729-c36babe026c8",
+        "text": "Lifecycle ownership is divided as follows: Secure handles security/privacy, Migrate handles persistent state, Release handles versioned artifacts/distribution, Deploy handles environment rollout, Operate handles health/recovery, Distill handles routine communication, and Author handles durable documents, substantive copy, and issues. | These ownership boundaries define how the initiative is maintained and operated.",
+        "context": "initiative marker for [[page:kp-5d3a84ca72374015b13892171f125528]]",
+        "date": "2026-11-11T09:38:58.950272+00:00",
+        "fact_type": "world",
+        "document_id": "initiative-marker-kp-5d3a84ca72374015b13892171f125528-update",
+        "mentioned_at": "2026-11-11T09:38:58.950272+00:00",
+        "occurred_start": null,
+        "occurred_end": null,
+        "entities": "Author, Deploy, Distill, Migrate, Operate, Release, Secure, knowledge:component, knowledge:convention",
+        "chunk_id": "coding-agent::desktop-skills_initiative-marker-kp-5d3a84ca72374015b13892171f125528-update_0",
+        "proof_count": 1,
+        "tags": [
+          "knowledge:feature-work",
+          "knowledge:convention",
+          "knowledge:component"
+        ],
+        "metadata": {
+          "relatedPageId": "kp-5d3a84ca72374015b13892171f125528"
+        },
+        "consolidated_at": null,
+        "consolidation_failed_at": null,
+        "state": "valid",
+        "invalidation_reason": null,
+        "invalidated_at": null,
+        "edited_at": null,
+        "updated_at": "2026-11-11T09:39:24.635022+00:00",
+        "source_memory_ids": []
+      },
+      {
+        "id": "c54f2d4d-ee47-4d85-afe3-8b7b52a7c6b0",
+        "text": "Mirket was expanded to 25 native skills, with the initiative focused on making project memory reliable. Local Mirket 0.4.0 is installed in the normal Codex and Claude environments, both matching the 76-file package, and all 26 knowledge pages were refreshed; there has been no commit, public release, or website deployment. | When: November 11, 2026 | Where: Codex and Claude environments | This advances the initiative from source-candidate preparation to reliable local project-memory operation.",
+        "context": "initiative marker for [[page:kp-5d3a84ca72374015b13892171f125528]]",
+        "date": "2026-11-11T00:00:00+00:00",
+        "fact_type": "world",
+        "document_id": "initiative-marker-kp-5d3a84ca72374015b13892171f125528-update",
+        "mentioned_at": "2026-11-11T09:38:58.940272+00:00",
+        "occurred_start": "2026-11-11T00:00:00+00:00",
+        "occurred_end": "2026-11-11T23:59:59+00:00",
+        "entities": "Claude, Codex, Mirket, knowledge pages, knowledge:component, knowledge:feature-work, project memory",
+        "chunk_id": "coding-agent::desktop-skills_initiative-marker-kp-5d3a84ca72374015b13892171f125528-update_0",
+        "proof_count": 1,
+        "tags": [
+          "knowledge:feature-work",
+          "knowledge:component"
+        ],
+        "metadata": {
+          "relatedPageId": "kp-5d3a84ca72374015b13892171f125528"
+        },
+        "consolidated_at": null,
+        "consolidation_failed_at": null,
+        "state": "valid",
+        "invalidation_reason": null,
+        "invalidated_at": null,
+        "edited_at": null,
+        "updated_at": "2026-11-11T09:39:24.635022+00:00",
+        "source_memory_ids": []
+      }
+    ],
+    "total": 5,
+    "limit": 100,
+    "offset": 0
+  }
+}

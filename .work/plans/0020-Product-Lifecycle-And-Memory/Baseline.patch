@@ -1,0 +1,1280 @@
+diff --git a/CONTRIBUTING.md b/CONTRIBUTING.md
+index 2421b4b..59b840c 100644
+--- a/CONTRIBUTING.md
++++ b/CONTRIBUTING.md
+@@ -4,7 +4,13 @@ The plugin lives in [plugins/mirket](plugins/mirket). Codex and Claude Code use
+ 
+ ## Skills
+ 
+-Add a skill at `plugins/mirket/skills/<name>/SKILL.md` with a lowercase name and a clear trigger. Add `agents/openai.yaml` for its Codex display metadata. If ownership changes, update the [routing guide](plugins/mirket/references/routing.md) and related skill references. Record substantial third-party adaptations in [sources.json](plugins/mirket/sources.json) and preserve their applicable notices in the [packaged license](plugins/mirket/LICENSE). Keep the root and packaged license files in sync.
++Add a skill at `plugins/mirket/skills/<name>/SKILL.md` with a lowercase name and a clear trigger. Add `agents/openai.yaml` for its Codex display metadata. If ownership changes, update the [routing guide](plugins/mirket/references/Routing.md) and related skill references.
++
++Write original skill guidance based on Mirket's requirements and observed behavior. Do not use external skills, prompts, or workflow guides as sources for authoring. Keep the root and packaged license files in sync.
++
++## Markdown filenames
++
++Use PascalCase for ordinary Markdown files, such as `ReviewLoop.md`. Keep the numeric prefix on numbered records, such as `0001-ExplicitGitTarget.md`. Preserve conventional names such as `README.md`, `CONTRIBUTING.md`, `SKILL.md`, `AGENTS.md`, and `CLAUDE.md`. Skill directory names and site routes stay lowercase.
+ 
+ ## Checks
+ 
+@@ -13,16 +19,18 @@ python3 -B -m unittest discover -s tests
+ python3 -B -m unittest discover -s memory
+ ```
+ 
+-These tests cover hook logic and memory tooling. Check skill discovery, explicit invocation, and representative prompts in fresh host sessions to verify live behavior.
++These tests cover hook logic, package wiring, and memory tooling. Use the [host smoke checks](tests/HostSmoke.md) for installed skill discovery, hook activation, and representative routing. Report host checks separately from the local test results.
+ 
+ ## Lifecycle hooks
+ 
+ Mirket handles four lifecycle events and requires Python 3.8 or later in the host environment:
+ 
+-- **At session start:** supply a compact [Distill](plugins/mirket/skills/distill/SKILL.md) policy: do authorized work directly, report material progress, and lead with verified results.
++- **At session start:** supply compact [Distill](plugins/mirket/skills/distill/SKILL.md) guidance and point to the [routing guide](plugins/mirket/references/Routing.md). Use one owner per outcome; supporting skills return evidence to it.
+ - **On a user prompt:** remind the agent to apply Distill before it sends a reply and Clean before delivery when relevant. The reminder stands alone if session context or the final hook is unavailable.
+-- **At turn end:** on a supported `Stop` event, request Distill and relevant task-scoped cleanup together, using the host's continuation flag. Distill adds no separate continuation. Stop can request another model pass after initial output; it cannot rewrite text already shown or impose a token cap.
+-- **Before an agent-issued commit:** for supported direct `git commit` calls through the agent's Bash tool, block an unacknowledged attempt and request a repository-wide cleanup review. After reviewing, retry with a command-local marker, for example `MIRKET_CLEANUP_DONE=1 git commit -m "message"`. The hook uses system Git from `/usr/bin` or `/bin` with `--no-lazy-fetch` support and checks the staged index with external helpers disabled. It supports literal `-C` paths, basic `env` and `command` wrappers, and known commit flags that leave the staged inputs unchanged. It blocks recognized commits when it cannot inspect the target, including custom Git executables, overrides such as `git -c` or `GIT_INDEX_FILE`, and modes such as `-a`, `--include`, `--only`, or a pathspec. Stage the intended paths explicitly and retry with a standalone direct commit. If the human authorizes an exact `.work/` path, add `MIRKET_WORK_EXCEPTION=.work/path` to that command; other staged `.work/` changes remain blocked. Both markers record assertions and neither overrides host permissions.
++- **At turn end:** the `Stop` hook is neutral by default. To opt in, start the host with `MIRKET_FINAL_REVIEW=1` in its environment (for example, prefix the CLI launch with that assignment). This requests one Distill and Clean pass together if no Stop hook has already continued the turn. It can request another model pass after initial output; it cannot rewrite text already shown or impose a token cap. Desktop apps must inherit the variable at launch for it to take effect.
++- **Before an agent-issued commit:** for supported direct `git commit` calls through the agent's Bash tool, ask for [Clean](plugins/mirket/skills/clean/SKILL.md) before inspecting staged files. Use a standalone literal command such as `MIRKET_CLEANUP_DONE=1 git -C "/absolute/worktree" commit -m "message"`. The first `-C` must be absolute; later literal `-C` values can be relative to it. Codex's hook session directory may differ from the tool's execution directory, so the same explicit target rule applies in both hosts. A standalone supported `git commit --dry-run` preview needs neither an acknowledgment nor an absolute target; keep the flag when retrying a preview.
++
++The staged check requires system Git from `/usr/bin` or `/bin` with `--no-lazy-fetch` support and an absolute-only `PATH` that selects it. External helpers are disabled. The hook supports basic `env` and `command` wrappers and known staged commit flags. It blocks recognized commits with custom executables, overrides such as `git -c` or `GIT_INDEX_FILE`, or modes such as `-a`, `--include`, `--only`, or a pathspec. Stage intended paths explicitly for a real commit. If the human authorizes one exact `.work/` path, add `MIRKET_WORK_EXCEPTION=.work/path` to the commit command. Both markers record assertions and neither overrides host permissions. See the [Git target decision](docs/decisions/0001-ExplicitGitTarget.md) for the tradeoff.
+ 
+ The cleanup hooks instruct the agent to use [Clean](plugins/mirket/skills/clean/SKILL.md); they do not themselves delete or stage files. Hooks cannot guarantee agent compliance. Codex requires review and trust of plugin hooks before they run; changing a hook requires renewed review. Hook activation and behavior in each host have not been verified.
+ 
+diff --git a/README.md b/README.md
+index fb8a7c9..caa0048 100644
+--- a/README.md
++++ b/README.md
+@@ -38,7 +38,7 @@ Ask for the result you want, or name a skill:
+ - “Use Mirket Debug to reproduce this failure and find its cause.”
+ - “Use Mirket Audit to review this patch and report findings.”
+ 
+-The [routing guide](plugins/mirket/references/routing.md) helps you pick a workflow. You can also [browse all skills](plugins/mirket/skills/).
++The [routing guide](plugins/mirket/references/Routing.md) helps you pick a workflow. You can also [browse all skills](plugins/mirket/skills/).
+ 
+ If you want Mirket to guide work by default, merge the [Codex instructions](instructions/AGENTS.md) into `~/.codex/AGENTS.md` or the [Claude Code instructions](instructions/CLAUDE.md) into `~/.claude/CLAUDE.md`.
+ 
+diff --git a/docs/README.md b/docs/README.md
+index 944666f..0dfff4d 100644
+--- a/docs/README.md
++++ b/docs/README.md
+@@ -33,11 +33,11 @@ Use the plugin one request at a time. The [Codex](../instructions/AGENTS.md) and
+ - **Choose guidance for the job.** Pick one primary skill for the requested result. Add another when it supplies a distinct result or check. A small task can stay small.
+ - **Keep consequential choices with the human.** A request to do work and approval of a written plan are separate. Ask for decisions that affect the outcome; proceed with routine choices within the agreed scope.
+ - **Verify claims with evidence.** Inspect the actual change, run checks that match the risk, and say what could not be verified. A review or hook reminder does not prove that the work was checked.
+-- **Leave enough context to resume.** Keep substantial plans, decisions, and handoffs in the project's [workspace records](../plugins/mirket/references/workspace.md). Keep the response focused on what happened and what comes next.
++- **Leave enough context to resume.** Keep substantial plans and handoffs in the project's [workspace records](../plugins/mirket/references/Workspace.md). Record settled architectural decisions in the repository's ADR location, using `docs/decisions/` when the project has none. Keep the response focused on what happened and what comes next.
+ 
+ ## Skills
+ 
+-A skill is a Markdown workflow with a trigger, guidance, and sometimes more detailed references. The host can choose a skill from its description; you can also request one by name. See the [routing guide](../plugins/mirket/references/routing.md) when several skills sound relevant.
++A skill is a Markdown workflow with a trigger, guidance, and sometimes more detailed references. The host can choose a skill from its description; you can also request one by name. See the [routing guide](../plugins/mirket/references/Routing.md) when several skills sound relevant.
+ 
+ | What you need | Skills |
+ | --- | --- |
+@@ -52,7 +52,7 @@ A skill is a Markdown workflow with a trigger, guidance, and sometimes more deta
+ The [plugin package](../plugins/mirket/) is shared by both hosts. Separate [Codex](../.agents/plugins/marketplace.json) and [Claude Code](../.claude-plugin/marketplace.json) marketplace manifests point to it.
+ 
+ - **Skills and references.** Each packaged skill has a `SKILL.md` with its trigger and workflow, plus `agents/openai.yaml` for its Codex display metadata. Skill-specific and shared references cover details such as routing, workspace records, and review loops.
+-- **Plugin descriptor and hooks.** [`plugin.json`](../plugins/mirket/plugin.json) describes the package. On supported host events, [lifecycle hooks](../CONTRIBUTING.md#lifecycle-hooks) request communication and cleanup reviews and guard certain commit paths. Hooks depend on host support and trust settings; they cannot guarantee compliance.
++- **Plugin descriptor and hooks.** [`plugin.json`](../plugins/mirket/plugin.json) describes the package. On supported host events, [lifecycle hooks](../CONTRIBUTING.md#lifecycle-hooks) supply routing and communication guidance and guard certain commit paths. An extra final review is optional. Hooks depend on host support and trust settings; they cannot guarantee compliance.
+ - **Optional memory.** [Local Hindsight](#optional-local-hindsight) is separate from the plugin's skills. It can preserve project context across sessions and is not required to use Mirket.
+ - **Documentation.** The website reads this guide and the packaged skill Markdown at build time. The documentation and the plugin workflows stay in the same repository.
+ 
+diff --git a/instructions/AGENTS.md b/instructions/AGENTS.md
+index bf1fa6b..55c4b8a 100644
+--- a/instructions/AGENTS.md
++++ b/instructions/AGENTS.md
+@@ -1,9 +1,9 @@
+ # Mirket working instructions
+ 
+ - On each request, identify and use the smallest relevant set of skills from the active **Mirket** plugin before substantive work. Follow the installed skills' instructions and use **Distill** for communication. Use **Author** for documents, substantive product copy and issue triage. If Mirket is unavailable, say so, follow these defaults, and continue authorized work.
+-- When it is unclear which skill should own the result, consult the active Mirket plugin's `references/routing.md`. Load supporting skills only for distinct work or evidence.
++- When it is unclear which skill should own the result, consult the active Mirket plugin's `references/Routing.md`. Load supporting skills only for distinct work or evidence.
+ - Read the project's instructions and current state before changing it. Respect existing conventions and user changes. Prefer the smallest complete solution; challenge a poor tool fit with evidence and a better option.
+-- Plan substantial work with **Plan**. Ground decisions in evidence, keep product and business choices with the human, and record the agreed outcome and checks. Keep routine work direct.
+-- Use `.work/` at the current Git worktree root or the selected non-Git project root: `plans` for planning, `decisions` for architectural decisions, `stashes` for temporary snapshots, `recover` for important recovery copies only, `briefs` for standalone handoffs and briefs, and `temp` for disposable files. Number new plans, decisions, and standalone handoffs using the active plugin's `references/workspace.md`. Use designated paths for real deliverables. Before writing, ensure `/.work/` is ignored in that repository, with a local Git exclude if appropriate, and check for tracked workspace files. Keep it out of the index unless the human explicitly names an exception.
++- Plan substantial implementation with **Plan**. Ground decisions in evidence, keep product and business choices with the human, and record the agreed outcome and checks. Keep routine work direct and read-only reviews free of execution plans.
++- Use `.work/` at the current Git worktree root or the selected non-Git project root: `plans` for planning, `decisions` for private architecture drafts, `stashes` for temporary snapshots, `recover` for important recovery copies only, `briefs` for standalone handoffs and briefs, and `temp` for disposable files. Number new plans and standalone handoffs using the active plugin's `references/Workspace.md`. Record settled architecture decisions in the project's ADR location, creating `docs/decisions/` if none exists. Use designated paths for real deliverables. Before writing to `.work/`, ensure `/.work/` is ignored in that repository, with a local Git exclude if appropriate, and check for tracked workspace files. Keep it out of the index unless the human explicitly names an exception.
+ - Use focused checks and required project checks. Inspect rendered changes before claiming visual quality. Apply **Clean** before delivery and before committing; preserve unrelated work and important records.
+ - Lead with the result, cite useful evidence, and state material limits. Report only checks and actions that actually happened.
+diff --git a/instructions/CLAUDE.md b/instructions/CLAUDE.md
+index bf1fa6b..55c4b8a 100644
+--- a/instructions/CLAUDE.md
++++ b/instructions/CLAUDE.md
+@@ -1,9 +1,9 @@
+ # Mirket working instructions
+ 
+ - On each request, identify and use the smallest relevant set of skills from the active **Mirket** plugin before substantive work. Follow the installed skills' instructions and use **Distill** for communication. Use **Author** for documents, substantive product copy and issue triage. If Mirket is unavailable, say so, follow these defaults, and continue authorized work.
+-- When it is unclear which skill should own the result, consult the active Mirket plugin's `references/routing.md`. Load supporting skills only for distinct work or evidence.
++- When it is unclear which skill should own the result, consult the active Mirket plugin's `references/Routing.md`. Load supporting skills only for distinct work or evidence.
+ - Read the project's instructions and current state before changing it. Respect existing conventions and user changes. Prefer the smallest complete solution; challenge a poor tool fit with evidence and a better option.
+-- Plan substantial work with **Plan**. Ground decisions in evidence, keep product and business choices with the human, and record the agreed outcome and checks. Keep routine work direct.
+-- Use `.work/` at the current Git worktree root or the selected non-Git project root: `plans` for planning, `decisions` for architectural decisions, `stashes` for temporary snapshots, `recover` for important recovery copies only, `briefs` for standalone handoffs and briefs, and `temp` for disposable files. Number new plans, decisions, and standalone handoffs using the active plugin's `references/workspace.md`. Use designated paths for real deliverables. Before writing, ensure `/.work/` is ignored in that repository, with a local Git exclude if appropriate, and check for tracked workspace files. Keep it out of the index unless the human explicitly names an exception.
++- Plan substantial implementation with **Plan**. Ground decisions in evidence, keep product and business choices with the human, and record the agreed outcome and checks. Keep routine work direct and read-only reviews free of execution plans.
++- Use `.work/` at the current Git worktree root or the selected non-Git project root: `plans` for planning, `decisions` for private architecture drafts, `stashes` for temporary snapshots, `recover` for important recovery copies only, `briefs` for standalone handoffs and briefs, and `temp` for disposable files. Number new plans and standalone handoffs using the active plugin's `references/Workspace.md`. Record settled architecture decisions in the project's ADR location, creating `docs/decisions/` if none exists. Use designated paths for real deliverables. Before writing to `.work/`, ensure `/.work/` is ignored in that repository, with a local Git exclude if appropriate, and check for tracked workspace files. Keep it out of the index unless the human explicitly names an exception.
+ - Use focused checks and required project checks. Inspect rendered changes before claiming visual quality. Apply **Clean** before delivery and before committing; preserve unrelated work and important records.
+ - Lead with the result, cite useful evidence, and state material limits. Report only checks and actions that actually happened.
+diff --git a/plugins/mirket/hooks/cleanup.py b/plugins/mirket/hooks/cleanup.py
+index 03dfc40..6cdfce5 100644
+--- a/plugins/mirket/hooks/cleanup.py
++++ b/plugins/mirket/hooks/cleanup.py
+@@ -24,6 +24,7 @@ class Commit(NamedTuple):
+     acknowledged: bool
+     exception: Optional[str]
+     problem: Optional[str]
++    preview: bool
+ 
+ 
+ def split_command(command):
+@@ -91,19 +92,28 @@ def split_command(command):
+     return parts, structural, heredoc, dynamic
+ 
+ 
+-def uses_staged_index(args):
+-    """Accept only known commit arguments that do not change the staged inputs."""
++def commit_is_preview(args):
++    """Return True for a supported dry run, False for a staged commit, or None."""
++    dry_run = changes_inputs = False
+     i = 0
+     while i < len(args):
+         token = args[i]
+         i += 1
+         if token in COMMIT_FLAGS or token == "-S" or token.startswith("--gpg-sign=") or token == "--gpg-sign":
+             continue
++        if token in {"--dry-run", "--no-dry-run"}:
++            dry_run = token == "--dry-run"
++            continue
++        if token in {"-a", "--all"}:
++            changes_inputs = True
++            continue
+         if token == "--":
+-            return i == len(args)
++            if i != len(args):
++                return None
++            break
+         if token in COMMIT_VALUES:
+             if i == len(args):
+-                return False
++                return None
+             i += 1
+             continue
+         option = token.partition("=")[0]
+@@ -111,8 +121,8 @@ def uses_staged_index(args):
+             len(token) > 2 and token[:2] in COMMIT_VALUES and not token.startswith("--")
+         ):
+             continue
+-        return False
+-    return True
++        return None
++    return None if changes_inputs and not dry_run else dry_run
+ 
+ 
+ def commit_details(tokens):
+@@ -158,25 +168,28 @@ def commit_details(tokens):
+             problem = "Git global options other than literal -C paths"
+     if i == len(tokens) or tokens[i] != "commit":
+         return None
+-    if not uses_staged_index(tokens[i + 1:]):
+-        problem = "commit options or paths outside the supported staged-index form"
+-    return Commit(directories, acknowledged, exception, problem)
++    preview = commit_is_preview(tokens[i + 1:])
++    if preview is None:
++        problem = "Git arguments outside the supported preview or staged commit forms"
++    return Commit(directories, acknowledged, exception, problem, preview is True)
+ 
+ 
+ def deny(reason):
+     return {"hookSpecificOutput": {"hookEventName": "PreToolUse", "permissionDecision": "deny", "permissionDecisionReason": reason}}
+ 
+ 
+-def check_staged_work(commit, cwd):
++def check_staged_work(commit):
+     git_overrides = any(name.startswith("GIT_") and name != "GIT_PAGER" for name in os.environ)
+-    if not isinstance(cwd, str) or not os.path.isabs(cwd) or git_overrides:
+-        return deny("Mirket cannot identify the index with an invalid working directory or inherited GIT_* overrides. Use a supported direct commit from its worktree.")
++    if git_overrides:
++        return deny("Mirket cannot identify the index with inherited GIT_* overrides. Use a supported direct commit without those overrides.")
+     # Resolve the probe from system directories, never from the submitted command
+     # or a workspace PATH. Refuse to inspect when the inherited PATH selects a
+     # different executable, since the actual command might use that executable.
+     git = shutil.which("git", path=SYSTEM_PATH)
+-    path = os.pathsep.join(os.path.join(cwd, part) for part in os.get_exec_path())
+-    selected = shutil.which("git", path=path)
++    search_path = os.get_exec_path()
++    if any(not os.path.isabs(part) for part in search_path):
++        return deny("Mirket cannot verify which Git a relative or empty PATH entry selects. Use a PATH containing only absolute directories for a guarded commit.")
++    selected = shutil.which("git", path=os.pathsep.join(search_path))
+     if not git or not selected or os.path.realpath(selected) != os.path.realpath(git):
+         return deny("Mirket requires the system Git executable for staged-index inspection. Use a supported direct commit with system Git on PATH.")
+     env = {name: os.environ[name] for name in ("HOME", "XDG_CONFIG_HOME") if name in os.environ}
+@@ -195,7 +208,7 @@ def check_staged_work(commit, cwd):
+              "--no-ext-diff", "--no-textconv", "--no-relative", "--no-renames",
+              "--submodule=short", "--ignore-submodules=none",
+              "--name-only", "-z", "--diff-filter=ACMRT", "--", ":(top).work"],
+-            cwd=cwd, env=env, capture_output=True, timeout=3, check=True,
++            cwd="/", env=env, capture_output=True, timeout=3, check=True,
+         )
+     except (OSError, ValueError, subprocess.SubprocessError):
+         return deny("Mirket could not inspect the target Git index for staged .work files. Resolve the index or repository access issue before committing.")
+@@ -209,6 +222,8 @@ def check_staged_work(commit, cwd):
+ 
+ def handle(payload):
+     event = payload.get("hook_event_name")
++    if event == "Stop" and os.environ.get("MIRKET_FINAL_REVIEW") != "1":
++        return {}
+     if event == "Stop" and "stop_hook_active" not in payload:
+         return {"systemMessage": "Mirket's final review was not requested: the Stop continuation flag is missing."}
+     if event == "Stop" and not isinstance(payload.get("stop_hook_active"), bool):
+@@ -218,7 +233,7 @@ def handle(payload):
+             "decision": "block",
+             "reason": (
+                 f"Apply {SKILL} for task-scoped cleanup when relevant; respect scope, read-only restrictions, "
+-                "and existing work. Distill the final reply: outcome first, then verified checks, material "
++                "pause requests, and existing work. Distill the final reply: outcome first, then verified checks, material "
+                 "limits, and any needed next step. Skip narration of this review."
+             ),
+         }
+@@ -240,21 +255,26 @@ def handle(payload):
+         if uncertain:
+             return {"systemMessage": "Mirket could not determine whether this shell command runs git commit; pre-commit cleanup and staged .work coverage are unknown."}
+         return {}
+-    if any(not commit.acknowledged for commit in commits):
+-        return deny(
+-                f"Before committing, read {SKILL} and perform its repository-wide cleanup review. "
+-                "Preserve unrelated changes and historical evidence; do not auto-stage. "
+-                "Then retry each commit with MIRKET_CLEANUP_DONE=1 in that command, "
+-                "for example: MIRKET_CLEANUP_DONE=1 git commit -m 'message'. "
+-                "The marker acknowledges the review and does not prove cleanup occurred."
+-        )
+     if len(parts) != 1 or structural:
+-        return deny("Mirket cannot reliably inspect the final target index inside a compound command, redirection or heredoc. Run each git commit as a separate direct shell command after the preceding commands finish.")
++        return deny("Mirket cannot reliably inspect Git operations in a compound command, redirection or heredoc. Run each Git operation separately. If you intended a preview, keep --dry-run.")
+     commit = commits[0]
+     if dynamic or commit.problem:
+         reason = commit.problem or "shell expansion"
+-        return deny(f"Mirket cannot inspect a commit using {reason}. Stage the intended files explicitly and retry with a literal direct git commit command.")
+-    return check_staged_work(commit, payload.get("cwd", os.getcwd())) or {}
++        return deny(f"Mirket cannot inspect a Git operation using {reason}. For a preview, keep --dry-run in a standalone literal command. For a commit, stage the intended files explicitly and use a standalone literal command.")
++    if commit.preview:
++        return {}
++    if not commit.acknowledged:
++        return deny(
++            f"Before committing, read {SKILL} and perform its repository-wide cleanup review. "
++            "Preserve unrelated changes and historical evidence; do not auto-stage. "
++            "Then use the acknowledgment and an absolute Git target: "
++            "MIRKET_CLEANUP_DONE=1 git -C '/absolute/worktree' commit -m 'message'. "
++            "The marker acknowledges the review and does not prove cleanup occurred."
++        )
++    # Hook cwd can describe the session, not the shell tool's execution directory.
++    if not commit.directories or not os.path.isabs(commit.directories[0]):
++        return deny("Mirket cannot verify the Git target from the session directory. Use a first -C with an absolute worktree path in the guarded commit command.")
++    return check_staged_work(commit) or {}
+ 
+ 
+ 
+diff --git a/plugins/mirket/hooks/distill.py b/plugins/mirket/hooks/distill.py
+index 2014d2b..eee1fc2 100644
+--- a/plugins/mirket/hooks/distill.py
++++ b/plugins/mirket/hooks/distill.py
+@@ -5,7 +5,9 @@ import json
+ from pathlib import Path
+ import sys
+ 
+-CLEAN = Path(__file__).resolve().parent.parent / "skills" / "clean" / "SKILL.md"
++ROOT = Path(__file__).resolve().parent.parent
++CLEAN = ROOT / "skills" / "clean" / "SKILL.md"
++ROUTING = ROOT / "references" / "Routing.md"
+ 
+ 
+ def handle(payload):
+@@ -14,12 +16,14 @@ def handle(payload):
+         context = (
+             "Distill throughout the session: do authorized work directly. Skip routine narration; "
+             "report material progress or blockers. Lead final replies with the result, then verified "
+-            "checks and material limits. Keep the depth the user needs."
++            "checks and material limits. Keep the depth the user needs. "
++            "Choose one Mirket skill to own each outcome; supporting skills return evidence to that owner. "
++            f"If ownership is unclear, consult {ROUTING}."
+         )
+     elif event == "UserPromptSubmit":
+         context = (
+             "Distill: do authorized work directly; report meaningful progress only. Before sending, "
+-            f"lead with the result and verified facts. Apply {CLEAN} when relevant."
++            f"lead with the result and verified facts, and cut repetition. Apply {CLEAN} when relevant."
+         )
+     else:
+         return {}
+diff --git a/plugins/mirket/references/measured-improvement.md b/plugins/mirket/references/MeasuredImprovement.md
+similarity index 100%
+rename from plugins/mirket/references/measured-improvement.md
+rename to plugins/mirket/references/MeasuredImprovement.md
+diff --git a/plugins/mirket/references/prototype.md b/plugins/mirket/references/Prototype.md
+similarity index 97%
+rename from plugins/mirket/references/prototype.md
+rename to plugins/mirket/references/Prototype.md
+index b44243c..aea6438 100644
+--- a/plugins/mirket/references/prototype.md
++++ b/plugins/mirket/references/Prototype.md
+@@ -5,7 +5,7 @@ Use under [Design](../skills/design/SKILL.md) for a visual or interaction questi
+ ## Bound the experiment
+ 
+ 1. Name the decision, the alternatives, and the observable result that would favor one. Choose the smallest artifact the decision maker can run or inspect. Set a stopping point: what cases will be enough, when to stop if the result is inconclusive, and when to remove or retain the experiment.
+-2. Keep the entire experiment outside production: routes, entry points, variant code, controls, fixtures and assets. Use `.work/temp/<task>/` under the [workspace rules](workspace.md) for a standalone artifact or isolated preview unless the project has a designated sandbox. Exclude it from deployment and production build inputs. Hiding a switcher is insufficient if a query parameter or import still reaches experiment code. Use labeled synthetic or approved, sanitized fixtures; default to in-memory state and stubbed writes. If persistence is the subject, use a disposable scratch store with an explicit reset.
++2. Keep the entire experiment outside production: routes, entry points, variant code, controls, fixtures and assets. Use `.work/temp/<task>/` under the [workspace rules](Workspace.md) for a standalone artifact or isolated preview unless the project has a designated sandbox. Exclude it from deployment and production build inputs. Hiding a switcher is insufficient if a query parameter or import still reaches experiment code. Use labeled synthetic or approved, sanitized fixtures; default to in-memory state and stubbed writes. If persistence is the subject, use a disposable scratch store with an explicit reset.
+ 
+ ## Choose one branch
+ 
+diff --git a/plugins/mirket/references/review-loop.md b/plugins/mirket/references/ReviewLoop.md
+similarity index 100%
+rename from plugins/mirket/references/review-loop.md
+rename to plugins/mirket/references/ReviewLoop.md
+diff --git a/plugins/mirket/references/routing.md b/plugins/mirket/references/Routing.md
+similarity index 73%
+rename from plugins/mirket/references/routing.md
+rename to plugins/mirket/references/Routing.md
+index ccd8b9e..f654d49 100644
+--- a/plugins/mirket/references/routing.md
++++ b/plugins/mirket/references/Routing.md
+@@ -1,23 +1,24 @@
+ # Choose the workflow by the result
+ 
+-Choose one primary owner for each requested result. Add a second skill only for a different deliverable or evidence the owner needs. A supporting skill returns that result to its caller; it does not restart the caller's workflow.
++Choose one primary owner for each requested result. Respect an explicitly requested skill and the authorized scope. Add a supporting skill only for a distinct deliverable or missing evidence. Give it the question and the evidence already available; it returns its result and limits to the owner without restarting the workflow or taking over execution.
+ 
+-Use the [project workspace](workspace.md) for any agent-owned files the workflow creates.
++Use the [project workspace](Workspace.md) for any agent-owned files the workflow creates.
+ 
+ | Request | Owner and stopping point |
+ | --- | --- |
+ | Understand the code and its conventions | [Adapt](../skills/adapt/SKILL.md): evidence-backed orientation. Use [Preflight](../skills/preflight/SKILL.md) for environment readiness and blockers. |
+ | Choose or obtain a tool, or challenge a tool, format, representation, abstraction, or workflow that falls short or works at a material cost | [Equip](../skills/equip/SKILL.md): evidence for the mismatch, the benefit and cost of changing, and guidance for authorized setup. Use Preflight when a suitable tool is missing or misconfigured in the target environment, and Debug when a suitable tool unexpectedly fails. |
+-| Decide what problem to prioritize, or compare outside options | [Focus](../skills/focus/SKILL.md): product brief with the decisions for the human. [Curate](../skills/curate/SKILL.md) owns sourced discovery and comparison of options. |
++| Decide what problem or product option to prioritize | [Focus](../skills/focus/SKILL.md): product brief with the decisions for the human. |
++| Discover or compare outside options without making an adoption decision | [Curate](../skills/curate/SKILL.md): sourced comparison. When the decision is whether to adopt or replace a tool, return this evidence to Equip. |
+ | Decide how to change a system boundary | [Architect](../skills/architect/SKILL.md): alternatives, consequences, and a recommendation or draft decision record. |
+-| Agree how to execute a substantial change | [Plan](../skills/plan/SKILL.md): evidence, human decisions, review when available, and a truthful record of authorization. |
++| Agree how to execute a substantial change | [Plan](../skills/plan/SKILL.md): evidence, human decisions, review when available, and a truthful record of authorization. A substantial review without an execution request belongs to Audit; it does not need a Plan record. |
+ | Implement a known change | Execute the authorized work directly. Use [Plan](../skills/plan/SKILL.md) for substantial work and [Test](../skills/test/SKILL.md) for verification. [Refactor](../skills/refactor/SKILL.md) owns behavior-preserving simplification. |
+ | Sort incoming reports; diagnose an observed failure | [Author](../skills/author/SKILL.md) uses its issue triage branch for intake, reproduction status, and priorities. [Debug](../skills/debug/SKILL.md) owns causal investigation and any authorized fix. |
+-| Exercise behavior or measure performance | [Test](../skills/test/SKILL.md): actual checks, results and gaps. For a requested speedup, the implementer owns the authorized change and Test owns comparable measurements. |
++| Exercise behavior or measure performance | [Test](../skills/test/SKILL.md): actual checks, results and gaps. If Debug is already investigating, return a failing result to Debug. For a requested speedup, the implementer owns the authorized change and Test owns comparable measurements. |
+ | Review a change, plan, module, system or repository | [Audit](../skills/audit/SKILL.md): prioritized findings against the specified target. An audit request does not itself authorize corrections. |
+ | Judge work against its brief during implementation or before delivery | [Critique](../skills/critique/SKILL.md): evidenced quality findings; reuse relevant Test results. |
+ | Direct or produce visual work | [Design](../skills/design/SKILL.md) owns visual direction and production for UI, web, brand, illustration, motion, slides and other visual artifacts, including fidelity to a supplied reference. [Imagine](../skills/imagine/SKILL.md) owns generating an interface concept image from an agreed brief; a UI build does not require one. [Critique](../skills/critique/SKILL.md) owns visual assessment, including review-only requests. |
+-| Resolve uncertainty cheaply | Use the [prototype method](prototype.md). Design owns visual experiments, Focus product logic, Architect technical tradeoffs. Production implementation is a separate decision. |
++| Resolve uncertainty cheaply | Use the [prototype method](Prototype.md). Design owns visual experiments, Focus product logic, Architect technical tradeoffs. Production implementation is a separate decision. |
+ | Write a document or substantive copy, or triage issues | [Author](../skills/author/SKILL.md) owns the content and its audience. Use [Distill](../skills/distill/SKILL.md) for routine replies and clear communication throughout. |
+ | Report where authorized work stands, or coordinate its workers | [Plan’s tracking branch](../skills/plan/SKILL.md#track-authorized-work) owns the status snapshot; [Orchestrate](../skills/orchestrate/SKILL.md) owns assignments and integration. |
+ | Transfer work, or pause it | [Brief](../skills/brief/SKILL.md) prepares the transfer. [Sleep](../skills/sleep/SKILL.md) persists it and stops work until asked to resume. |
+diff --git a/plugins/mirket/references/workspace.md b/plugins/mirket/references/Workspace.md
+similarity index 68%
+rename from plugins/mirket/references/workspace.md
+rename to plugins/mirket/references/Workspace.md
+index 704c0c4..bf5630f 100644
+--- a/plugins/mirket/references/workspace.md
++++ b/plugins/mirket/references/Workspace.md
+@@ -5,16 +5,16 @@ Use `.work/` at the project root for agent-owned files. In Git, use the current
+ | Path | What belongs there |
+ | --- | --- |
+ | `.work/plans/0001-Sales-Contracts/` | The task's outcome, agreement, plan, status and supporting evidence. Small plans may keep the record in one file; see [Plan](../skills/plan/SKILL.md). Link related architectural decisions. |
+-| `.work/decisions/0001-Project-Cleanup.md` | Architectural decision records after decisions are made. |
++| `.work/decisions/` | Private architecture notes and drafts. [Architect](../skills/architect/SKILL.md#record-the-decision) records settled decisions in the project's ADR location, defaulting to `docs/decisions/`. |
+ | `.work/stashes/<task>/` | Temporary file-based snapshots or patches needed to set aside work. Record what they contain and how to restore them. |
+ | `.work/recover/<task>/` | A targeted recovery copy of important work at risk of being lost. Record its original path and how to restore it; check the copy before removing the original. This is not a trash folder or a routine backup. |
+-| `.work/briefs/0001-Sales-Contracts-Handoff.md` | Standalone handoff prompts and other briefs without a designated destination. |
++| `.work/briefs/0001-SalesContractsHandoff.md` | Standalone handoff prompts and other briefs without a designated destination. |
+ | `.work/temp/<task>/` | Disposable files the agent generates or copies: scratch code, renders, test output and working drafts. Remove your leftovers when no longer needed. |
+ 
+ In Git projects, keep `/.work/` ignored unless the human explicitly names an exception. Before the first write, check the destination with `git check-ignore` and check `git ls-files -- .work` for tracked records. Establish a missing rule in `.gitignore` when authorized, or the repository's local Git exclude when appropriate. If the path is tracked, redirects through a symlink, or cannot be kept private, surface the problem before writing. Verify the staged paths again before committing; a general request to commit is not permission to force-add workspace files.
+ 
+ ## Numbered records
+ 
+-Plans, decisions, and briefs each have their own sequence per worktree. Start at `0001`; for a new record use one more than the highest sequence number in that collection, including numbered records moved to its archive. Ignore legacy dates when counting. Use at least four digits and a short hyphenated title, for example `0002-Nextjs-Rewrite.md`. Put dates inside the record if useful.
++Plans and briefs each have their own sequence per worktree. ADRs use the repository's ADR numbering convention; in a new ADR collection, use the same numbering method as for plans and briefs. Start at `0001`; for a new record use one more than the highest sequence number in that collection, including numbered records moved to its archive. Ignore legacy dates when counting. Use at least four digits, a hyphen and a short title. Follow the project's naming convention for Markdown titles; use PascalCase if none exists, for example `0002-NextjsRewrite.md`. Use short hyphenated titles for plan folders. Put dates inside the record if useful.
+ 
+ When resuming work, find and reuse its existing record. Keep its number and path. Coordinate allocations when writers are working in parallel and check the prefix is unused before linking to a new record. Preserve legacy archives and old links when migrating existing records; write only to the canonical destination.
+diff --git a/plugins/mirket/skills/architect/SKILL.md b/plugins/mirket/skills/architect/SKILL.md
+index cb990e1..2ca5c00 100644
+--- a/plugins/mirket/skills/architect/SKILL.md
++++ b/plugins/mirket/skills/architect/SKILL.md
+@@ -9,13 +9,13 @@ Make consequential technical decisions reviewable and record each decision when
+ 
+ 1. Pin the decision, desired outcome, affected system and constraints. For an existing system, read relevant architecture decision records (ADRs), use project terminology and trace representative behavior, ownership, data and tests. Ground friction in concrete examples. For a new system, use the stated outcomes, constraints and available evidence; identify unknowns and assumptions rather than inventing existing behavior.
+ 2. Compare viable alternatives before settling on an interface. Consider the current approach when applicable. For each option, explain boundaries, responsibilities, what callers must know and how behavior can be tested. For a questionable existing boundary, ask whether removing the module would simplify the system or scatter complexity among callers. Research external technologies or patterns when they could materially change the decision; use [Curate](../curate/SKILL.md) to compare outside options. Use a diagram when it clarifies boundaries, flows or tradeoffs.
+-3. Compare tradeoffs against actual constraints, including failure modes, migration and rollback where relevant. Cite conflicts with prior ADRs and explain evidence for reopening a decision. For a narrow uncertainty, use the [prototype method](../../references/prototype.md) when an experiment is authorized. Present options, evidence, consequences and a recommendation; keep unresolved questions explicit.
++3. Compare tradeoffs against actual constraints, including failure modes, migration and rollback where relevant. Cite conflicts with prior ADRs and explain evidence for reopening a decision. For a narrow uncertainty, use the [prototype method](../../references/Prototype.md) when an experiment is authorized. Present options, evidence, consequences and a recommendation; keep unresolved questions explicit.
+ 4. Bring decisions with material effects on product, cost, security or operations to the human. Make routine technical choices within the authorized scope, preserving prior decisions. An architectural assessment or recommendation alone does not authorize implementation.
+ 
+ ## Record the decision
+ 
+-After an architectural decision is made, create a [numbered ADR](../../references/workspace.md#numbered-records) in `.work/decisions/` at the project root, such as `0001-Project-Cleanup.md`. Record the context, options considered, chosen decision, decision-maker, evidence, rationale and consequences; link any useful diagram and related plan. Attribute the decision truthfully: a recommendation is not a decision or human approval. Preserve previous records and link superseded decisions rather than rewriting history.
++After an architectural decision is made, record it in the project's established ADR location and follow its format and numbering. If no location is established, create `docs/decisions/` at the project root and save the first [numbered ADR](../../references/Workspace.md#numbered-records) there, such as `0001-ProjectCleanup.md`. Record the context, options considered, chosen decision, decision-maker, evidence, rationale and consequences; link any useful diagram and related plan. Attribute the decision truthfully: a recommendation is not a decision or human approval. Preserve previous records and link superseded decisions rather than rewriting history.
+ 
+-Use only `.work/decisions/` for Architect's ADRs, including shared decisions. This directory is ignored by Git; make that limitation clear when a teammate needs the record. If it cannot be written, report the missing ADR and do not claim the decision was recorded.
++Use `.work/decisions/` only for private notes or drafts. Do not copy older private material into shared records without authorization. If the ADR destination cannot be written, report the missing record and its intended location.
+ 
+ **Done:** The decision has an ADR, or the missing record is reported. For an unresolved choice, present the options and open decisions without creating an ADR. Route a chosen change to [Plan](../plan/SKILL.md) when execution planning is requested.
+diff --git a/plugins/mirket/skills/audit/SKILL.md b/plugins/mirket/skills/audit/SKILL.md
+index 1bcc421..bad35ea 100644
+--- a/plugins/mirket/skills/audit/SKILL.md
++++ b/plugins/mirket/skills/audit/SKILL.md
+@@ -7,7 +7,7 @@ description: "Use when asked to audit or review a code change, draft plan, or ex
+ 
+ ## Purpose
+ 
+-Return prioritized, evidence-backed findings about the requested target. Audit is read-only unless fixes are authorized. [Test](../test/SKILL.md) owns behavioral checks; [Critique](../critique/SKILL.md) judges work against its brief, including visual quality. Reuse their evidence where relevant.
++Return prioritized, evidence-backed findings about the requested target. Audit is read-only unless fixes are authorized. [Test](../test/SKILL.md) owns behavioral checks; [Critique](../critique/SKILL.md) judges work against its brief, including visual quality. Reuse their evidence where relevant. When reviewing for another workflow, return the findings to its owner; the [routing guide](../../references/Routing.md) explains the boundaries.
+ 
+ ## Set scope and independence
+ 
+@@ -18,7 +18,7 @@ Identify the target, purpose, governing requirements, project conventions and in
+ 1. Pin the target. Record the base and head or the exact diff and snapshot; include staged, unstaged, and new files when in scope. Resolve refs and confirm the intended changes are present.
+ 2. Find the governing intent in the request, issue, plan, or documented behavior, and find the relevant project standards. Review spec fit and standards as separate passes so neither obscures the other. When no written spec is available, state the limit and continue with evidenced behavior and standards; label open questions about intent.
+ 3. Trace connected callers, contracts, failure paths, and checks to assess correctness and risk. Confirm each finding's triggering condition and practical consequence. Distinguish observed defects and supported risks from preferences or questions. Use existing evidence and focused non-destructive checks when useful. If delegation is unavailable or unnecessary, perform the passes inline; do not describe self-review as independent.
+-4. When corrections are authorized, follow the [review loop](../../references/review-loop.md), keep changes within scope and recheck material repairs.
++4. When corrections are authorized, follow the [review loop](../../references/ReviewLoop.md), keep changes within scope and recheck material repairs.
+ 
+ ## Existing module, system or repository
+ 
+diff --git a/plugins/mirket/skills/author/SKILL.md b/plugins/mirket/skills/author/SKILL.md
+index 5712fb5..bbc599f 100644
+--- a/plugins/mirket/skills/author/SKILL.md
++++ b/plugins/mirket/skills/author/SKILL.md
+@@ -7,9 +7,9 @@ description: "Use when drafting or revising a document, report, or substantive p
+ 
+ Write for the reader's purpose and context. Identify what the reader needs, lead with useful substance, and verify claims that matter. [Distill](../distill/SKILL.md) is the default for routine replies and applies to communication throughout this work.
+ 
+-Use [Brief](../brief/SKILL.md) for handoffs and [Design](../design/SKILL.md) for visual direction and interface design. For product copy, apply the audience, claims and risk-appropriate checks below within the design or implementation workflow. For bug reports or a QA backlog, use [issue triage](references/issue-triage.md): it owns intake, reproduction status, prioritization and issue drafts. Use the document workflow below when producing a durable artifact.
++Use [Brief](../brief/SKILL.md) for handoffs and [Design](../design/SKILL.md) for visual direction and interface design. For product copy, apply the audience, claims and risk-appropriate checks below within the design or implementation workflow. For bug reports or a QA backlog, use [issue triage](references/IssueTriage.md): it owns intake, reproduction status, prioritization and issue drafts. Use the document workflow below when producing a durable artifact.
+ 
+-Keep intermediate files in `.work/temp/<task>/` under the [project workspace rules](../../references/workspace.md). Deliver the final document to its designated destination.
++Keep intermediate files in `.work/temp/<task>/` under the [project workspace rules](../../references/Workspace.md). Deliver the final document to its designated destination.
+ 
+ 1. Establish the readers, what they need to know or do, the scope and destination. Infer routine audience or format details from context; ask when the choice could materially change the result. For a revision, inspect the existing artifact and preserve unrelated content. Follow a requested format and the relevant host workflow.
+ 2. Organize content around the reader's task. Verify claims that matter using suitable sources or project evidence; label uncertainty when a claim cannot be verified. Link sources where readers need them. Match the evidence to the purpose: fiction, an internal draft and a technical guide have different needs.
+diff --git a/plugins/mirket/skills/author/references/issue-triage.md b/plugins/mirket/skills/author/references/IssueTriage.md
+similarity index 96%
+rename from plugins/mirket/skills/author/references/issue-triage.md
+rename to plugins/mirket/skills/author/references/IssueTriage.md
+index 1572118..7fa3b45 100644
+--- a/plugins/mirket/skills/author/references/issue-triage.md
++++ b/plugins/mirket/skills/author/references/IssueTriage.md
+@@ -7,7 +7,7 @@ Turn reports into a deduplicated, prioritized set of issue drafts with the evide
+ 1. Collect expected and actual behavior, affected users or workflow, environment, reproduction steps or intermittent conditions, frequency, and impact. Keep the project's user-facing terms. Inspect relevant context and existing issues when available. Ask only for missing details that would change reproduction, priority, or routing.
+ 2. Try a small, safe reproduction where feasible. Mark what was **reported**, what you **reproduced**, and what remains **unknown**. Preserve the evidence needed to repeat the observation; for a UI issue, include the input or state, viewport when relevant, and observed effect. If you cannot reproduce it, retain the report and conditions without inventing steps or declaring a cause.
+ 3. Group duplicate reports by evidenced symptom and conditions; keep distinct, independently verifiable failures separate. Prioritize using the observed impact, reach, frequency, workaround, and dependencies. Mark tentative priorities, suspected duplicates, and unknown owners as such. Route cause investigation to [Debug](../../debug/SKILL.md).
+-4. Draft each issue with a behavior-based title, expected and actual results, steps or intermittent conditions, evidence, priority rationale, and suggested next action and owner. If a scratch file is needed, use `.work/temp/<task>/` under the [project workspace rules](../../../references/workspace.md). File or update issues only when explicitly authorized; return links for any tracker writes performed.
++4. Draft each issue with a behavior-based title, expected and actual results, steps or intermittent conditions, evidence, priority rationale, and suggested next action and owner. If a scratch file is needed, use `.work/temp/<task>/` under the [project workspace rules](../../../references/Workspace.md). File or update issues only when explicitly authorized; return links for any tracker writes performed.
+ 
+ ## Completion
+ 
+diff --git a/plugins/mirket/skills/brief/SKILL.md b/plugins/mirket/skills/brief/SKILL.md
+index 570a397..0996485 100644
+--- a/plugins/mirket/skills/brief/SKILL.md
++++ b/plugins/mirket/skills/brief/SKILL.md
+@@ -19,6 +19,6 @@ Write a concise, actionable handoff suited to its recipient. Preserve useful con
+ 5. For a subagent, define its exact scope, ownership boundaries, expected deliverable, dependencies and verification. Explain relevant parallel work and shared boundaries. The worker reports routine corrections, such as a renamed internal symbol with unchanged behavior, and continues. If a discrepancy affects the target, authority, ownership, interface, or acceptance criteria, report the evidence and pause affected work until the root gives direction. The root updates affected workers; the subagent does not change another worker's scope.
+ 6. When coordinating parallel work, [Orchestrate](../orchestrate/SKILL.md) decides when to update affected workers. Make each update actionable: state what changed, its impact on their scope, and what they should do. If it cannot be delivered, report the limitation; do not claim it was received.
+ 
+-Save a handoff intended for later reuse or when requested. Use its designated destination, or save a [numbered Markdown brief](../../references/workspace.md#numbered-records) in `.work/briefs/` at the project root, such as `0001-Sales-Contracts-Handoff.md`. An ordinary subagent assignment can remain in the coordination channel. Sending a message outside the authorized task requires authorization.
++Save a handoff intended for later reuse or when requested. Use its designated destination, or save a [numbered Markdown brief](../../references/Workspace.md#numbered-records) in `.work/briefs/` at the project root, such as `0001-SalesContractsHandoff.md`. An ordinary subagent assignment can remain in the coordination channel. Sending a message outside the authorized task requires authorization.
+ 
+ **Done:** The recipient has a clear purpose, next action, essential evidence, authorized boundaries and a relevance check appropriate to its role.
+diff --git a/plugins/mirket/skills/clean/SKILL.md b/plugins/mirket/skills/clean/SKILL.md
+index 6ab026b..53db728 100644
+--- a/plugins/mirket/skills/clean/SKILL.md
++++ b/plugins/mirket/skills/clean/SKILL.md
+@@ -16,11 +16,11 @@ Leave the relevant work coherent and remove verified leftovers without disturbin
+ 
+ 3. Look for the task's temporary files in `.work/temp/` and check for unused artifacts, redundant output, obsolete paths, broken links and stale guidance within scope. Check whether each candidate still has a purpose. A file is not disposable merely because it is untracked, old, generated or unfamiliar. Preserve files whose purpose or safe removal is uncertain, and report material uncertainty.
+ 4. Remove a leftover only when its ownership, obsolescence and safe removal are clear within the authorized task. Repair task-related stale references and documentation when evidence supports the correction; update project-specific agent instructions or artifacts when the work made them inaccurate. Preserve historical records as history rather than rewriting or deleting evidence that remains useful.
+-5. Before an authorized removal of important, hard-to-recreate work, make and verify a targeted `.work/recover/` copy according to the [workspace rules](../../references/workspace.md). Record the original location and restore instructions; skip recovery for reproducible leftovers. A recovery copy does not authorize deletion. If deletion or a broader change could affect unrelated work, user data or uncertain evidence, resolve that with the human first. If cleanup is not applicable, make no changes.
++5. Before an authorized removal of important, hard-to-recreate work, make and verify a targeted `.work/recover/` copy according to the [workspace rules](../../references/Workspace.md). Record the original location and restore instructions; skip recovery for reproducible leftovers. A recovery copy does not authorize deletion. If deletion or a broader change could affect unrelated work, user data or uncertain evidence, resolve that with the human first. If cleanup is not applicable, make no changes.
+ 
+ ## Verify and report
+ 
+ 6. Inspect the resulting diff and relevant paths. Use focused checks appropriate to the changes; confirm that updated references resolve and intended behavior or records are preserved. Report material cleanup, remaining uncertainty and any unavailable verification. Never claim a hook ran or cleanup occurred without evidence.
+-7. Before committing, review the intended changes and check the index for private `.work/` files; only explicitly authorized exceptions may be tracked. Preserve the human's staged and unstaged work. A hook request does not authorize committing, staging, publishing or modifying unrelated content.
++7. Before committing, review the intended changes and check the index for private `.work/` files; only explicitly authorized exceptions may be tracked. Preserve the human's staged and unstaged work. If Mirket's commit hook is active, acknowledge the review with `MIRKET_CLEANUP_DONE=1` on the standalone commit command and name the worktree with an absolute `git -C` path. A hook request does not authorize committing, staging, publishing or modifying unrelated content.
+ 
+ **Done:** Relevant leftovers and stale material have been addressed within the authorized scope, project guidance reflects the work, and uncertain or preserved items are reported when material.
+diff --git a/plugins/mirket/skills/critique/SKILL.md b/plugins/mirket/skills/critique/SKILL.md
+index eeff0e2..29df256 100644
+--- a/plugins/mirket/skills/critique/SKILL.md
++++ b/plugins/mirket/skills/critique/SKILL.md
+@@ -10,13 +10,13 @@ Judge work in progress or a result against its brief and project context. Apply
+ ## Establish the scope
+ 
+ 1. Identify the change, intended behavior or appearance, relevant project conventions and agreed acceptance criteria. Inspect the connected context and distinguish evidence from assumptions. Surface material uncertainty instead of inventing requirements or a new design direction.
+-2. Select lenses relevant to the task and its risks; not every lens applies. Inspect the actual result and reuse current Test evidence; request only missing checks that could change the verdict. Put saved screenshots and other temporary evidence in `.work/temp/<task>/` under the [workspace rules](../../references/workspace.md). A finding records the condition or location, evidence, impact and next step. Distinguish observations, inferences and subjective judgments; identify unavailable evidence. Explain material matters of taste or possible product-direction changes and their options, and ask the human when the choice would materially change the outcome.
++2. Select lenses relevant to the task and its risks; not every lens applies. Inspect the actual result and reuse current Test evidence; request only missing checks that could change the verdict. Put saved screenshots and other temporary evidence in `.work/temp/<task>/` under the [workspace rules](../../references/Workspace.md). A finding records the condition or location, evidence, impact and next step. Distinguish observations, inferences and subjective judgments; identify unavailable evidence. Explain material matters of taste or possible product-direction changes and their options, and ask the human when the choice would materially change the outcome.
+ 
+ ## Choose relevant checks
+ 
+ ### Visual
+ 
+-For a design, interface or visual change, compare the actual rendering with the brief, supplied reference and project conventions. Inspect the hierarchy, layout, type, imagery or interaction states that matter. For motion, inspect normal playback and any meaningful interruption or reduced-motion case; for an export, inspect the delivered file at the intended scale. Use [Design's evidence guide](../design/references/review-and-delivery.md) to choose cases and [stress the interface](references/ui-stress.md) for realistic adverse data. Name the effect on use or communication before treating an aesthetic pattern as a defect. View the result yourself; a screenshot capture or source alone is insufficient. Report missing evidence as unverified; a static image cannot establish interaction behavior or accessibility by itself.
++For a design, interface or visual change, compare the actual rendering with the brief, supplied reference and project conventions. Inspect the hierarchy, layout, type, imagery or interaction states that matter. For motion, inspect normal playback and any meaningful interruption or reduced-motion case; for an export, inspect the delivered file at the intended scale. Use [Design's evidence guide](../design/references/ReviewAndDelivery.md) to choose cases and [stress the interface](references/UiStress.md) for realistic adverse data. Name the effect on use or communication before treating an aesthetic pattern as a defect. View the result yourself; a screenshot capture or source alone is insufficient. Report missing evidence as unverified; a static image cannot establish interaction behavior or accessibility by itself.
+ 
+ ### Integration
+ 
+@@ -24,7 +24,7 @@ Judge whether the result fits its connected workflow, conventions and user expec
+ 
+ ### Performance
+ 
+-Judge whether supplied measurements support the agreed target, expected workload and acceptable tradeoffs. If performance matters but a useful target or comparable measurement is missing, state the gap and seek an appropriate target or measurement; do not claim the result is fast enough without evidence. Test owns measurement using the [measured improvement method](../../references/measured-improvement.md). Report what the measurements support and what remains unknown.
++Judge whether supplied measurements support the agreed target, expected workload and acceptable tradeoffs. If performance matters but a useful target or comparable measurement is missing, state the gap and seek an appropriate target or measurement; do not claim the result is fast enough without evidence. Test owns measurement using the [measured improvement method](../../references/MeasuredImprovement.md). Report what the measurements support and what remains unknown.
+ 
+ ### Simplicity and quality
+ 
+@@ -32,6 +32,6 @@ Review for unnecessary complexity, repeated knowledge, confusing flow, avoidable
+ 
+ ## Correct and recheck
+ 
+-3. A review-only request ends with findings. During authorized implementation, correct issues within the authorized scope and use the [shared review loop](../../references/review-loop.md) to recheck affected criteria. Report material tradeoffs and seek the human's decision when product direction or the outcome would materially change. For visual repairs, inspect the changed render; after a stress-related fix recheck normal and adverse views.
++3. A review-only request ends with findings. During authorized implementation, correct issues within the authorized scope and use the [shared review loop](../../references/ReviewLoop.md) to recheck affected criteria. Report material tradeoffs and seek the human's decision when product direction or the outcome would materially change. For visual repairs, inspect the changed render; after a stress-related fix recheck normal and adverse views.
+ 
+ **Done:** Applicable quality criteria have findings or supporting evidence, any authorized correction has been checked, and material gaps are explicit.
+diff --git a/plugins/mirket/skills/critique/references/ui-stress.md b/plugins/mirket/skills/critique/references/UiStress.md
+similarity index 100%
+rename from plugins/mirket/skills/critique/references/ui-stress.md
+rename to plugins/mirket/skills/critique/references/UiStress.md
+diff --git a/plugins/mirket/skills/curate/SKILL.md b/plugins/mirket/skills/curate/SKILL.md
+index 8386564..0fb9a9f 100644
+--- a/plugins/mirket/skills/curate/SKILL.md
++++ b/plugins/mirket/skills/curate/SKILL.md
+@@ -5,7 +5,7 @@ description: "Use when discovering or comparing options such as frameworks, libr
+ 
+ # Curate
+ 
+-Find and compare relevant options using current evidence. Scale research depth to the decision's stakes, uncertainty and cost. General research that does not involve an options comparison does not require this skill. Keep reusable evidence with its relevant plan or designated deliverable; use `.work/temp/<task>/` for scratch research under the [workspace rules](../../references/workspace.md).
++Find and compare relevant options using current evidence. Scale research depth to the decision's stakes, uncertainty and cost. General research that does not involve an options comparison does not require this skill. Keep reusable evidence with its relevant plan or designated deliverable; use `.work/temp/<task>/` for scratch research under the [workspace rules](../../references/Workspace.md).
+ 
+ ## Compare options
+ 
+diff --git a/plugins/mirket/skills/debug/SKILL.md b/plugins/mirket/skills/debug/SKILL.md
+index c1514e3..9038e10 100644
+--- a/plugins/mirket/skills/debug/SKILL.md
++++ b/plugins/mirket/skills/debug/SKILL.md
+@@ -5,7 +5,7 @@ description: "Use when investigating and fixing a concrete problem, defect, fail
+ 
+ # Debug
+ 
+-Debug from understanding and evidence. Start with an orientation finding, investigate its cause, and use guidance suited to the kind of work being fixed.
++Debug from understanding and evidence. Start with an orientation finding, investigate its cause, and use guidance suited to the kind of work being fixed. See the [routing guide](../../references/Routing.md) to distinguish diagnosis from a check or review.
+ 
+ ## 1. Start with an orientation finding
+ 
+diff --git a/plugins/mirket/skills/design/SKILL.md b/plugins/mirket/skills/design/SKILL.md
+index 840c023..24fee71 100644
+--- a/plugins/mirket/skills/design/SKILL.md
++++ b/plugins/mirket/skills/design/SKILL.md
+@@ -5,36 +5,36 @@ description: "Use to direct, create, redesign or implement visual work: product
+ 
+ # Design
+ 
+-Make the intended action, idea or feeling clear through a visual direction specific to this audience, content and medium. Deliver the direction, artifact or working implementation the human asked for.
++Make the intended action, idea or feeling clear through a visual direction specific to this audience, content and medium. Deliver the direction, artifact or working implementation the human asked for. See the [routing guide](../../references/Routing.md) when a request mixes generation, implementation, and assessment.
+ 
+ ## Choose the job
+ 
+-- **New direction or scoped refinement:** Start from the real material and existing conventions. Use [direction and composition](references/direction-and-composition.md) for an open direction; for a refinement, keep the established direction and go straight to the relevant reference.
+-- **Redesign an existing interface:** First view and capture the [live baseline](references/direction-and-composition.md#capture-the-redesign-baseline) and identify what must survive. If it cannot be viewed, stop the redesign and report the blocker.
+-- **Reproduce a supplied mockup or screenshot:** Use [reference fidelity](references/reference-fidelity.md). Treat the reference as the target where it gives evidence. If it also changes an existing interface's design, capture the live baseline first. Respect access, real content and required behavior throughout.
++- **New direction or scoped refinement:** Start from the real material and existing conventions. Use [direction and composition](references/DirectionAndComposition.md) for an open direction; for a refinement, keep the established direction and go straight to the relevant reference.
++- **Redesign an existing interface:** First view and capture the [live baseline](references/DirectionAndComposition.md#capture-the-redesign-baseline) and identify what must survive. If it cannot be viewed, stop the redesign and report the blocker.
++- **Reproduce a supplied mockup or screenshot:** Use [reference fidelity](references/ReferenceFidelity.md). Treat the reference as the target where it gives evidence. If it also changes an existing interface's design, capture the live baseline first. Respect access, real content and required behavior throughout.
+ - **Generate an interface concept image:** [Imagine](../imagine/SKILL.md) owns that deliverable and returns to Design for authorized implementation. Design owns other visual artifacts and can use an appropriate production or asset tool for them. Use [Critique](../critique/SKILL.md) for a review-only request.
+-- **Compare visual or interaction approaches:** Use the shared [prototype method](../../references/prototype.md) to isolate the decision. Keep the experiment outside production.
++- **Compare visual or interaction approaches:** Use the shared [prototype method](../../references/Prototype.md) to isolate the decision. Keep the experiment outside production.
+ 
+ Read only what changes the work:
+ 
+ | Design question | Reference |
+ | --- | --- |
+-| What should lead, and how should the composition express the idea? | [Direction and composition](references/direction-and-composition.md) |
+-| How should type, color, spacing, surfaces and imagery work together? | [Visual language](references/visual-language.md) |
+-| How should a website, product screen, workflow or component work? | [Web, UI and content](references/interaction-and-content.md) |
+-| How should it adapt to space, input, accessibility needs and locale? | [Adaptive and accessible design](references/adaptive-and-accessible.md) |
+-| How should identity, tokens, components or themes stay coherent? | [Identity and design systems](references/identity-and-systems.md) |
+-| What should move, how should it respond to a gesture, and when should motion go away? | [Motion and gestures](references/motion-and-gestures.md) |
+-| How should an illustration, icon, poster, slide deck or visual asset be composed and produced? | [Visual artifacts and assets](references/artifacts-and-assets.md) |
+-| How should an algorithm or set of parameters create the artwork? | [Generative work](references/generative-work.md) |
+-| What evidence will make the result reviewable and usable? | [Review and delivery](references/review-and-delivery.md) |
++| What should lead, and how should the composition express the idea? | [Direction and composition](references/DirectionAndComposition.md) |
++| How should type, color, spacing, surfaces and imagery work together? | [Visual language](references/VisualLanguage.md) |
++| How should a website, product screen, workflow or component work? | [Web, UI and content](references/InteractionAndContent.md) |
++| How should it adapt to space, input, accessibility needs and locale? | [Adaptive and accessible design](references/AdaptiveAndAccessible.md) |
++| How should identity, tokens, components or themes stay coherent? | [Identity and design systems](references/IdentityAndSystems.md) |
++| What should move, how should it respond to a gesture, and when should motion go away? | [Motion and gestures](references/MotionAndGestures.md) |
++| How should an illustration, icon, poster, slide deck or visual asset be composed and produced? | [Visual artifacts and assets](references/ArtifactsAndAssets.md) |
++| How should an algorithm or set of parameters create the artwork? | [Generative work](references/GenerativeWork.md) |
++| What evidence will make the result reviewable and usable? | [Review and delivery](references/ReviewAndDelivery.md) |
+ 
+ ## Develop and deliver
+ 
+ 1. **Read the context.** Identify the audience, what they should do or understand, the medium and constraints. Inspect existing work, content, assets and approved decisions. Separate supplied requirements from assumptions and inspiration.
+ 2. **Choose an approach.** Use the structure that serves the job and give one meaningful thing priority. Decide what stays familiar and where a specific visual choice adds value. Tie that choice to the actual content or use; if the same design could serve an unrelated project after swapping the name, revisit the structure before adding polish.
+ 3. **Prove the consequential part first.** Use a representative section, task, state, crop or sequence with realistic material. Compare alternatives only when they answer a live question. Ask about consequential direction or product choices that remain unresolved; honor decisions and authority already given. For a local edit, make the edit directly.
+-4. **Deliver in the intended medium.** Use the existing stack, approved assets and real content where available. Carry the direction through the relevant states, formats and input methods. Label assumptions and placeholders. Keep intermediates in `.work/temp/<task>/` under the [workspace rules](../../references/workspace.md).
+-5. **Inspect and substantiate.** Use [review and delivery](references/review-and-delivery.md) to give [Critique](../critique/SKILL.md) the actual preview or export, target and applicable cases. [Test](../test/SKILL.md) owns behavior and measurement evidence when needed. Recheck material corrections. Deliver the result and relevant editable sources, with key decisions and unverified conditions.
++4. **Deliver in the intended medium.** Use the existing stack, approved assets and real content where available. Carry the direction through the relevant states, formats and input methods. Label assumptions and placeholders. Keep intermediates in `.work/temp/<task>/` under the [workspace rules](../../references/Workspace.md).
++5. **Inspect and substantiate.** Use [review and delivery](references/ReviewAndDelivery.md) to give [Critique](../critique/SKILL.md) the actual preview or export, target and applicable cases. [Test](../test/SKILL.md) owns behavior and measurement evidence when needed. Recheck material corrections. Deliver the result and relevant editable sources, with key decisions and unverified conditions.
+ 
+ **Done:** The requested result works in its intended context to the extent verified, with evidence and any material gaps stated.
+diff --git a/plugins/mirket/skills/design/references/adaptive-and-accessible.md b/plugins/mirket/skills/design/references/AdaptiveAndAccessible.md
+similarity index 100%
+rename from plugins/mirket/skills/design/references/adaptive-and-accessible.md
+rename to plugins/mirket/skills/design/references/AdaptiveAndAccessible.md
+diff --git a/plugins/mirket/skills/design/references/artifacts-and-assets.md b/plugins/mirket/skills/design/references/ArtifactsAndAssets.md
+similarity index 93%
+rename from plugins/mirket/skills/design/references/artifacts-and-assets.md
+rename to plugins/mirket/skills/design/references/ArtifactsAndAssets.md
+index 4a26d6d..c5daadf 100644
+--- a/plugins/mirket/skills/design/references/artifacts-and-assets.md
++++ b/plugins/mirket/skills/design/references/ArtifactsAndAssets.md
+@@ -13,7 +13,7 @@ Select one dominant element for the composition or frame. Sketch the eye path, i
+ 1. **Assign a job.** An instructional diagram needs accurate relationships and visible steps. A product illustration needs honest representation. An editorial image can give an abstract idea a subject and mood. Decoration can establish atmosphere, but should not resemble evidence or fight with content.
+ 2. **Choose the subject and treatment.** Specify what must be accurate, the focal subject, framing, perspective or degree of abstraction, light or mark-making, color roles, and the detail that must survive at the smallest size. A single purposeful analogy is usually stronger than an assortment of visual metaphors.
+ 3. **Create a useful family.** For a series, carry rules for geometry, line weight, light, crop, scale or texture across the set. Vary composition where the subject needs it. Place a sample beside the real typography and in the actual crop before expanding it.
+-4. **Use the right production method.** Prefer editable vectors for marks, icons and clear line work; use raster, photography or generated images for richer material when appropriate. Use [generative work](generative-work.md) when the process itself creates the artwork. Choose a capable tool if the brief calls for one. Set critical lettering and labels separately when the image method cannot render them reliably.
++4. **Use the right production method.** Prefer editable vectors for marks, icons and clear line work; use raster, photography or generated images for richer material when appropriate. Use [generative work](GenerativeWork.md) when the process itself creates the artwork. Choose a capable tool if the brief calls for one. Set critical lettering and labels separately when the image method cannot render them reliably.
+ 5. **Inspect the actual artwork.** Check subject accuracy, legible silhouette, clipping, awkward joins, lighting or anatomy when relevant, consistent treatment and export transparency. Give meaningful imagery an appropriate text alternative. Test a small mark or icon at its actual size and, when needed, with a single color.
+ 
+ For example, an installation guide can use a simplified side view and directional marks to make orientation unmistakable. The corresponding announcement might use a closer crop and fuller texture for atmosphere. Preserve the product's recognizable geometry in both.
+@@ -22,7 +22,7 @@ For example, an installation guide can use a simplified side view and directiona
+ 
+ Name the audience's decision or question and organize the argument around it. Give each slide a clear job: orient, explain, compare, show evidence, or request a decision. Put evidence where it answers the claim, and move supporting detail to notes or an appendix when appropriate. Use repeated layout where comparison benefits; change scale or structure at a meaningful transition.
+ 
+-Compose for presentation or reading as requested. Check chart labels and units, type at the expected viewing distance, image quality, content order, repeated elements and speaker notes. Inspect the exported deck or PDF, including dense and sparse slides, as well as the editable file when one is requested. For timed motion or transitions, use [motion and gestures](motion-and-gestures.md).
++Compose for presentation or reading as requested. Check chart labels and units, type at the expected viewing distance, image quality, content order, repeated elements and speaker notes. Inspect the exported deck or PDF, including dense and sparse slides, as well as the editable file when one is requested. For timed motion or transitions, use [motion and gestures](MotionAndGestures.md).
+ 
+ ## Produce and verify
+ 
+diff --git a/plugins/mirket/skills/design/references/direction-and-composition.md b/plugins/mirket/skills/design/references/DirectionAndComposition.md
+similarity index 100%
+rename from plugins/mirket/skills/design/references/direction-and-composition.md
+rename to plugins/mirket/skills/design/references/DirectionAndComposition.md
+diff --git a/plugins/mirket/skills/design/references/generative-work.md b/plugins/mirket/skills/design/references/GenerativeWork.md
+similarity index 97%
+rename from plugins/mirket/skills/design/references/generative-work.md
+rename to plugins/mirket/skills/design/references/GenerativeWork.md
+index 6624316..f2450c4 100644
+--- a/plugins/mirket/skills/design/references/generative-work.md
++++ b/plugins/mirket/skills/design/references/GenerativeWork.md
+@@ -16,6 +16,6 @@ Use original composition, rules and assets appropriate to the brief. Choose tool
+ 
+ ## Check the range and deliver the result
+ 
+-Inspect the default, selected and adverse outputs. Try crowded, sparse, high movement or boundary settings as relevant; adjust the rules when they routinely produce clipped, unreadable or empty results. For live or interactive work, bound work and memory, provide usable controls and a still or less motion option where appropriate, and check representative devices. Use [motion and gestures](motion-and-gestures.md) for timing, input and comfort.
++Inspect the default, selected and adverse outputs. Try crowded, sparse, high movement or boundary settings as relevant; adjust the rules when they routinely produce clipped, unreadable or empty results. For live or interactive work, bound work and memory, provide usable controls and a still or less motion option where appropriate, and check representative devices. Use [motion and gestures](MotionAndGestures.md) for timing, input and comfort.
+ 
+ Verify the actual exported dimensions, background, file format and, for animation, duration and end behavior. Confirm that a saved configuration recreates a promised result. Give [Critique](../../critique/SKILL.md) representative outputs and the brief. Report limitations on portability, performance, export or reproduction.
+diff --git a/plugins/mirket/skills/design/references/identity-and-systems.md b/plugins/mirket/skills/design/references/IdentityAndSystems.md
+similarity index 100%
+rename from plugins/mirket/skills/design/references/identity-and-systems.md
+rename to plugins/mirket/skills/design/references/IdentityAndSystems.md
+diff --git a/plugins/mirket/skills/design/references/interaction-and-content.md b/plugins/mirket/skills/design/references/InteractionAndContent.md
+similarity index 98%
+rename from plugins/mirket/skills/design/references/interaction-and-content.md
+rename to plugins/mirket/skills/design/references/InteractionAndContent.md
+index e6a86f6..e78ad3b 100644
+--- a/plugins/mirket/skills/design/references/interaction-and-content.md
++++ b/plugins/mirket/skills/design/references/InteractionAndContent.md
+@@ -33,4 +33,4 @@ Choose a list for order, a table for exact comparison, or a chart for a relation
+ 
+ Start with native or established primitives and tokens. Use the least complex implementation that expresses the design and provides real semantics, focus and behavior. A new library is useful only if it materially closes a gap in the current stack; if a choice is needed, compare relevant components and behavior, styling fit, performance cost, maintenance and migration effort through [Curate](../../curate/SKILL.md). A visual refresh does not by itself justify replacing the stack.
+ 
+-Build the real action and its critical states alongside its appearance. For a standalone demonstration, label synthetic data and mocked behavior; use the [prototype method](../../../references/prototype.md) if the point is to settle a question. A production change must be exercised through its actual path.
++Build the real action and its critical states alongside its appearance. For a standalone demonstration, label synthetic data and mocked behavior; use the [prototype method](../../../references/Prototype.md) if the point is to settle a question. A production change must be exercised through its actual path.
+diff --git a/plugins/mirket/skills/design/references/motion-and-gestures.md b/plugins/mirket/skills/design/references/MotionAndGestures.md
+similarity index 100%
+rename from plugins/mirket/skills/design/references/motion-and-gestures.md
+rename to plugins/mirket/skills/design/references/MotionAndGestures.md
+diff --git a/plugins/mirket/skills/design/references/reference-fidelity.md b/plugins/mirket/skills/design/references/ReferenceFidelity.md
+similarity index 100%
+rename from plugins/mirket/skills/design/references/reference-fidelity.md
+rename to plugins/mirket/skills/design/references/ReferenceFidelity.md
+diff --git a/plugins/mirket/skills/design/references/review-and-delivery.md b/plugins/mirket/skills/design/references/ReviewAndDelivery.md
+similarity index 100%
+rename from plugins/mirket/skills/design/references/review-and-delivery.md
+rename to plugins/mirket/skills/design/references/ReviewAndDelivery.md
+diff --git a/plugins/mirket/skills/design/references/visual-language.md b/plugins/mirket/skills/design/references/VisualLanguage.md
+similarity index 86%
+rename from plugins/mirket/skills/design/references/visual-language.md
+rename to plugins/mirket/skills/design/references/VisualLanguage.md
+index 38ec3a1..bf49d63 100644
+--- a/plugins/mirket/skills/design/references/visual-language.md
++++ b/plugins/mirket/skills/design/references/VisualLanguage.md
+@@ -10,7 +10,7 @@ Avoid adding a font to create character that composition or imagery could expres
+ 
+ ## Color has a job
+ 
+-Set roles for foreground, background, surfaces, action, focus, feedback and data. Establish actual foreground and background pairs, including layers, images, hover, disabled and selected states. Check relevant contrast against [accessibility needs](adaptive-and-accessible.md); distinguish state through words, shape or position as well as hue. Keep color reserved for the level of emphasis it earns. A dark theme needs tuned pairs and surface relationships rather than mechanically inverted colors.
++Set roles for foreground, background, surfaces, action, focus, feedback and data. Establish actual foreground and background pairs, including layers, images, hover, disabled and selected states. Check relevant contrast against [accessibility needs](AdaptiveAndAccessible.md); distinguish state through words, shape or position as well as hue. Keep color reserved for the level of emphasis it earns. A dark theme needs tuned pairs and surface relationships rather than mechanically inverted colors.
+ 
+ ## Space shows relationships
+ 
+@@ -22,7 +22,7 @@ Choose density by task and device. Compact controls may serve repeated desktop o
+ 
+ Use actual product material, photography, illustration or data where it explains something. Select a crop that preserves the subject, scale and context, then check it at the final ratios. Protect text readability when it overlays media; reserve space for loaded imagery and choose a meaningful fallback when it fails. Do not represent a generated stand-in as a real product view, customer or result.
+ 
+-Use a coherent icon family and size stroke and detail for the rendered scale. Label unfamiliar controls; name icon-only controls in their accessible semantics. For illustration systems and exports, use [visual artifacts and assets](artifacts-and-assets.md). For temporal behavior and responsive feedback, use [motion and gestures](motion-and-gestures.md).
++Use a coherent icon family and size stroke and detail for the rendered scale. Label unfamiliar controls; name icon-only controls in their accessible semantics. For illustration systems and exports, use [visual artifacts and assets](ArtifactsAndAssets.md). For temporal behavior and responsive feedback, use [motion and gestures](MotionAndGestures.md).
+ 
+ ## Check the combination
+ 
+diff --git a/plugins/mirket/skills/equip/SKILL.md b/plugins/mirket/skills/equip/SKILL.md
+index 687413b..9d18049 100644
+--- a/plugins/mirket/skills/equip/SKILL.md
++++ b/plugins/mirket/skills/equip/SKILL.md
+@@ -5,7 +5,7 @@ description: "Use to choose or obtain tools, or to challenge a tool, library, fo
+ 
+ # Equip
+ 
+-A choice can work today and still be a poor fit for the job. Call that out when it materially affects correctness, reliability, effort, performance, or control over the result. Critique the choice and its consequences. See [fit scenarios](references/fit-scenarios.md) for examples of when to challenge, adjust, switch, or keep a choice.
++A choice can work today and still be a poor fit for the job. Call that out when it materially affects correctness, reliability, effort, performance, or control over the result. Critique the choice and its consequences. See [fit scenarios](references/FitScenarios.md) for examples of when to challenge, adjust, switch, or keep a choice, and the [routing guide](../../references/Routing.md) when a request also involves research, setup, or a system boundary.
+ 
+ ## Establish fit
+ 
+diff --git a/plugins/mirket/skills/equip/references/fit-scenarios.md b/plugins/mirket/skills/equip/references/FitScenarios.md
+similarity index 100%
+rename from plugins/mirket/skills/equip/references/fit-scenarios.md
+rename to plugins/mirket/skills/equip/references/FitScenarios.md
+diff --git a/plugins/mirket/skills/focus/SKILL.md b/plugins/mirket/skills/focus/SKILL.md
+index ca31756..cc97018 100644
+--- a/plugins/mirket/skills/focus/SKILL.md
++++ b/plugins/mirket/skills/focus/SKILL.md
+@@ -9,6 +9,6 @@ Turn a product opportunity into a brief the human can decide on. The human owns
+ 
+ 1. Identify who is affected, what they are trying to do, and the consequences of the current experience. Separate observed behavior, reported needs, and hypotheses. Research outside evidence when it would change the decision; use [Curate](../curate/SKILL.md) for sourced comparisons of options.
+ 2. Define the desired outcome, constraints, goals and non-goals. Compare viable choices, including keeping the current behavior when plausible, using user impact, cost, and uncertainty. For each proposed success measure, say how it could be observed and mark an unknown baseline or unapproved target as such.
+-3. Recommend a priority with the evidence and tradeoffs behind it. For an uncertain product requirement or business rule that affects the outcome, present the evidence and options and ask the human to decide. State which decisions still need an answer. If an authorized experiment would resolve a concrete product uncertainty, use the [prototype method](../../references/prototype.md) to test scenarios without treating simulated behavior as approved policy. For example, a refund model can expose what happens after a partial return; the refund rule remains the human's decision.
++3. Recommend a priority with the evidence and tradeoffs behind it. For an uncertain product requirement or business rule that affects the outcome, present the evidence and options and ask the human to decide. State which decisions still need an answer. If an authorized experiment would resolve a concrete product uncertainty, use the [prototype method](../../references/Prototype.md) to test scenarios without treating simulated behavior as approved policy. For example, a refund model can expose what happens after a partial return; the refund rule remains the human's decision.
+ 
+-**Done:** Deliver the product brief: user problem and evidence, goals and non-goals, options, success measures, recommendation, and decisions needed. If saving a standalone brief without a designated destination, use `.work/briefs/` under the [workspace rules](../../references/workspace.md). Use [Plan](../plan/SKILL.md) to sequence agreed work when requested; use [Brief](../brief/SKILL.md) for instructions to transfer work to another worker.
++**Done:** Deliver the product brief: user problem and evidence, goals and non-goals, options, success measures, recommendation, and decisions needed. If saving a standalone brief without a designated destination, use `.work/briefs/` under the [workspace rules](../../references/Workspace.md). Use [Plan](../plan/SKILL.md) to sequence agreed work when requested; use [Brief](../brief/SKILL.md) for instructions to transfer work to another worker.
+diff --git a/plugins/mirket/skills/imagine/SKILL.md b/plugins/mirket/skills/imagine/SKILL.md
+index 10772bd..ac66392 100644
+--- a/plugins/mirket/skills/imagine/SKILL.md
++++ b/plugins/mirket/skills/imagine/SKILL.md
+@@ -9,18 +9,18 @@ Deliver a generated visual reference for the requested interface. If implementat
+ 
+ ## Agree on the brief
+ 
+-1. Inspect the product, authorized references and earlier decisions. Separate an inspiration image for a new concept from a supplied target to reproduce. For a redesign, view and capture the [live baseline and invariants](../design/references/direction-and-composition.md#capture-the-redesign-baseline); if the existing interface cannot be viewed, stop the redesign until it is visible and report the blocker.
++1. Inspect the product, authorized references and earlier decisions. Separate an inspiration image for a new concept from a supplied target to reproduce. For a redesign, view and capture the [live baseline and invariants](../design/references/DirectionAndComposition.md#capture-the-redesign-baseline); if the existing interface cannot be viewed, stop the redesign until it is visible and report the blocker.
+ 2. Prepare the image brief: audience and primary task, screen hierarchy and actions, approved content and assets, visual direction (type, color, imagery and brand), target sizes and states, and accessibility or behavior constraints. Specify the reference views needed for the decision. Ask only about consequential gaps the available evidence cannot resolve.
+ 3. Present the brief for explicit agreement before generating. Reuse explicit approval of the same brief. If the direction, scope or a material constraint changes, get agreement on the revised brief before generating again.
+ 
+ ## Generate the visual direction
+ 
+-4. Use a capable tool in the current host with the agreed brief and authorized input images. Keep working images you generate or copy into the project in `.work/temp/<task>/` under the [workspace rules](../../references/workspace.md). Start with the fewest legible views that answer the brief. Add a detail view, a distinct state or a narrow layout only when an unresolved decision needs it; keep type, palette and components consistent. If a required reference or tool is unavailable, report the gap and bring any material fallback decision to the human.
++4. Use a capable tool in the current host with the agreed brief and authorized input images. Keep working images you generate or copy into the project in `.work/temp/<task>/` under the [workspace rules](../../references/Workspace.md). Start with the fewest legible views that answer the brief. Add a detail view, a distinct state or a narrow layout only when an unresolved decision needs it; keep type, palette and components consistent. If a required reference or tool is unavailable, report the gap and bring any material fallback decision to the human.
+ 5. Inspect the generated images against the brief and show the proposed direction. Identify drift or ambiguity. When implementation is authorized, proceed with an output consistent with the agreed direction; ask the human if choosing among outputs would materially change that direction. The approved brief does not authorize unrelated implementation.
+ 
+ ## Turn the image into code
+ 
+ 6. If the image is the whole deliverable, pass the final image and brief to [Critique](../critique/SKILL.md) and stop after delivery. Identify any generated stand-in that could be mistaken for real product material.
+-7. For authorized implementation, use [reference fidelity](../design/references/reference-fidelity.md) to extract visible detail, separate trusted material from generated placeholders, and record inferences and required departures. Apply [Design's develop-and-deliver steps](../design/SKILL.md#develop-and-deliver) with that evidence and the agreed brief. This route hands the visual comparison to Critique once and keeps behavior evidence separate.
++7. For authorized implementation, use [reference fidelity](../design/references/ReferenceFidelity.md) to extract visible detail, separate trusted material from generated placeholders, and record inferences and required departures. Apply [Design's develop-and-deliver steps](../design/SKILL.md#develop-and-deliver) with that evidence and the agreed brief. This route hands the visual comparison to Critique once and keeps behavior evidence separate.
+ 
+ **Done:** Deliver the inspected reference generated from the agreed brief and, if requested, the implementation with comparison evidence. Report any unresolved visual, functional or tool limits.
+diff --git a/plugins/mirket/skills/orchestrate/SKILL.md b/plugins/mirket/skills/orchestrate/SKILL.md
+index aca8c0e..d5318a0 100644
+--- a/plugins/mirket/skills/orchestrate/SKILL.md
++++ b/plugins/mirket/skills/orchestrate/SKILL.md
+@@ -5,13 +5,13 @@ description: "Use when deciding whether to delegate or coordinating subagents fo
+ 
+ # Orchestrate
+ 
+-The root agent is the sole orchestrator: it organizes and assigns work, manages subagents, communicates with the human, and owns the integrated outcome. During delegated work, the root manages and reviews; workers implement, correct, and integrate. Subagents report to the root and do not create or manage subagents.
++The root agent is the sole orchestrator: it organizes and assigns work, manages subagents, communicates with the human, and owns the integrated outcome. Workers implement and correct their assigned work. Subagents report to the root and do not create or manage subagents.
+ 
+ ## Organize the work
+ 
+ 1. Delegate when it adds value: for example, independent work can progress concurrently, a specialist perspective matters, or a separate reviewer is needed. Consider coordination cost, dependencies and risk. Work inline when a split adds no value. Follow the human's explicit delegation instructions and host rules.
+ 2. For substantial implementation, use [Plan](../plan/SKILL.md), resolve material decisions, and confirm execution is authorized before delegation. Honor clear existing authorization without calling an unapproved written plan approved. A small, clearly scoped task can be delegated directly when authorized. Bounded read-only investigation or independent draft review can precede plan approval; give the reviewer a fixed target and read-only scope.
+-3. Divide delegated work into bounded scopes with outcomes, dependencies and one owner for each shared interface. Separate confidently rule-driven work from creative or judgment-heavy work where that makes assignments clearer. Give workers exclusive writable areas or isolated workspaces and distinct scratch destinations under the [workspace rules](../../references/workspace.md). Run dependent or shared-state work sequentially.
++3. Divide delegated work into bounded scopes with outcomes, dependencies and one owner for each shared interface. Separate confidently rule-driven work from creative or judgment-heavy work where that makes assignments clearer. Give workers exclusive writable areas or isolated workspaces and distinct scratch destinations under the [workspace rules](../../references/Workspace.md). Run dependent or shared-state work sequentially.
+ 4. Check available subagent tools, concurrency, models and effort controls. For confidently simple, deterministic work, prefer a capable lower-cost, faster model; choose a strong model for creative work, including design. Be generous with reasoning effort and avoid an inadequately capable baseline. Consider ambiguity, complexity and consequences as well as determinism: a precise task can still be high-risk. Increase capability or review when evidence warrants it. Use only host-supported settings; if selection is unavailable, use the permitted default and say so.
+ 
+ ## Direct and coordinate
+@@ -22,7 +22,7 @@ The root agent is the sole orchestrator: it organizes and assigns work, manages
+ 
+ ## Integrate and deliver
+ 
+-8. Inspect each worker's actual work and evidence proportionately to risk; do not accept a completion claim alone. Assign integration to a worker, resolve ownership conflicts and select [Test](../test/SKILL.md), [Audit](../audit/SKILL.md) or [Critique](../critique/SKILL.md) for needed evidence. Return corrections to the original worker or reassign them, then inspect the affected result again. Preserve user changes and use [Plan’s tracking branch](../plan/SKILL.md#track-authorized-work) when a saved status is requested.
++8. Inspect each worker's actual work and evidence proportionately to risk. Give corrections within a worker's scope back to that worker or reassign them. Assign an integration owner; the root may make a bounded integration correction directly once affected workers have handed back ownership. Recheck the affected result with [Test](../test/SKILL.md), [Audit](../audit/SKILL.md) or [Critique](../critique/SKILL.md) as needed. If independent review is required, send any root-authored correction to an independent reviewer. Preserve user changes and use [Plan’s tracking branch](../plan/SKILL.md#track-authorized-work) when a saved status is requested.
+ 9. Report the outcome, verification, unresolved issues and any required human action. The root remains accountable for the result. A root review is not independent of work the root authored; record any required independent review that was unavailable.
+ 
+ If delegation is unavailable or prohibited, say so and continue authorized work inline where possible. Do not claim an inline review is independent. If required independence or isolation is unavailable, report the unmet gate; follow [Plan](../plan/SKILL.md) where its readiness requirements apply. Never invent an unavailable capability or model selection.
+diff --git a/plugins/mirket/skills/plan/SKILL.md b/plugins/mirket/skills/plan/SKILL.md
+index b691000..ec3da1a 100644
+--- a/plugins/mirket/skills/plan/SKILL.md
++++ b/plugins/mirket/skills/plan/SKILL.md
+@@ -1,11 +1,11 @@
+ ---
+ name: plan
+-description: "Use for substantial work, an explicit request for a plan, or reporting or recording progress against authorized work."
++description: "Use to plan substantial implementation, answer an explicit planning request, or report or record status against authorized work."
+ ---
+ 
+ # Plan
+ 
+-Produce an evidence-based plan for the outcome the human wants. Product decisions and business rules belong to the human. Use this skill when requested or when work involves consequential risk, unresolved decisions, or multiple dependent stages. File count alone does not make work substantial. Keep routine work direct.
++Produce an evidence-based plan for the outcome the human wants. Product decisions and business rules belong to the human. Use this skill when requested or when implementation involves consequential risk, unresolved decisions, or multiple dependent stages. File count alone does not make work substantial. A read-only review or investigation does not start a Plan record just because it is substantial. See the [routing guide](../../references/Routing.md) when ownership is unclear.
+ 
+ For a status request on authorized work, go directly to [Track authorized work](#track-authorized-work).
+ 
+@@ -19,7 +19,7 @@ For a status request on authorized work, go directly to [Track authorized work](
+ 
+ ## 2. Keep one plan folder per task
+ 
+-At the project root, create a [numbered plan folder](../../references/workspace.md#numbered-records) such as `.work/plans/0001-Sales-Contracts/`, or resume the existing folder for the same task. Preserve unrelated plans. Keep task-specific evidence alongside the plan. For substantial work, use these three files. For a small explicit plan request, you may use one `Plan.md` with `## Outcome`, `## Agreement`, and `## Plan` sections containing the same information.
++At the project root, create a [numbered plan folder](../../references/Workspace.md#numbered-records) such as `.work/plans/0001-Sales-Contracts/`, or resume the existing folder for the same task. Preserve unrelated plans. Keep task-specific evidence alongside the plan. For substantial work, use these three files. For a small explicit plan request, you may use one `Plan.md` with `## Outcome`, `## Agreement`, and `## Plan` sections containing the same information.
+ 
+ - **`Outcome.md`** — desired outcome, scope and constraints; observable acceptance criteria and how the eventual work will be checked; unresolved criteria marked pending. Describe expected behavior without asserting that unfinished work is complete.
+ - **`Agreement.md`** — decisions and the alternatives considered, including the human's choice, reason and relevant evidence when known. Attribute decisions accurately; distinguish proposed, pending, agreed and superseded choices. Record unanswered questions and retain prior decisions and alternatives when they change. Do not invent alternatives or agreement; say when no alternative has yet been identified.
+@@ -31,7 +31,7 @@ Create the record while investigating, update it as evidence and decisions emerg
+ 
+ Before presenting the plan, check the Outcome, Agreement, and Plan for proposed business rules, changed success criteria, or material scope decisions presented as settled without human confirmation. Mark unresolved decisions pending and ask the human to decide. Record routine checks that verify established behavior as the agent's verification choices.
+ 
+-For a substantial plan, request a fresh read-only [Audit](../audit/SKILL.md) of the identified draft when the host permits delegation and it is authorized. Give the reviewer the goal, files, constraints and evidence; use [Orchestrate](../orchestrate/SKILL.md) when coordination is needed. Handle material findings with the [review loop](../../references/review-loop.md), and record the reviewer, findings, repairs and focused recheck in `Agreement.md`. If independent review is unavailable, record and disclose the gap; label any self-check accurately. Follow any stronger review gate required by the human or host.
++For a substantial plan, request a fresh read-only [Audit](../audit/SKILL.md) of the identified draft when the host permits delegation and it is authorized. Give the reviewer the goal, files, constraints and evidence; use [Orchestrate](../orchestrate/SKILL.md) when coordination is needed. Handle material findings with the [review loop](../../references/ReviewLoop.md), and record the reviewer, findings, repairs and focused recheck in `Agreement.md`. If independent review is unavailable, record and disclose the gap; label any self-check accurately. Follow any stronger review gate required by the human or host.
+ 
+ Present a concise brief of the intended actions, outcome and checks, relevant evidence or constraints, and unresolved product decisions. Link the plan record in its current format. Ask the human to resolve material choices; continue independent authorized work while an answer is pending. If the request is for a plan or approval is otherwise required, obtain approval before dependent execution.
+ 
+diff --git a/plugins/mirket/skills/refactor/SKILL.md b/plugins/mirket/skills/refactor/SKILL.md
+index 7a57e1c..e725112 100644
+--- a/plugins/mirket/skills/refactor/SKILL.md
++++ b/plugins/mirket/skills/refactor/SKILL.md
+@@ -10,7 +10,7 @@ Improve the target code with the smallest complete, evidence-backed change. Pres
+ ## Understand and bound the work
+ 
+ 1. Use [adapt](../adapt/SKILL.md) to understand the target, its purpose, connected behavior, project patterns and the human's constraints. Reuse a current orientation when it covers the same scope. Inspect callers, inputs, outputs, side effects, errors, ordering, validation and existing checks relevant to the change. Preserve the human's existing work.
+-2. Define the requested scope, structural improvement and observable behavior to preserve. Route consequential system boundary decisions to [Architect](../architect/SKILL.md) and performance targets to the [measured improvement method](../../references/measured-improvement.md). Obtain the human's direction if the change requires a product rule or public behavior to change.
++2. Define the requested scope, structural improvement and observable behavior to preserve. Route consequential system boundary decisions to [Architect](../architect/SKILL.md) and performance targets to the [measured improvement method](../../references/MeasuredImprovement.md). Obtain the human's direction if the change requires a product rule or public behavior to change.
+ 3. When the required development or verification environment is unknown or blocked, use [Preflight](../preflight/SKILL.md) to assess it. Reuse existing readiness evidence when current. Follow its confirmation requirements for installations, environment changes and inferior fallbacks.
+ 
+ ## Establish evidence and improve
+diff --git a/plugins/mirket/skills/sleep/SKILL.md b/plugins/mirket/skills/sleep/SKILL.md
+index 9fc992e..588eb70 100644
+--- a/plugins/mirket/skills/sleep/SKILL.md
++++ b/plugins/mirket/skills/sleep/SKILL.md
+@@ -8,11 +8,11 @@ description: "Use when the human asks to pause or sleep with the intention of re
+ Pause the work and leave a concise handoff that a future agent can use to resume it. Interpret the request in context: discussing or revising this skill is not itself a request to pause.
+ 
+ 1. Stop starting new work. Identify the active task and check only critical state needed for a reliable handoff, such as the working tree and active task-owned agents or operations. Capture what is already known; record unresolved questions rather than investigating them to completion. If no unfinished work is identifiable, say so and stop without creating a handoff, unless the human explicitly asks to preserve context.
+-2. Use [Brief](../brief/SKILL.md) to capture the task, workspace, current state and next action, with links to decisions, progress, verification evidence and important gaps. Save it as a [numbered Markdown handoff](../../references/workspace.md#numbered-records) in `.work/briefs/` at the project root. Preserve previous handoffs and make this one usable without the conversation.
++2. Use [Brief](../brief/SKILL.md) to capture the task, workspace, current state and next action, with links to decisions, progress, verification evidence and important gaps. Save it as a [numbered Markdown handoff](../../references/Workspace.md#numbered-records) in `.work/briefs/` at the project root. Preserve previous handoffs and make this one usable without the conversation.
+ 3. Stop task-owned subagents when safe and supported. Do not interrupt an operation when doing so could cause harm or leave the work in an unsafe state; preserve persistent or unrelated services. Record actual states, including anything still running or unknown, and update the handoff with the result. Do not claim an agent or process stopped without evidence.
+ 4. Tell the human where the file is and provide a short, exact prompt they can paste later, using the handoff's actual path. For example:
+ 
+-   > Resume from /absolute/path/to/.work/briefs/0001-Sales-Contracts-Handoff.md.
++   > Resume from /absolute/path/to/.work/briefs/0001-SalesContractsHandoff.md.
+ 
+ 5. Stop work until the human asks to resume. If the file cannot be written, report the blocker and provide the handoff in the response; do not claim a file exists.
+ 
+diff --git a/plugins/mirket/skills/test/SKILL.md b/plugins/mirket/skills/test/SKILL.md
+index c020793..76eac59 100644
+--- a/plugins/mirket/skills/test/SKILL.md
++++ b/plugins/mirket/skills/test/SKILL.md
+@@ -7,13 +7,13 @@ description: "Use when asked to select, write, or run software checks, verify a
+ 
+ ## Purpose
+ 
+-Produce a record of which behaviors were checked, what the results establish, and where evidence is still missing.
++Produce a record of which behaviors were checked, what the results establish, and where evidence is still missing. When another skill requested the check, return the evidence to that owner; see the [routing guide](../../references/Routing.md).
+ 
+ ## Workflow
+ 
+-1. Identify the expected behavior, affected boundary, likely failure modes, and required project checks. Reuse relevant current evidence and existing tests. Choose the narrowest check that can catch the risk: a manual path for a simple observable outcome, a focused automated check for repeatable logic, or an integration or smoke check where wiring and contracts matter. Add adverse inputs where their impact warrants it. For a performance or resource claim, use the [measured improvement method](../../references/measured-improvement.md).
++1. Identify the expected behavior, affected boundary, likely failure modes, and required project checks. Reuse relevant current evidence and existing tests. Choose the narrowest check that can catch the risk: a manual path for a simple observable outcome, a focused automated check for repeatable logic, or an integration or smoke check where wiring and contracts matter. Add adverse inputs where their impact warrants it. For a performance or resource claim, use the [measured improvement method](../../references/MeasuredImprovement.md).
+ 2. Add an automated check when meaningful new behavior or regression risk warrants it and the work authorizes it; otherwise reuse sufficient focused checks or direct inspection. Derive the expected result from a spec, worked example, or known result independent of the implementation, and use the normal interface. For a test-first slice, run the check before the change and confirm it fails for the intended reason, then run it after the change and confirm it passes. Report if the old behavior cannot be exercised.
+-3. Run the focused checks and required project checks in a suitable environment. Record the target, command or steps, relevant inputs and environment, expected and actual results, and evidence. Save scratch outputs in `.work/temp/<task>/` under the [workspace rules](../../references/workspace.md). If a required check cannot run, report it as unverified with its blocker and run other relevant checks that remain possible. Record unavailable, skipped, and inconclusive checks separately from passes. Return unexpected failures to the current investigator; use [Debug](../debug/SKILL.md) when a new causal investigation is needed. Rerun only when a change, suspected flake, or new risk warrants it.
++3. Run the focused checks and required project checks in a suitable environment. Record the target, command or steps, relevant inputs and environment, expected and actual results, and evidence. Save scratch outputs in `.work/temp/<task>/` under the [workspace rules](../../references/Workspace.md). If a required check cannot run, report it as unverified with its blocker and run other relevant checks that remain possible. Record unavailable, skipped, and inconclusive checks separately from passes. Return unexpected failures to the current investigator; use [Debug](../debug/SKILL.md) when a new causal investigation is needed. Rerun only when a change, suspected flake, or new risk warrants it.
+ 4. When defect inspection or quality judgment is also needed, give the existing evidence to [Audit](../audit/SKILL.md) or [Critique](../critique/SKILL.md), respectively. Critique owns rendered quality checks.
+ 
+ ## Completion
+diff --git a/plugins/mirket/sources.json b/plugins/mirket/sources.json
+deleted file mode 100644
+index cd9df61..0000000
+--- a/plugins/mirket/sources.json
++++ /dev/null
+@@ -1,164 +0,0 @@
+-{
+-  "description": "Provenance for adapted guidance. The applicable MIT notices are consolidated in LICENSE; these sources are not runtime dependencies.",
+-  "sources": {
+-    "matt": {
+-      "revision": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
+-      "notice": "LICENSE",
+-      "repository": "mattpocock/skills"
+-    },
+-    "mattQa": {
+-      "revision": "f958fa17c1b62c3f7be38fc09512669acf6b64fc",
+-      "notice": "LICENSE",
+-      "repository": "mattpocock/skills"
+-    },
+-    "superpowers": {
+-      "revision": "22f0b463e7a5e579904dd6211a520321035526f7",
+-      "notice": "LICENSE",
+-      "repository": "obra/superpowers"
+-    },
+-    "breakUi": {
+-      "revision": "715c1807e08c497cfd1dc4feb450a2a3300ef2a9",
+-      "notice": "LICENSE",
+-      "repository": "emilkowalski/skills"
+-    },
+-    "imagegen": {
+-      "revision": "beb16b0d0f4dae9a6f5cb04ea41e97b93a54ab8e",
+-      "notice": "LICENSE",
+-      "repository": "Leonxlnx/imagegen-skills"
+-    },
+-    "taste": {
+-      "revision": "b9ca2fd8047f4c72d7da90ebc1c1203e57c72cd2",
+-      "notice": "LICENSE",
+-      "repository": "Leonxlnx/taste-skill"
+-    },
+-    "reviewLoop": {
+-      "revision": "0980fb7430997f7c8b26c694c9ff797ce7602378",
+-      "licenseNote": "Upstream states MIT; no standalone notice was supplied. Method influence only.",
+-      "repository": "2dmurali/review-loop-skill"
+-    },
+-    "mirketReference": {
+-      "revision": "673bf354907834a1d9380faa88de4da32b953306",
+-      "licenseNote": "Mirket reference checkout; format-routing and verification ideas, independently written.",
+-      "repository": "nazmirket/skills"
+-    }
+-  },
+-  "adaptations": [
+-    {
+-      "destinations": [
+-        "skills/test/SKILL.md"
+-      ],
+-      "source": "matt",
+-      "adaptation": "Public-interface checks, intended red/green and an independent expected result; apply where risk warrants."
+-    },
+-    {
+-      "destinations": [
+-        "skills/audit/SKILL.md"
+-      ],
+-      "source": "matt",
+-      "adaptation": "Pin the target and separate intent and standards checks; no tracker dependency."
+-    },
+-    {
+-      "destinations": [
+-        "skills/author/references/issue-triage.md"
+-      ],
+-      "source": "mattQa",
+-      "adaptation": "Conversational bug intake, independent issue drafts and priority by observed impact; no automatic tracker writes."
+-    },
+-    {
+-      "destinations": [
+-        "skills/architect/SKILL.md"
+-      ],
+-      "source": "matt",
+-      "adaptation": "Friction, domain vocabulary, ADRs, deletion test and interface evidence; no unshipped skill or CDN dependencies."
+-    },
+-    {
+-      "destinations": [
+-        "skills/curate/SKILL.md"
+-      ],
+-      "source": "matt",
+-      "adaptation": "Question-led primary-source research, with a durable evidence note only when useful."
+-    },
+-    {
+-      "destinations": [
+-        "skills/brief/SKILL.md"
+-      ],
+-      "source": "matt",
+-      "adaptation": "Next action, links to evidence, useful skills and redaction; retain Mirket authority and recipient checks."
+-    },
+-    {
+-      "destinations": [
+-        "references/prototype.md"
+-      ],
+-      "source": "matt",
+-      "adaptation": "Comparable UI options, resettable logic scenarios and production isolation; no automatic promotion or release."
+-    },
+-    {
+-      "destinations": [
+-        "skills/debug/SKILL.md"
+-      ],
+-      "source": "superpowers",
+-      "adaptation": "Find the first divergent boundary and test a falsifiable hypothesis; no imported helper scripts."
+-    },
+-    {
+-      "destinations": [
+-        "skills/orchestrate/SKILL.md"
+-      ],
+-      "source": "superpowers",
+-      "adaptation": "Separate independent scopes, sequence shared work and inspect integrated evidence."
+-    },
+-    {
+-      "destinations": [
+-        "skills/critique/SKILL.md",
+-        "skills/critique/references/ui-stress.md",
+-        "skills/author/references/issue-triage.md"
+-      ],
+-      "source": "breakUi",
+-      "adaptation": "Drive realistic adverse data through the normal renderer and document reproducible impact."
+-    },
+-    {
+-      "destinations": [
+-        "references/review-loop.md"
+-      ],
+-      "source": "reviewLoop",
+-      "adaptation": "Resolve evidence-based findings, recheck material repairs and stop; no scores or fixed rounds."
+-    },
+-    {
+-      "destinations": [
+-        "skills/design/SKILL.md",
+-        "skills/imagine/SKILL.md",
+-        "skills/design/references/reference-fidelity.md"
+-      ],
+-      "source": "imagegen",
+-      "adaptation": "Extract a visual reference and compare a matched render; preserve separate supplied-reference and approved generation routes."
+-    },
+-    {
+-      "destinations": [
+-        "skills/design/references/identity-and-systems.md"
+-      ],
+-      "source": "imagegen",
+-      "adaptation": "Optional identity board, new/extension/refresh distinction and checks at usable scales."
+-    },
+-    {
+-      "destinations": [
+-        "skills/design/SKILL.md",
+-        "skills/design/references/direction-and-composition.md"
+-      ],
+-      "source": "taste",
+-      "adaptation": "Capture the live baseline and preserve existing content and behavior outside scope; retain no retired skill."
+-    },
+-    {
+-      "destinations": [
+-        "skills/design/references/visual-language.md"
+-      ],
+-      "source": "taste",
+-      "adaptation": "Optional stylistic examples, not universal constraints."
+-    },
+-    {
+-      "destinations": [
+-        "skills/author/SKILL.md"
+-      ],
+-      "source": "mirketReference",
+-      "adaptation": "Route by requested format and inspect rendered output; no dependency on unshipped skills."
+-    }
+-  ]
+-}
+diff --git a/tests/test_cleanup_hooks.py b/tests/test_cleanup_hooks.py
+index 1ac7c91..9560d7f 100644
+--- a/tests/test_cleanup_hooks.py
++++ b/tests/test_cleanup_hooks.py
+@@ -11,6 +11,8 @@ import unittest
+ 
+ HOOK = Path(__file__).resolve().parents[1] / "plugins/mirket/hooks/cleanup.py"
+ CLEAN = HOOK.parent.parent / "skills/clean/SKILL.md"
++REPOSITORY = shlex.quote(str(HOOK.parents[3]))
++FINAL_REVIEW = "MIRKET_FINAL_REVIEW"
+ 
+ 
+ def invoke(payload, *, env=None):
+@@ -26,8 +28,11 @@ def invoke(payload, *, env=None):
+     return json.loads(result.stdout)
+ 
+ 
+-def before_shell(command):
+-    return invoke({"hook_event_name": "PreToolUse", "tool_name": "Bash", "tool_input": {"command": command}})
++def before_shell(command, *, cwd=None, env=None):
++    payload = {"hook_event_name": "PreToolUse", "tool_name": "Bash", "tool_input": {"command": command}}
++    if cwd is not None:
++        payload["cwd"] = str(cwd)
++    return invoke(payload, env=env)
+ 
+ 
+ def denied(output):
+@@ -35,23 +40,33 @@ def denied(output):
+ 
+ 
+ class CleanupHooksTest(unittest.TestCase):
+-    def test_stop_combines_distill_and_clean_in_one_continuation(self):
++    def test_stop_is_neutral_by_default(self):
++        env = {key: value for key, value in os.environ.items() if key != FINAL_REVIEW}
++        for reply in ("The answer is 2.", "No files were changed.", "Paused as requested."):
++            with self.subTest(reply=reply):
++                self.assertEqual(invoke({"hook_event_name": "Stop", "stop_hook_active": False,
++                                         "last_assistant_message": reply}, env=env), {})
++        self.assertEqual(invoke({"hook_event_name": "Stop", "stop_hook_active": False},
++                                env={**env, FINAL_REVIEW: "true"}), {})
++
++    def test_opt_in_stop_combines_distill_and_clean_in_one_continuation(self):
+         hooks = json.loads((HOOK.parent / "hooks.json").read_text())["hooks"]
+         commands = [hook["command"] for group in hooks["Stop"] for hook in group["hooks"]]
+         self.assertEqual(len(commands), 1)
+         self.assertIn("/hooks/cleanup.py", commands[0])
+-        first = invoke({"hook_event_name": "Stop", "stop_hook_active": False})
++        env = {**os.environ, FINAL_REVIEW: "1"}
++        first = invoke({"hook_event_name": "Stop", "stop_hook_active": False}, env=env)
+         self.assertEqual(first.get("decision"), "block")
+         self.assertIn(str(CLEAN), first.get("reason", ""))
+         self.assertIn("Distill", first.get("reason", ""))
+         self.assertIn("verified checks", first.get("reason", ""))
+         self.assertTrue(CLEAN.is_file())
+-        self.assertEqual(invoke({"hook_event_name": "Stop", "stop_hook_active": True}), {})
++        self.assertEqual(invoke({"hook_event_name": "Stop", "stop_hook_active": True}, env=env), {})
+ 
+     def test_missing_or_invalid_stop_flag_does_not_loop(self):
+         for payload in ({"hook_event_name": "Stop"}, {"hook_event_name": "Stop", "stop_hook_active": "false"}):
+             with self.subTest(payload=payload):
+-                result = invoke(payload)
++                result = invoke(payload, env={**os.environ, FINAL_REVIEW: "1"})
+                 self.assertNotIn("decision", result)
+                 self.assertIn("systemMessage", result)
+ 
+@@ -81,8 +96,8 @@ class CleanupHooksTest(unittest.TestCase):
+ 
+     def test_acknowledged_commits_are_neutral_not_allowed(self):
+         commands = (
+-            "MIRKET_CLEANUP_DONE=1 git commit -m first",
+-            "env MIRKET_CLEANUP_DONE=1 git -C . commit -m first",
++            f"MIRKET_CLEANUP_DONE=1 git -C {REPOSITORY} commit -m first",
++            f"env MIRKET_CLEANUP_DONE=1 git -C {REPOSITORY} -C . commit -m first",
+         )
+         for command in commands:
+             with self.subTest(command=command):
+@@ -91,7 +106,28 @@ class CleanupHooksTest(unittest.TestCase):
+     def test_quoted_and_escaped_operators_are_commit_arguments(self):
+         for message in ("'|'", r"\;", '"("'):
+             with self.subTest(message=message):
+-                self.assertEqual(before_shell(f"MIRKET_CLEANUP_DONE=1 git commit -m {message} --allow-empty"), {})
++                self.assertEqual(before_shell(f"MIRKET_CLEANUP_DONE=1 git -C {REPOSITORY} commit -m {message} --allow-empty"), {})
++
++    def test_supported_commit_previews_do_not_need_cleanup_or_a_target(self):
++        for command in (
++            "git commit --dry-run",
++            "MIRKET_CLEANUP_DONE=1 git commit --dry-run",
++            "git commit --dry-run -a",
++            "env git -C . commit -m 'Preview only' --dry-run",
++            "command git commit --no-dry-run --dry-run",
++        ):
++            with self.subTest(command=command):
++                self.assertEqual(before_shell(command), {})
++
++    def test_commit_options_and_messages_do_not_accidentally_enable_preview(self):
++        for args in ("--dry-run --no-dry-run", "-m --dry-run", "--message=--dry-run", "-- --dry-run"):
++            with self.subTest(args=args):
++                self.assertTrue(denied(before_shell(f"git commit {args}")))
++
++    def test_unsupported_preview_guidance_keeps_the_operation_read_only(self):
++        result = before_shell("git commit --dry-run | cat")
++        self.assertTrue(denied(result))
++        self.assertIn("--dry-run", result["hookSpecificOutput"]["permissionDecisionReason"])
+ 
+     def test_does_not_execute_command_selected_git(self):
+         with tempfile.TemporaryDirectory() as root:
+@@ -105,9 +141,10 @@ class CleanupHooksTest(unittest.TestCase):
+                     result = invoke({**payload, "tool_input": {"command": f"MIRKET_CLEANUP_DONE=1 {command}"}})
+                     self.assertTrue(denied(result))
+                     self.assertFalse(sentinel.exists())
+-            result = invoke({**payload, "tool_input": {"command": "MIRKET_CLEANUP_DONE=1 git commit -m x"}},
++            result = invoke({**payload, "tool_input": {"command": f"MIRKET_CLEANUP_DONE=1 git -C {shlex.quote(root)} commit -m x"}},
+                             env={**os.environ, "PATH": "." + os.pathsep + os.defpath})
+             self.assertTrue(denied(result))
++            self.assertIn("PATH", result["hookSpecificOutput"]["permissionDecisionReason"])
+             self.assertFalse(sentinel.exists())
+ 
+     def test_does_not_execute_fsmonitor_during_index_probe(self):
+@@ -127,7 +164,7 @@ class CleanupHooksTest(unittest.TestCase):
+             self.assertFalse(sentinel.exists())
+             self.assertTrue(denied(result))
+             subprocess.run(["git", "-C", root, "config", "core.fsmonitor", str(helper)], check=True)
+-            result = invoke({**payload, "tool_input": {"command": "MIRKET_CLEANUP_DONE=1 git commit -m x"}})
++            result = invoke({**payload, "tool_input": {"command": f"MIRKET_CLEANUP_DONE=1 git -C {shlex.quote(root)} commit -m x"}})
+             self.assertEqual(result, {})
+             self.assertFalse(sentinel.exists())
+             self.assertEqual((path / ".git/index").read_bytes(), index)
+@@ -144,7 +181,7 @@ class CleanupHooksTest(unittest.TestCase):
+         self.assertTrue(denied(output))
+         reason = output["hookSpecificOutput"]["permissionDecisionReason"]
+         self.assertIn(str(CLEAN), reason)
+-        self.assertIn("MIRKET_CLEANUP_DONE=1 git commit", reason)
++        self.assertIn("MIRKET_CLEANUP_DONE=1 git -C", reason)
+ 
+     def test_noncommit_commands_are_neutral(self):
+         for command in ("git status", "echo git commit", "echo 'git commit'", "git show --format=commit"):
+@@ -195,7 +232,7 @@ class CleanupHooksTest(unittest.TestCase):
+             (work / "private.txt").write_text("private")
+             subprocess.run(["git", "-C", root, "add", ".work/private.txt"], check=True)
+             def request(command):
+-                return invoke({"hook_event_name": "PreToolUse", "tool_name": "Bash", "cwd": root, "tool_input": {"command": command}})
++                return before_shell(command.replace("git commit", f"git -C {shlex.quote(root)} commit"), cwd=root)
+             result = request("MIRKET_CLEANUP_DONE=1 git commit -m x")
+             self.assertTrue(denied(result))
+             self.assertIn(".work/private.txt", result["hookSpecificOutput"]["permissionDecisionReason"])
+@@ -207,7 +244,9 @@ class CleanupHooksTest(unittest.TestCase):
+ 
+     def test_staged_work_targets_git_c_directory(self):
+         with tempfile.TemporaryDirectory() as root:
+-            target = Path(root) / "target"
++            session = Path(root) / "session"
++            target = Path(root) / "target project"
++            subprocess.run(["git", "init", "-q", str(session)], check=True)
+             subprocess.run(["git", "init", "-q", str(target)], check=True)
+             subprocess.run(["git", "-C", str(target), "config", "diff.relative", "true"], check=True)
+             (target / "nested").mkdir()
+@@ -215,7 +254,12 @@ class CleanupHooksTest(unittest.TestCase):
+             work.mkdir()
+             (work / "secret").write_text("x")
+             subprocess.run(["git", "-C", str(target), "add", ".work/secret"], check=True)
+-            payload = {"hook_event_name": "PreToolUse", "tool_name": "Bash", "cwd": root, "tool_input": {"command": "MIRKET_CLEANUP_DONE=1 git -C target -C nested commit -m x"}}
++            for prefix in ("git", "git -C ."):
++                result = before_shell(f"MIRKET_CLEANUP_DONE=1 {prefix} commit -m x", cwd=session)
++                self.assertTrue(denied(result))
++                self.assertIn("absolute", result["hookSpecificOutput"]["permissionDecisionReason"])
++            payload = {"hook_event_name": "PreToolUse", "tool_name": "Bash", "cwd": str(session),
++                       "tool_input": {"command": f"MIRKET_CLEANUP_DONE=1 git -C {shlex.quote(str(target))} -C nested commit -m x"}}
+             result = invoke(payload)
+             self.assertTrue(denied(result))
+             self.assertIn(".work/secret", result["hookSpecificOutput"]["permissionDecisionReason"])
+@@ -225,11 +269,15 @@ class CleanupHooksTest(unittest.TestCase):
+ 
+     def test_index_inspection_failure_blocks_an_acknowledged_commit(self):
+         with tempfile.TemporaryDirectory() as root:
+-            payload = {"hook_event_name": "PreToolUse", "tool_name": "Bash", "cwd": root, "tool_input": {"command": "MIRKET_CLEANUP_DONE=1 git commit -m x"}}
+-            self.assertTrue(denied(invoke(payload)))
++            result = before_shell(f"MIRKET_CLEANUP_DONE=1 git -C {shlex.quote(root)} commit -m x", cwd=HOOK.parents[3])
++            self.assertTrue(denied(result))
++            self.assertIn("target Git index", result["hookSpecificOutput"]["permissionDecisionReason"])
+ 
+     def test_compound_commands_cannot_change_index_before_inspection(self):
+-        for command in ("git add -f .work/a && MIRKET_CLEANUP_DONE=1 git commit -m x", "cd other && MIRKET_CLEANUP_DONE=1 git commit -m x", "MIRKET_CLEANUP_DONE=1 git commit -m x && MIRKET_CLEANUP_DONE=1 git commit -m y"):
++        for command in ("git add -f .work/a && MIRKET_CLEANUP_DONE=1 git commit -m x",
++                        "cd other && MIRKET_CLEANUP_DONE=1 git commit -m x",
++                        "MIRKET_CLEANUP_DONE=1 git commit -m x && MIRKET_CLEANUP_DONE=1 git commit -m y",
++                        f"git commit --dry-run && MIRKET_CLEANUP_DONE=1 git -C {REPOSITORY} commit -m x"):
+             with self.subTest(command=command):
+                 self.assertTrue(denied(before_shell(command)))
+ 
+diff --git a/tests/test_distill_hook.py b/tests/test_distill_hook.py
+index 734af7a..fc800f8 100644
+--- a/tests/test_distill_hook.py
++++ b/tests/test_distill_hook.py
+@@ -10,6 +10,7 @@ ROOT = Path(__file__).resolve().parents[1] / "plugins/mirket"
+ HOOKS = ROOT / "hooks"
+ DISTILL = HOOKS / "distill.py"
+ CLEAN = ROOT / "skills/clean/SKILL.md"
++ROUTING = ROOT / "references/Routing.md"
+ 
+ 
+ def invoke(payload):
+@@ -36,6 +37,9 @@ class DistillHookTest(unittest.TestCase):
+                 self.assertEqual(output["hookEventName"], "SessionStart")
+                 self.assertIn("authorized work", output["additionalContext"])
+                 self.assertIn("verified checks", output["additionalContext"])
++                self.assertIn("return evidence to that owner", output["additionalContext"])
++                self.assertIn(str(ROUTING), output["additionalContext"])
++                self.assertTrue(ROUTING.is_file())
+ 
+     def test_prompt_context_can_stand_alone_without_echoing_prompt(self):
+         output = invoke({"hook_event_name": "UserPromptSubmit", "prompt": "private sample prompt"})["hookSpecificOutput"]

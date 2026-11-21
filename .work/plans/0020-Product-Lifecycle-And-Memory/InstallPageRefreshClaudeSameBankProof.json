@@ -1,0 +1,6 @@
+{
+  "disabled": false,
+  "bank": "coding-agent::desktop-skills-claude",
+  "project": null,
+  "componentSource": "From this project's commit history and past discussions, what are the main components/modules/subsystems, what is each responsible for, and how do they relate to or depend on one another? Describe the structure and responsibilities. This bank is shared by several projects: attribute each thing you include to the repository or project its sources name, and group by project where that helps. Leave out facts about external tools, libraries and services those projects merely use, configure, deploy or discuss \u2014 they belong to somebody else's codebase \u2014 including any commit SHA or identifier from such a dependency's repository."
+}

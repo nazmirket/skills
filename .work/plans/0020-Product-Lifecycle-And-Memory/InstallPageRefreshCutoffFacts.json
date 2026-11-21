@@ -1,0 +1,340 @@
+{
+  "items": [
+    {
+      "id": "da28c134-e381-4732-bb0a-bda4156900d3",
+      "text": "Recent facts must be verified against normal source and fresh transcripts; dirty source is not certified by a completed HEAD survey. Page refresh is still progressing, and final 26-page acceptance must be recorded separately in local verification evidence; this note alone does not establish that all pages are current. | When: November 11, 2026 | Prevents overstating Hindsight page freshness or acceptance.",
+      "context": "ingested document",
+      "date": "2026-11-11T00:00:00.100000+00:00",
+      "fact_type": "world",
+      "document_id": "correction-mirket-0-4-0-installed-state-lifecycle-ownership-and-current-working-conventions",
+      "mentioned_at": "2026-11-11T09:31:29.383030+00:00",
+      "occurred_start": "2026-11-11T00:00:00.100000+00:00",
+      "occurred_end": "2026-11-11T00:00:00.100000+00:00",
+      "entities": "26-page acceptance, Hindsight, knowledge:convention, local verification evidence",
+      "chunk_id": "coding-agent::desktop-skills_correction-mirket-0-4-0-installed-state-lifecycle-ownership-and-current-working-conventions_0",
+      "proof_count": 1,
+      "tags": [
+        "harness:codex",
+        "source:upload",
+        "knowledge:convention"
+      ],
+      "metadata": {
+        "harness": "codex"
+      },
+      "consolidated_at": "2026-11-11T09:34:54.977163+00:00",
+      "consolidation_failed_at": null,
+      "state": "valid",
+      "invalidation_reason": null,
+      "invalidated_at": null,
+      "edited_at": null,
+      "updated_at": "2026-11-11T09:32:18.669383+00:00",
+      "source_memory_ids": []
+    },
+    {
+      "id": "6f617b1b-c501-4983-8b0a-9d7711a50430",
+      "text": "Hindsight remains asynchronous: automatic capture, completed source survey, fresh page synthesis, and successful retrieval are distinct claims. The project-only profile uses surveyRefreshCommits1, pageTriggerType auto-refresh, and pageRefreshEveryTurns1, while capture scope remains unchanged. | Clarifies the system's asynchronous refresh and verification model.",
+      "context": "ingested document",
+      "date": "2026-11-11T09:31:29.373030+00:00",
+      "fact_type": "world",
+      "document_id": "correction-mirket-0-4-0-installed-state-lifecycle-ownership-and-current-working-conventions",
+      "mentioned_at": "2026-11-11T09:31:29.373030+00:00",
+      "occurred_start": null,
+      "occurred_end": null,
+      "entities": "Hindsight, auto-refresh, knowledge:component, knowledge:concept, pageRefreshEveryTurns, surveyRefreshCommits",
+      "chunk_id": "coding-agent::desktop-skills_correction-mirket-0-4-0-installed-state-lifecycle-ownership-and-current-working-conventions_0",
+      "proof_count": 1,
+      "tags": [
+        "harness:codex",
+        "source:upload",
+        "knowledge:concept",
+        "knowledge:component"
+      ],
+      "metadata": {
+        "harness": "codex"
+      },
+      "consolidated_at": "2026-11-11T09:34:54.977163+00:00",
+      "consolidation_failed_at": null,
+      "state": "valid",
+      "invalidation_reason": null,
+      "invalidated_at": null,
+      "edited_at": null,
+      "updated_at": "2026-11-11T09:32:18.669383+00:00",
+      "source_memory_ids": []
+    },
+    {
+      "id": "87adf786-68be-455d-8f82-cdd22b91c6f9",
+      "text": "Delegation does not require a separately approved written plan when existing user execution authorization already covers the work. Orchestrate should honor that authorization, may perform bounded read-only investigation or review before plan approval, and draft plans do not create approval gates. | Involving: Orchestrate | Defines the project's authorization and planning behavior.",
+      "context": "ingested document",
+      "date": "2026-11-11T09:31:29.363030+00:00",
+      "fact_type": "world",
+      "document_id": "correction-mirket-0-4-0-installed-state-lifecycle-ownership-and-current-working-conventions",
+      "mentioned_at": "2026-11-11T09:31:29.363030+00:00",
+      "occurred_start": null,
+      "occurred_end": null,
+      "entities": "Orchestrate, knowledge:convention, knowledge:decision",
+      "chunk_id": "coding-agent::desktop-skills_correction-mirket-0-4-0-installed-state-lifecycle-ownership-and-current-working-conventions_0",
+      "proof_count": 1,
+      "tags": [
+        "harness:codex",
+        "source:upload",
+        "knowledge:decision",
+        "knowledge:convention"
+      ],
+      "metadata": {
+        "harness": "codex"
+      },
+      "consolidated_at": "2026-11-11T09:34:54.977163+00:00",
+      "consolidation_failed_at": null,
+      "state": "valid",
+      "invalidation_reason": null,
+      "invalidated_at": null,
+      "edited_at": null,
+      "updated_at": "2026-11-11T09:32:18.669383+00:00",
+      "source_memory_ids": []
+    },
+    {
+      "id": "8f747304-30f4-4a10-9f09-75cf3b58b33b",
+      "text": "Settled ADRs belong in the project ADR location, defaulting to docs/decisions/; .work/decisions is only for private drafts. Active reference filenames use PascalCase, including references/Routing.md, Workspace.md, Memory.md, MeasuredImprovement.md, ReviewLoop.md, Prototype.md, and nested skill references; lowercase paths such as routing.md are historical, not current links. | Where: /Users/nazmi/Projects/skills | Defines documentation and reference-path conventions.",
+      "context": "ingested document",
+      "date": "2026-11-11T09:31:29.353030+00:00",
+      "fact_type": "world",
+      "document_id": "correction-mirket-0-4-0-installed-state-lifecycle-ownership-and-current-working-conventions",
+      "mentioned_at": "2026-11-11T09:31:29.353030+00:00",
+      "occurred_start": null,
+      "occurred_end": null,
+      "entities": ".work/decisions, MeasuredImprovement.md, Prototype.md, ReviewLoop.md, Workspace.md, docs/decisions, knowledge:convention, memory, references/Routing.md",
+      "chunk_id": "coding-agent::desktop-skills_correction-mirket-0-4-0-installed-state-lifecycle-ownership-and-current-working-conventions_0",
+      "proof_count": 1,
+      "tags": [
+        "harness:codex",
+        "source:upload",
+        "knowledge:convention"
+      ],
+      "metadata": {
+        "harness": "codex"
+      },
+      "consolidated_at": "2026-11-11T09:34:01.414443+00:00",
+      "consolidation_failed_at": null,
+      "state": "valid",
+      "invalidation_reason": null,
+      "invalidated_at": null,
+      "edited_at": null,
+      "updated_at": "2026-11-11T09:32:18.669383+00:00",
+      "source_memory_ids": []
+    },
+    {
+      "id": "f71a50fc-7c1a-4074-b407-68ee51b77698",
+      "text": "Current ownership boundaries are: Secure owns security/privacy; Migrate owns persistent state; Release owns versioned artifacts/distribution; Deploy owns environment rollout/activation; Operate owns health/recovery. Release does not own environment deployment; Distill owns routine communication, while Author owns documents, substantive product copy, and issue triage. | Involving: Secure, Migrate, Release, Deploy, Operate, Distill, Author | Defines durable project responsibility boundaries.",
+      "context": "ingested document",
+      "date": "2026-11-11T09:31:29.343030+00:00",
+      "fact_type": "world",
+      "document_id": "correction-mirket-0-4-0-installed-state-lifecycle-ownership-and-current-working-conventions",
+      "mentioned_at": "2026-11-11T09:31:29.343030+00:00",
+      "occurred_start": null,
+      "occurred_end": null,
+      "entities": "Author, Deploy, Distill, Migrate, Operate, Release, Secure, knowledge:component, knowledge:convention",
+      "chunk_id": "coding-agent::desktop-skills_correction-mirket-0-4-0-installed-state-lifecycle-ownership-and-current-working-conventions_0",
+      "proof_count": 1,
+      "tags": [
+        "harness:codex",
+        "source:upload",
+        "knowledge:convention",
+        "knowledge:component"
+      ],
+      "metadata": {
+        "harness": "codex"
+      },
+      "consolidated_at": "2026-11-11T09:34:01.414443+00:00",
+      "consolidation_failed_at": null,
+      "state": "valid",
+      "invalidation_reason": null,
+      "invalidated_at": null,
+      "edited_at": null,
+      "updated_at": "2026-11-11T09:32:18.669383+00:00",
+      "source_memory_ids": []
+    },
+    {
+      "id": "ac5824b7-ce0a-4005-9bbb-05e47726118e",
+      "text": "Claude startup successfully exposed SessionStart and UserPromptSubmit events and 25 skills, but authenticated model behavior, Stop, and PreToolUse enforcement remain unverified because Claude is not logged in; hook activation and model adherence are separate evidence. | When: November 11, 2026 | Where: Claude Code 2.1.311 | Separates verified runtime activation from unverified authenticated behavior.",
+      "context": "ingested document",
+      "date": "2026-11-11T09:31:29.333030+00:00",
+      "fact_type": "world",
+      "document_id": "correction-mirket-0-4-0-installed-state-lifecycle-ownership-and-current-working-conventions",
+      "mentioned_at": "2026-11-11T09:31:29.333030+00:00",
+      "occurred_start": null,
+      "occurred_end": null,
+      "entities": "Bash PreToolUse, Claude Code 2.1.311, SessionStart, Stop, UserPromptSubmit, knowledge:component",
+      "chunk_id": "coding-agent::desktop-skills_correction-mirket-0-4-0-installed-state-lifecycle-ownership-and-current-working-conventions_0",
+      "proof_count": 1,
+      "tags": [
+        "harness:codex",
+        "source:upload",
+        "knowledge:component"
+      ],
+      "metadata": {
+        "harness": "codex"
+      },
+      "consolidated_at": "2026-11-11T09:34:01.414443+00:00",
+      "consolidation_failed_at": null,
+      "state": "valid",
+      "invalidation_reason": null,
+      "invalidated_at": null,
+      "edited_at": null,
+      "updated_at": "2026-11-11T09:32:18.669383+00:00",
+      "source_memory_ids": []
+    },
+    {
+      "id": "c4ee7768-94c6-4119-a338-0baf611c4318",
+      "text": "Independent packaging review and 41 hook/package/fixture tests pass; the website production build and discovery check also pass, producing 28 HTML pages and 28 social images. | When: November 11, 2026 | Where: /Users/nazmi/Projects/skills | Provides verified quality and website-build evidence.",
+      "context": "ingested document",
+      "date": "2026-11-11T00:00:00.040000+00:00",
+      "fact_type": "world",
+      "document_id": "correction-mirket-0-4-0-installed-state-lifecycle-ownership-and-current-working-conventions",
+      "mentioned_at": "2026-11-11T09:31:29.323030+00:00",
+      "occurred_start": "2026-11-11T00:00:00.040000+00:00",
+      "occurred_end": "2026-11-11T00:00:00.040000+00:00",
+      "entities": "hook/package/fixture tests, packaging review, website production build",
+      "chunk_id": "coding-agent::desktop-skills_correction-mirket-0-4-0-installed-state-lifecycle-ownership-and-current-working-conventions_0",
+      "proof_count": 1,
+      "tags": [
+        "harness:codex",
+        "source:upload"
+      ],
+      "metadata": {
+        "harness": "codex"
+      },
+      "consolidated_at": "2026-11-11T09:34:01.414443+00:00",
+      "consolidation_failed_at": null,
+      "state": "valid",
+      "invalidation_reason": null,
+      "invalidated_at": null,
+      "edited_at": null,
+      "updated_at": "2026-11-11T09:32:18.669383+00:00",
+      "source_memory_ids": []
+    },
+    {
+      "id": "da0bf0c7-3d9e-4fa9-a6c8-ff74a714b90a",
+      "text": "Installed plugin/read reports 25 skills and four hooks. Codex /hooks UI and hooks/list show Mirket PreToolUse, SessionStart, UserPromptSubmit, and Stop enabled and trusted, with no hook warnings or errors; no forged trust hashes or trust bypass are used. | When: November 11, 2026 | Where: Codex CLI | Confirms actual hook discovery and activation rather than relying only on packaging inspection.",
+      "context": "ingested document",
+      "date": "2026-11-11T00:00:00.030000+00:00",
+      "fact_type": "world",
+      "document_id": "correction-mirket-0-4-0-installed-state-lifecycle-ownership-and-current-working-conventions",
+      "mentioned_at": "2026-11-11T09:31:29.313030+00:00",
+      "occurred_start": "2026-11-11T00:00:00.030000+00:00",
+      "occurred_end": "2026-11-11T00:00:00.030000+00:00",
+      "entities": "Bash PreToolUse, Codex CLI, Mirket, SessionStart, Stop, UserPromptSubmit, knowledge:component",
+      "chunk_id": "coding-agent::desktop-skills_correction-mirket-0-4-0-installed-state-lifecycle-ownership-and-current-working-conventions_0",
+      "proof_count": 1,
+      "tags": [
+        "harness:codex",
+        "source:upload",
+        "knowledge:component"
+      ],
+      "metadata": {
+        "harness": "codex"
+      },
+      "consolidated_at": "2026-11-11T09:34:01.414443+00:00",
+      "consolidation_failed_at": null,
+      "state": "valid",
+      "invalidation_reason": null,
+      "invalidated_at": null,
+      "edited_at": null,
+      "updated_at": "2026-11-11T09:32:18.669383+00:00",
+      "source_memory_ids": []
+    },
+    {
+      "id": "0dc00770-a8eb-4599-b5e4-4fff74d5d9df",
+      "text": "Codex 0.167.0's portable root plugin.json silently omitted hooks and shadowed the .codex-plugin compatibility descriptor. The source and installed caches now use .codex-plugin/plugin.json and .claude-plugin/plugin.json, with no portable root plugin.json; the Codex descriptor exposes ./skills/ and ./hooks/hooks.json. | When: November 11, 2026 | Where: /Users/nazmi/Projects/skills | The packaging layout prevents the root descriptor from hiding hook configuration.",
+      "context": "ingested document",
+      "date": "2026-11-11T09:31:29.303030+00:00",
+      "fact_type": "world",
+      "document_id": "correction-mirket-0-4-0-installed-state-lifecycle-ownership-and-current-working-conventions",
+      "mentioned_at": "2026-11-11T09:31:29.303030+00:00",
+      "occurred_start": null,
+      "occurred_end": null,
+      "entities": "./hooks/hooks.json, .claude-plugin/plugin.json, .codex-plugin/plugin.json, Codex 0.167.0, knowledge:component, knowledge:decision, skills",
+      "chunk_id": "coding-agent::desktop-skills_correction-mirket-0-4-0-installed-state-lifecycle-ownership-and-current-working-conventions_0",
+      "proof_count": 1,
+      "tags": [
+        "harness:codex",
+        "source:upload",
+        "knowledge:decision",
+        "knowledge:component"
+      ],
+      "metadata": {
+        "harness": "codex"
+      },
+      "consolidated_at": "2026-11-11T09:34:01.414443+00:00",
+      "consolidation_failed_at": null,
+      "state": "valid",
+      "invalidation_reason": null,
+      "invalidated_at": null,
+      "edited_at": null,
+      "updated_at": "2026-11-11T09:32:18.669383+00:00",
+      "source_memory_ids": []
+    },
+    {
+      "id": "e205d6cd-b1e4-4033-ac2d-6138bc1216af",
+      "text": "Both installed 0.4.0 caches match all 76 source files byte-for-byte with no missing, extra, or changed files; no public release, commit, push, or website deployment occurred. | When: November 11, 2026 | Where: /Users/nazmi/Projects/skills | Records the verified distribution state and its deployment boundary.",
+      "context": "ingested document",
+      "date": "2026-11-11T00:00:00.010000+00:00",
+      "fact_type": "world",
+      "document_id": "correction-mirket-0-4-0-installed-state-lifecycle-ownership-and-current-working-conventions",
+      "mentioned_at": "2026-11-11T09:31:29.293030+00:00",
+      "occurred_start": "2026-11-11T00:00:00.010000+00:00",
+      "occurred_end": "2026-11-11T00:00:00.010000+00:00",
+      "entities": "0.4.0, Mirket, knowledge:component",
+      "chunk_id": "coding-agent::desktop-skills_correction-mirket-0-4-0-installed-state-lifecycle-ownership-and-current-working-conventions_0",
+      "proof_count": 1,
+      "tags": [
+        "harness:codex",
+        "source:upload",
+        "knowledge:component"
+      ],
+      "metadata": {
+        "harness": "codex"
+      },
+      "consolidated_at": "2026-11-11T09:34:01.414443+00:00",
+      "consolidation_failed_at": null,
+      "state": "valid",
+      "invalidation_reason": null,
+      "invalidated_at": null,
+      "edited_at": null,
+      "updated_at": "2026-11-11T09:32:18.669383+00:00",
+      "source_memory_ids": []
+    },
+    {
+      "id": "4e31b735-c5d1-4e1c-979c-f1b2f55dbdbd",
+      "text": "As of November 11, 2026, Mirket source and NORMAL user installations in Codex CLI 0.167.0 and Claude Code 2.1.311 are version 0.4.0 with exactly 25 original natively authored skills; Secure, Release, Migrate, Deploy, and Operate are present. | When: November 11, 2026 | Where: /Users/nazmi/Projects/skills | This supersedes older current-state claims.",
+      "context": "ingested document",
+      "date": "2026-11-11T00:00:00+00:00",
+      "fact_type": "world",
+      "document_id": "correction-mirket-0-4-0-installed-state-lifecycle-ownership-and-current-working-conventions",
+      "mentioned_at": "2026-11-11T09:31:29.283030+00:00",
+      "occurred_start": "2026-11-11T00:00:00+00:00",
+      "occurred_end": "2026-11-11T00:00:00+00:00",
+      "entities": "Claude Code 2.1.311, Codex 0.167.0, Deploy, Migrate, Mirket, Operate, Release, Secure, knowledge:component",
+      "chunk_id": "coding-agent::desktop-skills_correction-mirket-0-4-0-installed-state-lifecycle-ownership-and-current-working-conventions_0",
+      "proof_count": 1,
+      "tags": [
+        "harness:codex",
+        "source:upload",
+        "knowledge:component"
+      ],
+      "metadata": {
+        "harness": "codex"
+      },
+      "consolidated_at": "2026-11-11T09:34:01.414443+00:00",
+      "consolidation_failed_at": null,
+      "state": "valid",
+      "invalidation_reason": null,
+      "invalidated_at": null,
+      "edited_at": null,
+      "updated_at": "2026-11-11T09:32:18.669383+00:00",
+      "source_memory_ids": []
+    }
+  ],
+  "total": 11,
+  "limit": 100,
+  "offset": 0
+}

@@ -1,0 +1,3191 @@
+{
+  "before": [
+    {
+      "id": "kp-6a62f0e9fe9f4f4fa270ce07170fc187",
+      "kind": "page",
+      "name": "Component map",
+      "parent_id": null,
+      "mental_model_id": "mm-408496ae0b4149309a00cfaeae4ba95a",
+      "managed": false,
+      "description": "From this project's commit history and past discussions, what are the main components/modules/subsystems, what is each responsible for, and how do they relate to or depend on one another? Describe the structure and responsibilities. This bank is shared by several projects: attribute each thing you include to the repository or project its sources name, and group by project where that helps. Leave out facts about external tools, libraries and services those projects merely use, configure, deploy or discuss \u2014 they belong to somebody else's codebase \u2014 including any commit SHA or identifier from such a dependency's repository.\n\nCurrent-state evidence rules: Describe the currently active Mirket architecture using the latest verified source and installed-state inventory, including the November 11, 2026 Mirket 0.4.0 installation correction and subsequent existing-initiative update. Resolve conflicts in favor of that later verified evidence, not superseded plans, older surveys, or older conversation summaries. Distinguish historical architecture explicitly from the active package. Check each currently active skill name and repository path against the latest inventory facts; omit an uncertain current claim rather than promote an obsolete one. In particular, Review-plan, Delegate, Get-feedback and pick-skills are historical names, not active skills in the current 25-skill inventory. Verify the latest host-specific descriptor layout rather than presenting a portable root plugin.json as current; verify PascalCase reference paths rather than presenting historical lowercase routing.md as an active link. Keep original initiative history separate from present ownership and installed behavior. Report evidence limits without turning an old validation gap into a claim that later verified activation did not occur.",
+      "tags": [
+        "knowledge:component"
+      ],
+      "timestamp": "2026-11-11T09:54:39.652703+00:00",
+      "is_stale": false,
+      "last_refresh_failed_at": null,
+      "trigger": {
+        "budget": null,
+        "mode": "delta",
+        "refresh_after_consolidation": true,
+        "refresh_cron": null,
+        "full_refresh_cron": null,
+        "min_refresh_interval_seconds": null,
+        "fact_types": [
+          "world",
+          "experience",
+          "observation"
+        ],
+        "exclude_mental_models": true,
+        "exclude_mental_model_ids": null,
+        "tags_match": "all",
+        "tag_groups": null,
+        "include_chunks": null,
+        "recall_max_tokens": null,
+        "recall_chunks_max_tokens": null,
+        "reflect_search_observations_max_tokens": null,
+        "reflect_search_observations_include_entities": null,
+        "response_schema": null,
+        "keep_trace": false
+      },
+      "children": []
+    },
+    {
+      "id": "kp-acbde8d64df84c9bad154c6e54cbb29b",
+      "kind": "page",
+      "name": "Conventions and patterns",
+      "parent_id": null,
+      "mental_model_id": "mm-b57fbad0a1b142c6964435fc98ccc4c9",
+      "managed": false,
+      "description": "What conventions, idioms, and recurring patterns does this project follow \u2014 its approach to testing, error handling, naming, structure, and how changes are typically made? Describe how THIS project does things, as evidenced across its history and discussions. This bank is shared by several projects: attribute each thing you include to the repository or project its sources name, and group by project where that helps. Leave out facts about external tools, libraries and services those projects merely use, configure, deploy or discuss \u2014 they belong to somebody else's codebase \u2014 including any commit SHA or identifier from such a dependency's repository.",
+      "tags": [
+        "knowledge:convention"
+      ],
+      "timestamp": "2026-11-11T09:46:37.224770+00:00",
+      "is_stale": false,
+      "last_refresh_failed_at": null,
+      "trigger": {
+        "budget": null,
+        "mode": "delta",
+        "refresh_after_consolidation": true,
+        "refresh_cron": null,
+        "full_refresh_cron": null,
+        "min_refresh_interval_seconds": null,
+        "fact_types": [
+          "world",
+          "experience",
+          "observation"
+        ],
+        "exclude_mental_models": true,
+        "exclude_mental_model_ids": null,
+        "tags_match": "all",
+        "tag_groups": null,
+        "include_chunks": null,
+        "recall_max_tokens": null,
+        "recall_chunks_max_tokens": null,
+        "reflect_search_observations_max_tokens": null,
+        "reflect_search_observations_include_entities": null,
+        "response_schema": null,
+        "keep_trace": false
+      },
+      "children": []
+    },
+    {
+      "id": "kp-a724304d0a0d4a77ae1a6201f944a7fc",
+      "kind": "page",
+      "name": "Core concepts",
+      "parent_id": null,
+      "mental_model_id": "mm-0590d38703264895baeb883f51a3d074",
+      "managed": false,
+      "description": "What are the core concepts, domain abstractions, and key entities in this project \u2014 the vocabulary a developer must understand? For each, explain what it represents and its role, drawn from how they are introduced and discussed across the history and conversations. This bank is shared by several projects: attribute each thing you include to the repository or project its sources name, and group by project where that helps. Leave out facts about external tools, libraries and services those projects merely use, configure, deploy or discuss \u2014 they belong to somebody else's codebase \u2014 including any commit SHA or identifier from such a dependency's repository.",
+      "tags": [
+        "knowledge:concept"
+      ],
+      "timestamp": "2026-11-11T09:39:34.028237+00:00",
+      "is_stale": false,
+      "last_refresh_failed_at": null,
+      "trigger": {
+        "budget": null,
+        "mode": "delta",
+        "refresh_after_consolidation": true,
+        "refresh_cron": null,
+        "full_refresh_cron": null,
+        "min_refresh_interval_seconds": null,
+        "fact_types": [
+          "world",
+          "experience",
+          "observation"
+        ],
+        "exclude_mental_models": true,
+        "exclude_mental_model_ids": null,
+        "tags_match": "all",
+        "tag_groups": null,
+        "include_chunks": null,
+        "recall_max_tokens": null,
+        "recall_chunks_max_tokens": null,
+        "reflect_search_observations_max_tokens": null,
+        "reflect_search_observations_include_entities": null,
+        "response_schema": null,
+        "keep_trace": false
+      },
+      "children": []
+    },
+    {
+      "id": "kf-9a7ab85032d840cdad704998b7778db6",
+      "kind": "folder",
+      "name": "Initiatives",
+      "parent_id": null,
+      "mental_model_id": null,
+      "managed": false,
+      "description": null,
+      "tags": [],
+      "timestamp": "2026-11-09T20:18:16.835534+00:00",
+      "is_stale": null,
+      "last_refresh_failed_at": null,
+      "trigger": null,
+      "children": [
+        {
+          "id": "kp-4cc43ea235cc4a9bb6bde8d02c7488c5",
+          "kind": "page",
+          "name": "Build the Mirket skills website",
+          "parent_id": "kf-9a7ab85032d840cdad704998b7778db6",
+          "mental_model_id": "mm-a11c08752f1a423a91895cdc987d5922",
+          "managed": false,
+          "description": "Summarize the \"Build the Mirket skills website\" initiative: what is being built or changed and why, and its current state \u2014 drawn from the project's memory. This bank is shared by several projects: attribute each thing you include to the repository or project its sources name, and group by project where that helps. Leave out facts about external tools, libraries and services those projects merely use, configure, deploy or discuss \u2014 they belong to somebody else's codebase \u2014 including any commit SHA or identifier from such a dependency's repository.",
+          "tags": [
+            "knowledge:feature-work"
+          ],
+          "timestamp": "2026-11-11T09:43:19.011604+00:00",
+          "is_stale": false,
+          "last_refresh_failed_at": null,
+          "trigger": {
+            "budget": null,
+            "mode": "delta",
+            "refresh_after_consolidation": true,
+            "refresh_cron": null,
+            "full_refresh_cron": null,
+            "min_refresh_interval_seconds": null,
+            "fact_types": [
+              "world",
+              "experience",
+              "observation"
+            ],
+            "exclude_mental_models": true,
+            "exclude_mental_model_ids": null,
+            "tags_match": "all",
+            "tag_groups": null,
+            "include_chunks": null,
+            "recall_max_tokens": null,
+            "recall_chunks_max_tokens": null,
+            "reflect_search_observations_max_tokens": null,
+            "reflect_search_observations_include_entities": null,
+            "response_schema": null,
+            "keep_trace": false
+          },
+          "children": []
+        },
+        {
+          "id": "kp-efd36376017c46ebb2bf7eaba91e5e41",
+          "kind": "page",
+          "name": "Expand Mirket Design into a design director",
+          "parent_id": "kf-9a7ab85032d840cdad704998b7778db6",
+          "mental_model_id": "mm-70d1ae0a755f43eb8ec3c4deb67e22ee",
+          "managed": false,
+          "description": "Summarize the \"Expand Mirket Design into a design director\" initiative: what is being built or changed and why, and its current state \u2014 drawn from the project's memory. This bank is shared by several projects: attribute each thing you include to the repository or project its sources name, and group by project where that helps. Leave out facts about external tools, libraries and services those projects merely use, configure, deploy or discuss \u2014 they belong to somebody else's codebase \u2014 including any commit SHA or identifier from such a dependency's repository.",
+          "tags": [
+            "knowledge:feature-work"
+          ],
+          "timestamp": "2026-11-11T09:43:45.847268+00:00",
+          "is_stale": false,
+          "last_refresh_failed_at": null,
+          "trigger": {
+            "budget": null,
+            "mode": "delta",
+            "refresh_after_consolidation": true,
+            "refresh_cron": null,
+            "full_refresh_cron": null,
+            "min_refresh_interval_seconds": null,
+            "fact_types": [
+              "world",
+              "experience",
+              "observation"
+            ],
+            "exclude_mental_models": true,
+            "exclude_mental_model_ids": null,
+            "tags_match": "all",
+            "tag_groups": null,
+            "include_chunks": null,
+            "recall_max_tokens": null,
+            "recall_chunks_max_tokens": null,
+            "reflect_search_observations_max_tokens": null,
+            "reflect_search_observations_include_entities": null,
+            "response_schema": null,
+            "keep_trace": false
+          },
+          "children": []
+        },
+        {
+          "id": "kp-5d3a84ca72374015b13892171f125528",
+          "kind": "page",
+          "name": "Expand Mirket to 25 skills and make project memory reliable",
+          "parent_id": "kf-9a7ab85032d840cdad704998b7778db6",
+          "mental_model_id": "mm-78396c0cbdca4e268101150cb24dbc27",
+          "managed": false,
+          "description": "Summarize the \"Expand Mirket to 25 skills and make project memory reliable\" initiative: what is being built or changed and why, and its current state \u2014 drawn from the project's memory. This bank is shared by several projects: attribute each thing you include to the repository or project its sources name, and group by project where that helps. Leave out facts about external tools, libraries and services those projects merely use, configure, deploy or discuss \u2014 they belong to somebody else's codebase \u2014 including any commit SHA or identifier from such a dependency's repository.",
+          "tags": [
+            "knowledge:feature-work"
+          ],
+          "timestamp": "2026-11-11T09:44:27.551093+00:00",
+          "is_stale": false,
+          "last_refresh_failed_at": null,
+          "trigger": {
+            "budget": null,
+            "mode": "delta",
+            "refresh_after_consolidation": true,
+            "refresh_cron": null,
+            "full_refresh_cron": null,
+            "min_refresh_interval_seconds": null,
+            "fact_types": [
+              "world",
+              "experience",
+              "observation"
+            ],
+            "exclude_mental_models": true,
+            "exclude_mental_model_ids": null,
+            "tags_match": "all",
+            "tag_groups": null,
+            "include_chunks": null,
+            "recall_max_tokens": null,
+            "recall_chunks_max_tokens": null,
+            "reflect_search_observations_max_tokens": null,
+            "reflect_search_observations_include_entities": null,
+            "response_schema": null,
+            "keep_trace": false
+          },
+          "children": []
+        },
+        {
+          "id": "kp-4d79b3d4502b4345b6305dd78ad8bda8",
+          "kind": "page",
+          "name": "Harden Mirket routing and lifecycle hooks",
+          "parent_id": "kf-9a7ab85032d840cdad704998b7778db6",
+          "mental_model_id": "mm-604292e4a2544ebba0ba4fa6e571e120",
+          "managed": false,
+          "description": "Summarize the \"Harden Mirket routing and lifecycle hooks\" initiative: what is being built or changed and why, and its current state \u2014 drawn from the project's memory. This bank is shared by several projects: attribute each thing you include to the repository or project its sources name, and group by project where that helps. Leave out facts about external tools, libraries and services those projects merely use, configure, deploy or discuss \u2014 they belong to somebody else's codebase \u2014 including any commit SHA or identifier from such a dependency's repository.",
+          "tags": [
+            "knowledge:feature-work"
+          ],
+          "timestamp": "2026-11-11T09:44:43.291538+00:00",
+          "is_stale": false,
+          "last_refresh_failed_at": null,
+          "trigger": {
+            "budget": null,
+            "mode": "delta",
+            "refresh_after_consolidation": true,
+            "refresh_cron": null,
+            "full_refresh_cron": null,
+            "min_refresh_interval_seconds": null,
+            "fact_types": [
+              "world",
+              "experience",
+              "observation"
+            ],
+            "exclude_mental_models": true,
+            "exclude_mental_model_ids": null,
+            "tags_match": "all",
+            "tag_groups": null,
+            "include_chunks": null,
+            "recall_max_tokens": null,
+            "recall_chunks_max_tokens": null,
+            "reflect_search_observations_max_tokens": null,
+            "reflect_search_observations_include_entities": null,
+            "response_schema": null,
+            "keep_trace": false
+          },
+          "children": []
+        },
+        {
+          "id": "kp-d97e53ba15d94f27875c686caed884e4",
+          "kind": "page",
+          "name": "Implement the Astra Mirket audit follow-up",
+          "parent_id": "kf-9a7ab85032d840cdad704998b7778db6",
+          "mental_model_id": "mm-c01300b9891243afbfa3032283577461",
+          "managed": false,
+          "description": "Summarize the \"Implement the Astra Mirket audit follow-up\" initiative: what is being built or changed and why, and its current state \u2014 drawn from the project's memory. This bank is shared by several projects: attribute each thing you include to the repository or project its sources name, and group by project where that helps. Leave out facts about external tools, libraries and services those projects merely use, configure, deploy or discuss \u2014 they belong to somebody else's codebase \u2014 including any commit SHA or identifier from such a dependency's repository.",
+          "tags": [
+            "knowledge:feature-work"
+          ],
+          "timestamp": "2026-11-11T09:44:31.384265+00:00",
+          "is_stale": false,
+          "last_refresh_failed_at": null,
+          "trigger": {
+            "budget": null,
+            "mode": "delta",
+            "refresh_after_consolidation": true,
+            "refresh_cron": null,
+            "full_refresh_cron": null,
+            "min_refresh_interval_seconds": null,
+            "fact_types": [
+              "world",
+              "experience",
+              "observation"
+            ],
+            "exclude_mental_models": true,
+            "exclude_mental_model_ids": null,
+            "tags_match": "all",
+            "tag_groups": null,
+            "include_chunks": null,
+            "recall_max_tokens": null,
+            "recall_chunks_max_tokens": null,
+            "reflect_search_observations_max_tokens": null,
+            "reflect_search_observations_include_entities": null,
+            "response_schema": null,
+            "keep_trace": false
+          },
+          "children": []
+        },
+        {
+          "id": "kp-86e4ee5d97444ddc8b85ddafefabe3db",
+          "kind": "page",
+          "name": "Improve Mirket lifecycle hooks",
+          "parent_id": "kf-9a7ab85032d840cdad704998b7778db6",
+          "mental_model_id": "mm-6342ad54d9dd46d6bf030784bae350d4",
+          "managed": false,
+          "description": "Summarize the \"Improve Mirket lifecycle hooks\" initiative: what is being built or changed and why, and its current state \u2014 drawn from the project's memory. This bank is shared by several projects: attribute each thing you include to the repository or project its sources name, and group by project where that helps. Leave out facts about external tools, libraries and services those projects merely use, configure, deploy or discuss \u2014 they belong to somebody else's codebase \u2014 including any commit SHA or identifier from such a dependency's repository.",
+          "tags": [
+            "knowledge:feature-work"
+          ],
+          "timestamp": "2026-11-11T09:42:36.210246+00:00",
+          "is_stale": false,
+          "last_refresh_failed_at": null,
+          "trigger": {
+            "budget": null,
+            "mode": "delta",
+            "refresh_after_consolidation": true,
+            "refresh_cron": null,
+            "full_refresh_cron": null,
+            "min_refresh_interval_seconds": null,
+            "fact_types": [
+              "world",
+              "experience",
+              "observation"
+            ],
+            "exclude_mental_models": true,
+            "exclude_mental_model_ids": null,
+            "tags_match": "all",
+            "tag_groups": null,
+            "include_chunks": null,
+            "recall_max_tokens": null,
+            "recall_chunks_max_tokens": null,
+            "reflect_search_observations_max_tokens": null,
+            "reflect_search_observations_include_entities": null,
+            "response_schema": null,
+            "keep_trace": false
+          },
+          "children": []
+        },
+        {
+          "id": "kp-ce9ec8fe18d443f29df6c3e3e5625133",
+          "kind": "page",
+          "name": "Make Mirket Hindsight routing and recall reliable",
+          "parent_id": "kf-9a7ab85032d840cdad704998b7778db6",
+          "mental_model_id": "mm-bac3cf2521374f4f9584e74014030b30",
+          "managed": false,
+          "description": "Summarize the \"Make Mirket Hindsight routing and recall reliable\" initiative: what is being built or changed and why, and its current state \u2014 drawn from the project's memory. This bank is shared by several projects: attribute each thing you include to the repository or project its sources name, and group by project where that helps. Leave out facts about external tools, libraries and services those projects merely use, configure, deploy or discuss \u2014 they belong to somebody else's codebase \u2014 including any commit SHA or identifier from such a dependency's repository.",
+          "tags": [
+            "knowledge:feature-work"
+          ],
+          "timestamp": "2026-11-11T09:49:05.602659+00:00",
+          "is_stale": false,
+          "last_refresh_failed_at": null,
+          "trigger": {
+            "budget": null,
+            "mode": "delta",
+            "refresh_after_consolidation": true,
+            "refresh_cron": null,
+            "full_refresh_cron": null,
+            "min_refresh_interval_seconds": null,
+            "fact_types": [
+              "world",
+              "experience",
+              "observation"
+            ],
+            "exclude_mental_models": true,
+            "exclude_mental_model_ids": null,
+            "tags_match": "all",
+            "tag_groups": null,
+            "include_chunks": null,
+            "recall_max_tokens": null,
+            "recall_chunks_max_tokens": null,
+            "reflect_search_observations_max_tokens": null,
+            "reflect_search_observations_include_entities": null,
+            "response_schema": null,
+            "keep_trace": false
+          },
+          "children": []
+        },
+        {
+          "id": "kp-e2ef72bee8f14112b98af048c67b2771",
+          "kind": "page",
+          "name": "Re-author Mirket Equip around working but poor choices",
+          "parent_id": "kf-9a7ab85032d840cdad704998b7778db6",
+          "mental_model_id": "mm-97158158581d47fa92a678e729e14cef",
+          "managed": false,
+          "description": "Summarize the \"Re-author Mirket Equip around working but poor choices\" initiative: what is being built or changed and why, and its current state \u2014 drawn from the project's memory. This bank is shared by several projects: attribute each thing you include to the repository or project its sources name, and group by project where that helps. Leave out facts about external tools, libraries and services those projects merely use, configure, deploy or discuss \u2014 they belong to somebody else's codebase \u2014 including any commit SHA or identifier from such a dependency's repository.",
+          "tags": [
+            "knowledge:feature-work"
+          ],
+          "timestamp": "2026-11-11T09:43:37.673043+00:00",
+          "is_stale": false,
+          "last_refresh_failed_at": null,
+          "trigger": {
+            "budget": null,
+            "mode": "delta",
+            "refresh_after_consolidation": true,
+            "refresh_cron": null,
+            "full_refresh_cron": null,
+            "min_refresh_interval_seconds": null,
+            "fact_types": [
+              "world",
+              "experience",
+              "observation"
+            ],
+            "exclude_mental_models": true,
+            "exclude_mental_model_ids": null,
+            "tags_match": "all",
+            "tag_groups": null,
+            "include_chunks": null,
+            "recall_max_tokens": null,
+            "recall_chunks_max_tokens": null,
+            "reflect_search_observations_max_tokens": null,
+            "reflect_search_observations_include_entities": null,
+            "response_schema": null,
+            "keep_trace": false
+          },
+          "children": []
+        },
+        {
+          "id": "kp-857952e2362b4d8f994897255664828c",
+          "kind": "page",
+          "name": "Revise Mirket Adapt skill",
+          "parent_id": "kf-9a7ab85032d840cdad704998b7778db6",
+          "mental_model_id": "mm-d49f32a75b424cc1bd602eae709b63a1",
+          "managed": false,
+          "description": "Summarize the \"Revise Mirket Adapt skill\" initiative: what is being built or changed and why, and its current state \u2014 drawn from the project's memory. This bank is shared by several projects: attribute each thing you include to the repository or project its sources name, and group by project where that helps. Leave out facts about external tools, libraries and services those projects merely use, configure, deploy or discuss \u2014 they belong to somebody else's codebase \u2014 including any commit SHA or identifier from such a dependency's repository.",
+          "tags": [
+            "knowledge:feature-work"
+          ],
+          "timestamp": "2026-11-11T09:45:07.117994+00:00",
+          "is_stale": false,
+          "last_refresh_failed_at": null,
+          "trigger": {
+            "budget": null,
+            "mode": "delta",
+            "refresh_after_consolidation": true,
+            "refresh_cron": null,
+            "full_refresh_cron": null,
+            "min_refresh_interval_seconds": null,
+            "fact_types": [
+              "world",
+              "experience",
+              "observation"
+            ],
+            "exclude_mental_models": true,
+            "exclude_mental_model_ids": null,
+            "tags_match": "all",
+            "tag_groups": null,
+            "include_chunks": null,
+            "recall_max_tokens": null,
+            "recall_chunks_max_tokens": null,
+            "reflect_search_observations_max_tokens": null,
+            "reflect_search_observations_include_entities": null,
+            "response_schema": null,
+            "keep_trace": false
+          },
+          "children": []
+        },
+        {
+          "id": "kp-557b9951fb554f6a9cda0b51d9774749",
+          "kind": "page",
+          "name": "Revise Mirket Architect skill",
+          "parent_id": "kf-9a7ab85032d840cdad704998b7778db6",
+          "mental_model_id": "mm-31687b9151174295a969c12751684224",
+          "managed": false,
+          "description": "Summarize the \"Revise Mirket Architect skill\" initiative: what is being built or changed and why, and its current state \u2014 drawn from the project's memory. This bank is shared by several projects: attribute each thing you include to the repository or project its sources name, and group by project where that helps. Leave out facts about external tools, libraries and services those projects merely use, configure, deploy or discuss \u2014 they belong to somebody else's codebase \u2014 including any commit SHA or identifier from such a dependency's repository.",
+          "tags": [
+            "knowledge:feature-work"
+          ],
+          "timestamp": "2026-11-11T09:44:16.356372+00:00",
+          "is_stale": false,
+          "last_refresh_failed_at": null,
+          "trigger": {
+            "budget": null,
+            "mode": "delta",
+            "refresh_after_consolidation": true,
+            "refresh_cron": null,
+            "full_refresh_cron": null,
+            "min_refresh_interval_seconds": null,
+            "fact_types": [
+              "world",
+              "experience",
+              "observation"
+            ],
+            "exclude_mental_models": true,
+            "exclude_mental_model_ids": null,
+            "tags_match": "all",
+            "tag_groups": null,
+            "include_chunks": null,
+            "recall_max_tokens": null,
+            "recall_chunks_max_tokens": null,
+            "reflect_search_observations_max_tokens": null,
+            "reflect_search_observations_include_entities": null,
+            "response_schema": null,
+            "keep_trace": false
+          },
+          "children": []
+        },
+        {
+          "id": "kp-992dfcd7750f4745b18b76a2d3932e8c",
+          "kind": "page",
+          "name": "Revise Mirket Audit skill",
+          "parent_id": "kf-9a7ab85032d840cdad704998b7778db6",
+          "mental_model_id": "mm-8d4a473d8efc4895be7cb2ba1294d8d1",
+          "managed": false,
+          "description": "Summarize the \"Revise Mirket Audit skill\" initiative: what is being built or changed and why, and its current state \u2014 drawn from the project's memory. This bank is shared by several projects: attribute each thing you include to the repository or project its sources name, and group by project where that helps. Leave out facts about external tools, libraries and services those projects merely use, configure, deploy or discuss \u2014 they belong to somebody else's codebase \u2014 including any commit SHA or identifier from such a dependency's repository.",
+          "tags": [
+            "knowledge:feature-work"
+          ],
+          "timestamp": "2026-11-11T09:42:30.145552+00:00",
+          "is_stale": false,
+          "last_refresh_failed_at": null,
+          "trigger": {
+            "budget": null,
+            "mode": "delta",
+            "refresh_after_consolidation": true,
+            "refresh_cron": null,
+            "full_refresh_cron": null,
+            "min_refresh_interval_seconds": null,
+            "fact_types": [
+              "world",
+              "experience",
+              "observation"
+            ],
+            "exclude_mental_models": true,
+            "exclude_mental_model_ids": null,
+            "tags_match": "all",
+            "tag_groups": null,
+            "include_chunks": null,
+            "recall_max_tokens": null,
+            "recall_chunks_max_tokens": null,
+            "reflect_search_observations_max_tokens": null,
+            "reflect_search_observations_include_entities": null,
+            "response_schema": null,
+            "keep_trace": false
+          },
+          "children": []
+        },
+        {
+          "id": "kp-1d04b444a1f54ec4ab4f4d90584ee4de",
+          "kind": "page",
+          "name": "Revise Mirket Author skill",
+          "parent_id": "kf-9a7ab85032d840cdad704998b7778db6",
+          "mental_model_id": "mm-fea0cd4199014b0a927b918c099e9d2c",
+          "managed": false,
+          "description": "Summarize the \"Revise Mirket Author skill\" initiative: what is being built or changed and why, and its current state \u2014 drawn from the project's memory. This bank is shared by several projects: attribute each thing you include to the repository or project its sources name, and group by project where that helps. Leave out facts about external tools, libraries and services those projects merely use, configure, deploy or discuss \u2014 they belong to somebody else's codebase \u2014 including any commit SHA or identifier from such a dependency's repository.",
+          "tags": [
+            "knowledge:feature-work"
+          ],
+          "timestamp": "2026-11-11T09:46:02.148442+00:00",
+          "is_stale": false,
+          "last_refresh_failed_at": null,
+          "trigger": {
+            "budget": null,
+            "mode": "delta",
+            "refresh_after_consolidation": true,
+            "refresh_cron": null,
+            "full_refresh_cron": null,
+            "min_refresh_interval_seconds": null,
+            "fact_types": [
+              "world",
+              "experience",
+              "observation"
+            ],
+            "exclude_mental_models": true,
+            "exclude_mental_model_ids": null,
+            "tags_match": "all",
+            "tag_groups": null,
+            "include_chunks": null,
+            "recall_max_tokens": null,
+            "recall_chunks_max_tokens": null,
+            "reflect_search_observations_max_tokens": null,
+            "reflect_search_observations_include_entities": null,
+            "response_schema": null,
+            "keep_trace": false
+          },
+          "children": []
+        },
+        {
+          "id": "kp-1af12cffd27248fd9618b4953069768b",
+          "kind": "page",
+          "name": "Revise Mirket Brief skill",
+          "parent_id": "kf-9a7ab85032d840cdad704998b7778db6",
+          "mental_model_id": "mm-b48145f23a0b4fe7b7ea7bb6a7a4b92b",
+          "managed": false,
+          "description": "Summarize the \"Revise Mirket Brief skill\" initiative: what is being built or changed and why, and its current state \u2014 drawn from the project's memory. This bank is shared by several projects: attribute each thing you include to the repository or project its sources name, and group by project where that helps. Leave out facts about external tools, libraries and services those projects merely use, configure, deploy or discuss \u2014 they belong to somebody else's codebase \u2014 including any commit SHA or identifier from such a dependency's repository.",
+          "tags": [
+            "knowledge:feature-work"
+          ],
+          "timestamp": "2026-11-11T09:46:35.361051+00:00",
+          "is_stale": false,
+          "last_refresh_failed_at": null,
+          "trigger": {
+            "budget": null,
+            "mode": "delta",
+            "refresh_after_consolidation": true,
+            "refresh_cron": null,
+            "full_refresh_cron": null,
+            "min_refresh_interval_seconds": null,
+            "fact_types": [
+              "world",
+              "experience",
+              "observation"
+            ],
+            "exclude_mental_models": true,
+            "exclude_mental_model_ids": null,
+            "tags_match": "all",
+            "tag_groups": null,
+            "include_chunks": null,
+            "recall_max_tokens": null,
+            "recall_chunks_max_tokens": null,
+            "reflect_search_observations_max_tokens": null,
+            "reflect_search_observations_include_entities": null,
+            "response_schema": null,
+            "keep_trace": false
+          },
+          "children": []
+        },
+        {
+          "id": "kp-f08772ee553c4e01b540509e31261efc",
+          "kind": "page",
+          "name": "Revise Mirket Clean skill",
+          "parent_id": "kf-9a7ab85032d840cdad704998b7778db6",
+          "mental_model_id": "mm-f8016eaf84d84d659805a9d14227a64f",
+          "managed": false,
+          "description": "Summarize the \"Revise Mirket Clean skill\" initiative: what is being built or changed and why, and its current state \u2014 drawn from the project's memory. This bank is shared by several projects: attribute each thing you include to the repository or project its sources name, and group by project where that helps. Leave out facts about external tools, libraries and services those projects merely use, configure, deploy or discuss \u2014 they belong to somebody else's codebase \u2014 including any commit SHA or identifier from such a dependency's repository.",
+          "tags": [
+            "knowledge:feature-work"
+          ],
+          "timestamp": "2026-11-11T09:43:48.497031+00:00",
+          "is_stale": false,
+          "last_refresh_failed_at": null,
+          "trigger": {
+            "budget": null,
+            "mode": "delta",
+            "refresh_after_consolidation": true,
+            "refresh_cron": null,
+            "full_refresh_cron": null,
+            "min_refresh_interval_seconds": null,
+            "fact_types": [
+              "world",
+              "experience",
+              "observation"
+            ],
+            "exclude_mental_models": true,
+            "exclude_mental_model_ids": null,
+            "tags_match": "all",
+            "tag_groups": null,
+            "include_chunks": null,
+            "recall_max_tokens": null,
+            "recall_chunks_max_tokens": null,
+            "reflect_search_observations_max_tokens": null,
+            "reflect_search_observations_include_entities": null,
+            "response_schema": null,
+            "keep_trace": false
+          },
+          "children": []
+        },
+        {
+          "id": "kp-7bc37d898e994373b82248c77a3bcff5",
+          "kind": "page",
+          "name": "Revise Mirket Critique skill",
+          "parent_id": "kf-9a7ab85032d840cdad704998b7778db6",
+          "mental_model_id": "mm-42f9372c894e45439d3f79713e00d153",
+          "managed": false,
+          "description": "Summarize the \"Revise Mirket Critique skill\" initiative: what is being built or changed and why, and its current state \u2014 drawn from the project's memory. This bank is shared by several projects: attribute each thing you include to the repository or project its sources name, and group by project where that helps. Leave out facts about external tools, libraries and services those projects merely use, configure, deploy or discuss \u2014 they belong to somebody else's codebase \u2014 including any commit SHA or identifier from such a dependency's repository.",
+          "tags": [
+            "knowledge:feature-work"
+          ],
+          "timestamp": "2026-11-11T09:43:57.578153+00:00",
+          "is_stale": false,
+          "last_refresh_failed_at": null,
+          "trigger": {
+            "budget": null,
+            "mode": "delta",
+            "refresh_after_consolidation": true,
+            "refresh_cron": null,
+            "full_refresh_cron": null,
+            "min_refresh_interval_seconds": null,
+            "fact_types": [
+              "world",
+              "experience",
+              "observation"
+            ],
+            "exclude_mental_models": true,
+            "exclude_mental_model_ids": null,
+            "tags_match": "all",
+            "tag_groups": null,
+            "include_chunks": null,
+            "recall_max_tokens": null,
+            "recall_chunks_max_tokens": null,
+            "reflect_search_observations_max_tokens": null,
+            "reflect_search_observations_include_entities": null,
+            "response_schema": null,
+            "keep_trace": false
+          },
+          "children": []
+        },
+        {
+          "id": "kp-a6826840d2c54b5dbcddc677ae0cdbd0",
+          "kind": "page",
+          "name": "Revise Mirket Curate skill",
+          "parent_id": "kf-9a7ab85032d840cdad704998b7778db6",
+          "mental_model_id": "mm-c5cd745102a143e48de84ab7029de13d",
+          "managed": false,
+          "description": "Summarize the \"Revise Mirket Curate skill\" initiative: what is being built or changed and why, and its current state \u2014 drawn from the project's memory. This bank is shared by several projects: attribute each thing you include to the repository or project its sources name, and group by project where that helps. Leave out facts about external tools, libraries and services those projects merely use, configure, deploy or discuss \u2014 they belong to somebody else's codebase \u2014 including any commit SHA or identifier from such a dependency's repository.",
+          "tags": [
+            "knowledge:feature-work"
+          ],
+          "timestamp": "2026-11-11T09:42:23.547889+00:00",
+          "is_stale": false,
+          "last_refresh_failed_at": null,
+          "trigger": {
+            "budget": null,
+            "mode": "delta",
+            "refresh_after_consolidation": true,
+            "refresh_cron": null,
+            "full_refresh_cron": null,
+            "min_refresh_interval_seconds": null,
+            "fact_types": [
+              "world",
+              "experience",
+              "observation"
+            ],
+            "exclude_mental_models": true,
+            "exclude_mental_model_ids": null,
+            "tags_match": "all",
+            "tag_groups": null,
+            "include_chunks": null,
+            "recall_max_tokens": null,
+            "recall_chunks_max_tokens": null,
+            "reflect_search_observations_max_tokens": null,
+            "reflect_search_observations_include_entities": null,
+            "response_schema": null,
+            "keep_trace": false
+          },
+          "children": []
+        },
+        {
+          "id": "kp-a8fdc9e9c1d345c193ff474620f84c07",
+          "kind": "page",
+          "name": "Revise Mirket Distill skill",
+          "parent_id": "kf-9a7ab85032d840cdad704998b7778db6",
+          "mental_model_id": "mm-c0823d517ff74420b7a51d79ff0e3357",
+          "managed": false,
+          "description": "Summarize the \"Revise Mirket Distill skill\" initiative: what is being built or changed and why, and its current state \u2014 drawn from the project's memory. This bank is shared by several projects: attribute each thing you include to the repository or project its sources name, and group by project where that helps. Leave out facts about external tools, libraries and services those projects merely use, configure, deploy or discuss \u2014 they belong to somebody else's codebase \u2014 including any commit SHA or identifier from such a dependency's repository.",
+          "tags": [
+            "knowledge:feature-work"
+          ],
+          "timestamp": "2026-11-11T09:48:53.227969+00:00",
+          "is_stale": false,
+          "last_refresh_failed_at": null,
+          "trigger": {
+            "budget": null,
+            "mode": "delta",
+            "refresh_after_consolidation": true,
+            "refresh_cron": null,
+            "full_refresh_cron": null,
+            "min_refresh_interval_seconds": null,
+            "fact_types": [
+              "world",
+              "experience",
+              "observation"
+            ],
+            "exclude_mental_models": true,
+            "exclude_mental_model_ids": null,
+            "tags_match": "all",
+            "tag_groups": null,
+            "include_chunks": null,
+            "recall_max_tokens": null,
+            "recall_chunks_max_tokens": null,
+            "reflect_search_observations_max_tokens": null,
+            "reflect_search_observations_include_entities": null,
+            "response_schema": null,
+            "keep_trace": false
+          },
+          "children": []
+        },
+        {
+          "id": "kp-e920f3cfb2404a379426328ec578efbd",
+          "kind": "page",
+          "name": "Revise Mirket Orchestrate skill",
+          "parent_id": "kf-9a7ab85032d840cdad704998b7778db6",
+          "mental_model_id": "mm-71911c41aaf94bf7aab4889031b03649",
+          "managed": false,
+          "description": "Summarize the \"Revise Mirket Orchestrate skill\" initiative: what is being built or changed and why, and its current state \u2014 drawn from the project's memory. This bank is shared by several projects: attribute each thing you include to the repository or project its sources name, and group by project where that helps. Leave out facts about external tools, libraries and services those projects merely use, configure, deploy or discuss \u2014 they belong to somebody else's codebase \u2014 including any commit SHA or identifier from such a dependency's repository.",
+          "tags": [
+            "knowledge:feature-work"
+          ],
+          "timestamp": "2026-11-11T09:45:45.982355+00:00",
+          "is_stale": false,
+          "last_refresh_failed_at": null,
+          "trigger": {
+            "budget": null,
+            "mode": "delta",
+            "refresh_after_consolidation": true,
+            "refresh_cron": null,
+            "full_refresh_cron": null,
+            "min_refresh_interval_seconds": null,
+            "fact_types": [
+              "world",
+              "experience",
+              "observation"
+            ],
+            "exclude_mental_models": true,
+            "exclude_mental_model_ids": null,
+            "tags_match": "all",
+            "tag_groups": null,
+            "include_chunks": null,
+            "recall_max_tokens": null,
+            "recall_chunks_max_tokens": null,
+            "reflect_search_observations_max_tokens": null,
+            "reflect_search_observations_include_entities": null,
+            "response_schema": null,
+            "keep_trace": false
+          },
+          "children": []
+        },
+        {
+          "id": "kp-2deee385789e4f99b52a16954ee93af1",
+          "kind": "page",
+          "name": "Revise Mirket Plan skill",
+          "parent_id": "kf-9a7ab85032d840cdad704998b7778db6",
+          "mental_model_id": "mm-bd7087032ce545e085a482c7222afde4",
+          "managed": false,
+          "description": "Summarize the \"Revise Mirket Plan skill\" initiative: what is being built or changed and why, and its current state \u2014 drawn from the project's memory. This bank is shared by several projects: attribute each thing you include to the repository or project its sources name, and group by project where that helps. Leave out facts about external tools, libraries and services those projects merely use, configure, deploy or discuss \u2014 they belong to somebody else's codebase \u2014 including any commit SHA or identifier from such a dependency's repository.",
+          "tags": [
+            "knowledge:feature-work"
+          ],
+          "timestamp": "2026-11-11T09:43:25.289732+00:00",
+          "is_stale": false,
+          "last_refresh_failed_at": null,
+          "trigger": {
+            "budget": null,
+            "mode": "delta",
+            "refresh_after_consolidation": true,
+            "refresh_cron": null,
+            "full_refresh_cron": null,
+            "min_refresh_interval_seconds": null,
+            "fact_types": [
+              "world",
+              "experience",
+              "observation"
+            ],
+            "exclude_mental_models": true,
+            "exclude_mental_model_ids": null,
+            "tags_match": "all",
+            "tag_groups": null,
+            "include_chunks": null,
+            "recall_max_tokens": null,
+            "recall_chunks_max_tokens": null,
+            "reflect_search_observations_max_tokens": null,
+            "reflect_search_observations_include_entities": null,
+            "response_schema": null,
+            "keep_trace": false
+          },
+          "children": []
+        },
+        {
+          "id": "kp-66ed599feec94394961d7c02d7be386f",
+          "kind": "page",
+          "name": "Revise Mirket Sleep skill",
+          "parent_id": "kf-9a7ab85032d840cdad704998b7778db6",
+          "mental_model_id": "mm-abc36fe1f5e14aafab2faecbfb81220d",
+          "managed": false,
+          "description": "Summarize the \"Revise Mirket Sleep skill\" initiative: what is being built or changed and why, and its current state \u2014 drawn from the project's memory. This bank is shared by several projects: attribute each thing you include to the repository or project its sources name, and group by project where that helps. Leave out facts about external tools, libraries and services those projects merely use, configure, deploy or discuss \u2014 they belong to somebody else's codebase \u2014 including any commit SHA or identifier from such a dependency's repository.",
+          "tags": [
+            "knowledge:feature-work"
+          ],
+          "timestamp": "2026-11-11T09:45:41.793140+00:00",
+          "is_stale": false,
+          "last_refresh_failed_at": null,
+          "trigger": {
+            "budget": null,
+            "mode": "delta",
+            "refresh_after_consolidation": true,
+            "refresh_cron": null,
+            "full_refresh_cron": null,
+            "min_refresh_interval_seconds": null,
+            "fact_types": [
+              "world",
+              "experience",
+              "observation"
+            ],
+            "exclude_mental_models": true,
+            "exclude_mental_model_ids": null,
+            "tags_match": "all",
+            "tag_groups": null,
+            "include_chunks": null,
+            "recall_max_tokens": null,
+            "recall_chunks_max_tokens": null,
+            "reflect_search_observations_max_tokens": null,
+            "reflect_search_observations_include_entities": null,
+            "response_schema": null,
+            "keep_trace": false
+          },
+          "children": []
+        },
+        {
+          "id": "kp-ef789b748c974ff18edf8f6a07a193ea",
+          "kind": "page",
+          "name": "Revise remaining Mirket skills",
+          "parent_id": "kf-9a7ab85032d840cdad704998b7778db6",
+          "mental_model_id": "mm-9a6486ab7c924f039f4a24f465c03861",
+          "managed": false,
+          "description": "Summarize the \"Revise remaining Mirket skills\" initiative: what is being built or changed and why, and its current state \u2014 drawn from the project's memory. This bank is shared by several projects: attribute each thing you include to the repository or project its sources name, and group by project where that helps. Leave out facts about external tools, libraries and services those projects merely use, configure, deploy or discuss \u2014 they belong to somebody else's codebase \u2014 including any commit SHA or identifier from such a dependency's repository.",
+          "tags": [
+            "knowledge:feature-work"
+          ],
+          "timestamp": "2026-11-11T09:49:31.957316+00:00",
+          "is_stale": false,
+          "last_refresh_failed_at": null,
+          "trigger": {
+            "budget": null,
+            "mode": "delta",
+            "refresh_after_consolidation": true,
+            "refresh_cron": null,
+            "full_refresh_cron": null,
+            "min_refresh_interval_seconds": null,
+            "fact_types": [
+              "world",
+              "experience",
+              "observation"
+            ],
+            "exclude_mental_models": true,
+            "exclude_mental_model_ids": null,
+            "tags_match": "all",
+            "tag_groups": null,
+            "include_chunks": null,
+            "recall_max_tokens": null,
+            "recall_chunks_max_tokens": null,
+            "reflect_search_observations_max_tokens": null,
+            "reflect_search_observations_include_entities": null,
+            "response_schema": null,
+            "keep_trace": false
+          },
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "kp-43bb05e830f44b7d983a896e8bf6c36f",
+      "kind": "page",
+      "name": "Initiatives and enhancements",
+      "parent_id": null,
+      "mental_model_id": "mm-a0b7b5e24ef4414997824dc4a0f110fa",
+      "managed": false,
+      "description": "Based on this repository's commit history, what are the major initiatives, features, and enhancements the project has worked on? Summarize the themes and notable changes over time. When a source memory's context carries a `[[page:<id>]]` link, repeat that link in the summary of what it describes, so each initiative links to its detailed page. This bank is shared by several projects: attribute each thing you include to the repository or project its sources name, and group by project where that helps. Leave out facts about external tools, libraries and services those projects merely use, configure, deploy or discuss \u2014 they belong to somebody else's codebase \u2014 including any commit SHA or identifier from such a dependency's repository.",
+      "tags": [
+        "knowledge:feature-work"
+      ],
+      "timestamp": "2026-11-11T09:42:59.839889+00:00",
+      "is_stale": false,
+      "last_refresh_failed_at": null,
+      "trigger": {
+        "budget": null,
+        "mode": "delta",
+        "refresh_after_consolidation": true,
+        "refresh_cron": null,
+        "full_refresh_cron": null,
+        "min_refresh_interval_seconds": null,
+        "fact_types": [
+          "world",
+          "experience",
+          "observation"
+        ],
+        "exclude_mental_models": true,
+        "exclude_mental_model_ids": null,
+        "tags_match": "all",
+        "tag_groups": null,
+        "include_chunks": null,
+        "recall_max_tokens": null,
+        "recall_chunks_max_tokens": null,
+        "reflect_search_observations_max_tokens": null,
+        "reflect_search_observations_include_entities": null,
+        "response_schema": null,
+        "keep_trace": false
+      },
+      "children": []
+    },
+    {
+      "id": "kp-693261fa27b0452c89d548b534068d99",
+      "kind": "page",
+      "name": "Key decisions and rationale",
+      "parent_id": null,
+      "mental_model_id": "mm-69b239f09e8c47c3adb5dc99b241c1fe",
+      "managed": false,
+      "description": "What are the significant technical decisions made in this project and the rationale behind them \u2014 the durable 'why we do it this way' a developer should know? Summarize the decisions and their reasoning from the commit rationales and past conversations. This bank is shared by several projects: attribute each thing you include to the repository or project its sources name, and group by project where that helps. Leave out facts about external tools, libraries and services those projects merely use, configure, deploy or discuss \u2014 they belong to somebody else's codebase \u2014 including any commit SHA or identifier from such a dependency's repository.",
+      "tags": [
+        "knowledge:decision"
+      ],
+      "timestamp": "2026-11-11T09:42:39.121414+00:00",
+      "is_stale": false,
+      "last_refresh_failed_at": null,
+      "trigger": {
+        "budget": null,
+        "mode": "delta",
+        "refresh_after_consolidation": true,
+        "refresh_cron": null,
+        "full_refresh_cron": null,
+        "min_refresh_interval_seconds": null,
+        "fact_types": [
+          "world",
+          "experience",
+          "observation"
+        ],
+        "exclude_mental_models": true,
+        "exclude_mental_model_ids": null,
+        "tags_match": "all",
+        "tag_groups": null,
+        "include_chunks": null,
+        "recall_max_tokens": null,
+        "recall_chunks_max_tokens": null,
+        "reflect_search_observations_max_tokens": null,
+        "reflect_search_observations_include_entities": null,
+        "response_schema": null,
+        "keep_trace": false
+      },
+      "children": []
+    }
+  ],
+  "after": [
+    {
+      "id": "kp-6a62f0e9fe9f4f4fa270ce07170fc187",
+      "kind": "page",
+      "name": "Component map",
+      "parent_id": null,
+      "mental_model_id": "mm-408496ae0b4149309a00cfaeae4ba95a",
+      "managed": false,
+      "description": "Describe this project's currently active components, modules and subsystems, their responsibilities and dependencies. First retrieve the latest verified source and installed-state inventory and explicit superseding corrections, then use older history only where it remains compatible. Prefer newer verified evidence over superseded plans, older surveys and earlier conversation summaries; allow later verified versions and inventories to replace earlier ones. Keep source, installed, publicly released and deployed states distinct. Include a skill or component as active only when the latest inventory supports it. Preserve exact current path spelling and case, and verify the current manifest layout against the latest inventory rather than copying historical paths. Put obsolete roles, removed components and old architecture in an explicitly dated historical section only when useful. Resolve contradictions throughout the page, rather than appending a correction beside an incompatible current assertion. Where current evidence is insufficient, omit or qualify the claim. Preserve material host and verification limits without treating an old gap as proof that later verified activation did not occur. This bank is shared by several projects: attribute each thing you include to the repository or project its sources name, and group by project where that helps. Leave out facts about external tools, libraries and services those projects merely use, configure, deploy or discuss \u2014 they belong to somebody else's codebase \u2014 including any commit SHA or identifier from such a dependency's repository.",
+      "tags": [
+        "knowledge:component"
+      ],
+      "timestamp": "2026-11-11T09:54:39.652703+00:00",
+      "is_stale": false,
+      "last_refresh_failed_at": null,
+      "trigger": {
+        "budget": null,
+        "mode": "delta",
+        "refresh_after_consolidation": true,
+        "refresh_cron": null,
+        "full_refresh_cron": null,
+        "min_refresh_interval_seconds": null,
+        "fact_types": [
+          "world",
+          "experience",
+          "observation"
+        ],
+        "exclude_mental_models": true,
+        "exclude_mental_model_ids": null,
+        "tags_match": "all",
+        "tag_groups": null,
+        "include_chunks": null,
+        "recall_max_tokens": null,
+        "recall_chunks_max_tokens": null,
+        "reflect_search_observations_max_tokens": null,
+        "reflect_search_observations_include_entities": null,
+        "response_schema": null,
+        "keep_trace": false
+      },
+      "children": []
+    },
+    {
+      "id": "kp-acbde8d64df84c9bad154c6e54cbb29b",
+      "kind": "page",
+      "name": "Conventions and patterns",
+      "parent_id": null,
+      "mental_model_id": "mm-b57fbad0a1b142c6964435fc98ccc4c9",
+      "managed": false,
+      "description": "What conventions, idioms, and recurring patterns does this project follow \u2014 its approach to testing, error handling, naming, structure, and how changes are typically made? Describe how THIS project does things, as evidenced across its history and discussions. This bank is shared by several projects: attribute each thing you include to the repository or project its sources name, and group by project where that helps. Leave out facts about external tools, libraries and services those projects merely use, configure, deploy or discuss \u2014 they belong to somebody else's codebase \u2014 including any commit SHA or identifier from such a dependency's repository.",
+      "tags": [
+        "knowledge:convention"
+      ],
+      "timestamp": "2026-11-11T09:46:37.224770+00:00",
+      "is_stale": false,
+      "last_refresh_failed_at": null,
+      "trigger": {
+        "budget": null,
+        "mode": "delta",
+        "refresh_after_consolidation": true,
+        "refresh_cron": null,
+        "full_refresh_cron": null,
+        "min_refresh_interval_seconds": null,
+        "fact_types": [
+          "world",
+          "experience",
+          "observation"
+        ],
+        "exclude_mental_models": true,
+        "exclude_mental_model_ids": null,
+        "tags_match": "all",
+        "tag_groups": null,
+        "include_chunks": null,
+        "recall_max_tokens": null,
+        "recall_chunks_max_tokens": null,
+        "reflect_search_observations_max_tokens": null,
+        "reflect_search_observations_include_entities": null,
+        "response_schema": null,
+        "keep_trace": false
+      },
+      "children": []
+    },
+    {
+      "id": "kp-a724304d0a0d4a77ae1a6201f944a7fc",
+      "kind": "page",
+      "name": "Core concepts",
+      "parent_id": null,
+      "mental_model_id": "mm-0590d38703264895baeb883f51a3d074",
+      "managed": false,
+      "description": "What are the core concepts, domain abstractions, and key entities in this project \u2014 the vocabulary a developer must understand? For each, explain what it represents and its role, drawn from how they are introduced and discussed across the history and conversations. This bank is shared by several projects: attribute each thing you include to the repository or project its sources name, and group by project where that helps. Leave out facts about external tools, libraries and services those projects merely use, configure, deploy or discuss \u2014 they belong to somebody else's codebase \u2014 including any commit SHA or identifier from such a dependency's repository.",
+      "tags": [
+        "knowledge:concept"
+      ],
+      "timestamp": "2026-11-11T09:39:34.028237+00:00",
+      "is_stale": false,
+      "last_refresh_failed_at": null,
+      "trigger": {
+        "budget": null,
+        "mode": "delta",
+        "refresh_after_consolidation": true,
+        "refresh_cron": null,
+        "full_refresh_cron": null,
+        "min_refresh_interval_seconds": null,
+        "fact_types": [
+          "world",
+          "experience",
+          "observation"
+        ],
+        "exclude_mental_models": true,
+        "exclude_mental_model_ids": null,
+        "tags_match": "all",
+        "tag_groups": null,
+        "include_chunks": null,
+        "recall_max_tokens": null,
+        "recall_chunks_max_tokens": null,
+        "reflect_search_observations_max_tokens": null,
+        "reflect_search_observations_include_entities": null,
+        "response_schema": null,
+        "keep_trace": false
+      },
+      "children": []
+    },
+    {
+      "id": "kf-9a7ab85032d840cdad704998b7778db6",
+      "kind": "folder",
+      "name": "Initiatives",
+      "parent_id": null,
+      "mental_model_id": null,
+      "managed": false,
+      "description": null,
+      "tags": [],
+      "timestamp": "2026-11-09T20:18:16.835534+00:00",
+      "is_stale": null,
+      "last_refresh_failed_at": null,
+      "trigger": null,
+      "children": [
+        {
+          "id": "kp-4cc43ea235cc4a9bb6bde8d02c7488c5",
+          "kind": "page",
+          "name": "Build the Mirket skills website",
+          "parent_id": "kf-9a7ab85032d840cdad704998b7778db6",
+          "mental_model_id": "mm-a11c08752f1a423a91895cdc987d5922",
+          "managed": false,
+          "description": "Summarize the \"Build the Mirket skills website\" initiative: what is being built or changed and why, and its current state \u2014 drawn from the project's memory. This bank is shared by several projects: attribute each thing you include to the repository or project its sources name, and group by project where that helps. Leave out facts about external tools, libraries and services those projects merely use, configure, deploy or discuss \u2014 they belong to somebody else's codebase \u2014 including any commit SHA or identifier from such a dependency's repository.",
+          "tags": [
+            "knowledge:feature-work"
+          ],
+          "timestamp": "2026-11-11T09:43:19.011604+00:00",
+          "is_stale": false,
+          "last_refresh_failed_at": null,
+          "trigger": {
+            "budget": null,
+            "mode": "delta",
+            "refresh_after_consolidation": true,
+            "refresh_cron": null,
+            "full_refresh_cron": null,
+            "min_refresh_interval_seconds": null,
+            "fact_types": [
+              "world",
+              "experience",
+              "observation"
+            ],
+            "exclude_mental_models": true,
+            "exclude_mental_model_ids": null,
+            "tags_match": "all",
+            "tag_groups": null,
+            "include_chunks": null,
+            "recall_max_tokens": null,
+            "recall_chunks_max_tokens": null,
+            "reflect_search_observations_max_tokens": null,
+            "reflect_search_observations_include_entities": null,
+            "response_schema": null,
+            "keep_trace": false
+          },
+          "children": []
+        },
+        {
+          "id": "kp-efd36376017c46ebb2bf7eaba91e5e41",
+          "kind": "page",
+          "name": "Expand Mirket Design into a design director",
+          "parent_id": "kf-9a7ab85032d840cdad704998b7778db6",
+          "mental_model_id": "mm-70d1ae0a755f43eb8ec3c4deb67e22ee",
+          "managed": false,
+          "description": "Summarize the \"Expand Mirket Design into a design director\" initiative: what is being built or changed and why, and its current state \u2014 drawn from the project's memory. This bank is shared by several projects: attribute each thing you include to the repository or project its sources name, and group by project where that helps. Leave out facts about external tools, libraries and services those projects merely use, configure, deploy or discuss \u2014 they belong to somebody else's codebase \u2014 including any commit SHA or identifier from such a dependency's repository.",
+          "tags": [
+            "knowledge:feature-work"
+          ],
+          "timestamp": "2026-11-11T09:43:45.847268+00:00",
+          "is_stale": false,
+          "last_refresh_failed_at": null,
+          "trigger": {
+            "budget": null,
+            "mode": "delta",
+            "refresh_after_consolidation": true,
+            "refresh_cron": null,
+            "full_refresh_cron": null,
+            "min_refresh_interval_seconds": null,
+            "fact_types": [
+              "world",
+              "experience",
+              "observation"
+            ],
+            "exclude_mental_models": true,
+            "exclude_mental_model_ids": null,
+            "tags_match": "all",
+            "tag_groups": null,
+            "include_chunks": null,
+            "recall_max_tokens": null,
+            "recall_chunks_max_tokens": null,
+            "reflect_search_observations_max_tokens": null,
+            "reflect_search_observations_include_entities": null,
+            "response_schema": null,
+            "keep_trace": false
+          },
+          "children": []
+        },
+        {
+          "id": "kp-5d3a84ca72374015b13892171f125528",
+          "kind": "page",
+          "name": "Expand Mirket to 25 skills and make project memory reliable",
+          "parent_id": "kf-9a7ab85032d840cdad704998b7778db6",
+          "mental_model_id": "mm-78396c0cbdca4e268101150cb24dbc27",
+          "managed": false,
+          "description": "Summarize the \"Expand Mirket to 25 skills and make project memory reliable\" initiative: what is being built or changed and why, and its current state \u2014 drawn from the project's memory. This bank is shared by several projects: attribute each thing you include to the repository or project its sources name, and group by project where that helps. Leave out facts about external tools, libraries and services those projects merely use, configure, deploy or discuss \u2014 they belong to somebody else's codebase \u2014 including any commit SHA or identifier from such a dependency's repository.",
+          "tags": [
+            "knowledge:feature-work"
+          ],
+          "timestamp": "2026-11-11T09:44:27.551093+00:00",
+          "is_stale": false,
+          "last_refresh_failed_at": null,
+          "trigger": {
+            "budget": null,
+            "mode": "delta",
+            "refresh_after_consolidation": true,
+            "refresh_cron": null,
+            "full_refresh_cron": null,
+            "min_refresh_interval_seconds": null,
+            "fact_types": [
+              "world",
+              "experience",
+              "observation"
+            ],
+            "exclude_mental_models": true,
+            "exclude_mental_model_ids": null,
+            "tags_match": "all",
+            "tag_groups": null,
+            "include_chunks": null,
+            "recall_max_tokens": null,
+            "recall_chunks_max_tokens": null,
+            "reflect_search_observations_max_tokens": null,
+            "reflect_search_observations_include_entities": null,
+            "response_schema": null,
+            "keep_trace": false
+          },
+          "children": []
+        },
+        {
+          "id": "kp-4d79b3d4502b4345b6305dd78ad8bda8",
+          "kind": "page",
+          "name": "Harden Mirket routing and lifecycle hooks",
+          "parent_id": "kf-9a7ab85032d840cdad704998b7778db6",
+          "mental_model_id": "mm-604292e4a2544ebba0ba4fa6e571e120",
+          "managed": false,
+          "description": "Summarize the \"Harden Mirket routing and lifecycle hooks\" initiative: what is being built or changed and why, and its current state \u2014 drawn from the project's memory. This bank is shared by several projects: attribute each thing you include to the repository or project its sources name, and group by project where that helps. Leave out facts about external tools, libraries and services those projects merely use, configure, deploy or discuss \u2014 they belong to somebody else's codebase \u2014 including any commit SHA or identifier from such a dependency's repository.",
+          "tags": [
+            "knowledge:feature-work"
+          ],
+          "timestamp": "2026-11-11T09:44:43.291538+00:00",
+          "is_stale": false,
+          "last_refresh_failed_at": null,
+          "trigger": {
+            "budget": null,
+            "mode": "delta",
+            "refresh_after_consolidation": true,
+            "refresh_cron": null,
+            "full_refresh_cron": null,
+            "min_refresh_interval_seconds": null,
+            "fact_types": [
+              "world",
+              "experience",
+              "observation"
+            ],
+            "exclude_mental_models": true,
+            "exclude_mental_model_ids": null,
+            "tags_match": "all",
+            "tag_groups": null,
+            "include_chunks": null,
+            "recall_max_tokens": null,
+            "recall_chunks_max_tokens": null,
+            "reflect_search_observations_max_tokens": null,
+            "reflect_search_observations_include_entities": null,
+            "response_schema": null,
+            "keep_trace": false
+          },
+          "children": []
+        },
+        {
+          "id": "kp-d97e53ba15d94f27875c686caed884e4",
+          "kind": "page",
+          "name": "Implement the Astra Mirket audit follow-up",
+          "parent_id": "kf-9a7ab85032d840cdad704998b7778db6",
+          "mental_model_id": "mm-c01300b9891243afbfa3032283577461",
+          "managed": false,
+          "description": "Summarize the \"Implement the Astra Mirket audit follow-up\" initiative: what is being built or changed and why, and its current state \u2014 drawn from the project's memory. This bank is shared by several projects: attribute each thing you include to the repository or project its sources name, and group by project where that helps. Leave out facts about external tools, libraries and services those projects merely use, configure, deploy or discuss \u2014 they belong to somebody else's codebase \u2014 including any commit SHA or identifier from such a dependency's repository.",
+          "tags": [
+            "knowledge:feature-work"
+          ],
+          "timestamp": "2026-11-11T09:44:31.384265+00:00",
+          "is_stale": false,
+          "last_refresh_failed_at": null,
+          "trigger": {
+            "budget": null,
+            "mode": "delta",
+            "refresh_after_consolidation": true,
+            "refresh_cron": null,
+            "full_refresh_cron": null,
+            "min_refresh_interval_seconds": null,
+            "fact_types": [
+              "world",
+              "experience",
+              "observation"
+            ],
+            "exclude_mental_models": true,
+            "exclude_mental_model_ids": null,
+            "tags_match": "all",
+            "tag_groups": null,
+            "include_chunks": null,
+            "recall_max_tokens": null,
+            "recall_chunks_max_tokens": null,
+            "reflect_search_observations_max_tokens": null,
+            "reflect_search_observations_include_entities": null,
+            "response_schema": null,
+            "keep_trace": false
+          },
+          "children": []
+        },
+        {
+          "id": "kp-86e4ee5d97444ddc8b85ddafefabe3db",
+          "kind": "page",
+          "name": "Improve Mirket lifecycle hooks",
+          "parent_id": "kf-9a7ab85032d840cdad704998b7778db6",
+          "mental_model_id": "mm-6342ad54d9dd46d6bf030784bae350d4",
+          "managed": false,
+          "description": "Summarize the \"Improve Mirket lifecycle hooks\" initiative: what is being built or changed and why, and its current state \u2014 drawn from the project's memory. This bank is shared by several projects: attribute each thing you include to the repository or project its sources name, and group by project where that helps. Leave out facts about external tools, libraries and services those projects merely use, configure, deploy or discuss \u2014 they belong to somebody else's codebase \u2014 including any commit SHA or identifier from such a dependency's repository.",
+          "tags": [
+            "knowledge:feature-work"
+          ],
+          "timestamp": "2026-11-11T09:42:36.210246+00:00",
+          "is_stale": false,
+          "last_refresh_failed_at": null,
+          "trigger": {
+            "budget": null,
+            "mode": "delta",
+            "refresh_after_consolidation": true,
+            "refresh_cron": null,
+            "full_refresh_cron": null,
+            "min_refresh_interval_seconds": null,
+            "fact_types": [
+              "world",
+              "experience",
+              "observation"
+            ],
+            "exclude_mental_models": true,
+            "exclude_mental_model_ids": null,
+            "tags_match": "all",
+            "tag_groups": null,
+            "include_chunks": null,
+            "recall_max_tokens": null,
+            "recall_chunks_max_tokens": null,
+            "reflect_search_observations_max_tokens": null,
+            "reflect_search_observations_include_entities": null,
+            "response_schema": null,
+            "keep_trace": false
+          },
+          "children": []
+        },
+        {
+          "id": "kp-ce9ec8fe18d443f29df6c3e3e5625133",
+          "kind": "page",
+          "name": "Make Mirket Hindsight routing and recall reliable",
+          "parent_id": "kf-9a7ab85032d840cdad704998b7778db6",
+          "mental_model_id": "mm-bac3cf2521374f4f9584e74014030b30",
+          "managed": false,
+          "description": "Summarize the \"Make Mirket Hindsight routing and recall reliable\" initiative: what is being built or changed and why, and its current state \u2014 drawn from the project's memory. This bank is shared by several projects: attribute each thing you include to the repository or project its sources name, and group by project where that helps. Leave out facts about external tools, libraries and services those projects merely use, configure, deploy or discuss \u2014 they belong to somebody else's codebase \u2014 including any commit SHA or identifier from such a dependency's repository.",
+          "tags": [
+            "knowledge:feature-work"
+          ],
+          "timestamp": "2026-11-11T09:49:05.602659+00:00",
+          "is_stale": false,
+          "last_refresh_failed_at": null,
+          "trigger": {
+            "budget": null,
+            "mode": "delta",
+            "refresh_after_consolidation": true,
+            "refresh_cron": null,
+            "full_refresh_cron": null,
+            "min_refresh_interval_seconds": null,
+            "fact_types": [
+              "world",
+              "experience",
+              "observation"
+            ],
+            "exclude_mental_models": true,
+            "exclude_mental_model_ids": null,
+            "tags_match": "all",
+            "tag_groups": null,
+            "include_chunks": null,
+            "recall_max_tokens": null,
+            "recall_chunks_max_tokens": null,
+            "reflect_search_observations_max_tokens": null,
+            "reflect_search_observations_include_entities": null,
+            "response_schema": null,
+            "keep_trace": false
+          },
+          "children": []
+        },
+        {
+          "id": "kp-e2ef72bee8f14112b98af048c67b2771",
+          "kind": "page",
+          "name": "Re-author Mirket Equip around working but poor choices",
+          "parent_id": "kf-9a7ab85032d840cdad704998b7778db6",
+          "mental_model_id": "mm-97158158581d47fa92a678e729e14cef",
+          "managed": false,
+          "description": "Summarize the \"Re-author Mirket Equip around working but poor choices\" initiative: what is being built or changed and why, and its current state \u2014 drawn from the project's memory. This bank is shared by several projects: attribute each thing you include to the repository or project its sources name, and group by project where that helps. Leave out facts about external tools, libraries and services those projects merely use, configure, deploy or discuss \u2014 they belong to somebody else's codebase \u2014 including any commit SHA or identifier from such a dependency's repository.",
+          "tags": [
+            "knowledge:feature-work"
+          ],
+          "timestamp": "2026-11-11T09:43:37.673043+00:00",
+          "is_stale": false,
+          "last_refresh_failed_at": null,
+          "trigger": {
+            "budget": null,
+            "mode": "delta",
+            "refresh_after_consolidation": true,
+            "refresh_cron": null,
+            "full_refresh_cron": null,
+            "min_refresh_interval_seconds": null,
+            "fact_types": [
+              "world",
+              "experience",
+              "observation"
+            ],
+            "exclude_mental_models": true,
+            "exclude_mental_model_ids": null,
+            "tags_match": "all",
+            "tag_groups": null,
+            "include_chunks": null,
+            "recall_max_tokens": null,
+            "recall_chunks_max_tokens": null,
+            "reflect_search_observations_max_tokens": null,
+            "reflect_search_observations_include_entities": null,
+            "response_schema": null,
+            "keep_trace": false
+          },
+          "children": []
+        },
+        {
+          "id": "kp-857952e2362b4d8f994897255664828c",
+          "kind": "page",
+          "name": "Revise Mirket Adapt skill",
+          "parent_id": "kf-9a7ab85032d840cdad704998b7778db6",
+          "mental_model_id": "mm-d49f32a75b424cc1bd602eae709b63a1",
+          "managed": false,
+          "description": "Summarize the \"Revise Mirket Adapt skill\" initiative: what is being built or changed and why, and its current state \u2014 drawn from the project's memory. This bank is shared by several projects: attribute each thing you include to the repository or project its sources name, and group by project where that helps. Leave out facts about external tools, libraries and services those projects merely use, configure, deploy or discuss \u2014 they belong to somebody else's codebase \u2014 including any commit SHA or identifier from such a dependency's repository.",
+          "tags": [
+            "knowledge:feature-work"
+          ],
+          "timestamp": "2026-11-11T09:45:07.117994+00:00",
+          "is_stale": false,
+          "last_refresh_failed_at": null,
+          "trigger": {
+            "budget": null,
+            "mode": "delta",
+            "refresh_after_consolidation": true,
+            "refresh_cron": null,
+            "full_refresh_cron": null,
+            "min_refresh_interval_seconds": null,
+            "fact_types": [
+              "world",
+              "experience",
+              "observation"
+            ],
+            "exclude_mental_models": true,
+            "exclude_mental_model_ids": null,
+            "tags_match": "all",
+            "tag_groups": null,
+            "include_chunks": null,
+            "recall_max_tokens": null,
+            "recall_chunks_max_tokens": null,
+            "reflect_search_observations_max_tokens": null,
+            "reflect_search_observations_include_entities": null,
+            "response_schema": null,
+            "keep_trace": false
+          },
+          "children": []
+        },
+        {
+          "id": "kp-557b9951fb554f6a9cda0b51d9774749",
+          "kind": "page",
+          "name": "Revise Mirket Architect skill",
+          "parent_id": "kf-9a7ab85032d840cdad704998b7778db6",
+          "mental_model_id": "mm-31687b9151174295a969c12751684224",
+          "managed": false,
+          "description": "Summarize the \"Revise Mirket Architect skill\" initiative: what is being built or changed and why, and its current state \u2014 drawn from the project's memory. This bank is shared by several projects: attribute each thing you include to the repository or project its sources name, and group by project where that helps. Leave out facts about external tools, libraries and services those projects merely use, configure, deploy or discuss \u2014 they belong to somebody else's codebase \u2014 including any commit SHA or identifier from such a dependency's repository.",
+          "tags": [
+            "knowledge:feature-work"
+          ],
+          "timestamp": "2026-11-11T09:44:16.356372+00:00",
+          "is_stale": false,
+          "last_refresh_failed_at": null,
+          "trigger": {
+            "budget": null,
+            "mode": "delta",
+            "refresh_after_consolidation": true,
+            "refresh_cron": null,
+            "full_refresh_cron": null,
+            "min_refresh_interval_seconds": null,
+            "fact_types": [
+              "world",
+              "experience",
+              "observation"
+            ],
+            "exclude_mental_models": true,
+            "exclude_mental_model_ids": null,
+            "tags_match": "all",
+            "tag_groups": null,
+            "include_chunks": null,
+            "recall_max_tokens": null,
+            "recall_chunks_max_tokens": null,
+            "reflect_search_observations_max_tokens": null,
+            "reflect_search_observations_include_entities": null,
+            "response_schema": null,
+            "keep_trace": false
+          },
+          "children": []
+        },
+        {
+          "id": "kp-992dfcd7750f4745b18b76a2d3932e8c",
+          "kind": "page",
+          "name": "Revise Mirket Audit skill",
+          "parent_id": "kf-9a7ab85032d840cdad704998b7778db6",
+          "mental_model_id": "mm-8d4a473d8efc4895be7cb2ba1294d8d1",
+          "managed": false,
+          "description": "Summarize the \"Revise Mirket Audit skill\" initiative: what is being built or changed and why, and its current state \u2014 drawn from the project's memory. This bank is shared by several projects: attribute each thing you include to the repository or project its sources name, and group by project where that helps. Leave out facts about external tools, libraries and services those projects merely use, configure, deploy or discuss \u2014 they belong to somebody else's codebase \u2014 including any commit SHA or identifier from such a dependency's repository.",
+          "tags": [
+            "knowledge:feature-work"
+          ],
+          "timestamp": "2026-11-11T09:42:30.145552+00:00",
+          "is_stale": false,
+          "last_refresh_failed_at": null,
+          "trigger": {
+            "budget": null,
+            "mode": "delta",
+            "refresh_after_consolidation": true,
+            "refresh_cron": null,
+            "full_refresh_cron": null,
+            "min_refresh_interval_seconds": null,
+            "fact_types": [
+              "world",
+              "experience",
+              "observation"
+            ],
+            "exclude_mental_models": true,
+            "exclude_mental_model_ids": null,
+            "tags_match": "all",
+            "tag_groups": null,
+            "include_chunks": null,
+            "recall_max_tokens": null,
+            "recall_chunks_max_tokens": null,
+            "reflect_search_observations_max_tokens": null,
+            "reflect_search_observations_include_entities": null,
+            "response_schema": null,
+            "keep_trace": false
+          },
+          "children": []
+        },
+        {
+          "id": "kp-1d04b444a1f54ec4ab4f4d90584ee4de",
+          "kind": "page",
+          "name": "Revise Mirket Author skill",
+          "parent_id": "kf-9a7ab85032d840cdad704998b7778db6",
+          "mental_model_id": "mm-fea0cd4199014b0a927b918c099e9d2c",
+          "managed": false,
+          "description": "Summarize the \"Revise Mirket Author skill\" initiative: what is being built or changed and why, and its current state \u2014 drawn from the project's memory. This bank is shared by several projects: attribute each thing you include to the repository or project its sources name, and group by project where that helps. Leave out facts about external tools, libraries and services those projects merely use, configure, deploy or discuss \u2014 they belong to somebody else's codebase \u2014 including any commit SHA or identifier from such a dependency's repository.",
+          "tags": [
+            "knowledge:feature-work"
+          ],
+          "timestamp": "2026-11-11T09:46:02.148442+00:00",
+          "is_stale": false,
+          "last_refresh_failed_at": null,
+          "trigger": {
+            "budget": null,
+            "mode": "delta",
+            "refresh_after_consolidation": true,
+            "refresh_cron": null,
+            "full_refresh_cron": null,
+            "min_refresh_interval_seconds": null,
+            "fact_types": [
+              "world",
+              "experience",
+              "observation"
+            ],
+            "exclude_mental_models": true,
+            "exclude_mental_model_ids": null,
+            "tags_match": "all",
+            "tag_groups": null,
+            "include_chunks": null,
+            "recall_max_tokens": null,
+            "recall_chunks_max_tokens": null,
+            "reflect_search_observations_max_tokens": null,
+            "reflect_search_observations_include_entities": null,
+            "response_schema": null,
+            "keep_trace": false
+          },
+          "children": []
+        },
+        {
+          "id": "kp-1af12cffd27248fd9618b4953069768b",
+          "kind": "page",
+          "name": "Revise Mirket Brief skill",
+          "parent_id": "kf-9a7ab85032d840cdad704998b7778db6",
+          "mental_model_id": "mm-b48145f23a0b4fe7b7ea7bb6a7a4b92b",
+          "managed": false,
+          "description": "Summarize the \"Revise Mirket Brief skill\" initiative: what is being built or changed and why, and its current state \u2014 drawn from the project's memory. This bank is shared by several projects: attribute each thing you include to the repository or project its sources name, and group by project where that helps. Leave out facts about external tools, libraries and services those projects merely use, configure, deploy or discuss \u2014 they belong to somebody else's codebase \u2014 including any commit SHA or identifier from such a dependency's repository.",
+          "tags": [
+            "knowledge:feature-work"
+          ],
+          "timestamp": "2026-11-11T09:46:35.361051+00:00",
+          "is_stale": false,
+          "last_refresh_failed_at": null,
+          "trigger": {
+            "budget": null,
+            "mode": "delta",
+            "refresh_after_consolidation": true,
+            "refresh_cron": null,
+            "full_refresh_cron": null,
+            "min_refresh_interval_seconds": null,
+            "fact_types": [
+              "world",
+              "experience",
+              "observation"
+            ],
+            "exclude_mental_models": true,
+            "exclude_mental_model_ids": null,
+            "tags_match": "all",
+            "tag_groups": null,
+            "include_chunks": null,
+            "recall_max_tokens": null,
+            "recall_chunks_max_tokens": null,
+            "reflect_search_observations_max_tokens": null,
+            "reflect_search_observations_include_entities": null,
+            "response_schema": null,
+            "keep_trace": false
+          },
+          "children": []
+        },
+        {
+          "id": "kp-f08772ee553c4e01b540509e31261efc",
+          "kind": "page",
+          "name": "Revise Mirket Clean skill",
+          "parent_id": "kf-9a7ab85032d840cdad704998b7778db6",
+          "mental_model_id": "mm-f8016eaf84d84d659805a9d14227a64f",
+          "managed": false,
+          "description": "Summarize the \"Revise Mirket Clean skill\" initiative: what is being built or changed and why, and its current state \u2014 drawn from the project's memory. This bank is shared by several projects: attribute each thing you include to the repository or project its sources name, and group by project where that helps. Leave out facts about external tools, libraries and services those projects merely use, configure, deploy or discuss \u2014 they belong to somebody else's codebase \u2014 including any commit SHA or identifier from such a dependency's repository.",
+          "tags": [
+            "knowledge:feature-work"
+          ],
+          "timestamp": "2026-11-11T09:43:48.497031+00:00",
+          "is_stale": false,
+          "last_refresh_failed_at": null,
+          "trigger": {
+            "budget": null,
+            "mode": "delta",
+            "refresh_after_consolidation": true,
+            "refresh_cron": null,
+            "full_refresh_cron": null,
+            "min_refresh_interval_seconds": null,
+            "fact_types": [
+              "world",
+              "experience",
+              "observation"
+            ],
+            "exclude_mental_models": true,
+            "exclude_mental_model_ids": null,
+            "tags_match": "all",
+            "tag_groups": null,
+            "include_chunks": null,
+            "recall_max_tokens": null,
+            "recall_chunks_max_tokens": null,
+            "reflect_search_observations_max_tokens": null,
+            "reflect_search_observations_include_entities": null,
+            "response_schema": null,
+            "keep_trace": false
+          },
+          "children": []
+        },
+        {
+          "id": "kp-7bc37d898e994373b82248c77a3bcff5",
+          "kind": "page",
+          "name": "Revise Mirket Critique skill",
+          "parent_id": "kf-9a7ab85032d840cdad704998b7778db6",
+          "mental_model_id": "mm-42f9372c894e45439d3f79713e00d153",
+          "managed": false,
+          "description": "Summarize the \"Revise Mirket Critique skill\" initiative: what is being built or changed and why, and its current state \u2014 drawn from the project's memory. This bank is shared by several projects: attribute each thing you include to the repository or project its sources name, and group by project where that helps. Leave out facts about external tools, libraries and services those projects merely use, configure, deploy or discuss \u2014 they belong to somebody else's codebase \u2014 including any commit SHA or identifier from such a dependency's repository.",
+          "tags": [
+            "knowledge:feature-work"
+          ],
+          "timestamp": "2026-11-11T09:43:57.578153+00:00",
+          "is_stale": false,
+          "last_refresh_failed_at": null,
+          "trigger": {
+            "budget": null,
+            "mode": "delta",
+            "refresh_after_consolidation": true,
+            "refresh_cron": null,
+            "full_refresh_cron": null,
+            "min_refresh_interval_seconds": null,
+            "fact_types": [
+              "world",
+              "experience",
+              "observation"
+            ],
+            "exclude_mental_models": true,
+            "exclude_mental_model_ids": null,
+            "tags_match": "all",
+            "tag_groups": null,
+            "include_chunks": null,
+            "recall_max_tokens": null,
+            "recall_chunks_max_tokens": null,
+            "reflect_search_observations_max_tokens": null,
+            "reflect_search_observations_include_entities": null,
+            "response_schema": null,
+            "keep_trace": false
+          },
+          "children": []
+        },
+        {
+          "id": "kp-a6826840d2c54b5dbcddc677ae0cdbd0",
+          "kind": "page",
+          "name": "Revise Mirket Curate skill",
+          "parent_id": "kf-9a7ab85032d840cdad704998b7778db6",
+          "mental_model_id": "mm-c5cd745102a143e48de84ab7029de13d",
+          "managed": false,
+          "description": "Summarize the \"Revise Mirket Curate skill\" initiative: what is being built or changed and why, and its current state \u2014 drawn from the project's memory. This bank is shared by several projects: attribute each thing you include to the repository or project its sources name, and group by project where that helps. Leave out facts about external tools, libraries and services those projects merely use, configure, deploy or discuss \u2014 they belong to somebody else's codebase \u2014 including any commit SHA or identifier from such a dependency's repository.",
+          "tags": [
+            "knowledge:feature-work"
+          ],
+          "timestamp": "2026-11-11T09:42:23.547889+00:00",
+          "is_stale": false,
+          "last_refresh_failed_at": null,
+          "trigger": {
+            "budget": null,
+            "mode": "delta",
+            "refresh_after_consolidation": true,
+            "refresh_cron": null,
+            "full_refresh_cron": null,
+            "min_refresh_interval_seconds": null,
+            "fact_types": [
+              "world",
+              "experience",
+              "observation"
+            ],
+            "exclude_mental_models": true,
+            "exclude_mental_model_ids": null,
+            "tags_match": "all",
+            "tag_groups": null,
+            "include_chunks": null,
+            "recall_max_tokens": null,
+            "recall_chunks_max_tokens": null,
+            "reflect_search_observations_max_tokens": null,
+            "reflect_search_observations_include_entities": null,
+            "response_schema": null,
+            "keep_trace": false
+          },
+          "children": []
+        },
+        {
+          "id": "kp-a8fdc9e9c1d345c193ff474620f84c07",
+          "kind": "page",
+          "name": "Revise Mirket Distill skill",
+          "parent_id": "kf-9a7ab85032d840cdad704998b7778db6",
+          "mental_model_id": "mm-c0823d517ff74420b7a51d79ff0e3357",
+          "managed": false,
+          "description": "Summarize the \"Revise Mirket Distill skill\" initiative: what is being built or changed and why, and its current state \u2014 drawn from the project's memory. This bank is shared by several projects: attribute each thing you include to the repository or project its sources name, and group by project where that helps. Leave out facts about external tools, libraries and services those projects merely use, configure, deploy or discuss \u2014 they belong to somebody else's codebase \u2014 including any commit SHA or identifier from such a dependency's repository.",
+          "tags": [
+            "knowledge:feature-work"
+          ],
+          "timestamp": "2026-11-11T09:48:53.227969+00:00",
+          "is_stale": false,
+          "last_refresh_failed_at": null,
+          "trigger": {
+            "budget": null,
+            "mode": "delta",
+            "refresh_after_consolidation": true,
+            "refresh_cron": null,
+            "full_refresh_cron": null,
+            "min_refresh_interval_seconds": null,
+            "fact_types": [
+              "world",
+              "experience",
+              "observation"
+            ],
+            "exclude_mental_models": true,
+            "exclude_mental_model_ids": null,
+            "tags_match": "all",
+            "tag_groups": null,
+            "include_chunks": null,
+            "recall_max_tokens": null,
+            "recall_chunks_max_tokens": null,
+            "reflect_search_observations_max_tokens": null,
+            "reflect_search_observations_include_entities": null,
+            "response_schema": null,
+            "keep_trace": false
+          },
+          "children": []
+        },
+        {
+          "id": "kp-e920f3cfb2404a379426328ec578efbd",
+          "kind": "page",
+          "name": "Revise Mirket Orchestrate skill",
+          "parent_id": "kf-9a7ab85032d840cdad704998b7778db6",
+          "mental_model_id": "mm-71911c41aaf94bf7aab4889031b03649",
+          "managed": false,
+          "description": "Summarize the \"Revise Mirket Orchestrate skill\" initiative: what is being built or changed and why, and its current state \u2014 drawn from the project's memory. This bank is shared by several projects: attribute each thing you include to the repository or project its sources name, and group by project where that helps. Leave out facts about external tools, libraries and services those projects merely use, configure, deploy or discuss \u2014 they belong to somebody else's codebase \u2014 including any commit SHA or identifier from such a dependency's repository.",
+          "tags": [
+            "knowledge:feature-work"
+          ],
+          "timestamp": "2026-11-11T09:45:45.982355+00:00",
+          "is_stale": false,
+          "last_refresh_failed_at": null,
+          "trigger": {
+            "budget": null,
+            "mode": "delta",
+            "refresh_after_consolidation": true,
+            "refresh_cron": null,
+            "full_refresh_cron": null,
+            "min_refresh_interval_seconds": null,
+            "fact_types": [
+              "world",
+              "experience",
+              "observation"
+            ],
+            "exclude_mental_models": true,
+            "exclude_mental_model_ids": null,
+            "tags_match": "all",
+            "tag_groups": null,
+            "include_chunks": null,
+            "recall_max_tokens": null,
+            "recall_chunks_max_tokens": null,
+            "reflect_search_observations_max_tokens": null,
+            "reflect_search_observations_include_entities": null,
+            "response_schema": null,
+            "keep_trace": false
+          },
+          "children": []
+        },
+        {
+          "id": "kp-2deee385789e4f99b52a16954ee93af1",
+          "kind": "page",
+          "name": "Revise Mirket Plan skill",
+          "parent_id": "kf-9a7ab85032d840cdad704998b7778db6",
+          "mental_model_id": "mm-bd7087032ce545e085a482c7222afde4",
+          "managed": false,
+          "description": "Summarize the \"Revise Mirket Plan skill\" initiative: what is being built or changed and why, and its current state \u2014 drawn from the project's memory. This bank is shared by several projects: attribute each thing you include to the repository or project its sources name, and group by project where that helps. Leave out facts about external tools, libraries and services those projects merely use, configure, deploy or discuss \u2014 they belong to somebody else's codebase \u2014 including any commit SHA or identifier from such a dependency's repository.",
+          "tags": [
+            "knowledge:feature-work"
+          ],
+          "timestamp": "2026-11-11T09:43:25.289732+00:00",
+          "is_stale": false,
+          "last_refresh_failed_at": null,
+          "trigger": {
+            "budget": null,
+            "mode": "delta",
+            "refresh_after_consolidation": true,
+            "refresh_cron": null,
+            "full_refresh_cron": null,
+            "min_refresh_interval_seconds": null,
+            "fact_types": [
+              "world",
+              "experience",
+              "observation"
+            ],
+            "exclude_mental_models": true,
+            "exclude_mental_model_ids": null,
+            "tags_match": "all",
+            "tag_groups": null,
+            "include_chunks": null,
+            "recall_max_tokens": null,
+            "recall_chunks_max_tokens": null,
+            "reflect_search_observations_max_tokens": null,
+            "reflect_search_observations_include_entities": null,
+            "response_schema": null,
+            "keep_trace": false
+          },
+          "children": []
+        },
+        {
+          "id": "kp-66ed599feec94394961d7c02d7be386f",
+          "kind": "page",
+          "name": "Revise Mirket Sleep skill",
+          "parent_id": "kf-9a7ab85032d840cdad704998b7778db6",
+          "mental_model_id": "mm-abc36fe1f5e14aafab2faecbfb81220d",
+          "managed": false,
+          "description": "Summarize the \"Revise Mirket Sleep skill\" initiative: what is being built or changed and why, and its current state \u2014 drawn from the project's memory. This bank is shared by several projects: attribute each thing you include to the repository or project its sources name, and group by project where that helps. Leave out facts about external tools, libraries and services those projects merely use, configure, deploy or discuss \u2014 they belong to somebody else's codebase \u2014 including any commit SHA or identifier from such a dependency's repository.",
+          "tags": [
+            "knowledge:feature-work"
+          ],
+          "timestamp": "2026-11-11T09:45:41.793140+00:00",
+          "is_stale": false,
+          "last_refresh_failed_at": null,
+          "trigger": {
+            "budget": null,
+            "mode": "delta",
+            "refresh_after_consolidation": true,
+            "refresh_cron": null,
+            "full_refresh_cron": null,
+            "min_refresh_interval_seconds": null,
+            "fact_types": [
+              "world",
+              "experience",
+              "observation"
+            ],
+            "exclude_mental_models": true,
+            "exclude_mental_model_ids": null,
+            "tags_match": "all",
+            "tag_groups": null,
+            "include_chunks": null,
+            "recall_max_tokens": null,
+            "recall_chunks_max_tokens": null,
+            "reflect_search_observations_max_tokens": null,
+            "reflect_search_observations_include_entities": null,
+            "response_schema": null,
+            "keep_trace": false
+          },
+          "children": []
+        },
+        {
+          "id": "kp-ef789b748c974ff18edf8f6a07a193ea",
+          "kind": "page",
+          "name": "Revise remaining Mirket skills",
+          "parent_id": "kf-9a7ab85032d840cdad704998b7778db6",
+          "mental_model_id": "mm-9a6486ab7c924f039f4a24f465c03861",
+          "managed": false,
+          "description": "Summarize the \"Revise remaining Mirket skills\" initiative: what is being built or changed and why, and its current state \u2014 drawn from the project's memory. This bank is shared by several projects: attribute each thing you include to the repository or project its sources name, and group by project where that helps. Leave out facts about external tools, libraries and services those projects merely use, configure, deploy or discuss \u2014 they belong to somebody else's codebase \u2014 including any commit SHA or identifier from such a dependency's repository.",
+          "tags": [
+            "knowledge:feature-work"
+          ],
+          "timestamp": "2026-11-11T09:49:31.957316+00:00",
+          "is_stale": false,
+          "last_refresh_failed_at": null,
+          "trigger": {
+            "budget": null,
+            "mode": "delta",
+            "refresh_after_consolidation": true,
+            "refresh_cron": null,
+            "full_refresh_cron": null,
+            "min_refresh_interval_seconds": null,
+            "fact_types": [
+              "world",
+              "experience",
+              "observation"
+            ],
+            "exclude_mental_models": true,
+            "exclude_mental_model_ids": null,
+            "tags_match": "all",
+            "tag_groups": null,
+            "include_chunks": null,
+            "recall_max_tokens": null,
+            "recall_chunks_max_tokens": null,
+            "reflect_search_observations_max_tokens": null,
+            "reflect_search_observations_include_entities": null,
+            "response_schema": null,
+            "keep_trace": false
+          },
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "kp-43bb05e830f44b7d983a896e8bf6c36f",
+      "kind": "page",
+      "name": "Initiatives and enhancements",
+      "parent_id": null,
+      "mental_model_id": "mm-a0b7b5e24ef4414997824dc4a0f110fa",
+      "managed": false,
+      "description": "Based on this repository's commit history, what are the major initiatives, features, and enhancements the project has worked on? Summarize the themes and notable changes over time. When a source memory's context carries a `[[page:<id>]]` link, repeat that link in the summary of what it describes, so each initiative links to its detailed page. This bank is shared by several projects: attribute each thing you include to the repository or project its sources name, and group by project where that helps. Leave out facts about external tools, libraries and services those projects merely use, configure, deploy or discuss \u2014 they belong to somebody else's codebase \u2014 including any commit SHA or identifier from such a dependency's repository.",
+      "tags": [
+        "knowledge:feature-work"
+      ],
+      "timestamp": "2026-11-11T09:42:59.839889+00:00",
+      "is_stale": false,
+      "last_refresh_failed_at": null,
+      "trigger": {
+        "budget": null,
+        "mode": "delta",
+        "refresh_after_consolidation": true,
+        "refresh_cron": null,
+        "full_refresh_cron": null,
+        "min_refresh_interval_seconds": null,
+        "fact_types": [
+          "world",
+          "experience",
+          "observation"
+        ],
+        "exclude_mental_models": true,
+        "exclude_mental_model_ids": null,
+        "tags_match": "all",
+        "tag_groups": null,
+        "include_chunks": null,
+        "recall_max_tokens": null,
+        "recall_chunks_max_tokens": null,
+        "reflect_search_observations_max_tokens": null,
+        "reflect_search_observations_include_entities": null,
+        "response_schema": null,
+        "keep_trace": false
+      },
+      "children": []
+    },
+    {
+      "id": "kp-693261fa27b0452c89d548b534068d99",
+      "kind": "page",
+      "name": "Key decisions and rationale",
+      "parent_id": null,
+      "mental_model_id": "mm-69b239f09e8c47c3adb5dc99b241c1fe",
+      "managed": false,
+      "description": "What are the significant technical decisions made in this project and the rationale behind them \u2014 the durable 'why we do it this way' a developer should know? Summarize the decisions and their reasoning from the commit rationales and past conversations. This bank is shared by several projects: attribute each thing you include to the repository or project its sources name, and group by project where that helps. Leave out facts about external tools, libraries and services those projects merely use, configure, deploy or discuss \u2014 they belong to somebody else's codebase \u2014 including any commit SHA or identifier from such a dependency's repository.",
+      "tags": [
+        "knowledge:decision"
+      ],
+      "timestamp": "2026-11-11T09:42:39.121414+00:00",
+      "is_stale": false,
+      "last_refresh_failed_at": null,
+      "trigger": {
+        "budget": null,
+        "mode": "delta",
+        "refresh_after_consolidation": true,
+        "refresh_cron": null,
+        "full_refresh_cron": null,
+        "min_refresh_interval_seconds": null,
+        "fact_types": [
+          "world",
+          "experience",
+          "observation"
+        ],
+        "exclude_mental_models": true,
+        "exclude_mental_model_ids": null,
+        "tags_match": "all",
+        "tag_groups": null,
+        "include_chunks": null,
+        "recall_max_tokens": null,
+        "recall_chunks_max_tokens": null,
+        "reflect_search_observations_max_tokens": null,
+        "reflect_search_observations_include_entities": null,
+        "response_schema": null,
+        "keep_trace": false
+      },
+      "children": []
+    }
+  ],
+  "final": [
+    {
+      "id": "kp-6a62f0e9fe9f4f4fa270ce07170fc187",
+      "kind": "page",
+      "name": "Component map",
+      "parent_id": null,
+      "mental_model_id": "mm-408496ae0b4149309a00cfaeae4ba95a",
+      "managed": false,
+      "description": "Describe this project's currently active components, modules and subsystems, their responsibilities and dependencies. First retrieve the latest verified source and installed-state inventory and explicit superseding corrections, then use older history only where it remains compatible. Prefer newer verified evidence over superseded plans, older surveys and earlier conversation summaries; allow later verified versions and inventories to replace earlier ones. Keep source, installed, publicly released and deployed states distinct. Include a skill or component as active only when the latest inventory supports it. Preserve exact current path spelling and case, and verify the current manifest layout against the latest inventory rather than copying historical paths. Put obsolete roles, removed components and old architecture in an explicitly dated historical section only when useful. Resolve contradictions throughout the page, rather than appending a correction beside an incompatible current assertion. Where current evidence is insufficient, omit or qualify the claim. Preserve material host and verification limits without treating an old gap as proof that later verified activation did not occur. This bank is shared by several projects: attribute each thing you include to the repository or project its sources name, and group by project where that helps. Leave out facts about external tools, libraries and services those projects merely use, configure, deploy or discuss \u2014 they belong to somebody else's codebase \u2014 including any commit SHA or identifier from such a dependency's repository.",
+      "tags": [
+        "knowledge:component"
+      ],
+      "timestamp": "2026-11-11T09:54:39.652703+00:00",
+      "is_stale": false,
+      "last_refresh_failed_at": null,
+      "trigger": {
+        "budget": null,
+        "mode": "delta",
+        "refresh_after_consolidation": true,
+        "refresh_cron": null,
+        "full_refresh_cron": null,
+        "min_refresh_interval_seconds": null,
+        "fact_types": [
+          "world",
+          "experience",
+          "observation"
+        ],
+        "exclude_mental_models": true,
+        "exclude_mental_model_ids": null,
+        "tags_match": "all",
+        "tag_groups": null,
+        "include_chunks": null,
+        "recall_max_tokens": null,
+        "recall_chunks_max_tokens": null,
+        "reflect_search_observations_max_tokens": null,
+        "reflect_search_observations_include_entities": null,
+        "response_schema": null,
+        "keep_trace": false
+      },
+      "children": []
+    },
+    {
+      "id": "kp-acbde8d64df84c9bad154c6e54cbb29b",
+      "kind": "page",
+      "name": "Conventions and patterns",
+      "parent_id": null,
+      "mental_model_id": "mm-b57fbad0a1b142c6964435fc98ccc4c9",
+      "managed": false,
+      "description": "What conventions, idioms, and recurring patterns does this project follow \u2014 its approach to testing, error handling, naming, structure, and how changes are typically made? Describe how THIS project does things, as evidenced across its history and discussions. This bank is shared by several projects: attribute each thing you include to the repository or project its sources name, and group by project where that helps. Leave out facts about external tools, libraries and services those projects merely use, configure, deploy or discuss \u2014 they belong to somebody else's codebase \u2014 including any commit SHA or identifier from such a dependency's repository.",
+      "tags": [
+        "knowledge:convention"
+      ],
+      "timestamp": "2026-11-11T09:46:37.224770+00:00",
+      "is_stale": false,
+      "last_refresh_failed_at": null,
+      "trigger": {
+        "budget": null,
+        "mode": "delta",
+        "refresh_after_consolidation": true,
+        "refresh_cron": null,
+        "full_refresh_cron": null,
+        "min_refresh_interval_seconds": null,
+        "fact_types": [
+          "world",
+          "experience",
+          "observation"
+        ],
+        "exclude_mental_models": true,
+        "exclude_mental_model_ids": null,
+        "tags_match": "all",
+        "tag_groups": null,
+        "include_chunks": null,
+        "recall_max_tokens": null,
+        "recall_chunks_max_tokens": null,
+        "reflect_search_observations_max_tokens": null,
+        "reflect_search_observations_include_entities": null,
+        "response_schema": null,
+        "keep_trace": false
+      },
+      "children": []
+    },
+    {
+      "id": "kp-a724304d0a0d4a77ae1a6201f944a7fc",
+      "kind": "page",
+      "name": "Core concepts",
+      "parent_id": null,
+      "mental_model_id": "mm-0590d38703264895baeb883f51a3d074",
+      "managed": false,
+      "description": "What are the core concepts, domain abstractions, and key entities in this project \u2014 the vocabulary a developer must understand? For each, explain what it represents and its role, drawn from how they are introduced and discussed across the history and conversations. This bank is shared by several projects: attribute each thing you include to the repository or project its sources name, and group by project where that helps. Leave out facts about external tools, libraries and services those projects merely use, configure, deploy or discuss \u2014 they belong to somebody else's codebase \u2014 including any commit SHA or identifier from such a dependency's repository.",
+      "tags": [
+        "knowledge:concept"
+      ],
+      "timestamp": "2026-11-11T09:39:34.028237+00:00",
+      "is_stale": false,
+      "last_refresh_failed_at": null,
+      "trigger": {
+        "budget": null,
+        "mode": "delta",
+        "refresh_after_consolidation": true,
+        "refresh_cron": null,
+        "full_refresh_cron": null,
+        "min_refresh_interval_seconds": null,
+        "fact_types": [
+          "world",
+          "experience",
+          "observation"
+        ],
+        "exclude_mental_models": true,
+        "exclude_mental_model_ids": null,
+        "tags_match": "all",
+        "tag_groups": null,
+        "include_chunks": null,
+        "recall_max_tokens": null,
+        "recall_chunks_max_tokens": null,
+        "reflect_search_observations_max_tokens": null,
+        "reflect_search_observations_include_entities": null,
+        "response_schema": null,
+        "keep_trace": false
+      },
+      "children": []
+    },
+    {
+      "id": "kf-9a7ab85032d840cdad704998b7778db6",
+      "kind": "folder",
+      "name": "Initiatives",
+      "parent_id": null,
+      "mental_model_id": null,
+      "managed": false,
+      "description": null,
+      "tags": [],
+      "timestamp": "2026-11-09T20:18:16.835534+00:00",
+      "is_stale": null,
+      "last_refresh_failed_at": null,
+      "trigger": null,
+      "children": [
+        {
+          "id": "kp-4cc43ea235cc4a9bb6bde8d02c7488c5",
+          "kind": "page",
+          "name": "Build the Mirket skills website",
+          "parent_id": "kf-9a7ab85032d840cdad704998b7778db6",
+          "mental_model_id": "mm-a11c08752f1a423a91895cdc987d5922",
+          "managed": false,
+          "description": "Summarize the \"Build the Mirket skills website\" initiative: what is being built or changed and why, and its current state \u2014 drawn from the project's memory. This bank is shared by several projects: attribute each thing you include to the repository or project its sources name, and group by project where that helps. Leave out facts about external tools, libraries and services those projects merely use, configure, deploy or discuss \u2014 they belong to somebody else's codebase \u2014 including any commit SHA or identifier from such a dependency's repository.",
+          "tags": [
+            "knowledge:feature-work"
+          ],
+          "timestamp": "2026-11-11T09:43:19.011604+00:00",
+          "is_stale": false,
+          "last_refresh_failed_at": null,
+          "trigger": {
+            "budget": null,
+            "mode": "delta",
+            "refresh_after_consolidation": true,
+            "refresh_cron": null,
+            "full_refresh_cron": null,
+            "min_refresh_interval_seconds": null,
+            "fact_types": [
+              "world",
+              "experience",
+              "observation"
+            ],
+            "exclude_mental_models": true,
+            "exclude_mental_model_ids": null,
+            "tags_match": "all",
+            "tag_groups": null,
+            "include_chunks": null,
+            "recall_max_tokens": null,
+            "recall_chunks_max_tokens": null,
+            "reflect_search_observations_max_tokens": null,
+            "reflect_search_observations_include_entities": null,
+            "response_schema": null,
+            "keep_trace": false
+          },
+          "children": []
+        },
+        {
+          "id": "kp-efd36376017c46ebb2bf7eaba91e5e41",
+          "kind": "page",
+          "name": "Expand Mirket Design into a design director",
+          "parent_id": "kf-9a7ab85032d840cdad704998b7778db6",
+          "mental_model_id": "mm-70d1ae0a755f43eb8ec3c4deb67e22ee",
+          "managed": false,
+          "description": "Summarize the \"Expand Mirket Design into a design director\" initiative: what is being built or changed and why, and its current state \u2014 drawn from the project's memory. This bank is shared by several projects: attribute each thing you include to the repository or project its sources name, and group by project where that helps. Leave out facts about external tools, libraries and services those projects merely use, configure, deploy or discuss \u2014 they belong to somebody else's codebase \u2014 including any commit SHA or identifier from such a dependency's repository.",
+          "tags": [
+            "knowledge:feature-work"
+          ],
+          "timestamp": "2026-11-11T09:43:45.847268+00:00",
+          "is_stale": false,
+          "last_refresh_failed_at": null,
+          "trigger": {
+            "budget": null,
+            "mode": "delta",
+            "refresh_after_consolidation": true,
+            "refresh_cron": null,
+            "full_refresh_cron": null,
+            "min_refresh_interval_seconds": null,
+            "fact_types": [
+              "world",
+              "experience",
+              "observation"
+            ],
+            "exclude_mental_models": true,
+            "exclude_mental_model_ids": null,
+            "tags_match": "all",
+            "tag_groups": null,
+            "include_chunks": null,
+            "recall_max_tokens": null,
+            "recall_chunks_max_tokens": null,
+            "reflect_search_observations_max_tokens": null,
+            "reflect_search_observations_include_entities": null,
+            "response_schema": null,
+            "keep_trace": false
+          },
+          "children": []
+        },
+        {
+          "id": "kp-5d3a84ca72374015b13892171f125528",
+          "kind": "page",
+          "name": "Expand Mirket to 25 skills and make project memory reliable",
+          "parent_id": "kf-9a7ab85032d840cdad704998b7778db6",
+          "mental_model_id": "mm-78396c0cbdca4e268101150cb24dbc27",
+          "managed": false,
+          "description": "Summarize the \"Expand Mirket to 25 skills and make project memory reliable\" initiative: what is being built or changed and why, and its current state \u2014 drawn from the project's memory. This bank is shared by several projects: attribute each thing you include to the repository or project its sources name, and group by project where that helps. Leave out facts about external tools, libraries and services those projects merely use, configure, deploy or discuss \u2014 they belong to somebody else's codebase \u2014 including any commit SHA or identifier from such a dependency's repository.",
+          "tags": [
+            "knowledge:feature-work"
+          ],
+          "timestamp": "2026-11-11T09:44:27.551093+00:00",
+          "is_stale": false,
+          "last_refresh_failed_at": null,
+          "trigger": {
+            "budget": null,
+            "mode": "delta",
+            "refresh_after_consolidation": true,
+            "refresh_cron": null,
+            "full_refresh_cron": null,
+            "min_refresh_interval_seconds": null,
+            "fact_types": [
+              "world",
+              "experience",
+              "observation"
+            ],
+            "exclude_mental_models": true,
+            "exclude_mental_model_ids": null,
+            "tags_match": "all",
+            "tag_groups": null,
+            "include_chunks": null,
+            "recall_max_tokens": null,
+            "recall_chunks_max_tokens": null,
+            "reflect_search_observations_max_tokens": null,
+            "reflect_search_observations_include_entities": null,
+            "response_schema": null,
+            "keep_trace": false
+          },
+          "children": []
+        },
+        {
+          "id": "kp-4d79b3d4502b4345b6305dd78ad8bda8",
+          "kind": "page",
+          "name": "Harden Mirket routing and lifecycle hooks",
+          "parent_id": "kf-9a7ab85032d840cdad704998b7778db6",
+          "mental_model_id": "mm-604292e4a2544ebba0ba4fa6e571e120",
+          "managed": false,
+          "description": "Summarize the \"Harden Mirket routing and lifecycle hooks\" initiative: what is being built or changed and why, and its current state \u2014 drawn from the project's memory. This bank is shared by several projects: attribute each thing you include to the repository or project its sources name, and group by project where that helps. Leave out facts about external tools, libraries and services those projects merely use, configure, deploy or discuss \u2014 they belong to somebody else's codebase \u2014 including any commit SHA or identifier from such a dependency's repository.",
+          "tags": [
+            "knowledge:feature-work"
+          ],
+          "timestamp": "2026-11-11T09:44:43.291538+00:00",
+          "is_stale": false,
+          "last_refresh_failed_at": null,
+          "trigger": {
+            "budget": null,
+            "mode": "delta",
+            "refresh_after_consolidation": true,
+            "refresh_cron": null,
+            "full_refresh_cron": null,
+            "min_refresh_interval_seconds": null,
+            "fact_types": [
+              "world",
+              "experience",
+              "observation"
+            ],
+            "exclude_mental_models": true,
+            "exclude_mental_model_ids": null,
+            "tags_match": "all",
+            "tag_groups": null,
+            "include_chunks": null,
+            "recall_max_tokens": null,
+            "recall_chunks_max_tokens": null,
+            "reflect_search_observations_max_tokens": null,
+            "reflect_search_observations_include_entities": null,
+            "response_schema": null,
+            "keep_trace": false
+          },
+          "children": []
+        },
+        {
+          "id": "kp-d97e53ba15d94f27875c686caed884e4",
+          "kind": "page",
+          "name": "Implement the Astra Mirket audit follow-up",
+          "parent_id": "kf-9a7ab85032d840cdad704998b7778db6",
+          "mental_model_id": "mm-c01300b9891243afbfa3032283577461",
+          "managed": false,
+          "description": "Summarize the \"Implement the Astra Mirket audit follow-up\" initiative: what is being built or changed and why, and its current state \u2014 drawn from the project's memory. This bank is shared by several projects: attribute each thing you include to the repository or project its sources name, and group by project where that helps. Leave out facts about external tools, libraries and services those projects merely use, configure, deploy or discuss \u2014 they belong to somebody else's codebase \u2014 including any commit SHA or identifier from such a dependency's repository.",
+          "tags": [
+            "knowledge:feature-work"
+          ],
+          "timestamp": "2026-11-11T09:44:31.384265+00:00",
+          "is_stale": false,
+          "last_refresh_failed_at": null,
+          "trigger": {
+            "budget": null,
+            "mode": "delta",
+            "refresh_after_consolidation": true,
+            "refresh_cron": null,
+            "full_refresh_cron": null,
+            "min_refresh_interval_seconds": null,
+            "fact_types": [
+              "world",
+              "experience",
+              "observation"
+            ],
+            "exclude_mental_models": true,
+            "exclude_mental_model_ids": null,
+            "tags_match": "all",
+            "tag_groups": null,
+            "include_chunks": null,
+            "recall_max_tokens": null,
+            "recall_chunks_max_tokens": null,
+            "reflect_search_observations_max_tokens": null,
+            "reflect_search_observations_include_entities": null,
+            "response_schema": null,
+            "keep_trace": false
+          },
+          "children": []
+        },
+        {
+          "id": "kp-86e4ee5d97444ddc8b85ddafefabe3db",
+          "kind": "page",
+          "name": "Improve Mirket lifecycle hooks",
+          "parent_id": "kf-9a7ab85032d840cdad704998b7778db6",
+          "mental_model_id": "mm-6342ad54d9dd46d6bf030784bae350d4",
+          "managed": false,
+          "description": "Summarize the \"Improve Mirket lifecycle hooks\" initiative: what is being built or changed and why, and its current state \u2014 drawn from the project's memory. This bank is shared by several projects: attribute each thing you include to the repository or project its sources name, and group by project where that helps. Leave out facts about external tools, libraries and services those projects merely use, configure, deploy or discuss \u2014 they belong to somebody else's codebase \u2014 including any commit SHA or identifier from such a dependency's repository.",
+          "tags": [
+            "knowledge:feature-work"
+          ],
+          "timestamp": "2026-11-11T09:42:36.210246+00:00",
+          "is_stale": false,
+          "last_refresh_failed_at": null,
+          "trigger": {
+            "budget": null,
+            "mode": "delta",
+            "refresh_after_consolidation": true,
+            "refresh_cron": null,
+            "full_refresh_cron": null,
+            "min_refresh_interval_seconds": null,
+            "fact_types": [
+              "world",
+              "experience",
+              "observation"
+            ],
+            "exclude_mental_models": true,
+            "exclude_mental_model_ids": null,
+            "tags_match": "all",
+            "tag_groups": null,
+            "include_chunks": null,
+            "recall_max_tokens": null,
+            "recall_chunks_max_tokens": null,
+            "reflect_search_observations_max_tokens": null,
+            "reflect_search_observations_include_entities": null,
+            "response_schema": null,
+            "keep_trace": false
+          },
+          "children": []
+        },
+        {
+          "id": "kp-ce9ec8fe18d443f29df6c3e3e5625133",
+          "kind": "page",
+          "name": "Make Mirket Hindsight routing and recall reliable",
+          "parent_id": "kf-9a7ab85032d840cdad704998b7778db6",
+          "mental_model_id": "mm-bac3cf2521374f4f9584e74014030b30",
+          "managed": false,
+          "description": "Summarize the \"Make Mirket Hindsight routing and recall reliable\" initiative: what is being built or changed and why, and its current state \u2014 drawn from the project's memory. This bank is shared by several projects: attribute each thing you include to the repository or project its sources name, and group by project where that helps. Leave out facts about external tools, libraries and services those projects merely use, configure, deploy or discuss \u2014 they belong to somebody else's codebase \u2014 including any commit SHA or identifier from such a dependency's repository.",
+          "tags": [
+            "knowledge:feature-work"
+          ],
+          "timestamp": "2026-11-11T09:49:05.602659+00:00",
+          "is_stale": false,
+          "last_refresh_failed_at": null,
+          "trigger": {
+            "budget": null,
+            "mode": "delta",
+            "refresh_after_consolidation": true,
+            "refresh_cron": null,
+            "full_refresh_cron": null,
+            "min_refresh_interval_seconds": null,
+            "fact_types": [
+              "world",
+              "experience",
+              "observation"
+            ],
+            "exclude_mental_models": true,
+            "exclude_mental_model_ids": null,
+            "tags_match": "all",
+            "tag_groups": null,
+            "include_chunks": null,
+            "recall_max_tokens": null,
+            "recall_chunks_max_tokens": null,
+            "reflect_search_observations_max_tokens": null,
+            "reflect_search_observations_include_entities": null,
+            "response_schema": null,
+            "keep_trace": false
+          },
+          "children": []
+        },
+        {
+          "id": "kp-e2ef72bee8f14112b98af048c67b2771",
+          "kind": "page",
+          "name": "Re-author Mirket Equip around working but poor choices",
+          "parent_id": "kf-9a7ab85032d840cdad704998b7778db6",
+          "mental_model_id": "mm-97158158581d47fa92a678e729e14cef",
+          "managed": false,
+          "description": "Summarize the \"Re-author Mirket Equip around working but poor choices\" initiative: what is being built or changed and why, and its current state \u2014 drawn from the project's memory. This bank is shared by several projects: attribute each thing you include to the repository or project its sources name, and group by project where that helps. Leave out facts about external tools, libraries and services those projects merely use, configure, deploy or discuss \u2014 they belong to somebody else's codebase \u2014 including any commit SHA or identifier from such a dependency's repository.",
+          "tags": [
+            "knowledge:feature-work"
+          ],
+          "timestamp": "2026-11-11T09:43:37.673043+00:00",
+          "is_stale": false,
+          "last_refresh_failed_at": null,
+          "trigger": {
+            "budget": null,
+            "mode": "delta",
+            "refresh_after_consolidation": true,
+            "refresh_cron": null,
+            "full_refresh_cron": null,
+            "min_refresh_interval_seconds": null,
+            "fact_types": [
+              "world",
+              "experience",
+              "observation"
+            ],
+            "exclude_mental_models": true,
+            "exclude_mental_model_ids": null,
+            "tags_match": "all",
+            "tag_groups": null,
+            "include_chunks": null,
+            "recall_max_tokens": null,
+            "recall_chunks_max_tokens": null,
+            "reflect_search_observations_max_tokens": null,
+            "reflect_search_observations_include_entities": null,
+            "response_schema": null,
+            "keep_trace": false
+          },
+          "children": []
+        },
+        {
+          "id": "kp-857952e2362b4d8f994897255664828c",
+          "kind": "page",
+          "name": "Revise Mirket Adapt skill",
+          "parent_id": "kf-9a7ab85032d840cdad704998b7778db6",
+          "mental_model_id": "mm-d49f32a75b424cc1bd602eae709b63a1",
+          "managed": false,
+          "description": "Summarize the \"Revise Mirket Adapt skill\" initiative: what is being built or changed and why, and its current state \u2014 drawn from the project's memory. This bank is shared by several projects: attribute each thing you include to the repository or project its sources name, and group by project where that helps. Leave out facts about external tools, libraries and services those projects merely use, configure, deploy or discuss \u2014 they belong to somebody else's codebase \u2014 including any commit SHA or identifier from such a dependency's repository.",
+          "tags": [
+            "knowledge:feature-work"
+          ],
+          "timestamp": "2026-11-11T09:45:07.117994+00:00",
+          "is_stale": false,
+          "last_refresh_failed_at": null,
+          "trigger": {
+            "budget": null,
+            "mode": "delta",
+            "refresh_after_consolidation": true,
+            "refresh_cron": null,
+            "full_refresh_cron": null,
+            "min_refresh_interval_seconds": null,
+            "fact_types": [
+              "world",
+              "experience",
+              "observation"
+            ],
+            "exclude_mental_models": true,
+            "exclude_mental_model_ids": null,
+            "tags_match": "all",
+            "tag_groups": null,
+            "include_chunks": null,
+            "recall_max_tokens": null,
+            "recall_chunks_max_tokens": null,
+            "reflect_search_observations_max_tokens": null,
+            "reflect_search_observations_include_entities": null,
+            "response_schema": null,
+            "keep_trace": false
+          },
+          "children": []
+        },
+        {
+          "id": "kp-557b9951fb554f6a9cda0b51d9774749",
+          "kind": "page",
+          "name": "Revise Mirket Architect skill",
+          "parent_id": "kf-9a7ab85032d840cdad704998b7778db6",
+          "mental_model_id": "mm-31687b9151174295a969c12751684224",
+          "managed": false,
+          "description": "Summarize the \"Revise Mirket Architect skill\" initiative: what is being built or changed and why, and its current state \u2014 drawn from the project's memory. This bank is shared by several projects: attribute each thing you include to the repository or project its sources name, and group by project where that helps. Leave out facts about external tools, libraries and services those projects merely use, configure, deploy or discuss \u2014 they belong to somebody else's codebase \u2014 including any commit SHA or identifier from such a dependency's repository.",
+          "tags": [
+            "knowledge:feature-work"
+          ],
+          "timestamp": "2026-11-11T09:44:16.356372+00:00",
+          "is_stale": false,
+          "last_refresh_failed_at": null,
+          "trigger": {
+            "budget": null,
+            "mode": "delta",
+            "refresh_after_consolidation": true,
+            "refresh_cron": null,
+            "full_refresh_cron": null,
+            "min_refresh_interval_seconds": null,
+            "fact_types": [
+              "world",
+              "experience",
+              "observation"
+            ],
+            "exclude_mental_models": true,
+            "exclude_mental_model_ids": null,
+            "tags_match": "all",
+            "tag_groups": null,
+            "include_chunks": null,
+            "recall_max_tokens": null,
+            "recall_chunks_max_tokens": null,
+            "reflect_search_observations_max_tokens": null,
+            "reflect_search_observations_include_entities": null,
+            "response_schema": null,
+            "keep_trace": false
+          },
+          "children": []
+        },
+        {
+          "id": "kp-992dfcd7750f4745b18b76a2d3932e8c",
+          "kind": "page",
+          "name": "Revise Mirket Audit skill",
+          "parent_id": "kf-9a7ab85032d840cdad704998b7778db6",
+          "mental_model_id": "mm-8d4a473d8efc4895be7cb2ba1294d8d1",
+          "managed": false,
+          "description": "Summarize the \"Revise Mirket Audit skill\" initiative: what is being built or changed and why, and its current state \u2014 drawn from the project's memory. This bank is shared by several projects: attribute each thing you include to the repository or project its sources name, and group by project where that helps. Leave out facts about external tools, libraries and services those projects merely use, configure, deploy or discuss \u2014 they belong to somebody else's codebase \u2014 including any commit SHA or identifier from such a dependency's repository.",
+          "tags": [
+            "knowledge:feature-work"
+          ],
+          "timestamp": "2026-11-11T09:42:30.145552+00:00",
+          "is_stale": false,
+          "last_refresh_failed_at": null,
+          "trigger": {
+            "budget": null,
+            "mode": "delta",
+            "refresh_after_consolidation": true,
+            "refresh_cron": null,
+            "full_refresh_cron": null,
+            "min_refresh_interval_seconds": null,
+            "fact_types": [
+              "world",
+              "experience",
+              "observation"
+            ],
+            "exclude_mental_models": true,
+            "exclude_mental_model_ids": null,
+            "tags_match": "all",
+            "tag_groups": null,
+            "include_chunks": null,
+            "recall_max_tokens": null,
+            "recall_chunks_max_tokens": null,
+            "reflect_search_observations_max_tokens": null,
+            "reflect_search_observations_include_entities": null,
+            "response_schema": null,
+            "keep_trace": false
+          },
+          "children": []
+        },
+        {
+          "id": "kp-1d04b444a1f54ec4ab4f4d90584ee4de",
+          "kind": "page",
+          "name": "Revise Mirket Author skill",
+          "parent_id": "kf-9a7ab85032d840cdad704998b7778db6",
+          "mental_model_id": "mm-fea0cd4199014b0a927b918c099e9d2c",
+          "managed": false,
+          "description": "Summarize the \"Revise Mirket Author skill\" initiative: what is being built or changed and why, and its current state \u2014 drawn from the project's memory. This bank is shared by several projects: attribute each thing you include to the repository or project its sources name, and group by project where that helps. Leave out facts about external tools, libraries and services those projects merely use, configure, deploy or discuss \u2014 they belong to somebody else's codebase \u2014 including any commit SHA or identifier from such a dependency's repository.",
+          "tags": [
+            "knowledge:feature-work"
+          ],
+          "timestamp": "2026-11-11T09:46:02.148442+00:00",
+          "is_stale": false,
+          "last_refresh_failed_at": null,
+          "trigger": {
+            "budget": null,
+            "mode": "delta",
+            "refresh_after_consolidation": true,
+            "refresh_cron": null,
+            "full_refresh_cron": null,
+            "min_refresh_interval_seconds": null,
+            "fact_types": [
+              "world",
+              "experience",
+              "observation"
+            ],
+            "exclude_mental_models": true,
+            "exclude_mental_model_ids": null,
+            "tags_match": "all",
+            "tag_groups": null,
+            "include_chunks": null,
+            "recall_max_tokens": null,
+            "recall_chunks_max_tokens": null,
+            "reflect_search_observations_max_tokens": null,
+            "reflect_search_observations_include_entities": null,
+            "response_schema": null,
+            "keep_trace": false
+          },
+          "children": []
+        },
+        {
+          "id": "kp-1af12cffd27248fd9618b4953069768b",
+          "kind": "page",
+          "name": "Revise Mirket Brief skill",
+          "parent_id": "kf-9a7ab85032d840cdad704998b7778db6",
+          "mental_model_id": "mm-b48145f23a0b4fe7b7ea7bb6a7a4b92b",
+          "managed": false,
+          "description": "Summarize the \"Revise Mirket Brief skill\" initiative: what is being built or changed and why, and its current state \u2014 drawn from the project's memory. This bank is shared by several projects: attribute each thing you include to the repository or project its sources name, and group by project where that helps. Leave out facts about external tools, libraries and services those projects merely use, configure, deploy or discuss \u2014 they belong to somebody else's codebase \u2014 including any commit SHA or identifier from such a dependency's repository.",
+          "tags": [
+            "knowledge:feature-work"
+          ],
+          "timestamp": "2026-11-11T09:46:35.361051+00:00",
+          "is_stale": false,
+          "last_refresh_failed_at": null,
+          "trigger": {
+            "budget": null,
+            "mode": "delta",
+            "refresh_after_consolidation": true,
+            "refresh_cron": null,
+            "full_refresh_cron": null,
+            "min_refresh_interval_seconds": null,
+            "fact_types": [
+              "world",
+              "experience",
+              "observation"
+            ],
+            "exclude_mental_models": true,
+            "exclude_mental_model_ids": null,
+            "tags_match": "all",
+            "tag_groups": null,
+            "include_chunks": null,
+            "recall_max_tokens": null,
+            "recall_chunks_max_tokens": null,
+            "reflect_search_observations_max_tokens": null,
+            "reflect_search_observations_include_entities": null,
+            "response_schema": null,
+            "keep_trace": false
+          },
+          "children": []
+        },
+        {
+          "id": "kp-f08772ee553c4e01b540509e31261efc",
+          "kind": "page",
+          "name": "Revise Mirket Clean skill",
+          "parent_id": "kf-9a7ab85032d840cdad704998b7778db6",
+          "mental_model_id": "mm-f8016eaf84d84d659805a9d14227a64f",
+          "managed": false,
+          "description": "Summarize the \"Revise Mirket Clean skill\" initiative: what is being built or changed and why, and its current state \u2014 drawn from the project's memory. This bank is shared by several projects: attribute each thing you include to the repository or project its sources name, and group by project where that helps. Leave out facts about external tools, libraries and services those projects merely use, configure, deploy or discuss \u2014 they belong to somebody else's codebase \u2014 including any commit SHA or identifier from such a dependency's repository.",
+          "tags": [
+            "knowledge:feature-work"
+          ],
+          "timestamp": "2026-11-11T09:43:48.497031+00:00",
+          "is_stale": false,
+          "last_refresh_failed_at": null,
+          "trigger": {
+            "budget": null,
+            "mode": "delta",
+            "refresh_after_consolidation": true,
+            "refresh_cron": null,
+            "full_refresh_cron": null,
+            "min_refresh_interval_seconds": null,
+            "fact_types": [
+              "world",
+              "experience",
+              "observation"
+            ],
+            "exclude_mental_models": true,
+            "exclude_mental_model_ids": null,
+            "tags_match": "all",
+            "tag_groups": null,
+            "include_chunks": null,
+            "recall_max_tokens": null,
+            "recall_chunks_max_tokens": null,
+            "reflect_search_observations_max_tokens": null,
+            "reflect_search_observations_include_entities": null,
+            "response_schema": null,
+            "keep_trace": false
+          },
+          "children": []
+        },
+        {
+          "id": "kp-7bc37d898e994373b82248c77a3bcff5",
+          "kind": "page",
+          "name": "Revise Mirket Critique skill",
+          "parent_id": "kf-9a7ab85032d840cdad704998b7778db6",
+          "mental_model_id": "mm-42f9372c894e45439d3f79713e00d153",
+          "managed": false,
+          "description": "Summarize the \"Revise Mirket Critique skill\" initiative: what is being built or changed and why, and its current state \u2014 drawn from the project's memory. This bank is shared by several projects: attribute each thing you include to the repository or project its sources name, and group by project where that helps. Leave out facts about external tools, libraries and services those projects merely use, configure, deploy or discuss \u2014 they belong to somebody else's codebase \u2014 including any commit SHA or identifier from such a dependency's repository.",
+          "tags": [
+            "knowledge:feature-work"
+          ],
+          "timestamp": "2026-11-11T09:43:57.578153+00:00",
+          "is_stale": false,
+          "last_refresh_failed_at": null,
+          "trigger": {
+            "budget": null,
+            "mode": "delta",
+            "refresh_after_consolidation": true,
+            "refresh_cron": null,
+            "full_refresh_cron": null,
+            "min_refresh_interval_seconds": null,
+            "fact_types": [
+              "world",
+              "experience",
+              "observation"
+            ],
+            "exclude_mental_models": true,
+            "exclude_mental_model_ids": null,
+            "tags_match": "all",
+            "tag_groups": null,
+            "include_chunks": null,
+            "recall_max_tokens": null,
+            "recall_chunks_max_tokens": null,
+            "reflect_search_observations_max_tokens": null,
+            "reflect_search_observations_include_entities": null,
+            "response_schema": null,
+            "keep_trace": false
+          },
+          "children": []
+        },
+        {
+          "id": "kp-a6826840d2c54b5dbcddc677ae0cdbd0",
+          "kind": "page",
+          "name": "Revise Mirket Curate skill",
+          "parent_id": "kf-9a7ab85032d840cdad704998b7778db6",
+          "mental_model_id": "mm-c5cd745102a143e48de84ab7029de13d",
+          "managed": false,
+          "description": "Summarize the \"Revise Mirket Curate skill\" initiative: what is being built or changed and why, and its current state \u2014 drawn from the project's memory. This bank is shared by several projects: attribute each thing you include to the repository or project its sources name, and group by project where that helps. Leave out facts about external tools, libraries and services those projects merely use, configure, deploy or discuss \u2014 they belong to somebody else's codebase \u2014 including any commit SHA or identifier from such a dependency's repository.",
+          "tags": [
+            "knowledge:feature-work"
+          ],
+          "timestamp": "2026-11-11T09:42:23.547889+00:00",
+          "is_stale": false,
+          "last_refresh_failed_at": null,
+          "trigger": {
+            "budget": null,
+            "mode": "delta",
+            "refresh_after_consolidation": true,
+            "refresh_cron": null,
+            "full_refresh_cron": null,
+            "min_refresh_interval_seconds": null,
+            "fact_types": [
+              "world",
+              "experience",
+              "observation"
+            ],
+            "exclude_mental_models": true,
+            "exclude_mental_model_ids": null,
+            "tags_match": "all",
+            "tag_groups": null,
+            "include_chunks": null,
+            "recall_max_tokens": null,
+            "recall_chunks_max_tokens": null,
+            "reflect_search_observations_max_tokens": null,
+            "reflect_search_observations_include_entities": null,
+            "response_schema": null,
+            "keep_trace": false
+          },
+          "children": []
+        },
+        {
+          "id": "kp-a8fdc9e9c1d345c193ff474620f84c07",
+          "kind": "page",
+          "name": "Revise Mirket Distill skill",
+          "parent_id": "kf-9a7ab85032d840cdad704998b7778db6",
+          "mental_model_id": "mm-c0823d517ff74420b7a51d79ff0e3357",
+          "managed": false,
+          "description": "Summarize the \"Revise Mirket Distill skill\" initiative: what is being built or changed and why, and its current state \u2014 drawn from the project's memory. This bank is shared by several projects: attribute each thing you include to the repository or project its sources name, and group by project where that helps. Leave out facts about external tools, libraries and services those projects merely use, configure, deploy or discuss \u2014 they belong to somebody else's codebase \u2014 including any commit SHA or identifier from such a dependency's repository.",
+          "tags": [
+            "knowledge:feature-work"
+          ],
+          "timestamp": "2026-11-11T09:48:53.227969+00:00",
+          "is_stale": false,
+          "last_refresh_failed_at": null,
+          "trigger": {
+            "budget": null,
+            "mode": "delta",
+            "refresh_after_consolidation": true,
+            "refresh_cron": null,
+            "full_refresh_cron": null,
+            "min_refresh_interval_seconds": null,
+            "fact_types": [
+              "world",
+              "experience",
+              "observation"
+            ],
+            "exclude_mental_models": true,
+            "exclude_mental_model_ids": null,
+            "tags_match": "all",
+            "tag_groups": null,
+            "include_chunks": null,
+            "recall_max_tokens": null,
+            "recall_chunks_max_tokens": null,
+            "reflect_search_observations_max_tokens": null,
+            "reflect_search_observations_include_entities": null,
+            "response_schema": null,
+            "keep_trace": false
+          },
+          "children": []
+        },
+        {
+          "id": "kp-e920f3cfb2404a379426328ec578efbd",
+          "kind": "page",
+          "name": "Revise Mirket Orchestrate skill",
+          "parent_id": "kf-9a7ab85032d840cdad704998b7778db6",
+          "mental_model_id": "mm-71911c41aaf94bf7aab4889031b03649",
+          "managed": false,
+          "description": "Summarize the \"Revise Mirket Orchestrate skill\" initiative: what is being built or changed and why, and its current state \u2014 drawn from the project's memory. This bank is shared by several projects: attribute each thing you include to the repository or project its sources name, and group by project where that helps. Leave out facts about external tools, libraries and services those projects merely use, configure, deploy or discuss \u2014 they belong to somebody else's codebase \u2014 including any commit SHA or identifier from such a dependency's repository.",
+          "tags": [
+            "knowledge:feature-work"
+          ],
+          "timestamp": "2026-11-11T09:45:45.982355+00:00",
+          "is_stale": false,
+          "last_refresh_failed_at": null,
+          "trigger": {
+            "budget": null,
+            "mode": "delta",
+            "refresh_after_consolidation": true,
+            "refresh_cron": null,
+            "full_refresh_cron": null,
+            "min_refresh_interval_seconds": null,
+            "fact_types": [
+              "world",
+              "experience",
+              "observation"
+            ],
+            "exclude_mental_models": true,
+            "exclude_mental_model_ids": null,
+            "tags_match": "all",
+            "tag_groups": null,
+            "include_chunks": null,
+            "recall_max_tokens": null,
+            "recall_chunks_max_tokens": null,
+            "reflect_search_observations_max_tokens": null,
+            "reflect_search_observations_include_entities": null,
+            "response_schema": null,
+            "keep_trace": false
+          },
+          "children": []
+        },
+        {
+          "id": "kp-2deee385789e4f99b52a16954ee93af1",
+          "kind": "page",
+          "name": "Revise Mirket Plan skill",
+          "parent_id": "kf-9a7ab85032d840cdad704998b7778db6",
+          "mental_model_id": "mm-bd7087032ce545e085a482c7222afde4",
+          "managed": false,
+          "description": "Summarize the \"Revise Mirket Plan skill\" initiative: what is being built or changed and why, and its current state \u2014 drawn from the project's memory. This bank is shared by several projects: attribute each thing you include to the repository or project its sources name, and group by project where that helps. Leave out facts about external tools, libraries and services those projects merely use, configure, deploy or discuss \u2014 they belong to somebody else's codebase \u2014 including any commit SHA or identifier from such a dependency's repository.",
+          "tags": [
+            "knowledge:feature-work"
+          ],
+          "timestamp": "2026-11-11T09:43:25.289732+00:00",
+          "is_stale": false,
+          "last_refresh_failed_at": null,
+          "trigger": {
+            "budget": null,
+            "mode": "delta",
+            "refresh_after_consolidation": true,
+            "refresh_cron": null,
+            "full_refresh_cron": null,
+            "min_refresh_interval_seconds": null,
+            "fact_types": [
+              "world",
+              "experience",
+              "observation"
+            ],
+            "exclude_mental_models": true,
+            "exclude_mental_model_ids": null,
+            "tags_match": "all",
+            "tag_groups": null,
+            "include_chunks": null,
+            "recall_max_tokens": null,
+            "recall_chunks_max_tokens": null,
+            "reflect_search_observations_max_tokens": null,
+            "reflect_search_observations_include_entities": null,
+            "response_schema": null,
+            "keep_trace": false
+          },
+          "children": []
+        },
+        {
+          "id": "kp-66ed599feec94394961d7c02d7be386f",
+          "kind": "page",
+          "name": "Revise Mirket Sleep skill",
+          "parent_id": "kf-9a7ab85032d840cdad704998b7778db6",
+          "mental_model_id": "mm-abc36fe1f5e14aafab2faecbfb81220d",
+          "managed": false,
+          "description": "Summarize the \"Revise Mirket Sleep skill\" initiative: what is being built or changed and why, and its current state \u2014 drawn from the project's memory. This bank is shared by several projects: attribute each thing you include to the repository or project its sources name, and group by project where that helps. Leave out facts about external tools, libraries and services those projects merely use, configure, deploy or discuss \u2014 they belong to somebody else's codebase \u2014 including any commit SHA or identifier from such a dependency's repository.",
+          "tags": [
+            "knowledge:feature-work"
+          ],
+          "timestamp": "2026-11-11T09:45:41.793140+00:00",
+          "is_stale": false,
+          "last_refresh_failed_at": null,
+          "trigger": {
+            "budget": null,
+            "mode": "delta",
+            "refresh_after_consolidation": true,
+            "refresh_cron": null,
+            "full_refresh_cron": null,
+            "min_refresh_interval_seconds": null,
+            "fact_types": [
+              "world",
+              "experience",
+              "observation"
+            ],
+            "exclude_mental_models": true,
+            "exclude_mental_model_ids": null,
+            "tags_match": "all",
+            "tag_groups": null,
+            "include_chunks": null,
+            "recall_max_tokens": null,
+            "recall_chunks_max_tokens": null,
+            "reflect_search_observations_max_tokens": null,
+            "reflect_search_observations_include_entities": null,
+            "response_schema": null,
+            "keep_trace": false
+          },
+          "children": []
+        },
+        {
+          "id": "kp-ef789b748c974ff18edf8f6a07a193ea",
+          "kind": "page",
+          "name": "Revise remaining Mirket skills",
+          "parent_id": "kf-9a7ab85032d840cdad704998b7778db6",
+          "mental_model_id": "mm-9a6486ab7c924f039f4a24f465c03861",
+          "managed": false,
+          "description": "Summarize the \"Revise remaining Mirket skills\" initiative: what is being built or changed and why, and its current state \u2014 drawn from the project's memory. This bank is shared by several projects: attribute each thing you include to the repository or project its sources name, and group by project where that helps. Leave out facts about external tools, libraries and services those projects merely use, configure, deploy or discuss \u2014 they belong to somebody else's codebase \u2014 including any commit SHA or identifier from such a dependency's repository.",
+          "tags": [
+            "knowledge:feature-work"
+          ],
+          "timestamp": "2026-11-11T09:49:31.957316+00:00",
+          "is_stale": false,
+          "last_refresh_failed_at": null,
+          "trigger": {
+            "budget": null,
+            "mode": "delta",
+            "refresh_after_consolidation": true,
+            "refresh_cron": null,
+            "full_refresh_cron": null,
+            "min_refresh_interval_seconds": null,
+            "fact_types": [
+              "world",
+              "experience",
+              "observation"
+            ],
+            "exclude_mental_models": true,
+            "exclude_mental_model_ids": null,
+            "tags_match": "all",
+            "tag_groups": null,
+            "include_chunks": null,
+            "recall_max_tokens": null,
+            "recall_chunks_max_tokens": null,
+            "reflect_search_observations_max_tokens": null,
+            "reflect_search_observations_include_entities": null,
+            "response_schema": null,
+            "keep_trace": false
+          },
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "kp-43bb05e830f44b7d983a896e8bf6c36f",
+      "kind": "page",
+      "name": "Initiatives and enhancements",
+      "parent_id": null,
+      "mental_model_id": "mm-a0b7b5e24ef4414997824dc4a0f110fa",
+      "managed": false,
+      "description": "Based on this repository's commit history, what are the major initiatives, features, and enhancements the project has worked on? Summarize the themes and notable changes over time. When a source memory's context carries a `[[page:<id>]]` link, repeat that link in the summary of what it describes, so each initiative links to its detailed page. This bank is shared by several projects: attribute each thing you include to the repository or project its sources name, and group by project where that helps. Leave out facts about external tools, libraries and services those projects merely use, configure, deploy or discuss \u2014 they belong to somebody else's codebase \u2014 including any commit SHA or identifier from such a dependency's repository.",
+      "tags": [
+        "knowledge:feature-work"
+      ],
+      "timestamp": "2026-11-11T09:42:59.839889+00:00",
+      "is_stale": false,
+      "last_refresh_failed_at": null,
+      "trigger": {
+        "budget": null,
+        "mode": "delta",
+        "refresh_after_consolidation": true,
+        "refresh_cron": null,
+        "full_refresh_cron": null,
+        "min_refresh_interval_seconds": null,
+        "fact_types": [
+          "world",
+          "experience",
+          "observation"
+        ],
+        "exclude_mental_models": true,
+        "exclude_mental_model_ids": null,
+        "tags_match": "all",
+        "tag_groups": null,
+        "include_chunks": null,
+        "recall_max_tokens": null,
+        "recall_chunks_max_tokens": null,
+        "reflect_search_observations_max_tokens": null,
+        "reflect_search_observations_include_entities": null,
+        "response_schema": null,
+        "keep_trace": false
+      },
+      "children": []
+    },
+    {
+      "id": "kp-693261fa27b0452c89d548b534068d99",
+      "kind": "page",
+      "name": "Key decisions and rationale",
+      "parent_id": null,
+      "mental_model_id": "mm-69b239f09e8c47c3adb5dc99b241c1fe",
+      "managed": false,
+      "description": "What are the significant technical decisions made in this project and the rationale behind them \u2014 the durable 'why we do it this way' a developer should know? Summarize the decisions and their reasoning from the commit rationales and past conversations. This bank is shared by several projects: attribute each thing you include to the repository or project its sources name, and group by project where that helps. Leave out facts about external tools, libraries and services those projects merely use, configure, deploy or discuss \u2014 they belong to somebody else's codebase \u2014 including any commit SHA or identifier from such a dependency's repository.",
+      "tags": [
+        "knowledge:decision"
+      ],
+      "timestamp": "2026-11-11T09:42:39.121414+00:00",
+      "is_stale": false,
+      "last_refresh_failed_at": null,
+      "trigger": {
+        "budget": null,
+        "mode": "delta",
+        "refresh_after_consolidation": true,
+        "refresh_cron": null,
+        "full_refresh_cron": null,
+        "min_refresh_interval_seconds": null,
+        "fact_types": [
+          "world",
+          "experience",
+          "observation"
+        ],
+        "exclude_mental_models": true,
+        "exclude_mental_model_ids": null,
+        "tags_match": "all",
+        "tag_groups": null,
+        "include_chunks": null,
+        "recall_max_tokens": null,
+        "recall_chunks_max_tokens": null,
+        "reflect_search_observations_max_tokens": null,
+        "reflect_search_observations_include_entities": null,
+        "response_schema": null,
+        "keep_trace": false
+      },
+      "children": []
+    }
+  ],
+  "mutations": [
+    {
+      "method": "PATCH",
+      "body": {
+        "source_query": "Describe this project's currently active components, modules and subsystems, their responsibilities and dependencies. First retrieve the latest verified source and installed-state inventory and explicit superseding corrections, then use older history only where it remains compatible. Prefer newer verified evidence over superseded plans, older surveys and earlier conversation summaries; allow later verified versions and inventories to replace earlier ones. Keep source, installed, publicly released and deployed states distinct. Include a skill or component as active only when the latest inventory supports it. Preserve exact current path spelling and case, and verify the current manifest layout against the latest inventory rather than copying historical paths. Put obsolete roles, removed components and old architecture in an explicitly dated historical section only when useful. Resolve contradictions throughout the page, rather than appending a correction beside an incompatible current assertion. Where current evidence is insufficient, omit or qualify the claim. Preserve material host and verification limits without treating an old gap as proof that later verified activation did not occur. This bank is shared by several projects: attribute each thing you include to the repository or project its sources name, and group by project where that helps. Leave out facts about external tools, libraries and services those projects merely use, configure, deploy or discuss \u2014 they belong to somebody else's codebase \u2014 including any commit SHA or identifier from such a dependency's repository.",
+        "tags": [
+          "knowledge:component"
+        ]
+      }
+    }
+  ],
+  "firstPassMutationCount": 1,
+  "secondPassMutationCount": 0,
+  "hookMcpConfigEqual": true,
+  "queryMatchesConfiguredBasePlusScope": true
+}

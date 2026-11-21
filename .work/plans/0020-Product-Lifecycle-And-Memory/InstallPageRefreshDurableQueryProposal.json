@@ -1,0 +1,15 @@
+{
+  "harnesses": {
+    "codex": {
+      "banks": {
+        "coding-agent::desktop-skills": {
+          "pages": {
+            "Component map": {
+              "source_query": "Describe this project's currently active components, modules and subsystems, their responsibilities and dependencies. First retrieve the latest verified source and installed-state inventory and explicit superseding corrections, then use older history only where it remains compatible. Prefer newer verified evidence over superseded plans, older surveys and earlier conversation summaries; allow later verified versions and inventories to replace earlier ones. Keep source, installed, publicly released and deployed states distinct. Include a skill or component as active only when the latest inventory supports it. Preserve exact current path spelling and case, and verify the current manifest layout against the latest inventory rather than copying historical paths. Put obsolete roles, removed components and old architecture in an explicitly dated historical section only when useful. Resolve contradictions throughout the page, rather than appending a correction beside an incompatible current assertion. Where current evidence is insufficient, omit or qualify the claim. Preserve material host and verification limits without treating an old gap as proof that later verified activation did not occur."
+            }
+          }
+        }
+      }
+    }
+  }
+}

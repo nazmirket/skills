@@ -12,7 +12,7 @@ Debug owns diagnosis and authorized repair of a concrete failure. [Author](../au
 Start with expected behavior, observed behavior and existing evidence. Use [Adapt](../adapt/SKILL.md) for missing facts or [Design](../design/SKILL.md) for unclear interaction intent. Before choosing a tool-specific diagnostic or interpreting tool behavior, including saved traces, open the matching [Debug guide](references/README.md). Skip it when the evidence already establishes the cause and no tool-specific check is needed.
 
 - When a focused check and the code establish the cause, skip further investigation.
-- Otherwise use the smallest safe reproduction. Trace a working and a failing run to their first divergence. Choose a check that can rule out each plausible cause. **After two plausible hypotheses fail, pause.** Report both, the last confirmed evidence and the next check you recommend.
+- Otherwise use the smallest safe reproduction. Trace a working and a failing run to their first divergence. After two hypotheses fail, use what they ruled out to choose a different check. Run it when it can distinguish the remaining causes within scope. When no such check is available, report the last confirmed event and the evidence or decision needed to proceed.
 - If the report will not reproduce, record the conditions and uncertainty. Fix an independently proven defect when it falls within the authorized repair. Leave the original failure unverified until evidence connects the two.
 
 ## Fix and verify

@@ -5,6 +5,7 @@ import os
 from pathlib import Path
 import runpy
 import shlex
+import shutil
 import subprocess
 import sys
 import tempfile
@@ -141,6 +142,24 @@ class CleanupHooksTest(unittest.TestCase):
             with self.subTest(missing=missing):
                 self.assertTrue(denied(before_shell(command, env={k: v for k, v in base.items() if k != missing})))
 
+    def test_explicit_system_git_and_identity_still_check_the_intended_index(self):
+        system_git = shutil.which("git", path="/usr/bin:/bin")
+        with tempfile.TemporaryDirectory() as root:
+            subprocess.run([system_git, "init", "-q", root], check=True)
+            # Bare git could resolve to a workspace executable here.
+            env = {**transport_environment(), "PATH": ".", "GIT_COMMITTER_NAME": "Tester"}
+            command = (f"GIT_AUTHOR_NAME=Tester MIRKET_CLEANUP_DONE=1 {system_git}"
+                       f" -C {shlex.quote(root)} commit -m reviewed")
+            self.assertEqual(before_shell(command, env=env), {})
+            self.assertTrue(denied(before_shell(command.replace("MIRKET_CLEANUP_DONE=1 ", ""), env=env)))
+            self.assertTrue(denied(before_shell(command, env={**env, "GIT_INDEX_FILE": "other"})))
+            work = Path(root) / ".work"
+            work.mkdir()
+            (work / "private").touch()
+            subprocess.run([system_git, "-C", root, "add", "-f", ".work/private"], check=True)
+            result = before_shell(command, env=env)
+            self.assertIn(".work/private", result["hookSpecificOutput"]["permissionDecisionReason"])
+
     def test_transport_values_stay_out_of_probes_and_errors(self):
         hook = runpy.run_path(str(HOOK))
         env = transport_environment()
@@ -176,14 +195,32 @@ class CleanupHooksTest(unittest.TestCase):
             "git commit --dry-run",
             "MIRKET_CLEANUP_DONE=1 git commit --dry-run",
             "git commit --dry-run -a",
+            "git commit --dry-run -- path/to/file",
+            "git commit --short -- path/to/file",
             "env git -C . commit -m 'Preview only' --dry-run",
             "command git commit --no-dry-run --dry-run",
+            "git commit -h",
+            "git commit --help",
         ):
             with self.subTest(command=command):
                 self.assertEqual(before_shell(command), {})
 
+    def test_status_output_options_are_native_previews(self):
+        with tempfile.TemporaryDirectory() as root:
+            subprocess.run(["git", "init", "-q", root], check=True)
+            (Path(root) / "staged").touch()
+            subprocess.run(["git", "-C", root, "add", "staged"], check=True)
+            for option in ("--short", "--porcelain", "--long", "-z", "--null"):
+                with self.subTest(option=option):
+                    args = ["git", "commit", option, "--no-dry-run", "-m", "preview"]
+                    subprocess.run(args, cwd=root, check=True, capture_output=True)
+                    head = subprocess.run(["git", "rev-parse", "--verify", "HEAD"], cwd=root, capture_output=True)
+                    self.assertNotEqual(head.returncode, 0)
+                    self.assertEqual(before_shell(" ".join(args)), {})
+
     def test_commit_options_and_messages_do_not_accidentally_enable_preview(self):
-        for args in ("--dry-run --no-dry-run", "-m --dry-run", "--message=--dry-run", "-- --dry-run"):
+        for args in ("--dry-run --no-dry-run", "-m --dry-run", "--message=--dry-run", "-- --dry-run",
+                     "-m --short", "-F -z", "--message=--help", "-- --porcelain"):
             with self.subTest(args=args):
                 self.assertTrue(denied(before_shell(f"git commit {args}")))
 
@@ -268,6 +305,9 @@ class CleanupHooksTest(unittest.TestCase):
                 result = before_shell(command)
                 self.assertIn("systemMessage", result)
                 self.assertFalse(denied(result))
+
+    def test_ordinary_heredocs_are_quiet(self):
+        self.assertEqual(before_shell("python3 - <<'PY'\nprint('ready')\nPY"), {})
 
     def test_commit_before_heredoc_is_blocked(self):
         self.assertTrue(denied(before_shell("git commit -F - <<'EOF'\nmessage\nEOF")))

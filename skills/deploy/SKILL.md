@@ -7,7 +7,7 @@ description: "Use for CI/CD, rollout readiness, activation and rollback, interpr
 
 Deploy owns CI/CD and changes to shared running environments, from readiness through rollout and recovery. It also owns [service health and incidents](#operate-and-recover) between rollouts. The task owner supplies the [versioned artifact](../execute/references/VersionedDistribution.md). [Migrate](../migrate/SKILL.md) owns persistent-state transitions. [Audit](../audit/SKILL.md#security-and-privacy-review) assesses material security or privacy risks during readiness checks and incidents.
 
-Before choosing a tool operation or interpreting tool behavior, open the matching [stack guide](references/README.md) first, on its own. This includes saved queries, alerts and status output. Skip the guide for evidence you can reuse as-is. Use [delivery pipeline practices](references/DeliveryPipelines.md) for CI/CD design or performance across tools.
+Before choosing a tool operation or interpreting tool behavior, consult the matching [stack guide](references/README.md). This includes saved queries, alerts and status output. Skip the guide for evidence you can reuse as-is. Use [delivery pipeline practices](references/DeliveryPipelines.md) for CI/CD design or performance across tools.
 
 ## Establish readiness
 

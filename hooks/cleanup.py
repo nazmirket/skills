@@ -11,6 +11,9 @@ from typing import NamedTuple, Optional
 SKILL = str(Path(__file__).resolve().parent.parent / "skills" / "clean" / "SKILL.md")
 ASSIGNMENT = re.compile(r"^[A-Za-z_][A-Za-z0-9_]*=.*$", re.DOTALL)
 SYSTEM_PATH = "/usr/bin:/bin"
+SYSTEM_GIT_PATHS = {directory + "/git" for directory in SYSTEM_PATH.split(":")}
+IDENTITY_ENV = {"GIT_AUTHOR_NAME", "GIT_AUTHOR_EMAIL", "GIT_AUTHOR_DATE",
+                "GIT_COMMITTER_NAME", "GIT_COMMITTER_EMAIL", "GIT_COMMITTER_DATE"}
 HOST_LABEL = r"[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?"
 HTTPS_SCOPE = re.compile(
     rf"https://{HOST_LABEL}(?:\.{HOST_LABEL})*(?::(?P<port>[0-9]{{1,5}}))?"
@@ -27,6 +30,7 @@ COMMIT_FLAGS = {
 
 
 class Commit(NamedTuple):
+    executable: str
     directories: list
     acknowledged: bool
     exception: Optional[str]
@@ -101,7 +105,7 @@ def split_command(command):
 
 def commit_is_preview(args):
     """Return True for a supported dry run, False for a staged commit, or None."""
-    dry_run = changes_inputs = False
+    dry_run = status_format = changes_inputs = False
     args = iter(args)
     for token in args:
         if token in COMMIT_FLAGS or token.startswith("--gpg-sign="):
@@ -109,12 +113,15 @@ def commit_is_preview(args):
         if token in {"--dry-run", "--no-dry-run"}:
             dry_run = token == "--dry-run"
             continue
+        if token in {"--short", "--porcelain", "--long", "-z", "--null"}:
+            status_format = True
+            continue
         if token in {"-a", "--all"}:
             changes_inputs = True
             continue
         if token == "--":
             if next(args, None) is not None:
-                return None
+                changes_inputs = True
             break
         if token in COMMIT_VALUES:
             if next(args, None) is None:
@@ -126,7 +133,9 @@ def commit_is_preview(args):
         if len(token) > 2 and token[:2] in COMMIT_VALUES:
             continue
         return None
-    return None if changes_inputs and not dry_run else dry_run
+    if dry_run or status_format:
+        return True
+    return None if changes_inputs else False
 
 
 def commit_details(tokens):
@@ -147,13 +156,14 @@ def commit_details(tokens):
                 acknowledged = value == "1"
             elif name == "MIRKET_WORK_EXCEPTION":
                 exception = value
-            else:
+            elif name not in IDENTITY_ENV:
                 problem = "command-local environment assignments"
             token = next(words, "")
     if os.path.basename(token) != "git":
         return None
-    if token != "git":
-        problem = "a path-qualified Git executable"
+    executable = token
+    if executable != "git" and executable not in SYSTEM_GIT_PATHS:
+        problem = "a non-system Git executable"
     directories = []
     for token in words:
         if token == "commit":
@@ -170,10 +180,11 @@ def commit_details(tokens):
         problem = "Git global options other than literal -C paths"
     else:
         return None
-    preview = commit_is_preview(words)
+    args = list(words)
+    preview = args in (["-h"], ["--help"]) or commit_is_preview(args)
     if preview is None:
         problem = "Git arguments outside the supported preview or staged commit forms"
-    return Commit(directories, acknowledged, exception, problem, preview is True)
+    return Commit(executable, directories, acknowledged, exception, problem, preview is True)
 
 
 def deny(reason):
@@ -190,7 +201,7 @@ def is_scoped_transport_key(key):
 
 
 def supports_index_probe(environ):
-    names = {name for name in environ if name.startswith("GIT_") and name != "GIT_PAGER"}
+    names = {name for name in environ if name.startswith("GIT_")} - IDENTITY_ENV - {"GIT_PAGER"}
     if not names:
         return True
     # Bound the check by the supplied keys. Git needs one complete pair per slot.
@@ -211,17 +222,20 @@ def check_staged_work(commit):
     import subprocess
 
     if not supports_index_probe(os.environ):
-        return deny("Mirket cannot identify the index with inherited GIT_* overrides. Use a supported direct commit without those overrides.")
-    # Resolve the probe from system directories, never from the submitted command
-    # or a workspace PATH. Refuse to inspect when the inherited PATH selects a
-    # different executable, since the actual command might use that executable.
-    git = shutil.which("git", path=SYSTEM_PATH)
-    search_path = os.get_exec_path()
-    if any(not os.path.isabs(part) for part in search_path):
-        return deny("Mirket cannot verify which Git a relative or empty PATH entry selects. Use a PATH containing only absolute directories for a guarded commit.")
-    selected = shutil.which("git", path=os.pathsep.join(search_path))
-    if not git or not selected or os.path.realpath(selected) != os.path.realpath(git):
-        return deny("Mirket requires the system Git executable for staged-index inspection. Use a supported direct commit with system Git on PATH.")
+        return deny("Mirket cannot identify the index with inherited GIT_* overrides. Retry only if the host environment changes and you can verify the same intended index. Otherwise report the blocked commit.")
+    # An explicit system path selects the same binary for the commit and probe.
+    # For bare git, check what the shell's inherited PATH would select.
+    if commit.executable == "git":
+        git = shutil.which("git", path=SYSTEM_PATH)
+        if not git:
+            return deny("Mirket needs system Git in /usr/bin or /bin to inspect the index.")
+        if any(not os.path.isabs(part) for part in os.get_exec_path()):
+            return deny(f"Mirket cannot verify Git on a relative PATH. Use {git} in the guarded commit command.")
+        selected = shutil.which("git")
+        if not selected or os.path.realpath(selected) != os.path.realpath(git):
+            return deny(f"Mirket needs system Git to inspect the index. Use {git} in the guarded commit command.")
+    else:
+        git = commit.executable
     # Transport settings stay with the host. The local probe never receives helper values.
     env = {name: os.environ[name] for name in ("HOME", "XDG_CONFIG_HOME") if name in os.environ}
     env.update(PATH=SYSTEM_PATH, LC_ALL="C", GIT_ALLOW_PROTOCOL="")
@@ -267,13 +281,13 @@ def handle(payload):
         if commit is not None:
             break
     else:
-        if heredoc:
+        if heredoc and "git" in command and "commit" in command:
             return {"systemMessage": "Mirket did not fully inspect a shell command containing a heredoc or here-string for pre-commit cleanup."}
         if any("git" in part and "commit" in part and part[0] not in {"echo", "printf"} for part in parts):
             return {"systemMessage": "Mirket could not determine whether this shell command runs git commit; pre-commit cleanup and staged .work coverage are unknown."}
         return {}
     if len(parts) != 1 or structural:
-        return deny("Mirket cannot reliably inspect Git operations in a compound command, redirection or heredoc. Run each Git operation separately. If you intended a preview, keep --dry-run.")
+        return deny("Mirket cannot reliably inspect Git operations in a compound command, redirection or heredoc. Run the Git operation separately, preserving its help or preview flags (such as --dry-run).")
     if dynamic or commit.problem:
         reason = commit.problem or "shell expansion"
         return deny(f"Mirket cannot inspect a Git operation using {reason}. For a preview, keep --dry-run in a standalone literal command. For a commit, stage the intended files explicitly and use a standalone literal command.")

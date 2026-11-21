@@ -11,7 +11,7 @@ Ship owns product discovery, requirements and recommendations on strategy, prior
 | --- | --- |
 | Direction, target segment or addressable opportunity | [Product strategy](references/ProductStrategy.md) |
 | User problem or assumption to test | [Discovery](references/Discovery.md) |
-| Opportunity ranking or roadmap toward a set outcome | Open [Prioritization](references/Prioritization.md) first, on its own. |
+| Opportunity ranking or roadmap toward a set outcome | [Prioritization](references/Prioritization.md) |
 | Behavior, non-goals and acceptance | [Requirements](references/Requirements.md) |
 | Pricing, packaging or entitlements | [Pricing and packaging](references/PricingAndPackaging.md) |
 | Locale scope, adaptation effort or regional acceptance | [Localization brief](references/Localization.md) |

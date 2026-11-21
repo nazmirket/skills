@@ -50,7 +50,7 @@ Check that each prompt distinguishes its intended outcome from neighboring skill
 
 | Boundary | Cases and distinguishing result |
 | --- | --- |
-| Orientation and diagnosis | `adapt-orientation` and `adapt-contract-conflict` check orientation. `author-bug-intake` and `debug-authorized-fix` use the same defect to distinguish a ticket draft from a verified repair. `debug-two-failed-hypotheses` checks the investigation pause. |
+| Orientation and diagnosis | `adapt-orientation` and `adapt-contract-conflict` check orientation. `author-bug-intake` and `debug-authorized-fix` use the same defect to distinguish a ticket draft from a verified repair. `debug-two-failed-hypotheses` checks that an authorized diagnostic continues from the last confirmed event. |
 | Concurrent migration guidance | `migrate-concurrent-transition-plan`, `migrate-single-transition-plan`: load the compatibility reference only when versions or writers overlap; use the saved race and rehearsal evidence, and keep planning separate from execution. |
 | External research | `search-community-trends` checks discussions and dated project activity. `search-paper-and-standard` checks the original study, its limits and applicable interaction guidance. Compare with `adapt-orientation` for internal project facts. |
 | Review | `audit-read-only`, `audit-independent-review-unavailable`: return findings without edits and leave a required independence gate open when only inline review is available. |

@@ -1,6 +1,6 @@
 # Deployment stack guides
 
-Identify the installed version, execution environment, and tool responsible for the unresolved question. Open that guide first on its own. Add another only when a separate unresolved question depends on it, such as Helm rendering after Kubernetes status has been understood.
+Identify the installed version, execution environment, and tool responsible for the unresolved question. Consult that guide before acting on its tool-specific advice. Add another only when a separate unresolved question depends on it, such as Helm rendering after Kubernetes status has been understood.
 
 | Work | Start here |
 | --- | --- |

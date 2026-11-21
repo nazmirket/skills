@@ -94,20 +94,20 @@
       "primary_owner": "debug",
       "supporting_skills": [],
       "prompt": "Continue investigating why the upload sometimes stalls. Treat the experiment notes as the investigation so far.",
-      "context": "Two checks have already ruled out the plausible file-size and slow-link explanations. The last confirmed event is that the upload starts. No trace shows whether the server finishes reading the stalled request. Assume a further local trace is possible but has not been run.",
+      "context": "Two checks have already ruled out the plausible file-size and slow-link explanations. The last confirmed event in the experiment notes is that the upload starts. A local server trace is now available in upload.log.",
       "expected_actions": [
         "Report both ruled-out hypotheses and the last confirmed event.",
-        "Recommend comparing the server body-read completion and response events for a working and stalled upload, then pause before running another check."
+        "Inspect upload.log and compare the body-read completion and response events. Identify the first missing event in the stalled request and where the trace ends."
       ],
       "allowed_writes": [],
       "prohibited_writes": [
-        "Speculative patch or new instrumentation",
-        "Running a third investigation check before reporting the pause"
+        "Speculative patch or new instrumentation"
       ],
-      "stopping_condition": "Pause after the two failed hypotheses and return the evidence gap and next check.",
+      "stopping_condition": "Report the narrowed interval and what additional evidence would distinguish failures inside it. Leave the underlying cause open.",
       "evidence_reuse": "Use the prior experiment notes instead of repeating the same checks or treating the cause as known.",
       "files": {
-        "Experiments.md": "# Upload investigation\n\n1. File size: the same 1 MB file both succeeds and stalls; the stalled request is below the enforced file-size limit.\n2. Slow network link: removing traffic shaping and repeating the check over loopback did not eliminate the stall.\n\nThe logs record upload start for both requests, but do not distinguish a stalled body read from a lost response.\n"
+        "Experiments.md": "# Upload investigation\n\n1. File size: the same 1 MB file both succeeds and stalls; the stalled request is below the enforced file-size limit.\n2. Slow network link: removing traffic shaping and repeating the check over loopback did not eliminate the stall.\n",
+        "upload.log": "request=working event=start\nrequest=working event=body_read_complete\nrequest=working event=response_sent\nrequest=stalled event=start\nrequest=stalled event=body_read_complete\n"
       }
     },
     {

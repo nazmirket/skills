@@ -4,7 +4,7 @@ Use for a visual or interaction review, or to recheck substantial visual work ag
 
 ## Load the deliverable's format
 
-Identify what is being judged. Open its format guide in a separate read before inspecting the artifact, running a probe or assigning evidence collection. A web banner uses [Banner Design](../formats/BannerDesign.md) for its crop and legibility. An embedded 3D scene uses [Scene Design](../formats/SceneDesign.md) for scene behavior. A checkout dialog uses [Web Design](../formats/WebDesign.md) for the app flow. Use the [format index](../formats/README.md) for other deliverables. Add another format only for a distinct question.
+Identify what is being judged. Use its format guide to choose the inspection criteria before running probes or assigning evidence collection. A web banner uses [Banner Design](../formats/BannerDesign.md) for its crop and legibility. An embedded 3D scene uses [Scene Design](../formats/SceneDesign.md) for scene behavior. A checkout dialog uses [Web Design](../formats/WebDesign.md) for the app flow. Use the [format index](../formats/README.md) for other deliverables. Add another format only for a distinct question.
 
 ## Inspect and report
 

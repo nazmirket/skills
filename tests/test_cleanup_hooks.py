@@ -111,13 +111,13 @@ class CleanupHooksTest(unittest.TestCase):
             (Path(root) / "reviewed.md").write_text("reviewed")
             subprocess.run(["git", "-C", root, "add", "reviewed.md"], check=True)
             self.assertEqual(before_shell(command, env=env), {})
-            private = Path(root) / ".work" / "local.md"
-            private.parent.mkdir()
+            private = Path(root) / ".work" / "temp" / "local.md"
+            private.parent.mkdir(parents=True)
             private.write_text("test fixture")
-            subprocess.run(["git", "-C", root, "add", "-f", ".work/local.md"], check=True)
+            subprocess.run(["git", "-C", root, "add", "-f", ".work/temp/local.md"], check=True)
             result = before_shell(command, env=env)
             self.assertTrue(denied(result))
-            self.assertIn(".work/local.md", result["hookSpecificOutput"]["permissionDecisionReason"])
+            self.assertIn(".work/temp/local.md", result["hookSpecificOutput"]["permissionDecisionReason"])
 
     def test_transport_settings_cannot_hide_other_git_overrides(self):
         base = transport_environment()
@@ -153,12 +153,12 @@ class CleanupHooksTest(unittest.TestCase):
             self.assertEqual(before_shell(command, env=env), {})
             self.assertTrue(denied(before_shell(command.replace("MIRKET_CLEANUP_DONE=1 ", ""), env=env)))
             self.assertTrue(denied(before_shell(command, env={**env, "GIT_INDEX_FILE": "other"})))
-            work = Path(root) / ".work"
-            work.mkdir()
+            work = Path(root) / ".work" / "recover"
+            work.mkdir(parents=True)
             (work / "private").touch()
-            subprocess.run([system_git, "-C", root, "add", "-f", ".work/private"], check=True)
+            subprocess.run([system_git, "-C", root, "add", "-f", ".work/recover/private"], check=True)
             result = before_shell(command, env=env)
-            self.assertIn(".work/private", result["hookSpecificOutput"]["permissionDecisionReason"])
+            self.assertIn(".work/recover/private", result["hookSpecificOutput"]["permissionDecisionReason"])
 
     def test_transport_values_stay_out_of_probes_and_errors(self):
         hook = runpy.run_path(str(HOOK))
@@ -327,23 +327,35 @@ class CleanupHooksTest(unittest.TestCase):
             with self.subTest(command=command):
                 self.assertIn("systemMessage", before_shell(command))
 
-    def test_staged_work_is_blocked_even_after_cleanup_acknowledgment(self):
+    def test_workspace_records_can_be_committed_without_an_exception(self):
         with tempfile.TemporaryDirectory() as root:
             subprocess.run(["git", "init", "-q", root], check=True)
             work = Path(root) / ".work"
-            work.mkdir()
+            for directory in ("plans", "briefs", "decisions", "temp-notes", ""):
+                destination = work / directory
+                destination.mkdir(parents=True, exist_ok=True)
+                (destination / "record.md").touch()
+            subprocess.run(["git", "-C", root, "add", ".work"], check=True)
+            command = f"MIRKET_CLEANUP_DONE=1 git -C {shlex.quote(root)} commit -m records"
+            self.assertEqual(before_shell(command), {})
+
+    def test_staged_work_is_blocked_even_after_cleanup_acknowledgment(self):
+        with tempfile.TemporaryDirectory() as root:
+            subprocess.run(["git", "init", "-q", root], check=True)
+            work = Path(root) / ".work" / "temp"
+            work.mkdir(parents=True)
             (work / "private.txt").write_text("private")
-            subprocess.run(["git", "-C", root, "add", ".work/private.txt"], check=True)
+            subprocess.run(["git", "-C", root, "add", ".work/temp/private.txt"], check=True)
             def request(command):
                 return before_shell(command.replace("git commit", f"git -C {shlex.quote(root)} commit"), cwd=root)
             result = request("MIRKET_CLEANUP_DONE=1 git commit -m x")
             self.assertTrue(denied(result))
-            self.assertIn(".work/private.txt", result["hookSpecificOutput"]["permissionDecisionReason"])
-            self.assertEqual(request("MIRKET_CLEANUP_DONE=1 MIRKET_WORK_EXCEPTION=.work/private.txt git commit -m x"), {})
-            self.assertTrue(denied(request("MIRKET_CLEANUP_DONE=1 MIRKET_WORK_EXCEPTION=.work/other.txt git commit -m x")))
+            self.assertIn(".work/temp/private.txt", result["hookSpecificOutput"]["permissionDecisionReason"])
+            self.assertEqual(request("MIRKET_CLEANUP_DONE=1 MIRKET_WORK_EXCEPTION=.work/temp/private.txt git commit -m x"), {})
+            self.assertTrue(denied(request("MIRKET_CLEANUP_DONE=1 MIRKET_WORK_EXCEPTION=.work/temp/other.txt git commit -m x")))
             (work / "other.txt").write_text("other")
-            subprocess.run(["git", "-C", root, "add", ".work/other.txt"], check=True)
-            self.assertTrue(denied(request("MIRKET_CLEANUP_DONE=1 MIRKET_WORK_EXCEPTION=.work/private.txt git commit -m x")))
+            subprocess.run(["git", "-C", root, "add", ".work/temp/other.txt"], check=True)
+            self.assertTrue(denied(request("MIRKET_CLEANUP_DONE=1 MIRKET_WORK_EXCEPTION=.work/temp/private.txt git commit -m x")))
 
     def test_staged_work_targets_git_c_directory(self):
         with tempfile.TemporaryDirectory() as root:
@@ -353,10 +365,10 @@ class CleanupHooksTest(unittest.TestCase):
             subprocess.run(["git", "init", "-q", str(target)], check=True)
             subprocess.run(["git", "-C", str(target), "config", "diff.relative", "true"], check=True)
             (target / "nested").mkdir()
-            work = target / ".work"
-            work.mkdir()
+            work = target / ".work" / "stashes"
+            work.mkdir(parents=True)
             (work / "secret").write_text("x")
-            subprocess.run(["git", "-C", str(target), "add", ".work/secret"], check=True)
+            subprocess.run(["git", "-C", str(target), "add", ".work/stashes/secret"], check=True)
             for prefix in ("git", "git -C ."):
                 result = before_shell(f"MIRKET_CLEANUP_DONE=1 {prefix} commit -m x", cwd=session)
                 self.assertTrue(denied(result))
@@ -365,7 +377,7 @@ class CleanupHooksTest(unittest.TestCase):
                        "tool_input": {"command": f"MIRKET_CLEANUP_DONE=1 git -C {shlex.quote(str(target))} -C nested commit -m x"}}
             result = invoke(payload)
             self.assertTrue(denied(result))
-            self.assertIn(".work/secret", result["hookSpecificOutput"]["permissionDecisionReason"])
+            self.assertIn(".work/stashes/secret", result["hookSpecificOutput"]["permissionDecisionReason"])
             result = invoke(payload, env={**os.environ, "GIT_INDEX_FILE": str(target / "alternate-index")})
             self.assertTrue(denied(result))
             self.assertIn("inherited GIT_*", result["hookSpecificOutput"]["permissionDecisionReason"])

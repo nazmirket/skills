@@ -37,7 +37,7 @@ def prepare(case, destination, *, results_dir=None):
     if result_path.is_symlink() or result_path.exists():
         raise ValueError("the evaluator result already exists; existing work is preserved")
     files = {
-        ".gitignore": "/.work/\n/__pycache__/\n",
+        ".gitignore": "/.work/temp/\n/.work/recover/\n/.work/stashes/\n/__pycache__/\n",
         "README.md": "# Local project\n\nSee Context.md for the task and its scope.\n",
         "Context.md": case["context"] + "\n",
     }

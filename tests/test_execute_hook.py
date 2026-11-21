@@ -52,6 +52,7 @@ class ExecuteHookTest(unittest.TestCase):
         self.assertEqual(output["hookEventName"], "UserPromptSubmit")
         context = output["additionalContext"]
         self.assertIn("Execute", context)
+        self.assertIn("Keep temporary artifacts in .work/temp/<task>/", context)
         self.assertIn("one Mirket owner per outcome", context)
         self.assertIn("Read selected skills missing from context", context)
         self.assertIn("I’ll use `execute` and `design` skills.", context)

@@ -1144,8 +1144,8 @@
       "include_sample_app": false,
       "primary_owner": "architect",
       "supporting_skills": [],
-      "prompt": "Save a reusable private comparison of the two storage options for next week's decision. Include the outstanding question. We have not chosen an option.",
-      "context": "The project workspace is ignored. Options.md contains the alternatives, constraints and decision status.",
+      "prompt": "Save a reusable comparison of the two storage options for next week's decision. Include the outstanding question. We have not chosen an option.",
+      "context": "The project has no existing architecture decision directory. Options.md contains the alternatives, constraints and decision status.",
       "expected_actions": [
         "Save a draft in .work/decisions/ and describe the unresolved tradeoff.",
         "Keep the recommendation distinct from an accepted ADR."

@@ -33,7 +33,7 @@ Use the plugin one request at a time. The [Codex](../instructions/AGENTS.md) and
 - **Choose guidance for the job.** Pick one primary skill for the requested result. Add another when it supplies a distinct result or check. A small task can stay small.
 - **Keep consequential choices with the human.** A request to do work and approval of a written plan are separate. Ask for decisions that affect the outcome; proceed with routine choices within the agreed scope.
 - **Verify claims with evidence.** Inspect the actual change, run checks that match the risk, and say what could not be verified. A review or hook reminder does not prove that the work was checked.
-- **Leave enough context to resume.** Keep substantial plans and handoffs in the project's [workspace records](../skills/execute/references/Workspace.md). Record settled architectural decisions in the repository's ADR location, using `docs/decisions/` when the project has none. Keep the response focused on what happened and what comes next.
+- **Leave enough context to resume.** Keep substantial plans and handoffs in the project's [workspace records](../skills/execute/references/Workspace.md). Record settled architectural decisions in the repository's ADR location, using `.work/decisions/` when the project has none. Keep agent-generated temporary artifacts in `.work/temp/<task>/`. Keep the response focused on what happened and what comes next.
 
 ## Skills
 

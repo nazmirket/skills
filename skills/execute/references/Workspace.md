@@ -1,17 +1,25 @@
 # Project workspace
 
-Use `.work/` at the project root for agent-owned files. In Git, use the current worktree root (`git rev-parse --show-toplevel`), including from a nested directory; for non-Git work, use the project root selected by the human. Use the designated destination for actual deliverables, maintained fixtures and docs. Create only the directories you need.
+Use `.work/` at the project root for agent-owned files. In Git, use the current worktree root (`git rev-parse --show-toplevel`), including from a nested directory; for non-Git work, use the project root selected by the human. Put every agent-created temporary artifact in `.work/temp/<task>/` from the first write. Point scratch scripts, tool output, captures, logs and intermediate exports there before running the tool. Use designated paths for deliverables, maintained fixtures and docs. Create only the directories you need.
 
 | Path | What belongs there |
 | --- | --- |
 | `.work/plans/0001-Sales-Contracts/` | Durable [Plan](../../plan/SKILL.md) records: `Evidences.md`, `Scope.md`, `Outcome.md`, `Plan.md`, and `Progress.md`. Short plans can stay in chat. Use a shared project location only when the human asks or the project explicitly requires it. Link related architectural decisions. |
-| `.work/decisions/` | Private architecture notes and drafts. [Architect](../../architect/SKILL.md#record-the-decision) records settled changes to lasting boundaries in the project's ADR location, defaulting to `docs/decisions/`. |
+| `.work/decisions/` | Default location for decision drafts and accepted architecture decision records (ADRs). [Architect](../../architect/SKILL.md#record-the-decision) uses the project's existing decision directory when present. |
 | `.work/stashes/<task>/` | Temporary file-based snapshots or patches needed to set aside work. Record what they contain and how to restore them. |
 | `.work/recover/<task>/` | A targeted recovery copy of important work at risk of being lost. Record its original path and how to restore it; check the copy before removing the original. This is not a trash folder or a routine backup. |
 | `.work/briefs/0001-SalesContractsHandoff.md` | Standalone handoff prompts and other briefs without a designated destination. |
 | `.work/temp/<task>/` | Disposable files the agent generates or copies: scratch code, renders, test output and working drafts. Remove your leftovers when no longer needed. |
 
-In Git projects, keep `/.work/` ignored unless the human explicitly names an exception. Before the first write, check the destination with `git check-ignore` and check `git ls-files -- .work` for tracked records. Establish a missing rule in `.gitignore` when authorized, or the repository's local Git exclude when appropriate. If the path is tracked, redirects through a symlink, or cannot be kept private, surface the problem before writing. Verify the staged paths again before committing; a general request to commit is not permission to force-add workspace files.
+Before the first project write in a Git worktree, inspect the root `.gitignore`. Create or repair it automatically. Replace a blanket workspace exclusion with these root-relative rules and preserve unrelated entries.
+
+```gitignore
+/.work/temp/
+/.work/recover/
+/.work/stashes/
+```
+
+Verify the effective rules with `git check-ignore --no-index` on representative files in all six directories and at the workspace root. Only files under the three scratch directories should match a workspace exclusion. If a broader rule also affects other project paths, preserve it and add scoped exceptions for the workspace. Use `git check-ignore -v --no-index` to locate conflicting rules. Use `git ls-files -- .work/temp .work/recover .work/stashes` to identify already tracked scratch files and report them before writing there. Leave existing records and the index intact. Check that the intended workspace path stays inside the worktree when resolving symlinks.
 
 ## Numbered records
 

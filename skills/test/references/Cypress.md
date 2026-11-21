@@ -8,5 +8,3 @@ Confirm Cypress version, component or end-to-end mode, supported browser, runtim
 - Before adding concurrency, measure setup, repeated login or seeding, and spec duration. Don’t disable isolation just to shorten the run. Reuse supported setup where it does not change the behavior being checked.
 
 Run the failing spec in the relevant browser and mode, then the required spec set. Record app target, whether requests were real or stubbed, actual user-visible outcome, and any retry.
-
-Upstream: [Best practices](https://docs.cypress.io/app/core-concepts/best-practices), [Retry-ability](https://docs.cypress.io/app/core-concepts/retry-ability), [Test isolation](https://docs.cypress.io/app/core-concepts/test-isolation), [Intercept](https://docs.cypress.io/api/commands/intercept).

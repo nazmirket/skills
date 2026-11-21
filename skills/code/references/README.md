@@ -1,6 +1,6 @@
 # Stack guides
 
-Pick the guide that owns the question. File extensions and imports are clues; confirm the renderer, framework, runtime, or database in use. The base language and framework guides answer different questions; one guide often suffices. Use upstream references for the project's versions.
+Pick the guide that owns the question. Use file extensions and imports to identify the renderer, framework, runtime or database, then confirm the project's installed versions. The base language and framework guides answer different questions. One guide often suffices.
 
 | Area | Start here |
 | --- | --- |

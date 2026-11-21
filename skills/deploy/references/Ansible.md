@@ -8,5 +8,3 @@ Confirm inventory, host pattern, collections and versions, connection strategy, 
 - Break down time into gathering facts, connection setup, remote work and retries. Limit fact gathering where safe; consider connection reuse, pipelining and forks only after checking privilege policy and remote capacity. Keep constrained services protected from bursts.
 
 Verify a user path after the first batch before widening exposure. Recheck idempotence when safe. Plan the actual recovery config or artifact; rerunning an old playbook does not automatically restore files or data it didn't manage.
-
-Upstream: [Check and diff mode](https://docs.ansible.com/projects/ansible/latest/playbook_guide/playbooks_checkmode.html), [Execution strategies and batches](https://docs.ansible.com/projects/ansible/latest/playbook_guide/playbooks_strategies.html), [Handlers](https://docs.ansible.com/projects/ansible/latest/playbook_guide/playbooks_handlers.html).

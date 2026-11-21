@@ -8,5 +8,3 @@ Check the supported PHP version and extensions, Composer constraints and autoloa
 - In PDO, bind values and use allowlisted identifiers where query parts are genuinely dynamic. Stream large result sets or files where the driver/runtime permits it; a generator does not undo an upstream buffered query. Profile request and worker work separately, checking database trips, peak memory, and repeat processing before tuning.
 
 Run the project's Composer scripts, test runner, and configured static analysis at the supported runtime. Include malformed input and the production-style entry point. Test long-lived state across two jobs or requests if affected.
-
-Upstream: [PHP type declarations](https://www.php.net/manual/en/language.types.declarations.php), [PDO prepared statements](https://www.php.net/manual/en/pdo.prepare.php), [Composer autoloading](https://getcomposer.org/doc/01-basic-usage.md#autoloading).

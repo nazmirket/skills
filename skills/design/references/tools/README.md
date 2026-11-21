@@ -6,7 +6,7 @@ Use a tool guide for an operation the work actually needs. Prefer an available c
 | --- | --- |
 | Open a web surface and inspect its real behavior or appearance | [Browser](Browser.md) |
 | Replay a scoped browser path or collect a trace | [Playwright](Playwright.md) |
-| Record a visible state from a page, app, or desktop | [Screenshot](Screenshot.md) |
+| Capture and verify a complete page, screen, frame or document at native high resolution | [Screenshot](Screenshot.md) |
 | Inspect or edit a Figma source and hand off selected assets | [Figma](Figma.md) |
 | Inspect, edit, or export an editable document in OpenPencil | [OpenPencil](OpenPencil.md) |
 | Inspect isolated component states in an existing story | [Storybook](Storybook.md) |

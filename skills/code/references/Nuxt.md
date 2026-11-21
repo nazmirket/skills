@@ -14,5 +14,3 @@ Confirm the Nuxt major, Nitro target, rendering mode, route rules and generated 
 - Measure SSR time, hydration payload size, and client work separately. A lighter browser bundle may still leave an expensive waterfall on the server. Compare a cold direct request with client navigation and inspect the target Nitro build.
 
 Inspect the actual build target and output for the affected route. Verify the installed version's fetching and rendering defaults before applying current examples.
-
-Official: [Data fetching](https://nuxt.com/docs/4.x/getting-started/data-fetching), [Rendering modes](https://nuxt.com/docs/4.x/guide/concepts/rendering).

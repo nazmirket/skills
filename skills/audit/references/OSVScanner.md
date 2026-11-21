@@ -7,5 +7,3 @@ Use for known advisories against a resolved dependency inventory. Identify the e
 - Record the advisory data source or snapshot and whether an offline mode was used where supported. Use the project’s allowed source and trust boundary. Before comparing two runs, account for advisory data changes; a newly reported finding may reflect a new advisory rather than a new dependency.
 
 Report the package, resolved version, advisory ID, dependency path and limits of the match. Leave dependency changes to the owner and verify the resulting resolved inventory after an authorized fix.
-
-Upstream: [OSV-Scanner usage and supported inputs](https://google.github.io/osv-scanner/usage/), [OSV schema](https://ossf.github.io/osv-schema/).

@@ -14,5 +14,3 @@ Confirm the SDK, target frameworks, C# version, nullable settings and host. Foll
 - Exercise a realistic async path for latency and cancellation; verify a retry or parallel operation does not duplicate effects. Compare allocation, GC and throughput under representative load where a resource optimization motivated the change.
 
 Build against configured targets. Test cancellation, disposal and relevant null or invalid input; when data access changes, verify translation or behavior on the intended provider.
-
-Official: [C# coding conventions](https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/coding-style/coding-conventions), [Asynchronous programming](https://learn.microsoft.com/en-us/dotnet/csharp/asynchronous-programming/), [GC performance](https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/performance).

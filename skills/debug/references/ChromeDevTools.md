@@ -7,5 +7,3 @@ Confirm the affected route, browser version, expected action, deployed build, an
 - **Sources or Memory:** Confirm source maps match the running assets before trusting line numbers. Use a focused breakpoint for a control-flow question, not for timing. For suspected retention, compare heap snapshots after repeating and then undoing the same action; inspect what retains objects instead of interpreting any heap growth as a leak.
 
 For a fix, repeat the original action on the intended runtime and one adjacent path. Report the observed request, event, or timing and its conditions. Remove credentials, query data, response bodies or user details before sharing a HAR, screenshot or trace.
-
-Upstream: [Inspect network activity](https://developer.chrome.com/docs/devtools/network), [Analyze runtime performance](https://developer.chrome.com/docs/devtools/performance), [Memory panel](https://developer.chrome.com/docs/devtools/memory).

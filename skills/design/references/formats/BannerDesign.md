@@ -12,7 +12,7 @@ Name the audience, viewing distance or context, main message, required copy and 
 | Responsive ad built from separate assets | Which copy, image, and marks the host assembles. Review allowed combinations and keep each asset readable or meaningful on its own. |
 | Printed or mounted banner | Finished dimensions and scale, material, viewing distance, edges or seams, hems, grommets or pockets, and the supplier's bleed, color, resolution and export requirements. |
 
-Compare [YouTube's channel banner guidelines](https://support.google.com/youtube/answer/10456525?hl=en) with [Google Ads' responsive image guidance](https://support.google.com/google-ads/answer/9823397?hl=en) for why a single safe zone or export recipe cannot serve both. For print, [a banner supplier's safe-zone example](https://www.banners.com/resources/what-is-the-safe-zone-for-printing) illustrates the effect of hardware; carry over the chosen supplier's measurements, not the example's.
+Proof a cropped channel header with the identity and title inside the common visible area. For an ad assembled from separate inputs, vary the headline and image independently. On a mounted print, overlay the actual trim and fastening template on the master and inspect the closest text or mark.
 
 ## Build and proof each useful variant
 

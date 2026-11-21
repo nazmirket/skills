@@ -8,5 +8,3 @@ Identify Jest version, project, test environment, transforms, setup files, and E
 - When a run hangs, look for servers, intervals and other resources left open. Use focused diagnostics when needed; do not force exit to silence a leaked handle. Measure transforms, startup and suite duration before changing workers or caches. Do not compare diagnostic mode directly with a normal run.
 
 Run the smallest matching test or file, then the affected suite when config, setup or shared behavior changed. Record environment, exact command, initial failure, and post-fix outcome.
-
-Upstream: [Setup and teardown](https://jestjs.io/docs/setup-teardown), [Mock functions](https://jestjs.io/docs/mock-function-api), [Timer mocks](https://jestjs.io/docs/timer-mocks), [CLI options](https://jestjs.io/docs/cli).

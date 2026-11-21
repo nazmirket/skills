@@ -12,6 +12,7 @@ Identify the installed version, execution environment, and tool responsible for 
 | Interpret a PromQL query, counter reset, recording rule, or alert expression | [Prometheus](Prometheus.md) |
 | Diagnose a panel, dashboard query, or notification routing owned by Grafana | [Grafana](Grafana.md) |
 | Promote or verify a platform-managed workload | [Vercel](Vercel.md), [AWS](AWS.md), [Azure](Azure.md) |
+| Verify a public route through an edge worker, cache or bound service | [Edge delivery](EdgeDelivery.md) |
 | Publish or retrieve objects, or serve a static site from a bucket | [Google Cloud Storage (GCS)](GCS.md) |
 
 Use [Delivery Pipeline Practices](DeliveryPipelines.md) for CI/CD design, throughput, or promotion problems that cut across tools.

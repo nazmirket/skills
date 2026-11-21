@@ -170,7 +170,7 @@ class PackageWiringTest(unittest.TestCase):
     def test_global_plugin_reference_paths_resolve(self):
         references = set()
         for path in (REPO / "instructions/AGENTS.md", REPO / "instructions/CLAUDE.md"):
-            references.update(re.findall(r"`((?:skills/execute/)?references/[^`]+\.md)`", path.read_text(encoding="utf-8")))
+            references.update(re.findall(r"`((?:skills/[a-z][a-z0-9-]*/)?references/[^`]+\.md)`", path.read_text(encoding="utf-8")))
         self.assertTrue(references, "No plugin reference paths found in global guidance")
         for reference in references:
             with self.subTest(reference=reference):
@@ -223,12 +223,17 @@ class PackageWiringTest(unittest.TestCase):
 
     def test_skill_references_stay_inside_the_portable_catalog(self):
         for path in SKILLS.rglob("*.md"):
-            for url in re.findall(r"\]\(([^\s)]+)\)", "\n".join(prose_lines(path.read_text(encoding="utf-8")))):
+            prose = "\n".join(prose_lines(path.read_text(encoding="utf-8")))
+            boundary = SKILLS / "design" if path.relative_to(SKILLS).parts[0] == "design" else SKILLS
+            with self.subTest(source=path.relative_to(SKILLS)):
+                self.assertNotRegex(prose, r"(?i)https?://")
+            for url in re.findall(r"\]\(([^\s)]+)\)", prose):
                 target = urlsplit(url)
-                if target.scheme or target.netloc or not target.path:
-                    continue
                 with self.subTest(source=path.relative_to(SKILLS), target=url):
-                    self.assertIn(SKILLS, (path.parent / unquote(target.path)).resolve().parents)
+                    self.assertFalse(target.scheme or target.netloc, "Skill references must be local")
+                    if target.path:
+                        destination = (path.parent / unquote(target.path)).resolve()
+                        self.assertIn(boundary, destination.parents)
 
 
 if __name__ == "__main__":

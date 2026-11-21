@@ -8,5 +8,3 @@ Identify the controller, agent labels and executors, plugin versions, shared lib
 - Bound stage time, use retry only for transient or idempotent steps, and guard mutations to shared targets with the project's serialization mechanism. Avoid automatic abort or replay of an operation whose state can't be reconciled.
 
 Use a test branch or safe pipeline run to verify stage selection, credentials scope, and the failure path. Confirm what artifact was retained and promoted; check service behavior and restore the previous artifact through the documented path when needed.
-
-Upstream: [Pipeline best practices](https://www.jenkins.io/doc/book/pipeline/pipeline-best-practices/), [Pipeline syntax](https://www.jenkins.io/doc/book/pipeline/syntax/), [Jenkins credentials](https://www.jenkins.io/doc/book/using/using-credentials/).

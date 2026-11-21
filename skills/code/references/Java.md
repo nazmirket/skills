@@ -14,5 +14,3 @@ Read the JDK, target or release level, dependency platform and runtime limits. F
 - Use representative warmed-up measurements. Use a JVM recording or profiler to distinguish CPU, lock, allocation and GC cost. Change hot loops or object allocation patterns only when the measured cost warrants the tradeoff.
 
 Check the supported build and a representative runtime, including a failure and any important ordering or concurrency condition. Confirm serialization and public API compatibility if across process or library boundaries.
-
-Sources: [Java Language Specification](https://docs.oracle.com/javase/specs/jls/se25/html/index.html) (select the target edition), [Google Java Style Guide](https://google.github.io/styleguide/javaguide.html) as an example style, not a replacement for local conventions, [JDK Flight Recorder](https://docs.oracle.com/en/java/javase/25/jfapi/) (select the target JDK).

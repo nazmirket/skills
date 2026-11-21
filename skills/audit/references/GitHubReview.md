@@ -8,5 +8,3 @@ Pin the base and head commits, or the staged snapshot for a local review. Use th
 - Review untrusted changes without running their scripts by default. Draft comments locally unless posting was authorized. GitHub review submission, approval and requesting changes are separate actions from reading a pull request.
 
 Return the revision, material findings with evidence, and any coverage limits. Preserve the review gate required by Audit.
-
-Upstream: [Git diff](https://git-scm.com/docs/git-diff), [GitHub pull request reviews](https://docs.github.com/en/pull-requests/reference/pull-request-reviews).

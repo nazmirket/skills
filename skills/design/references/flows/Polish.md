@@ -1,21 +1,25 @@
 # Polish visual work
 
-Use to improve an existing result within its established direction. Find the affected surface and state, intended hierarchy, and what should stay familiar. A local fix can go straight to the edit after inspecting the relevant output. Use [Redesign](Redesign.md) if the work changes the overall direction or structure.
+Use for an existing result whose direction should stay recognizable. Confirm the primary task, the surface and state where it happens, and the identity cues and behavior to preserve. Use [Redesign](Redesign.md) when the required change is structural or calls for a different identity. A request for findings ends in [Critique](Critique.md).
 
-1. Point to the visible friction and its consequence. Common causes are competing emphasis, unclear type roles, spacing that implies the wrong groups, awkward crop, or lost state feedback.
-2. Apply the smallest targeted improvement within the existing palette, components and interaction conventions. Preserve working behavior, access and content meaning. Work with realistic material and use [composition](../concepts/Composition.md), [typography](../concepts/Typography.md), or the relevant concept for the decision at hand.
-3. Inspect the result in its intended medium and compare equivalent before and after cases. Check the nearest relevant states or views for regressions. For substantial changes, follow inspection with a distinct [critique](Critique.md) and recheck material corrections.
+1. Inspect the affected result in use and keep a [high-resolution capture of the whole surface](../tools/Screenshot.md) as the baseline. Identify a visible symptom, its location and the cost to the reader or user.
+2. Change the smallest set of decisions that explains the symptom. Fix one representative instance before propagating a shared rule. Work with actual material, labels and states.
+3. Repeat the same capture and task with matching content, size and state. Inspect the whole result for displaced emphasis and the original detail at readable scale. Check nearby states and narrow reflow. Substantial changes receive a distinct critique.
 
-## Unslop: replace generic choices
+## Unslop an existing design
 
-Ask what can only be true of this subject, audience or task. Use that as a reason to lead with actual material, a distinctive functional detail, or the action people came for.
+To remove generic AI styling, first ask what a person came to learn, compare or do. At overview size, trace what leads and what follows across the whole work. At reading size, test the most prominent cue against real content and an actual action. Try substituting another product's name in the headline, hero and supporting sections. Where the same claims, imagery and order would still fit, identify the missing subject or decision. Conventional controls are useful when people recognize and operate them.
 
-| Symptom | Try |
+| Visible symptom | Small repair and proof |
 | --- | --- |
-| A hero, badge, tile grid and CTA could describe any product | Lead with the actual product in use, a useful sample or a specific offer. Remove sections without a distinct job. |
-| Everything is in equal cards | Use sequence for a process, a table for comparisons, or one lead item with quieter detail when items have different weight. |
-| Decoration dominates the content | Keep the effect where it signals focus, depth or character; quiet the rest. |
-| A tidier version lost its personality | Recover the familiar voice, scale contrast, imagery or navigation; fix the observed weakness. |
-| Sparse content still feels busy | Combine related areas, demote repeated cues and let alignment and type establish order. |
+| Each section repeats a badge, broad promise and button | Assign a user question to each section. Lead with a verified answer, example or useful action. Remove redundant signposts and test whether the next step is still clear without them. |
+| Equal cards hide the relationships | Recompose one group by its actual job. Try rows for exact comparisons, an ordered sequence for dependent steps or one lead story with related entries. Try the longest and emptiest items before extending the pattern. |
+| The image could advertise any service | Use an authorized product state, subject-specific photo, annotated detail or diagram that explains the work. Check its crop on a phone. Label a stand-in and keep invented customers, results and metrics out of the published design. |
+| Glows, borders, pills or giant type compete with the subject | Temporarily remove the effect. Rebuild priority with position, type roles and spacing, then restore an effect where it conveys a useful layer, state or identity cue. Verify visible focus and status in the reduced treatment. |
+| Controls look convincing until used | Follow the primary action through its actual result and one failure or empty state. Correct misleading labels, placeholder links and false success. Mark simulations in a concept. Confirm keyboard access and recovery in the implementation. |
+| A cleanup made the result bland or unfamiliar | Recover a distinctive cue from the project's own work. Test its rhythm, crop or voice on a second real state while keeping functional controls familiar. |
+| Desktop feels composed but the narrow view becomes a long wall of fragments | Read the narrow version in source order. Bring related evidence, label and action together. Remove repeated wrappers, allow long text to wrap and verify the same decision can be made. |
 
-Judge choices by their effect. Cards, gradients and expressive type can all be useful when their job is clear. Stop when the identified friction is gone, the identity and intended behavior still work, and the changed output has been inspected. Report unverified conditions.
+For example, a repair intake page may advertise “quality service” above three identical benefit tiles while hiding the supported repairs and the intake form. Bring the actual eligibility criteria beside the form, use a documented repair detail if it explains the work, and keep a useful warning where the customer chooses a service. Repeat the path with an ineligible item. The repair succeeds when someone can decide and act with accurate information.
+
+Prioritize a broken task, unsupported claim or access failure ahead of decorative refinement. Stop when the identified friction is resolved, the agreed identity survives and the evidence covers the affected states. Report limits and leave subjective preferences open.

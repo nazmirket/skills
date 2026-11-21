@@ -56,7 +56,7 @@
   "design": {
     "cardDescription": "Creating or revising visuals? Sets a direction and checks the result as users see it.",
     "when": "You’re creating or reviewing visual work, or checking how people navigate, use and recover in an interface.",
-    "adds": "Sets a direction that fits the brief, then checks how the result looks and behaves in its intended setting.",
+    "adds": "Finds where generic styling hides the task, builds on the existing identity, and checks the result with full-resolution captures and real interactions.",
     "prompt": "Use Mirket Design to simplify the export settings dialog. Keep its behavior intact and check the finished design at desktop and narrow mobile widths."
   },
   "equip": {
@@ -74,7 +74,7 @@
   "market": {
     "cardDescription": "Positioning an offer or planning a campaign? Uses audience evidence to shape the message and next action.",
     "when": "You’re positioning an offer, shaping its message, or planning how to reach people.",
-    "adds": "Uses audience evidence to choose what to say, where to say it, and what action to ask for. It keeps claims tied to what you can support.",
+    "adds": "Tests the promise against buyer evidence, follows a channel through to paying customers, and checks whether acquisition cost and retention support the next investment.",
     "prompt": "Use Mirket Market to draft a launch email for scheduled exports. Use the attached customer interviews to pick one benefit and one call to action."
   },
   "migrate": {
@@ -110,7 +110,7 @@
   "ship": {
     "cardDescription": "Deciding what to build or launch? Weighs user evidence, priorities, and how to measure success.",
     "when": "You’re deciding what to build, what to launch, or whether a release helped users.",
-    "adds": "Connects user evidence to priorities, requirements, and measures of success. It makes the tradeoffs clear so you can make the product call.",
+    "adds": "Turns customer evidence into a testable release, weighs priorities and pricing, and identifies which journeys are ready for each launch market.",
     "prompt": "Use Mirket Ship to rank saved filters, bulk edits, and scheduled exports using the attached support tickets. Recommend what to build first and how we’d measure success."
   },
   "test": {

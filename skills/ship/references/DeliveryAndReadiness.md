@@ -9,4 +9,8 @@ Use to decide whether a product change is ready for a defined audience. State th
 
 An agreed recommendation is not a release or deployment. The task owner follows [versioned distribution](../../execute/references/VersionedDistribution.md); [Deploy](../../deploy/SKILL.md) owns rollout and operational recovery.
 
-Influence: [PM Skills pre-mortem](https://github.com/phuryn/pm-skills/tree/9af7bfd0bc47fdad43c2eaa7a43cd13918e7aaef/pm-execution/skills/pre-mortem).
+## Decide whether to retire a capability
+
+Identify active consumers, commitments and what each would lose. Include infrequent callers, paying customers on older terms, stored records and dependencies outside the visible interface. Compare continuing support, narrowing availability and retirement against usage, service cost, obligations and the viability of a replacement.
+
+Separate closing new enrollment, stopping use by existing customers and ending support. For each step, record the responsible owner, notice or migration conditions, evidence that affected users have a workable path, exceptions and when to pause. A planned replacement needs evidence from the workflows that depend on it. Return a recommendation and any unresolved customer commitments. [Market](../../market/SKILL.md) prepares approved communications, [Migrate](../../migrate/SKILL.md) owns persistent-state transitions and [Deploy](../../deploy/SKILL.md) owns activation.

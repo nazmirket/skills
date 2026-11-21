@@ -10,4 +10,4 @@ When a board would clarify a decision, show one coherent direction with mark or 
 
 ## Make the identity travel
 
-Define usable rules for mark, type, palette, imagery, and the cues with the strongest recognition value. Apply the agreed voice in visual examples; use [Market](../../../market/SKILL.md) if the voice itself needs to change. Check the same identity in a small monochrome placement, a normal product surface and a richer expressive piece when relevant. Use [Design System](DesignSystem.md) for reusable implementation rules.
+Define usable rules for mark, type, palette and imagery. Pick a recognizable relationship, such as product photography at a fixed scale beside handwritten inspection marks. Try it on a second, quieter surface so it can survive outside the campaign's lead image. Apply the agreed voice in examples and return changes to the voice to its owner. Check small monochrome placement, ordinary use and a richer expressive piece where relevant. Use [Design System](DesignSystem.md) for reusable rules.

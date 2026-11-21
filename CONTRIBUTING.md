@@ -4,13 +4,13 @@ The repository root is the shared plugin package. Both marketplaces point to it.
 
 ## Skills
 
-Add a skill at `skills/<name>/SKILL.md` with a lowercase name and a clear trigger. Add `agents/openai.yaml` for its Codex display metadata. If ownership changes, update the [routing guide](skills/execute/references/Routing.md) and related skill references. Start each routing row’s owner column with a link to the skill responsible for that result.
+Extend the skill that owns the result. Each has a lowercase name, a clear trigger in `skills/<name>/SKILL.md`, and Codex display metadata in `agents/openai.yaml`. If ownership changes, update the [routing guide](skills/execute/references/Routing.md) and related skill references. Start each routing row’s owner column with a link to the skill responsible for that result.
 
 The [other-agent guide](docs/OtherAgents.md) uses `npx skills add`, which copies individual skill directories. Keep skill links within the catalog and shared skill references in [Execute](skills/execute/references/Routing.md). The old root reference paths still point to the maintained guides. Keep the [catalog's copy of the license](skills/execute/LICENSE) in sync with the [root license](LICENSE).
 
 The catalog has 20 skills. Search owns external research, including papers and technical documentation. Adapt owns internal orientation. Execute owns authorized implementation of settled requirements when no specialist owns the result. Ship supports product decisions and readiness; Market owns marketing strategy and communications; Code supplies stack guidance to the current task. Audit owns security and privacy findings, Architect owns design-time threat modeling, and the implementer owns authorized hardening. The task owner prepares and publishes versioned artifacts when authorized. Migrate owns persistent-state transitions; Deploy owns environment rollout, service health, incidents, and recovery.
 
-Write original skill guidance based on Mirket's requirements and observed behavior. When the maintainer specifies external influences, cite what informed the work and adapt the useful ideas to Mirket's ownership and authority rules. Do not import external skills, prompts, or workflow guides wholesale. Use maintained upstream sources for stack-specific facts. The root license is included in the plugin package.
+Write original guidance from project requirements, research and observed behavior. Package usable procedures, decision criteria and examples in the skill catalog. All links in skill guidance must resolve inside the catalog. Design can also install on its own, so keep its references and capture helper inside its folder. Check version-sensitive advice against the installed stack or primary sources during authoring. Preserve applicable license notices. The root license is included in the plugin package.
 
 ## Markdown filenames
 
@@ -24,9 +24,11 @@ python3 -B -m unittest discover -s tests
 
 These tests cover hook logic and package wiring. Use the [host smoke checks](tests/HostSmoke.md) for installed skill discovery, hook activation, and representative routing. Report host checks separately from the local test results.
 
+For changes to Design’s capture helper, run `node --test tests/design_capture.cjs` with an available Playwright and its Chromium browser. It checks full document coverage, horizontal overflow, quirks-mode viewport sizing and rejection of cropped or low-density evidence.
+
 Package checks include exact-case paths and heading anchors, catalog/display metadata, host manifest identity, the packaged license and identical optional global instructions. Use the behavioral fixtures to record actual owners, permitted writes, stopping behavior and reused evidence. A fixture prepared with unverified results is not a passing evaluation. For blind routing, use unpublished evaluator-owned cases, keep results in an evaluator-only directory and report explicit invocation separately.
 
-For documentation or catalog changes, also run `npm run docs:diagrams`, `npm run build`, and `npm run seo:check` in `website/`, then inspect changed pages at desktop and narrow mobile widths. Update source Markdown rather than copying skill prose into the website.
+For documentation or catalog changes, also run `npm run docs:diagrams`, `npm run build`, and `npm run seo:check` in `website/`, then inspect changed pages at desktop and narrow mobile widths using the [full-surface capture standard](skills/design/references/tools/Screenshot.md). Update source Markdown rather than copying skill prose into the website.
 
 ## Release and installation checks
 

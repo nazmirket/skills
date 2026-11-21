@@ -1,6 +1,6 @@
 ---
 name: ship
-description: "Use for product management: discovery, strategy, prioritization, requirements, roadmaps, product launch readiness, and learning from outcomes."
+description: "Use for product discovery, strategy, prioritization, roadmaps, requirements, pricing, localization, launch readiness, and learning from outcomes."
 ---
 
 # Ship
@@ -9,12 +9,13 @@ Ship owns product discovery, requirements and recommendations on strategy, prior
 
 | Product decision | Guide |
 | --- | --- |
-| Direction, target segment or outcome | [Product strategy](references/ProductStrategy.md) |
+| Direction, target segment or addressable opportunity | [Product strategy](references/ProductStrategy.md) |
 | User problem or assumption to test | [Discovery](references/Discovery.md) |
 | Opportunity ranking or roadmap toward a set outcome | Open [Prioritization](references/Prioritization.md) first, on its own. |
 | Behavior, non-goals and acceptance | [Requirements](references/Requirements.md) |
 | Pricing, packaging or entitlements | [Pricing and packaging](references/PricingAndPackaging.md) |
-| Launch readiness, scope cuts or go/no-go | [Delivery and readiness](references/DeliveryAndReadiness.md) |
+| Locale scope, adaptation effort or regional acceptance | [Localization brief](references/Localization.md) |
+| Launch readiness, a narrower launch or product retirement | [Delivery and readiness](references/DeliveryAndReadiness.md) |
 | Metrics or an experiment for an uncertain change | [Metrics and experiments](references/MetricsAndExperiments.md) |
 | Observed outcomes and the next decision | [Product review](references/ProductReview.md) |
 

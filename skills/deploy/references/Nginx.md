@@ -7,5 +7,3 @@ Identify the effective config, includes, active master, downstream TLS and upstr
 - Compare request and upstream timing, status distribution, connection reuse, disk writes, and resource pressure. Use warm and cold paths and a realistic payload. Tune the hop that is actually slow; do not equate a large worker limit with higher throughput.
 
 Reload through the established service process and check its logs; acceptance of a reload signal does not prove the new config became active. Verify TLS and the actual request, including adjacent hosts or paths affected by shared includes. Keep prior config and restore via validation and reload if needed.
-
-Upstream: [Controlling nginx](https://nginx.org/en/docs/control.html), [Proxy module](https://nginx.org/en/docs/http/ngx_http_proxy_module.html), [Request processing](https://nginx.org/en/docs/http/request_processing.html).

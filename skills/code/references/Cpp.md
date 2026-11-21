@@ -14,5 +14,3 @@ Confirm the language standard, compiler and library baselines, build flags, and 
 - Isolate deterministic logic from I/O and platform dependencies when that makes behavior easier to exercise. Test lifetime and cleanup on exceptional paths; sanitizers complement configuration-appropriate tests rather than proving correctness.
 
 Verify the actual toolchain and target modes. Run focused tests and applicable sanitizers with lifetime, bounds or concurrent use cases; verify performance with comparable workloads when it drove the change.
-
-Source: [C++ Core Guidelines](https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines), maintained by the C++ community project led by Bjarne Stroustrup and Herb Sutter.

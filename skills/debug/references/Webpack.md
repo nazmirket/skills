@@ -8,5 +8,3 @@ Pin webpack version, effective config, mode, target, entry point and the framewo
 - Preserve dynamic import and public path behavior when reducing bundle size. Ensure emitted chunks, hashes and assets can be found under the actual served path.
 
 Rerun the failing case with representative inputs and the intended target mode. Compare build time and delivered bytes separately. Inspect runtime behavior before claiming tree shaking, code splitting or cache changes improved the user experience.
-
-Upstream: [Build performance](https://webpack.js.org/guides/build-performance/), [Stats](https://webpack.js.org/configuration/stats/), [Caching](https://webpack.js.org/configuration/cache/).

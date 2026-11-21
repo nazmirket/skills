@@ -14,5 +14,3 @@ Read the project metadata, supported interpreter versions, lock or constraints f
 - Use the installed runtime's supported task and cancellation constructs; test a failed task and cleanup under a timeout. For speed or memory work, profile representative data and record whether the bottleneck is Python CPU, allocation, or blocking I/O before choosing concurrency.
 
 Run the configured tests and type checks in the project environment. Exercise one malformed input or prerequisite failure and ensure packaging or module imports work through the intended entry point if those changed.
-
-Official: [PEP 8](https://peps.python.org/pep-0008/) (follow project conventions when they differ), [Errors and exceptions](https://docs.python.org/3/tutorial/errors.html), [Async tasks and cancellation](https://docs.python.org/3/library/asyncio-task.html).

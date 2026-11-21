@@ -7,6 +7,6 @@ Start with the decision the number should change. Define who is eligible, the me
 3. **Handle attribution honestly.** Document the model and lookback. Platform credit is descriptive; it does not establish what would have happened without the campaign. For a material causal decision, consider an appropriate holdout or grouped test and document overlap and spillover.
 4. **Decide prospectively.** Set the primary metric, guardrails, minimum meaningful effect and stop rule before exposure. Report absolute and relative effect alongside uncertainty and data quality limits. Do not declare a winner because a proxy improved or a dashboard moved early.
 
-Return a concise measurement or tracking plan with event definitions, QA steps, owner and decision rule, or the observed result and limits. Ship owns decisions about whether a product change itself delivers value.
+For a conversion event, state the confirmed business transition, unique event key, permitted fields, system of record and expected reporting delay. For a trial booking, an accepted reservation may count once by booking ID. A rejected form counts zero, and a duplicate callback for the same booking counts once. A later cancellation belongs in a separately defined reversal or net-bookings measure. Trace these cases from fixture to report. Respect collection permissions when reconciling analytics with business totals.
 
-Influence: [Marketing Skills analytics](https://github.com/coreyhaines31/marketingskills/tree/1f837447b20bb6f0e72d87b80ece1c221c362c7d/skills/analytics).
+Return a concise measurement or tracking plan with event definitions, QA steps, owner and decision rule, or the observed result and limits. Ship owns decisions about whether a product change itself delivers value.

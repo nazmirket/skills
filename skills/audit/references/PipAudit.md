@@ -7,5 +7,3 @@ Identify the Python interpreter, environment, project requirements or lock input
 - Check which advisory service, indexes and network policy actually apply. Keep private dependency data within approved services. An absent match says only that the scanner did not find a known advisory for the inventory it covered. Avoid automatic fixes during a read-only review.
 
 Report the affected resolved package, advisory and environment, severity in context, and the smallest remediation candidate or remaining check. After an authorized update, verify the deployed inventory and affected behavior.
-
-Upstream: [PyPA pip-audit usage, resolution, and security model](https://github.com/pypa/pip-audit).

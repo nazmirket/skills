@@ -20,7 +20,7 @@ Deliver only the guidance someone needs to repeat the result: intent, roles and 
 
 ## Validate the system in use
 
-When tokens move between tools, follow one semantic alias through export and import. This DTCG example gives the focus ring a color type and a reference to the palette. [Design Tokens Community Group format](https://www.designtokens.org/tr/2025.10/format/)
+When tokens move between tools, follow one semantic alias through export and import. This example gives the focus ring a color type and a reference to the palette.
 
 ```json
 {

@@ -8,5 +8,3 @@ Confirm Angular version, the debug build, application root, and whether the sign
 - If the issue depends on the served build, verify it outside the dev-only inspection session. Use browser traces for requests, layout, long tasks, and end-to-end timing.
 
 Repeat the actual event, including navigation or teardown when relevant. Report which cycle or dependency explained the symptom and what the production-like check showed.
-
-Upstream: [Angular DevTools overview](https://angular.dev/tools/devtools), [Profiler](https://angular.dev/tools/devtools/profiler), [Angular runtime performance](https://angular.dev/best-practices/runtime-performance).

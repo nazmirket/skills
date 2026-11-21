@@ -8,5 +8,3 @@ Pin the esbuild version, calling wrapper, entry points, target, platform, format
 - Source maps are evidence only when they match the emitted assets. If TypeScript is transpiled, run the project's separate type-check command when type correctness matters.
 
 Rerun the original input with the installed configuration and check the artifact in the consuming environment. Record platform, target, format, and cache conditions when comparing behavior or performance.
-
-Upstream: [API and build context](https://esbuild.github.io/api/#build), [Metafile](https://esbuild.github.io/api/#metafile), [Analyze](https://esbuild.github.io/api/#analyze), [TypeScript caveats](https://esbuild.github.io/content-types/#typescript).

@@ -1,12 +1,28 @@
 # Playwright Test
 
-Identify the project, browser and server config, and whether the run uses a local dev server or the built app. Use the project’s real runner command. Choose a journey that exercises the boundary under test.
+Read the project's runner command, configured browsers, base URL and server startup. Pin the build or dev server being tested. Exercise one journey through its real entry point.
 
-- Interact through roles, labels or agreed test IDs. Prefer locator assertions such as `toHaveText` that retry on current DOM state. Keep the action and its observable result distinct; use an exact request or state transition only when it matters to the contract. Avoid sleeps and selectors coupled to layout or implementation.
-- Use isolated browser contexts and independent data. Reuse authenticated storage state only when role, expiry, and server-side state allow it; use separate test users for writes that could collide. Don’t commit or share auth state. Use a real service for the integration being verified, and route an external dependency only when its behavior is outside the claim or when deliberately exercising a particular failure.
-- Start with the matching test and project, then run the required browsers or configurations. Don’t treat a test recovered by retry as a clean pass; keep the initial failure and compare trace, console and network evidence.
-- Save a trace for the useful failure or retry, not by default for every successful CI run. Measure test time and setup separately. Adjust workers or shard only after fixture isolation and shared backend capacity are understood.
+Use roles, accessible names, labels or agreed test IDs. Scope repeated controls to the relevant row or region. After the action, use a retrying locator assertion for the observable result. For a popup or download, register the event wait before triggering it, then check the destination or file. Wait for the state the user needs instead of a fixed delay or global network idle.
 
-Report browser and project, build, test case and data, and whether services were real or stubbed. Sanitize traces and logs before sharing. For visual review or full-page screenshots, use the [Design Playwright guide](../../design/references/tools/Playwright.md).
+For an account page that provides a named address dialog, this case checks dismissal and keyboard focus together. It uses the project's configured base URL.
 
-Upstream: [Best practices](https://playwright.dev/docs/best-practices), [Authentication](https://playwright.dev/docs/auth), [Retries](https://playwright.dev/docs/test-retries), [Trace Viewer](https://playwright.dev/docs/trace-viewer).
+```js
+import { test, expect } from '@playwright/test';
+
+test('dismissing the address editor returns focus', async ({ page }) => {
+  await page.goto('/account');
+  const edit = page.getByRole('button', { name: 'Edit address' });
+  const dialog = page.getByRole('dialog', { name: 'Delivery address' });
+  await edit.click();
+  await expect(dialog).toBeVisible();
+  await page.keyboard.press('Escape');
+  await expect(dialog).toBeHidden();
+  await expect(edit).toBeFocused();
+});
+```
+
+- **Isolation.** Give each test a fresh context and independent backend records. Reuse authenticated state only while its role and expiry fit. Use separate identities for conflicting writes and keep session files private. Use the real service for the integration under test. Stub an outside dependency for a deliberately controlled case and say what the stub covers.
+- **Failures.** Run the matching case and project first, then the required browser matrix. Retain a trace on failure or collect one on the first retry. Inspect the failing action, DOM state, relevant console error and network response. Identify which attempt produced the evidence, report a recovered retry as flaky and sanitize artifacts before sharing.
+- **Performance.** Time fixture setup separately from the journey. Check backend capacity and fixture isolation before adjusting worker count or sharding.
+
+Report the build, browser project, case, data, real or stubbed services and observed result. For **every visual check**, follow [Design's full-resolution screenshot requirements](../../design/references/tools/Screenshot.md). Its [Playwright guide](../../design/references/tools/Playwright.md) covers browser capture.

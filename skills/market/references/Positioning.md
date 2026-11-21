@@ -9,4 +9,8 @@ Position the offer against what a specific person would do otherwise, including 
 
 Verify with targeted comprehension or first-choice conversations: ask people to describe who this is for, what they would compare it to, and what seems unsupported. Record the response, what changed, and the next uncertainty. Search supplies market evidence; Ship owns choices that change the product or its target.
 
-Influence: [Marketing Skills product-marketing and competitor coverage](https://github.com/coreyhaines31/marketingskills/tree/1f837447b20bb6f0e72d87b80ece1c221c362c7d/skills).
+## Support a buying decision
+
+For a sales or partner brief, name the role, purchase stage, current alternative and one question that reveals fit. Pair the buyer's objection with a demonstrable difference, its limitations and a useful next step. Verify comparison claims against dated material for the relevant plan or version. Record an unverified capability as unknown.
+
+A buyer replacing a shared schedule asks whether two dispatchers can edit together. Give the seller a short demo case with both editing the same shift, the observed result and any plan restriction. If the buyer requires offline editing and that path is unsupported, record the gap for product discovery. Revisit the brief when the product, competitor terms or reasons for won and lost deals change.

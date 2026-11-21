@@ -8,5 +8,3 @@ Read the framework and PHP versions from Composer, then identify the request or 
 - Cache only with a clear freshness and access boundary. Include account or visibility scope when needed and verify behavior after mutation. Compare actual query count and duration for representative input before adding an optimization.
 
 Use a feature test for a real route and policy decision, or a real database and queue path for concerns their fakes cannot show. Cover rejected access, a failed or repeated job, or a query budget when it is the behavior being changed.
-
-Upstream: [Eloquent relationships](https://laravel.com/docs/eloquent-relationships), [Queues](https://laravel.com/docs/12.x/queues), [HTTP tests](https://laravel.com/docs/12.x/http-tests); select the installed major.

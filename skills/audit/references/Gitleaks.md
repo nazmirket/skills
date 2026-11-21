@@ -7,5 +7,3 @@ Pin the scan surface: staged or changed files, a directory, or reviewed Git hist
 - For history, distinguish when the value appeared, whether the commit remains reachable, and whether the scan had enough history. A shallow checkout or working-tree scan cannot answer a history question. Deleting the current line does not revoke a credential or remove copies already distributed.
 
 Hand off suspected disclosure through the approved incident or credential owner path. Revocation, rotation, and rewriting shared history are separate actions. Verify any authorized cleanup by rechecking the same scope without re-exposing the value.
-
-Upstream: [Gitleaks modes, baselines and redaction](https://github.com/gitleaks/gitleaks).

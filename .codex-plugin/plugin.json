@@ -1,6 +1,6 @@
 {
   "name": "mirket",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "description": "20 composable workflows for research, product management, marketing, design, development, verification and operations.",
   "license": "MIT",
   "skills": "./skills/",

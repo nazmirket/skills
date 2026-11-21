@@ -7,5 +7,3 @@ Identify the active instance and configuration, enabled modules, Multi-Processin
 - Avoid enabling per-directory overrides, heavyweight logging, broad rewrites or compression merely from a checklist. Measure which phase costs time. If a proxy or FastCGI service is involved, check queues, timeouts and error behavior there as well.
 
 Confirm the prior config is recoverable and note whether an operation can interrupt long requests. After reload check the logs, rendered virtual host response, app path, TLS, and representative concurrent traffic when tuning capacity. Verify neighboring vhosts when shared configuration changed.
-
-Upstream: [Stopping and restarting](https://httpd.apache.org/docs/2.4/stopping.html), [Performance tuning](https://httpd.apache.org/docs/2.4/misc/perf-tuning.html), [Virtual host examples](https://httpd.apache.org/docs/2.4/vhosts/examples.html).

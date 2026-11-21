@@ -8,5 +8,3 @@ Confirm the CLI and provider versions, lock file, backend, state identity, works
 - A Git revert or old state snapshot does not reverse provider mutations. Define a real recovery or forward repair path before changing a shared environment. Reconcile partial application against real resources instead of retrying a stale plan.
 
 After apply, inspect relevant state and provider status and verify the consumer path. If a follow-up plan still changes the target, distinguish expected drift, unmodeled dependencies and a defective rollout.
-
-Upstream: [Plan](https://developer.hashicorp.com/terraform/cli/commands/plan), [State locking](https://developer.hashicorp.com/terraform/language/state/locking), [Module refactoring](https://developer.hashicorp.com/terraform/language/modules/develop/refactoring).

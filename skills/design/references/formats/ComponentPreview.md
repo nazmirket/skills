@@ -12,4 +12,4 @@ Expose only states that matter: for example, default and long content, selected 
 
 Open each included case. Inspect the rendered state at the size and theme where the decision matters. Exercise the relevant input or transition: a labeled error example can confirm layout, while a failed action followed by a successful retry is evidence about the isolated behavior. Check the real application separately before claiming its routing, data, providers or surrounding layout work.
 
-Return the preview entry point and state names, fixtures or editable source as requested, and any differences from production. Stop when the requested states are observable and the preview answers the stated question. For variants, use the [prototype method](../../../execute/references/Prototype.md) to carry the decision forward.
+Return the preview entry point and state names, fixtures or editable source as requested, and any differences from production. Stop when the requested states are observable and the preview answers the stated question. For variants, use the [visual comparison method](../flows/Create.md#compare-approaches-without-changing-production) to carry the decision forward.

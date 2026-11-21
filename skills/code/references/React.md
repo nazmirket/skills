@@ -14,5 +14,3 @@ Confirm the React version and renderer, SSR or hydration setup, and existing sta
 - Use the React Profiler and a browser performance trace when rendering appears slow. Separate rerenders from DOM, network and asset work, and compare the same interaction before and after. Prefer a narrow state owner or simpler render path before introducing cache and identity concerns.
 
 Verify a real transition, reordered list or changed props as applicable; inspect console hydration warnings when supported. Exercise behavior through accessible controls using the existing test stack.
-
-Official: [Thinking in React](https://react.dev/learn/thinking-in-react), [When an effect is useful](https://react.dev/learn/you-might-not-need-an-effect), [Profiler](https://react.dev/reference/react/Profiler).

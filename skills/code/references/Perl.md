@@ -8,5 +8,3 @@ Check the supported Perl version, feature pragmas, CPAN dependencies, and how th
 - Stream large input line by line when practical and bound retained history. Watch repeated whole-file processing and nested regex backtracking on realistic long inputs. Profile a representative run before trading readability for compact syntax.
 
 Use the project's tests and `perl -c` where relevant. Exercise bad input, zero-like values, encoding changes, and failed I/O as appropriate. Verify unchanged CLI exit codes and output when they are consumed by other programs.
-
-Upstream: [Perl style](https://perldoc.perl.org/perlstyle), [Built-in functions](https://perldoc.perl.org/perlfunc), [Test::More](https://perldoc.perl.org/Test::More).

@@ -7,5 +7,3 @@ Identify the repository, alert status, advisory, manifest path, and the relevant
 - Keep dismissals and policy exceptions reviewable. Record evidence, scope and a recheck condition when an exception is approved. Reviewing an alert does not authorize dismissal, changing repository settings or opening a public comment.
 
 Report the affected revision and manifest, advisory, resolved path and what the GitHub view misses. If artifact or workspace coverage differs, request the missing evidence from its owner.
-
-Upstream: [Dependabot alerts](https://docs.github.com/en/code-security/concepts/supply-chain-security/dependabot-alerts), [Dependency review](https://docs.github.com/en/code-security/concepts/supply-chain-security/dependency-review).

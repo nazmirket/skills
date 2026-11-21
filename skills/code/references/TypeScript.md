@@ -14,5 +14,3 @@ Read the effective tsconfig and build tooling. Confirm module resolution, target
 - When type checking is slow, collect compiler timing or a trace before simplifying types or altering project references. Narrow recursive or distributive types around the expensive call sites; preserve the public types that prevent real mistakes.
 
 Run type checking separately from transpilation if necessary. Check representative malformed runtime input and a real importing consumer for shared interfaces.
-
-Official: [Narrowing](https://www.typescriptlang.org/docs/handbook/2/narrowing.html), [Strict TSConfig options](https://www.typescriptlang.org/tsconfig/strict.html), [Module resolution and hosts](https://www.typescriptlang.org/docs/handbook/modules/theory.html).

@@ -7,5 +7,3 @@ Use for delivery provenance, release revision selection, and recovery in systems
 - Use a temporary worktree or clean archive when it isolates build inputs without disturbing local edits. Check sparse or shallow fetching against the actual build and use realistic measurements before optimizing fetch size. Preserve branch protections and normal review; use [Clean](../../clean/SKILL.md) for an authorized commit.
 
 Verify that the artifact's source SHA matches the intended Git object and that the platform actually serves its expected artifact digest or revision. Keep previous artifact identity even if a tag or branch moves.
-
-Upstream: [Git worktree](https://git-scm.com/docs/git-worktree), [Git revert](https://git-scm.com/docs/git-revert), [Git clone options](https://git-scm.com/docs/git-clone).

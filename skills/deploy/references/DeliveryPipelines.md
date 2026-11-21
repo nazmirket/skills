@@ -17,5 +17,3 @@ Use this guide to design, review, or improve a delivery pipeline across build, c
 ## Verify promotion and recovery
 
 Preserve the last known good artifact and the procedure that restores traffic. Pin expected checks and stop conditions before activation. Confirm what users actually receive, including a dependency or one end-to-end path; a successful pipeline job alone is not enough. For state changes verify compatibility with [Migrate](../../migrate/SKILL.md). Compare meaningful outcomes such as time to feedback, flake rate, throughput, and recovery time before calling a pipeline faster or safer.
-
-Upstream examples: [GitHub deployment environments](https://docs.github.com/en/actions/concepts/workflows-and-actions/deployment-environments), [Jenkins pipeline best practices](https://www.jenkins.io/doc/book/pipeline/pipeline-best-practices/), [Azure safe deployment practices](https://learn.microsoft.com/en-us/azure/well-architected/operational-excellence/safe-deployments).

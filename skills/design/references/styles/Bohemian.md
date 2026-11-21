@@ -14,4 +14,4 @@ Avoid a collection of generic cultural motifs, mismatched decoration with no hie
 
 Check whether the palette and patterns still feel related across calm and dense areas; choose one visual thread someone could recognize without decoration.
 
-Study the birds, fruit and foliage in William Morris’s *Strawberry Thief* as one example of printed textile craft. Try a large motif over a smaller repeat and check where the eye can rest. Credit the textile and its printing tradition when the study informs a brief. [V&A textile collection](https://www.vam.ac.uk/articles/willam-morris-textiles)
+Use two swatches made or licensed by the maker for a woven collection. Crop one large motif for the cover and use a smaller related repeat on the reverse. Place a material label across the quiet area and check that the weave, maker and label can each be distinguished.

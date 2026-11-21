@@ -8,5 +8,3 @@ Read the SDK constraint, analysis options, target platforms, and package's publi
 - Watch repeated iterable traversal and materialization. Lazy work is useful when consumers stop early, but repeated traversal may repeat expensive operations. Materialize once when consumers need a stable reusable snapshot and the size fits.
 
 Use the package's analyzer and tests. Exercise malformed input and stream completion, error or cancellation when affected. Compare production-like builds and representative input sizes before claiming a performance gain.
-
-Upstream: [Effective Dart](https://dart.dev/effective-dart), [Streams](https://dart.dev/libraries/async/using-streams), [Isolates](https://dart.dev/language/isolates).

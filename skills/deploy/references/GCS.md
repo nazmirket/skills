@@ -8,5 +8,3 @@ Identify the project, bucket, location and IAM principal. Check lifecycle rules,
 - Keep prior entry documents and assets available until old cached references expire and rollback is no longer needed. Restoring an object generation alone does not invalidate a cache or restore a coherent multi-object release.
 
 Verify the consumer URL, expected object generation or digest, response metadata, and a warm and cold path. Explicitly check recovery and cache behavior when deleting or replacing shared objects.
-
-Upstream: [Request preconditions](https://docs.cloud.google.com/storage/docs/request-preconditions), [Request rates and key distribution](https://docs.cloud.google.com/storage/docs/request-rate), [Consistency](https://docs.cloud.google.com/storage/docs/consistency), [Static website hosting](https://docs.cloud.google.com/storage/docs/hosting-static-website).

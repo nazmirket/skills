@@ -8,5 +8,3 @@ Use for defensive reachability diagnosis when an expected listener or port is in
 - Use application measurements for performance. A scan duration includes probe behavior and is not a valid service latency benchmark.
 
 After an authorized fix, repeat the same limited probe and the actual client request. Record source, destination, expected listener, observed state and the application result. Keep host inventory or other unrelated findings out of the report.
-
-Upstream: [Port states and their limits](https://nmap.org/book/man-port-scanning-basics.html), [Nmap reference](https://nmap.org/book/man.html).

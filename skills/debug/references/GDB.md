@@ -8,5 +8,3 @@ Confirm the runnable target or core dump, architecture, executable, dependent li
 - Distinguish debugger-induced pauses from application latency. Compare runs without the debugger using the same inputs and build mode. Use a profiler to rank hot paths before selecting a narrow state question for GDB.
 
 Repeat the failing case with the authorized fix, and validate the relevant optimized build when the failure depended on its behavior. Record signal, thread, relevant frame and exact build; omit sensitive core contents.
-
-Upstream: [GDB manual](https://sourceware.org/gdb/current/onlinedocs/gdb.html/), [Threads](https://sourceware.org/gdb/current/onlinedocs/gdb.html/Threads.html), [Separate debug files](https://sourceware.org/gdb/current/onlinedocs/gdb.html/Separate-Debug-Files.html).

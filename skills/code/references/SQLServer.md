@@ -8,5 +8,3 @@ Confirm engine edition, database compatibility level, row-versioning settings, a
 - Balance indexes for seek, sort and coverage against writes, space and phased rollout cost. Avoid copying every missing-index recommendation. Choose clustered and nonclustered keys with workload evidence and use Migrate for durable schema changes.
 
 Check stable results, affected locking or deadlock behavior, and duration or logical reads across comparable inputs before recommending a tuning change.
-
-Official: [Index design](https://learn.microsoft.com/en-us/sql/relational-databases/sql-server-index-design-guide?view=sql-server), [Locking and row versioning](https://learn.microsoft.com/en-us/sql/relational-databases/sql-server-transaction-locking-and-row-versioning-guide?view=sql-server-ver17).

@@ -7,5 +7,3 @@ Identify the installed Helm major, chart version, dependencies, release name, na
 - Choose a timeout from the workload's real initialization time. Review how the installed upgrade command waits, reports a failed release, and handles failure rollback flags. Hooks or migrations can have side effects outside that rollback. Avoid complicating templates or adding job hooks without evidence they solve a repeatable problem.
 
 For a Helm-owned release, verify release status, candidate workload identity, Ready endpoints, and a user request; check a hook or migration separately. Keep the prior release metadata and chart values. For a GitOps-owned release verify the rendered source and reconcile through [Argo CD](ArgoCD.md).
-
-Upstream: [Chart best practices](https://helm.sh/docs/chart_best_practices/), [Helm upgrade](https://helm.sh/docs/helm/helm_upgrade/), [Custom Resource Definitions](https://helm.sh/docs/chart_best_practices/custom_resource_definitions/).

@@ -12,6 +12,6 @@ Use for a campaign, go-to-market communication, or distribution plan. Write the 
 
 Compare owned channels, external communities or partners, and paid reach individually; one may be enough. Adapt the same promise to each format instead of posting the same message everywhere. For partner or sales handoff, include approved claims, common objections, collateral, and which questions need an owner rather than an improvised answer.
 
-Check the destination, tracking, disclosure, campaign dates, link visibility and approved terms using a preview or test recipient where authorized. Prepare the assets or calendar within scope; sending, publishing, outreach, and spend require their own authority.
+Match distribution to the buying path. For self-service, trace a channel link through signup to first value. For an assisted sale, define what qualifies a lead, who accepts it, response timing and how rejected leads return to the correct owner. For a partner pilot, agree on audience overlap, permissions, division of work and how both parties will count the same outcome. Use [Acquisition economics](AcquisitionEconomics.md) when budget allocation is the decision.
 
-Influence: [Marketing Skills launch strategy](https://github.com/coreyhaines31/marketingskills/tree/1f837447b20bb6f0e72d87b80ece1c221c362c7d/skills/launch).
+Check the destination, tracking, disclosure, campaign dates, link visibility and approved terms using a preview or test recipient where authorized. Prepare the assets or calendar within scope; sending, publishing, outreach, and spend require their own authority.

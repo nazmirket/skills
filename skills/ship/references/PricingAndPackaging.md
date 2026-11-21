@@ -7,6 +7,6 @@ Decide what buyers receive and what they pay for. Identify segment, buyer and us
 - Keep the current-customer transition separate: grandfathering, billing cycle, notice, refunds, entitlement changes and support. Keep unresolved business or legal decisions with the human or responsible owner. Use Migrate for persistent entitlement or billing state if authorized.
 - Compare tradeoffs using conversion, revenue, cost, churn, refunds, complaints and affected segments. Define a guardrail and explicit decision before proposing a pilot. Do not vary real bills or entitlements without authorization.
 
-Return alternatives, assumptions, sample bills, transition risks and a recommendation. Market shapes the message after terms are approved.
+For a metered proposal, write the invoice rule and test a boundary. A hypothetical $40 monthly plan includes 100 bookings and charges $0.20 per additional booking. Before taxes and adjustments, 99 and 100 bookings both cost $40, 101 cost $40.20 and 250 cost $70. State whether cancellations count, when the meter resets and what usage the buyer can see. Present unresolved terms as decisions before proposing customer-facing prices.
 
-Influence: [PM Skills pricing strategy](https://github.com/phuryn/pm-skills/tree/9af7bfd0bc47fdad43c2eaa7a43cd13918e7aaef/pm-product-strategy/skills/pricing-strategy).
+Return alternatives, assumptions, sample bills, transition risks and a recommendation. Market shapes the message after terms are approved.

@@ -8,5 +8,3 @@ Confirm the installed major, the build adapter, the source files it scans, and t
 - When styles conflict, inspect the computed declaration and cascade layers. Class order in markup does not generally establish the winning utility. Check Preflight or other resets when a native control or third-party widget changes.
 
 Build the production CSS and verify affected states in the browser, especially classes originating in a workspace package or variant map. Check missing utilities, disabled and focus states, and the relevant breakpoints. Inspect compiled CSS size if adding sources or broad variants.
-
-Upstream: [Detecting classes](https://tailwindcss.com/docs/detecting-classes-in-source-files), [Theme variables](https://tailwindcss.com/docs/theme); select guidance for the installed major.

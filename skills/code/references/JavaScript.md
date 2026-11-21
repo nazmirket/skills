@@ -14,5 +14,3 @@ Confirm the actual runtime, module format, language support and transpilation ta
 - Use a real runtime profile or browser recording to locate long tasks and allocations before optimizing expression syntax. Treat numeric precision and serialization as contract issues: check large integers, dates, and missing values at the actual wire boundary.
 
 Exercise rejection, a relevant empty or cancelled path, and concurrent completion if order matters. Run against the supported environment rather than assuming transpilation supplies missing platform APIs.
-
-Standard: [ECMAScript](https://tc39.es/ecma262/). References: [MDN promises guide](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises), [JavaScript import](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import), [Execution model](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Execution_model).

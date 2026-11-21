@@ -14,5 +14,3 @@ Use document structure and native behavior before custom roles or script. Match 
 - For templates or dynamic markup, inspect the parsed DOM. The browser may repair invalid nesting differently from the apparent source tree, affecting hydration, focus and accessibility. Use the existing route or template tests as well as validation where appropriate.
 
 Inspect parsed DOM and accessibility tree, and exercise form submission and errors using keyboard alone. Check the real route and language when templates or rendering alter actual output.
-
-Standards: [HTML forms](https://html.spec.whatwg.org/multipage/forms.html), [W3C WAI forms tutorial](https://www.w3.org/WAI/tutorials/forms/).

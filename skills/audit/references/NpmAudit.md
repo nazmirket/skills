@@ -7,5 +7,3 @@ Use when npm owns dependency resolution for the project. Confirm npm version, ef
 - Read the advisory and proposed remediation separately. A proposed fix may change resolution, introduce compatibility work, or require a major upgrade. For review, use audit reporting without automatic fixes; `npm audit fix` can run an install and change the dependency tree. Do not use forced upgrades to clear a review finding.
 
 Return the advisory and resolved path, actual scope, and a targeted next step. After an authorized change, review the lockfile diff and run the relevant compatibility check as well as the advisory check.
-
-Upstream: [npm audit command](https://docs.npmjs.com/cli/v11/commands/npm-audit/), [package-lock format](https://docs.npmjs.com/cli/v11/configuring-npm/package-lock-json/).

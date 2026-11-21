@@ -14,5 +14,3 @@ Read the installed Next.js major, App or Pages Router, route and cache configura
 - Revalidate only the data or route scopes affected by the mutation. Verify the installed caching mode and adapter; a passing local development test is weak evidence for an output or caching problem in production. Use a production build with representative navigation, auth and cache state.
 
 Run the production-mode build and smoke the affected route directly and through navigation. Check one fresh and one previously loaded case; include anonymous or another user's state when cache isolation matters.
-
-Official: [Server and Client Components](https://nextjs.org/docs/app/getting-started/server-and-client-components), [Caching](https://nextjs.org/docs/app/getting-started/caching).

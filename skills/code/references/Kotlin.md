@@ -14,5 +14,3 @@ Check Kotlin and library versions, toolchain targets, framework conventions, and
 - Test coroutine behavior with the project's scheduler and test dispatcher where appropriate. Cover cancellation, repeated collection or stale emissions. Include a real platform-facing check when dispatch, lifecycle, or Java interoperability matters.
 
 Run configured Gradle or platform checks and test nullable inputs, cancellation and the actual caller or UI lifecycle. Check generated Java or native-facing signatures if they form an API.
-
-Official: [Kotlin conventions](https://kotlinlang.org/docs/coding-conventions.html), [Coroutine basics](https://kotlinlang.org/docs/coroutines-basics.html), [Coroutines guide](https://kotlinlang.org/docs/coroutines-guide.html).

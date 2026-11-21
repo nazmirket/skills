@@ -7,5 +7,3 @@ Identify the scrape and evaluation topology, storage and retention, label conven
 - Measure scrape volume, active series, query latency, storage and rule evaluation cost. Reduce unbounded labels or repeated expensive queries before increasing capacity. Use recording rules for frequently repeated expressions where the storage and freshness tradeoff fits; avoid hiding raw evidence behind a single aggregate.
 
 Use the installed `promtool` to check and test rule files before a reload. Test healthy, failing, absent and recovery windows with representative series. Verify target freshness and that the alert reaches the intended route in a safe test. For panel and contact behavior use [Grafana](Grafana.md).
-
-Upstream: [Instrumentation](https://prometheus.io/docs/practices/instrumentation/), [Alerting](https://prometheus.io/docs/practices/alerting/), [Unit testing rules](https://prometheus.io/docs/prometheus/latest/configuration/unit_testing_rules/).

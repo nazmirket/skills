@@ -9,7 +9,7 @@ Use for an authorized disposable experiment that answers a concrete question. [D
 
 ## Choose one branch
 
-- **Visual or interaction comparison:** Show a small number of meaningfully different options with the same representative content, context and states. Change the variable under test; hold the rest steady. Make any interactive switching clear and keyboard operable. Let the user reset or replay a motion or interaction comparison from the same initial state. Identify each variant and any assumptions so the user can point to a specific result.
+- For a visual or interaction comparison, follow [Design’s comparison procedure](../../design/references/flows/Create.md#compare-approaches-without-changing-production), including matched examples, keyboard switching and replay.
 - **Logic or state experiment:** Put the rule or model behind a small deterministic boundary, separate from the demo or harness. Expose inputs, actions and resulting state in the decision maker's language. Let them reset and explore freely, and provide repeatable walkthroughs for a normal case, a consequential adverse case and an illegal action. Record what happened and what was supposed to happen; observed behavior does not establish a business rule.
 
 ## Close with evidence

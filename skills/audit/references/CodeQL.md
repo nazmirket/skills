@@ -7,5 +7,3 @@ Start with the existing result for the reviewed SHA. Confirm the CodeQL version,
 - Investigate missing coverage rather than trying broader queries reflexively. Confirm how generated sources, build variants and framework models were included. Prefer an already authorized analysis or a trusted build environment; a scan of untrusted changes does not authorize executing their build scripts in a privileged context.
 
 Report confirmed defects, risks pending corroboration, and scanner limits separately. Leave configuration changes, dismissals and fixes to the authorized owner.
-
-Upstream: [CodeQL code scanning](https://docs.github.com/en/code-security/concepts/code-scanning/codeql/codeql-code-scanning), [Build options for compiled languages](https://docs.github.com/en/code-security/reference/code-scanning/codeql/build-options-for-compiled-languages).

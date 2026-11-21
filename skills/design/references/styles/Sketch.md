@@ -14,4 +14,4 @@ Avoid filtering every finished element into a sketch or suggesting an unconfirme
 
 Check the smaller scale and viewing distance: keep the important landmarks recognizable and any functional labels legible.
 
-Look at how a drawing and its neighboring notes share a page in Leonardo da Vinci’s notebooks. For a process sketch, use a construction line to explain a real relationship and a short annotation to name what is being tested. [V&A notebook collection](https://www.vam.ac.uk/articles/leonardo-da-vincis-notebooks)
+Make a two-stage process drawing with one darker resolved outline and faint construction lines around the uncertain joint. Label the point the team needs to test. At delivery size, check that someone can locate the joint and understand what is still provisional.

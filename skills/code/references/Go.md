@@ -1,6 +1,6 @@
 # Go
 
-Read the Go toolchain and module settings, build tags, supported platforms, and service conventions. Use the standard toolchain and existing package layout where sufficient.
+Read the Go toolchain and module settings, build tags, supported platforms, and service conventions. Verify newer APIs against the installed version. Use the standard toolchain and existing package layout where sufficient.
 
 - Keep types and interfaces small and useful. Put interfaces near consumers when that reflects what they need. Return concrete types where callers gain useful behavior from them; avoid abstraction before there is a genuine alternative.
 - Handle errors where a decision can be made. Add useful operation context, preserve a cause with wrapping when callers need to recognize it, and use `errors.Is` or `errors.As` rather than comparing prose.
@@ -14,5 +14,3 @@ Read the Go toolchain and module settings, build tags, supported platforms, and 
 - Use a benchmark with realistic payloads and report allocation cost when relevant. Use execution or contention profiles to tell copying, blocking and algorithmic cost apart; avoid pools or preallocation until size distribution and measurements justify them.
 
 Run the relevant `go test` commands, `gofmt`, and existing vet or CI checks; use the race detector for touched concurrency if the target supports it. Check cancellation and failure, not just the happy path.
-
-Official: [Go Code Review Comments](https://go.dev/wiki/CodeReviewComments), [Effective Go](https://go.dev/doc/effective_go) for established idioms; verify newer APIs against the installed version, [Go diagnostics](https://go.dev/doc/diagnostics).

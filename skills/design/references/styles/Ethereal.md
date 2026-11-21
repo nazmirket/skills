@@ -14,4 +14,4 @@ Avoid low-contrast text, atmospheric effects on every edge, and movement that ma
 
 Check actual output on dim and bright backgrounds, small sizes, and reduced motion if atmosphere is animated.
 
-Study where edges dissolve and reappear in Monet’s *Les Nuages*. Make a small value study of one passage, then reserve one firmer edge for the subject the viewer should notice first. [Musée de l’Orangerie collection object](https://www.musee-orangerie.fr/en/artworks/les-nuages-196302)
+Compose a night-garden invitation with three soft value fields and one defined silhouette. Place the reading text on a calm field. Turn down brightness and reduce the image to a thumbnail, then check that the silhouette and event name remain readable.

@@ -11,4 +11,4 @@ Use when old and new consumers must coexist or writes continue during a state tr
 
 Rehearse the consequential races in isolation: interrupt and replay a batch, update a record after it was read for copying, and delete a record while it is being copied. Compare the final state with the agreed mapping and write order. Report the remaining consumers, lag, failed records and current recovery position.
 
-Sources informing this method: [Parallel Change by Danilo Sato](https://martinfowler.com/bliki/ParallelChange.html), [GitLab's migration compatibility examples](https://docs.gitlab.com/development/database/avoiding_downtime_in_migrations/), and [GitLab's batched migration completion, isolation and replay guidance](https://docs.gitlab.com/development/database/batched_background_migrations/). Their framework helpers and release schedules are examples; use the target system's supported mechanism and limits.
+Choose checkpoint and batch limits supported by the actual store and release process.

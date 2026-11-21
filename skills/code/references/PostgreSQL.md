@@ -8,5 +8,3 @@ Identify the server major, relevant extensions, isolation, roles, and real query
 - Choose index columns and predicates from frequent access patterns and data distribution. Check write cost, disk, lock behavior and existing coverage; confirm actual plan benefit. Treat a schema or index rollout as a state change and use Migrate when compatibility or recoverability matters.
 
 Verify result semantics with NULLs or duplicates, concurrent updates where applicable, and representative plans. Report measured differences with conditions rather than claiming an index is universally faster.
-
-Official: [Using EXPLAIN](https://www.postgresql.org/docs/current/using-explain.html), [Transaction isolation](https://www.postgresql.org/docs/current/transaction-iso.html).

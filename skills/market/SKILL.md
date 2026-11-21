@@ -1,6 +1,6 @@
 ---
 name: market
-description: "Use for marketing strategy or execution: positioning, brand and voice, messaging, campaigns, acquisition, lifecycle marketing, conversion, and marketing measurement."
+description: "Use for marketing strategy, positioning, brand voice, messaging, campaigns, sales enablement, acquisition, lifecycle marketing, conversion, and measurement."
 ---
 
 # Market
@@ -10,9 +10,10 @@ Market owns marketing strategy, messaging, claims and measurement, including the
 | Requested result | First guide |
 | --- | --- |
 | Brand character, language standards or situational voice | [Brand and voice](references/BrandAndVoice.md) |
-| Audience, promise, differentiation or competitive position | [Positioning](references/Positioning.md) |
-| Copy for a marketing page, email or ad | [Messaging and copy](references/MessagingAndCopy.md) |
+| Audience, differentiation, competitor comparison or sales enablement | [Positioning](references/Positioning.md) |
+| Copy for a page, email or ad, including regional adaptation | [Messaging and copy](references/MessagingAndCopy.md) |
 | Campaign, commercial launch or distribution plan | [Campaigns and channels](references/CampaignsAndChannels.md) |
+| Channel investment, acquisition cost or payback | [Acquisition economics](references/AcquisitionEconomics.md) |
 | Signup, onboarding, retention or conversion | [Lifecycle and conversion](references/LifecycleAndConversion.md) |
 | Search visibility or editorial discovery | [Discovery and SEO](references/DiscoveryAndSeo.md) |
 | Funnel, attribution or experiment measurement | [Measure results](references/Measurement.md) |

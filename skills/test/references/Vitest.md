@@ -8,5 +8,3 @@ Confirm the configured project, module aliases, Vite/Vitest version, environment
 - Use the intended project and environment to run a focused test. Run the broader configured check if there are shared setup or cross-project effects.
 
 Report the project, environment, relevant fixture or mock and expected versus actual behavior. A DOM simulation or mock that makes a focused check faster does not prove the full browser or integration path.
-
-Upstream: [Improving performance](https://vitest.dev/guide/improving-performance), [Mocking modules](https://vitest.dev/guide/mocking/modules), [Browser Mode](https://vitest.dev/guide/browser/).

@@ -7,5 +7,3 @@ Identify the running binary and modules, config adapter, config source, admin en
 - Measure proxy time, upstream latency, compression cost and connection churn before adding buffering, compression, or load distribution rules. Compare on realistic payloads and a request that crosses the external proxy as well as a local test.
 
 Verify the active route, TLS certificate and redirects, plus upstream success and failure through the hostname users reach. Keep previous validated config and check observable behavior after restoring it. Retaining config does not by itself back up keys or certificate storage.
-
-Upstream: [Caddy commands](https://caddyserver.com/docs/command-line), [Reverse proxy](https://caddyserver.com/docs/caddyfile/directives/reverse_proxy), [Automatic HTTPS](https://caddyserver.com/docs/automatic-https).

@@ -8,5 +8,3 @@ Check the actual interpreter, minimum Bash version, and host tools. If the contr
 - Keep shell for glue. Move complex parsing, concurrency or persistent state into a language better suited to it. Reuse known portable primitives instead of complex one-liners.
 
 Run `bash -n` and existing lint, such as ShellCheck if present. Try spaces, leading hyphens, empty input, a failing command, and the target host's utilities.
-
-Sources: [GNU Bash manual](https://www.gnu.org/software/bash/manual/bash.html), [Google Shell Style Guide](https://google.github.io/styleguide/shellguide.html) for practical patterns and tradeoffs.

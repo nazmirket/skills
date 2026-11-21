@@ -8,5 +8,3 @@ Use when existing application or connection evidence cannot distinguish a transp
 - For performance, check where idle time accumulates and compare a representative working path. An observed round trip is specific to the capture point and transport; correlate it with server processing and the user's timing.
 
 Record the minimal timings, frame numbers, capture points and limitations needed to explain the observation. Keep raw packet files restricted; summarize or sanitize before sharing. After a change, rerun the same transaction and check both the packet-level symptom and the user-visible result.
-
-Upstream: [Wireshark User’s Guide](https://www.wireshark.org/docs/wsug_html_chunked/), [Capture filters](https://www.wireshark.org/docs/wsug_html_chunked/ChCapCaptureFilterSection.html), [TCP analysis](https://www.wireshark.org/docs/wsug_html_chunked/ChAdvTCPAnalysis.html).

@@ -8,5 +8,3 @@ Confirm the Vue version, application instance, Devtools mode, and whether the sy
 - If a component or timeline event is missing, check the installed Vue/Devtools versions and supported debug build. For hydration, compare server HTML and initial client state before relying on the later component tree.
 
 Repeat the actual event or route transition on normal settings. Verify the component and user-visible output; use [Chrome DevTools](ChromeDevTools.md) to check a runtime performance claim on a representative build.
-
-Upstream: [Vue DevTools features](https://devtools.vuejs.org/getting-started/features), [Vue reactivity fundamentals](https://vuejs.org/guide/essentials/reactivity-fundamentals.html), [Vue production profiling](https://vuejs.org/guide/best-practices/performance.html).

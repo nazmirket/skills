@@ -14,6 +14,8 @@ Architect owns consequential technical choices. Record a settled change to a las
 - Make technical choices within the approved outcome. Take material product, cost, security or operational tradeoffs requiring human judgment to the human. Draw on [Migrate](../migrate/SKILL.md) or [Deploy](../deploy/SKILL.md#operate-and-recover) when their evidence could change the choice.
 - If an accepted assumption may have changed, flag the decision for review and name the deciding check. Keep the accepted decision in force. Reopen it only on evidence that challenges its rationale, preserving the record and linking any successor.
 
+When a system diagram informs the choice, trace one representative operation to the actor that actually reads, writes or sends the data. Label each consequential connection with the operation and keep a source location at the inspected revision or working-tree state. For an upload, an API might grant permission while the browser sends the bytes directly to storage. Distinguish observed connections, proposals and unknowns before handing the model to [Design](../design/references/formats/DiagramDesign.md).
+
 ## Model threats during design
 
 Identify protected assets, affected people and who crosses each trust or data boundary. Compare exposure, safeguards and sensitive data handling across designs. Record material assumptions and tradeoffs. The human resolves access, retention and sharing policy. [Audit](../audit/SKILL.md#security-and-privacy-review) owns a separate security or privacy assessment.

@@ -1,25 +1,16 @@
 # Critique visual work
 
-Use for a visual or interaction review or as a separate pass after initial inspection of substantial visual work.
+Use for a visual or interaction review, or to recheck substantial visual work against its brief. A review-only request ends with findings.
 
 ## Load the deliverable's format
 
-First read just enough of the request and context to identify what is under review. Then open its format guide in a separate read before inspecting the artifact, running a probe, or delegating evidence collection. Even a ready browser probe waits until the format guide has been read.
-
-Choose by what is being judged, regardless of where it appears or how it was captured:
-
-- [Banner Design](../formats/BannerDesign.md) for a banner's placement, crop, or legibility, including web banners.
-- [Scene Design](../formats/SceneDesign.md) for a 3D scene and its own interactions, including a Spline scene in a web embed.
-- [Web Design](../formats/WebDesign.md) for the website, app, or component's own layout or behavior, such as a checkout dialog.
-
-For other deliverables, use the [format index](../formats/README.md). Open a second format only if a separate part of the deliverable needs different checks.
-
-Tool guides are optional. Open one when the human asks for its guidance or you need its instructions; reuse evidence and tools that already answer the question.
+Identify what is being judged. Open its format guide in a separate read before inspecting the artifact, running a probe or assigning evidence collection. A web banner uses [Banner Design](../formats/BannerDesign.md) for its crop and legibility. An embedded 3D scene uses [Scene Design](../formats/SceneDesign.md) for scene behavior. A checkout dialog uses [Web Design](../formats/WebDesign.md) for the app flow. Use the [format index](../formats/README.md) for other deliverables. Add another format only for a distinct question.
 
 ## Inspect and report
 
-1. **Pick cases that could change the verdict.** Review the actual artifact or runtime in its intended medium against the brief, reference, baseline and project conventions. Compare changes under matched conditions and distinguish new problems from existing ones. For UI, see a primary task with realistic content plus the width, input or adverse state most likely to break it. For a system or theme, compare representative components in the affected states. For an asset or slide, view the actual export at intended scale and an important crop or background. For motion, try normal use, interruption or repeated use and reduced motion when applicable.
-2. **Inspect purpose and use.** Check whether the right thing leads, important actions and states are legible, and the result holds across conditions that matter. To reproduce data stress, use [Collect Evidence](CollectEvidence.md) for valid extremes and representative fixtures. Reuse [Test](../../../test/SKILL.md) evidence for repeatable behavior, accessibility checks or measurements. A static image cannot establish live behavior or accessibility.
-3. **Make each finding actionable.** Give the location or condition, evidence, consequence and the smallest useful next step. When a capture supports a finding, link it and identify the relevant section or state. Separate observed defects, inferences and matters of taste. Show what changed and what nearby work might be affected. Name conditions you could not inspect.
+1. **Establish the comparison.** Name the intended reader or user, task, brief, build and states. For a change, match baseline and revision by content, viewport, theme, zoom, input and state. Include the primary path and the adverse width or state most likely to change the verdict. For a design system, sample affected components in context.
+2. **Collect full evidence before accepting appearance.** Apply the [capture standard](../tools/Screenshot.md) to each reviewed surface and state. Verify the native-density originals, full dimensions and final content. Inspect the whole composition, then read the actual pixels around findings. For an asset or slide, examine its full export and important placement crops. Keep the full baseline and revision for change claims. A missing, viewport-only or low-resolution original leaves visual acceptance open. Existing complete evidence can qualify.
+3. **Judge the design in use.** Where does attention land first? What should the person understand or do next? What in the composition or content belongs to this subject? Check whether emphasis, grouping, type, imagery and feedback support those answers. For generic UI, diagnose the repeated decision and its visible cost using [Polish](Polish.md). Exercise the primary interaction and relevant recovery, input and reduced-motion states. Use [Collect Evidence](CollectEvidence.md) for realistic content extremes. Reuse matching behavioral tests. Playback, focus movement and task completion need direct evidence.
+4. **Return findings the owner can act on.** For each material issue give the route or page, state and location, the full evidence path and relevant detail, effect on the person, and smallest correction with a retest. Distinguish observed regressions, existing defects, inference and taste. If a required capture or runtime check is blocked, report exactly what is missing and limit the verdict to what you could inspect.
 
-Review-only work ends at findings. If corrections are authorized, pass findings to the owning flow, recheck the actual changed result and include normal and adverse cases for stress-related corrections. Finish with the requested files or entry point, editable sources if needed, and any remaining material limits.
+If edits are authorized, repair the cause under the owning flow. Repeat the matching capture and interaction checks on the revised artifact and adjacent states. Deliver the requested entry point or files, editable sources when needed and reviewable originals.

@@ -7,5 +7,3 @@ Confirm the installed engine and edition, exact source revision, ruleset, langua
 - Prefer results for the exact revision. If rerunning is needed, use the narrowest relevant paths and existing rules, but keep enough context for the analysis. Record rule ID, configuration, and skipped coverage. Avoid broad suppressions or autofixes just to make a run green.
 
 Report the actual location, condition, effect, and a narrow next step. Keep analysis local unless the project authorizes a hosted workflow for the relevant source and results.
-
-Upstream: [Semgrep Code overview](https://docs.semgrep.dev/semgrep-code/overview), [Data-flow analysis](https://docs.semgrep.dev/writing-rules/data-flow/data-flow-overview).

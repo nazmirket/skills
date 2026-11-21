@@ -8,5 +8,3 @@ Identify the React version, intended renderer, root, dev/production mode, and wh
 - For an SSR mismatch, check server output and initial client input before interpreting the later component tree. Source maps and the deployed build must match.
 
 Repeat the same interaction after a change and check visible state, inputs, and network behavior. Record the profiler's build, mode, and sample; use [Chrome DevTools](ChromeDevTools.md) for end-to-end timing.
-
-Upstream: [React Developer Tools](https://react.dev/learn/react-developer-tools), [Profiler](https://react.dev/reference/react/Profiler), [Strict Mode](https://react.dev/reference/react/StrictMode).

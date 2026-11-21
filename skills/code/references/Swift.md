@@ -14,5 +14,3 @@ Confirm the Swift language mode, deployment targets, package or Xcode settings a
 - Profile an optimized build on the device or simulator appropriate to the claim. Investigate main-thread stalls, avoidable repeated copying and retained objects rather than assuming value semantics or an async declaration makes a hot path cheap.
 
 Run the configured build and tests on supported targets. Exercise isolation or UI lifecycle changes on the intended simulator or device where relevant, and report deployment target limitations separately.
-
-Official: [Swift API Design Guidelines](https://www.swift.org/documentation/api-design-guidelines/), [The Swift Programming Language: Concurrency](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/concurrency/).

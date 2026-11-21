@@ -14,5 +14,3 @@ Confirm Angular and tooling versions, standalone or NgModule conventions, change
 - Profile expensive templates or change detection before changing strategy. Track list identity by a stable key, keep costly calculations out of repeated template evaluation, and check that narrowed update rules still handle external changes.
 
 Check template compilation and test the real user path with a fake dependency or HTTP boundary; include navigation, teardown or failed requests where they could change observed behavior.
-
-Official: [Angular style guide](https://angular.dev/style-guide), [Signals](https://angular.dev/guide/signals).

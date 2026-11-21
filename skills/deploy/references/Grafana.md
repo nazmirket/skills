@@ -8,5 +8,3 @@ Identify the instance or stack, organization, data source, dashboard ownership, 
 - Choose evaluation windows and handling for no data and errors. Review grouping, deduplication and mute timing so related symptoms don't cause noisy pages or silence actionable ones.
 
 Check a normal and an adverse window with the intended data source. Use preview and approved test notifications to verify route, labels and recovery. Verify the actual user path as well if the dashboard supports a rollout decision.
-
-Upstream: [Alerting best practices](https://grafana.com/docs/grafana/latest/alerting/guides/best-practices/), [Provision Grafana](https://grafana.com/docs/grafana/latest/administration/provisioning/), [Dashboard troubleshooting](https://grafana.com/docs/grafana/latest/dashboards/troubleshoot-dashboards/).

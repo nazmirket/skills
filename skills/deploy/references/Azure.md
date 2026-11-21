@@ -7,5 +7,3 @@ Confirm tenant, subscription, resource group, region, service and target slot or
 - Stage exposure using the relevant service's supported mechanism. Choose health thresholds and time for traffic to produce useful evidence. Investigate capacity quotas, cold start, startup time, scaling delays and downstream saturation before widening parallelism or raising capacity. Verify private networking, regional dependencies and public ingress as separate paths where relevant.
 
 Verify the active resource or revision, App Service slot or traffic weight if applicable, and a real request through the production hostname. Use service logs and Azure Monitor to compare the changed path's health. Keep the previous healthy artifact and restore only within approved scope; a resource or slot rollback does not reverse persistent-state changes.
-
-Upstream: [Safe deployment strategies](https://learn.microsoft.com/en-us/azure/well-architected/operational-excellence/safe-deployments), [App Service deployment slots](https://learn.microsoft.com/en-us/azure/app-service/deploy-staging-slots), [Container Apps revisions](https://learn.microsoft.com/en-us/azure/container-apps/revisions).

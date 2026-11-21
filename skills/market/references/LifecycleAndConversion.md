@@ -7,6 +7,8 @@ Improve a specific transition from genuine intent to realized value. Define the 
 3. Choose the smallest change that addresses the likely cause. For onboarding, define first experienced value and remove steps that do not help reach it. For retention, distinguish voluntary churn, payment problems, and inactivity. For messaging, define who qualifies, when it fires, how often, and when it stops.
 4. Check primary conversion and a downstream guardrail such as activation, refunds, cancellation, complaints, or support burden. Preserve meaningful consent, readable terms, and an easy way to decline or leave. Route changes to product rules or entitlements to Ship, and interface production to Design.
 
-Return the diagnosis, priority change, proof or test design, and conditions for reverting or continuing. Use [Measurement](Measurement.md) only when instrumentation or interpretation needs separate work.
+For a triggered sequence, write the entry event and required permission, wait window, message purpose, destination, frequency cap and exit rule. Check eligibility again immediately before sending. Reuse a recent successful action to suppress an obsolete reminder, including when the same person completed the task on another device. Keep service messages and promotional messages distinct.
 
-Influence: [Marketing Skills conversion optimization](https://github.com/coreyhaines31/marketingskills/tree/1f837447b20bb6f0e72d87b80ece1c221c362c7d/skills/cro) and [onboarding](https://github.com/coreyhaines31/marketingskills/tree/1f837447b20bb6f0e72d87b80ece1c221c362c7d/skills/onboarding).
+For example, a team has imported its first schedule but has yet to share a shift. Draft a reminder that opens the imported schedule with a clear sharing action. Test a still-eligible account, an account that shared during the wait and one that opted out of marketing. Judge the campaign by completed sharing and subsequent team use, with complaints or opt-outs as guardrails.
+
+Return the diagnosis, priority change, proof or test design, and conditions for reverting or continuing. Use [Measurement](Measurement.md) only when instrumentation or interpretation needs separate work.

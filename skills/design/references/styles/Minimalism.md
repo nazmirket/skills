@@ -14,4 +14,4 @@ Avoid stripping the labels, affordances or feedback users need. Empty space shou
 
 Try a dense case as well as the ideal sparse one. Check that a first-time user still knows what can be done and how the sections relate.
 
-In Donald Judd’s 1967 *Untitled*, the vertical space between units equals the height of a unit. Try giving a repeated element and its interval the same measure. Change just the interval and compare the grouping at the intended viewing distance. [MoMA collection object](https://www.moma.org/collection/works/81324/)
+Set a small collection of product variants in a shared row pattern. Keep one measured interval within each variant and another between variants. Change one interval at a time and check whether price, option and action still belong to the same item, including the longest label.

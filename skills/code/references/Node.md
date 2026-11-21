@@ -8,5 +8,3 @@ Confirm the Node major, package manager and module boundary (ESM or CommonJS), p
 - Review module and package boundaries before changing imports or exports. Test the same startup and build entry points that production uses. Keep credentials in runtime configuration and exclude sensitive details from logs and error responses.
 
 Verify a success, timeout or cancellation, and one prerequisite failure. For performance, measure representative concurrency and event-loop responsiveness rather than relying on a microbenchmark alone.
-
-Official: [Avoid blocking the event loop](https://nodejs.org/learn/asynchronous-work/dont-block-the-event-loop), [Streams](https://nodejs.org/api/stream.html).

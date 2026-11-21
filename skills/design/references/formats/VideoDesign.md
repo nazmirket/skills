@@ -10,6 +10,6 @@ Outline the beats around the audience's question or task. Choose one timeline fo
 
 ## Review what will ship
 
-Watch the actual export at normal speed and at the intended size. Verify key crops, titles, first and final frame, audio intelligibility, and the ending or loop if specified. For each required aspect ratio, check captions and key action against the real crop. Try muted viewing where expected and confirm the [captions](https://www.w3.org/WAI/media/av/captions/) are accurate, timed, readable, and preserve important speech and sounds.
+Watch the actual export at normal speed and at the intended size. Verify key crops, titles, first and final frame, audio intelligibility, and the ending or loop if specified. For each required aspect ratio, check captions and key action against the real crop. Try muted viewing where expected and confirm the captions are accurate, timed, readable, and preserve important speech and sounds.
 
 Open the export in the intended player or delivery environment. Return the named exports and, when requested, the editable timeline, captions or transcript, poster, and required media or fonts. State which variants, playback conditions and accessibility features were checked, and what could not be verified.

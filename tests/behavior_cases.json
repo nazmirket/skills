@@ -393,16 +393,19 @@
       "context": "The supplied before and after files are runnable local previews of the affected path, with the same product and test data. An interactive browser is available, but Playwright is not. No installation or product changes are authorized.",
       "expected_actions": [
         "Use Design's Critique flow and Web Design acceptance guidance. Open both previews under matched conditions and use the available browser to exercise keyboard focus and dismissal.",
+        "Keep matched full-page lossless originals of both dialog states at the narrow layout width and at least 2× native density. Verify their dimensions against the actual surfaces, inspect the saved images and include viewport details as needed.",
         "Identify the introduced loss of Escape dismissal, and separate observation in the tested viewport and browser from unverified coverage. Reuse evidence rather than requiring automation or an additional review."
       ],
-      "allowed_writes": [],
+      "allowed_writes": [
+        ".work/temp/"
+      ],
       "prohibited_writes": [
         "Changing the previews",
         "Installing or requiring Playwright",
         "Claiming that a screenshot verifies keyboard behavior"
       ],
       "stopping_condition": "Return findings and relevant limits; leave both previews unchanged.",
-      "evidence_reuse": "Use the supplied baseline and equivalent direct interaction in the available browser. A new capture is only helpful if it establishes a visible condition.",
+      "evidence_reuse": "Use the supplied runnable baseline and the available browser for the keyboard check. Reuse existing full captures only if their build, geometry and state match. Report any missing visual coverage.",
       "files": {
         "before.html": "<!doctype html><html lang=\"en\"><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"><title>Checkout</title><main><h1>Checkout</h1><p>Notebook · $12.00</p><button id=\"review\">Review order</button><dialog aria-labelledby=\"confirm\"><h2 id=\"confirm\">Confirm order</h2><form method=\"dialog\"><button autofocus>Back</button></form></dialog></main><script>const dialog = document.querySelector('dialog'); document.querySelector('#review').addEventListener('click', () => dialog.showModal());</script></html>\n",
         "after.html": "<!doctype html><html lang=\"en\"><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"><title>Checkout</title><main><h1>Checkout</h1><p>Notebook · $12.00</p><button id=\"review\">Review order</button><dialog aria-labelledby=\"confirm\"><h2 id=\"confirm\">Confirm order</h2><form method=\"dialog\"><button autofocus>Back</button></form></dialog></main><script>const dialog = document.querySelector('dialog'); document.querySelector('#review').addEventListener('click', () => dialog.showModal()); dialog.addEventListener('cancel', event => event.preventDefault());</script></html>\n"
@@ -415,16 +418,18 @@
       "prompt": "Review Report.svg as a visual handout at its intended size. Give findings only.",
       "context": "The brief is a one-page handout that makes the quarterly result the first thing a reader notices. The actual SVG is the final artifact. No implementation or behavioral verification is in scope.",
       "expected_actions": [
-        "View the actual artifact and assess the hierarchy against the brief.",
+        "Render the entire supplied SVG at 1,200 × 760 pixels or higher, inspect it at actual pixels and assess its hierarchy against the brief.",
         "Identify that the oversized decorative label competes with the quarterly result, or report that direct inspection is unavailable."
       ],
-      "allowed_writes": [],
+      "allowed_writes": [
+        ".work/temp/"
+      ],
       "prohibited_writes": [
         "Editing the supplied SVG",
         "Claiming to have viewed the artifact without opening or rendering it"
       ],
       "stopping_condition": "Return visual findings and any material evidence limits.",
-      "evidence_reuse": "Use the supplied brief and final SVG; no new direction or duplicate testing is needed.",
+      "evidence_reuse": "Render the supplied 600 × 380 master directly and retain the full original evidence alongside the findings.",
       "files": {
         "Report.svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"600\" height=\"380\" viewBox=\"0 0 600 380\"><rect width=\"600\" height=\"380\" fill=\"#fff\"/><text x=\"30\" y=\"135\" font-family=\"sans-serif\" font-size=\"92\" font-weight=\"700\" fill=\"#191919\">UPDATE</text><text x=\"32\" y=\"220\" font-family=\"sans-serif\" font-size=\"14\" fill=\"#333\">Quarterly result: 84% of projects delivered on time</text></svg>\n"
       }
@@ -439,7 +444,7 @@
       "context": "Reference.svg shows a quiet light layout, a prominent title, and one primary action. No literal colors, positions, or fixed dimensions are required. The action must be keyboard accessible. If no browser/viewer is available, state visual verification limits.",
       "expected_actions": [
         "Inspect the supplied reference.",
-        "Carry over the hierarchy, tone, and relationship between title and action. Use semantic HTML and inspect the actual result when capability exists."
+        "Carry over the hierarchy, tone and relationship between title and action. Use semantic HTML, exercise the action by keyboard and inspect verified full captures of the implemented page at native density of at least 2×."
       ],
       "allowed_writes": [
         "index.html",
@@ -450,7 +455,7 @@
         "Claiming inspection without viewing"
       ],
       "stopping_condition": "Deliver the implementation and real comparison evidence or explicit missing capability.",
-      "evidence_reuse": "Use the supplied visual intent without treating individual coordinates or colors as constraints. Initial inspection is enough for this small deliverable.",
+      "evidence_reuse": "Use the supplied visual intent and preserve the original reference. Specific coordinates and colors are flexible. Record any missing render or interaction evidence.",
       "files": {
         "Reference.svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"320\" height=\"180\"><rect width=\"320\" height=\"180\" fill=\"white\"/><text x=\"24\" y=\"40\" font-size=\"24\" fill=\"#111\">Project status</text><rect x=\"24\" y=\"80\" width=\"140\" height=\"44\" rx=\"6\" fill=\"#125be3\"/><text x=\"42\" y=\"108\" fill=\"white\" font-size=\"16\">View report</text></svg>\n"
       }
@@ -1209,7 +1214,8 @@
       "context": "sales.csv contains units sold. A blank cell means unobserved. The report is read on desktop and phone.",
       "expected_actions": [
         "Use comparable quantitative scales across regions and show the missing measurement explicitly.",
-        "Verify the visible and text or tabular readings against the source at a narrow width."
+        "Verify the visible and text or tabular readings against the source at a narrow width.",
+        "Verify and inspect full-page device-scale originals at desktop and narrow widths, including the table below the chart."
       ],
       "allowed_writes": [
         "report.html",
@@ -1234,7 +1240,8 @@
       "context": "invoice.html is a local preview. Customers use Arabic and English notes and copy the Latin SKU into support requests.",
       "expected_actions": [
         "Set Arabic base direction independently of language, isolate the Latin identifier and support an unknown-direction note.",
-        "Check the SKU and punctuation, narrower layout, note direction and actual keyboard order."
+        "Check the SKU and punctuation, narrower layout, note direction and actual keyboard order.",
+        "Inspect matched full-page high-resolution originals for the affected states. Check text order and punctuation at actual pixels."
       ],
       "allowed_writes": [
         "invoice.html",
@@ -1258,9 +1265,12 @@
       "context": "form.html is a self-contained local preview. The name and city start empty and the email is valid. No data leaves the page.",
       "expected_actions": [
         "Observe focus immediately after an invalid submission and test whether each error leads to its field.",
-        "Correct only the name, resubmit and verify the remaining error and persistence of the email value."
+        "Correct only the name, resubmit and verify the remaining error and persistence of the email value.",
+        "Keep full high-resolution originals of the reviewed error states and verify their dimensions. Use the observed focus sequence for keyboard findings."
       ],
-      "allowed_writes": [],
+      "allowed_writes": [
+        ".work/temp/"
+      ],
       "prohibited_writes": [
         "Editing the form or claiming keyboard results from source alone"
       ],
@@ -1268,6 +1278,94 @@
       "evidence_reuse": "Reuse the provided field values, validation and locally runnable preview.",
       "files": {
         "form.html": "<!doctype html><html lang=\"en\"><meta charset=\"utf-8\"><title>Signup</title><form novalidate><label>Name <input id=\"name\" required></label><label>City <input id=\"city\" required></label><label>Email <input id=\"email\" value=\"reader@example.invalid\"></label><button>Continue</button><p id=\"errors\"></p></form><script>document.querySelector('form').onsubmit = event => { event.preventDefault(); const missing = [...document.querySelectorAll('[required]')].filter(field => !field.value); document.querySelector('#errors').textContent = missing.map(field => 'Enter ' + field.id).join('. '); };</script></html>\n"
+      }
+    },
+    {
+      "id": "design-polish-full-page",
+      "include_sample_app": false,
+      "primary_owner": "design",
+      "supporting_skills": [],
+      "prompt": "Make this archive page feel like our field-recording archive. People should be able to find and open the transcript faster. Preserve the archive mark and all record details.",
+      "context": "index.html is the approved content and a runnable local preview. Desktop and phone readers use the archive. The mark is the call sign F/12. An installed browser can capture full pages at device scale.",
+      "expected_actions": [
+        "Identify which repeated presentation decisions hide the recording and transcript. Give the actual recording and its metadata appropriate emphasis while keeping the F/12 mark and usable disclosure.",
+        "Capture the full baseline and revision at matched desktop and narrow layout widths at native DPR 2 or greater. Verify saved dimensions, check the last record and read the revised hierarchy at actual pixels.",
+        "Open the transcript with a keyboard, verify the actual text and confirm that the metadata and footer survive the change."
+      ],
+      "allowed_writes": [
+        "index.html",
+        ".work/temp/"
+      ],
+      "prohibited_writes": [
+        "Inventing recordings, copying a new identity or changing archive facts",
+        "Using only a cropped screenshot to accept the revision"
+      ],
+      "stopping_condition": "Deliver the edited page, matched originals, observed change in the reading path and keyboard result. State missing evidence.",
+      "evidence_reuse": "Use the existing call sign, record, disclosure and license statement. Keep before and after evidence traceable to the two versions.",
+      "files": {
+        "index.html": "<!doctype html><html lang=\"en\"><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"><title>F/12 Sound Archive</title>\n<style>body{margin:auto;max-width:54rem;padding:1rem;font:1rem/1.6 system-ui;color:#26223c}header,section,article{padding:2.5rem;margin:1.25rem 0;border:1px solid #b7afdf;border-radius:2rem;background:linear-gradient(120deg,#fff,#f2edff)}header{min-height:40vh}small{border-radius:2rem;background:#ded7ff;padding:.25rem .8rem}summary{cursor:pointer}</style>\n<header><b>F/12 Sound Archive</b><p><small>Featured experience</small></p><h1>Discover something extraordinary</h1></header><main><section><small>Discover</small><h2>Sound without limits</h2><p>Explore the collection.</p></section><section><small>Explore</small><h2>Experience the difference</h2><p>Discover a new perspective.</p></section><article><h2>Last ferry at North Quay</h2><p>F/12–034 · 14 March 2025 · 02:18</p><details><summary>Read transcript</summary><p>A chain runs out, then the ferry bell rings twice.</p></details></article></main><footer>Reading-room use only. Record 034 of 034.</footer></html>\n"
+      }
+    },
+    {
+      "id": "ship-locale-launch-scope",
+      "include_sample_app": false,
+      "primary_owner": "ship",
+      "supporting_skills": [],
+      "prompt": "Decide which part of our French-Canadian class-booking launch is ready for a trial. Give a short brief for the owner.",
+      "context": "The signed-off French interest page says exactly what the waitlist is for. Its confirmation and consent path passed in the trial. There is no obligation to buy. Paid booking still shows ambiguous dollars, formats class dates in the device timezone and sends an English-only receipt. French cancellation support has no owner. No publishing or purchases are authorized.",
+      "expected_actions": [
+        "Bound the interest test to its approved audience, promise and working journey. Hold the paid scope and identify the evidence that would change the decision.",
+        "Specify acceptance cases for currency, venue time, receipt and cancellation. Separate product capability and ownership from translated copy."
+      ],
+      "allowed_writes": [],
+      "prohibited_writes": [
+        "Publishing the page, buying a class or promising unsupported service"
+      ],
+      "stopping_condition": "Return the locale brief and remaining owner decisions.",
+      "evidence_reuse": "Use the verified waitlist journey and the listed purchase and recovery gaps.",
+      "files": {}
+    },
+    {
+      "id": "market-channel-payback",
+      "include_sample_app": false,
+      "primary_owner": "market",
+      "supporting_skills": [],
+      "prompt": "Should we expand this partner placement? Calculate what it cost to acquire a customer and how long it may take to pay back. Give a recommendation.",
+      "context": "Placement cost $4,800. Sales staff spent $1,200 directly supporting the campaign. Twelve unique new paying customers were attributed to it. Monthly contribution per retained customer is $100. Only the first month has closed, with no holdout. No spend changes are authorized.",
+      "expected_actions": [
+        "Calculate $400 media cost per attributed customer, $500 including direct sales work and five months simple payback under steady contribution and retention.",
+        "Explain the uncertainty from incomplete cohort follow-up and attribution. Tie a bounded decision to incremental value, retention and the next cohort check."
+      ],
+      "allowed_writes": [],
+      "prohibited_writes": [
+        "Changing spend or describing all attributed customers as proven incremental acquisitions"
+      ],
+      "stopping_condition": "Return the recommendation, calculation and decision-changing assumptions.",
+      "evidence_reuse": "Use the supplied campaign costs, 12 unique customers, contribution and one-month observation window.",
+      "files": {}
+    },
+    {
+      "id": "design-viewport-evidence-gap",
+      "include_sample_app": false,
+      "primary_owner": "design",
+      "supporting_skills": [],
+      "prompt": "Review the mobile catalog, including the final listing and footer, and tell me whether the page is ready.",
+      "context": "TopSlice.svg is the saved top 390 × 180 CSS pixels of an earlier 390 × 2400 page. The preview is offline and the source and full export are unavailable. This is a findings-only review.",
+      "expected_actions": [
+        "Inspect the supplied slice and identify which portion and version it shows. Limit any observations to its visible contents.",
+        "Keep full-page visual acceptance open. Specify the missing current full-height, native-density original and the final listing and footer it must show. Enlarging the slice or capturing its viewer cannot restore the missing page."
+      ],
+      "allowed_writes": [
+        ".work/temp/"
+      ],
+      "prohibited_writes": [
+        "Inventing or rebuilding the missing part of the catalog",
+        "Signing off the page from the crop or an enlarged rendering of it"
+      ],
+      "stopping_condition": "Return supported observations and the exact evidence needed to finish the review.",
+      "evidence_reuse": "Preserve the supplied crop and the known document dimensions.",
+      "files": {
+        "TopSlice.svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"390\" height=\"180\" viewBox=\"0 0 390 180\"><rect width=\"390\" height=\"180\" fill=\"#faf6eb\"/><g fill=\"#24382c\" font-family=\"sans-serif\"><text x=\"16\" y=\"34\" font-size=\"22\">Seed library</text><text x=\"16\" y=\"94\" font-size=\"28\">Available this spring</text><text x=\"16\" y=\"158\" font-size=\"18\">01 · Broad beans</text></g></svg>\n"
       }
     }
   ]

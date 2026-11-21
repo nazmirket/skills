@@ -9,5 +9,3 @@ Identify context, namespace, API versions, workload owner, controller and traffi
 - Choose CPU and memory requests against observed workload and scheduling needs. Check throttling, OOMs, pending Pods, replica scaling, and downstream saturation before raising limits or replicas. Establish baseline readiness time and error/latency under traffic; inspect tail behavior across old and new versions.
 
 Check rollout conditions and events, running revision and Ready endpoints, then a request through the actual Service or Ingress path. A progress deadline identifies a stalled rollout; it does not automatically restore a Deployment. Reverting a Pod template will not restore separately changed data or configuration. Verify recovery compatibility before changing desired state back.
-
-Upstream: [Deployments](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/), [Container probes](https://kubernetes.io/docs/concepts/workloads/pods/probes/), [Resource management](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/).

@@ -14,4 +14,4 @@ Avoid relying on unrelated loud elements or borrowing a recognizable work, chara
 
 Test at thumbnail and full size. Check that the intended headline, subject or action reads immediately and that fine textures reproduce cleanly.
 
-Across the 32 panels of Andy Warhol’s *Campbell’s Soup Cans*, a repeated package makes small label differences visible. Try the same frame around three original subjects and check whether the variation reads before adding more colors. [MoMA collection object](https://www.moma.org/collection/works/79809)
+Repeat the outline of a tea tin across a three-item comparison. Give each variety an original pictogram and a legible name. Cover the color fills and check whether the differences survive before introducing extra pattern.

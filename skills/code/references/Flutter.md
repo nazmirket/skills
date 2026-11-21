@@ -13,5 +13,3 @@ Confirm the SDK, deployment platforms, app navigation and state conventions, and
 Profile on representative devices in profile mode where supported. Use DevTools to separate widget build, layout, painting and raster work. Inspect decoded image size, repeated layouts and scroll behavior before adding caching or paint boundaries. Verify that an improvement holds with realistic content and does not retain excessive memory.
 
 Use unit tests for deterministic decisions, widget tests for rendering and interaction, and a device integration check for navigation, plugin or platform behavior. Exercise one meaningful lifecycle case, such as leaving a page while its request is pending.
-
-Upstream: [Architecture recommendations](https://docs.flutter.dev/app-architecture/recommendations), [Performance best practices](https://docs.flutter.dev/perf/best-practices), [Flutter testing](https://docs.flutter.dev/testing/overview).

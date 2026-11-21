@@ -13,4 +13,4 @@ Use to define how the brand behaves in language or bring inconsistent work into 
 
 Apply the guide to a real headline, product instruction, and sensitive message; check that the outputs sound related without forcing the same tone. Hand off approved traits, examples, vocabulary, explicit exceptions and source samples. Use Design for the visual identity and keep naming or positioning decisions traceable.
 
-Influence: [Marketing Skills product context and brand voice](https://github.com/coreyhaines31/marketingskills/tree/1f837447b20bb6f0e72d87b80ece1c221c362c7d/skills/product-marketing).
+When a voice guide will be used across regions, give the local writer the intended effect and the terms that carry a product commitment. Have them explain what a reader would expect after seeing their wording in context. Route localized campaign copy to [Messaging and copy](MessagingAndCopy.md#adapt-an-approved-message).

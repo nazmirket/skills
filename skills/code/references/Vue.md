@@ -14,5 +14,3 @@ Confirm the Vue major, loader and state conventions; Vue 2, Vue 3 and Nuxt do no
 - Test through emitted events, rendered state, and user input. Test composable logic directly when it contains independent rules; use a mounted component when the behavior depends on reactivity or disposal.
 
 Check the installed template/type checker and reproduce an actual prop change or user interaction; if server rendering is used, check hydration and isolation between requests.
-
-Official: [Reactivity fundamentals](https://vuejs.org/guide/essentials/reactivity-fundamentals.html), [Composables](https://vuejs.org/guide/reusability/composables.html), [Performance](https://vuejs.org/guide/best-practices/performance.html).

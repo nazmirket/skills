@@ -8,5 +8,3 @@ Confirm the R version, package environment, input schema, and whether the work i
 - Profile time and allocation on realistic data. Use vectorized operations when they express the operation clearly and fit memory. Preallocate growing output when known; a vectorized expression may still allocate large intermediates. Consider chunking or database-backed execution when data size makes in-memory copies untenable.
 
 Use a focused test with missing values, repeated keys, one-row and zero-row inputs as relevant. Compare floating-point results with a domain-appropriate tolerance. Run the project's package or reproducibility checks from a clean session; compare runtime and peak memory before claiming improvement.
-
-Upstream: [The R Language Definition](https://cran.r-project.org/doc/manuals/r-release/R-lang.html), [Writing R Extensions](https://cran.r-project.org/doc/manuals/r-release/R-exts.html).

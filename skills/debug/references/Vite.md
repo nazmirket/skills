@@ -8,5 +8,3 @@ Confirm Vite and framework versions, plugin order, package manager, active confi
 - For production-only behavior, check base paths, environment mode, generated chunks, dynamic imports and source maps. Do not infer deployed routing, headers or cache behavior from a local preview server.
 
 Verify the changed path in the failing mode and a representative adjacent mode, such as start plus update or build plus serving the output. Record lockfile, mode, cache state and measured change.
-
-Upstream: [Performance](https://vite.dev/guide/performance), [Troubleshooting](https://vite.dev/guide/troubleshooting), [Dependency pre-bundling](https://vite.dev/guide/dep-pre-bundling.html).

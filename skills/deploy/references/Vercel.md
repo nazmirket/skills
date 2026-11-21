@@ -7,5 +7,3 @@ Identify team, project, source SHA, deployment ID, framework preset, build setti
 - Separate build queue and build time from request cold start, execution, and upstream latency. Scope builds to affected workspaces when safe, reuse reproducible build caches, and profile region or cache changes through representative cold and warm traffic. Review public versus personalized cache behavior.
 
 Verify actual production domains, deployment identity, one affected route and a relevant auth or data request. Compare errors or latency to the baseline. Do not treat “Ready” or a working Preview link as proof of production success.
-
-Upstream: [Promotion](https://vercel.com/docs/deployments/promoting-a-deployment), [Instant rollback](https://vercel.com/docs/instant-rollback), [Environment variables](https://vercel.com/docs/environment-variables).

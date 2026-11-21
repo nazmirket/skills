@@ -7,6 +7,6 @@ Write the agreement needed to make and verify the next product decision. Reuse t
 - Add acceptance cases for the normal path, the likely failure and any material boundary. Give starting condition, action and observable result. If a requirement is ambiguous under retry, concurrent changes or a rollout, ask before making up the product rule.
 - Record baseline and success evidence. Mark whether something is required to ship, experiment-only, or explicitly deferred. Give the approved outcome and acceptance evidence to Plan and Test.
 
-Before handoff, ask whether two readers could implement and assess the same intended behavior. Resolve contradictions and leave genuinely unmade decisions open. An accepted product requirement does not grant authority to deploy.
+For an oversized requirement, cut a usable path by actor, scenario or rule. A first release could let a dispatcher assign one open shift, handle a conflicting assignment and show the confirmed result to both people. Defer bulk assignment and recurring schedules explicitly. Verify that someone can complete the smaller job end to end and that its exclusions still fit the agreed outcome.
 
-Influence: [PM Skills PRD](https://github.com/phuryn/pm-skills/tree/9af7bfd0bc47fdad43c2eaa7a43cd13918e7aaef/pm-execution/skills/create-prd).
+Before handoff, ask whether two readers could implement and assess the same intended behavior. Resolve contradictions and leave genuinely unmade decisions open. An accepted product requirement does not grant authority to deploy.

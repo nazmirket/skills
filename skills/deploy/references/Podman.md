@@ -7,5 +7,3 @@ Identify Podman version, rootful versus rootless operation, registry policy, sto
 - Measure pull, storage growth, network throughput and application readiness separately. Cached layers can help pull time; user-mode networking, storage, and application startup have different costs. Check the workload under its intended cgroup limits and realistic I/O before tuning.
 
 Validate the generated unit for the installed version; inspect service status and logs using the matching manager. Check the candidate digest, the served path, reboot or restart behavior if in scope, and compatibility of volume data before restoring the prior unit and digest.
-
-Upstream: [Quadlet systemd units](https://docs.podman.io/en/latest/markdown/podman-systemd.unit.5.html), [Podman run](https://docs.podman.io/en/latest/markdown/podman-run.1.html).

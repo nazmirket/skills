@@ -15,5 +15,3 @@ Use for questions about markup, component props, emitted JSX, and authoring read
 - When render cost matters, compare representative updates and bundle output under the framework's production build. Extract components for ownership and readability before considering memoization.
 
 Verify through the existing type check, production transform when relevant, and a focused interaction (including keyboard or form submission if touched). If rendering on the server, compare the initial server and client output.
-
-Upstream: [TypeScript JSX](https://www.typescriptlang.org/docs/handbook/jsx.html), [React markup](https://react.dev/learn/writing-markup-with-jsx).

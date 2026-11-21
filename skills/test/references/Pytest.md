@@ -8,5 +8,3 @@ Confirm the project interpreter, virtual environment, config, test collection ro
 - Inspect slow tests with duration reports before changing scope or parallelism. Separate setup, call and teardown; widen fixture scope only when isolation allows it. Use parallel execution only when already supported or authorized and test data, fixtures, and external resources can safely be independent.
 
 Record interpreter, command, selected case, data and outcome.
-
-Upstream: [Good integration practices](https://docs.pytest.org/en/stable/explanation/goodpractices.html), [Fixtures](https://docs.pytest.org/en/stable/how-to/fixtures.html), [Invocation and duration reports](https://docs.pytest.org/en/stable/how-to/usage.html).

@@ -7,5 +7,3 @@ Identify the exact target and scanner mode before interpreting the report. An im
 - Review ignore rules, severity filters, and treatment of advisories lacking a fix. Keep excluded or unsupported inputs visible as limits. Prefer a scan of the exact artifact over rebuilding an approximation, and reuse equivalent results for the same digest, policy and database when that answers the question.
 
 Return the digest or snapshot, finding ID, affected version, scope and next step. Leave updates and rebuilds to the owner. Verify an authorized replacement against its own artifact identity without claiming a clean scan establishes its overall security.
-
-Upstream: [Container image targets](https://trivy.dev/docs/latest/target/container_image/), [Vulnerability scanning](https://trivy.dev/docs/latest/scanner/vulnerability/).

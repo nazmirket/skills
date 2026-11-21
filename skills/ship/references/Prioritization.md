@@ -11,4 +11,4 @@ When the outcome is already set, use it to compare opportunities here. Open [Pro
 
 Example: replace “build saved filters” with “reduce repeated setup for returning analysts; compare saved filters and restoring the last view.” An outcome gives room to choose a simpler implementation.
 
-Influence: [PM Skills outcome roadmaps](https://github.com/phuryn/pm-skills/tree/9af7bfd0bc47fdad43c2eaa7a43cd13918e7aaef/pm-execution/skills/outcome-roadmap).
+When the top two bets are close, put them in the same unit and horizon. For example, eliminating three minutes of setup in 100 sessions a week could recover five hours at full adoption. A second option saving one minute in 180 weekly sessions could recover three hours. The first drops behind if fewer than 60% of its eligible sessions benefit and the second reaches all of its sessions. Validate that uncertain reach before letting the estimates determine the order. Record engineering effort and ongoing cost alongside the benefit.

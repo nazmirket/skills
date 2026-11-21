@@ -22,4 +22,4 @@ For a speedup claim, use [repeated comparable measurements](../execute/reference
 
 Report the target, command or steps, input, expected and actual results. Distinguish passes, failures and unverified checks. For a blocker, name the missing capability or target, exact remaining check and expected outcome. Continue available checks and honor environment and release gates. Limit claims to the path exercised, including for a live installation.
 
-Return evidence to the responsible reviewer when relevant. [Audit](../audit/SKILL.md) owns technical findings, [Design critique](../design/references/flows/Critique.md) visual and interaction findings, and [Author](../author/SKILL.md) writing findings.
+For every visual check, follow [Design's full-resolution screenshot requirements](../design/references/tools/Screenshot.md). Return evidence to the responsible reviewer when relevant. [Audit](../audit/SKILL.md) owns technical findings, [Design critique](../design/references/flows/Critique.md) visual and interaction findings, and [Author](../author/SKILL.md) writing findings.

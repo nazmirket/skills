@@ -9,4 +9,8 @@ Begin with one audience, one decision, and where the message lands. Describe wha
 
 Return usable copy with alternatives only when they represent materially different messages. Leave unsupported claims out or mark what evidence would make them publishable. Pass visual hierarchy to Design when the presentation also needs work.
 
-Influence: [Marketing Skills copywriting and copy editing](https://github.com/coreyhaines31/marketingskills/tree/1f837447b20bb6f0e72d87b80ece1c221c362c7d/skills/copywriting).
+## Adapt an approved message
+
+Identify the particular audience, language and region. Check the approved local offer, price and currency, availability, exclusions and actual destination. Preserve product names, placeholders and commitments. Adapt idiom, tone, examples, imagery and search language to the audience. Use a fluent reviewer familiar with that market to check what a reader would infer.
+
+For example, a campaign promises same-day pickup at two pilot locations. Keep that eligibility visible in the ad, landing page and confirmation. A localized headline can use a familiar phrase for collection while preserving the two-location limit and the actual deadline. Preview the longest variant and follow its action in the intended locale. Record the approved wording, unresolved claims and reviewer. Give missing product capabilities to [Ship](../../ship/references/Localization.md).

@@ -8,5 +8,3 @@ Identify the target binary, build configuration, architecture, SDK or OS, symbol
 - Do not infer production timing from stepped execution. Use representative optimized builds and a platform profiler for performance. Use the debugger to explain a suspected path or state, then verify the original case without the debugger.
 
 After an authorized fix, check the original input and relevant neighboring behavior. Report the exact symbolized frame, input or ownership boundary and what the rerun established. Treat crash dumps, arguments, and memory views as sensitive.
-
-Upstream: [LLDB tutorial](https://lldb.llvm.org/use/tutorial.html), [LLDB command map](https://lldb.llvm.org/use/map.html), [Apple symbolication](https://developer.apple.com/documentation/xcode/adding-identifiable-symbol-names-to-a-crash-report).

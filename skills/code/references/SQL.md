@@ -14,5 +14,3 @@ Identify the engine and version, the isolation and collation in use, and the exp
 Use the engine's plan tooling and compare estimates with actual work in a safe environment. Check for row multiplication, expensive sorts, unnecessary round trips, and predicates that prevent a useful index match. Choose indexes for the actual predicates and ordering; count writes and storage too. Bulk operations reduce round trips but can lengthen locks or increase memory. CTE materialization, NULL sort order, collation, upsert, and pagination syntax vary across engines.
 
 Check duplicates, NULLs, missing matches, ties, and a realistic high-cardinality case. Test concurrency on the target engine for writes. Compare results as well as timing before replacing a query.
-
-Upstream: [PostgreSQL SQL tutorial](https://www.postgresql.org/docs/current/tutorial-sql.html), [SQLite query planning](https://www.sqlite.org/queryplanner.html), [SQL Server plans](https://learn.microsoft.com/en-us/sql/relational-databases/performance/execution-plans).

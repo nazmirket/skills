@@ -8,5 +8,3 @@ Confirm the dialect, architecture, compiler flags, allocator and ABI. Check targ
 - Validate at boundaries and return errors that can be acted on. Pass buffers and capacity together where the caller owns storage. Keep foreign ownership, thread safety, and compiler extensions explicit.
 
 Build with existing warnings on supported compilers and run targeted tests under available sanitizers. Cover zero, maximum and one-past limits, failed allocation where possible, truncated input, and repeated cleanup.
-
-Sources: [SEI CERT C Coding Standard](https://wiki.sei.cmu.edu/confluence/display/c/SEI+CERT+C+Coding+Standard) for integer, buffer and resource rules, and the [GNU C Library memory allocation manual](https://www.gnu.org/software/libc/manual/html_node/Memory-Allocation.html) for glibc behavior.

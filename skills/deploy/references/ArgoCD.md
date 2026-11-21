@@ -7,5 +7,3 @@ Identify the Application, project, destination cluster and namespace, source rev
 - If promotion is slow, break down rendering, reconciliation queue, Kubernetes readiness, and external verification. Reduce unnecessary diffs and oversized application work only when measured. Ignore a diff only if a known controller owns the specific field and important drift remains visible.
 
 Recover through the reviewed source of truth when automatic reconciliation is active. Confirm compatibility with any migrations and check the new desired revision before sync. A previous application history entry, Synced status, or Healthy status alone does not prove rollback or the public path. Verify the served revision and one real request.
-
-Upstream: [Automated sync policy](https://argo-cd.readthedocs.io/en/stable/user-guide/auto_sync/), [Sync phases and waves](https://argo-cd.readthedocs.io/en/stable/user-guide/sync-waves/), [Resource health](https://argo-cd.readthedocs.io/en/stable/operator-manual/health/).

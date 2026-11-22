@@ -18,6 +18,8 @@ Consult relevant sources in order.
 3. For substantial or resumed work, consult available, authorized project memory. Skip recall for routine tasks. Verify remembered facts that affect the next step.
 4. Trace entry points, callers, dependencies and outputs. Use current code and checks to establish actual behavior.
 
+When a project fact depends on PDFs, spreadsheets or a mixture of local records, use [finding evidence in project records](references/ProjectRecords.md) to locate and reconcile the relevant passages or cells.
+
 Current human instructions and corrections take precedence over stale records. If documented intent and implementation disagree, use the contract established by the current request or applicable decision. Ask which contract governs only when the discrepancy leaves a material choice unresolved.
 
 ## Carry forward what matters

@@ -12,7 +12,7 @@ Market owns marketing strategy, messaging, claims and measurement, including the
 | Brand character, language standards or situational voice | [Brand and voice](references/BrandAndVoice.md) |
 | Audience, differentiation, competitor comparison or sales enablement | [Positioning](references/Positioning.md) |
 | Copy for a page, email or ad, including regional adaptation | [Messaging and copy](references/MessagingAndCopy.md) |
-| Campaign, commercial launch or distribution plan | [Campaigns and channels](references/CampaignsAndChannels.md) |
+| First customers, campaign, commercial launch or distribution plan | [Campaigns and channels](references/CampaignsAndChannels.md) |
 | Channel investment, acquisition cost or payback | [Acquisition economics](references/AcquisitionEconomics.md) |
 | Signup, onboarding, retention or conversion | [Lifecycle and conversion](references/LifecycleAndConversion.md) |
 | Search visibility or editorial discovery | [Discovery and SEO](references/DiscoveryAndSeo.md) |

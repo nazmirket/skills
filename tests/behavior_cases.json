@@ -27,6 +27,62 @@
       }
     },
     {
+      "id": "audit-follow-up-coverage",
+      "include_sample_app": false,
+      "primary_owner": "audit",
+      "supporting_skills": [],
+      "prompt": "Review the second revision of the label service. Which conclusions from the first review can we still rely on?",
+      "context": "This is a read-only follow-up. ReviewA.md is the previous record. ChangeB.md describes the complete difference in the scoped paths. The new delivery service is unavailable for a live check.",
+      "expected_actions": [
+        "Keep the rejected duplicate-label report scoped to the unchanged generator, inputs and fixture. Preserve the reason it was rejected.",
+        "Reopen the delivery-size finding because the receiving service changed despite identical label bytes. Name the missing acceptance evidence at B. Leave print contrast unexamined."
+      ],
+      "allowed_writes": [],
+      "prohibited_writes": ["Editing project files, the prior review, or the delivery service"],
+      "stopping_condition": "Return the updated coverage and its evidence in chat.",
+      "evidence_reuse": "Use the 120 distinct labels and delivery receipt with their separate evidence dependencies.",
+      "files": {
+        "ReviewA.md": "# Revision A\nThe two-batch fixture produced 120 distinct labels for 120 distinct orders. The reported duplication was ruled out for this input. Partner One accepted the largest supported PDF, 7.4 MB. Print contrast was outside this run.\n",
+        "ChangeB.md": "# Revision B\nSwitched the destination from Partner One to Partner Two. No receipt or limit from Partner Two is available. Generator, callers, inputs, fixture and PDF bytes match A. No print sample was taken.\n"
+      }
+    },
+    {
+      "id": "ship-manual-service-pilot",
+      "include_sample_app": false,
+      "primary_owner": "ship",
+      "supporting_skills": [],
+      "prompt": "Should we build rehearsal scheduling software for local choirs? Give me an experiment our coordinator could run first.",
+      "context": "Two choir directors already send the coordinator spreadsheets with availability. Each wants a conflict-free rehearsal shortlist. The coordinator has 90 minutes a week. No trial terms or prices have been agreed. We only want a proposal today.",
+      "expected_actions": [
+        "Specify the directors’ inputs, repeatable manual steps, deliverable and time log. Relate pilot capacity to available minutes.",
+        "Distinguish observed use or a repeat request from polite interest. Identify the delivery bottleneck to measure and the conditions for automating, changing or stopping; label proposed thresholds."
+      ],
+      "allowed_writes": [],
+      "prohibited_writes": ["Building software, contacting directors or committing to terms"],
+      "stopping_condition": "Return a pilot the coordinator can carry out and the decision it would inform.",
+      "evidence_reuse": "Use the existing spreadsheets, desired shortlist and 90-minute weekly capacity.",
+      "files": {}
+    },
+    {
+      "id": "design-stress-file-picker",
+      "include_sample_app": false,
+      "primary_owner": "design",
+      "supporting_skills": [],
+      "prompt": "Review the file picker at a 390-pixel width. Can someone distinguish the two reports and reach the Open buttons with realistic filenames?",
+      "context": "Open index.html in a browser. The two input fields drive the production-style rows for this fixture. Valid filenames include long common prefixes with a version suffix. This is a review. Keep the fixture source unchanged.",
+      "expected_actions": [
+        "Compare ordinary names with two valid names that differ near the end, using the same renderer and width. Inspect where the differentiating text goes and whether both buttons remain in view and keyboard reachable.",
+        "Report observed effects and matching native-density full captures. Separate an unreadable filename from an unreachable control; exercise each claim."
+      ],
+      "allowed_writes": [".work/temp/"],
+      "prohibited_writes": ["Changing the file picker source or using invalid filenames as evidence"],
+      "stopping_condition": "Report the findings, evidence and remaining limits.",
+      "evidence_reuse": "Use the built-in fields to vary the filename data without changing markup or CSS.",
+      "files": {
+        "index.html": "<!doctype html><html lang=\"en\"><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"><title>Files</title><style>body{font:16px system-ui;margin:16px}label{display:block}.row{display:flex;align-items:center;gap:8px;margin:12px 0}.name{max-width:175px;white-space:nowrap;text-overflow:ellipsis;overflow:hidden}</style><h1>Files</h1><label>First filename <input value=\"Budget.pdf\"></label><label>Second filename <input value=\"Forecast.pdf\"></label><main></main><output></output><script>const list=document.querySelector('main');for(const input of document.querySelectorAll('input')){const row=document.createElement('div'),name=document.createElement('span'),button=document.createElement('button');row.className='row';name.className='name';name.textContent=input.value;input.oninput=()=>name.textContent=input.value;button.textContent='Open';button.onclick=()=>document.querySelector('output').textContent=input.value;row.append(name,button);list.append(row)}</script></html>\n"
+      }
+    },
+    {
       "id": "audit-independent-review-unavailable",
       "primary_owner": "audit",
       "supporting_skills": [],

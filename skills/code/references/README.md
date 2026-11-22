@@ -6,6 +6,8 @@ Pick the guide that owns the question. Use file extensions and imports to identi
 | --- | --- |
 | JavaScript and TypeScript | [TypeScript (TS)](TypeScript.md), [JavaScript (JS)](JavaScript.md), [JSX / TSX](JSX.md) |
 | UI and web frameworks | [Vue](Vue.md), [Angular](Angular.md), [React](React.md), [Next.js](Next.md), [Nuxt](Nuxt.md) |
+| GSAP in React | [Animation scope and remounts](GSAPReact.md) |
+| Command-line interfaces in any language | [Commands, output and errors](CommandLineInterfaces.md) |
 | Web platform and styling | [HTML](HTML.md), [CSS](CSS.md), [Tailwind CSS](Tailwind.md), [Node.js](Node.md) |
 | Relational data | [SQL](SQL.md), [PostgreSQL](PostgreSQL.md), [SQL Server / T-SQL](SQLServer.md) |
 | Applications and systems | [Python](Python.md), [Go](Go.md), [Rust](Rust.md), [C++](Cpp.md), [C#](CSharp.md), [Swift](Swift.md), [Java](Java.md), [Kotlin](Kotlin.md) |

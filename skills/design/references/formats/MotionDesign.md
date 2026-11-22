@@ -10,7 +10,7 @@ Storyboard the key beats or prototype the important transition before multiplyin
 
 ## Verify in playback
 
-- **Read at speed.** Play the actual delivered asset in the intended player, at target size and speed. Check attention order, time to read, crop and the ending or loop seam. Inspect individual frames to diagnose a problem and replay at speed to judge the fix.
+- **Read at speed.** Play the actual delivered asset in the intended player, at target size and speed. Check attention order, time to read, crop and the ending or loop seam. For rendered video, use the [timestamped export checks](VideoDesign.md#inspect-the-export-at-a-timestamp) to locate a suspect cut or hold and replay it at speed.
 - **Try the case that could break it.** For interactive motion, try repeated and rapid activation, cancel or reverse where relevant, and the intended reduced-motion path. For a rendered sequence, inspect the actual first and last frames, transparency or background, and any supplied poster. For example, a panel that reopens during its exit must remain open after the old exit finishes.
 - **Test the delivery mechanism.** Verify duration, timing and rendering in the actual consumer. Check feature support of the chosen player for a vector animation, and measure on representative hardware before claiming smoothness or speed. For repeatability, replay the same sequence with recorded input, timing and device settings. A few keyframes or a still cannot establish playback.
 

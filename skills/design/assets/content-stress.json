@@ -1,0 +1,38 @@
+{
+  "memberRow": {
+    "ordinary": {
+      "id": "member-01",
+      "displayName": "Lina Park",
+      "email": "lina@example.test",
+      "avatarUrl": null
+    },
+    "adverse": {
+      "id": "member-01",
+      "displayName": "👩🏽‍🔬 Noor van der Westhuizen",
+      "email": "regional.operations.coordinator@example.test",
+      "avatarUrl": null
+    }
+  },
+  "fileList": {
+    "ordinary": [
+      { "id": "file-01", "name": "Quote-draft.pdf" },
+      { "id": "file-02", "name": "Quote-signed.pdf" }
+    ],
+    "adverse": [
+      { "id": "file-01", "name": "North-district-equipment-renewal-quotation-2027-draft.pdf" },
+      { "id": "file-02", "name": "North-district-equipment-renewal-quotation-2027-signed.pdf" }
+    ]
+  },
+  "numericTable": {
+    "ordinary": [
+      { "label": "Adjustment", "amountUsdCents": 12500 },
+      { "label": "Balance", "amountUsdCents": 4500 },
+      { "label": "Estimate", "amountUsdCents": 8000 }
+    ],
+    "adverse": [
+      { "label": "Adjustment", "amountUsdCents": -123456789 },
+      { "label": "Balance", "amountUsdCents": 0 },
+      { "label": "Estimate", "amountUsdCents": null }
+    ]
+  }
+}

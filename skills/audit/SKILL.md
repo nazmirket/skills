@@ -11,6 +11,8 @@ Audit owns technical, security and privacy findings on a fixed target. [Design c
 2. Distinguish confirmed defects, supported but unverified risks, and improvements that address a concrete cost such as needless complexity. Prioritize by impact and likelihood. Give each finding a location, trigger, evidence, consequence and next action. Name missing evidence and coverage limits. Say when the reviewed scope has no material findings.
 3. End a review-only request with the report. When corrections are authorized, the work's owner makes and verifies them using the [review loop](../execute/references/ReviewLoop.md).
 
+For a broad assessment or a follow-up review, use the [coverage record](references/ReviewCoverage.md) to show which conclusions still hold at the current revision and which areas remain open.
+
 ## Security and privacy review
 
 Identify protected assets and affected people. Trace trust boundaries and sensitive data from collection to deletion, including secondary copies and external sharing where relevant. Compare intended safeguards with evidence of actual controls. Rank risks by exposure and impact. Use the smallest safe defensive check needed. Bound conclusions about security and compliance to the controls assessed, including when a scan is clean.

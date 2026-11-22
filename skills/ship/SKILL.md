@@ -10,7 +10,7 @@ Ship owns product discovery, requirements and recommendations on strategy, prior
 | Product decision | Guide |
 | --- | --- |
 | Direction, target segment or addressable opportunity | [Product strategy](references/ProductStrategy.md) |
-| User problem or assumption to test | [Discovery](references/Discovery.md) |
+| User problem, demand assumption or manual pilot before building | [Discovery](references/Discovery.md) |
 | Opportunity ranking or roadmap toward a set outcome | [Prioritization](references/Prioritization.md) |
 | Behavior, non-goals and acceptance | [Requirements](references/Requirements.md) |
 | Pricing, packaging or entitlements | [Pricing and packaging](references/PricingAndPackaging.md) |

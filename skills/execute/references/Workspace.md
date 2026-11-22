@@ -5,7 +5,7 @@ Use `.work/` at the project root for agent-owned files. In Git, use the current 
 | Path | What belongs there |
 | --- | --- |
 | `.work/plans/0001-Sales-Contracts/` | Durable [Plan](../../plan/SKILL.md) records: `Evidences.md`, `Scope.md`, `Outcome.md`, `Plan.md`, and `Progress.md`. Short plans can stay in chat. Use a shared project location only when the human asks or the project explicitly requires it. Link related architectural decisions. |
-| `.work/decisions/` | Default location for decision drafts and accepted architecture decision records (ADRs). [Architect](../../architect/SKILL.md#record-the-decision) uses the project's existing decision directory when present. |
+| `.work/decisions/` | First ADR collection for projects without an established location. Save drafts and subsequent ADRs in the project's designated or existing collection, following [Architect's placement and status rules](../../architect/SKILL.md#record-the-decision). |
 | `.work/routines/DeploySkillsWebsite.md` | A reusable project procedure specific to this device. Store each routine directly in `.work/routines/` as one self-contained Markdown file. Give it a descriptive PascalCase filename without a numeric prefix. Include the prerequisites, steps and verification in the same file. Reuse the existing routine across tasks. |
 | `.work/stashes/<task>/` | Temporary file-based snapshots or patches needed to set aside work. Record what they contain and how to restore them. |
 | `.work/recover/<task>/` | A targeted recovery copy of important work at risk of being lost. Record its original path and how to restore it; check the copy before removing the original. This is not a trash folder or a routine backup. |
@@ -29,6 +29,8 @@ Verify the effective rules with `git check-ignore --no-index` on representative 
 
 ## Numbered records
 
-Plans and briefs each have their own sequence per worktree. ADRs use the repository's ADR numbering convention; in a new ADR collection, use the same numbering method as for plans and briefs. Start at `0001`; for a new record use one more than the highest sequence number in that collection, including numbered records moved to its archive. Ignore legacy dates when counting. Use at least four digits, a hyphen and a short title. Follow the project's naming convention for Markdown titles; use PascalCase if none exists, for example `0002-NextjsRewrite.md`. Use short hyphenated titles for plan folders. Put dates inside the record if useful.
+For an established ADR collection, continue its filename, numbering and index conventions. For the first ADR collection in a project, use the sequence below.
+
+Plans, briefs and new ADR collections each start their own sequence at `0001`. Use one more than the highest number in the collection, including its archive. Ignore legacy dates when counting. Use at least four digits, a hyphen and a short title. Follow the project's naming convention for Markdown titles or use PascalCase, for example `0002-NextjsRewrite.md`. Use short hyphenated titles for plan folders. Put dates inside the record if useful.
 
 When resuming work, find and reuse its existing record. Keep its number and path. Coordinate allocations when writers are working in parallel and check the prefix is unused before linking to a new record. Preserve legacy archives and old links when migrating existing records; write only to the canonical destination.

@@ -11,7 +11,7 @@ Clean owns requested cleanup and delivery or pre-commit checks. Skip the deliver
 
 - Inspect the task's changes, direct references and temporary output, or the scope named in a cleanup request. Check for scratch files this task left outside `.work/temp/<task>/` and move any still needed there. Fix stale references in docs and agent instructions. Remove a redundant step only when its replacement demonstrably covers it. Seek approval for changes to verification requirements outside the authorized scope.
 - Delete only verified temporary files from this task unless other deletions are authorized. Preserve unrelated edits, plans, handoffs, historical records and screenshots still needed for delivery, review or handoff. Before deletion, verify that the exact content is recoverable from Git or can be regenerated. Otherwise make and verify a targeted [recovery copy](../execute/references/Workspace.md) with restore instructions.
-- Check the resulting diff and references. Record the checks, results and material limits in the reply or existing task record.
+- Check the final diff against the governing procedure. Reuse evidence that covers the final result, run any missing required check and identify what remains unverified. Report results and material limits in the reply or existing task record.
 
 ## Before an authorized commit
 

@@ -1,27 +1,28 @@
 # Engineering practices
 
-Use the smallest design that makes the required behavior clear, safe to change, and practical to verify. Prefer decisions visible in the code over rules the caller must memorize.
+Apply these principles where the change touches the relevant contract, boundary or state. When they pull in different directions, use the current requirement and a concrete caller or failure case to decide.
 
 ## Start at the contract
 
-- Identify the caller, observable behavior, and constraints: input shape, errors, ordering, compatibility, and resource lifetime. Read one existing caller and test. Preserve behavior that the task did not authorize changing.
+- **Principle of least surprise.** Trace a caller and an existing test where available. Preserve established defaults, output, errors, ordering and side effects unless the task changes them. Match neighboring APIs when adding a new entry point.
 - Parse or validate external data where it enters. Use established types and invariants inside that boundary. Distinguish missing, invalid, and failed when callers act differently. Keep meaningful error details without exposing sensitive data.
 - Where work can fail partway, make the owner of cleanup, cancellation, retry, and limits explicit. Retry only when the operation can safely replay or the contract provides deduplication.
 
-## Choose a pattern for the problem
+## Keep the design proportional
 
-| Pressure | A useful starting point | Common mistake |
-| --- | --- | --- |
-| A rule spans several callers | Put the rule beside the data or operation whose invariant it protects | A general utilities module that hides ownership |
-| Policy changes apart from storage, clock, or network | Keep policy in a deterministic function or module; pass in the effectful dependency at its boundary | Mocking every internal call or introducing an interface per class |
-| Inputs come from two formats or vendors | Translate each input once at an adapter boundary | Propagating provider flags and raw fields through every layer |
-| A workflow has real states and invalid transitions | Use a small explicit set of states and transitions | Several independent booleans, or a state-machine library for a binary choice |
-| Behavior genuinely varies | Pass a function for one operation; use an interface when callers need several related operations | A hierarchy or registry for hypothetical variants |
+- **KISS and YAGNI.** Implement the simplest design that satisfies today's contract. Require a present use for a new layer, dependency or extension point.
+- **Clean Code.** Name functions for the behavior callers can expect. Keep control flow, ownership and side effects easy to trace. Use comments for constraints the code cannot express.
+- **DRY.** Give a shared rule one owner when every caller must change together. Keep similar expressions local when they represent independent rules.
+- **Separation of concerns.** Group code by what changes together. For separation of mechanism and policy, put the decision in one place and pass its result to the operation that carries it out. A retry rule can decide whether to retry while the transport sends the request.
+- **SOLID.** Apply the single responsibility principle (SRP) by giving a module one reason to change. When behavior already varies, extend it at a stable boundary (open/closed), preserve the caller's contract across implementations (Liskov substitution) and expose only the operations each client needs (interface segregation). Apply the dependency inversion principle (DIP) where policy depends on infrastructure by defining the needed operation in policy terms and supplying its implementation at the boundary. A function parameter can suffice.
+- **Design patterns.** Match a pattern to an observed problem. An adapter translates provider formats at entry. A strategy handles interchangeable behavior. Explicit states prevent illegal transitions. Keep a direct implementation when it expresses the rule more clearly.
 
-Group things that change for the same reason. Keep private helpers private. Give modules names that describe capability and functions names that describe what callers can expect. Follow local idioms; extract duplicated code when it encodes the same rule and should change together. Prefer explicit data flow and a few meaningful layers to a chain of forwarding wrappers. Keep a new dependency, migration, or rewrite out of a local change if the existing stack can meet the contract.
+## Protect transactional state
+
+For a persistent change, identify the invariant and what the caller may rely on after success or failure. Apply **ACID** at the transaction boundary. Use atomicity for all-or-nothing writes, enforce consistency with constraints and application rules, choose isolation that preserves the invariant under competing operations and check the store's durability guarantee before acknowledging success. For example, a transfer must preserve the combined balance if the second write fails or another transfer overlaps. For effects outside the transaction, specify how retries or recovery avoid losing or duplicating the effect.
 
 ## Verify the change and its cost
 
-- Choose the narrowest check that could disprove the change. Use a small test for deterministic rules, a real integration check for behavior owned by a database, filesystem or framework, and a user journey when behavior spans those boundaries. Assert results and observable side effects. Test one meaningful adverse case when the change affects errors, cleanup, retries, or timing.
+- Trace the changed path in the diff. Resolve unjustified complexity, duplicated rules and contract surprises before handback. Verify behavior at the narrowest meaningful boundary. Use a deterministic check for a rule, a real integration for storage or framework semantics and a user journey when the contract spans boundaries. Exercise a relevant adverse case, such as an interrupted transaction or two competing writers.
 - Bound work where it grows: input size, concurrency, round trips, copies, and retained memory. Fix the dominant cost first. Batching trades memory and latency for fewer calls; caching trades freshness and invalidation for repeated work; streaming trades simpler code for bounded memory. Keep the tradeoff visible at the owning boundary.
 - Measure before claiming a performance gain. Compare representative inputs, release or production-like builds, and warm/cold conditions as relevant; keep result semantics constant. Report what changed in latency, throughput, resource use, or query count, and use [the measurement method](../../execute/references/MeasuredImprovement.md) when the request requires a formal comparison.

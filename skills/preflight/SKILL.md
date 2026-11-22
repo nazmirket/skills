@@ -15,7 +15,7 @@ State what is ready, missing, incompatible or unknown. Block only work that need
 
 ## Use equivalent evidence
 
-Use an authorized fallback directly when it proves the same requirement. Report where and how the check ran. Ask before substituting weaker or uncertain evidence. A host browser can exercise the same build when a container browser is optional. Keyboard operation requires an interaction check.
+Use an authorized fallback directly when it proves the same requirement. Report where and how the check ran. Ask before substituting weaker or uncertain evidence. A host browser can exercise the same build when a container browser is optional. For keyboard behavior, give the verification owner the working browser and the [interaction check](../design/references/flows/CollectEvidence.md#check-an-interaction).
 
 A local readiness check can use CI's pinned image, dependencies and command when other requirements also match. Identify it as local and keep the CI run unverified.
 

@@ -18,6 +18,6 @@ Market owns marketing strategy, messaging, claims and measurement, including the
 | Search visibility or editorial discovery | [Discovery and SEO](references/DiscoveryAndSeo.md) |
 | Funnel, attribution or experiment measurement | [Measure results](references/Measurement.md) |
 
-Add a guide only for a separate decision. [Search](../search/SKILL.md) supplies external evidence, [Ship](../ship/SKILL.md) supports product decisions and readiness, [Design](../design/SKILL.md) owns visual identity and [Author](../author/SKILL.md) owns general writing.
+Follow the guide for the requested result. Add another when a separate decision needs it. [Search](../search/SKILL.md) supplies external evidence, [Ship](../ship/SKILL.md) supports product decisions and readiness, [Design](../design/SKILL.md) owns visual identity and [Author](../author/SKILL.md) owns general writing.
 
 Return the requested material, its evidence and the decision or signal that would change it. Sending, publishing, spending and collecting new personal data each require authority beyond drafting or planning.

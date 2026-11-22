@@ -15,7 +15,7 @@ Refactor owns structural changes that preserve observable behavior. Keep inciden
 
 ## Simplify and verify
 
-Consolidate copies of a shared rule. Keep logic local where callers or requirements evolve independently. Inspect the diff for scope and unintended changes.
+Apply [Engineering Practices](../code/references/EngineeringPractices.md) to the changed boundary. Consolidate a duplicated rule when its callers must change together. Inspect the diff for a simpler path and unintended contract changes.
 
 If a behavior-preserving refactor uncovers a defect, report it. When the request also authorizes a bounded correction, fix the established contract violation and verify that behavior change separately. [Debug](../debug/SKILL.md) investigates an unclear cause. Ask before changing a product rule.
 

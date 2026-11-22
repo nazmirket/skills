@@ -5,14 +5,14 @@ description: "Use for product discovery, strategy, prioritization, roadmaps, req
 
 # Ship
 
-Ship owns product discovery, requirements and recommendations on strategy, prioritization, readiness and shipped outcomes. The human decides strategy, product rules, pricing and launch commitments. Start with the decision, who it affects, current evidence and the cost of being wrong. Scale the work to that decision.
+Ship owns product discovery, requirements and recommendations on strategy, prioritization, readiness and shipped outcomes. The human decides strategy, product rules, pricing and launch commitments. Identify the decision, who it affects and the cost of being wrong. Follow the matching guide below to determine what evidence the decision needs.
 
 | Product decision | Guide |
 | --- | --- |
 | Direction, target segment or addressable opportunity | [Product strategy](references/ProductStrategy.md) |
 | User problem, demand assumption or manual pilot before building | [Discovery](references/Discovery.md) |
 | Opportunity ranking or roadmap toward a set outcome | [Prioritization](references/Prioritization.md) |
-| Behavior, non-goals and acceptance | [Requirements](references/Requirements.md) |
+| Product requirements | [Scope and acceptance](references/Requirements.md) |
 | Pricing, packaging or entitlements | [Pricing and packaging](references/PricingAndPackaging.md) |
 | Locale scope, adaptation effort or regional acceptance | [Localization brief](references/Localization.md) |
 | Launch readiness, a narrower launch or product retirement | [Delivery and readiness](references/DeliveryAndReadiness.md) |

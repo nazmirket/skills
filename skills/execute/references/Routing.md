@@ -11,15 +11,15 @@ Choose one owner per requested outcome. Honor named skills and existing authorit
 | Choose, keep, adjust or replace a tool or format | [Equip](../../equip/SKILL.md) recommends a choice or bounded pilot. |
 | Check tool or environment readiness | [Preflight](../../preflight/SKILL.md) verifies readiness and handles authorized setup. The verification owner checks behavior. |
 | Set product direction, priorities, requirements, success measures or launch readiness | [Ship](../../ship/SKILL.md) recommends an option. The human makes the product decision. |
-| Choose a lasting system boundary or compare design threats | [Architect](../../architect/SKILL.md) compares designs, [models threats](../../architect/SKILL.md#model-threats-during-design) and records settled boundary changes in an ADR. |
-| Sequence substantial work, coordinate workers or check progress | [Plan](../../plan/SKILL.md) records steps, checks and authority. Use [coordination](../../plan/SKILL.md#coordinate-workers) for assignments and [tracking](../../plan/SKILL.md#track-authorized-work) for status. |
+| Choose a lasting system boundary or compare design threats | [Architect](../../architect/SKILL.md) compares designs, [models threats](../../architect/SKILL.md#model-threats-during-design) and [records settled boundary changes](../../architect/SKILL.md#record-the-decision) in the project’s ADR collection. |
+| Sequence substantial work, coordinate workers or check progress | [Plan](../../plan/SKILL.md) records steps, checks and authority. Use [root-led coordination](../../plan/SKILL.md#coordinate-workers) to delegate separable execution and [tracking](../../plan/SKILL.md#track-authorized-work) for status. |
 
 ## Produce or change the work
 
 | Requested result | Owner and stopping point |
 | --- | --- |
 | Give a routine answer, make a known edit or implement settled requirements without a specialist owner | [Execute](../SKILL.md) delivers and verifies the result. |
-| Get language, framework, database or CLI contract advice | [Code](../../code/SKILL.md) answers the implementation question or advises the implementer. |
+| Get engineering, stack or CLI contract advice | [Code](../../code/SKILL.md) answers the implementation question. Implementers and reviewers apply its [engineering practices](../../code/references/EngineeringPractices.md) to software changes. |
 | Write or review a document, report or in-product instructions, or turn a bug report into a ticket | [Author](../../author/SKILL.md) delivers writing, editorial findings or an [issue draft](../../author/references/IssueTriage.md) with reproduction status and priority. |
 | Position an offer, write marketing copy, plan a campaign or measure conversion | [Market](../../market/SKILL.md) owns the message, distribution and measurement. Ship handles offer changes and Design owns visual identity. |
 | Create visual work or review an interface | [Design](../../design/SKILL.md) delivers the visual result, an [interface concept](../../design/references/flows/Create.md#generate-an-interface-concept) or a [critique](../../design/references/flows/Critique.md) of the rendered design and interactions. For a specific input and outcome, use the [interaction check](../../design/references/flows/CollectEvidence.md#check-an-interaction). |

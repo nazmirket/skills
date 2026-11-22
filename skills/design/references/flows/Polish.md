@@ -4,7 +4,7 @@ Use for an existing result whose direction should stay recognizable. Confirm the
 
 1. Inspect the affected result in use and keep a [high-resolution capture of the whole surface](../tools/Screenshot.md) as the baseline. Identify a visible symptom, its location and the cost to the reader or user.
 2. Change the smallest set of decisions that explains the symptom. Fix one representative instance before propagating a shared rule. Work with actual material, labels and states.
-3. Repeat the same capture and task with matching content, size and state. Inspect the whole result for displaced emphasis and the original detail at readable scale. Check nearby states and narrow reflow. Substantial changes receive a distinct critique.
+3. Repeat the same capture and task with matching content, size and state. Inspect the whole result for displaced emphasis and the original detail at readable scale. Check nearby states and narrow reflow. For substantial changes, run the [critique](Critique.md) and recheck corrections.
 
 ## Unslop an existing design
 

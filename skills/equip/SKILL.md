@@ -17,6 +17,6 @@ Equip owns the recommendation to keep, adjust, pilot or replace a tool or format
 
 For uncertain benefits, report the measured cost of staying or the missing baseline. Explain the alternative's potential benefit. Propose a representative pilot, success threshold and expected effort. Run it only under existing or newly granted authority.
 
-Compare results on the same workload and requirements. Weigh observed gains against setup, compatibility, migration, rollback and ongoing ownership. Use [Test](../test/SKILL.md) for specialist comparisons. Confirm authority before a material switch, cost or expansion of access or data sharing.
+Compare results on the same workload and requirements. For a performance claim, follow the [measurement method](../execute/references/MeasuredImprovement.md). Weigh observed gains against setup, compatibility, migration, rollback and ongoing ownership. Use [Test](../test/SKILL.md) for specialist comparisons. Confirm authority before a material switch, cost or expansion of access or data sharing.
 
 Return the recommendation and the evidence that would change it. When readiness or setup is also in scope, give [Preflight](../preflight/SKILL.md) the chosen tool, environment and required capabilities. Preflight verifies basic function after authorized setup. See [fit scenarios](references/FitScenarios.md) for worked examples.

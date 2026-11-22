@@ -17,6 +17,6 @@ Start with expected behavior, observed behavior and existing evidence. Use [Adap
 
 ## Fix and verify
 
-A diagnosis ends with the cause and evidence. For a repair, make the smallest fix and rerun the check that caught the failure. Ask before changing agreed behavior. Extend an existing test for a regression when it fits. Use a separate test if setup differs or the existing test would become unclear. Run required project checks.
+A diagnosis ends with the cause and evidence. Make the smallest authorized repair, applying [Engineering Practices](../code/references/EngineeringPractices.md) when changing code. Rerun the check that caught the failure. Ask before changing agreed behavior. Extend an existing test for a regression when it fits. Use a separate test if setup differs or the existing test would become unclear. Run required project checks.
 
 Report the cause, fix and results. If the original check is blocked, deliver the in-scope fix with its evidence and the [outstanding check](../test/SKILL.md#run-and-report). [Audit](../audit/SKILL.md#security-and-privacy-review) owns a separate security or privacy assessment and [Migrate](../migrate/SKILL.md) owns persistent-state transitions.

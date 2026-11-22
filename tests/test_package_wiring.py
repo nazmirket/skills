@@ -173,13 +173,30 @@ class PackageWiringTest(unittest.TestCase):
         self.assertEqual((REPO / "instructions/AGENTS.md").read_bytes(), (REPO / "instructions/CLAUDE.md").read_bytes())
 
     def test_global_plugin_reference_paths_resolve(self):
-        references = set()
-        for path in (REPO / "instructions/AGENTS.md", REPO / "instructions/CLAUDE.md"):
-            references.update(re.findall(r"`((?:skills/[a-z][a-z0-9-]*/)?references/[^`]+\.md)`", path.read_text(encoding="utf-8")))
-        self.assertTrue(references, "No plugin reference paths found in global guidance")
-        for reference in references:
-            with self.subTest(reference=reference):
-                self.assertTrue(exact_path_exists(REPO / reference))
+        # Both host templates are identical. Check every packaged guidance path,
+        # including direct skill links and section anchors used without Markdown links.
+        instructions = (REPO / "instructions/AGENTS.md").read_text(encoding="utf-8")
+        targets = re.findall(r"`((?:skills|references)/[^`]+)`", instructions)
+        self.assertTrue(targets)
+        for target in targets:
+            with self.subTest(target=target):
+                path, _, anchor = target.partition("#")
+                destination = REPO / path
+                self.assertTrue(exact_path_exists(destination))
+                if anchor:
+                    self.assertIn(anchor, heading_anchors(destination.read_text(encoding="utf-8")))
+
+    def test_software_change_workflows_route_to_the_shared_engineering_checks(self):
+        # Catalog-wide reachability alone would pass if only Code linked the guide.
+        guide = SKILLS / "code/references/EngineeringPractices.md"
+        for skill in ("execute", "debug", "refactor", "audit", "code"):
+            entry = SKILLS / skill / "SKILL.md"
+            prose = "\n".join(prose_lines(entry.read_text(encoding="utf-8")))
+            with self.subTest(skill=skill):
+                self.assertIn(guide, {
+                    (entry.parent / unquote(target.path)).resolve()
+                    for target in markdown_links(prose) if target.path and not target.scheme
+                })
 
     def test_catalog_matches_skill_metadata_routing_and_documentation(self):
         catalog = {p.name for p in SKILLS.iterdir() if p.is_dir() and not p.name.startswith(".")}

@@ -7,7 +7,7 @@ description: "Use to plan, rehearse, or carry out an authorized persistent-state
 
 Migrate owns persistent data, schema, format or configuration transitions that need separate preservation, compatibility or recovery work. Routine reversible edits stay with their owner. [Architect](../architect/SKILL.md) owns lasting design choices, [Plan](../plan/SKILL.md) coordinates broader work and [Deploy](../deploy/SKILL.md) activates the application.
 
-For overlapping versions or ongoing writes, open [Concurrent transitions](references/ConcurrentTransitions.md) only when compatibility, backfill or catch-up still needs design.
+When versions overlap or writes continue, use [Concurrent transitions](references/ConcurrentTransitions.md) to plan or verify compatibility, backfill and catch-up. Reuse matching rehearsal evidence.
 
 ## Define the transition
 
@@ -18,7 +18,7 @@ For a plan, return the preservation contract, cutover sequence, acceptance check
 
 ## Rehearse and execute
 
-3. Reuse recent rehearsal results when transformation code, source contract and failure conditions match. Rehearse uncovered material risks on representative sanitized copies, using a dry run or preview where feasible. Before mutating the target, demonstrate that restoration or forward repair recovers the required state and invariants. Keep rehearsal files in ignored `.work/temp/` and recovery materials in authorized locations.
+3. Reuse recent rehearsal results when transformation code, source contract and failure conditions match. Rehearse uncovered material risks on representative sanitized copies, using a dry run or preview where feasible. Before mutating the target, demonstrate that restoration or forward repair recovers the required state and invariants. Keep rehearsal files in `.work/temp/<task>/` and recovery materials in authorized locations.
 4. Once prerequisites pass, execute under existing authority. Ask only for decisions outside the agreed target or limits. Use a deterministic transformation. Validate inputs and conflicts before writes and record recoverable checkpoints without sensitive data. Resume from a verified checkpoint under existing authority when retry is safe. Stop affected work if an invariant fails or state or effects are uncertain, even when individual writes are atomic.
 5. Reconcile actual results against independent expectations, through normal consumers where acceptance depends on them. Report deviations, exclusions and failed records separately. Record reconciled state, pending criteria, remaining consumers and recovery options. Retain recovery evidence for the agreed interval or acceptance condition. Retire legacy state only under existing authority after its last consumer leaves and recovery and retention criteria are met.
 

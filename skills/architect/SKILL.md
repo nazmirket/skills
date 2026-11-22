@@ -22,7 +22,7 @@ Identify protected assets, affected people and who crosses each trust or data bo
 
 ## Record the decision
 
-- Return a recommendation in chat. When a saved draft is requested or required, use the project's existing architecture decision directory, defaulting to `.work/decisions/`. Link it from the active plan, if any.
-- For a settled boundary change, follow the project's ADR format and numbering. If there is no ADR location, use `.work/decisions/` and the [numbering rules](../execute/references/Workspace.md#numbered-records). If saving fails, report the intended path.
+- Return an open recommendation in chat unless a saved draft is requested or required. Mark a saved draft as proposed. Record a settled boundary change as an accepted ADR.
+- Before saving either, check the project's instructions, ADR index and existing records. Continue the applicable ADR directory, format and numbering for subsequent decisions. In a monorepo, use the collection that governs the affected component. If the project has no ADR location, start the collection in `.work/decisions/` using the [numbering rules](../execute/references/Workspace.md#numbered-records). Link the saved record from the active plan, if any. If saving fails, report the intended path.
 - Include context, constraints, alternatives, choice, decision-maker, rationale, consequences and known reasons to revisit. Record the setup, commands or steps and observed results behind the decision so a maintainer can reproduce them from the ADR. Label unverified claims, link useful detail and include private material only when authorized.
 - Give the ADR to [Plan](../plan/SKILL.md) for implementation steps and checks when needed. Implementation requires its own authority.

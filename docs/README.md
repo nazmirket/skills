@@ -30,7 +30,7 @@ Use the plugin one request at a time. The [Codex](../instructions/AGENTS.md) and
 
 ## Philosophy
 
-- **Choose guidance for the job.** Pick one primary skill for the requested result. Add another when it supplies a distinct result or check. A small task can stay small.
+- **Choose guidance for the job.** Pick one skill to own the result and follow the linked procedure for the work at hand. Add support for a distinct question or check. A small task can stay small.
 - **Keep consequential choices with the human.** A request to do work and approval of a written plan are separate. Ask for decisions that affect the outcome; proceed with routine choices within the agreed scope.
 - **Verify claims with evidence.** Inspect the actual change, run checks that match the risk, and say what could not be verified. A review or hook reminder does not prove that the work was checked.
 - **Leave enough context to resume.** Keep substantial plans and handoffs in the project's [workspace records](../skills/execute/references/Workspace.md). Record settled architectural decisions in the repository's ADR location, using `.work/decisions/` when the project has none. Keep agent-generated temporary artifacts in `.work/temp/<task>/`. Keep the response focused on what happened and what comes next.
@@ -53,7 +53,7 @@ A skill is a Markdown workflow with a trigger, guidance, and sometimes more deta
 | Review security and privacy or model design threats | [Audit](../skills/audit/SKILL.md#security-and-privacy-review) for findings, [Architect](../skills/architect/SKILL.md#model-threats-during-design) for design decisions |
 | Change persistent state | [Migrate](../skills/migrate/SKILL.md) |
 | Release, roll out, and operate | The task owner prepares and publishes; [Deploy](../skills/deploy/SKILL.md) activates and handles [service health and recovery](../skills/deploy/SKILL.md#operate-and-recover) |
-| Coordinate, hand off, pause, or resume work | [Plan](../skills/plan/SKILL.md#coordinate-workers) coordinates workers; [Brief](../skills/brief/SKILL.md) owns handoffs and continuity |
+| Coordinate, hand off, pause, or resume work | [Plan](../skills/plan/SKILL.md#coordinate-workers) assigns separable plan work to direct workers and verifies the integrated result. [Brief](../skills/brief/SKILL.md) owns handoffs and continuity |
 
 ## From a product decision to a running service
 
@@ -64,7 +64,7 @@ Choose the owner by the requested result. These responsibilities can overlap in 
 | Decide what is worth building or whether a shipped feature helped | The human, supported by Ship | User problem, observed outcomes and options |
 | Prepare positioning and launch communications | Market | Approved offer, audience, claims and distribution plan |
 | Establish a technical approach and sequence substantial work | Architect and Plan | Boundaries, constraints, authority, acceptance and recovery criteria |
-| Implement settled requirements with no specialist owner | Execute, with stack guidance from Code when relevant | Working behavior, focused checks and any required review |
+| Implement settled requirements with no specialist owner | Execute, applying Code’s engineering practices to software changes | Working behavior, focused checks and any required review |
 | Assess security and privacy or model design threats | Audit for review, Architect for design | Trust and data boundaries, evidence about safeguards, open risks and decisions |
 | Harden an authorized target | The implementer | Verified safeguards and preserved legitimate access |
 | Change schemas, data formats or persistent configuration | Migrate | Preserved meaning and access, compatible consumers, reconciled state and recovery |
@@ -79,7 +79,7 @@ For example, a version adding a new persisted field may need Migrate to rehearse
 The repository root is the shared plugin package. [Codex](../.agents/plugins/marketplace.json) and [Claude Code](../.claude-plugin/marketplace.json) marketplace entries both point to it. The canonical [skills catalog](../skills/) is independent of the marketplace descriptors, so future targets can package the same definitions.
 
 - **Skills and references.** Each packaged skill has a `SKILL.md` with its trigger and workflow, plus `agents/openai.yaml` for its Codex display metadata. Skill-specific and shared references cover details such as routing, workspace records, and review loops.
-- **Plugin descriptors and hooks.** [`.codex-plugin/plugin.json`](../.codex-plugin/plugin.json) and [`.claude-plugin/plugin.json`](../.claude-plugin/plugin.json) preserve the same identity and version. The [Codex compatibility layout](../.work/decisions/0003-CodexHookCompatibility.md) keeps hook discovery working in the verified host version. On supported host events, [lifecycle hooks](../CONTRIBUTING.md#lifecycle-hooks) supply routing, communication, and delivery guidance and guard certain commit paths. Hooks depend on host support and trust settings; they cannot guarantee compliance.
+- **Plugin descriptors and hooks.** [`.codex-plugin/plugin.json`](../.codex-plugin/plugin.json) and [`.claude-plugin/plugin.json`](../.claude-plugin/plugin.json) preserve the same identity and version. The [Codex compatibility layout](../.work/decisions/0003-CodexHookCompatibility.md) keeps hook discovery working in the verified host version. On supported host events, [lifecycle hooks](../CONTRIBUTING.md#lifecycle-hooks) supply skill selection, plan coordination and delivery guidance and guard certain commit paths. Hooks depend on host support and trust settings; they cannot guarantee compliance.
 - **Documentation.** The website reads this guide and the packaged skill Markdown at build time. The documentation and the plugin workflows stay in the same repository.
 
 ### Codex setup prompt

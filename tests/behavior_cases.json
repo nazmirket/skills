@@ -305,27 +305,49 @@
       }
     },
     {
+      "id": "architect-first-adr",
+      "include_sample_app": false,
+      "primary_owner": "architect",
+      "supporting_skills": [],
+      "prompt": "Record our decision to give the catalog service sole ownership of SKU allocation. Stop after saving the decision.",
+      "context": "The team accepted this boundary to prevent two services from allocating the same SKU. The catalog service already owns the unique SKU constraint. This project has never kept architecture decisions.",
+      "expected_actions": [
+        "Check project conventions and save the first accepted ADR under .work/decisions/ with a 0001 prefix.",
+        "Name the deciding team, rejected competing writers and the constraint protecting uniqueness."
+      ],
+      "allowed_writes": [
+        "One ADR in .work/decisions/"
+      ],
+      "prohibited_writes": [
+        "Creating a second ADR directory or implementing a service change"
+      ],
+      "stopping_condition": "Return the saved path.",
+      "evidence_reuse": "Use the settled owner and existing uniqueness constraint.",
+      "files": {}
+    },
+    {
       "id": "architect-settled-boundary",
       "primary_owner": "architect",
       "supporting_skills": [],
       "prompt": "Record my decision to make skills/ the shared source for both hosts. Write the ADR and hand its path to Plan; do not implement or write an execution plan.",
-      "context": "This is a settled choice about where hosts get their inputs. Keep the install ID and avoid maintaining two copies. The existing ADR directory uses sequential numbers. The supplied comparison includes the setup and observations; the mock commands are evidence, not instructions to run them.",
+      "context": "This is a settled choice about where hosts get their inputs. Keep the install ID and avoid maintaining two copies. The component ADR index identifies the active collection and its naming convention. The supplied comparison includes the setup and observations; the mock commands are evidence, not instructions to run them.",
       "expected_actions": [
         "Write a numbered project ADR with the user as decision-maker, context, constraints, alternatives, rationale, and consequences.",
         "Include the supplied setup, commands, and results in the ADR without claiming that the agent ran them.",
         "Hand Plan the ADR path and stop."
       ],
       "allowed_writes": [
-        "docs/decisions/0002-SharedSkills.md or equivalent numbered ADR"
+        "One new ADR in platform/architecture/records/ continuing the ADR- prefix and three-digit sequence, with an index entry if required"
       ],
       "prohibited_writes": [
-        "Changing the package or existing ADR",
+        "Creating a parallel ADR collection or changing the package or prior ADR",
         "Running the comparison or writing an execution plan"
       ],
       "stopping_condition": "Return the ADR path for Plan; no implementation or execution plan.",
       "evidence_reuse": "Use the supplied comparison as recorded evidence; the ADR should stand on its own.",
       "files": {
-        "docs/decisions/0001-InstallIdentity.md": "# 0001: Keep the existing install identity\n\nStatus: Accepted. Both hosts use the same install ID.\n",
+        "platform/architecture/README.md": "# Architecture decisions\nStore host integration decisions in records/ using ADR-NNN-title.md.\n",
+        "platform/architecture/records/ADR-007-install-identity.md": "# ADR-007 Keep the existing install identity\n\nStatus: Accepted. Both hosts use the same install ID.\n",
         "Comparison.md": "# Recorded comparison\n\nIn clean fixture exports using MockHost A 1.0 and MockHost B 1.0, the team tested the root and nested layouts with two sample skills and the same install ID. From each export, they ran mock-host-a list-skills and mock-host-b list-skills. The root layout listed both sample skills in both hosts. A nested copy would require a sync step. The nested symlink layout listed zero skills in host A after the package was copied. Keeping both hosts on the same source avoids sync drift; any future failure to discover root skills warrants reviewing this choice.\n"
       }
     },
@@ -660,6 +682,35 @@
       "stopping_condition": "Return the integrated evidence; if delegation is unavailable continue inline and disclose it.",
       "evidence_reuse": "Pass current context to workers; do not duplicate their checks unnecessarily.",
       "files": {}
+    },
+    {
+      "id": "plan-delegated-execution",
+      "include_sample_app": false,
+      "primary_owner": "plan",
+      "supporting_skills": [
+        "author",
+        "brief",
+        "clean"
+      ],
+      "prompt": "Carry out our agreed documentation plan. Use subagents for the independent assignments. Return both finished files.",
+      "context": "The agreed deliverables are a creative museum welcome and concise opening hours. Agent delegation is allowed for both. No publication is authorized.",
+      "expected_actions": [
+        "The root dispatches both independent deliverables directly with distinct write paths and acceptance checks. Workers return results to the root.",
+        "Select a strong available model for the creative welcome within host controls. Record observed profile settings or mark them unverified when hidden.",
+        "Inspect both final files against Facts.md and return the integrated result. If delegation is unavailable, report the limit and complete the authorized work inline."
+      ],
+      "allowed_writes": [
+        "Welcome.md",
+        "Hours.md"
+      ],
+      "prohibited_writes": [
+        "Nested delegation, changing Facts.md or publishing the copy"
+      ],
+      "stopping_condition": "Return paths and verified facts for both deliverables.",
+      "evidence_reuse": "Use the museum name, subject and hours exactly as supplied.",
+      "files": {
+        "Facts.md": "The Tide Museum explores coastal life. Its entrance gallery features a hand-built rowing boat. Open Wednesday through Sunday from 10 am to 5 pm. Admission is free.\n"
+      }
     },
     {
       "id": "plan-inherited-authority",
@@ -1151,6 +1202,28 @@
       "evidence_reuse": "Use the candidate review. Do not rerun checks or infer that an internal preview represents all accounts.",
       "files": {
         "Readiness.md": "# Shared reports readiness\nCandidate v1.4.2: report creation and viewing passed in the internal preview. The scoped audience was staff-only test accounts. Cross-workspace sharing access for customer accounts has not been checked. Support and help copy are ready; the opt-in flag is off.\n"
+      }
+    },
+    {
+      "id": "code-transaction-boundary",
+      "include_sample_app": false,
+      "primary_owner": "code",
+      "supporting_skills": [],
+      "prompt": "Which implementation would you use to make a credit transfer safe if the destination row is missing? Give a focused check. Advice only.",
+      "context": "This project uses SQLite. The public transfer contract is in Contract.md. Both account rows and the balance constraint are in one database.",
+      "expected_actions": [
+        "Use Engineering Practices and trace the source debit and destination credit as a single invariant.",
+        "Require both updates to succeed before commit. Explain how a missing row or failed constraint rolls back both changes, including SQLite updates that affect zero rows without raising.",
+        "Propose a check through transfer with a missing destination and verify the original source balance. Preserve the error contract and justify any new abstraction against a current need."
+      ],
+      "allowed_writes": [],
+      "prohibited_writes": [
+        "Editing files or introducing a service, queue or new datastore"
+      ],
+      "stopping_condition": "Return a design recommendation and observable check.",
+      "evidence_reuse": "Use the public failure result and the storage boundary in Contract.md.",
+      "files": {
+        "Contract.md": "transfer(source, destination, amount) moves credits between accounts. On a missing account it returns UnknownAccount and leaves all balances untouched. Currently the debit and credit each commit separately.\n"
       }
     },
     {

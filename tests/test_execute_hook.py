@@ -11,6 +11,7 @@ HOOKS = ROOT / "hooks"
 EXECUTE = HOOKS / "execute.py"
 SKILL = ROOT / "skills/execute/SKILL.md"
 CLEAN = ROOT / "skills/clean/SKILL.md"
+PLAN = ROOT / "skills/plan/SKILL.md"
 ROUTING = ROOT / "skills/execute/references/Routing.md"
 
 
@@ -39,13 +40,25 @@ class ExecuteHookTest(unittest.TestCase):
                 self.assertIn("within existing authority", output["additionalContext"])
                 self.assertIn("simplest complete path", output["additionalContext"])
                 self.assertIn("return evidence to that owner", output["additionalContext"])
-                self.assertIn("reference needed for the task", output["additionalContext"])
-                self.assertIn("lowercase backticks", output["additionalContext"])
                 self.assertIn("supporting skills only for distinct unresolved questions", output["additionalContext"])
                 self.assertIn(str(SKILL), output["additionalContext"])
                 self.assertIn(str(ROUTING), output["additionalContext"])
                 self.assertTrue(SKILL.is_file())
                 self.assertTrue(ROUTING.is_file())
+
+    def test_both_events_route_plan_execution_and_apply_governing_checks(self):
+        self.assertTrue(PLAN.is_file())
+        for event in ("SessionStart", "UserPromptSubmit"):
+            with self.subTest(event=event):
+                output = invoke({"hook_event_name": event})["hookSpecificOutput"]
+                context = output["additionalContext"]
+                self.assertIn("one owner per outcome", context)
+                self.assertIn("lowercase backticks", context)
+                self.assertIn("skill and reference guidance before acting", context)
+                self.assertIn("governing procedure and checks", context)
+                self.assertIn("If you are the root executing a plan", context)
+                self.assertIn("delegate most separable work", context)
+                self.assertIn(f"{PLAN} when authorized and supported", context)
 
     def test_prompt_context_can_stand_alone_without_echoing_prompt(self):
         output = invoke({"hook_event_name": "UserPromptSubmit", "prompt": "private sample prompt"})["hookSpecificOutput"]
@@ -53,14 +66,11 @@ class ExecuteHookTest(unittest.TestCase):
         context = output["additionalContext"]
         self.assertIn("Execute", context)
         self.assertIn("Keep temporary artifacts in .work/temp/<task>/", context)
-        self.assertIn("one owner per outcome", context)
-        self.assertIn("reference needed for the task", context)
-        self.assertIn("lowercase backticks", context)
         self.assertIn("within scope", context)
         self.assertIn("focused and required checks", context)
         self.assertIn("before delivering edits or artifacts", context)
         self.assertNotIn(str(ROUTING), context)
-        self.assertLess(len(context) - len(str(CLEAN)), 350)
+        self.assertLess(len(context) - len(str(CLEAN)) - len(str(PLAN)), 430)
         self.assertIn(str(CLEAN), context)
         self.assertNotIn("private sample prompt", context)
 

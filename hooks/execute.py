@@ -8,11 +8,15 @@ import sys
 ROOT = Path(__file__).resolve().parent.parent
 EXECUTE = ROOT / "skills" / "execute" / "SKILL.md"
 CLEAN = ROOT / "skills" / "clean" / "SKILL.md"
+PLAN = ROOT / "skills" / "plan" / "SKILL.md"
 ROUTING = ROOT / "skills" / "execute" / "references" / "Routing.md"
 
 SELECTION = (
-    "Choose one owner per outcome. Read missing skill guidance and the reference needed for the task. "
-    "Name selected skills in lowercase backticks, e.g. `execute`."
+    "Choose one owner per outcome. Read missing skill and reference guidance before acting. "
+    "Apply the governing procedure and checks. Name skills in lowercase backticks."
+)
+COORDINATION = (
+    f"If you are the root executing a plan, delegate most separable work per {PLAN} when authorized and supported."
 )
 
 
@@ -20,7 +24,7 @@ def handle(payload):
     event = payload.get("hook_event_name") if isinstance(payload, dict) else None
     if event == "SessionStart":
         context = (
-            f"Apply {EXECUTE} throughout the session. {SELECTION} "
+            f"Apply {EXECUTE} throughout the session. {SELECTION} {COORDINATION} "
             "Take the simplest complete path within existing authority. Run the narrowest meaningful check "
             "plus required checks. Skip routine narration. Report the result, verification and material limits. "
             "Add supporting skills only for distinct unresolved questions; they return evidence to that owner. "
@@ -28,7 +32,7 @@ def handle(payload):
         )
     elif event == "UserPromptSubmit":
         context = (
-            f"Apply Execute. {SELECTION} Keep temporary artifacts in .work/temp/<task>/. "
+            f"Apply Execute. {SELECTION} {COORDINATION} Keep temporary artifacts in .work/temp/<task>/. "
             f"Run focused and required checks within scope. Apply {CLEAN} before delivering edits or artifacts."
         )
     else:

@@ -12,7 +12,11 @@ Use `.work/` at the project root for agent-owned files. In Git, use the current 
 | `.work/briefs/0001-SalesContractsHandoff.md` | Standalone handoff prompts and other briefs without a designated destination. |
 | `.work/temp/<task>/` | Disposable files the agent generates or copies: scratch code, renders, test output and working drafts. Remove your leftovers when no longer needed. |
 
-Before the first project write in a Git worktree, inspect the root `.gitignore`. Create or repair it automatically. Replace a blanket workspace exclusion with these root-relative rules and preserve unrelated entries.
+Before the first project write in a Git worktree, check the project’s workspace policy and effective ignore rules. If the project specifies which records are private or shared, preserve that policy and check the intended scratch path against it. Use `git ls-files` to identify already tracked scratch files and report them before writing there. Leave the index and existing records intact. Resolve the intended path to verify it stays inside the worktree.
+
+### Default Git layout
+
+Use this layout when the project has no explicit workspace policy or has adopted Mirket’s defaults. In the root `.gitignore`, create or repair these root-relative exclusions. Replace a blanket exclusion only under this default policy and preserve unrelated entries.
 
 ```gitignore
 /.work/temp/
@@ -21,7 +25,7 @@ Before the first project write in a Git worktree, inspect the root `.gitignore`.
 /.work/routines/
 ```
 
-Verify the effective rules with `git check-ignore --no-index` on representative files in each listed directory and at the workspace root. The four directories listed in the ignore rules should match. Files directly under `.work/` and records under `plans/`, `briefs/` and `decisions/` should remain visible. If a broader rule also affects other project paths, preserve it and add scoped exceptions for the workspace. Use `git check-ignore -v --no-index` to locate conflicting rules. Use `git ls-files -- .work/temp .work/recover .work/stashes .work/routines` to identify already tracked files in those directories and report them before writing there. Leave existing records and the index intact. Check that the intended workspace path stays inside the worktree when resolving symlinks.
+Verify the effective rules with `git check-ignore --no-index` on representative files in each listed directory and at the workspace root. Under the default layout the four directories listed in the ignore rules should match. Files directly under `.work/` and records under `plans/`, `briefs/` and `decisions/` should remain visible. If a broader rule also affects other project paths, preserve it and add scoped exceptions for the workspace. Use `git check-ignore -v --no-index` to locate conflicting rules.
 
 ## Numbered records
 

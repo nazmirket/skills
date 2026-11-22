@@ -9,7 +9,7 @@ Refactor owns structural changes that preserve observable behavior. Keep inciden
 
 ## Establish what must stay true
 
-- Trace affected callers, outputs, ordering, errors and side effects. Use [Adapt](../adapt/SKILL.md) for missing project facts. If a consumer may rely on undocumented behavior, show the evidence and ask what to preserve. Continue unaffected work.
+- Trace affected callers, outputs, ordering, errors and side effects. Use [Adapt](../adapt/SKILL.md) for a distinct orientation gap. Preserve observed behavior that a consumer relies on. Ask when conflicting contracts or an unavoidable behavior change require a decision. Continue unaffected work.
 - Run existing focused checks and record baseline failures. Proceed past demonstrably unrelated failures. Investigate possible overlap before editing.
 - Add a characterization case for important untested behavior the edit could change. Use the existing test file if it fits. Run the same case before and after.
 
@@ -17,6 +17,6 @@ Refactor owns structural changes that preserve observable behavior. Keep inciden
 
 Consolidate copies of a shared rule. Keep logic local where callers or requirements evolve independently. Inspect the diff for scope and unintended changes.
 
-Fix a bounded, in-scope violation of an established contract. Verify and report that behavior change separately. [Debug](../debug/SKILL.md) investigates an unclear cause. Flag unrelated defects and ask before changing a product rule.
+If a behavior-preserving refactor uncovers a defect, report it. When the request also authorizes a bounded correction, fix the established contract violation and verify that behavior change separately. [Debug](../debug/SKILL.md) investigates an unclear cause. Ask before changing a product rule.
 
 Compare with the baseline and run relevant and required checks. Report what became simpler, what passed and any pre-existing failures. If verification is blocked, hand over the patch with the [outstanding check](../test/SKILL.md#run-and-report). Claim runtime gains only with [comparable measurements](../execute/references/MeasuredImprovement.md).

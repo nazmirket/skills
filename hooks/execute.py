@@ -11,8 +11,8 @@ CLEAN = ROOT / "skills" / "clean" / "SKILL.md"
 ROUTING = ROOT / "skills" / "execute" / "references" / "Routing.md"
 
 SELECTION = (
-    "Choose one Mirket owner per outcome. Read selected skills missing from context. "
-    "Use lowercase backticks: ‘I’ll use `execute` and `design` skills.’"
+    "Choose one owner per outcome. Read missing skill guidance and the reference needed for the task. "
+    "Name selected skills in lowercase backticks, e.g. `execute`."
 )
 
 
@@ -29,8 +29,7 @@ def handle(payload):
     elif event == "UserPromptSubmit":
         context = (
             f"Apply Execute. {SELECTION} Keep temporary artifacts in .work/temp/<task>/. "
-            "Work directly within scope, run focused and required checks, "
-            f"and skip routine narration. Apply {CLEAN} before delivering edits or artifacts."
+            f"Run focused and required checks within scope. Apply {CLEAN} before delivering edits or artifacts."
         )
     else:
         return {}

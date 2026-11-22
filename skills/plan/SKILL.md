@@ -45,4 +45,4 @@ The coordinator alone updates `Progress.md` during execution. Workers report res
 
 For a status request, read the matching record. Report completed, next and blocked work with evidence and decisions needed. Distinguish reported, verified and unknown status. Verify stale claims that affect the next step. Rerun a safe focused check if it would settle the question, or name the gap.
 
-End with the snapshot. Save it only on request, in the matching plan's `Progress.md` or an older plan's existing status location. A status request leaves execution, conversion and approval state as they stand.
+For a status-only request, end with the snapshot. If the human asks for an update during authorized execution, give the snapshot and continue from the current step unless they ask to pause. Save a standalone status update only on request in the matching plan's `Progress.md` or an older plan's existing status location.

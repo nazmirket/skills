@@ -34,5 +34,3 @@ When tokens move between tools, follow one semantic alias through export and imp
 ```
 
 Change the referenced color in one theme and inspect the focused control in each supported theme. Check the recipient's exported token still contains the alias and type when editability is part of the handoff. Flattening the alias to its current color loses that relationship.
-
-Inspect representative real components and combinations, including dense content and conflicting states. Check tokens at the semantic role rather than copying one raw value everywhere. Document what is stable, which extension is allowed, and what is an exception.

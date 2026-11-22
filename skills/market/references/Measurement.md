@@ -9,4 +9,4 @@ Start with the decision the number should change. Define who is eligible, the me
 
 For a conversion event, state the confirmed business transition, unique event key, permitted fields, system of record and expected reporting delay. For a trial booking, an accepted reservation may count once by booking ID. A rejected form counts zero, and a duplicate callback for the same booking counts once. A later cancellation belongs in a separately defined reversal or net-bookings measure. Trace these cases from fixture to report. Respect collection permissions when reconciling analytics with business totals.
 
-Return a concise measurement or tracking plan with event definitions, QA steps, owner and decision rule, or the observed result and limits. Ship owns decisions about whether a product change itself delivers value.
+Return a concise measurement or tracking plan with event definitions, QA steps, owner and decision rule, or the observed result and limits. Give evidence about the value of a product change to [Ship](../../ship/references/ProductReview.md) for the product owner's decision.

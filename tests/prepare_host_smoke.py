@@ -57,7 +57,7 @@ def prepare(case, destination, *, results_dir=None):
         "status": "unverified",
         "host": {"name": None, "version": None, "model": None, "model_driver": None, "catalog_condition": None,
                  "plugin_revision": None, "hook_trust": None, "hooks_enabled": None, "global_mirket_instructions": None},
-        "observed": {"primary_owner": None, "skills_loaded": [], "unnecessary_reads": [], "announcement": None,
+        "observed": {"primary_owner": None, "skills_loaded": [], "references_loaded": [], "unnecessary_reads": [], "announcement": None,
                      "writes": [], "commands": [], "evidence_reused": [], "stop_reason": None},
         "criteria": {key: {"status": "unverified", "evidence": []} for key in (
             "owner", "support_selection", "announcement", "actions", "outcome", "write_scope", "stopping_condition", "evidence_reuse"

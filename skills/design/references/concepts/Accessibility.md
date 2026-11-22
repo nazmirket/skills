@@ -15,4 +15,4 @@ For an editable combobox with a listbox popup, distinguish the active suggestion
 
 Identify the target level and scope of the project's applicable standard. For web content evaluated against WCAG 2.2 AA, normal text generally needs 4.5:1 contrast and large text 3:1. Large text here means at least 18 pt, or 14 pt bold. Apply the relevant criterion and exceptions to the actual state. Also assess non-text contrast, target size, reflow, focus obstruction and alternatives to dragging where applicable. Use platform conventions for native surfaces.
 
-Run the important path with the relevant inputs, preferences and difficult content in the actual preview. Record observed behavior and measurements, then follow [Critique](../flows/Critique.md) for the visual assessment. Name material gaps in assistive technology, device, state or criteria coverage.
+Run the important path with the relevant inputs, preferences and difficult content in the actual preview. Record observed behavior and measurements. Use [Critique](../flows/Critique.md) when the request includes a design assessment. Name material gaps in assistive technology, device, state or criteria coverage.

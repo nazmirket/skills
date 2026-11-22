@@ -18,7 +18,7 @@ Test owns verification of behavior, regressions and performance. Task owners run
 
 If a new failure passes on retry, run one targeted diagnostic when available, such as a trace of the failed browser test. Report each attempt. Give further investigation to [Debug](../debug/SKILL.md) or the task owner.
 
-For a speedup claim, use [repeated comparable measurements](../execute/references/MeasuredImprovement.md) with the same inputs, relevant conditions and verified outputs.
+For a benchmark, use the [measurement method](../execute/references/MeasuredImprovement.md) to define the workload and verify its outputs. A measurement-only request ends with the observed result and its limits. A speedup claim also needs a comparable baseline and repeated measurements under matching conditions.
 
 Report the target, command or steps, input, expected and actual results. Distinguish passes, failures and unverified checks. For a blocker, name the missing capability or target, exact remaining check and expected outcome. Continue available checks and honor environment and release gates. Limit claims to the path exercised, including for a live installation.
 

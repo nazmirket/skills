@@ -10,7 +10,7 @@ Use for an authorized disposable experiment that answers a concrete question. [D
 ## Choose one branch
 
 - For a visual or interaction comparison, follow [Design’s comparison procedure](../../design/references/flows/Create.md#compare-approaches-without-changing-production), including matched examples, keyboard switching and replay.
-- **Logic or state experiment:** Put the rule or model behind a small deterministic boundary, separate from the demo or harness. Expose inputs, actions and resulting state in the decision maker's language. Let them reset and explore freely, and provide repeatable walkthroughs for a normal case, a consequential adverse case and an illegal action. Record what happened and what was supposed to happen; observed behavior does not establish a business rule.
+- **Logic or state experiment:** Put the rule or model behind a small deterministic boundary, separate from the demo or harness. Expose inputs, actions and resulting state in the decision maker's language. Let them reset and explore freely, and cover the smallest set of cases that can settle the question. For a state transition, this may include a rejected action. Record what happened and what was supposed to happen; observed behavior does not establish a business rule.
 
 ## Close with evidence
 

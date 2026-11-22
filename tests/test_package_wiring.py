@@ -88,6 +88,10 @@ def markdown_sources():
     return sorted(paths)
 
 
+def markdown_links(prose):
+    return [urlsplit(url) for url in re.findall(r"\]\(([^\s)]+)\)", prose)]
+
+
 class MarkdownValidationTest(unittest.TestCase):
     def test_exact_case_is_checked_even_on_case_insensitive_filesystems(self):
         with tempfile.TemporaryDirectory() as root:
@@ -183,10 +187,14 @@ class PackageWiringTest(unittest.TestCase):
         routing = SKILLS / "execute/references/Routing.md"
         # A cross-reference to a supporting skill does not give it an owner row.
         owner_links = re.findall(
-            r"^\| [^|\n]+ \| \[[^\]]+\]\(([^\s)#]+/SKILL\.md)(?:#[^)]*)?\)",
+            r"^\| [^|\n]+ \| \[([^\]]+)\]\(([^\s)#]+/SKILL\.md)(?:#[^)]*)?\)",
             routing.read_text(encoding="utf-8"), re.MULTILINE,
         )
-        owners = {(routing.parent / link).resolve() for link in owner_links}
+        owners = set()
+        for label, link in owner_links:
+            target = (routing.parent / link).resolve()
+            self.assertEqual(label.lower(), target.parent.name, f"Wrong owner link: {label} → {link}")
+            owners.add(target)
         self.assertEqual(owners, {SKILLS / name / "SKILL.md" for name in catalog})
         guide = (REPO / "docs/README.md").read_text(encoding="utf-8")
         self.assertEqual(set(re.findall(r"\.\./skills/([^/]+)/SKILL\.md", guide)), catalog)
@@ -212,29 +220,47 @@ class PackageWiringTest(unittest.TestCase):
     def test_local_markdown_links_have_exact_paths_and_valid_anchors(self):
         for path in markdown_sources():
             markdown = "\n".join(prose_lines(path.read_text(encoding="utf-8")))
-            for url in re.findall(r"\]\(([^\s)]+)\)", markdown):
-                target = urlsplit(url)
+            for target in markdown_links(markdown):
                 if target.scheme or target.netloc:
                     continue
                 destination = path.parent / unquote(target.path) if target.path else path
-                with self.subTest(source=path.relative_to(REPO), target=url):
+                with self.subTest(source=path.relative_to(REPO), target=target.geturl()):
                     self.assertTrue(exact_path_exists(destination), f"Missing or incorrectly cased path: {destination}")
                     if target.fragment and destination.suffix.lower() == ".md":
                         self.assertIn(unquote(target.fragment), heading_anchors(destination.read_text(encoding="utf-8")))
 
-    def test_skill_references_stay_inside_the_portable_catalog(self):
+    def test_skill_resources_are_portable_and_reachable(self):
+        links = {}
         for path in SKILLS.rglob("*.md"):
             prose = "\n".join(prose_lines(path.read_text(encoding="utf-8")))
             boundary = SKILLS / "design" if path.relative_to(SKILLS).parts[0] == "design" else SKILLS
+            links[path] = set()
             with self.subTest(source=path.relative_to(SKILLS)):
                 self.assertNotRegex(prose, r"(?i)https?://")
-            for url in re.findall(r"\]\(([^\s)]+)\)", prose):
-                target = urlsplit(url)
-                with self.subTest(source=path.relative_to(SKILLS), target=url):
+            for target in markdown_links(prose):
+                with self.subTest(source=path.relative_to(SKILLS), target=target.geturl()):
                     self.assertFalse(target.scheme or target.netloc, "Skill references must be local")
                     if target.path:
                         destination = (path.parent / unquote(target.path)).resolve()
                         self.assertIn(boundary, destination.parents)
+                        links[path].add(destination)
+
+        # A valid link between two disconnected guides doesn't make either discoverable.
+        # Execute also hosts shared methods reached from another skill's entry point.
+        for entry_point in sorted(SKILLS.glob("*/SKILL.md")):
+            skill = entry_point.parent
+            pending = list(SKILLS.glob("*/SKILL.md")) if skill.name == "execute" else [entry_point]
+            boundary = SKILLS if skill.name == "execute" else skill
+            reached = set()
+            while pending:
+                current = pending.pop()
+                if current not in reached:
+                    reached.add(current)
+                    pending.extend(p for p in links.get(current, ()) if boundary in p.parents)
+            resources = set((skill / "references").rglob("*.md"))
+            if skill.name == "design":
+                resources.update((skill / "assets/content-stress.json", skill / "scripts/full-page.mjs"))
+            self.assertFalse(resources - reached, f"Unreachable from {skill.name}: {sorted(resources - reached)}")
 
 
 if __name__ == "__main__":

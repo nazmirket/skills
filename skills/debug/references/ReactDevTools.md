@@ -7,4 +7,4 @@ Identify the React version, intended renderer, root, dev/production mode, and wh
 - Tune the measured source first: narrow ownership, avoid duplicated derived state, or reduce work in expensive subtrees. Avoid adding memoization solely because a component renders. If using a profiling-enabled build, account for instrumentation overhead and validate on the intended production mode too.
 - For an SSR mismatch, check server output and initial client input before interpreting the later component tree. Source maps and the deployed build must match.
 
-Repeat the same interaction after a change and check visible state, inputs, and network behavior. Record the profiler's build, mode, and sample; use [Chrome DevTools](ChromeDevTools.md) for end-to-end timing.
+Repeat the same interaction after a change and check the affected state and inputs. Record the profiler's build, mode and sample. When component timing leaves a gap, trace the interaction on the affected runtime. For a Chromium browser use [Chrome DevTools](ChromeDevTools.md).

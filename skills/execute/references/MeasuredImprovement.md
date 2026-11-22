@@ -2,7 +2,7 @@
 
 Use for a measurement request or an authorized improvement to latency, throughput, memory, resource use, or another measurable outcome. [Test](../../test/SKILL.md) owns measurements and correctness checks; the implementer owns any authorized product changes. If the problem is an unexplained slowdown, begin with [Debug](../../debug/SKILL.md).
 
-1. Define the metric, target or acceptable tradeoff, representative workload, and correctness guardrails. If a consequential target is missing, ask for it. Keep load, profiling and data use within the authorized environment.
+1. Define the metric, target or acceptable tradeoff, representative workload, and correctness guardrails. A baseline measurement can proceed without a target. Ask about a missing threshold when it changes the acceptance decision. Keep load, profiling and data use within the authorized environment.
 2. Establish a reproducible baseline or use a documented comparable one. Record the code revision or worktree state, workload and data size, environment, run method and relevant conditions (such as warmup, caching or concurrent load). Sample enough to distinguish a useful change from run-to-run noise.
 
 **Measurement only:** Measure the specified target without changing the product. Compare against the requested threshold or an available comparable baseline, verify relevant correctness guardrails, and report the observed result, uncertainty and gaps. If a baseline is missing, report the observed value without claiming an improvement. Stop before the change workflow.

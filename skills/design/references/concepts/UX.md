@@ -16,4 +16,4 @@ Design the states the action can actually reach: starting, loading or saving, em
 
 For a long form, submit two invalid fields alongside a valid entry. A summary can take focus and link to each affected input, with matching field-level messages. Follow each link with the keyboard, correct one field, submit again and check that the remaining error is findable and the valid value survives. Adapt the pattern to the form's length and validation timing.
 
-Trace the entry, user input, response, next step and recovery with realistic data. Check what the person knows before pressing an action and what becomes clear afterward. Preserve input when safe after errors, and surface consequences before hard-to-reverse actions. Avoid claiming that a plausible design has been validated with users unless that evidence exists.
+Report the observed path and recovery. Describe the input method and any user evidence supporting a broader conclusion.

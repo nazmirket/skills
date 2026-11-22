@@ -10,4 +10,4 @@ Identify the builder, supported platforms, registry, and runtime. Separate Docke
 
 ## Check the running image
 
-Run the exact digest on the intended platform with the expected user, storage, and resource limits. Use a non-root process where the app supports it. Make signal delivery and graceful stop explicit; check startup, one user path, and a stop/restart against a disposable fixture. A container health check does not establish that the upstream or proxy can serve users. For a cluster rollout, use [Kubernetes](Kubernetes.md).
+Run the exact digest on the intended platform with the expected user, storage, and resource limits. Use a non-root process where the app supports it. Make signal delivery and graceful stop explicit; check startup, one user path, and a stop/restart against a disposable fixture. A container health check does not establish that the upstream or proxy can serve users. For rollout behavior, use the guide for the actual scheduler, such as [Kubernetes](Kubernetes.md) or [AWS ECS](AWS.md#follow-the-service-that-controls-traffic).

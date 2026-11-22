@@ -19,12 +19,12 @@ Choose one owner per requested outcome. Honor named skills and existing authorit
 | Requested result | Owner and stopping point |
 | --- | --- |
 | Give a routine answer, make a known edit or implement settled requirements without a specialist owner | [Execute](../SKILL.md) delivers and verifies the result. |
-| Get language, framework or database advice | [Code](../../code/SKILL.md) answers the stack question or advises the implementer. |
-| Write or review a document, report or product copy, or triage a bug | [Author](../../author/SKILL.md) delivers writing, editorial findings or an [issue draft](../../author/references/IssueTriage.md) with reproduction status and priority. |
-| Position an offer, shape claims or voice, run a campaign or measure conversion | [Market](../../market/SKILL.md) owns the message, distribution and measurement. Ship handles offer changes and Design owns visual identity. |
-| Create visual work or review an interface | [Design](../../design/SKILL.md) delivers the visual result, an [interface concept](../../design/references/flows/Create.md#generate-an-interface-concept) or a [critique](../../design/references/flows/Critique.md) of the rendered design and interactions. |
+| Get language, framework, database or CLI contract advice | [Code](../../code/SKILL.md) answers the implementation question or advises the implementer. |
+| Write or review a document, report or in-product instructions, or turn a bug report into a ticket | [Author](../../author/SKILL.md) delivers writing, editorial findings or an [issue draft](../../author/references/IssueTriage.md) with reproduction status and priority. |
+| Position an offer, write marketing copy, plan a campaign or measure conversion | [Market](../../market/SKILL.md) owns the message, distribution and measurement. Ship handles offer changes and Design owns visual identity. |
+| Create visual work or review an interface | [Design](../../design/SKILL.md) delivers the visual result, an [interface concept](../../design/references/flows/Create.md#generate-an-interface-concept) or a [critique](../../design/references/flows/Critique.md) of the rendered design and interactions. For a specific input and outcome, use the [interaction check](../../design/references/flows/CollectEvidence.md#check-an-interaction). |
 | Diagnose or fix an observed failure | [Debug](../../debug/SKILL.md) reports the cause and evidence. A repair request continues through the smallest fix and its check. |
-| Simplify existing code | [Refactor](../../refactor/SKILL.md) checks behavior before and after. Verify and report any bounded contract correction separately. |
+| Simplify existing code | [Refactor](../../refactor/SKILL.md) checks behavior before and after. Report defects discovered during a refactor. Verify a correction separately when the request authorizes it. |
 | Change persistent state with compatibility or recovery requirements | [Migrate](../../migrate/SKILL.md) defines what to preserve, proves recovery and reconciles the transition. Routine reversible edits stay with their owner. |
 
 ## Verify, operate and hand off
@@ -44,4 +44,4 @@ Choose one owner per requested outcome. Honor named skills and existing authorit
 
 ## Authorized hardening
 
-The implementer makes the smallest correction that addresses the [finding](../../audit/SKILL.md#security-and-privacy-review). Reuse Test evidence that disallowed access is denied and legitimate behavior still works. Involve Migrate for state transitions and Deploy for rollout. Production changes and shared credential rotation require applicable authority.
+The implementer makes the smallest correction that addresses the [finding](../../audit/SKILL.md#security-and-privacy-review). Reuse Test evidence that disallowed access is denied and legitimate behavior still works. Use Migrate when the fix requires a persistent-state transition, and Deploy when rollout is in scope. Production changes and shared credential rotation require applicable authority.

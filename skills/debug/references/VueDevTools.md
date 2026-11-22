@@ -7,4 +7,4 @@ Confirm the Vue version, application instance, Devtools mode, and whether the sy
 - Use the timeline or installed profiler when an interaction points to mount or update work. Record the same route, data size and interaction before and after. Identify unnecessary update sources or expensive render work before changing reactive depth, state placement, or list rendering.
 - If a component or timeline event is missing, check the installed Vue/Devtools versions and supported debug build. For hydration, compare server HTML and initial client state before relying on the later component tree.
 
-Repeat the actual event or route transition on normal settings. Verify the component and user-visible output; use [Chrome DevTools](ChromeDevTools.md) to check a runtime performance claim on a representative build.
+Repeat the actual event or route transition on normal settings. Verify the component and user-visible output. Check a runtime performance claim on a representative build and affected browser, using [Chrome DevTools](ChromeDevTools.md) for Chromium.

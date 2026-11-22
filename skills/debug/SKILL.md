@@ -9,7 +9,7 @@ Debug owns diagnosis and authorized repair of a concrete failure. [Author](../au
 
 ## Find the cause
 
-Start with expected behavior, observed behavior and existing evidence. Use [Adapt](../adapt/SKILL.md) for missing facts or [Design](../design/SKILL.md) for unclear interaction intent. Before choosing a tool-specific diagnostic or interpreting tool behavior, including saved traces, open the matching [Debug guide](references/README.md). Skip it when the evidence already establishes the cause and no tool-specific check is needed.
+Start with expected behavior, observed behavior and existing evidence. Use [Adapt](../adapt/SKILL.md) for a distinct project-orientation gap or [Design](../design/SKILL.md) for unresolved interaction intent. When a tool-specific diagnostic or interpretation matters, including for a saved trace, use the matching [Debug guide](references/README.md) if available. For an unlisted tool, use its local help or version-matched documentation. Skip tool selection when the evidence already establishes the cause.
 
 - When a focused check and the code establish the cause, skip further investigation.
 - Otherwise use the smallest safe reproduction. Trace a working and a failing run to their first divergence. After two hypotheses fail, use what they ruled out to choose a different check. Run it when it can distinguish the remaining causes within scope. When no such check is available, report the last confirmed event and the evidence or decision needed to proceed.

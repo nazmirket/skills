@@ -1,6 +1,6 @@
 # Debug tool guides
 
-Start with the failure and the next observation that could change the diagnosis. Use the smallest available probe. Open a guide when the tool's behavior or interpretation is material; add another only when the investigation crosses a boundary. Read the actual project version and reproduce the actual execution mode.
+Start with the failure and the next observation that could change the diagnosis. Use the smallest available probe. Open a guide when the tool's behavior or interpretation is material. Add another only for an unresolved boundary. For a saved trace, check its version and execution mode. Reproduce when the existing evidence leaves a material gap.
 
 | Question | Start here |
 | --- | --- |

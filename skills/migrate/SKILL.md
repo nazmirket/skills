@@ -12,7 +12,7 @@ For overlapping versions or ongoing writes, open [Concurrent transitions](refere
 ## Define the transition
 
 1. Identify the stores, source and target versions and authorized environments. Inspect schemas or configuration and representative sanitized records. Agree on invariants, permitted changes, exclusions, conflict handling and acceptance evidence. Resolve ambiguous mappings and business rules before transforming affected state. Preserve identities, permissions, unknown fields and unrelated settings unless the target explicitly changes them.
-2. Trace readers and writers, including jobs and older clients. Choose a single transition when consumers can switch together within interruption and recovery limits. Stage it when coexistence, concurrent writes or recovery requires it. Account for volume, locks and availability. Define checkpoints, stop conditions and any irreversible step. Coordinate cutover with Deploy.
+2. Trace readers and writers, including jobs and older clients. Choose a single transition when consumers can switch together within interruption and recovery limits. Stage it when coexistence, concurrent writes or recovery requires it. Account for volume, locks and availability. Define checkpoints, stop conditions and any irreversible step. Coordinate with Deploy when cutover changes a shared running environment.
 
 For a plan, return the preservation contract, cutover sequence, acceptance checks and recovery method. Rehearsal and execution need authority for those actions.
 

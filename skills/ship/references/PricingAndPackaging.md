@@ -1,6 +1,6 @@
 # Pricing and packaging
 
-Decide what buyers receive and what they pay for. Identify segment, buyer and user, intended value, usage distribution, costs to serve and current terms. Use actual invoices, cohorts and buyer evidence where authorized. Treat stated willingness to pay as weaker than behavior under a real choice.
+Recommend what each package includes and how to price it. Identify segment, buyer and user, intended value, usage distribution, costs to serve and current terms. Use actual invoices, cohorts and buyer evidence where authorized. Treat stated willingness to pay as weaker than behavior under a real choice.
 
 - Compare models on fit and side effects: per-seat for collaboration value when seats track value and marginal fees will not deter useful adoption, usage when customers can predict and control their bill, flat tiers when simplicity matters, or a combination if the tradeoff is justified. Test the model on low, ordinary and heavy usage.
 - Draw package boundaries around genuine needs, cost or support commitments. Name what meters, caps, entitlements, overage, currency, intervals, trials, upgrades and downgrades mean. Model examples and surface surprise bills, stranded users or hidden dependencies.

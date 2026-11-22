@@ -53,6 +53,7 @@ class HostSmokeFixtureTest(unittest.TestCase):
                     self.assertLessEqual({"owner", "support_selection", "announcement", "outcome", "write_scope", "stopping_condition"}, result["criteria"].keys())
                     self.assertIsNone(result["observed"]["primary_owner"])
                     self.assertEqual(result["observed"]["writes"], [])
+                    self.assertEqual(result["observed"]["references_loaded"], [])
                     self.assertIn(case["prompt"], (destination / "Prompt.md").read_text())
                     for relative, digest in result["fixture_sha256"].items():
                         self.assertEqual(hashlib.sha256((destination / relative).read_bytes()).hexdigest(), digest)

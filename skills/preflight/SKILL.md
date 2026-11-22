@@ -21,6 +21,6 @@ A local readiness check can use CI's pinned image, dependencies and command when
 
 ## Set up and hand back
 
-Verify the documented setup command and explain its effects. Install or change the environment only when authorized. If fresh environments routinely lack a tool for normal checks, recommend a shared setup fix and get approval before editing it.
+Verify the documented setup command and explain its effects. Install or change the environment within existing setup authority. If fresh environments routinely lack a tool for normal checks, identify the shared setup fix. Permission for a one-off local installation covers only that environment. Apply the shared fix when authorized.
 
 After setup, verify basic function in the target environment, such as launching the browser and opening the app. Return readiness evidence and the exact check still blocked, if any, to the task owner. For rollout or state transitions, that owner is [Deploy](../deploy/SKILL.md) or [Migrate](../migrate/SKILL.md). The verification owner runs acceptance checks.

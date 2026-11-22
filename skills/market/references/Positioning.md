@@ -7,7 +7,7 @@ Position the offer against what a specific person would do otherwise, including 
 3. Try distinct frames that would change the promise or who hears it. Compare fit with audience language, available proof, team capacity, and what the frame excludes. A claim about being “fastest” needs a defensible benchmark; usefulness for a specific recurring task can be demonstrated without that claim.
 4. Produce a positioning statement: audience and trigger, category or frame, meaningful result, practical difference, proof, and who the offer does not fit. Keep that internal statement separate from public copy.
 
-Verify with targeted comprehension or first-choice conversations: ask people to describe who this is for, what they would compare it to, and what seems unsupported. Record the response, what changed, and the next uncertainty. Search supplies market evidence; Ship owns choices that change the product or its target.
+Use existing customer language to check who would recognize the offer, what they would compare it to and which claim needs proof. If fresh evidence would change the recommendation, propose those questions for a comprehension or first-choice conversation. Conduct outreach only when authorized. Record observed responses and what they change. Search supplies external evidence. Give proposed changes to the product or its target to Ship for a recommendation.
 
 ## Support a buying decision
 

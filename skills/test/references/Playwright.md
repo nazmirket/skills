@@ -21,7 +21,7 @@ test('dismissing the address editor returns focus', async ({ page }) => {
 });
 ```
 
-- **Isolation.** Give each test a fresh context and independent backend records. Reuse authenticated state only while its role and expiry fit. Use separate identities for conflicting writes and keep session files private. Use the real service for the integration under test. Stub an outside dependency for a deliberately controlled case and say what the stub covers.
+- **Isolation.** Use the runner's fresh browser context. A shared read-only fixture can serve several tests. Isolate backend records when tests write or depend on mutable state. Reuse authenticated state only while its role and expiry fit. Use separate identities for conflicting writes and keep session files private. Use the real service for the integration under test. Stub an outside dependency for a deliberately controlled case and say what the stub covers.
 - **Failures.** Run the matching case and project first, then the required browser matrix. Retain a trace on failure or collect one on the first retry. Inspect the failing action, DOM state, relevant console error and network response. Identify which attempt produced the evidence, report a recovered retry as flaky and sanitize artifacts before sharing.
 - **Performance.** Time fixture setup separately from the journey. Check backend capacity and fixture isolation before adjusting worker count or sharding.
 

@@ -40,7 +40,7 @@ After the host stops, compare the transcript, commands and resulting files with 
 
 In the evaluator record, capture actual skill and reference reads, the primary owner, additional skills, writes, commands, evidence reused and stopping reason. When the case depends on a guide, check its path in the transcript or record where the same guidance was already supplied. Mark unobservable reads unverified. Grade unnecessary specialist reads, the lowercase backticked selection announcement and the delivered outcome separately. Review the transcript for access to the rubric, evaluator result or another run's answers. Set `rubric_exposure` to `clear`, `exposed` or `unverified`. Exclude exposed and unobservable runs from blind accuracy and report their counts. Keep explicitly named invocations and implicit discovery in separate totals. A failed criterion makes the case fail. Use `unverified` for missing evidence, with a reason and a link to the evidence available.
 
-Use identical prompts, model, host version, permissions and competing catalog within each comparison. For skill value compare with a no-Mirket baseline. For hook contribution compare the same catalog with hooks off and on. For a wording change vary only that wording. Rotate order, repeat in fresh sessions and report raw counts per host for owner, unnecessary reads, outcome, write scope and stopping point. A two-turn owner change and a resumed session exercise the per-turn reminder. Optional global instructions get their own comparison.
+Use identical prompts, model, host version, permissions and competing catalog within each comparison. For skill value compare with a no-Mirket baseline. For hook contribution compare the same catalog with hooks off and on. For a wording change vary only that wording. Rotate order, repeat in fresh sessions and report raw counts per host for owner, unnecessary reads, outcome, write scope and stopping point. Check owner changes across turns and whether the session pointer is available on resume. Optional global instructions get their own comparison.
 
 For delegated execution, inspect the worker calls, assigned paths, profile settings and integrated files. Record any profile choice the host hides as unverified.
 
@@ -86,8 +86,9 @@ A loopback model stub can request fixed tool calls to check native dispatch and 
 
 | Case | Expected observation |
 | --- | --- |
-| Start a session and explicitly invoke Mirket Audit. | All 20 skills are discoverable; the session hook supplies the routing pointer; Audit loads from the candidate plugin. |
-| Ask for a ticket draft, then ask for the repair in the same session. | Both prompts receive the owner-selection reminder. Observe whether the host moves from Author to Debug and applies Clean to delivery of the edit. Mirket registers no Stop hook. |
+| Start a session and explicitly invoke Mirket Audit. | All 20 skills are discoverable, the session hook points to installed Execute, and Audit loads from the candidate plugin. |
+| Ask for a ticket draft, then ask for the repair in the same session. | Observe whether the host moves from Author to Debug and applies Clean to delivery of the edit. Verify that Mirket registers only SessionStart and PreToolUse. |
+| Resume the session in the host. | Verify the session hook supplies the Execute pointer when the host dispatches SessionStart on resume. |
 | Request a standalone supported `git commit --dry-run`. | It remains a preview and needs neither cleanup acknowledgment nor an absolute target. |
 | Submit a guarded commit without an absolute target. | Hook denies it and explains the explicit-target requirement. No actual commit is required to observe denial. |
 | Force-add a dummy `.work/temp/private.txt` in a second disposable repository, then submit an acknowledged literal commit with that repository's absolute `-C` target. | The hook examines that target and denies the staged private path. A different session directory must not change this result. Never stage real private material for a test. |

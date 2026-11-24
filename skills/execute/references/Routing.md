@@ -1,6 +1,6 @@
 # Choose the workflow by the result
 
-Choose one owner per requested outcome. Honor named skills and existing authority. Apply [Execute](../SKILL.md) throughout. Reuse available evidence. Bring in support when a distinct question, evidence gap or decision could change the result. Give the owner the answer and its limits. Keep agent-owned files in the [project workspace](Workspace.md).
+Match the requested result to an owner and stopping point. [Execute](../SKILL.md) governs shared work.
 
 ## Understand and decide
 

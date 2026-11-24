@@ -5,22 +5,14 @@ description: "Use when asked to check environment readiness, when a tool fails t
 
 # Preflight
 
-Preflight owns environment readiness and authorized setup. Use it for a readiness request or evidence of a setup blocker. Ordinary work can proceed directly.
-
 ## Diagnose the blocker
 
-Identify the target and required capabilities. Reuse [Equip](../equip/SKILL.md)'s tool choice and requirements when available. Inspect only relevant configuration and capabilities with read-only checks that keep secrets private. Follow what actually governs execution, such as a container, lockfile or CI job. Flag conflicting setup guidance. Ask when the conflict changes feasibility or an explicit requirement.
-
-State what is ready, missing, incompatible or unknown. Block only work that needs the missing capability. Continue independent authorized work and available checks.
+Identify the target and required capabilities, using existing [tool requirements](../equip/SKILL.md) where available. Check the configuration that actually governs execution, such as the container, lockfile or CI job. Inspect relevant capabilities without exposing secrets. Flag conflicts that affect feasibility or requirements. Block only dependent work and report what is ready, missing, incompatible or unknown.
 
 ## Use equivalent evidence
 
-Use an authorized fallback directly when it proves the same requirement. Report where and how the check ran. Ask before substituting weaker or uncertain evidence. A host browser can exercise the same build when a container browser is optional. For keyboard behavior, give the verification owner the working browser and the [interaction check](../design/references/flows/CollectEvidence.md#check-an-interaction).
-
-A local readiness check can use CI's pinned image, dependencies and command when other requirements also match. Identify it as local and keep the CI run unverified.
+Use an authorized fallback directly if it proves the same requirement, such as a host browser exercising the same build. Ask before substituting weaker or uncertain evidence. Give the verifier the working browser and [interaction check](../design/references/flows/CollectEvidence.md#check-an-interaction) for keyboard behavior. Report where the check ran. Label a matched local run as local and keep CI execution unverified.
 
 ## Set up and hand back
 
-Verify the documented setup command and explain its effects. Install or change the environment within existing setup authority. If fresh environments routinely lack a tool for normal checks, identify the shared setup fix. Permission for a one-off local installation covers only that environment. Apply the shared fix when authorized.
-
-After setup, verify basic function in the target environment, such as launching the browser and opening the app. Return readiness evidence and the exact check still blocked, if any, to the task owner. For rollout or state transitions, that owner is [Deploy](../deploy/SKILL.md) or [Migrate](../migrate/SKILL.md). The verification owner runs acceptance checks.
+Verify the setup command and its effects before authorized changes. For recurring missing capabilities, identify the shared setup fix and apply it only under authority for that shared environment. Verify basic function in the target. Return readiness evidence and any blocked acceptance check to its owner, including [Deploy](../deploy/SKILL.md) or [Migrate](../migrate/SKILL.md) where applicable.

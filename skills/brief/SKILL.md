@@ -1,28 +1,28 @@
 ---
 name: brief
-description: "Use to hand off work to another agent or session, send a relevant coordination update, or pause and resume work on request."
+description: "Hand off work, send material coordination updates, or pause and resume on request."
 ---
 
 # Brief
 
-Brief owns handoffs, coordination messages, and requested pauses and resumptions. [Plan](../plan/SKILL.md#coordinate-workers) assigns work and chooses who needs a material update.
+[Plan](../plan/SKILL.md#coordinate-workers) assigns work and identifies who needs a material update.
 
 ## Prepare the handoff
 
-Give the recipient the outcome, exact next action, authorized scope and its source, essential evidence and what to recheck. Link accessible plans and results. Copy only what the recipient cannot retrieve or what would materially delay the next action. State evidence limits and omit secrets and unnecessary personal information.
+Give the recipient the outcome, next action, source of authority, evidence limits and checks. Link accessible plans and evidence. Copy only what the recipient needs to act promptly. Omit secrets and unnecessary personal information.
 
-Check current state and authority against the instructions for the next action. Correct routine drift and continue within scope. If sources conflict on the goal, authority, product decision, ownership, interface or acceptance criteria, pause only the affected work and take the evidence to the coordinator or human.
+Verify state and authority for the next action. Correct routine drift within scope. Escalate material conflicts about authority, goal, ownership, interface or acceptance, pausing only affected work.
 
 ## Adapt to the target
 
-- **Future session.** Include the task identity, status and workspace or plan location so work can resume without the old conversation.
-- **Worker.** Specify the owned scope, deliverable, dependencies and checks. Mention parallel work only where it affects the assignment. Report routine corrections.
-- **Coordination update.** Tell affected recipients what changed, how it affects their work and what to do next. Report unconfirmed delivery.
+- **Future session.** Include task identity, status and workspace or plan location.
+- **Worker.** Specify owned scope, deliverable and relevant dependencies. Report routine corrections.
+- **Coordination update.** Give affected recipients the change, impact and next action. Flag unconfirmed delivery.
 
-Use the coordination channel for immediate assignments and updates. For a requested or reusable handoff, use the designated destination or save a [numbered brief](../execute/references/Workspace.md#numbered-records) in `.work/briefs/` at the project root. Get authorization before sending outside the task.
+Use the coordination channel for immediate work. Save a requested or reusable handoff to its designated location or as a [numbered brief](../execute/references/Workspace.md#numbered-records) in `.work/briefs/`. Get authorization before sending outside the task.
 
 ## Pause or resume
 
-On a pause request, stop starting work. Check only what is needed for a reliable resume point. Stop task-owned workers when safe and supported. Leave unsafe-to-interrupt operations running and record what is running or uncertain. For unfinished work, save a numbered brief with current state and next action. Give the human its path and a resume prompt, or the handoff itself if saving fails. If no unfinished work is identifiable, say so and save context only on request. Wait for the human to resume.
+On pause, stop starting work and check only what the resume point requires. Stop task-owned workers when safe and supported. Record operations left running and any uncertainty. For unfinished work, save a numbered brief and give its path and resume prompt, or provide the handoff in chat if saving fails. If there is no identifiable unfinished work, say so and save context only on request. Wait for the human to resume.
 
-On resume, read the named handoff or the one for the clearly identified task. Apply the state and authority checks above, then continue the authorized next action.
+On resume, use the named handoff or the one for the identified task. Verify state and authority, then continue the authorized next action.

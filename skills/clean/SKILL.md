@@ -1,20 +1,20 @@
 ---
 name: clean
-description: "Use for requested cleanup, relevant delivery checks, or a review of an authorized commit."
+description: "Clean up task files, check changed deliverables, or review an authorized commit."
 ---
 
 # Clean
 
-Clean owns requested cleanup and delivery or pre-commit checks. Skip the delivery pass for an answer that made no changes and produced no artifacts.
+Skip delivery cleanup for answers with no changes or artifacts. Combine cleanup with final verification.
 
 ## Before delivery
 
-- Inspect the task's changes, direct references and temporary output, or the scope named in a cleanup request. Check for scratch files this task left outside `.work/temp/<task>/` and move any still needed there. Fix stale references in docs and agent instructions. Remove a redundant step only when its replacement demonstrably covers it. Seek approval for changes to verification requirements outside the authorized scope.
-- Delete only verified temporary files from this task unless other deletions are authorized. Preserve unrelated edits, plans, handoffs, historical records and screenshots still needed for delivery, review or handoff. Before deletion, verify that the exact content is recoverable from Git or can be regenerated. Otherwise make and verify a targeted [recovery copy](../execute/references/Workspace.md) with restore instructions.
-- Check the final diff against the governing procedure. Reuse evidence that covers the final result, run any missing required check and identify what remains unverified. Report results and material limits in the reply or existing task record.
+- Check only the requested scope or the task's diff, direct references and outputs. Fix affected guidance and move needed stray scratch files into `.work/temp/<task>/`. Keep required checks unless coverage is demonstrably equivalent and the change is authorized.
+- Preserve unrelated edits and records or evidence still in use. Delete only verified task leftovers or explicitly authorized paths after confirming exact recovery or regeneration. For irreplaceable content, make and verify a targeted [recovery copy](../execute/references/Workspace.md) with restore instructions.
+- Reuse evidence that covers the final result. Run missing required checks and report remaining limits in the reply or existing task record.
 
 ## Before an authorized commit
 
-- Reuse delivery checks that cover the content being committed. Also inspect nearby docs and agent instructions. Fix inconsistencies the task caused or worsened. Hold the commit while any such issue remains. Report other material pre-existing issues and proceed when the commit checks pass.
-- Inspect staged and unstaged changes. If unrelated work is staged, isolate authorized hunks, even within a shared file, only when you can verify the intended commit and preserve the human's staged and unstaged changes. Stop and show the conflict when hunks overlap or preservation is uncertain.
-- Review staged plans, briefs and decisions with the other project changes. Staged files under `.work/temp/`, `.work/recover/`, `.work/stashes/` or `.work/routines/` require an explicit exception for the exact path. With Mirket's guard active, acknowledge the completed review in a standalone literal command such as `MIRKET_CLEANUP_DONE=1 git -C "/absolute/worktree" commit ...`. The commit itself requires existing authority.
+- Reuse delivery checks and review nearby docs and agent instructions. Hold the commit for inconsistencies caused or worsened by the task. Report other material pre-existing issues.
+- Inspect staged and unstaged changes, including plans, briefs and decisions. Isolate authorized hunks only when the intended commit can be verified and other staged and unstaged work preserved. Stop for overlapping hunks or uncertain preservation.
+- Staged files under `.work/temp/`, `.work/recover/`, `.work/stashes/` or `.work/routines/` require an explicit exception for the exact path. With the guard active and commit authority established, acknowledge completed review in a standalone literal command such as `MIRKET_CLEANUP_DONE=1 git -C "/absolute/worktree" commit ...`.

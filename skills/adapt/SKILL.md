@@ -5,29 +5,20 @@ description: "Use to discover or refresh missing or stale facts about a project,
 
 # Adapt
 
-Adapt owns read-only orientation to a project. [Search](../search/SKILL.md) owns external research. Identify the project and what the next task needs to know. Ask if the target is unclear.
+Identify the project and what the next task needs to know. Keep orientation read-only. Use [Search](../search/SKILL.md) for external research.
 
 ## Build or refresh context
 
-On a new codebase, trace representative paths across the main subsystems before editing. On familiar ground, reuse verified context. Refresh facts affected by the feature, worktree or new evidence. Check the working state and respect existing edits.
+Reuse verified context and refresh facts affected by the task, worktree or new evidence. Read relevant project instructions and guides, then applicable ADRs and successors for intent and rationale. Consult authorized project memory for gaps in substantial or resumed work. Verify material claims in current code or checks. Trace representative entry points, callers, dependencies and outputs where behavior matters.
 
-Consult relevant sources in order.
+For facts in PDFs, spreadsheets or mixed records, use [project evidence](references/ProjectRecords.md).
 
-1. Read project instructions and guides for intended behavior and conventions.
-2. Read applicable architecture decision records (ADRs), their rationale and any successors.
-3. For substantial or resumed work, consult available, authorized project memory. Skip recall for routine tasks. Verify remembered facts that affect the next step.
-4. Trace entry points, callers, dependencies and outputs. Use current code and checks to establish actual behavior.
-
-When a project fact depends on PDFs, spreadsheets or a mixture of local records, use [finding evidence in project records](references/ProjectRecords.md) to locate and reconcile the relevant passages or cells.
-
-Current human instructions and corrections take precedence over stale records. If documented intent and implementation disagree, use the contract established by the current request or applicable decision. Ask which contract governs only when the discrepancy leaves a material choice unresolved.
+Distinguish documented intent, observed behavior and inference. Follow current human instructions and applicable decisions. If conflicting evidence leaves a material contract unresolved, ask which rule governs before dependent work.
 
 ## Carry forward what matters
 
-Reuse established decisions, design direction, patterns and enforced rules. Treat inferred preferences as leads. A correction becomes a project default only when the human repeats or confirms it. Before recording a durable rule, propose its wording and destination and wait for approval. Use only authorized history. Never build a persistent profile.
+Treat inferred preferences as leads. A correction becomes a project default when the human repeats or confirms it. Before recording a durable rule, get approval for wording and destination. Use only authorized history. Never build a persistent profile.
 
 ## Hand off the finding
 
-Stop when the owner has enough evidence. Return facts, constraints and gaps. Give [Debug](../debug/SKILL.md) the expected and observed behavior for a failure or authorized repair. Give [Architect](../architect/SKILL.md) the affected boundaries and observed friction for a design decision. Either handoff can happen within the same agent.
-
-Summarize orientation for the human when requested or when a decision is needed. If a finding changes the approach to authorized work, give a one-line update and continue under its owner.
+Stop when the requested facts, constraints and gaps are clear. Give [Debug](../debug/SKILL.md) expected and observed behavior or [Architect](../architect/SKILL.md) the affected boundaries and friction. Report material changes to the approach and continue authorized work under its owner.

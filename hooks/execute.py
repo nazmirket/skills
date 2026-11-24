@@ -1,43 +1,20 @@
 #!/usr/bin/env python3
-"""Inject Execute guidance at session and turn start."""
+"""Point the session to the installed Execute skill."""
 
 import json
 from pathlib import Path
 import sys
 
-ROOT = Path(__file__).resolve().parent.parent
-EXECUTE = ROOT / "skills" / "execute" / "SKILL.md"
-CLEAN = ROOT / "skills" / "clean" / "SKILL.md"
-PLAN = ROOT / "skills" / "plan" / "SKILL.md"
-ROUTING = ROOT / "skills" / "execute" / "references" / "Routing.md"
-
-SELECTION = (
-    "Choose one owner per outcome. Read missing skill and reference guidance before acting. "
-    "Apply the governing procedure and checks. Name skills in lowercase backticks."
-)
-COORDINATION = (
-    f"If you are the root executing a plan, delegate most separable work per {PLAN} when authorized and supported."
-)
+EXECUTE = Path(__file__).resolve().parents[1] / "skills" / "execute" / "SKILL.md"
 
 
 def handle(payload):
-    event = payload.get("hook_event_name") if isinstance(payload, dict) else None
-    if event == "SessionStart":
-        context = (
-            f"Apply {EXECUTE} throughout the session. {SELECTION} {COORDINATION} "
-            "Take the simplest complete path within existing authority. Run the narrowest meaningful check "
-            "plus required checks. Skip routine narration. Report the result, verification and material limits. "
-            "Add supporting skills only for distinct unresolved questions; they return evidence to that owner. "
-            f"If ownership is unclear, consult {ROUTING}."
-        )
-    elif event == "UserPromptSubmit":
-        context = (
-            f"Apply Execute. {SELECTION} {COORDINATION} Keep temporary artifacts in .work/temp/<task>/. "
-            f"Run focused and required checks within scope. Apply {CLEAN} before delivering edits or artifacts."
-        )
-    else:
+    if not isinstance(payload, dict) or payload.get("hook_event_name") != "SessionStart":
         return {}
-    return {"hookSpecificOutput": {"hookEventName": event, "additionalContext": context}}
+    return {"hookSpecificOutput": {
+        "hookEventName": "SessionStart",
+        "additionalContext": f"Apply `execute` throughout this session ({EXECUTE}). Reuse guidance in context and choose one owner per outcome.",
+    }}
 
 
 if __name__ == "__main__":

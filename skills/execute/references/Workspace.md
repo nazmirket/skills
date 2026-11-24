@@ -4,7 +4,7 @@ Use `.work/` at the project root for agent-owned files. In Git, use the current 
 
 | Path | What belongs there |
 | --- | --- |
-| `.work/plans/0001-Sales-Contracts/` | Durable [Plan](../../plan/SKILL.md) records: `Evidences.md`, `Scope.md`, `Outcome.md`, `Plan.md`, and `Progress.md`. Short plans can stay in chat. Use a shared project location only when the human asks or the project explicitly requires it. Link related architectural decisions. |
+| `.work/plans/0001-Sales-Contracts/Plan.md` | Keep short plans in chat. For a durable [Plan](../../plan/SKILL.md), use one `Plan.md` by default. Keep separate evidence, scope, outcome or progress files when coordination or project convention warrants them. Reuse existing records and link related decisions. Use a shared project location only on request or by project requirement. |
 | `.work/decisions/` | First ADR collection for projects without an established location. Save drafts and subsequent ADRs in the project's designated or existing collection, following [Architect's placement and status rules](../../architect/SKILL.md#record-the-decision). |
 | `.work/routines/DeploySkillsWebsite.md` | A reusable project procedure specific to this device. Store each routine directly in `.work/routines/` as one self-contained Markdown file. Give it a descriptive PascalCase filename without a numeric prefix. Include the prerequisites, steps and verification in the same file. Reuse the existing routine across tasks. |
 | `.work/stashes/<task>/` | Temporary file-based snapshots or patches needed to set aside work. Record what they contain and how to restore them. |

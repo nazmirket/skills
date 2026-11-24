@@ -80,6 +80,8 @@ class CleanupHooksTest(unittest.TestCase):
     def test_unacknowledged_commits_are_blocked(self):
         commands = (
             "git commit -m first",
+            r"g\it commit -m first",
+            "git co'mmit' -m first",
             "git -C /tmp commit -m first",
             "git -c user.name=x commit -m first",
             "env X=1 git commit -m first",
@@ -331,9 +333,11 @@ class CleanupHooksTest(unittest.TestCase):
         self.assertTrue(denied(before_shell("git commit -m '<< note'")))
 
     def test_unparseable_shell_reports_gap(self):
-        result = before_shell("git commit -m 'unclosed")
-        self.assertIn("systemMessage", result)
-        self.assertFalse(denied(result))
+        for command in ("git commit -m 'unclosed", "echo 'unclosed", "echo \\"):
+            with self.subTest(command=command):
+                result = before_shell(command)
+                self.assertIn("systemMessage", result)
+                self.assertFalse(denied(result))
 
     def test_wrapped_commits_report_uncertain_coverage(self):
         for command in ("if git commit -m x; then true; fi", "env -i git commit -m x", "time git commit -m x"):

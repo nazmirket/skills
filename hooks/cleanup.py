@@ -274,6 +274,9 @@ def handle(payload):
     command = tool_input.get("command") if isinstance(tool_input, dict) else None
     if not isinstance(command, str):
         return {"systemMessage": "Mirket could not inspect the shell command for pre-commit cleanup."}
+    # Quotes and escapes can synthesize a commit token or cause a parse warning.
+    if "commit" not in command and not any(marker in command for marker in ("'", '"', "\\")):
+        return {}
     try:
         parts, structural, heredoc, dynamic = split_command(command)
     except ValueError:

@@ -10,9 +10,6 @@ ROOT = Path(__file__).resolve().parents[1]
 HOOKS = ROOT / "hooks"
 EXECUTE = HOOKS / "execute.py"
 SKILL = ROOT / "skills/execute/SKILL.md"
-CLEAN = ROOT / "skills/clean/SKILL.md"
-PLAN = ROOT / "skills/plan/SKILL.md"
-ROUTING = ROOT / "skills/execute/references/Routing.md"
 
 
 def invoke(payload):
@@ -25,57 +22,26 @@ def invoke(payload):
 
 
 class ExecuteHookTest(unittest.TestCase):
-    def test_session_and_prompt_share_execute_hook(self):
+    def test_guidance_runs_at_session_start_only(self):
         hooks = json.loads((HOOKS / "hooks.json").read_text())["hooks"]
-        for event in ("SessionStart", "UserPromptSubmit"):
-            with self.subTest(event=event):
-                commands = [hook["command"] for group in hooks[event] for hook in group["hooks"]]
-                self.assertEqual(commands, ['python3 -I "${CLAUDE_PLUGIN_ROOT}/hooks/execute.py"'])
+        guidance_events = [event for event, groups in hooks.items() for group in groups
+                           for hook in group["hooks"] if "/hooks/execute.py" in hook["command"]]
+        self.assertEqual(guidance_events, ["SessionStart"])
+        self.assertNotIn("UserPromptSubmit", hooks)
 
-    def test_session_context_sets_action_and_final_reporting(self):
+    def test_session_context_points_to_installed_guidance(self):
+        self.assertTrue(SKILL.is_file())
         for source in ("startup", "resume", "compact"):
             with self.subTest(source=source):
                 output = invoke({"hook_event_name": "SessionStart", "source": source})["hookSpecificOutput"]
                 self.assertEqual(output["hookEventName"], "SessionStart")
-                self.assertIn("within existing authority", output["additionalContext"])
-                self.assertIn("simplest complete path", output["additionalContext"])
-                self.assertIn("return evidence to that owner", output["additionalContext"])
-                self.assertIn("supporting skills only for distinct unresolved questions", output["additionalContext"])
-                self.assertIn(str(SKILL), output["additionalContext"])
-                self.assertIn(str(ROUTING), output["additionalContext"])
-                self.assertTrue(SKILL.is_file())
-                self.assertTrue(ROUTING.is_file())
-
-    def test_both_events_route_plan_execution_and_apply_governing_checks(self):
-        self.assertTrue(PLAN.is_file())
-        for event in ("SessionStart", "UserPromptSubmit"):
-            with self.subTest(event=event):
-                output = invoke({"hook_event_name": event})["hookSpecificOutput"]
                 context = output["additionalContext"]
-                self.assertIn("one owner per outcome", context)
-                self.assertIn("lowercase backticks", context)
-                self.assertIn("skill and reference guidance before acting", context)
-                self.assertIn("governing procedure and checks", context)
-                self.assertIn("If you are the root executing a plan", context)
-                self.assertIn("delegate most separable work", context)
-                self.assertIn(f"{PLAN} when authorized and supported", context)
-
-    def test_prompt_context_can_stand_alone_without_echoing_prompt(self):
-        output = invoke({"hook_event_name": "UserPromptSubmit", "prompt": "private sample prompt"})["hookSpecificOutput"]
-        self.assertEqual(output["hookEventName"], "UserPromptSubmit")
-        context = output["additionalContext"]
-        self.assertIn("Execute", context)
-        self.assertIn("Keep temporary artifacts in .work/temp/<task>/", context)
-        self.assertIn("within scope", context)
-        self.assertIn("focused and required checks", context)
-        self.assertIn("before delivering edits or artifacts", context)
-        self.assertNotIn(str(ROUTING), context)
-        self.assertLess(len(context) - len(str(CLEAN)) - len(str(PLAN)), 430)
-        self.assertIn(str(CLEAN), context)
-        self.assertNotIn("private sample prompt", context)
+                self.assertIn(str(SKILL), context)
+                self.assertLess(len(context) - len(str(SKILL)), 160)
 
     def test_unknown_or_invalid_events_have_no_effect(self):
-        for payload in ("", "{", [], {"hook_event_name": "Stop"}):
+        for payload in ("", "{", [], {"hook_event_name": "Stop"},
+                        {"hook_event_name": "UserPromptSubmit", "prompt": "private sample prompt"}):
             with self.subTest(payload=payload):
                 self.assertEqual(invoke(payload), {})
 

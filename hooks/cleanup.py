@@ -3,13 +3,14 @@
 
 import json
 import os
-from pathlib import Path
 import re
 import sys
 from typing import NamedTuple, Optional
 
-SKILL = str(Path(__file__).resolve().parent.parent / "skills" / "clean" / "SKILL.md")
 ASSIGNMENT = re.compile(r"^[A-Za-z_][A-Za-z0-9_]*=.*$", re.DOTALL)
+HEREDOC_COMMIT = re.compile(
+    r"(?m)(?:^|[;&|(`])[ \t]*(?:[^\s;&|()`]+/)?git[ \t]+[^\n;&|()`]*\bcommit\b"
+)
 SYSTEM_PATH = "/usr/bin:/bin"
 SYSTEM_GIT_PATHS = {directory + "/git" for directory in SYSTEM_PATH.split(":")}
 IDENTITY_ENV = {"GIT_AUTHOR_NAME", "GIT_AUTHOR_EMAIL", "GIT_AUTHOR_DATE",
@@ -282,9 +283,11 @@ def handle(payload):
         if commit is not None:
             break
     else:
-        if heredoc and "git" in command and "commit" in command:
+        # The lexer stops at the redirection. Warn on command-shaped text past
+        # that boundary without treating prose in the body as a shell command.
+        if heredoc and "commit" in command and HEREDOC_COMMIT.search(command):
             return {"systemMessage": "Mirket did not fully inspect a shell command containing a heredoc or here-string for pre-commit cleanup."}
-        if any("git" in part and "commit" in part and part[0] not in {"echo", "printf"} for part in parts):
+        if any("git" in part and "commit" in part and part[0] not in {"echo", "printf", "rg", "grep"} for part in parts):
             return {"systemMessage": "Mirket could not determine whether this shell command runs git commit; pre-commit cleanup and staged .work coverage are unknown."}
         return {}
     if len(parts) != 1 or structural:
@@ -295,8 +298,11 @@ def handle(payload):
     if commit.preview:
         return {}
     if not commit.acknowledged:
+        from pathlib import Path
+
+        skill = Path(__file__).resolve().parents[1] / "skills" / "clean" / "SKILL.md"
         return deny(
-            f"Before committing, read {SKILL} and perform its pre-commit review. "
+            f"Before committing, read {skill} and perform its pre-commit review. "
             "Preserve unrelated changes and historical evidence; do not auto-stage. "
             "Then use the acknowledgment and an absolute Git target: "
             "MIRKET_CLEANUP_DONE=1 git -C '/absolute/worktree' commit -m 'message'. "

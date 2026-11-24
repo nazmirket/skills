@@ -284,7 +284,10 @@ class CleanupHooksTest(unittest.TestCase):
         self.assertIn("MIRKET_CLEANUP_DONE=1 git -C", reason)
 
     def test_noncommit_commands_are_neutral(self):
-        for command in ("git status", "echo git commit", "echo 'git commit'", "git show --format=commit"):
+        for command in (
+            "git status", "echo git commit", "echo 'git commit'", "git show --format=commit",
+            "rg -n git commit README.md", "grep -e git -e commit README.md",
+        ):
             with self.subTest(command=command):
                 self.assertEqual(before_shell(command), {})
 
@@ -300,14 +303,24 @@ class CleanupHooksTest(unittest.TestCase):
         self.assertTrue(denied(before_shell("echo ok # note\ngit commit -m first")))
 
     def test_heredoc_is_reported_not_treated_as_executed_commands(self):
-        for command in ("cat <<EOF\ngit commit -m example\nEOF",):
+        for command in (
+            "cat <<EOF\ngit commit -m example\nEOF",
+            "cat <<EOF\n$(git commit -m example)\nEOF",
+            "cat <<'EOF'\nnotes\nEOF\n/usr/bin/git -C /tmp commit -m example",
+        ):
             with self.subTest(command=command):
                 result = before_shell(command)
                 self.assertIn("systemMessage", result)
                 self.assertFalse(denied(result))
 
     def test_ordinary_heredocs_are_quiet(self):
-        self.assertEqual(before_shell("python3 - <<'PY'\nprint('ready')\nPY"), {})
+        for command in (
+            "python3 - <<'PY'\nprint('ready')\nPY",
+            "cat <<'EOF'\nDocument the git commit command.\nEOF",
+            "cat <<'EOF'\ngit status; the commit will be reviewed separately\nEOF",
+        ):
+            with self.subTest(command=command):
+                self.assertEqual(before_shell(command), {})
 
     def test_commit_before_heredoc_is_blocked(self):
         self.assertTrue(denied(before_shell("git commit -F - <<'EOF'\nmessage\nEOF")))

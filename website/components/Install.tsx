@@ -3,12 +3,11 @@
 import { useState } from "react";
 import Link from "next/link";
 
-const hosts = ["Codex", "Claude Code"] as const;
 const methods = ["Agent prompt", "Manual commands"] as const;
-type Host = typeof hosts[number];
+type Host = {name: string; prompt: string; commands: string};
 type Method = typeof methods[number];
 
-function InstallSnippet({host, method, value}: {host: Host; method: Method; value: string}) {
+function InstallSnippet({host, method, value}: {host: string; method: Method; value: string}) {
   const [status, setStatus] = useState<"idle" | "copied" | "error">("idle");
   const isPrompt = method === "Agent prompt";
 
@@ -31,9 +30,10 @@ function InstallSnippet({host, method, value}: {host: Host; method: Method; valu
   </div>;
 }
 
-export default function Install({prompts, commands}: {prompts: Record<Host, string>; commands: Record<Host, string>}) {
-  const [host, setHost] = useState<Host>("Codex");
+export default function Install({hosts}: {hosts: Host[]}) {
+  const [hostIndex, setHostIndex] = useState(0);
   const [method, setMethod] = useState<Method>("Agent prompt");
+  const host = hosts[hostIndex];
 
   return <section id="install" className="install-window" aria-labelledby="install-title">
     <div className="panel-bar install-bar">
@@ -45,8 +45,8 @@ export default function Install({prompts, commands}: {prompts: Record<Host, stri
         <fieldset className="install-choice">
           <legend>Host</legend>
           <div className="install-options-group">
-            {hosts.map(name => <label key={name}>
-              <input type="radio" name="mirket-install-host" checked={host === name} onChange={() => setHost(name)}/>
+            {hosts.map(({name}, index) => <label key={name}>
+              <input type="radio" name="mirket-install-host" checked={hostIndex === index} onChange={() => setHostIndex(index)}/>
               <span>{name}</span>
             </label>)}
           </div>
@@ -61,7 +61,7 @@ export default function Install({prompts, commands}: {prompts: Record<Host, stri
           </div>
         </fieldset>
       </div>
-      <InstallSnippet key={`${host}/${method}`} host={host} method={method} value={method === "Agent prompt" ? prompts[host] : commands[host]}/>
+      <InstallSnippet key={`${host.name}/${method}`} host={host.name} method={method} value={method === "Agent prompt" ? host.prompt : host.commands}/>
       <p className="install-note">Start a fresh session after installation. Review hooks if your host asks you to trust them.</p>
       <p className="install-note"><Link className="text-link" href="/docs/other-agents/">Install skills in other agents <span aria-hidden="true">→</span></Link></p>
     </div>

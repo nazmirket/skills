@@ -2,7 +2,7 @@
 
 <img src="website/public/mirket-sprite.png" alt="Mirket, the pixel-art meerkat mascot" width="64" height="64">
 
-Mirket is an open-source collection of reusable workflows for **Codex** and **Claude Code**. Each skill tells your agent what to inspect, when to ask you for a decision, and how to verify the result. Use it to research a market, plan a change, diagnose a bug, or ship and operate a service.
+Mirket is an open-source collection of reusable workflows for **Codex**, **Claude Code**, and **OpenCode**. Each skill tells your agent what to inspect, when to ask you for a decision, and how to verify the result. Use it to research a market, plan a change, diagnose a bug, or ship and operate a service.
 
 [Browse the skills](https://skills.mirket.dev/#skills) · [Documentation](docs/README.md) · [Routing guide](skills/execute/references/Routing.md)
 
@@ -20,6 +20,12 @@ codex plugin add mirket@mirket
 ```sh
 claude plugin marketplace add nazmirket/skills
 claude plugin install mirket@mirket
+```
+
+**OpenCode 2.4.1+**
+
+```sh
+opencode plugin add github:nazmirket/skills
 ```
 
 Start a fresh session after installing. If your agent asks you to trust hooks, [review what they do](CONTRIBUTING.md#lifecycle-hooks) first. For Cursor, GitHub Copilot, and other hosts, see the [skills-only installation guide](docs/OtherAgents.md).

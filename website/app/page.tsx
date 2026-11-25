@@ -20,9 +20,9 @@ export default function Home() {
           <Mascot/>
           <h1>Good work,<br/><span className="accent">on repeat.</span></h1>
         </div>
-        <p className="hero-description">Mirket gives <strong>Codex</strong> and <strong>Claude Code</strong> reusable playbooks: what to inspect first, when to ask you for a decision, and how to verify the result.</p>
+        <p className="hero-description">Mirket gives <strong>Codex</strong>, <strong>Claude Code</strong>, and <strong>OpenCode</strong> reusable playbooks for what to inspect first, when to ask you for a decision, and how to verify the result.</p>
       </div>
-      <Install {...getInstallGuide()}/>
+      <Install hosts={getInstallGuide()}/>
     </section>
 
     <section id="diagrams" className="section wrap" aria-labelledby="diagram-title">

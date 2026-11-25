@@ -137,8 +137,10 @@ def main():
     assert llms.startswith("# Mirket\n") and all(f"({url})" in llms for url in urls)
 
     docs = Document(OUT / "docs/index.html")
-    assert {"install-mirket", "install-in-codex", "install-in-claude-code", "common-questions"} <= docs.ids
+    assert {"install-mirket", "install-in-codex", "install-in-claude-code", "install-in-opencode",
+            "opencode-setup-prompt", "common-questions"} <= docs.ids
     assert "codex plugin add mirket@mirket" in docs.source
+    assert "opencode plugin add github:nazmirket/skills" in docs.source
     assert "claude plugin install mirket@mirket" in docs.source
 
     other_agents = Document(OUT / "docs/other-agents/index.html")

@@ -1,0 +1,16 @@
+{
+  "name": "mirket",
+  "version": "1.0.2",
+  "description": "20 composable workflows for research, product management, marketing, design, development, verification and operations.",
+  "license": "MIT",
+  "type": "module",
+  "exports": {
+    "./server": "./hooks/opencode.js"
+  },
+  "files": [
+    "hooks/opencode.js",
+    "hooks/execute.py",
+    "hooks/cleanup.py",
+    "skills/"
+  ]
+}

@@ -21,8 +21,8 @@ type PageInfo = {
 
 export const homePage: PageInfo = {
   path: "/",
-  title: "Mirket: Agent Skills for Codex & Claude Code",
-  description: `${skillCount} free, open-source skills for Codex and Claude Code: research, product management, marketing, design, engineering, verification and operations.`,
+  title: "Mirket: Agent Skills for Codex, Claude Code & OpenCode",
+  description: `${skillCount} open-source skills for Codex, Claude Code, and OpenCode covering research, product management, marketing, design, engineering, and operations.`,
   image: cardFile("mirket"),
   cardTitle: "Mirket",
   cardLabel: "OPEN-SOURCE PLUGIN",
@@ -32,7 +32,7 @@ export const homePage: PageInfo = {
 export const docsPage: PageInfo = {
   path: "/docs/",
   title: "Mirket Documentation: Install and Use Agent Skills",
-  description: `Install Mirket in Codex or Claude Code and choose from ${skillCount} skills for research, product management, marketing, design, engineering and operations.`,
+  description: `Install Mirket in Codex, Claude Code, or OpenCode and choose from ${skillCount} skills for research, design, product development, and operations.`,
   image: cardFile("documentation"),
   cardTitle: "Documentation",
   cardLabel: "FIELD GUIDE",
@@ -42,7 +42,7 @@ export const docsPage: PageInfo = {
 export const otherAgentsPage: PageInfo = {
   path: "/docs/other-agents/",
   title: "Install Mirket Skills in Other Agents",
-  description: "Install the shared Mirket catalog in Cursor, Pi, Oh My Pi, GitHub Copilot, Google Antigravity, OpenCode, Hermes Agent, or Muse Code.",
+  description: "Install the shared Mirket catalog in Cursor, Pi, Oh My Pi, GitHub Copilot, Google Antigravity, Hermes Agent, or Muse Code.",
   image: cardFile("other-agents"),
   cardTitle: "Other agents",
   cardLabel: "INSTALLATION",
@@ -55,10 +55,10 @@ export function skillPageInfo(skill: Skill): PageInfo {
   const summary = skill.summary.replace(/[.;]$/, "");
   return {
     path: `/docs/skills/${skill.slug}/`,
-    title: `${skill.name} Skill for Codex & Claude Code | Mirket`,
+    title: `${skill.name} Skill for Coding Agents | Mirket`,
     description: skill.description.length <= 155
       ? skill.description
-      : `${summary} with Mirket ${skill.name}, an open-source skill for Codex and Claude Code.`,
+      : `${summary} with Mirket ${skill.name} for Codex, Claude Code, and OpenCode.`,
     image: cardFile(`skill-${skill.slug}`),
     cardTitle: skill.name,
     cardLabel: "SKILL REFERENCE",
@@ -145,7 +145,7 @@ export function pageGraph(page: PageInfo, breadcrumbs?: readonly Breadcrumb[]) {
       codeRepository: repo,
       license: `${repo}/blob/main/LICENSE`,
       version: JSON.parse(readSource(".codex-plugin/plugin.json")).version,
-      runtimePlatform: ["Codex", "Claude Code"],
+      runtimePlatform: ["Codex", "Claude Code", "OpenCode"],
       isAccessibleForFree: true,
     },
   ] : isDocs ? [

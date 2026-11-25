@@ -1,10 +1,10 @@
 # Mirket documentation
 
-Mirket is a free, open-source plugin with 20 skills for Codex and Claude Code. Its workflows cover research, product management, marketing, planning, design, engineering, verification, and operations.
+Mirket is a free, open-source plugin with 20 skills for Codex, Claude Code, and OpenCode. Its workflows cover research, product management, marketing, planning, design, engineering, verification, and operations.
 
 ## Install Mirket
 
-For Codex or Claude Code, add the Mirket marketplace, install `mirket@mirket`, and start a fresh session. For other targets, follow the [skills-only installation guide](OtherAgents.md).
+Choose your host and start a fresh session after installation. For other targets, follow the [skills-only installation guide](OtherAgents.md).
 
 ### Install in Codex
 
@@ -20,7 +20,17 @@ claude plugin marketplace add nazmirket/skills
 claude plugin install mirket@mirket
 ```
 
-If your host asks you to trust hooks, [review what they do](../CONTRIBUTING.md#lifecycle-hooks). You can also use the [Codex setup prompt](#codex-setup-prompt) or the [Claude Code setup prompt](#claude-code-setup-prompt).
+### Install in OpenCode
+
+Use OpenCode 2.4.1 or later and make Python 3.8 or later available to OpenCode for the lifecycle hooks.
+
+```sh opencode-install
+opencode plugin add github:nazmirket/skills
+```
+
+Restart OpenCode. Run `opencode plugin list` to check for `mirket`, then ask OpenCode to load `adapt` with its `skill` tool. To remove the plugin, run `opencode plugin remove github:nazmirket/skills` and restart OpenCode.
+
+If your host asks you to trust hooks, [review what they do](../CONTRIBUTING.md#lifecycle-hooks). You can also use a setup prompt for [Codex](#codex-setup-prompt), [Claude Code](#claude-code-setup-prompt), or [OpenCode](#opencode-setup-prompt).
 
 ## Purpose
 
@@ -76,10 +86,10 @@ For example, a version adding a new persisted field may need Migrate to rehearse
 
 ## Architecture
 
-The repository root is the shared plugin package. [Codex](../.agents/plugins/marketplace.json) and [Claude Code](../.claude-plugin/marketplace.json) marketplace entries both point to it. The canonical [skills catalog](../skills/) is independent of the marketplace descriptors, so future targets can package the same definitions.
+The repository root is the shared plugin package. [Codex](../.agents/plugins/marketplace.json) and [Claude Code](../.claude-plugin/marketplace.json) marketplace entries both point to it. OpenCode installs the [JavaScript package](../package.json) directly from Git and loads the same [skills catalog](../skills/).
 
 - **Skills and references.** Each packaged skill has a `SKILL.md` with its trigger and workflow, plus `agents/openai.yaml` for its Codex display metadata. Skill-specific and shared references cover details such as routing, workspace records, and review loops.
-- **Plugin descriptors and hooks.** [`.codex-plugin/plugin.json`](../.codex-plugin/plugin.json) and [`.claude-plugin/plugin.json`](../.claude-plugin/plugin.json) preserve the same identity and version. The [Codex compatibility layout](../.work/decisions/0003-CodexHookCompatibility.md) keeps hook discovery working in the verified host version. The [lifecycle hooks](../CONTRIBUTING.md#lifecycle-hooks) point to Execute at session start and guard supported commit commands. Hook execution depends on host support and trust settings.
+- **Plugin descriptors and hooks.** Each package uses the same identity and version. The [Codex compatibility layout](../.work/decisions/0003-CodexHookCompatibility.md) keeps hook discovery working. The [OpenCode adapter](../hooks/opencode.js) supplies the Execute pointer to session model context and runs the shared Git commit guard for OpenCode's `shell` tool. See the [lifecycle hooks](../CONTRIBUTING.md#lifecycle-hooks) for details.
 - **Documentation.** The website reads this guide and the packaged skill Markdown at build time. The documentation and the plugin workflows stay in the same repository.
 
 ### Codex setup prompt
@@ -98,9 +108,17 @@ Paste this into Claude Code to install Mirket.
 Add nazmirket/skills as a Claude Code plugin marketplace, install mirket@mirket, and verify the installation. Tell me how to start a fresh Claude Code session and verify what was installed.
 ```
 
+### OpenCode setup prompt
+
+Paste this into OpenCode to install Mirket.
+
+```text opencode-setup
+Check that OpenCode is 2.4.1 or later and Python 3.8 or later is available. Run opencode plugin add github:nazmirket/skills to install Mirket. Tell me how to restart OpenCode, verify the plugin is installed, and load the adapt skill.
+```
+
 ## Common questions
 
-### What does Mirket add to Codex or Claude Code?
+### What does Mirket add to Codex, Claude Code, or OpenCode?
 
 Mirket adds reusable Markdown workflows to your existing coding agent. Each skill explains when to use it, what steps to follow, and what evidence to check. Mirket does not provide a model or run as a standalone coding agent.
 
@@ -110,7 +128,7 @@ Ask for the result you want, or name the skill directly. For example, “Use Mir
 
 ### Is Mirket free to use at work?
 
-Yes. Mirket is free to use, modify, and redistribute, including commercially, under the [MIT License](../LICENSE). Your Codex or Claude Code access is separate.
+Yes. Mirket is free to use, modify, and redistribute, including commercially, under the [MIT License](../LICENSE). Access to your agent and model provider is separate.
 
 ### What is the difference between Test and Audit?
 

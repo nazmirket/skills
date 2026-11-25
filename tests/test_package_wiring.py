@@ -169,6 +169,18 @@ class PackageWiringTest(unittest.TestCase):
         for key in ("logo", "composerIcon"):
             self.assertTrue(exact_path_exists(REPO / codex["interface"][key]))
 
+    def test_opencode_exports_an_adapter_and_ships_the_shared_runtime(self):
+        codex = read_json(REPO / ".codex-plugin/plugin.json")
+        opencode = read_json(REPO / "package.json")
+        for key in ("name", "version", "license", "description"):
+            self.assertEqual(codex[key], opencode[key], key)
+        entry = opencode["exports"]["./server"]
+        self.assertEqual(entry, "./hooks/opencode.js")
+        for path in ("hooks/opencode.js", "hooks/execute.py", "hooks/cleanup.py", "skills/"):
+            with self.subTest(path=path):
+                self.assertIn(path, opencode["files"])
+                self.assertTrue(exact_path_exists(REPO / path))
+
     def test_global_guidance_agrees(self):
         self.assertEqual((REPO / "instructions/AGENTS.md").read_bytes(), (REPO / "instructions/CLAUDE.md").read_bytes())
 

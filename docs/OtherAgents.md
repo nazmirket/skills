@@ -1,8 +1,8 @@
 # Install Mirket in other agents
 
-Use Mirket's Markdown skills in [Cursor](#cursor), [Pi](#pi), [Oh My Pi](#oh-my-pi), [GitHub Copilot](#github-copilot), [Google Antigravity](#google-antigravity), [OpenCode](#opencode), [Hermes Agent](#hermes-agent), or [Muse Code](#muse-code).
+Use Mirket's Markdown skills in [Cursor](#cursor), [Pi](#pi), [Oh My Pi](#oh-my-pi), [GitHub Copilot](#github-copilot), [Google Antigravity](#google-antigravity), [Hermes Agent](#hermes-agent), or [Muse Code](#muse-code).
 
-These installs make the catalog available inside one project. They do not install Mirket's lifecycle hooks, commit guard, or global instructions. Use the [native plugins](README.md#install-mirket) for Codex and Claude Code.
+These installs make the catalog available inside one project. The [native plugins](README.md#install-mirket) for Codex, Claude Code, and OpenCode also provide lifecycle hooks and the commit guard.
 
 ## Install the shared catalog
 
@@ -12,7 +12,7 @@ From your project root, run:
 npx skills add nazmirket/skills --skill '*' --agent universal
 ```
 
-The [skills installer](https://github.com/vercel-labs/skills/blob/main/docs/commands.md) uses Node.js and npm. Its [Universal target](https://github.com/vercel-labs/skills/blob/main/docs/agents.md) installs to `.agents/skills/`, which all eight agents can discover. Install the full catalog so links between skills resolve.
+The [skills installer](https://github.com/vercel-labs/skills/blob/main/docs/commands.md) uses Node.js and npm. Its [Universal target](https://github.com/vercel-labs/skills/blob/main/docs/agents.md) installs to `.agents/skills/`, which the agents listed here can discover. Install the full catalog so links between skills resolve.
 
 ## Verify in your agent
 
@@ -40,7 +40,7 @@ Start from the workspace root. Check the app's **Customizations → Skills** or 
 
 ### OpenCode
 
-OpenCode searches `.agents/skills/` as a project compatibility location. Ask OpenCode to load the skill ID `adapt` with its `skill` tool and confirm it can see the project copy. See [OpenCode skill discovery and permissions](https://opencode.ai/docs/skills/).
+OpenCode has a [native Mirket plugin](README.md#install-in-opencode). For a project-only catalog, the Universal installer above also works through OpenCode's `.agents/skills/` compatibility location. Ask OpenCode to load `adapt` with its `skill` tool and confirm it can see the project copy. See [OpenCode skill discovery and permissions](https://opencode.ai/docs/skills/).
 
 ### Hermes Agent
 

@@ -18,6 +18,7 @@ export default function Documentation() {
       ["architecture", "Architecture"],
       ["codex-setup-prompt", "Codex prompt"],
       ["claude-code-setup-prompt", "Claude Code prompt"],
+      ["opencode-setup-prompt", "OpenCode prompt"],
       ["common-questions", "Common questions"],
     ]}/>
     <div className="docs-content">

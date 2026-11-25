@@ -18,14 +18,17 @@ export function readSource(path: string) {
 
 export function getInstallGuide() {
   const source = readSource(guidePath);
-  const snippets = new Map([...source.matchAll(/^```(?:text|sh) ((?:codex|claude-code)-(?:setup|install))\r?\n([\s\S]+?)\r?\n```[ \t]*$/gm)].map(([, key, value]) => [key, value]));
-  function getPair(kind: "setup" | "install") {
-    const codex = snippets.get(`codex-${kind}`);
-    const claude = snippets.get(`claude-code-${kind}`);
-    if (!codex || !claude) throw new Error(`Missing ${kind} snippet in ${guidePath}`);
-    return {Codex: codex, "Claude Code": claude};
+  const snippets = new Map([...source.matchAll(/^```(?:text|sh) ([a-z-]+-(?:setup|install))\r?\n([\s\S]+?)\r?\n```[ \t]*$/gm)].map(([, key, value]) => [key, value]));
+  function getSnippet(key: string) {
+    const value = snippets.get(key);
+    if (!value) throw new Error(`Missing ${key} snippet in ${guidePath}`);
+    return value;
   }
-  return {prompts: getPair("setup"), commands: getPair("install")};
+  return [["Codex", "codex"], ["Claude Code", "claude-code"], ["OpenCode", "opencode"]].map(([name, id]) => ({
+    name,
+    prompt: getSnippet(`${id}-setup`),
+    commands: getSnippet(`${id}-install`),
+  }));
 }
 
 export function getSkills() {

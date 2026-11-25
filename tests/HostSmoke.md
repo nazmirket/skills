@@ -18,7 +18,7 @@ For a blind routing trial, supply an unpublished case catalog using `--cases`. U
 
 ```sh
 mkdir /absolute/disposable/runtime
-git archive HEAD -- .agents/plugins .claude-plugin .codex-plugin assets hooks references skills LICENSE | tar -x -C /absolute/disposable/runtime
+git archive HEAD -- .agents/plugins .claude-plugin .codex-plugin assets hooks references skills LICENSE package.json | tar -x -C /absolute/disposable/runtime
 ```
 
 Launch the intended host in the prepared workspace with the candidate plugin. Submit `Prompt.md`. Record host, model, candidate identity, plugin path, enabled hooks and trust. Start without optional global Mirket instructions when testing the package alone. Use a fresh workspace for each run.
@@ -31,6 +31,8 @@ codex plugin add mirket@mirket
 ```
 
 After editing a candidate at the same version, use `codex plugin remove mirket@mirket` and reinstall in that disposable home, then compare installed files with source. Do not modify the cache directly. For Claude Code, `claude --plugin-dir /absolute/clean-mirket-candidate` loads the local candidate for that session. Keep unrelated MCP/capture configuration out of disposable evaluations, and review hook trust through the host; do not bypass it. A successful plugin install or unauthenticated startup only establishes discovery/startup evidence, not model behavior.
+
+For OpenCode 2.4.1 or later, point `XDG_CONFIG_HOME`, `XDG_CACHE_HOME`, `XDG_DATA_HOME`, and `XDG_STATE_HOME` at disposable directories. For a local candidate, add its directory to the `plugins` array in the disposable `opencode.json`. To test Git installation, run `opencode plugin add` with the candidate's Git specifier. Start a fresh OpenCode server or session. Verify `mirket` with `opencode plugin list` and inspect the catalog using `opencode api skill.list` against the running server. Use the `skill` tool to load a skill by ID and verify its directory and references come from the candidate.
 
 A case may exercise a particular skill without explicitly naming it. Record the skill actually loaded from the transcript, not just the skill the response claims to have used. If the host cannot expose that evidence, mark ownership unverified. A scenario's hypothetical unavailable capability is a constraint for that case; do not install a tool merely to erase the test.
 
@@ -80,15 +82,15 @@ Check that each prompt distinguishes its intended outcome from neighboring skill
 
 ## Lifecycle hook checks
 
-Run these in fresh Codex and Claude Code sessions against the candidate, using disposable projects and dummy data. Record actual hook events and decisions when the host exposes them. These checks supplement the behavioral cases.
+Run these in fresh Codex, Claude Code, and OpenCode sessions against the candidate, using disposable projects and dummy data. Record actual hook events and decisions when the host exposes them. These checks supplement the behavioral cases.
 
 A loopback model stub can request fixed tool calls to check native dispatch and enforcement reproducibly. Label the model as scripted and inspect the host's event and tool result for each call. Use real model sessions to grade skill selection, the delivered result and the stopping point.
 
 | Case | Expected observation |
 | --- | --- |
 | Start a session and explicitly invoke Mirket Audit. | All 20 skills are discoverable, the session hook points to installed Execute, and Audit loads from the candidate plugin. |
-| Ask for a ticket draft, then ask for the repair in the same session. | Observe whether the host moves from Author to Debug and applies Clean to delivery of the edit. Verify that Mirket registers only SessionStart and PreToolUse. |
-| Resume the session in the host. | Verify the session hook supplies the Execute pointer when the host dispatches SessionStart on resume. |
+| Ask for a ticket draft, then ask for the repair in the same session. | Observe whether the host moves from Author to Debug and applies Clean to delivery of the edit. Verify that Mirket supplies the Execute pointer and guards shell commits. |
+| Resume the session in the host. | Verify the Execute pointer when Codex or Claude Code dispatches SessionStart or when OpenCode builds model context for the resumed session. |
 | Request a standalone supported `git commit --dry-run`. | It remains a preview and needs neither cleanup acknowledgment nor an absolute target. |
 | Submit a guarded commit without an absolute target. | Hook denies it and explains the explicit-target requirement. No actual commit is required to observe denial. |
 | Force-add a dummy `.work/temp/private.txt` in a second disposable repository, then submit an acknowledged literal commit with that repository's absolute `-C` target. | The hook examines that target and denies the staged private path. A different session directory must not change this result. Never stage real private material for a test. |

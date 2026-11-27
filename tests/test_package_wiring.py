@@ -184,6 +184,11 @@ class PackageWiringTest(unittest.TestCase):
     def test_global_guidance_agrees(self):
         self.assertEqual((REPO / "instructions/AGENTS.md").read_bytes(), (REPO / "instructions/CLAUDE.md").read_bytes())
 
+    def test_portable_catalog_and_standalone_design_carry_the_license(self):
+        notice = (REPO / "LICENSE").read_bytes()
+        for folder in ("design", "execute"):
+            self.assertEqual((SKILLS / folder / "LICENSE").read_bytes(), notice)
+
     def test_global_plugin_reference_paths_resolve(self):
         # Both host templates are identical. Check every packaged guidance path,
         # including direct skill links and section anchors used without Markdown links.

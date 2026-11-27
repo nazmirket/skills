@@ -28,7 +28,7 @@ Use OpenCode 2.4.1 or later and make Python 3.8 or later available to OpenCode f
 opencode plugin add github:nazmirket/skills
 ```
 
-Restart OpenCode. Run `opencode plugin list` to check for `mirket`, then ask OpenCode to load `adapt` with its `skill` tool. To remove the plugin, run `opencode plugin remove github:nazmirket/skills` and restart OpenCode.
+To upgrade this installation, run `opencode plugin update github:nazmirket/skills`. In a fresh session, check `opencode plugin list` for `mirket`, the GitHub source and the expected revision. If the first list is empty, retry against the same running server for up to 30 seconds. Ask OpenCode to load the Mirket `adapt` entry and confirm its path is inside the installed package. Existing skills keep their IDs on a collision; the Mirket entry gets a `mirket-` prefix until its ID is free. If the source, revision or path still differs, the installation is unverified. To remove the plugin, run `opencode plugin remove github:nazmirket/skills`.
 
 If your host asks you to trust hooks, [review what they do](../CONTRIBUTING.md#lifecycle-hooks). You can also use a setup prompt for [Codex](#codex-setup-prompt), [Claude Code](#claude-code-setup-prompt), or [OpenCode](#opencode-setup-prompt).
 

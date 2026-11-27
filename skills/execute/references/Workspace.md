@@ -1,6 +1,6 @@
 # Project workspace
 
-Use `.work/` at the project root for agent-owned files. In Git, use the current worktree root (`git rev-parse --show-toplevel`), including from a nested directory; for non-Git work, use the project root selected by the human. Put every agent-created temporary artifact in `.work/temp/<task>/` from the first write. Point scratch scripts, tool output, captures, logs and intermediate exports there before running the tool. Use designated paths for deliverables, maintained fixtures and docs. Create only the directories you need.
+Use the project's designated locations. Mirket's default scratch location is `.work/temp/<task>/` at the current worktree root (`git rev-parse --show-toplevel`), or at the project root for non-Git work. Point scratch scripts, tool output, captures, logs and intermediate exports at the verified private location before running the tool. Use designated paths for deliverables, maintained fixtures and docs. An ordinary edit that needs no scratch data needs no workspace setup.
 
 | Path | What belongs there |
 | --- | --- |
@@ -12,11 +12,11 @@ Use `.work/` at the project root for agent-owned files. In Git, use the current 
 | `.work/briefs/0001-SalesContractsHandoff.md` | Standalone handoff prompts and other briefs without a designated destination. |
 | `.work/temp/<task>/` | Disposable files the agent generates or copies: scratch code, renders, test output and working drafts. Remove your leftovers when no longer needed. |
 
-Before the first project write in a Git worktree, check the project’s workspace policy and effective ignore rules. If the project specifies which records are private or shared, preserve that policy and check the intended scratch path against it. Use `git ls-files` to identify already tracked scratch files and report them before writing there. Leave the index and existing records intact. Resolve the intended path to verify it stays inside the worktree.
+Before creating scratch data in a Git worktree, resolve its destination, confirm it stays inside the intended worktree, and verify effective ignores with `git check-ignore --no-index`. Use `git ls-files` to detect already tracked scratch paths; leave them untouched. If the destination is not private, use an authorized private alternative or ask before changing project policy. Preserve existing shared records and the index.
 
 ### Default Git layout
 
-Use this layout when the project has no explicit workspace policy or has adopted Mirket’s defaults. In the root `.gitignore`, create or repair these root-relative exclusions. Replace a blanket exclusion only under this default policy and preserve unrelated entries.
+When workspace setup is authorized and the project has adopted Mirket's defaults, create or repair these root-relative exclusions in `.gitignore`. Preserve unrelated entries. A missing policy or an unrelated edit is not authorization to replace a blanket exclusion or change tracked ignore rules.
 
 ```gitignore
 /.work/temp/

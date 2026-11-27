@@ -1,6 +1,8 @@
 # Screenshot capture
 
-A full-resolution original is required evidence for every visual check and design critique, including a small polish change. Capture each reviewed route, artboard or state in context. For responsive work include the desktop and narrow layouts in scope. Capture the baseline and revision under the same conditions when judging a change. An existing original is reusable when its build, coverage, state and capture settings match.
+For page critiques, layout changes or whole-artifact conclusions, capture the full surface using the procedure below. For a component-only question, capture the complete component and enough surrounding context at native resolution to see the specific condition (for example, keyboard focus and any clipping at a panel edge). Inspect the original at actual pixels and identify the build, viewport, state and bounds reviewed. If the effect can extend beyond those bounds, expand the capture before drawing a wider conclusion.
+
+For responsive work include the desktop and narrow layouts in scope. Match baseline and revision conditions for comparisons. Reuse originals when build, coverage, state and capture settings match.
 
 ## Capture the full surface
 

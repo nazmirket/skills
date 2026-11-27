@@ -2,9 +2,9 @@
 
 Use for an existing result whose direction should stay recognizable. Confirm the primary task, the surface and state where it happens, and the identity cues and behavior to preserve. Use [Redesign](Redesign.md) when the required change is structural or calls for a different identity. A request for findings ends in [Critique](Critique.md).
 
-1. Inspect the affected result in use and keep a [high-resolution capture of the whole surface](../tools/Screenshot.md) as the baseline. Identify a visible symptom, its location and the cost to the reader or user.
+1. Inspect the affected result in use and keep a [high-resolution capture covering the affected surface](../tools/Screenshot.md) as the baseline. Identify a visible symptom, its location and the cost to the reader or user.
 2. Change the smallest set of decisions that explains the symptom. Fix one representative instance before propagating a shared rule. Work with actual material, labels and states.
-3. Repeat the same capture and task with matching content, size and state. Inspect the whole result for displaced emphasis and the original detail at readable scale. Check nearby states and narrow reflow. For substantial changes, run the [critique](Critique.md) and recheck corrections.
+3. Repeat the same capture and task with matching content, size and state. Inspect the affected composition for displaced emphasis and the original detail at readable scale. Check nearby states and narrow reflow. For substantial changes, run the [critique](Critique.md) and recheck corrections.
 
 ## Unslop an existing design
 

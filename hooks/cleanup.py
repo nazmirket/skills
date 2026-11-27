@@ -290,14 +290,14 @@ def handle(payload):
         # that boundary without treating prose in the body as a shell command.
         if heredoc and "commit" in command and HEREDOC_COMMIT.search(command):
             return {"systemMessage": "Mirket did not fully inspect a shell command containing a heredoc or here-string for pre-commit cleanup."}
-        if any("git" in part and "commit" in part and part[0] not in {"echo", "printf", "rg", "grep"} for part in parts):
+        if any("git" in part and "commit" in part and part != ["git", "help", "commit"] and part[0] not in {"echo", "printf", "rg", "grep"} for part in parts):
             return {"systemMessage": "Mirket could not determine whether this shell command runs git commit; pre-commit cleanup and staged .work coverage are unknown."}
         return {}
     if len(parts) != 1 or structural:
         return deny("Mirket cannot reliably inspect Git operations in a compound command, redirection or heredoc. Run the Git operation separately, preserving its help or preview flags (such as --dry-run).")
     if dynamic or commit.problem:
         reason = commit.problem or "shell expansion"
-        return deny(f"Mirket cannot inspect a Git operation using {reason}. For a preview, keep --dry-run in a standalone literal command. For a commit, stage the intended files explicitly and use a standalone literal command.")
+        return deny(f"Mirket cannot inspect a Git operation using {reason}. For a path-limited preview, use a standalone literal command such as git commit --dry-run -- README.md. For a commit, stage the intended files explicitly and use a standalone literal command.")
     if commit.preview:
         return {}
     if not commit.acknowledged:

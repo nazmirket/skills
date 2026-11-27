@@ -4,12 +4,12 @@ Establish the target, decision it will inform and relevant conditions. Return tr
 
 ## Check an interaction
 
-For a specific behavior question, identify the starting state, input and expected outcome. Reuse a matching observed interaction or exercise it through the real controls. For example, open a dialog by keyboard, press Escape and observe both whether it closes and which control receives focus. Report the sequence and result. A question about how the focus indicator looks adds a visual check and requires the [full-surface capture](../tools/Screenshot.md).
+For a specific behavior question, identify the starting state, input and expected outcome. Reuse a matching observed interaction or exercise it through the real controls. For example, open a dialog by keyboard, press Escape and observe both whether it closes and which control receives focus. Report the sequence and result. To judge how the indicator looks, [capture the focused control in context](../tools/Screenshot.md).
 
 ## Collect visual evidence
 
 - Open the actual artifact or runtime. Record its location or version, entry point, content and state, input, viewport or physical size. Distinguish direct observations from supplied images, reports and inferences.
-- Reuse or obtain a [verified full-surface original](../tools/Screenshot.md) for each reviewed state. Record any gap in coverage, state or density.
+- Reuse or obtain a [verified original covering the claim](../tools/Screenshot.md) for each reviewed state. Record any gap in coverage, state or density.
 - Use the matching [tool guide](../tools/README.md) before giving a requested procedure or attempting an unfamiliar operation. For example, a Figma handoff procedure uses [Figma](../tools/Figma.md). A tool name in already sufficient evidence adds no procedure of its own.
 - Inventory available content, approved assets, brand cues, interaction conventions and known constraints. Record source, permissions and freshness of material assets. For a redesign, inspect the current interface live before editing. Gather the primary path and important navigation, feedback, error and access states. If the runtime is unavailable, leave the live baseline open.
 

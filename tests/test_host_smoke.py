@@ -50,7 +50,10 @@ class HostSmokeFixtureTest(unittest.TestCase):
                     self.assertNotIn("Result.json", visible)
                     self.assertEqual(result["status"], "unverified")
                     self.assertTrue(all(item["status"] == "unverified" for item in result["criteria"].values()))
-                    self.assertLessEqual({"owner", "support_selection", "announcement", "outcome", "write_scope", "stopping_condition"}, result["criteria"].keys())
+                    self.assertLessEqual({"owner", "support_selection", "outcome", "write_scope", "stopping_condition"}, result["criteria"].keys())
+                    self.assertNotIn("announcement", result["criteria"])
+                    if case["id"] == "execute-direct-fix":
+                        self.assertNotIn(".gitignore", visible)
                     self.assertIsNone(result["observed"]["primary_owner"])
                     self.assertEqual(result["observed"]["writes"], [])
                     self.assertEqual(result["observed"]["references_loaded"], [])

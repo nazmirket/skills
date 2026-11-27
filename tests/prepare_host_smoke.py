@@ -37,10 +37,11 @@ def prepare(case, destination, *, results_dir=None):
     if result_path.is_symlink() or result_path.exists():
         raise ValueError("the evaluator result already exists; existing work is preserved")
     files = {
-        ".gitignore": "/.work/temp/\n/.work/recover/\n/.work/stashes/\n/.work/routines/\n/__pycache__/\n",
         "README.md": "# Local project\n\nSee Context.md for the task and its scope.\n",
         "Context.md": case["context"] + "\n",
     }
+    if case.get("include_workspace_rules", True):
+        files[".gitignore"] = "/.work/temp/\n/.work/recover/\n/.work/stashes/\n/.work/routines/\n/__pycache__/\n"
     if case.get("include_sample_app", True):
         files["app.py"] = "def total(items):\n    return sum(items)\n"
         files["test_app.py"] = "import unittest\nfrom app import total\n\nclass TotalTest(unittest.TestCase):\n    def test_all_items_contribute(self):\n        self.assertEqual(total([2, 3]), 5)\n\n    def test_empty_total_is_zero(self):\n        self.assertEqual(total([]), 0)\n"
@@ -57,10 +58,10 @@ def prepare(case, destination, *, results_dir=None):
         "status": "unverified",
         "host": {"name": None, "version": None, "model": None, "model_driver": None, "catalog_condition": None,
                  "plugin_revision": None, "hook_trust": None, "hooks_enabled": None, "global_mirket_instructions": None},
-        "observed": {"primary_owner": None, "skills_loaded": [], "references_loaded": [], "unnecessary_reads": [], "announcement": None,
+        "observed": {"primary_owner": None, "skills_loaded": [], "references_loaded": [], "unnecessary_reads": [],
                      "writes": [], "commands": [], "evidence_reused": [], "stop_reason": None},
         "criteria": {key: {"status": "unverified", "evidence": []} for key in (
-            "owner", "support_selection", "announcement", "actions", "outcome", "write_scope", "stopping_condition", "evidence_reuse"
+            "owner", "support_selection", "actions", "outcome", "write_scope", "stopping_condition", "evidence_reuse"
         )},
         "transcript": None,
         "limits": [],

@@ -4,6 +4,8 @@ import { join } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const skillsDirectory = fileURLToPath(new URL("../skills/", import.meta.url));
+// Exact commands only. Shell syntax, wrappers and other inputs stay with the shared guard.
+const ordinaryReads = new Set(["pwd", "ls", "git status", "git status --short", "git status --short --branch"]);
 
 function loadSkills() {
   return readdirSync(skillsDirectory, { withFileTypes: true })
@@ -43,22 +45,30 @@ export default {
   id: "mirket",
   async setup({ skill, session, tool }) {
     const catalog = loadSkills();
-    const startup = await runHook("execute.py", { hook_event_name: "SessionStart" })
-      .then((result) => result.hookSpecificOutput.additionalContext, (error) => error.message);
+    const executePath = join(skillsDirectory, "execute", "SKILL.md");
+    let executeId = "execute";
 
     await skill.transform((editor) => {
       for (const entry of catalog) {
-        if (!editor.get(entry.id)) editor.add(entry);
+        let id = entry.id;
+        let existing = editor.get(id);
+        while (existing && existing.path !== entry.path) {
+          id = `mirket-${id}`;
+          existing = editor.get(id);
+        }
+        if (!existing) editor.add(id === entry.id ? entry : { ...entry, id, name: id });
+        if (entry.id === "execute") executeId = id;
       }
     });
     await session.hook("context", (event) => {
-      event.system.push({ type: "text", text: startup });
+      event.system.push({ type: "text", text: `Apply \`${executeId}\` throughout this session (${executePath}). Use the Mirket entry at that path. Reuse guidance in context and choose one owner per outcome.` });
     });
 
     await tool.transform((editor) => {
       editor.update("shell", (shell) => {
         const execute = shell.execute;
         shell.execute = async (input, context) => {
+          if (ordinaryReads.has(input.command)) return execute(input, context);
           const { hookSpecificOutput, systemMessage } = await runHook("cleanup.py", {
             hook_event_name: "PreToolUse",
             tool_name: "Bash",

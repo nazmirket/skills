@@ -417,9 +417,17 @@ class CleanupHooksTest(unittest.TestCase):
 
     def test_index_inspection_failure_blocks_an_acknowledged_commit(self):
         with tempfile.TemporaryDirectory() as root:
-            result = before_shell(f"MIRKET_CLEANUP_DONE=1 git -C {shlex.quote(root)} commit -m x", cwd=HOOK.parents[1])
+            target = shlex.quote(str(Path(root) / "absent"))
+            result = before_shell(f"MIRKET_CLEANUP_DONE=1 git -C {target} commit -m x", cwd=HOOK.parents[1])
             self.assertTrue(denied(result))
             self.assertIn("target Git index", result["hookSpecificOutput"]["permissionDecisionReason"])
+
+    def test_commit_help_and_path_limited_preview(self):
+        self.assertEqual(before_shell("git help commit"), {})
+        preview = "git commit --dry-run -- README.md"
+        result = before_shell("git commit --dry-run README.md")
+        self.assertIn(preview, result["hookSpecificOutput"]["permissionDecisionReason"])
+        self.assertEqual(before_shell(preview), {})
 
     def test_compound_commands_cannot_change_index_before_inspection(self):
         for command in ("git add -f .work/a && MIRKET_CLEANUP_DONE=1 git commit -m x",

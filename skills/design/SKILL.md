@@ -7,7 +7,7 @@ description: "Use to create, implement, redesign, polish or critique visual work
 
 Design owns visual artifacts and interface interactions. For creative work, agree on the intended effect and what the identity must preserve. Choose composition and treatment within that brief. Inspect the result in its intended medium.
 
-**Every critique and visual check requires a verified, high-resolution capture of the complete reviewed surface.** Apply the [capture standard](references/tools/Screenshot.md). For web work, inspect the full page at the intended CSS viewport and at least 2× native density. Reuse matching verified originals. If coverage is incomplete, report what remains visually unverified.
+Match the [capture](references/tools/Screenshot.md) to the claim. Page critiques and layout changes require the full page at the intended CSS viewport and at least 2× native density. A component-only question can use the complete component in context at native resolution in the exact state under review. Limit the verdict to what the evidence shows.
 
 | Requested result | Start here |
 | --- | --- |
